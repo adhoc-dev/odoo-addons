@@ -37,6 +37,10 @@ class ir_actions_report(osv.Model):
         'use_background_image' : fields.boolean('Use Background Image'),
         'background_image': fields.binary('Background Image'),
         'company_id': fields.many2one('res.company', 'Company', change_default=True),
+        # 'print_header': fields.boolean('Print Header',),
+        # 'print_title': fields.boolean('Print Title',),
+        # 'print_letter': fields.boolean('Print Letter',),
+        # 'print_number': fields.boolean('Print Number',),
     }
     
     _defaults = {
