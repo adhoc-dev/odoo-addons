@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+<!-- Hacemos una vista nueva para usuarios de portal porque no queremos que puedan modificar los campos fuera de draft -->
+        <record model="ir.ui.view" id="project_issue_portal_form_view">
+            <field name="name">Project Issue Portal Form</field>
+            <field name="model">project.issue</field>
+            <field name="arch" type="xml">
+                <form string="Issue" version="7.0">
+                    <header>
+                        <button name="case_open" string="Open" type="object"
+                                states="draft"/> 
+                        <field name="stage_id" widget="statusbar"/>
+                    </header>
+                    <sheet string="Issue">
+                        <label for="name"  class="oe_edit_only"/>
+                        <h1><field name="name" attrs="{'readonly':[('state','in',('open','pending','cancelled'))]}"/></h1>
+                        <label for="categ_ids" class="oe_edit_only"/>
+                        <field name="categ_ids" attrs="{'readonly':[('state','in',('open','pending','cancelled'))]}" widget="many2many_tags"/>
+                        <group>
+    <!-- todo invisible!-->
+                            <group groups="base.group_user">
+                                <field name="user_id"/>
+                                <field name="partner_id"  on_change="onchange_partner_id(partner_id, email_from)"/>
+                                <field name="email_from"/>
+                                <label for="project_id" groups="base.group_user"/>
+                                <div groups="base.group_user">
+                                    <field name="project_id" on_change="on_change_project(project_id)" class="oe_inline" context="{'default_use_issues':1}"/>
+                                    <button name="case_escalate" string="⇒ Escalate" type="object" states="draft,open,pending" class="oe_link"/>
+                                </div>
+                            </group>
+
+                            <group>
+                                <field name="id"/>
+                                <field name="version_id" groups="base.group_user"/>
+                                <field name="priority" attrs="{'readonly':[('state','in',('open','pending','cancelled'))]}"/>
+    <!-- todo invisible -->
+                                <label for="task_id" groups="base.group_user"/>
+                                <div groups="base.group_user">
+                                    <field name="task_id" on_change="onchange_task_id(task_id)" class="oe_inline" context="{'default_project_id':project_id}"/>
+                                    <field name="progress" widget="progressbar" attrs="{'invisible':[('task_id','=',False)]}" class="oe_inline"/>
+                                </div>
+
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Issue Data">
+                                <group colspan="4" col="1">
+                                    <field name="issue_description" placeholder="Add issue description..." attrs="{'readonly':[('state','in',('open','pending','cancelled'))]}"/>
+                                    <field name="solution_description" placeholder="Add solution description..." readonly="1"/>
+                                    <field name="project_issue_solution_id" readonly="1"/>
+                                </group>
+                            </page>                        
+    <!-- todo invisible-->
+                            <page string="Extra Info" groups="project.group_project_manager">
+                                <group string="Statistics">
+                                    <field name="day_open"/>
+                                    <field name="day_close"/>
+                                    <field name="working_hours_open" widget="float_time"/>
+                                    <field name="working_hours_close" widget="float_time"/>
+                                    <field name="inactivity_days"/>
+                                    <field name="days_since_creation"/>
+                                </group>
+                                <group string="Status" groups="base.group_no_one">
+                                    <field name="active"/>
+                                    <field name="state" string="Status"/>
+                                </group>
+                            </page>
+
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="portal_project_issue.project_issue_categ_act1" model="ir.actions.act_window">
+            <field name="name">Issues</field>
+            <field name="res_model">project.issue</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,form</field>
+<!--            <field name="view_id" ref="project_issue_portal_form_view"/>
+            <field name="search_view_id" ref="project_issue.view_project_issue_filter"/>
+            <field name="domain" eval=""/>-->
+            <field name="context">{"search_default_user_id":'', "search_default_draft":'', "search_default_todo":'', "portal":'True'}</field>
+            <field name="target">current</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create an issue.
+              </p><p>
+                You can track your issues from this menu and the action we
+                will take.
+              </p>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="project_portal_issue_kanban">
+            <field name="sequence" eval="0"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="project_issue.project_issue_kanban_view"/>
+            <field name="act_window_id" ref="portal_project_issue.project_issue_categ_act1"/>
+        </record> 
+
+        <record model="ir.actions.act_window.view" id="project_portal_issue_form">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="project_issue_portal_form_view"/>
+            <field name="act_window_id" ref="portal_project_issue.project_issue_categ_act1"/>
+        </record>
+
+        <menuitem id="portal_after_sales_claims" parent="portal.portal_after_sales" 
+            action="portal_project_issue.project_issue_categ_act1" sequence="10"/>
+
+
+    </data>
+</openerp>

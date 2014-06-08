@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <!-- Info Objeto Remoto -->
+	    <record id="view_support_contract_form" model="ir.ui.view">
+            <field name="name">support.support_contract.form</field>
+            <field name="model">support.support_contract</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Support Contract">
+                    <group colspan="4" col="4">
+                        <separator string="Information" colspan="4" />
+                        <field name="name" colspan="2"/>
+                        <field name="active" colspan="2"/>
+                        <field name="contract_provider" colspan="4"/>
+                        <field name="contract_provider_url" colspan="4"/>
+                        <field name="email_from" colspan="4"/>
+                    </group>
+                    
+                    <group colspan="4" col="2">
+                        <separator string="Email Recipients" colspan="2" />
+                        <field name="email_to_ids" colspan="2" nolabel="1" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+	    <record id="view_support_contract_tree" model="ir.ui.view">
+            <field name="name">support.support_contract.tree</field>
+            <field name="model">support.support_contract</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Support Contract">
+                    <field name="name"/>
+                    <field name="contract_provider"/>
+                    <field name="contract_provider_url"/>
+                    <field name="email_from"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_support_contract_search" model="ir.ui.view">
+            <field name="name">support.support_contract.search</field>
+            <field name="model">support.support_contract</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Support Contract" >
+                    <filter string="Not Active" name="no_active" domain="[('active','=',False)]"/>
+                    <field name="name"/>
+                    <field name="contract_provider"/>
+                    <field name="email_from"/>
+                </search>
+            </field>
+        </record>
+        
+        <!-- Support Email -->
+	    <record id="view_support_email_form" model="ir.ui.view">
+            <field name="name">support.email.form</field>
+            <field name="model">support.email</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Email">
+                    <group colspan="4" col="4">
+                        <field name="name"/>
+                        <field name="email_address"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+	    <record id="view_support_email_tree" model="ir.ui.view">
+            <field name="name">support.email.tree</field>
+            <field name="model">support.email</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Email">
+                    <field name="name"/>
+                    <field name="email_address"/>
+                </tree>
+            </field>
+        </record>
+        
+        <!-- Acciones -->
+        <record id="action_support_contract" model="ir.actions.act_window">
+            <field name="name">Support Contract</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">support.support_contract</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <!-- Menu -->
+        <menuitem
+            id="menu_administracion_expresso"
+	        parent="base.publisher_warranty"
+	        action="action_support_contract"
+	        sequence="50"/>
+        
+    </data>
+</openerp>

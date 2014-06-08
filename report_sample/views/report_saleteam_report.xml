@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_saleteam_document">
+    <t t-call="report.external_layout">
+        <div class="page">
+            asdasdads
+        </div>
+    </t>
+</template>
+
+<template id="report_saleteam_1">
+    <t t-call="report.html_container">
+        <t t-foreach="doc_ids" t-as="doc_id">
+            <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'report_sample.report_saleteam_document')"/>
+        </t>
+    </t>
+</template>
+
+<!-- Other sample report -->
+<template id="report_sale_order_other">
+    <t t-call="report.external_layout">
+        <div class="page">
+            asdasdads
+        </div>
+    </t>
+</template>
+
+<template id="report_sale_order_other_1">
+    <t t-call="report.html_container">
+        <t t-foreach="doc_ids" t-as="doc_id">
+            <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'report_sample.report_sale_order_other')"/>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>

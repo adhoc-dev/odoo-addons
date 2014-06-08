@@ -1,0 +1,33 @@
+# Portuguese translation for openobject-addons
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the openobject-addons package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: openobject-addons\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2009-11-25 14:05+0000\n"
+"PO-Revision-Date: 2010-11-09 22:32+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Portuguese <pt@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-04-20 05:27+0000\n"
+"X-Generator: Launchpad (build 16567)\n"
+
+#. module: purchase_discount
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr "XML Inválido para a Arquitectura de Vista!"
+
+#. module: purchase_discount
+#: model:ir.module.module,shortdesc:purchase_discount.module_meta_information
+msgid "Purchase Order Lines With Discounts"
+msgstr "Linhas de Ordem de Compra com Descontos"
+
+#. module: purchase_discount
+#: field:purchase.order.line,discount:0
+msgid "Discount (%)"
+msgstr "Descontos (%)"

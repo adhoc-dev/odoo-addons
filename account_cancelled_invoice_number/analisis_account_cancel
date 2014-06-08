@@ -1,0 +1,11 @@
+Tarea,Problemas,Diagnóstico,Posible Solución
+Facturas Canceladas,No aparece el número,"En las invoice hay dos campos ""internal_number"" y ""number"" (este es el que se muestra en las distintas vistas). Cuando la factura es cancelada, el segundo campo se pone como nulo mientras que el primero guarda el número. 
+El campo ""number' es un campo related al move_id que se crea desde la factura. ","1. Mostrar el campo ""internal number"" en vez de ""number""
+2. Modificar el cancel para que no borre el ""internal number"" (no se puede porque este campo es related y viene desde el ""move_id"". Salvo que se modifique para que number sea related a ""internal number"""
+,Se considera igual cancelada desde aprovada que anulada. ,,Habría que ver si cancelada y borrada puede ser una suerte de 
+,No se pueden borrar facturas canceladas,No se pueden borrar facturas canceladas al propósito por un tema de rastrabilidad. ,
+,FUNCIONAMIENTO GLOBAL,"Hay un wizard ""account_invoice_state"" que ejecuta una acción deworkflow que termina ejecutando la acción definida en ""account_invoice.py"" llamada ""action_cancel""
+En dicha línea, si se desea borrar el internal number, hay que cambiar ""self.write(cr, uid, ids, {'state':'cancel', 'move_id':False})"" por ""self.write(cr, uid, ids, {'state':'cancel', 'internal_number':False ,'move_id':False}):""
+Lo ideal es hacer eso en un nuevo botón","1. 
+Mostrar ""internal number"" en vez de ""number""
+Agregar otro boton de cancelar distinto que borre el internal number y así permita también borrar una factura"

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend="CrashManagerError">
+        <t t-jquery=".oe_error_detail" t-operation="replace">
+        </t>
+        
+        <t t-jquery="span" t-operation="replace">
+            <span style="font-size:120%;">
+                <div class="crash_manager_error_tabs">
+                    <ul>
+                        <li><a href="#tabs-1">General</a></li>
+                        <li><a href="#tabs-2">Debug</a></li>
+                    </ul>
+                    <div id="tabs-1">
+                        <span>
+                            This is an unmanaged error produced in your OpenERP instance, this is not suppose to happend. In the Debug tab you can find technical information about the error.
+                        </span>
+                        
+                        <br/><br/>
+                        
+                        <t t-if="contract_provided">
+                            <span>
+                                Your OpenERP instance is supported by <a t-att-href="support_link"><t t-esc="support_name"/></a>.
+                            </span>
+                            <span>
+                                You can send all the information regarding this error to us directly by clicking the button "Send Error".
+                            </span>
+                            <span>
+                                This way we can get informed about it and try to fix it as soon as possible.
+                            </span>
+                        </t>
+                        
+                        <t t-if="!contract_provided">
+                            <span>
+                                Unfortunatelly your OpenERP instance is not supported.
+                            </span>
+                        </t>
+                    </div>
+                    <div id="tabs-2">
+                        <div class="oe_error_detail">
+                            <pre><t t-esc="error.message"/></pre>
+                            <hr/>
+                            <pre><t t-esc="error.data.debug"/></pre>
+                        </div>
+                    </div>
+                </div>
+            </span>
+        </t>
+    </t>
+</templates>

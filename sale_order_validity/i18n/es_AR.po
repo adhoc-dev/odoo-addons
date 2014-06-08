@@ -1,0 +1,62 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* sale_order_validity
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-29 17:20+0000\n"
+"PO-Revision-Date: 2014-01-29 14:21-0300\n"
+"Last-Translator: Juan Jose Scarafia <scarafia.juanjose@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: sale_order_validity
+#: field:res.company,sale_order_validity_days:0
+msgid "Sale Order Vailidty Period"
+msgstr "Período de Validez de Orden de Venta"
+
+#. module: sale_order_validity
+#: view:sale.order:0
+msgid "Update Validity"
+msgstr "Actualizar Validez"
+
+#. module: sale_order_validity
+#: help:sale.order,date_validity:0
+msgid "Define date until when quotation is valid"
+msgstr "Define la fecha hasta la cual el presupuesto es válido"
+
+#. module: sale_order_validity
+#: view:sale.order:0
+msgid "Update Prices and Validity"
+msgstr "Actualizar Preciso y Validez"
+
+#. module: sale_order_validity
+#: model:ir.model,name:sale_order_validity.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: sale_order_validity
+#: view:res.company:0
+msgid "Sales"
+msgstr "Sales"
+
+#. module: sale_order_validity
+#: help:res.company,sale_order_validity_days:0
+msgid "Set days of validity for Sales Order, if null, no validity date will be filled"
+msgstr "Definir días de validez para las Ordenes de Venta, si es nulo, no se va a completar con ninguna fecha de validez"
+
+#. module: sale_order_validity
+#: field:sale.order,date_validity:0
+msgid "Valid Until"
+msgstr "Válido Hasta"
+
+#. module: sale_order_validity
+#: model:ir.model,name:sale_order_validity.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+

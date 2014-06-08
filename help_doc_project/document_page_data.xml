@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <menuitem id="menu_project_documentation" 
+                  sequence="60"
+                  name="Projects"
+                  parent="help_doc.menu_documentation_main"
+                  groups="project.group_project_user"/>
+
+
+<!-- Invoicing -->
+        <record id="project_page" model="document.page">
+            <field name="name">Projects and Task</field>
+            <!-- <field name="parent_id" ref="demo_category1"/> -->
+            <field name="active" eval="False"/>
+            <field name="google_doc" eval="True"/>
+            <field name="width">100%</field>
+            <field name="height">95%</field>
+            <field name="hide_title" eval="True"/>
+            <field name="url">https://docs.google.com/document/d/1RlHVwwP7kz5Irdkkl7BmzQMvnTRgmOdcE-XeU0jFe8c/pub</field>
+            <field name="show_document_link" eval="True"/>
+            <field name="document_url">https://docs.google.com/document/d/1RlHVwwP7kz5Irdkkl7BmzQMvnTRgmOdcE-XeU0jFe8c/edit</field>
+            <field name="content">
+<![CDATA[
+<iframe src="https://docs.google.com/document/d/1RlHVwwP7kz5Irdkkl7BmzQMvnTRgmOdcE-XeU0jFe8c/pub" width="100%" height="95%" frameborder="0"></iframe>
+]]>
+            </field>
+        </record>
+
+        <record id="action_project_page" model="ir.actions.act_window">
+            <field name="name">Projects and Tasks</field>
+            <field name="res_model">document.page</field>
+            <field name="view_mode">form</field>
+            <field name="target">inlineview</field>
+            <field name="res_id" eval="str(ref('project_page'))"/> 
+        </record>
+                
+        <menuitem id="menu_project_page" sequence="10"
+                  action="action_project_page"
+                  parent="menu_project_documentation"/>
+
+                  
+    </data>
+</openerp>

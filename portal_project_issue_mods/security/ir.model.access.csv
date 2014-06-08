@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+portal_project_issue.access_issues,project_issue,project_issue.model_project_issue,portal.group_portal,1,1,1,0
+portal_project_issue.hr_analytic_line,hr.analytic.timesheet,project_issue_sheet.model_hr_analytic_timesheet,portal.group_portal,1,0,0,0

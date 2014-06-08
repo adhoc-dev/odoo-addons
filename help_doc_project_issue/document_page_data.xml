@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+
+        <record id="project_issue_page" model="document.page">
+            <field name="name">Issues</field>
+            <!-- <field name="parent_id" ref="demo_category1"/> -->
+            <field name="active" eval="False"/>
+            <field name="google_doc" eval="True"/>
+            <field name="width">100%</field>
+            <field name="height">95%</field>
+            <field name="hide_title" eval="True"/>
+            <field name="url">https://docs.google.com/document/d/1Shx5dVD9iNQIR-ysBvlDr_RCefPH4etYcBVb3QbThKk/pub</field>
+            <field name="show_document_link" eval="True"/>
+            <field name="document_url">https://docs.google.com/document/d/1Shx5dVD9iNQIR-ysBvlDr_RCefPH4etYcBVb3QbThKk/edit</field>
+            <field name="content">
+<![CDATA[
+<iframe src="https://docs.google.com/document/d/1Shx5dVD9iNQIR-ysBvlDr_RCefPH4etYcBVb3QbThKk/pub" width="100%" height="95%" frameborder="0"></iframe>
+]]>
+            </field>
+        </record>
+
+        <record id="action_project_issue_page" model="ir.actions.act_window">
+            <field name="name">Issues</field>
+            <field name="res_model">document.page</field>
+            <field name="view_mode">form</field>
+            <field name="target">inlineview</field>
+            <field name="res_id" eval="str(ref('project_issue_page'))"/> 
+        </record>
+                
+        <menuitem id="menu_project_issue_page" sequence="20"
+                  action="action_project_issue_page"
+                  parent="help_doc_project.menu_project_documentation"/>
+
+                  
+    </data>
+</openerp>

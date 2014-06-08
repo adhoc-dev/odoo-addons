@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<!-- Base Config Settings Form View -->
+		<record id="view_adhoc_base_configuration" model="ir.ui.view">
+			<field name="name">adhoc.base.config.settings</field>
+			<field name="model">adhoc.base.config.settings</field>
+			<field name="inherit_id" ref="adhoc_base_setup.view_adhoc_base_configuration"/>
+			<field name="arch" type="xml">
+				<div name='module_account_create_journal' position="after">
+					<div attrs="{'invisible':[('module_account_create_journal','!=',True)]}">
+                        <button type="action" name="%(view_journal_config_action)d" string="Configure Payment Journals." icon="gtk-execute" class="oe_link"/>
+					</div>				
+				</div>				
+			</field>
+		</record>
+	</data>
+</openerp>

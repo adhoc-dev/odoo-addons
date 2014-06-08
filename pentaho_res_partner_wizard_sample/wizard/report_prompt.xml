@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+	<data>
+		<record model='ir.ui.view' id='view_wizard_test'> <!-- MOD -->
+			<field name='name'>Pentaho Report Options</field> <!-- MOD -->
+			<field name='model'>res.partner.report.sample</field> <!-- MOD -->
+			<field name='arch' type='xml'>
+				<form string='Report' version="7.0">
+					<group>
+						<field name="output_type"/>
+					</group>
+
+					<!-- MOD -->
+					<group col="4">
+						<field name="name" colspan="4"/>
+						<field name="category_ids" colspan="4" widget="many2many_tags"/>
+						<field name="parent_name"/>
+						<field name="date"/>
+						<field name="customer"/>
+						<field name="supplier"/>
+						<field name="user_id"/>
+						<field name="credit"/>
+						<field name="country_id"/>
+					</group>
+	                
+	                <!-- Dont Modify -->
+	                <footer>
+						<button class="oe_highlight" string='Print' name='check_report' type='object' />
+						or
+						<button class="oe_link" string='Cancel' special='cancel'/>
+	                </footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_wizard_test" model="ir.actions.act_window"> <!-- MOD -->
+			<!-- MOD -->
+			<field name="name">Test Report</field>
+			<field name="res_model">res.partner.report.sample</field>
+			<field name="view_id" ref="view_wizard_test"/>
+			
+			<!-- Dont Modify -->
+			<field name="type">ir.actions.act_window</field>
+			<field name="view_type">form</field>
+            <field name="target">new</field>			
+			<field name="view_mode">form</field>
+		</record>
+
+		<!-- MOD -->
+        <menuitem id="wizard_test"
+                  action="action_wizard_test"
+                  name="Prueba de wizard"
+                  parent="account.menu_finance_receivables"
+                  sequence="3"/>            
+	</data>
+</openerp>

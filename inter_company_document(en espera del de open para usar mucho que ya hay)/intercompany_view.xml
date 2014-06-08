@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_intercompany_document_tree">
+            <field name="name">intercompany.document.tree</field>
+            <field name="model">intercompany.document</field>
+            <field name="arch" type="xml">
+                <tree string="Intercompany Document" editable="top">
+                    <field name="model"/>
+                    <field name="type"/>
+                    <field name="destiny_company_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_intercompany_document_form">
+            <field name="name">intercompany.document.form</field>
+            <field name="model">intercompany.document</field>
+            <field name="arch" type="xml">
+                <form string="Intercompany Document" version="7.0">
+                    <group>
+                        <field name="model"/>
+                        <field name="type"/>
+                        <field name="destiny_company_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

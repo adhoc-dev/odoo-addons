@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <menuitem name="Help" id="help_doc.menu_documentation_main" sequence="500"
+                  groups="base.group_user,base.group_portal"/>        
+    </data>
+</openerp>

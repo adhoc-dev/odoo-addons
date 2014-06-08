@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+<!--         <menuitem id="menu_mail_documentation" 
+                  sequence="10"
+                  name="Messaging and Social Networking"
+                  parent="help_doc.menu_documentation_main"
+                  /> -->
+
+        <record id="mail_communicaction_page" model="document.page">
+            <field name="name">Communications</field>
+            <field name="active" eval="False"/>
+            <field name="google_doc" eval="True"/>
+            <field name="width">100%</field>
+            <field name="height">95%</field>
+            <field name="hide_title" eval="True"/>
+            <field name="url">https://docs.google.com/document/d/1veiMNSox9Isg5gbJwbYNczW57XcosSNK_0yCvyobwxk/pub</field>
+            <field name="show_document_link" eval="True"/>
+            <field name="document_url">https://docs.google.com/a/ingenieriaadhoc.com/document/d/1veiMNSox9Isg5gbJwbYNczW57XcosSNK_0yCvyobwxk/edit#</field>
+            <field name="content">
+<![CDATA[
+<iframe src="https://docs.google.com/document/d/1veiMNSox9Isg5gbJwbYNczW57XcosSNK_0yCvyobwxk/pub" width="100%" height="95%" frameborder="0"></iframe>
+]]>
+            </field>
+        </record>
+
+        <record id="action_mail_communicaction_page" model="ir.actions.act_window">
+            <field name="name">Communications</field>
+            <field name="res_model">document.page</field>
+            <field name="view_mode">form</field>
+            <field name="target">inlineview</field>
+            <field name="res_id" eval="str(ref('mail_communicaction_page'))"/> 
+        </record>
+                
+        <menuitem id="menu_mail_communications_page" sequence="20"
+                  action="action_mail_communicaction_page"
+                  parent="help_doc.menu_documentation_introduction"/>
+
+    </data>
+</openerp>

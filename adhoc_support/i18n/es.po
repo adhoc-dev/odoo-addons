@@ -1,0 +1,154 @@
+# Translations template for PROJECT.
+# Copyright (C) 2012 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2012-10-22 16:34+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.6\n"
+
+#. openerp-web
+#: /home/damian/Desarrollo/addons/compartidos/web/web_support/static/src/js/web_support.js:45
+msgid "Error sending email"
+msgstr "Error al enviar el email"
+
+#. openerp-web
+#: /home/damian/Desarrollo/addons/compartidos/webs/web_support/static/src/js/chrome.js:25
+#: /home/damian/Desarrollo/addons/compartidos/webs/web_support/static/src/js/chrome.js:49
+msgid "Close"
+msgstr "Cerrar"
+
+#. openerp-web
+#: /home/damian/Desarrollo/addons/compartidos/webs/web_support/static/src/js/chrome.js:35
+msgid "Send Error"
+msgstr "Enviar Error"
+
+#. openerp-web
+#: /home/damian/Desarrollo/addons/compartidos/webs/web_support/static/src/js/chrome.js:75
+msgid "OpenERP"
+msgstr ""
+
+#. openerp-web
+#: /home/damian/Desarrollo/addons/compartidos/webs/web_support/static/src/xml/base.xml:11
+msgid "General"
+msgstr "General"
+
+#. openerp-web
+#: /home/damian/Desarrollo/addons/compartidos/webs/web_support/static/src/xml/base.xml:12
+msgid "Debug"
+msgstr ""
+
+#. openerp-web
+#: /home/damian/Desarrollo/addons/compartidos/webs/web_support/static/src/xml/base.xml:15
+msgid ""
+"This is an unmanaged error produced in your OpenERP instance, this is not"
+" suppose to happend. In the Debug tab you can find technical information "
+"about the error."
+msgstr ""
+"Ocurrio un error no contemplado en su instancia OpenERP, esto no tendria"
+" que pasar. En la pestaña Debug puede encontrar información técnica "
+"sobre el error."
+
+#. openerp-web
+#: /home/damian/Desarrollo/addons/compartidos/webs/web_support/static/src/xml/base.xml:21
+msgid "Your OpenERP instance is supported by"
+msgstr "Su instancia OpenERP esta soportada por "
+
+#. openerp-web
+#: /home/damian/Desarrollo/addons/compartidos/web_support/static/src/xml/base.xml:24
+msgid ""
+"You can send all the information regarding this error to us directly by "
+"clicking the button \"Send Error\"."
+msgstr ""
+"Puede enviarnos la información relativa al error "
+"presion el boton \"Enviar Error\"."
+
+#. openerp-web
+#: /home/damian/Desarrollo/addons/compartidos/webs/web_support/static/src/xml/base.xml:27
+msgid "This way we can get informed about it and try to fix it as soon as possible."
+msgstr "De esta forma podemos procesar el error y tratar de arreglarlo lo antes posible."
+
+#. openerp-web
+#: /home/damian/Desarrollo/addons/compartidos/web/web_support/static/src/xml/base.xml:34
+msgid "Unfortunatelly your OpenERP instance is not supported."
+msgstr "Desgraciadamente su instancia OpenERP no esta soportada."
+
+#. module: web_support
+#: field:support.support_contract,contract_provider:0
+msgid "Contract Provider"
+msgstr "Proveedor del Contrato"
+
+#. module: web_support
+#: view:support.support_contract:0
+msgid "Information"
+msgstr "Información"
+
+#. module: web_support
+#: view:support.support_contract:0
+msgid "Not Active"
+msgstr "Inactivo"
+
+#. module: web_support
+#: field:support.email,email_address:0
+msgid "Email Address"
+msgstr "Direcciones de Email"
+
+#. module: web_support
+#: model:ir.actions.act_window,name:web_support.action_support_contract
+#: model:ir.model,name:web_support.model_support_support_contract
+#: model:ir.ui.menu,name:web_support.menu_administracion_expresso
+#: field:support.email,support_contract_id:0
+#: view:support.support_contract:0
+msgid "Support Contract"
+msgstr "Contrato de Soporte"
+
+#. module: web_support
+#: model:ir.model,name:web_support.model_mail_message
+msgid "Email Message"
+msgstr "Mensaje"
+
+#. module: web_support
+#: field:support.support_contract,name:0
+msgid "Contract Name"
+msgstr "Nombre del Contrato"
+
+#. module: web_support
+#: view:support.support_contract:0
+#: field:support.support_contract,email_to_ids:0
+msgid "Email Recipients"
+msgstr "Destinatarios de Correo Electrónico"
+
+#. module: web_support
+#: field:support.support_contract,email_from:0
+msgid "Email Sender"
+msgstr "Email Remitente"
+
+#. module: web_support
+#: field:support.support_contract,active:0
+msgid "Active"
+msgstr "Activo"
+
+#. module: web_support
+#: field:support.support_contract,contract_provider_url:0
+msgid "Contract Provider URL"
+msgstr "URL del Proveedor del Contrato"
+
+#. module: web_support
+#: model:ir.model,name:web_support.model_support_email
+#: view:support.email:0
+msgid "Email"
+msgstr "Email"
+
+#. module: web_support
+#: field:support.email,name:0
+msgid "Name"
+msgstr "Nombre"
+

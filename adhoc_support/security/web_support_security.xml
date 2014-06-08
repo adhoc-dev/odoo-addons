@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <record id="access_web_support_support_contract_system" model="ir.model.access">
+			<field name="model_id" ref="web_support.model_support_support_contract"/>
+			<field name="name">access.web_support.support_contract.system</field>
+			<field eval="1" name="perm_read"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="1" name="perm_create"/>
+			<field eval="1" name="perm_unlink"/>
+			<field name="group_id" ref="base.group_system"/>
+		</record>
+		
+		<record id="access_web_support_support_contract_all" model="ir.model.access">
+			<field name="model_id" ref="web_support.model_support_support_contract"/>
+			<field name="name">access.web_support.support_contract.all</field>
+			<field eval="1" name="perm_read"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="0" name="perm_create"/>
+			<field eval="0" name="perm_unlink"/>
+		</record>
+		
+		<record id="access_web_support_email_system" model="ir.model.access">
+			<field name="model_id" ref="web_support.model_support_email"/>
+			<field name="name">access.web_support.email.system</field>
+			<field eval="1" name="perm_read"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="1" name="perm_create"/>
+			<field eval="1" name="perm_unlink"/>
+			<field name="group_id" ref="base.group_system"/>
+		</record>
+		
+		<record id="access_web_support_email_all" model="ir.model.access">
+			<field name="model_id" ref="web_support.model_support_email"/>
+			<field name="name">access.web_support.email.all</field>
+			<field eval="1" name="perm_read"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="0" name="perm_create"/>
+			<field eval="0" name="perm_unlink"/>
+		</record>
+	</data>
+</openerp>

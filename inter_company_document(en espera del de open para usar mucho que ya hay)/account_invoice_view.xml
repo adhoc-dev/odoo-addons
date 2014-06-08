@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="invoice_form" model="ir.ui.view">
+            <field name="name">account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <header>
+                    <button name="asda" string="aaas" type="object" attrs="{'invisible':[('inter_document_type','=',False),('state','not in',['draft'])]}"/>
+                </header>
+            </field>
+        </record>
+    </data>
+</openerp>

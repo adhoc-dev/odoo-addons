@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report 
+            id="report_saleteam"
+            string="Salesteam"
+            model="crm.case.section" 
+            report_type="qweb-pdf"
+            file="report_sample.report_saleteam" 
+            name="report_sample.report_saleteam" 
+        />
+
+        <report 
+            id="other_sale_report"
+            string="Other Sale Report"
+            model="sale.order" 
+            report_type="qweb-pdf"
+            file="report_sample.report_sale_order_other_1" 
+            name="report_sample.report_sale_order_other_1" 
+        />
+    </data>
+</openerp>

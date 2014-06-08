@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <menuitem id="menu_multi_company_documentation" 
+                  sequence="100"
+                  name="Multi Company"
+                  parent="help_doc.menu_documentation_main"
+                  groups="base.group_multi_company"/>
+<!-- Invoicing -->
+        <record id="multi_company_multi_company_page" model="document.page">
+            <field name="name">Multi Company</field>
+            <!-- <field name="parent_id" ref="demo_category1"/> -->
+            <field name="active" eval="False"/>
+            <field name="google_doc" eval="True"/>
+            <field name="width">100%</field>
+            <field name="height">95%</field>
+            <field name="hide_title" eval="True"/>
+            <field name="url">https://docs.google.com/document/d/1VkpLmA24FlygXD7ORR87e7eBicSUEXwQyItQjwnQ0Lo/pub</field>
+            <field name="show_document_link" eval="True"/>
+            <field name="document_url">https://docs.google.com/document/d/1VkpLmA24FlygXD7ORR87e7eBicSUEXwQyItQjwnQ0Lo/edit</field>
+            <field name="content">
+<![CDATA[
+<iframe src="https://docs.google.com/document/d/1VkpLmA24FlygXD7ORR87e7eBicSUEXwQyItQjwnQ0Lo/pub" width="100%" height="95%" frameborder="0"></iframe>
+]]>
+            </field>
+        </record>
+
+        <record id="action_multi_company_multi_company_page" model="ir.actions.act_window">
+            <field name="name">Multi Company</field>
+            <field name="res_model">document.page</field>
+            <field name="view_mode">form</field>
+            <field name="target">inlineview</field>
+            <field name="res_id" eval="str(ref('multi_company_multi_company_page'))"/> 
+        </record>
+                
+        <menuitem id="menu_multi_company_multi_company_page" sequence="10"
+                  action="action_multi_company_multi_company_page"
+                  parent="menu_multi_company_documentation"/>
+
+<!-- Pagos -->
+<!--         <record id="sale_other_page" model="document.page">
+            <field name="name">Others</field>
+            <field name="active" eval="False"/>
+            <field name="google_doc" eval="True"/>
+            <field name="width">480px</field>
+            <field name="height">389px</field>
+            <field name="hide_title" eval="True"/>
+            <field name="url">https://docs.google.com/presentation/d/1u-5cX9ZyPXGq0ejICo0keS099lLCu2zH4jFMGqVpbXQ/pub?start=false</field>
+            <field name="show_document_link" eval="True"/>
+            <field name="document_url">https://docs.google.com/presentation/d/1u-5cX9ZyPXGq0ejICo0keS099lLCu2zH4jFMGqVpbXQ/edit#slide=id.p</field>
+            <field name="content">
+<![CDATA[
+<iframe src="https://docs.google.com/presentation/d/1u-5cX9ZyPXGq0ejICo0keS099lLCu2zH4jFMGqVpbXQ/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+]]>
+
+            </field>
+        </record>
+
+        <record id="action_sale_other_page" model="ir.actions.act_window">
+            <field name="name">Payments</field>
+            <field name="res_model">document.page</field>
+            <field name="view_mode">form</field>
+            <field name="target">inlineview</field>
+            <field name="res_id" eval="str(ref('sale_other_page'))"/> 
+        </record>
+                
+        <menuitem id="menu_sale_other_page" sequence="20"
+                  action="action_sale_other_page"
+                  parent="menu_multi_company_documentation"/>
+ -->
+<!-- Resumen -->
+<!--         <record id="sale_resumen_page" model="document.page">
+            <field name="name">Resumen</field>
+            <field name="active" eval="False"/>
+            <field name="google_doc" eval="True"/>
+            <field name="width">100%</field>
+            <field name="height">95%</field>
+            <field name="hide_title" eval="True"/>
+            <field name="url">https://docs.google.com/spreadsheet/pub?key=0ArPGShFjQ-ZLdERMM3JaM2FDYWYweDZTUG9OaFNZUFE</field>
+            <field name="show_document_link" eval="True"/>
+            <field name="document_url">https://docs.google.com/spreadsheet/ccc?key=0ArPGShFjQ-ZLdERMM3JaM2FDYWYweDZTUG9OaFNZUFE#gid=0</field>
+            <field name="content">
+<![CDATA[
+<iframe src="https://docs.google.com/spreadsheet/pub?key=0ArPGShFjQ-ZLdERMM3JaM2FDYWYweDZTUG9OaFNZUFE&output=html" width="100%" height="95%" frameborder="0"></iframe>
+]]>
+            </field>
+        </record>
+
+        <record id="action_sale_resumen_page" model="ir.actions.act_window">
+            <field name="name">Resumen</field>
+            <field name="res_model">document.page</field>
+            <field name="view_mode">form</field>
+            <field name="target">inlineview</field>
+            <field name="res_id" eval="str(ref('sale_resumen_page'))"/> 
+        </record>
+                
+        <menuitem id="menu_sale_resumen_page" sequence="30"
+                  action="action_sale_resumen_page"
+                  parent="menu_multi_company_documentation"/>
+                                     -->
+    </data>
+</openerp>

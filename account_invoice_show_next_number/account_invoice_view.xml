@@ -1,0 +1,18 @@
+<openerp>
+    <data>
+
+        <record id="invoice_form" model="ir.ui.view">
+            <field name="name">account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <label string="Draft Refund " position="after">
+                    <label string="- Next Number: " attrs="{'invisible': ['|',('state','not in',('draft',)), ('type','not in',['out_refund','out_invoice'])]}"/>
+                    <field name="next_invoice_number" readonly="1" class="oe_inline" attrs="{'invisible': ['|',('state','not in',('draft',)), ('type','not in',['out_refund','out_invoice'])]}"/>
+                </label>
+            </field>
+        </record>
+
+    </data>
+</openerp>
+
