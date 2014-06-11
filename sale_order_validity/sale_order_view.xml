@@ -9,7 +9,7 @@
         <field name="inherit_id" ref="sale_prices_update.sale_order_pricelist_form_view_inh"/>
         <field name="arch" type="xml">
             <button name="update_prices" position="after">
-                    <field name="date_validity"/>
+                    <field name="validity_date"/>
                     <button name="update_prices_and_validity" help="Update Prices and Validity" string="Update Validity" type="object" attrs="{'invisible':[('state','not in',['draft','sent'])]}" class="oe_link"/>
             </button>
         </field>

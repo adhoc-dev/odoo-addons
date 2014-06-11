@@ -22,6 +22,42 @@
 from openerp.osv import osv
 from openerp.osv import fields
 from openerp.tools.translate import _
+import conversor
+
+class Report(osv.Model):
+    _inherit = 'report'
+
+    def get_html(self, cr, uid, ids, report_name, data=None, context=None):
+        """This method generates and returns html version of a report.
+        """
+        # If the report is using a custom model to render its html, we must use it.
+        # Otherwise, fallback on the generic html rendering.
+        try:
+            report_model_name = 'report.%s' % report_name
+            particularreport_obj = self.pool[report_model_name]
+            return particularreport_obj.render_html(cr, uid, ids, data=data, context=context)
+        except KeyError:
+            def to_word(val):
+                return conversor.to_word(val)            
+            report = self._get_report_from_name(cr, uid, report_name)
+            report_obj = self.pool[report.model]
+            docs = report_obj.browse(cr, uid, ids, context=context)
+            docargs = {
+                'doc_ids': ids,
+                'doc_model': report.model,
+                'docs': docs,
+                'report': report,
+                'to_word': to_word,
+            }
+            # We add all the key-value pairs of the report configuration
+            for report_conf_line in report.line_ids:
+                if report_conf_line.value_type == 'text':
+                    docargs.update({report_conf_line.name: report_conf_line.value_text})
+                elif report_conf_line.value_type == 'boolean':
+                    docargs.update({report_conf_line.name: report_conf_line.value_boolean})        
+
+            return self.render(cr, uid, [], report.report_name, docargs, context=context)
+
 
 class ir_actions_report(osv.Model):
     _inherit = 'ir.actions.report.xml'
@@ -37,10 +73,6 @@ class ir_actions_report(osv.Model):
         'use_background_image' : fields.boolean('Use Background Image'),
         'background_image': fields.binary('Background Image'),
         'company_id': fields.many2one('res.company', 'Company', change_default=True),
-        # 'print_header': fields.boolean('Print Header',),
-        # 'print_title': fields.boolean('Print Title',),
-        # 'print_letter': fields.boolean('Print Letter',),
-        # 'print_number': fields.boolean('Print Number',),
     }
     
     _defaults = {
@@ -49,6 +81,7 @@ class ir_actions_report(osv.Model):
         'sequence':10, 
     }
     
+
    
     def get_report_name(self, cr, uid, model, model_ids, context=None):
         report = self.get_report(cr, uid, model, model_ids, context=context)        
