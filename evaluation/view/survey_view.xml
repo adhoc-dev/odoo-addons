@@ -163,7 +163,8 @@
                     <!-- <field name="without_questions" invisible="1"/> -->
                 </form>
         		<button name="action_survey_results" position="after" >
-        			<button name="compute_score" string="Compute Score" type="object" groups="base.group_no_one"/>
+                    <button name="compute_score" string="Re-Compute Score" type="object"/>
+        			<!-- <button name="compute_score" string="Compute Score" type="object" groups="base.group_no_one"/> -->
     			</button>
             	<field name="token" position="after">
                     <label for="score" groups="base.group_survey_see_scores"/>

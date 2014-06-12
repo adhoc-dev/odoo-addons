@@ -94,7 +94,7 @@
         </record>   
 	    	    	
     <record model="ir.actions.act_window" id="payment_list_action">
-		<field name="name">Supplier Receipts</field>
+		<field name="name">Supplier Payment Receipts</field>
 		<field name="res_model">account.voucher.receipt</field>
 		<field name="view_type">form</field>
 		<field name="view_mode">tree,form</field>
@@ -107,7 +107,7 @@
         parent="account.menu_finance_payables" action="payment_list_action"/>   
 
       <record model="ir.actions.act_window" id="receipts_list_action">
-        <field name="name">Customer Receipts</field>
+        <field name="name">Customer Payment Receipts</field>
         <field name="res_model">account.voucher.receipt</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>

@@ -102,6 +102,9 @@ class account_voucher(osv.osv):
         check_type = False
         validate_only_checks = False
         ret = super(account_voucher, self).onchange_journal(cr, uid, ids, journal_id, line_ids, tax_id, partner_id, date, amount, ttype, company_id, context=context)
+        if not ret:
+            ret = {}
+        if 'value' not in ret: ret['value'] = {}                
         if journal_id:        
             journal_obj = self.pool.get('account.journal')
             journal = journal_obj.browse(cr, uid, journal_id, context=context)

@@ -150,13 +150,17 @@ class survey_user_input(osv.Model):
 					[('question_id', '=', question.id), ('user_input_id', '=', user_input.id)],
 					context=context)
 				print 'uiqs_ids', uiqs_ids
-				if uiqs_ids:
-					uiqs_obj.write(cr, uid, uiqs_ids[0], {'score': question_score}, context=context)
+
+				# Calculte score_percentage
+				if question.max_score:
+					score_percentage = question_score * 100.0 / question.max_score 
 				else:
-					if question.max_score:
-						score_percentage = question_score / question.max_score
-					else:
-						score_percentage = 0
+					score_percentage = 0
+
+				# Create a new input line question record or write de existing one
+				if uiqs_ids:
+					uiqs_obj.write(cr, uid, uiqs_ids[0], {'score': question_score,'score_percentage': score_percentage}, context=context)
+				else:
 					uiqs_obj.create(cr, uid, {
 						'score': question_score,
 						'score_percentage': score_percentage,
@@ -164,7 +168,10 @@ class survey_user_input(osv.Model):
 						'user_input_id': user_input.id,
 						}, context=context)	
 			if user_input.survey_id.max_score and user_input.survey_id.max_score != 0:
+				print 'user_input.survey_id.max_score', user_input.survey_id.max_score
+				print 'computed_score', computed_score
 				computed_score = computed_score * 100.0 / user_input.survey_id.max_score
+				print 'computed_score', computed_score
 			else: 
 				computed_score = False
 			self.write(cr, uid, user_input.id, {'score': computed_score})
@@ -448,6 +455,6 @@ class survey_survey(osv.Model):
 	# Metodo por si queremos recalcular todos los score
 	def compute_score(self, cr, uid, ids, context=None):	
 		for survey in self.browse(cr, uid, ids, context=context):
-			user_input_ids = survey.user_input_ids
-			self.pool.get('survey.user_input').compute_score(self, cr, uid, user_input_ids, context=None)
+			user_input_ids = [x.id for x in survey.user_input_ids]
+			self.pool.get('survey.user_input').compute_score(cr, uid, user_input_ids, context=context)
 		return True
