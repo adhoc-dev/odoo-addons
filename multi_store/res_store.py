@@ -5,12 +5,13 @@ from openerp import SUPERUSER_ID
 class res_store(osv.osv):
     _name = "res.store"
     _description = 'Stores'
-    _order = 'name'
+    _order = 'parent_id desc, name'
         
     _columns = {
         'name': fields.char('Name', size=128, required=True,),
         'parent_id': fields.many2one('res.store', 'Parent Store', select=True),
         'child_ids': fields.one2many('res.store', 'parent_id', 'Child Stores'),
+        'journal_ids': fields.one2many('account.journal', 'store_id', 'Journals'),
         'company_id': fields.many2one('res.company', 'Company', required=True),
         'user_ids': fields.many2many('res.users', 'res_store_users_rel', 'cid', 'user_id', 'Accepted Users'),
     }

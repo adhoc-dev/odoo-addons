@@ -1,26 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Ingenieria ADHOC - ADHOC SA
-#    https://launchpad.net/~ingenieria-adhoc
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
-from openerp.osv import osv
-from openerp.osv import fields
+from openerp.osv import osv, fields
 
 class users(osv.osv):
     _name = 'res.users'
@@ -28,8 +7,5 @@ class users(osv.osv):
     
     _columns = {
         'journal_ids': fields.many2many('account.journal', 'journal_security_journal_users','user_id',
-                                        'journal_id', 'Account Journal'),
+                                        'journal_id', 'Restricted Journals', help="This journals and the information related to it will be only visible for users where you specify that they can see them setting this same field."),
     }
-        
-users()
-

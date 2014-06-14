@@ -8,6 +8,7 @@
             <field name="inherit_id" ref="base.view_users_form"/>
             <field name="arch" type="xml">
                 <field name="company_id" position="after">
+                    <label for="store_id" class="oe_edit_only" groups="multi_store.group_multi_store"/>
                     <field name="store_id" context="{'user_preference': 0}" groups="multi_store.group_multi_store"/>                    
                 </field>
                 <group string="Allowed Companies" position="after">
@@ -21,12 +22,10 @@
         <record id="view_journal_security_user_preference_form" model="ir.ui.view">
             <field name="name">journal_security.user.preference.form</field>
             <field name="model">res.users</field>
-            <field name="inherit_id" ref="base.view_users_simple_form"/>
+            <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
             <field name="arch" type="xml">
                 <field name="company_id" position="after">
-                    <label for="store_id" class="oe_edit_only" groups="multi_store.group_multi_store"/>
-                    <field name="store_id" context="{'user_preference': 0}" groups="multi_store.group_multi_store"/>                
-                    <field name="store_id"/>
+                    <field name="store_id" readonly="0" options="{'no_create': True}" groups="multi_store.group_multi_store"/>                
                 </field>
             </field>
         </record>

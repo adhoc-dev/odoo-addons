@@ -6,5 +6,5 @@ class account_journal(osv.osv):
     _inherit = 'account.journal'
     
     _columns = {
-        'user_ids': fields.many2many('res.users', 'journal_security_journal_users', 'journal_id', 'user_id', 'Users'),
+        'store_id': fields.many2one('res.store', 'Store', help='Users that are not of this store, can see this journals records but can not post or modify any entry on them.'),
     }

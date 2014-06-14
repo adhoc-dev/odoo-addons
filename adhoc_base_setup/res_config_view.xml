@@ -101,7 +101,7 @@
 						<label for="id" string="Payments" />
 						<div name="payments">
 							<div name='module_account_check'>
-								<field name="module_account_check" class="oe_inline" readonly="1"/>
+								<field name="module_account_check" class="oe_inline"/>
 								<label for="module_account_check" />
 							</div>	
 							<div name='module_account_voucher_receipt'>
@@ -152,9 +152,13 @@
 								<field name="module_account_interests" class="oe_inline" readonly="1"/>
 								<label for="module_account_interests" />
 							</div>	
-							<div name='module_journal_security'>
-								<field name="module_journal_security" class="oe_inline" readonly="1"/>
-								<label for="module_journal_security" />
+							<div name='module_account_journal_security'>
+								<field name="module_account_journal_security" class="oe_inline"/>
+								<label for="module_account_journal_security" />
+							</div>	
+							<div name='module_multi_store'>
+								<field name="module_multi_store" class="oe_inline"/>
+								<label for="module_multi_store" />
 							</div>
 						</div>
 					</group>							

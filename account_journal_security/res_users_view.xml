@@ -7,11 +7,11 @@
             <field name="model">res.users</field>
             <field name="inherit_id" ref="base.view_users_form"/>
             <field name="arch" type="xml">
-                <page string="Access Rights" position="after">
-                    <page string="Accounting Journals">
-                        <field name="journal_ids" nolabel="1" colspan="2"/>
-                    </page>
-                </page>
+                <group string="Allowed Companies" position="before">
+                    <group string="Restricted Journals" groups="base.group_erp_manager">
+                        <field name="journal_ids" nolabel="1" widget="many2many_tags"/>
+                    </group>                
+                </group>                
             </field>
         </record>
         

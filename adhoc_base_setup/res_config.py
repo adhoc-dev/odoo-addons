@@ -1,26 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Ingenieria ADHOC - ADHOC SA
-#    https://launchpad.net/~ingenieria-adhoc
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
 import logging
-
 from openerp.osv import fields, osv
 
 _logger = logging.getLogger(__name__)
@@ -42,8 +21,8 @@ class adhoc_base_configuration(osv.osv_memory):
             help = """Installs the account_partner_balance module."""),
         'module_account_voucher_receipt': fields.boolean('Manage Payment Receipts',
             help = """Installs the account_voucher_receipt module."""),
-        'module_journal_security': fields.boolean('Restrict users to some journals',
-            help = """Installs the journal_security module."""),
+        'module_account_journal_security': fields.boolean('Restrict users to some journals',
+            help = """Installs the account_journal_security module."""),
         'module_account_invoice_adjust': fields.boolean('Adjust Customer and Suppliers Invoices',
             help = """Installs the account_invoice_adjust module. Allows reconciling between receivable and payable accounts of same partner"""),        
         'module_account_create_journal': fields.boolean('Configure Payment Journals With a Wizard',
@@ -56,6 +35,8 @@ class adhoc_base_configuration(osv.osv_memory):
             help = """Installs the account_tax_analysis module. Generate a menu under Accounting / Tax / Tax analysis you are able to group accounting entries by Taxes (VAT codes) and/or financial accounts."""),
         'module_account_clean_cancelled_invoice_number': fields.boolean('Allow canceled invoice number renumber and deletion',
             help = """Installs the account_clean_cancelled_invoice_number module. It adds a button on canceled invoice number so you can choose to remove internal number and then delete it or renumber by re-approving it."""),        
+        'module_multi_store': fields.boolean('Manage a multi store environment with journals restrictions',
+            help = """Installs the multi_store module. The main purpose of this module is to restrict journals access for users on different stores."""),
     # No los necesitamos mas, lo hace l10n_ar_invoice
         # 'module_account_unique_supplier_invoice_number': fields.boolean('Check supplier invoice number is unique per supplier',
         #     help = """Installs the account_unique_supplier_invoice_number module."""),
