@@ -80,11 +80,6 @@
 									class="oe_inline" />
 								<label for="module_account_cancel" />
 							</div>	
-							<div name='module_account_cancelled_invoice_number'>
-								<field name="module_account_cancelled_invoice_number"
-									class="oe_inline" />
-								<label for="module_account_cancelled_invoice_number" />
-							</div>		
 							<div name='module_account_clean_cancelled_invoice_number'>
 								<field name="module_account_clean_cancelled_invoice_number"
 									class="oe_inline" />
@@ -94,22 +89,7 @@
 								<field name="module_account_invoice_commercial"
 									class="oe_inline" />
 								<label for="module_account_invoice_commercial" />
-							</div>		
-							<div name='module_account_invoice_show_next_number'>
-								<field name="module_account_invoice_show_next_number"
-									class="oe_inline" />
-								<label for="module_account_invoice_show_next_number" />
-							</div>			
-							<div name='module_account_supplier_invoice_number'>
-								<field name="module_account_supplier_invoice_number"
-									class="oe_inline" />
-								<label for="module_account_supplier_invoice_number" />
-							</div>					
-							<div name='module_account_unique_supplier_invoice_number'>
-								<field name="module_account_unique_supplier_invoice_number"
-									class="oe_inline" />
-								<label for="module_account_unique_supplier_invoice_number" />
-							</div>							
+							</div>										
 						</div>
 					</group>
 					<group>
