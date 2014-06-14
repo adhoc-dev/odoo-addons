@@ -377,13 +377,31 @@
             <field name="res_model">survey.question.objective</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
+        </record>    
+
+        <record model="ir.actions.act_window" id="action_question_level">
+            <field name="name">Question Level</field>
+            <field name="res_model">survey.question.level</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>    
+
+        <record model="ir.actions.act_window" id="action_question_content">
+            <field name="name">Question Content</field>
+            <field name="res_model">survey.question.content</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
         </record>        
 
         <menuitem name="Score Ranges" id="menu_survey_score_ranges" action="action_score_ranges" parent="survey.menu_surveys_configuration" sequence="4"/>
 
         <menuitem name="Matrix Answer Score" id="menu_survey_matrix_answer_score" action="action_matrix_answer_score" parent="survey.menu_surveys_configuration" sequence="5"/>
 
-        <menuitem name="Question Objective" id="menu_survey_question_objective" action="action_question_objective" parent="survey.menu_surveys_configuration" sequence="6"/>        
+        <menuitem id="menu_survey_question_objective" action="action_question_objective" parent="survey.menu_surveys_configuration" sequence="6"/>      
+
+        <menuitem id="menu_survey_question_level" action="action_question_level" parent="survey.menu_surveys_configuration" sequence="8"/>      
+
+        <menuitem id="menu_survey_question_content" action="action_question_content" parent="survey.menu_surveys_configuration" sequence="10"/>        
 
     </data>
 </openerp>
