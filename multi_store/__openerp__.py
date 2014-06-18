@@ -34,7 +34,6 @@ It is done with the same logic to journal. We do not limitate the "read" of this
         'views/res_store_view.xml',
         'views/res_users_view.xml',
         'views/account_view.xml',
-        'views/account_voucher_view.xml',
         'security/multi_store_security.xml',
     ],
     'demo': [

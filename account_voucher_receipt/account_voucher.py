@@ -112,7 +112,6 @@ class account_voucher(osv.osv):
 	def create_or_add_receipt(self, cr, uid, ids, context=None):
 		res = {}
 		for record in self.browse(cr, uid, ids, context=context):
-			print 'record.receipt_id', record.receipt_id
 			if not record.receipt_id and not context.get('default_receipt_id',False):
 				receipt_vals = {
 					'partner_id': record.partner_id.id,

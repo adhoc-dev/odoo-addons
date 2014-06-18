@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="account.account_issuedcheck_hreject_form_view">
+            <field name="name">account.issuedcheck.hreject.wizard.form</field>
+            <field name="model">account.issuedcheck.hreject</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Rejected Handed Check" col="2" version="7.0">
+                    <group> 
+                        <field name="reject_date"/>
+                        <field name="make_expense" string="Make Expense ?"/>
+                        <field name="expense_account"/>
+                        <field name="expense_amount"/>
+                        <field name="invoice_expense"/>
+                    </group>
+                    <footer>
+                        <button type="special" special="cancel" string="Cancel" icon="gtk-cancel"/>
+                        or
+                        <button type="object" name="action_hreject_issued" string="Rejecting Checks Handed" icon="gtk-ok"/>
+                    </footer>     
+                </form>
+            </field>
+        </record>
+
+        <act_window
+            name="Reject Handed Checks"
+            res_model="account.issuedcheck.hreject"
+            src_model="account.issued.check"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+            id="action_check_issue_hrejected"/>
+
+    </data>
+</openerp>

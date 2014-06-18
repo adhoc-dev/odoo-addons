@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="account.check_dreject_form_view">
+            <field name="name">account.check.dreject.wizard.form</field>
+            <field name="model">account.check.dreject</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Deposited Check Reject" col="2" version="7.0">
+                    <group>
+                        <field name="reject_date"/>
+                        <field name="make_expense" string="Make Expenses ?"/>
+                        <field name="expense_account"/>
+                        <field name="expense_amount"/>
+                        <field name="invoice_expense"/>
+                    </group>    
+                    <footer>
+                        <button type="special" special="cancel" string="Cancel" icon="gtk-cancel"/>
+                        or
+                        <button type="object" name="action_dreject" string="Deposited Checks Reject" icon="gtk-ok"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window
+            name="Rejected Deposited Check"
+            res_model="account.check.dreject"
+            src_model="account.third.check"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+            id="action_check_dreject"/>
+
+    </data>
+</openerp>
