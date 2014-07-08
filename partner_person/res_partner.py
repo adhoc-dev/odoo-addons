@@ -33,6 +33,14 @@ from openerp.tools.yaml_import import is_comment
 from datetime import date, datetime
 
 
+class res_users(osv.osv):
+    _inherit = "res.users"
+    # added this here because in v8 there is a conflict with a char birthdate field in partner
+    # it is supose to be fixed
+    _columns = {
+        'birthdate': fields.date(string='Birthdate'),
+        }
+
 class res_partner(osv.osv):
     _inherit = "res.partner"
 

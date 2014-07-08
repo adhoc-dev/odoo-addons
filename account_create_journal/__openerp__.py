@@ -21,8 +21,8 @@
 {
     "name": "Payment Journals Configuration",
     "version": "1.0",
-    'author':  'Sistemas ADHOC',
-    'website': 'www.sistemasadhoc.com.ar',
+    'author':  'Ingeniería ADHOC',
+    'website': 'www.ingadhoc.com.ar',
     "category": "Accounting",
     "description": """ 
 Configure And Create Payment Journals:

@@ -10,7 +10,7 @@
                     <page string="Intercompany" groups="base.group_no_one">
                         <group>
                             <field name="invoice_move_type"/>
-                            <field name="invoice_move_company_id"/>
+                            <field name="invoice_move_company_id" attrs="{'invisible':[('invoice_move_type','!=','move_auto')],'required':[('invoice_move_type','=','move_auto')]}"/>
                         </group>
                     </page>
                 </notebook>
