@@ -1,0 +1,309 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* account_create_journal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 8.0alpha1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-06-23 14:05+0000\n"
+"PO-Revision-Date: 2014-06-23 11:06-0300\n"
+"Last-Translator: javier <jd@ingadhoc.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: account_create_journal
+#: field:account.journal.to_create,account_id:0
+msgid "Account"
+msgstr "Cuenta"
+
+#. module: account_create_journal
+#: field:account.journal.config.wizard,account_ids:0
+msgid "Accounts"
+msgstr "Cuentas"
+
+#. module: account_create_journal
+#: field:account.journal.to_create,update_posted:0
+msgid "Allow Cancelling"
+msgstr "Permitir Cancelación"
+
+#. module: account_create_journal
+#: help:account.journal.to_create,use_issued_check:0
+msgid "Allow to user Issued Checks in associated vouchers."
+msgstr "Permitir a los Cheques Emitidos del usuario en vouchers asociados."
+
+#. module: account_create_journal
+#: help:account.journal.to_create,use_third_check:0
+msgid "Allow to user Third Checks in associated vouchers."
+msgstr "Permitir a los Cheques de Tercero del usuario en vouchers asociados."
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,global_type:0
+msgid "Bank"
+msgstr "Banco"
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,type:0
+msgid "Bank and Checks"
+msgstr "Bancos y Cheques"
+
+#. module: account_create_journal
+#: view:account.journal.config.wizard:0
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,global_type:0
+#: selection:account.journal.to_create,type:0
+msgid "Cash"
+msgstr "Capital"
+
+#. module: account_create_journal
+#: help:account.journal.to_create,update_posted:0
+msgid "Check this box if you want to allow the cancellation the entries related to this journals or of the invoice related to this journals"
+msgstr "Marque esta casilla si quiere permitir la cancelación de entradas relacionadas a estos diarios o a la factura relacionada a estos diarios"
+
+#. module: account_create_journal
+#: field:account.journal.to_create,code:0
+msgid "Code"
+msgstr "Código"
+
+#. module: account_create_journal
+#: field:account.journal.config.wizard,code_sufix:0
+msgid "Code Sufix"
+msgstr "Sufijo del Código"
+
+#. module: account_create_journal
+#: field:account.journal.config.wizard,company_id:0
+msgid "Company"
+msgstr "Compañía"
+
+#. module: account_create_journal
+#: field:account.journal.to_create,config_id:0
+msgid "Config"
+msgstr "Config"
+
+#. module: account_create_journal
+#: view:adhoc.base.config.settings:0
+msgid "Configure Payment Journals."
+msgstr "Configurar Diarios de Pago"
+
+#. module: account_create_journal
+#: view:account.journal.config.wizard:0
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,global_type:0
+msgid "Credit Card"
+msgstr "Tarjeta de Crédito"
+
+#. module: account_create_journal
+#: field:account.journal.to_create,allow_date:0
+msgid "Date in Period"
+msgstr "Fecha en Período"
+
+#. module: account_create_journal
+#: field:account.journal.to_create,direction:0
+msgid "Direction"
+msgstr "Dirección"
+
+#. module: account_create_journal
+#: field:account.journal.config.wizard,remove_old_journals:0
+msgid "Eliminar los diarios existentes"
+msgstr "Eliminar los diarios existentes"
+
+#. module: account_create_journal
+#: help:account.journal.config.wizard,point_of_sale:0
+msgid "Este es el número que aparecerá como prefijo del número de la factura. Si solo tiene un solo talonario ese número es 1. Si necesita agregar un nuevo punto de venta debe acceder a opciones Administración/Configuración/Wizards de Configuración/Wizards de Configuración y ejecutar nuevamente el wizard de \"Configuración de Facturación\"."
+msgstr "Este es el número que aparecerá como prefijo del número de la factura. Si solo tiene un solo talonario ese número es 1. Si necesita agregar un nuevo punto de venta debe acceder a opciones Administración/Configuración/Wizards de Configuración/Wizards de Configuración y ejecutar nuevamente el wizard de \"Configuración de Facturación\"."
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,type:0
+msgid "General"
+msgstr "General"
+
+#. module: account_create_journal
+#: field:account.journal.to_create,global_type:0
+msgid "Global Type"
+msgstr "Tipo Global"
+
+#. module: account_create_journal
+#: help:account.journal.to_create,allow_date:0
+msgid "If checked, the entry won't be created if the entry date is not included into the selected period"
+msgstr "Si está marcado, la entrada no se creará si la fecha de entrada no está incluida dentro del período seleccionado"
+
+#. module: account_create_journal
+#: help:account.journal.to_create,validate_only_checks:0
+msgid "If marked, when validating a voucher, verifies that the total amounth of the voucher is the same as the checks used."
+msgstr "Si está marcado, al validar un comprobante, verifica que el monto total del comprobante es la misma que los cheques utilizados."
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,direction:0
+msgid "In"
+msgstr "En"
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,global_type:0
+msgid "Issue Check"
+msgstr "Cheques Emitidos"
+
+#. module: account_create_journal
+#: field:account.journal.to_create,name:0
+msgid "Journal Name"
+msgstr "Nombre de Diario"
+
+#. module: account_create_journal
+#: view:account.journal.config.wizard:0
+#: view:account.journal.to_create:0
+msgid "Journals To Create"
+msgstr "Diarios a Crear"
+
+#. module: account_create_journal
+#: field:account.journal.config.wizard,journals_to_create_ids:0
+msgid "Journals to Create"
+msgstr "Diarios a Crear"
+
+#. module: account_create_journal
+#: view:account.journal.config.wizard:0
+msgid "Journals to Remove"
+msgstr "Diarios a Remover"
+
+#. module: account_create_journal
+#: field:account.journal.config.wizard,journals_to_remove_ids:0
+msgid "Journals to delete"
+msgstr "Diarios a Eliminar"
+
+#. module: account_create_journal
+#: field:account.journal.config.wizard,name_prefix:0
+msgid "Name Prefix"
+msgstr "Prefijo del Nombre"
+
+#. module: account_create_journal
+#: field:account.journal.config.wizard,name_sufix:0
+msgid "Name Sufix"
+msgstr "Sufijo del Nombre"
+
+#. module: account_create_journal
+#: field:account.journal.config.wizard,point_of_sale:0
+msgid "Número de Punto de Venta"
+msgstr "Número de Punto de Venta"
+
+#. module: account_create_journal
+#: view:account.journal.config.wizard:0
+msgid "Only Journal without moves and without vouchers are displayed"
+msgstr "Sólo Diario sin movimientos y sin comprobantes son muestrados"
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,type:0
+msgid "Opening/Closing Situation"
+msgstr "Situación de Apertura/Cierre"
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,direction:0
+msgid "Out"
+msgstr "Fuera"
+
+#. module: account_create_journal
+#: view:account.journal.config.wizard:0
+msgid "Payment Journal Config Wizard"
+msgstr "Asistente de Config de Diario de Pagos"
+
+#. module: account_create_journal
+#: model:ir.actions.act_window,name:account_create_journal.view_journal_config_action
+msgid "Payment Journal Configuration Wizard"
+msgstr "Asistente de Configuración de Diario de Pagos"
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,type:0
+msgid "Purchase"
+msgstr "Compra"
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,type:0
+msgid "Purchase Refund"
+msgstr "Reembolso de Compra"
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,type:0
+msgid "Sale"
+msgstr "Venta"
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,type:0
+msgid "Sale Refund"
+msgstr "Reembolso de Venta"
+
+#. module: account_create_journal
+#: help:account.journal.to_create,direction:0
+msgid "Select 'In' for customer payments. Select 'Out' for supplier payments."
+msgstr "Selecciona 'En' para pagos de cliente. Selecciona 'Fuera' para pagos de proveedor."
+
+#. module: account_create_journal
+#: help:account.journal.to_create,type:0
+msgid "Select 'Sale' for customer invoices journals. Select 'Purchase' for supplier invoices journals. Select 'Cash' or 'Bank' for journals that are used in customer or supplier payments. Select 'General' for miscellaneous operations journals. Select 'Opening/Closing Situation' for entries generated for new fiscal years."
+msgstr "Seleccione 'Venta' para diarios de facturas de cliente. Seleccione 'Compra' para diarios de facturas de proveedor. Seleccione 'Capital' o 'Banco' para diarios que son utilizados en pagos de cliente o proveedor. Seleccione 'General' para diarios de operaciones miscelaneas. Seleccione 'Situación de Apertura/Cierre' para entradas generadas para nuevos años fiscales."
+
+#. module: account_create_journal
+#: help:account.journal.config.wizard,remove_old_journals:0
+msgid "Si es su primera instalación indique que necesita borrar los diarios existentes. Si agrega un nuevo punto de ventas indique que no va a eliminar los journals. Igual, puede indicar cuales borra y cuales no en el próximo paso."
+msgstr "Si es su primera instalación indique que necesita borrar los diarios existentes. Si agrega un nuevo punto de ventas indique que no va a eliminar los journals. Igual, puede indicar cuales borra y cuales no en el próximo paso."
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,global_type:0
+msgid "Tax"
+msgstr "Impuesto"
+
+#. module: account_create_journal
+#: help:account.journal.to_create,code:0
+msgid "The code will be displayed on reports."
+msgstr "El código se mostrará en los informes."
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,global_type:0
+msgid "Third Check"
+msgstr "Cheque de Tercero"
+
+#. module: account_create_journal
+#: field:account.journal.to_create,type:0
+msgid "Type"
+msgstr "Tipo"
+
+#. module: account_create_journal
+#: view:account.journal.config.wizard:0
+msgid "Update Journals To Create"
+msgstr "Diarios Actualizados a Crear"
+
+#. module: account_create_journal
+#: field:account.journal.to_create,use_issued_check:0
+msgid "Use Issued Checks"
+msgstr "Usar Cheques Emitidos"
+
+#. module: account_create_journal
+#: field:account.journal.to_create,use_third_check:0
+msgid "Use Third Checks"
+msgstr "Usar Cheques de Terceros"
+
+#. module: account_create_journal
+#: field:account.journal.to_create,validate_only_checks:0
+msgid "Validate only Checks"
+msgstr "Validar sólo Cheques"
+
+#. module: account_create_journal
+#: model:ir.model,name:account_create_journal.model_account_journal_config_wizard
+msgid "account.journal.config.wizard"
+msgstr "account.journal.config.wizard"
+
+#. module: account_create_journal
+#: model:ir.model,name:account_create_journal.model_account_journal_to_create
+msgid "account.journal.to_create"
+msgstr "account.journal.to_create"
+
+#. module: account_create_journal
+#: view:account.journal.config.wizard:0
+msgid "or"
+msgstr "o"
+

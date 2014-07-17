@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#    Ingenieria ADHOC - ADHOC SA
+#    https://launchpad.net/~ingenieria-adhoc
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,29 +20,31 @@
 ##############################################################################
 
 {
-    'name': 'Document Page',
-    'version': '1.0.1',
-    'category': 'Knowledge Management',
+    'name': 'Workflow View',
+    'version': '1.0',
+    'category': 'Accounting',
+    'sequence': 14,
+    'summary': 'Invoicing, Number, Cancelled',
     'description': """
-Pages
-=====
-Web pages
+Cancelled Invoice Number
+========================
     """,
-    'author': ['OpenERP SA'],
-    'website': 'http://www.openerp.com/',
-    'depends': ['knowledge'],
-    'data': [
-        'wizard/document_page_create_menu_view.xml',
-        'wizard/document_page_show_diff_view.xml',
-        'document_page_view.xml',
-        'security/document_page_security.xml',
-        'security/ir.model.access.csv',
+    'author':  'Ingenieria ADHOC',
+    'website': 'www.ingadhoc.com',
+    'images': [
     ],
-    'demo': ['document_page_demo.xml'],
-    'test': ['test/document_page_test00.yml'],
+    'depends': [
+        'base'
+    ],
+    'data': [
+        'workflow_view.xml',
+    ],
+    'demo': [
+    ],
+    'test': [
+    ],
     'installable': True,
     'auto_install': False,
-    'images': [],
-    'css' : ['static/src/css/document_page.css'],
+    'application': False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

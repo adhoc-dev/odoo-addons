@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_workflow_instance_form" model="ir.ui.view">
+            <field name="name">workflow.instance.form</field>
+            <field name="model">workflow.instance</field>
+            <field name="inherit_id" ref="base.view_workflow_instance_form"/>
+            <field name="arch" type="xml">
+                <group>
+                    <field name="workitem_ids"/>
+                </group>
+            </field>
+        </record>
+
+    </data>
+</openerp>

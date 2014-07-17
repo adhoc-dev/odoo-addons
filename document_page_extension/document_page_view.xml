@@ -6,7 +6,7 @@
 
         <!-- wiki tree view -->
         <!-- wiki Form view  -->
-        <record id="document_page.view_wiki_form" model="ir.ui.view">
+        <record id="document_page_adhoc.view_wiki_form" model="ir.ui.view">
             <field name="name">document.page.form</field>
             <field name="model">document.page</field>
             <!-- <field name="inherit_id" ref="document_page.view_wiki_tree_children"/> -->

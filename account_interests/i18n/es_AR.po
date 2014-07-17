@@ -1,0 +1,135 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* account_interests
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 8.0alpha1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-06-23 13:50+0000\n"
+"PO-Revision-Date: 2014-06-23 10:57-0300\n"
+"Last-Translator: javier <jd@ingadhoc.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: account_interests
+#: code:addons/account_interests/partner.py:108
+#, python-format
+msgid " days. "
+msgstr "días. "
+
+#. module: account_interests
+#: field:account.account.interest,account_id:0
+#: model:ir.model,name:account_interests.model_account_account
+msgid "Account"
+msgstr "Cuenta"
+
+#. module: account_interests
+#: model:ir.model,name:account_interests.model_account_account_interest
+msgid "Account Account Interest"
+msgstr "Cuenta Cuenta de Intereses"
+
+#. module: account_interests
+#: field:account.account.interest,analytic_account_id:0
+msgid "Analytic account"
+msgstr "Cuenta analítica"
+
+#. module: account_interests
+#: code:addons/account_interests/partner.py:109
+#, python-format
+msgid "Base(ARS): "
+msgstr "Base(ARS): "
+
+#. module: account_interests
+#: field:account.account.interest,date_from:0
+msgid "Date From"
+msgstr "Fecha desde"
+
+#. module: account_interests
+#: field:account.account.interest,date_to:0
+msgid "Date To"
+msgstr "Fecha hasta"
+
+#. module: account_interests
+#: view:account.account:0
+msgid "Enter Percent as decimal (3Proc as 0.03)"
+msgstr "Ingrese Porcentage como decimal (3Porc como 0.03)"
+
+#. module: account_interests
+#: code:addons/account_interests/partner.py:64
+#: code:addons/account_interests/partner.py:150
+#, python-format
+msgid "Error!"
+msgstr "Error!"
+
+#. module: account_interests
+#: field:account.account.interest,interest_rate:0
+msgid "Interest"
+msgstr "Interés"
+
+#. module: account_interests
+#: field:account.account.interest,interest_account_id:0
+msgid "Interest Account"
+msgstr "Cuenta de Interés"
+
+#. module: account_interests
+#: code:addons/account_interests/partner.py:110
+#, python-format
+msgid "Interest Rate(%): "
+msgstr "Tasa de Interés(%): "
+
+#. module: account_interests
+#: view:account.account:0
+#: field:account.account,account_account_interest_ids:0
+msgid "Interest Rates"
+msgstr "Tasas de Interés"
+
+#. module: account_interests
+#: view:account.account:0
+msgid "Interests"
+msgstr "Intereses"
+
+#. module: account_interests
+#: code:addons/account_interests/partner.py:243
+#, python-format
+msgid "Interests "
+msgstr "Intereses"
+
+#. module: account_interests
+#: model:ir.model,name:account_interests.model_res_partner
+msgid "Partner"
+msgstr "Partner"
+
+#. module: account_interests
+#: code:addons/account_interests/partner.py:107
+#, python-format
+msgid "Period: "
+msgstr "Período: "
+
+#. module: account_interests
+#: code:addons/account_interests/partner.py:151
+#, python-format
+msgid "Please define sales debit note journal for this company: \"%s\" (id:%d)."
+msgstr "Por favor defina el diario de ventas de notas de débito para esta compañía: \"%s\" (id:%d)."
+
+#. module: account_interests
+#: code:addons/account_interests/partner.py:65
+#, python-format
+msgid "Please define sales journal for this company: \"%s\" (id:%d)."
+msgstr "Por favor defina el diario de ventas para esta compañía: \"%s\" (id:%d)."
+
+#. module: account_interests
+#: code:addons/account_interests/partner.py:242
+#, python-format
+msgid "Punitive Interests "
+msgstr "Intereses Punitorios"
+
+#. module: account_interests
+#: code:addons/account_interests/partner.py:106
+#, python-format
+msgid "Punitive Interests Invoice: "
+msgstr "Factura de Intereses Punitorios:"
+
