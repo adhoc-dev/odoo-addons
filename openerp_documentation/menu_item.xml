@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <menuitem name="Help" id="menu_documentation_main" sequence="500"
+                  groups="base.group_user"/>        
+
+        <menuitem name="Introduction" id="menu_documentation_introduction" sequence="10" parent="menu_documentation_main"
+                  groups="base.group_user"/>
+
+<!-- Interfaz y Usabilidad -->
+        <record id="interface_and_usability_page" model="document.page">
+            <field name="name">Interface And Usability</field>
+            <field name="active" eval="False"/>
+            <field name="google_doc" eval="True"/>
+            <field name="width">100%</field>
+            <field name="height">95%</field>
+            <field name="hide_title" eval="True"/>
+            <field name="url">https://docs.google.com/document/d/1S6w5n25UzXgaJOe1y1GYQxoUSJQqSzMmW_N8WCrDvMY/pub</field>
+            <field name="show_document_link" eval="True"/>
+            <field name="document_url">https://docs.google.com/document/d/1S6w5n25UzXgaJOe1y1GYQxoUSJQqSzMmW_N8WCrDvMY/edit#heading=h.aeix5cr1m237</field>
+            <field name="content">
+<![CDATA[
+<iframe src="https://docs.google.com/document/d/1S6w5n25UzXgaJOe1y1GYQxoUSJQqSzMmW_N8WCrDvMY/pub" width="100%" height="95%" frameborder="0"></iframe>
+]]>
+            </field>
+        </record>
+
+        <record id="action_interface_and_usability_page" model="ir.actions.act_window">
+            <field name="name">Interface And Usability</field>
+            <field name="res_model">document.page</field>
+            <field name="view_mode">form</field>
+            <field name="target">inlineview</field>
+            <field name="res_id" eval="str(ref('interface_and_usability_page'))"/> 
+        </record>
+                
+        <menuitem id="menu_interface_and_usability_page" sequence="10"
+                  action="action_interface_and_usability_page"
+                  parent="menu_documentation_introduction"/>    
+
+<!-- Administration -->
+        <menuitem name="Administration" id="menu_documentation_administration" sequence="500" parent="menu_documentation_main"
+                  />
+
+<!-- Access Rights -->
+        <record id="administration_access_rights_page" model="document.page">
+            <field name="name">Access Rights</field>
+            <field name="active" eval="False"/>
+            <field name="google_doc" eval="True"/>
+            <field name="width">100%</field>
+            <field name="height">95%</field>
+            <field name="hide_title" eval="True"/>
+            <field name="url">https://docs.google.com/document/d/1t9LNchjJ3mHW6MZXS1mSbqj3R-KFsDVVFZFnzl9fpMY/pub</field>
+            <field name="show_document_link" eval="True"/>
+            <field name="document_url">https://docs.google.com/document/d/1t9LNchjJ3mHW6MZXS1mSbqj3R-KFsDVVFZFnzl9fpMY/edit</field>
+            <field name="content">
+<![CDATA[
+<iframe src="https://docs.google.com/document/d/1t9LNchjJ3mHW6MZXS1mSbqj3R-KFsDVVFZFnzl9fpMY/pub" width="100%" height="95%" frameborder="0"></iframe>
+]]>
+            </field>
+        </record>
+
+        <record id="action_administration_access_rights_page" model="ir.actions.act_window">
+            <field name="name">Access Rights</field>
+            <field name="res_model">document.page</field>
+            <field name="view_mode">form</field>
+            <field name="target">inlineview</field>
+            <field name="res_id" eval="str(ref('administration_access_rights_page'))"/> 
+        </record>
+                
+        <menuitem id="menu_administration_access_rights_page" sequence="10" groups="base.group_erp_manager" 
+                  action="action_administration_access_rights_page"
+                  parent="menu_documentation_administration"/> 
+
+<!-- Configuration -->
+        <record id="administration_configuration_page" model="document.page">
+            <field name="name">Configuration</field>
+            <field name="active" eval="False"/>
+            <field name="google_doc" eval="True"/>
+            <field name="width">100%</field>
+            <field name="height">95%</field>
+            <field name="hide_title" eval="True"/>
+            <field name="url">https://docs.google.com/document/d/1z3hT-B3VlbPk1V031g8jR3NYBxKgQCdAXF308hWO_64/pub</field>
+            <field name="show_document_link" eval="True"/>
+            <field name="document_url">https://docs.google.com/document/d/1z3hT-B3VlbPk1V031g8jR3NYBxKgQCdAXF308hWO_64/edit</field>
+            <field name="content">
+<![CDATA[
+<iframe src="https://docs.google.com/document/d/1z3hT-B3VlbPk1V031g8jR3NYBxKgQCdAXF308hWO_64/pub" width="100%" height="95%" frameborder="0"></iframe>
+]]>
+            </field>
+        </record>
+
+        <record id="action_administration_configuration_page" model="ir.actions.act_window">
+            <field name="name">Configuration</field>
+            <field name="res_model">document.page</field>
+            <field name="view_mode">form</field>
+            <field name="target">inlineview</field>
+            <field name="res_id" eval="str(ref('administration_configuration_page'))"/> 
+        </record>
+                
+        <menuitem id="menu_administration_configuration_page" sequence="20" groups="base.group_system" 
+                  action="action_administration_configuration_page"
+                  parent="menu_documentation_administration"/>         
+    </data>
+</openerp>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="account_interests_view" model="ir.ui.view">
+            <field name="name">Calculate interests - wizard </field>
+            <field name="model">account.interests</field>
+            <field name="arch" type="xml">
+               <form string="Calculate interests" version="7.0">
+               		<group>
+                    	<field name="date_from" colspan="2"/>
+                    	<field name="date_to" colspan="2"/>
+                    	<field name="interest_rate" colspan="1"/>
+                    	<field name="invoice_over_value" colspan="1"/>
+                    	<separator string="" colspan="4" />
+                    </group>
+                    <footer>
+                    	<button name="calculate" string="Calculate" type="object" class="oe_highlight"/>
+                    	or
+                    	<button special="cancel" string="Cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+		
+        <act_window name="Calculate interest"
+        	domain="[('state','=','draft')]"
+            res_model="account.interests"
+            src_model="res.partner"
+            view_mode="form"
+            target="new"
+            multi="True"
+            key2="client_action_multi"
+            id="action_calculate_interest"/>    
+                        
+    </data>
+</openerp>

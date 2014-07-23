@@ -1,0 +1,67 @@
+<openerp>
+    <data>
+        <record id="view_voucher_sale_receipt_report_aeroo_generator_form" model="ir.ui.view">
+            <field name="name">account.voucher.sale_receipt_report_aeroo_generator.form</field>
+            <field name="priority" eval="40"/>
+            <field name="model">account.voucher</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account_voucher.view_sale_receipt_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <button name="cancel_voucher" position="before">
+                        <button name="print_voucher" string="Print Voucher" type="object"
+                                icon="gtk-print" states="posted"/>
+                    </button>
+                </data>
+            </field>
+        </record>
+        
+        <record id="view_voucher_vendor_receipt_report_aeroo_generator_form" model="ir.ui.view">
+            <field name="name">account.voucher.vendor_receipt_report_aeroo_generator.form</field>
+            <field name="priority" eval="40"/>
+            <field name="model">account.voucher</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_receipt_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <button name="cancel_voucher" position="before">
+                        <button name="print_voucher" string="Print Voucher" type="object"
+                                icon="gtk-print" states="posted"/>
+                    </button>
+                </data>
+            </field>
+        </record>
+        
+        <record id="view_voucher_purchase_receipt_report_aeroo_generator_form" model="ir.ui.view">
+            <field name="name">account.voucher.purchase_receipt_report_aeroo_generator.form</field>
+            <field name="priority" eval="40"/>
+            <field name="model">account.voucher</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account_voucher.view_purchase_receipt_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <button name="cancel_voucher" position="before">
+                        <button name="print_voucher" string="Print Voucher" type="object"
+                                icon="gtk-print" states="posted"/>
+                    </button>
+                </data>
+            </field>
+        </record>
+        
+        <record id="view_voucher_vendor_payment_report_aeroo_generator_form" model="ir.ui.view">
+            <field name="name">account.voucher.vendor_payment_report_aeroo_generator.form</field>
+            <field name="priority" eval="40"/>
+            <field name="model">account.voucher</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_payment_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <button name="cancel_voucher" position="before">
+                        <button name="print_voucher" string="Print Voucher" type="object"
+                                icon="gtk-print" states="posted"/>
+                    </button>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>

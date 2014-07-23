@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="product_packaging_label_form_view">
+            <field name="name">product_packaging_label_form_view</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <page string="Sales" position="after">
+                    <page string="Labels" attrs="{'invisible':[('sale_ok','=',False)]}">
+                        <group col="1">
+                            <field name="packaging_label_ids">
+                                <tree editable="top">
+                                    <!-- <field name="quantity"/> -->
+                                    <field name="description"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+    </data>
+</openerp>

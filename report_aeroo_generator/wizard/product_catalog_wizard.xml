@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_product_catalog_wizard" model="ir.ui.view">
+            <field name="name">Generate Product Catalog Report</field>
+            <field name="model">report_aeroo_generator.product_catalog_wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Generate Product Catalog Report">
+                    <group col="4" colspan="4">
+                        <separator colspan="4" string="Generate Product Catalog Report"/>
+                        <newline/>
+                        
+                        <label colspan="4" width="500"
+                               string="Select the categories from which you want to generate the Catalog Report."/>
+                        <field name="category_ids" colspan="4" nolabel="1" />
+                        <newline/>
+                        
+                        <label colspan="4" width="500"
+                               string="Select the pricelist from where the prices of the products are computed."/>
+                        <field name="pricelist_id" colspan="4" />
+                        
+                        <button name="generate_report" string="Generate Report"
+                                icon="gtk-go-forward" type="object" colspan="2"/>
+                        <button string="Cancel" colspan="2" special="cancel" icon="gtk-cancel" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <act_window id="act_window_product_catalog_wizard"
+    		key2="client_action_multi"
+            name="Product Catalog"
+    		res_model="report_aeroo_generator.product_catalog_wizard"
+            src_model="product.product"
+    		view_mode="form"
+    		target="new"
+    		view_type="form" />
+    </data>
+</openerp>

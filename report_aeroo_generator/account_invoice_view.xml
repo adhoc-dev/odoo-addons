@@ -1,0 +1,26 @@
+<openerp>
+    <data>
+        
+        <record id="view_invoice_report_aeroo_generator_form" model="ir.ui.view">
+            <field name="name">account.invoice.report_aeroo_generator.form</field>
+            <field name="priority" eval="40"/>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <data>
+<!-- cambiamos los dos botones de impresión por defecto por dos botones con name "print_invoice" en vez de "invoice_print" -->
+                    <button string="Print" position="replace">
+                        <button name="print_invoice" string="Print" type="object" attrs="{'invisible':['|',('sent','=',True), ('state', '!=', 'open')]}" class="oe_highlight" groups="base.group_user"/>
+                    </button>
+                    <button string="Print Invoice" position="replace">
+                        <button name="print_invoice" string="Print Invoice" type="object" attrs="{'invisible':['|',('sent','=',False), ('state', '!=', 'open')]}" groups="base.group_user"/>
+                    </button>
+                    <xpath expr="//page[@string='Other Info']//field[@name='move_id']" position="after">
+                        <field name="splitter_invoice_id"/>
+                        <field name="splitted_invoice_id"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,30 @@
+<openerp>
+    <data>
+        <record id="view_order_report_aeroo_generator_form" model="ir.ui.view">
+            <field name="name">sale.order.report_aeroo_generator.form</field>
+            <field name="priority" eval="40"/>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <button name="print_quotation" string="Print" position="replace">
+                        <button name="print_order" string="Print" type="object" states="draft" class="oe_highlight" groups="base.group_user"/>
+                    </button>
+                    <button name="print_quotation" string="Print" position="replace">
+                        <button name="print_order" string="Print" type="object" states="sent,waiting_date,manual,progress,done,shipping_except,invoice_except" groups="base.group_user"/>
+                        <!-- <button name="print_order" string="Print" type="object" states="sent" groups="base.group_user"/> -->
+                    </button>
+<!--
+                    <button string="Print Order" position="replace">
+                        <button name="print_order" type="object" string="Print Order" icon="gtk-print" 
+                                states="waiting_date,manual,progress,done,shipping_except,invoice_except"/>
+                    </button>
+                    
+                    <button string="Print Quotation" position="replace">
+                        <button name="print_order" type="object" string="Print Quotation" icon="gtk-print" states="draft"/>
+                    </button>-->
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+	<data>
+		<record model="ir.actions.report.xml" id='res_partner_report_sample'> <!-- MOD -->
+			<field name='name'>Res Partner Report Sample</field> <!-- MOD -->
+			<field name='report_name'>res_partner_report_sample</field> <!-- MOD -->
+			<field name='pentaho_report_output_type'>pdf</field><!-- MOD: valores posibles: pdf, html, csv, xls, rtf, txt -->
+			<field name='pentaho_report_model_id' ref="base.model_res_partner"/> <!-- MOD -->
+			<field name='model'>res.partner</field> <!-- MOD -->
+			<field name='pentaho_filename'>pentaho_res_partner_wizard_sample/report/res_partner.prpt</field> <!-- MOD -->
+			<!-- <field name='groups_id' eval=""/> --> <!-- MOD -->
+			<field name='attachement'></field>
+			<field name='attachement_use' eval="False"/>
+			<field name='is_pentaho_report' eval="True"/>
+			<field name='pentaho_load_file' eval="True"/>
+		</record>
+	</data>
+</openerp>

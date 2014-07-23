@@ -1,0 +1,46 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* partner_source
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-05-13 18:09+0000\n"
+"PO-Revision-Date: 2014-05-13 15:11-0300\n"
+"Last-Translator: Juan Jose Scarafia <scarafia.juanjose@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: partner_source
+#: view:res.partner:0
+#: field:res.partner,source_id:0
+msgid "Source"
+msgstr "Fuente"
+
+#. module: partner_source
+#: model:ir.model,name:partner_source.model_res_partner
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: partner_source
+#: view:res.partner:0
+msgid "Salesperson"
+msgstr "Comercial"
+
+#. module: partner_source
+#: field:res.partner.source,name:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: partner_source
+#: model:ir.actions.act_window,name:partner_source.partner_source_action
+#: model:ir.model,name:partner_source.model_res_partner_source
+#: model:ir.ui.menu,name:partner_source.partner_source_menu
+#: view:res.partner.source:0
+msgid "Partner Source"
+msgstr "Fuente de Empresa"
+

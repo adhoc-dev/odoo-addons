@@ -1,0 +1,14 @@
+<openerp>
+    <!--<data noupdate="True">-->
+    <data noupdate="1">
+        <record model="ir.sequence" id="l10n_ar_reports_sample_sequence_remitos">
+            <field name="name">Remitos</field>
+            <field name="prefix">0001-</field>
+            <field name="padding">8</field>
+        </record>
+        
+        <record id="stock.journal_delivery" model="stock.journal">
+            <field name="sequence_id" ref="l10n_ar_reports_sample_sequence_remitos"/>
+        </record>
+    </data>
+</openerp>

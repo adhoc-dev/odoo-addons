@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="view_partner_social_form1" model="ir.ui.view">
+            <field name="name">res.partner.social.inherit1</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="website" position="after">
+                    <group col="3" colspan="2">     
+                        <field name="facebook"/>
+                        <button name="goto_facebook" string="Go" type="object"/>
+                        <field name="twitter"/>
+                        <button name="goto_twitter" string="Go" type="object"/>
+                    </group>    
+                </field>    
+                <field name="email" position="after">
+                    <field name="skype"/>
+                    <field name="msn"/>
+                </field>
+            </field>
+        </record>
+
+<!--         <record id="view_partner_address_social_form2" model="ir.ui.view">
+            <field name="name">res.partner.address.social.inherit2</field>
+            <field name="model">res.partner.address</field>
+            <field name="inherit_id" ref="base.view_partner_address_form2"/>
+            <field name="arch" type="xml">
+                <field name="email" position="after">
+                    <group colspan="2" col="4">
+                        <field name="facebook"/>
+                        <button name="goto_facebook" string="Go" type="object" icon="gtk-zoom-in"/>
+                    </group>
+                    <group colspan="2" col="4">
+                        <field name="twitter"/>
+                        <button name="goto_twitter" string="Go" type="object" icon="gtk-zoom-in"/>
+                    </group>
+                    <group colspan="2" col="4">
+                        <field name="skype"/>
+                    </group>
+                    <group colspan="2" col="4">
+                        <field name="msn"/>
+                    </group>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_partner_social_form" model="ir.ui.view">
+            <field name="name">res.partner.social.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="email" position="after">
+                    <group colspan="2" col="4">
+                        <field name="facebook"/>
+                        <button name="goto_facebook" string="Go" type="object" icon="gtk-zoom-in"/>
+                    </group>
+                    <group colspan="2" col="4">
+                        <field name="twitter"/>
+                        <button name="goto_twitter" string="Go" type="object" icon="gtk-zoom-in"/>
+                    </group>
+                    <group colspan="2" col="4">
+                        <field name="skype"/>
+                    </group>
+                    <group colspan="2" col="4">
+                        <field name="msn"/>
+                    </group>
+                </field>
+            </field>
+        </record> -->
+
+    </data>
+</openerp>

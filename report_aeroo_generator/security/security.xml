@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <record id="access_report_configuration" model="ir.model.access">
+			<field name="model_id" ref="report_aeroo_generator.model_report_aeroo_generator_report_configuration"/>
+			<field name="name">access.report_aeroo_generator.report_configuration</field>
+			<field eval="1" name="perm_read"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="1" name="perm_create"/>
+			<field eval="1" name="perm_unlink"/>
+		</record>
+		
+		<record id="access_report_configuration_line" model="ir.model.access">
+			<field name="model_id" ref="report_aeroo_generator.model_report_aeroo_generator_report_configuration_line"/>
+			<field name="name">access.report_aeroo_generator.report_configuration_line</field>
+			<field eval="1" name="perm_read"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="1" name="perm_create"/>
+			<field eval="1" name="perm_unlink"/>
+		</record>
+		
+		<record id="access_report_configuration_defaults" model="ir.model.access">
+			<field name="model_id" ref="report_aeroo_generator.model_report_aeroo_generator_report_configuration_defaults"/>
+			<field name="name">access.report_aeroo_generator.report_configuration_defaults</field>
+			<field eval="1" name="perm_read"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="1" name="perm_create"/>
+			<field eval="1" name="perm_unlink"/>
+		</record>
+	</data>
+</openerp>

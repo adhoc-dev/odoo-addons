@@ -1,0 +1,21 @@
+.oe_form_editable .oe_documentation_page {
+    display: none;
+}
+
+table.diff {font-family:Courier; border:medium;}
+.diff_header {background-color:#e0e0e0}
+td.diff_header {text-align:right}
+.diff_next {background-color:#c0c0c0}
+.diff_add {background-color:#aaffaa}
+.diff_chg {background-color:#ffff77}
+.diff_sub {background-color:#ffaaaa}
+
+.openerp .oe_form .oe_no_margin {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-align: justify;
+}

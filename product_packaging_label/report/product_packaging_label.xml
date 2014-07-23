@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+    <record id="report_product_packaging_label" model="ir.actions.report.xml">
+        <field name="name">Product Packaging Label</field>
+        <field name="type">ir.actions.report.xml</field>
+        <field name="model">stock.picking.out</field>
+        <field name="report_name">report_product_packaging_label</field>
+        <field name="report_type">aeroo</field>
+        <field name="in_format">oo-odt</field>
+        <field name="out_format" ref="report_aeroo_ooo.report_mimetypes_pdf_odt"/>
+        <!-- <field name="parser_loc">product_catalog_aeroo_report/report/product_catalog_parser.py</field> -->
+        <field name="report_rml">product_packaging_label/report/product_packaging_label.odt</field>
+        <field name="parser_state">default</field>
+        <field name="tml_source">file</field>
+    </record>
+
+    <ir_set>
+        <field eval="'action'" name="key"/>
+        <field eval="'client_print_multi'" name="key2"/>
+        <field eval="['stock.picking.out']" name="models"/>
+        <field name="name">Packaging Labels</field>
+        <field eval="'ir.actions.report.xml,'+str(report_product_packaging_label)" name="value"/>
+        <field eval="True" name="isobject"/>
+        <field eval="True" name="replace"/>
+    </ir_set>
+</data>
+</openerp>

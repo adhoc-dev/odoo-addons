@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<report 
+			auto="False"
+			id="account_interests" 
+			model="account.invoice" 
+			name="account.interests" 
+			rml="account_interests/report/account_print_interests.rml"
+			string="Interests Report"
+		/>
+	</data>
+</openerp>

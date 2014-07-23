@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="stock_partial_picking_form" model="ir.ui.view">
+            <field name="name">stock.partial.picking.form</field>
+            <field name="model">stock.partial.picking</field>
+            <field name="inherit_id" ref="stock.stock_partial_picking_form"/>
+            <field name="arch" type="xml">
+                <separator name="product_separator" position="after">
+                    <group attrs="{'invisible':[('excess_lines','&lt;',1)]}" col="4">
+                        <field name="max_lines"/>
+                        <newline/>
+                        <field name="excess_lines"/>
+                        <field name="remove_excess_lines" on_change="onchange_remove_excess_lines(remove_excess_lines,max_lines,move_ids,context)"/>
+                        <!-- The following button was to try to remove lines with a button but button close the wizard, re-opening it works but then, on confirmation, picking screen wasn't refresed -->
+                        <!-- <button name="remove_excess_lines" string="Remove Excess Lines" type="object" class="oe_highlight"/> -->
+                    </group>
+                </separator>
+            </field>
+        </record>
+
+    </data>
+</openerp>

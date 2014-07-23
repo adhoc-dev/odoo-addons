@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <!-- report_configuration -->
+        <record id="view_report_configuration_form" model="ir.ui.view">
+            <field name="name">report_configuration.form</field>
+            <field name="model">report_aeroo_generator.report_configuration</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Report Configuration">
+                    <notebook colspan="4">
+                        <page string="General">
+                            <group colspan="2" col="2">
+                                <separator string="Information" colspan="2"/>
+                                <field name="name"/>
+                                <field name="type"/>
+                                <field name="report_xml_id" readonly="1"/>
+                            </group>
+                            <group colspan="2" col="2">
+                                <separator string="Description" colspan="2"/>
+                                <field name="description" nolabel="1" colspan="2"/>
+                            </group>
+                            
+                            <newline/>
+                            <separator string="Template" colspan="4"/>
+                            <group colspan="4" col="8">
+                                <field name="tml_source" colspan="2" />
+                                <group colspan="6">
+                                    <field name="report_sxw_content_data" string="Template Content" attrs="{'invisible': [('tml_source','&lt;&gt;','database')]}"/>
+                                    <field name="report_rml" string="Template path" attrs="{'invisible': [('tml_source','&lt;&gt;','file')]}"/>
+                                </group>
+                            </group>
+                            
+                            
+                            <newline/>
+                            <separator string="Configuration lines" colspan="4"/>
+                            <field name="line_ids" nolabel="1" colspan="4">
+                                <tree editable="top">
+                                    <field name="name"/>
+                                    <field name="value_type"/>
+                                    <field name="value_boolean" attrs="{'invisible':[('value_type','!=', 'boolean')]}"/>
+                                    <field name="value_text" attrs="{'invisible':[('value_type','!=', 'text')]}" colspan="4"/>
+                                </tree>
+                            </field>
+                        </page>
+                        
+                        <page string="Images">
+                            <group colspan="4" col="2">
+                                <separator string="Logo" colspan="2"/>
+                                <field name="print_logo" colspan="2"/>
+                                <field name="logo" widget="image" nolabel="1" colspan="2"/>
+                            </group>
+                            
+                            <group colspan="4" col="2">
+                                <separator string="Background Image" colspan="2"/>
+                                <field name="use_background_image" colspan="2"/>
+                                <field name="background_image" widget="image" nolabel="1" colspan="2"/>
+                            </group>
+                        </page>
+                        
+                        <page string="Invoice Information" attrs="{'invisible':[('type','!=', 'account.invoice')]}">
+                            <field name="account_invoice_state"/>
+                            <field name="account_invoice_tax_included"/>
+                            
+                            <field name="account_invoice_lines_to_split"/>
+                            <field name="account_invoice_split_invoice"/>
+                            
+                            <newline/>
+                            <separator string="Journals" colspan="4"/>
+                            <field name="account_invoice_journal_ids" colspan="4" nolabel="1"/>
+                            
+                            <newline/>
+                            <separator string="Taxes" colspan="4"/>
+                            <field name="account_invoice_tax_ids" colspan="4" nolabel="1"
+                                   attrs="{'invisible':[('account_invoice_tax_included','!=', True)]}"/>
+                        </page>
+                        
+                        <page string="Sale Order Information" attrs="{'invisible':[('type','!=', 'sale.order')]}">
+                            <field name="sale_order_state"/>
+                            <separator string="Shops" colspan="4"/>
+                            <field name="sale_order_shop_ids" colspan="4" nolabel="1"/>
+                        </page>
+                        
+                        <page string="Picking Information" attrs="{'invisible':[('type','!=', 'stock.picking.out')]}">
+                            <field name="stock_picking_lines_to_split"/>
+                            <!-- <field name="stock_picking_split_picking_type_in"/>
+                            <field name="stock_picking_split_picking_type_internal"/> -->
+                            <field name="stock_picking_split_picking_type_out"/>
+                            <separator string="Journals" colspan="4"/>
+                            <field name="stock_picking_journal_ids" colspan="4" nolabel="1"/>
+                        </page>
+                        
+                        <page string="Account Voucher Information" attrs="{'invisible':[('type','!=', 'account.voucher')]}">
+                            <field name="account_voucher_type"/>
+                            <separator string="Journals" colspan="4"/>
+                            <field name="account_voucher_journal_ids" colspan="4" nolabel="1"/>
+                        </page>
+                    
+                        
+                    </notebook>
+                    <button name="update_lines_that_apply" type="object"
+                            string="Update Lines from Defaults"/>
+                </form>
+            </field>
+        </record>
+
+	    <record id="view_report_configuration_tree" model="ir.ui.view">
+            <field name="name">report_configuration.tree</field>
+            <field name="model">report_aeroo_generator.report_configuration</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Report Configuration">
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="type"/>
+                </tree>
+            </field>
+        </record>
+        
+        <!-- report_configuration_line -->
+        <record id="view_report_configuration_line_form" model="ir.ui.view">
+            <field name="name">report_configuration_line.form</field>
+            <field name="model">report_aeroo_generator.report_configuration_line</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Report Configuration Line">
+                    <field name="name"/>
+                    <field name="value_type"/>
+                    <field name="value_boolean" attrs="{'invisible':[('value_type','!=', 'boolean')]}"/>
+                    <field name="value_text" attrs="{'invisible':[('value_type','!=', 'text')]}" colspan="4"/>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_report_configuration_line_tree" model="ir.ui.view">
+            <field name="name">report_configuration_line.tree</field>
+            <field name="model">report_aeroo_generator.report_configuration_line</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Report Configuration">
+                    <field name="name"/>
+                    <field name="value_type"/>
+                </tree>
+            </field>
+        </record>
+        
+        <!-- report_configuration_defaults -->
+        <record id="view_report_configuration_defaults_form" model="ir.ui.view">
+            <field name="name">report_configuration_defaults.form</field>
+            <field name="model">report_aeroo_generator.report_configuration_defaults</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Report Configuration Line">
+                    <field name="name"/>
+                    <field name="apply_to"/>
+                    <field name="value_type"/>
+                    <field name="override_values"/>
+                    <field name="value_boolean" attrs="{'invisible':[('value_type','!=', 'boolean')]}"/>
+                    <field name="value_text" attrs="{'invisible':[('value_type','!=', 'text')]}" colspan="4"/>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_report_configuration_defaults_tree" model="ir.ui.view">
+            <field name="name">report_configuration_defaults.tree</field>
+            <field name="model">report_aeroo_generator.report_configuration_defaults</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Report Configuration">
+                    <field name="name"/>
+                    <field name="apply_to"/>
+                    <field name="value_type"/>
+                </tree>
+            </field>
+        </record>
+        
+        <!-- Actions -->
+        <record id="action_report_configuration" model="ir.actions.act_window">
+            <field name="name">Report Configuration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">report_aeroo_generator.report_configuration</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <record id="action_report_configuration_defaults" model="ir.actions.act_window">
+            <field name="name">Report Configuration Key Values</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">report_aeroo_generator.report_configuration_defaults</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem
+            id="report_configuration_menu"
+            action="action_report_configuration"
+            name="Report Configuration"
+            parent="report_aeroo.menu_ir_action_aeroo_reports_xml"
+            sequence="20" />
+        
+        <menuitem
+            id="report_configuration_defaults_menu"
+            action="action_report_configuration_defaults"
+            name="Report Default Keys"
+            parent="report_aeroo.menu_ir_action_aeroo_reports_xml"
+            sequence="21" />
+            
+    </data>
+</openerp>

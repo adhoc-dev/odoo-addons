@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+<!--     <record model="ir.ui.view" id="account_account_interest_list">
+      <field name="name">account.company.interest.list</field>
+      <field name="model">account.company.interest</field>
+      <field name="arch" type="xml">
+        <tree string="Intrest Rates" editable="bottom">
+          <field name="name" select="1"/>
+          <field name="company_id"/>
+        </tree>
+      </field>
+    </record> -->
+
+<!--     <record model="ir.ui.view" id="account_account_interest_form">
+      <field name="name">account.company.interest.form</field>
+      <field name="model">account.company.interest</field>
+      <field name="arch" type="xml">
+        <form string="Interst Rates">
+          <field name="name" select="1"/>
+          <field name="company_id"/>
+          <field name="interest_rate_ids" nolabel="1" select="1" colspan="4">
+            <tree string="Interest Rates" editable="bottom">
+              <field name="date_from" select="1"/>
+              <field name="date_to" select="1"/>
+              <field name="interest_rate_debit" select="1"/>
+              <field name="interest_rate_credit" select="1"/>
+            </tree>
+            <form string="Interest Rates">
+              <field name="date_from" select="1"/>
+              <field name="date_to" select="1"/>
+              <field name="interest_rate_debit" select="1"/>
+              <field name="interest_rate_credit" select="1"/>
+            </form>
+          </field>
+        </form>
+      </field>
+    </record> -->
+
+<!--     <record model="ir.actions.act_window" id="act_account_company_interest">
+      <field name="res_model">account.company.interest</field>
+      <field name="name">Company Interest</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+      action="act_account_company_interest"
+      id="menu_account_company_interest"
+      parent="account.menu_configuration_misc"
+      sequence="150"/> -->
+
+    <!-- account notebook tab -->
+    <record model="ir.ui.view" id="account_account_interest">
+      <field name="name">account.account.interest.form</field>
+      <field name="model">account.account</field>
+      <field name="inherit_id" ref="account.view_account_form"/>
+      <field name="arch" type="xml">
+        <form>
+          <notebook>
+            <page string="Interest Rates" attrs="{'invisible':[('type','!=','receivable')]}">
+<!--               <separator colspan="4" string="General interest rates"/>
+              <field colspan="4" name="account_interest_ids" nolabel="1"/>
+              <separator colspan="4" string="Account specific interest rates"/> -->
+              <field name="account_account_interest_ids">
+              <!-- <field colspan="4" name="account_account_interest_ids" nolabel="1"> -->
+                <form string="Interests">
+                  <field name="date_from"/>
+                  <field name="date_to"/>
+                  <field name="interest_rate"/>
+                  <!-- <field name="interest_rate_debit"/> -->
+                  <!-- <field name="interest_rate_credit"/> -->
+                  <field name="interest_account_id"/>
+                  <field name="analytic_account_id"/>
+                  <!-- <field name="company_id"/> -->
+                  <label colspan="4" string="Enter Percent as decimal (3Proc as 0.03)"/>
+                </form>
+                <tree string="Interests">
+                  <field name="date_from"/>
+                  <field name="date_to"/>
+                  <field name="interest_rate"/>
+                  <!-- <field name="interest_rate_debit"/> -->
+                  <!-- <field name="interest_rate_credit"/> -->
+                  <field name="interest_account_id"/>
+                  <field name="analytic_account_id"/>
+                  <!-- <field name="company_id"/> -->
+                </tree>
+              </field>
+            </page>
+          </notebook>
+        </form>
+      </field>
+    </record>
+
+  </data>
+</openerp>

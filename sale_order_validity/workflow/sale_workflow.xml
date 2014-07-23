@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+     
+        <record id="sale.act_router" model="workflow.activity">
+            <field name="action">
+                check_validity()
+                action_wait()
+            </field>
+        </record>
+    
+    </data>
+</openerp>
