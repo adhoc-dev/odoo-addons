@@ -32,7 +32,7 @@ class mail_configuration(osv.TransientModel):
     _inherit = 'base.config.settings'
 
     _columns = {
-        'set_local_alias' : fields.boolean('Set Local Alias',),
+        'config_local_alias' : fields.boolean('Set Local Alias',),
         'virtual_alias_path':fields.char('Virtual Alias Path',),
         'virtual_alias':fields.char('Virtual Alias',),
         'local_alias_path':fields.char('Local Alias Path',),
