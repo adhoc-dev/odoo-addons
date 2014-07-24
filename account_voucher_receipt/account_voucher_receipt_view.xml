@@ -40,8 +40,8 @@
                         </h1>
                         <group>
                             <group>
-                                <field name="customer_id" attrs="{'readonly':[('has_vouchers','=',True)],'invisible':[('type','!=','receipt')],'required':[('type','=','receipt')]}" on_change="on_change_partner(customer_id,context)"/>
-                                <field name="supplier_id" attrs="{'readonly':[('has_vouchers','=',True)],'invisible':[('type','!=','payment')],'required':[('type','=','payment')]}" on_change="on_change_partner(supplier_id,context)"/>
+                                <field name="customer_id" attrs="{'readonly':[('has_vouchers','=',True)],'invisible':[('type','!=','receipt')],'required':[('type','=','receipt')]}"/>
+                                <field name="supplier_id" attrs="{'readonly':[('has_vouchers','=',True)],'invisible':[('type','!=','payment')],'required':[('type','=','payment')]}"/>
                                 <field name="receiptbook_id" widget="selection" domain="[('type','=',type)]" on_change="on_change_receiptbook(receiptbook_id, context)"/>
                                 <field name="manual_prefix" attrs="{'invisible':['|',('receiptbook_sequence_type','!=','manual'),('state','!=','draft')]}"/>
                                 <field name="manual_sufix" attrs="{'invisible':['|',('receiptbook_sequence_type','!=','manual'),('state','!=','draft')],'required':[('receiptbook_sequence_type','=','manual')]}"/>
@@ -53,7 +53,7 @@
                                 <field name="period_id" attrs="{'readonly':[('has_vouchers','=',True)]}"/>
                                 <field name="company_id" widget="selection" groups="base.group_multi_company" attrs="{'readonly':[('has_vouchers','=',True)]}"/>
                             </group>
-                            <button name="new_payment_normal" states="draft" string="Add Payment" type="object" default_focus="1" class="oe_highlight"/>
+                            <button name="new_payment_normal" states="draft" string="Add Payment" type="object" class="oe_highlight"/>
                             <label for="voucher_ids" string="Payments" attrs="{'invisible':[('state','=','draft')]}"/>
                             <field name="supplier_voucher_ids" nolabel="1" attrs="{'readonly':[('id','=',False)],'invisible':[('type','=','payment')]}" context="{'partner_id': partner_id, 'date': date, 'from_receipt': True,'default_receipt_id': id, 'form_view_ref':'account_voucher.view_vendor_payment_form',}" colspan="4">
                                 <tree create="false" colors="blue:state == 'draft';gray:state == 'cancel';red:audit" string="Voucher Entries">

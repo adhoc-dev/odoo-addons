@@ -18,7 +18,9 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import fields, osv 
+from openerp.osv import fields as old_fields
+from openerp.osv import osv 
+from openerp import fields, api
 from openerp.tools.translate import _
 
 
@@ -46,29 +48,40 @@ class account_voucher_receipt (osv.osv):
         periods = self.pool.get('account.period').find(cr, uid, context=context)
         return periods and periods[0] or False        
 
+    partner_id = fields.Many2one('res.partner', string='Partner', compute="_get_partner")
+
+    @api.one
+    @api.depends('customer_id','supplier_id')
+    def _get_partner(self):
+        if self.customer_id:
+            self.partner_id = self.customer_id.id
+        elif self.supplier_id:
+            self.partner_id = self.supplier_id.id
+        else:
+            self.partner_id = False
+
     _columns = {
-            'name':fields.char(string='Receipt Number', size=128, required=False, readonly=True, ),
-            'period_id': fields.many2one('account.period', 'Period', required=True, readonly=True, states={'draft':[('readonly',False)]}),
-            'manual_prefix': fields.related('receiptbook_id', 'manual_prefix', type='char', string='Prefix', readonly=True,),
-            'manual_sufix': fields.integer('Number', readonly=True, states={'draft':[('readonly',False)]}),
-            'force_number': fields.char('Force Number', readonly=True, states={'draft':[('readonly',False)]}),
-            'receiptbook_id': fields.many2one('account.voucher.receiptbook','ReceiptBook',readonly=True,required=True, states={'draft':[('readonly',False)]}),   
-            'company_id': fields.many2one('res.company', 'Company', required=True, readonly=True, states={'draft':[('readonly',False)]}),
-            'date': fields.date('Receipt Date', readonly=True, states={'draft':[('readonly',False)]}),
-            'partner_id':fields.many2one('res.partner', string='Partner', readonly=True, required=True, states={'draft':[('readonly',False)]}),
-            'supplier_id':fields.related('partner_id', relation='res.partner', type='many2one', domain=[('supplier','=',True)], context={'search_default_supplier': 1}, string='Supplier', readonly=True, states={'draft':[('readonly',False)]}),
-            'customer_id':fields.related('partner_id', relation='res.partner', type='many2one', domain=[('customer','=',True)], context={'search_default_customer': 1}, string='Customer', readonly=True, states={'draft':[('readonly',False)]}),
-            'type': fields.selection([('receipt','Receipt'),
+            'name':old_fields.char(string='Receipt Number', size=128, required=False, readonly=True, ),
+            'period_id': old_fields.many2one('account.period', 'Period', required=True, readonly=True, states={'draft':[('readonly',False)]}),
+            'manual_prefix': old_fields.related('receiptbook_id', 'manual_prefix', type='char', string='Prefix', readonly=True,),
+            'manual_sufix': old_fields.integer('Number', readonly=True, states={'draft':[('readonly',False)]}),
+            'force_number': old_fields.char('Force Number', readonly=True, states={'draft':[('readonly',False)]}),
+            'receiptbook_id': old_fields.many2one('account.voucher.receiptbook','ReceiptBook',readonly=True,required=True, states={'draft':[('readonly',False)]}),   
+            'company_id': old_fields.many2one('res.company', 'Company', required=True, readonly=True, states={'draft':[('readonly',False)]}),
+            'date': old_fields.date('Receipt Date', readonly=True, states={'draft':[('readonly',False)]}),
+            'supplier_id':old_fields.many2one('res.partner', domain=[('supplier','=',True)], context={'search_default_supplier': 1}, string='Supplier', readonly=True, states={'draft':[('readonly',False)]}),
+            'customer_id':old_fields.many2one('res.partner', domain=[('customer','=',True)], context={'search_default_customer': 1}, string='Customer', readonly=True, states={'draft':[('readonly',False)]}),
+            'type': old_fields.selection([('receipt','Receipt'),
                                              ('payment','Payment')],'Type', required=True),
-            'state': fields.selection([('draft','Draft'),('posted','Posted'),('cancel','Cancel')], string='State', readonly=True,),
-            'next_receipt_number': fields.related('receiptbook_id', 'sequence_id', 'number_next_actual', type='integer', string='Next Receipt Number', readonly=True),
-            'receiptbook_sequence_type': fields.related('receiptbook_id', 'sequence_type', type='char', string='Receiptbook Sequence Type', readonly=True),
-            'has_vouchers': fields.function(_get_receipt_data, type='boolean', string='Has Vouchers?', multi='_get_receipt_data',),
-            'receipt_amount': fields.function(_get_receipt_data, type='float', string='Receipt Amount', multi='_get_receipt_data',),
-            'voucher_ids':fields.one2many('account.voucher','receipt_id',string='Payments', readonly=True, states={'draft':[('readonly',False)]}),
+            'state': old_fields.selection([('draft','Draft'),('posted','Posted'),('cancel','Cancel')], string='State', readonly=True,),
+            'next_receipt_number': old_fields.related('receiptbook_id', 'sequence_id', 'number_next_actual', type='integer', string='Next Receipt Number', readonly=True),
+            'receiptbook_sequence_type': old_fields.related('receiptbook_id', 'sequence_type', type='char', string='Receiptbook Sequence Type', readonly=True),
+            'has_vouchers': old_fields.function(_get_receipt_data, type='boolean', string='Has Vouchers?', multi='_get_receipt_data',),
+            'receipt_amount': old_fields.function(_get_receipt_data, type='float', string='Receipt Amount', multi='_get_receipt_data',),
+            'voucher_ids':old_fields.one2many('account.voucher','receipt_id',string='Payments', readonly=True, states={'draft':[('readonly',False)]}),
             # We add supplier and customer vouchers only to open different views depending on receipt type
-            'customer_voucher_ids':fields.related('voucher_ids',relation='account.voucher',type='one2many',string='Customer Payments', readonly=True, states={'draft':[('readonly',False)]}),
-            'supplier_voucher_ids':fields.related('voucher_ids',relation='account.voucher',type='one2many',string='Supplier Payments', readonly=True, states={'draft':[('readonly',False)]}),
+            'customer_voucher_ids':old_fields.related('voucher_ids',relation='account.voucher',type='one2many',string='Customer Payments', readonly=True, states={'draft':[('readonly',False)]}),
+            'supplier_voucher_ids':old_fields.related('voucher_ids',relation='account.voucher',type='one2many',string='Supplier Payments', readonly=True, states={'draft':[('readonly',False)]}),
                 }
                 
     _sql_constraints = [('name_uniq','unique(name,type,company_id)','The Receipt Number must be unique per Company!')]
@@ -83,7 +96,7 @@ class account_voucher_receipt (osv.osv):
     
     _defaults = {
         'receiptbook_id': _get_receiptbook, 
-        'date': fields.date.context_today,
+        'date': old_fields.date.context_today,
         'period_id': _get_period,
         'state': 'draft',
         'company_id': lambda self,cr,uid,c: self.pool.get('res.company')._company_default_get(cr, uid, 'account.voucher.receipt',context=c),        
@@ -161,14 +174,6 @@ class account_voucher_receipt (osv.osv):
         }
         self.write(cr, uid, ids, res)
         return True        
-
-    def on_change_partner(self, cr, uid, ids, partner_id, context=None):
-        values = {}
-        if partner_id:
-            values['partner_id'] = partner_id
-        else:
-            values['partner_id'] = False
-        return {'value':values}
 
     def new_payment_normal(self, cr, uid, ids, context=None):
         # TODO add on context if dialog or normal and depending on this open on or other view. 
