@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
+from openerp import SUPERUSER_ID
 
 class account_invoice(osv.osv):
     _inherit = 'account.invoice' 
@@ -20,20 +21,28 @@ class account_invoice(osv.osv):
         """
         TODO
         """
-        invoice_ids = []
         invoice_type = False
         for invoice in self.browse(cr, uid, ids, context=context):
             move_company = invoice.company_id.invoice_move_company_id
             if invoice.invoice_move_type == 'move_auto':
-                moved_invoice_id = self.action_create_invoice(cr, uid, invoice, move_company, invoice.type, invoice.journal_id.type, context=context)
-                invoice.write({'moved_invoice_id': moved_invoice_id})
-                invoice_ids.append(moved_invoice_id)
+                moved_invoice_id = self.action_create_invoice(cr, SUPERUSER_ID, invoice, move_company, invoice.type, invoice.journal_id.type, context=context)
+                # TODO, ver de hacer esto configurable y que si se usa estructura de companias padre hija si se pueda ver, se puede verificar simplemente con un child of
+                # No escrivimos la factura destino porque por ahi el usuario no tiene permiso para ver la compania de la factura destino
+                # self.write(cr, SUPERUSER_ID, invoice.id, {'moved_invoice_id': moved_invoice_id}, context=context)
+                moved_description = _('Moved to invoice ') + str(moved_invoice_id)
+                invoice.write({
+                    'internal_number': moved_description,
+                    'name': moved_description,
+                    })
                 invoice_type = invoice.type
-        self.signal_invoice_cancel(cr, uid, ids)
+        # self.signal_invoice_cancel(cr, uid, ids)
+        self.signal_workflow(cr, uid, ids, 'invoice_cancel')
         sale_order_obj = self.pool['sale.order']
         sale_order_ids = sale_order_obj.search(cr, uid, [('invoice_ids','in',ids)], context=context)
-        self.pool['sale.order'].signal_invoice_corrected(cr, uid, sale_order_ids)
-        return self.action_view_invoice(cr, uid, invoice_ids, invoice_type, context=context)
+        self.pool['sale.order'].signal_workflow(cr, uid, sale_order_ids, 'invoice_corrected')
+        return True
+        # No retornamos esta accion porque porq ahi el usuario no tiene permiso para ver este registro
+        # return self.action_view_invoice(cr, uid, invoice_ids, invoice_type, context=context)
 
     def action_view_invoice(self, cr, uid, ids, inv_type=False, context=None):
         '''
@@ -42,14 +51,12 @@ class account_invoice(osv.osv):
         mod_obj = self.pool.get('ir.model.data')
         act_obj = self.pool.get('ir.actions.act_window')
 
-        print 'inv_type', inv_type
         if inv_type in ['out_invoice','out_refund']:
             action = 'action_invoice_tree1'
             form_view = 'invoice_form'
         else:
             action = 'action_invoice_tree2'
             form_view = 'invoice_supplier_form'
-        print 'action', action
 
         result = mod_obj.get_object_reference(cr, uid, 'account', action)
         id = result and result[1] or False
@@ -76,6 +83,9 @@ class account_invoice(osv.osv):
             #To find lot of data from product onchanges because its already avail method in core.
             product_uom = line.product_id.uom_id and line.product_id.uom_id.id or False
             line_data = inv_line_obj.product_id_change(cr, uid, [line.id], line.product_id.id, product_uom, qty=line.quantity, name='', type=inv_type, partner_id=invoice.commercial_partner_id.id, fposition_id=invoice.commercial_partner_id.property_account_position.id, context=ctx, company_id=company.id)
+            if not line_data['value'].get('account_id', False):
+                account_id = inv_line_obj._default_account(cr, uid, ctx).id
+                line_data['value']['account_id'] = account_id
             inv_line_data = self._prepare_inv_line(cr, uid, line_data, line, context=ctx)
             inv_line_id = inv_line_obj.create(cr, uid, inv_line_data, context=ctx)
             inv_lines.append(inv_line_id)
@@ -107,7 +117,6 @@ class account_invoice(osv.osv):
         journal_obj = self.pool.get('account.journal')
         period_obj = self.pool.get('account.period')
 
-        print 'jrnl_type', jrnl_type
         #To find journal.
         journal_ids = journal_obj.search(cr, uid, [('type', '=', jrnl_type), ('company_id', '=', company.id)], limit=1)
         if not journal_ids:
@@ -126,6 +135,7 @@ class account_invoice(osv.osv):
                 'date_invoice': invoice.date_invoice,
                 'account_id': partner_data['value'].get('account_id', False),
                 'partner_id': invoice.partner_id.id,
+                'user_id': invoice.user_id.id,
                 'journal_id': journal_ids[0],
                 'invoice_line': [(6, 0, inv_lines)],
                 'currency_id': invoice.currency_id and invoice.currency_id.id,
