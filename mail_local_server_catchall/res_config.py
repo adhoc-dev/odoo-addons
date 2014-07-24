@@ -32,7 +32,7 @@ class mail_configuration(osv.TransientModel):
     _inherit = 'base.config.settings'
 
     _columns = {
-        'set_local_alias' : fields.boolean('Set Local Alias?',),
+        'set_local_alias' : fields.boolean('Set Local Alias',),
         'virtual_alias_path':fields.char('Virtual Alias Path',),
         'virtual_alias':fields.char('Virtual Alias',),
         'local_alias_path':fields.char('Local Alias Path',),
@@ -158,7 +158,7 @@ class mail_configuration(osv.TransientModel):
             xmlrpcs = system_base_config.get('xmlrpcs', False)
             if not xmlrpcs or not port:
                 print 'errror!!! falta el puerto'
-        local_alias = alias_domain
+        local_alias = (alias_domain or '')
         local_alias += ': "| '
         # local_alias = cr.dbname + ': "| '
         local_alias += mailgate_file
@@ -170,7 +170,7 @@ class mail_configuration(osv.TransientModel):
         return local_alias
 
     def get_virtual_alias(self, cr, uid, alias_domain, context=None):
-        return '@' + alias_domain + ' ' + alias_domain + '@localhost'
+        return '@' + (alias_domain or '') + ' ' + (alias_domain or '') + '@localhost'
 
 # set_local_alias
     def get_default_set_local_alias(self, cr, uid, ids, context=None):
