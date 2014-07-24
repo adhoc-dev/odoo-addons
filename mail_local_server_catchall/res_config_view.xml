@@ -11,10 +11,10 @@
                 </field>
                 <xpath expr="//div[@name='email']" position='inside'>
                     <div>
-                        <field name="set_local_alias"/>
-                        <label for="set_local_alias"/>
+                        <field name="config_local_alias"/>
+                        <label for="config_local_alias"/>
                     </div>
-                    <div attrs="{'invisible':[('set_local_alias','!=',True)]}">
+                    <div attrs="{'invisible':[('config_local_alias','!=',True)]}">
                         <div>
                             <label for="local_alias_path" />
                             <field name="local_alias_path" class="oe_inline"/>
