@@ -29,7 +29,7 @@
 
 import math
 from osv import fields,osv
-
+from openerp.tools.translate import _
 
 class sale_order_line(osv.osv):
     _inherit = 'sale.order.line'
@@ -38,13 +38,20 @@ class sale_order_line(osv.osv):
         'pack_parent_line_id': fields.many2one('sale.order.line', 'Pack', help='The pack that contains this product.'),
         'pack_child_line_ids': fields.one2many('sale.order.line', 'pack_parent_line_id', 'Lines in pack', help=''),
     }
+
     _defaults = {
         'pack_depth': lambda *a: 0,
     }
-sale_order_line()
 
 class sale_order(osv.osv):
     _inherit = 'sale.order'
+
+    def copy(self, cr, uid, id, default=None, context=None):
+        # Raise an error if lines are product pack because we can not copy pack in a right way
+        for line in self.browse(cr, uid, id, context=context). order_line :
+            if line.pack_parent_line_id:
+                raise osv.except_osv(_('Error!'), _('You can not copy a sale order wich hast product packs!'))
+        return super(sale_order, self).copy(cr, uid, id, default, context=context)
 
     def create(self, cr, uid, vals, context=None):
         result = super(sale_order,self).create(cr, uid, vals, context)
