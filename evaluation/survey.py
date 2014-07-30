@@ -43,6 +43,7 @@ class survey_question(osv.Model):
 	_inherit = 'survey.question'
 
 	def _get_max_score(self, cr, uid, ids, name, args, context=None):
+		print '_get_max_score in', ids
 		ret = dict()
 		for question in self.browse(cr, uid, ids, context=context):
 			max_score = 0
@@ -73,6 +74,7 @@ class survey_question(osv.Model):
 				scores = [score_range.score for score_range in question.score_ranges_ids]
 				max_score = max(scores if scores else [0])
 			ret[question.id] = max_score
+		print '_get_max_score out', ids
 		return ret
 
 
