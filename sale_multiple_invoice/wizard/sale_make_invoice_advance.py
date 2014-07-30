@@ -12,7 +12,7 @@ class sale_advance_payment_inv(osv.osv_memory):
     _inherit = "sale.advance.payment.inv"
 
     first_invoice_date = fields.Date('First Invoice')
-    invoice_qty = fields.Integer('Invoices Quantity')
+    invoice_qty = fields.Integer('Invoices Quantity (one per month)')
     invoices_amount = fields.Float('Amount for each invoie', related="amount", readonly=True, digits_compute= dp.get_precision('Account'),)
     advance_payment_method = fields.Selection(
         [('all', 'Invoice the whole sales order'), ('percentage','Percentage'), ('fixed','Fixed price (deposit)'),
@@ -31,7 +31,7 @@ class sale_advance_payment_inv(osv.osv_memory):
             raise Warning(_('Invoices Quantity must be greater than 1!'))
 
     @api.onchange('invoice_qty')
-    def onchange_partner_id(self):
+    def onchange_invoice_qty(self):
         active_id = self._context['active_id']
         if not active_id or not self.invoice_qty:
             return False
