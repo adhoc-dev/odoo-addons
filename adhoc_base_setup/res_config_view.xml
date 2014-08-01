@@ -277,7 +277,7 @@
 						<div name="web_tools">
 							<div name='module_web_easy_switch_company'>
 								<field name="module_web_easy_switch_company"
-									class="oe_inline" readonly="1"/>
+									class="oe_inline"/>
 								<label for="module_web_easy_switch_company" />
 							</div>		
 							<div name='module_web_group_expand'>

@@ -25,8 +25,6 @@ class survey_question(osv.Model):
     _inherit = 'survey.question'
 
     @api.one
-    # @api.depends('type')
-    # @api.depends('copy_labels_ids')
     @api.depends('score_ranges_ids','score_calc_method','type','copy_labels_ids','matrix_subtype','labels_ids_2')
     def _get_max_score(self):
         max_score = 0
