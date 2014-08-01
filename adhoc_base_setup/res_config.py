@@ -37,15 +37,6 @@ class adhoc_base_configuration(osv.osv_memory):
             help = """Installs the account_clean_cancelled_invoice_number module. It adds a button on canceled invoice number so you can choose to remove internal number and then delete it or renumber by re-approving it."""),        
         'module_multi_store': fields.boolean('Manage a multi store environment with journals restrictions',
             help = """Installs the multi_store module. The main purpose of this module is to restrict journals access for users on different stores."""),
-    # No los necesitamos mas, lo hace l10n_ar_invoice
-        # 'module_account_unique_supplier_invoice_number': fields.boolean('Check supplier invoice number is unique per supplier',
-        #     help = """Installs the account_unique_supplier_invoice_number module."""),
-        # 'module_account_supplier_invoice_number': fields.boolean('Show Suppplier Invoice Number on Supplier Invoice tree view',
-        #     help = """Installs the account_supplier_invoice_number module."""),
-        # 'module_account_invoice_show_next_number': fields.boolean('Show next number on invoices',
-        #     help = """Installs the account_invoice_show_next_number module."""),
-        # 'module_account_cancelled_invoice_number': fields.boolean('Show Cancelled Invoice Nunmber',
-        #     help = """Installs the account_cancelled_invoice_number module."""),
         
         # Sale / Purchase modules
         'module_purchase_discounts': fields.boolean('Mange disccounts on purchases',
