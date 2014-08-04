@@ -9,10 +9,12 @@
     'demo': [],
     'depends': ['account_voucher'],
     'description': '''
-Account Voucher Multi Company Fix
-=================================
+Account Voucher Multi Company Fixes
+===================================
+* When changing company on account_voucher, change the journal domain to fit that company
+* When changing journal, update credit and debit lines for moves of that jounral company
 ''',
     'installable': True,
-    'name': 'Receipt',
+    'name': 'Account Voucher Multi Company Fixes',
     'test': [],
     'version': '1.243'}

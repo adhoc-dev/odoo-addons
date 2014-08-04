@@ -27,6 +27,8 @@ class adhoc_base_configuration(osv.osv_memory):
             help = """Installs the account_invoice_adjust module. Allows reconciling between receivable and payable accounts of same partner"""),        
         'module_account_create_journal': fields.boolean('Configure Payment Journals With a Wizard',
             help = """Installs the account_create_journal module installs checks, payment direction an other modules."""),
+        'module_account_journal_sequence': fields.boolean('Add sequence on account journals',
+            help = """Installs the account_journal_sequence module."""),
         'module_account_payment_direction': fields.boolean('Allow to set up In or Out on payment journals',
             help = """Installs the account_payment_direction module."""),
         'module_account_financial_report_webkit_xls': fields.boolean('Add XLS export to accounting reports',

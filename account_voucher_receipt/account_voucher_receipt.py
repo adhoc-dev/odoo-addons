@@ -1,23 +1,4 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Ingenieria ADHOC - ADHOC SA
-#    https://launchpad.net/~ingenieria-adhoc
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
 from openerp.osv import fields as old_fields
 from openerp.osv import osv 
 from openerp import fields, api
@@ -61,11 +42,11 @@ class account_voucher_receipt (osv.osv):
             self.partner_id = False
 
     _columns = {
-            'name':old_fields.char(string='Receipt Number', size=128, required=False, readonly=True, ),
+            'name':old_fields.char(string='Receipt Number', size=128, required=False, readonly=True, copy=False),
             'period_id': old_fields.many2one('account.period', 'Period', required=True, readonly=True, states={'draft':[('readonly',False)]}),
-            'manual_prefix': old_fields.related('receiptbook_id', 'manual_prefix', type='char', string='Prefix', readonly=True,),
-            'manual_sufix': old_fields.integer('Number', readonly=True, states={'draft':[('readonly',False)]}),
-            'force_number': old_fields.char('Force Number', readonly=True, states={'draft':[('readonly',False)]}),
+            'manual_prefix': old_fields.related('receiptbook_id', 'manual_prefix', type='char', string='Prefix', readonly=True, copy=False),
+            'manual_sufix': old_fields.integer('Number', readonly=True, states={'draft':[('readonly',False)]}, copy=False),
+            'force_number': old_fields.char('Force Number', readonly=True, states={'draft':[('readonly',False)]}, copy=False),
             'receiptbook_id': old_fields.many2one('account.voucher.receiptbook','ReceiptBook',readonly=True,required=True, states={'draft':[('readonly',False)]}),   
             'company_id': old_fields.many2one('res.company', 'Company', required=True, readonly=True, states={'draft':[('readonly',False)]}),
             'date': old_fields.date('Receipt Date', readonly=True, states={'draft':[('readonly',False)]}),
@@ -102,16 +83,37 @@ class account_voucher_receipt (osv.osv):
         'company_id': lambda self,cr,uid,c: self.pool.get('res.company')._company_default_get(cr, uid, 'account.voucher.receipt',context=c),        
     }
 
-    def copy(self, cr, uid, id, default=None, context=None):
-        if default is None:
-            default = {}
-        default = default.copy()
-        default['name'] = False
-        default['manual_prefix'] = False
-        default['manual_sufix'] = False
-        default['force_number'] = False
-        default['voucher_ids'] = False
-        return super(account_voucher_receipt, self).copy(cr, uid, id, default, context)    
+    def on_change_company(self, cr, uid, ids, rtype, company_id, context=None):
+        ''' We add this function so that receiptbook_id value and domain is updated when 
+        company_id is change.'''
+        
+        if context is None: context = {}
+
+        result = {'domain':{},'value':{}}
+        receiptbook_id = False
+        receiptbook_ids = []
+        
+        period_id = False
+        period_ids = []
+        
+        if company_id and rtype:
+            receiptbook_ids = self.pool['account.voucher.receiptbook'].search(cr, uid, [('company_id','=',company_id),
+                ('type','=',rtype)], context=context)
+            if receiptbook_ids:                
+                receiptbook_id = receiptbook_ids[0]
+            
+            # Update company con context and call find method to get period of selected company
+            context['company_id'] = company_id
+            period_ids = self.pool.get('account.period').find(cr, uid, context=context)
+            if period_ids:
+                period_id = period_ids[0]
+
+        receiptbook_domain = [('id','in',receiptbook_ids)]
+        result['domain']['receiptbook_id'] = receiptbook_domain
+        result['value']['receiptbook_id'] = receiptbook_id
+        result['value']['period_id'] = period_id
+
+        return result
 
     def unlink(self, cr, uid, ids, context=None):
         for record in self.browse(cr, uid, ids, context=context):
@@ -196,6 +198,7 @@ class account_voucher_receipt (osv.osv):
         context['default_date'] = receipt.date
         context['default_period_id'] = receipt.period_id.id
         context['default_receiptbook_id'] = receipt.receiptbook_id.id
+        context['default_company_id'] = receipt.company_id.id
         context['show_cancel_special'] = True
         context['from_receipt'] = True
 
