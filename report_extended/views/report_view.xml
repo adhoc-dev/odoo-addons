@@ -1,6 +1,22 @@
 <?xml version="1.0"?>
 <openerp>
     <data>
+        <template id="report_extended.html_container" inherit_id="report.layout" name="Extended Base Report">
+            <xpath expr="//head" position="inside">
+                <style type="text/css">
+                    .background_image {
+                        position: absolute;
+                        z-index: -100;
+                        top: 0;
+                    }
+                    .background_image img {
+                        width: 991px;
+                        height: 1300px;
+                    }
+                </style>
+            </xpath>
+        </template>
+
         <record id="act_report_extended_xml_view" model="ir.ui.view">
             <field name="name">ir.actions.report.extended.xml</field>
             <field name="model">ir.actions.report.xml</field>
