@@ -213,6 +213,21 @@
 								<field name="module_sale_order_validity"
 									class="oe_inline" />
 								<label for="module_sale_order_validity" />
+							</div>				
+							<div name='module_sales_to_sale_order'>
+								<field name="module_sales_to_sale_order"
+									class="oe_inline" />
+								<label for="module_sales_to_sale_order" />
+							</div>						
+							<div name='module_portal_sale_distributor'>
+								<field name="module_portal_sale_distributor"
+									class="oe_inline" />
+								<label for="module_portal_sale_distributor" />
+							</div>							
+							<div name='module_sale_dummy_confirmation'>
+								<field name="module_sale_dummy_confirmation"
+									class="oe_inline" />
+								<label for="module_sale_dummy_confirmation" />
 							</div>								
 						</div>
 					</group>

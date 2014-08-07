@@ -47,6 +47,12 @@ class adhoc_base_configuration(osv.osv_memory):
             help = """Installs the sale_prices_update module."""),
         'module_sale_order_validity': fields.boolean('Mange Sale Orders Validity',
             help = """Installs the sale_order_validity module."""),
+        'module_sales_to_sale_order': fields.boolean('Add functionalty for grouping sales orders into a new sale order on other company',
+            help = """Installs the sales_to_sale_order module."""),
+        'module_portal_sale_distributor': fields.boolean('Create a portal group "distributors" and allow them to create and confirm sale orders',
+            help = """Installs the module_portal_sale_distributor module."""),
+        'module_sale_dummy_confirmation': fields.boolean('On a multi-company environment with stock and/or account, allow using only sale for some companies.',
+            help = """Installs the sale_dummy_confirmation module."""),
         
         # Project
         'module_project_issue_solutions': fields.boolean('Project Issue Solutions',
