@@ -9,7 +9,6 @@ Portal Distributor Sale
 =======================
     """,
     'author': 'Ingenieria ADHOC',
-    'web': 'www.ingadhoc.com',
     'depends': ['portal_sale'],
     'demo': [
         'portal_demo.xml',
@@ -23,5 +22,4 @@ Portal Distributor Sale
     'application': True,
     'category': 'Hidden',
 }
-
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
