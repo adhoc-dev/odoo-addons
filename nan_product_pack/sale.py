@@ -1,32 +1,4 @@
 # -*- encoding: latin-1 -*-
-##############################################################################
-#
-# Copyright (c) 2009 �ngel �lvarez - NaN  (http://www.nan-tic.com) All Rights Reserved.
-#
-#
-# WARNING: This program as such is intended to be used by professional
-# programmers who take the whole responsability of assessing all potential
-# consequences resulting from its eventual inadequacies and bugs
-# End users who are looking for a ready-to-use solution with commercial
-# garantees and support are strongly adviced to contract a Free Software
-# Service Company
-#
-# This program is Free Software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-#
-##############################################################################
-
 import math
 from osv import fields,osv
 from openerp.tools.translate import _
@@ -64,7 +36,6 @@ class sale_order(osv.osv):
         return result
 
     def expand_packs(self, cr, uid, ids, context={}, depth=1):
-
 
         def get_real_price(res_dict, product_id, qty, uom, pricelist):
             item_obj = self.pool.get('product.pricelist.item')
@@ -113,6 +84,7 @@ class sale_order(osv.osv):
             sequence = -1
             reorder = []
             last_had_children = False
+            lines_to_unlink = []
             for line in order.order_line:
                 if last_had_children and not line.pack_parent_line_id:
                     reorder.append( line.id )
@@ -137,8 +109,11 @@ class sale_order(osv.osv):
                 # If pack was already expanded (in another create/write operation or in 
                 # a previous iteration) don't do it again.
                 if line.pack_child_line_ids:
-                    last_had_children = True
-                    continue
+                    # Cambiamos esto para que se borren las lienas viejas y se creen nuevas
+                    unlink_line_ids = [x.id for x in line.pack_child_line_ids]
+                    lines_to_unlink.extend(unlink_line_ids)
+                    # last_had_children = True
+                    # continue
                 last_had_children = False
 
                 pack_price = 0.0
@@ -240,11 +215,14 @@ class sale_order(osv.osv):
 
                 for id in reorder:
                     sequence += 1
-                    print 'pack_price', pack_price
                     self.pool.get('sale.order.line').write(cr, uid, [id], {'sequence': sequence}, context)
 
-        if updated_orders:
-            # Try to expand again all those orders that had a pack in this iteration.
-            # This way we support packs inside other packs.
-            self.expand_packs(cr, uid, ids, context, depth+1)
+        # Borramos las lienas que se actualizan
+        self.pool.get('sale.order.line').unlink(cr, uid, lines_to_unlink, context=context) 
+
+        # Sacamos esto porque es medio horrible
+        # if updated_orders:
+        #     # Try to expand again all those orders that had a pack in this iteration.
+        #     # This way we support packs inside other packs.
+        #     self.expand_packs(cr, uid, ids, context, depth+1)
         return
