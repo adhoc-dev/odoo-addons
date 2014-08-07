@@ -17,8 +17,8 @@
 
         <record id="demo_distributor_user0" model="res.users" context="{'no_reset_password': True}">
             <field name="partner_id" ref="partner_demo_portal_distributor"/>
-            <field name="login">distributor</field>
-            <field name="password">distributor</field>
+            <field name="login">pdistributor</field>
+            <field name="password">pdistributor</field>
             <field name="signature"><![CDATA[<span>--<br/>
 Mr Demo Portal Distributor</span>]]></field>
             <!-- Avoid auto-including this user in any default group -->
