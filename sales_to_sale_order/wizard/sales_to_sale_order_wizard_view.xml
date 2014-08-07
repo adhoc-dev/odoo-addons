@@ -7,9 +7,9 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Group Sales Orders">
-                    <group>
-                        Se va a generar una orden de venta unificada para todas las ordenes de venta seleccionadas para el usuario y compañía configurados en el usuario.
-                    </group>
+                    <!-- <group> -->
+                        Se va a generar una orden de venta unificada para todas las ordenes de venta seleccionadas.
+                    <!-- </group> -->
                     <footer>
                         <button string="Confirm" name="action_group" type="object" class="oe_highlight"/>
                         or

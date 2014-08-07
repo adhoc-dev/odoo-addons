@@ -45,12 +45,15 @@ class sale_order(osv.osv):
         #It may not affected because of parallel company relation
         taxes_ids = [x.id for x in line.tax_id]
         price = line.price_unit or 0.0
+        sale = self.browse(cr, uid, sale_id, context=context)
         if line.product_id:
-            soline_onchange = saleline_obj.product_id_change(cr, uid, [], False, line.product_id.id, qty=line.product_uom_qty,
+            soline_onchange = saleline_obj.product_id_change(cr, uid, [], sale.pricelist_id.id, line.product_id.id, qty=line.product_uom_qty,
             uom = line.product_id.uom_id.id, partner_id=partner.id, context=context)
             if soline_onchange.get('value') and soline_onchange['value'].get('tax_id'):
                 taxes_ids = soline_onchange['value']['tax_id']
-
+            if soline_onchange.get('value'):
+                if soline_onchange['value'].get('price_unit'):
+                    price = soline_onchange['value'].get('price_unit')
         #Fetch taxes by company not by inter-company user
         company_taxes = [tax_rec.id for tax_rec in tax_obj.browse(cr, SUPERUSER_ID, taxes_ids, context=context) if tax_rec.company_id.id == company.id]
 

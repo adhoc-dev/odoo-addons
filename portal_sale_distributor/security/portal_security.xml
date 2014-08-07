@@ -5,6 +5,7 @@
         <!-- Create Portal Distributor Group and Make Portal Distributor Implied Portal group -->
         <record id="base.group_portal_distributor" model="res.groups">
             <field name="name">Portal - Distributor</field>
+            <field name="is_portal" eval="True"/>
             <field name="comment">Portal Distributor members have specific access rights (such as record rules and restricted menus).
                 They usually do not belong to the usual odoo groups.</field>
             <field name="implied_ids" eval="[(4,ref('base.group_portal'))]"/>
