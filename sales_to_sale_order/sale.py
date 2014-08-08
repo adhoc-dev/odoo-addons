@@ -31,31 +31,53 @@ class sale_order(osv.osv):
         so_vals = self._so_vals(cr, new_user_id, so_name, new_user_partner, company, context=context)
         sale_id = sale_obj.create(cr, new_user_id, so_vals, context=context)
 
-        so_lines = []
+        so_lines = {}
+        # so_lines = []
+        # TODO  Las lineas que no tienen productos no las estamos llevando por ahora
         for so in self.browse(cr, uid, ids, context=context):
-            so_lines.extend(so.order_line)
+            for so_line in so.order_line:
+                if so_line.product_id:
+                    if so_line.product_id.id not in so_lines:
+                        so_lines[so_line.product_id.id] = {
+                            'product': so_line.product_id,
+                            'product_uom_qty': so_line.product_uom_qty,
+                        }
+                    else:
+                        so_lines[so_line.product_id.id]['product_uom_qty'] += so_line.product_uom_qty
+                else:
+                    so_lines['no_prod_line_' + str(so_line.id)] = {
+                        'name': so_line.name,
+                        'price': so_line.price_unit,
+                        'product_uom_qty': so_line.product_uom_qty,
+                        'product_uom': so_line.product_uom,
+                    }
+            # so_lines.extend(so.order_line)
         for line in so_lines:
-            so_line_vals = self._so_line_vals(cr, new_user_id, line, new_user_partner, company, sale_id, context=context)
+            so_line_vals = self._so_line_vals_from_group(cr, new_user_id, so_lines[line], new_user_partner, company, sale_id, context=context)
+            # so_line_vals = self._so_line_vals(cr, new_user_id, line, new_user_partner, company, sale_id, context=context)
             saleline_obj.create(cr, new_user_id, so_line_vals, context=context)
 
         # Write grouped_on_new_so = True
         self.write(cr, uid, ids, {'grouped_on_new_so':True}, context=context)
         return True
 
-    def _so_line_vals(self, cr, uid, line, partner, company, sale_id, context=None):
+    def _so_line_vals_from_group(self, cr, uid, values, partner, company, sale_id, context=None):
         """ @ return : Sale Line values dictionary """
         if context is None:
             context = {}
         saleline_obj = self.pool.get('sale.order.line')
         tax_obj = self.pool.get('account.tax')
 
-        #It may not affected because of parallel company relation
-        taxes_ids = [x.id for x in line.tax_id]
-        price = line.price_unit or 0.0
+        taxes_ids = []
         sale = self.browse(cr, uid, sale_id, context=context)
-        if line.product_id:
-            soline_onchange = saleline_obj.product_id_change(cr, uid, [], sale.pricelist_id.id, line.product_id.id, qty=line.product_uom_qty,
-            uom = line.product_id.uom_id.id, partner_id=partner.id, context=context)
+        product = values.get('product', False)
+        product_uom_qty = values.get('product_uom_qty', False)
+        product_uom = values.get('product_uom', False)
+        name = values.get('name', False)
+        price = values.get('price', 0.0)
+        if product:
+            soline_onchange = saleline_obj.product_id_change(cr, uid, [], sale.pricelist_id.id, product.id, qty=product_uom_qty,
+            uom = product.uom_id.id, partner_id=partner.id, context=context)
             if soline_onchange.get('value') and soline_onchange['value'].get('tax_id'):
                 taxes_ids = soline_onchange['value']['tax_id']
             if soline_onchange.get('value'):
@@ -65,16 +87,50 @@ class sale_order(osv.osv):
         company_taxes = [tax_rec.id for tax_rec in tax_obj.browse(cr, SUPERUSER_ID, taxes_ids, context=context) if tax_rec.company_id.id == company.id]
 
         return {
-            'name': line.product_id and line.product_id.name or line.name,
+            'name': product and product.name or name,
             'order_id': sale_id,
-            'product_uom_qty': line.product_uom_qty,
-            'product_id': line.product_id and line.product_id.id or False,
-            'product_uom': line.product_id and line.product_id.uom_id.id or line.product_uom.id,
+            'product_uom_qty': product_uom_qty,
+            'product_id': product and product.id or False,
+            'product_uom': product and product.uom_id.id or product_uom and product_uom.id,
             'price_unit': price,
-            #'delay': line.product_id and line.product_id.sale_delay or 0.0,
             'company_id': company.id,
             'tax_id': [(6, 0, company_taxes)],
         }
+
+# Viejo metodo que no estamos usando porque intentamos agrupar los productos
+    # def _so_line_vals(self, cr, uid, line, partner, company, sale_id, context=None):
+    #     """ @ return : Sale Line values dictionary """
+    #     if context is None:
+    #         context = {}
+    #     saleline_obj = self.pool.get('sale.order.line')
+    #     tax_obj = self.pool.get('account.tax')
+
+    #     #It may not affected because of parallel company relation
+    #     taxes_ids = [x.id for x in line.tax_id]
+    #     price = line.price_unit or 0.0
+    #     sale = self.browse(cr, uid, sale_id, context=context)
+    #     if line.product_id:
+    #         soline_onchange = saleline_obj.product_id_change(cr, uid, [], sale.pricelist_id.id, line.product_id.id, qty=line.product_uom_qty,
+    #         uom = line.product_id.uom_id.id, partner_id=partner.id, context=context)
+    #         if soline_onchange.get('value') and soline_onchange['value'].get('tax_id'):
+    #             taxes_ids = soline_onchange['value']['tax_id']
+    #         if soline_onchange.get('value'):
+    #             if soline_onchange['value'].get('price_unit'):
+    #                 price = soline_onchange['value'].get('price_unit')
+    #     #Fetch taxes by company not by inter-company user
+    #     company_taxes = [tax_rec.id for tax_rec in tax_obj.browse(cr, SUPERUSER_ID, taxes_ids, context=context) if tax_rec.company_id.id == company.id]
+
+    #     return {
+    #         'name': line.product_id and line.product_id.name or line.name,
+    #         'order_id': sale_id,
+    #         'product_uom_qty': line.product_uom_qty,
+    #         'product_id': line.product_id and line.product_id.id or False,
+    #         'product_uom': line.product_id and line.product_id.uom_id.id or line.product_uom.id,
+    #         'price_unit': price,
+    #         #'delay': line.product_id and line.product_id.sale_delay or 0.0,
+    #         'company_id': company.id,
+    #         'tax_id': [(6, 0, company_taxes)],
+    #     }
 
     def _so_vals(self, cr, uid, name, partner, company, context=None):
     # def _so_vals(self, cr, uid, name, purchase_id, partner, company, direct_delivery_address, context=None):
