@@ -71,7 +71,7 @@ class sale_order(osv.osv):
             'product_id': line.product_id and line.product_id.id or False,
             'product_uom': line.product_id and line.product_id.uom_id.id or line.product_uom.id,
             'price_unit': price,
-            'delay': line.product_id and line.product_id.sale_delay or 0.0,
+            #'delay': line.product_id and line.product_id.sale_delay or 0.0,
             'company_id': company.id,
             'tax_id': [(6, 0, company_taxes)],
         }
