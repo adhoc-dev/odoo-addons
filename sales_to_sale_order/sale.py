@@ -6,6 +6,10 @@ from openerp.exceptions import except_orm, Warning, RedirectWarning
 class sale_order(osv.osv):
     _inherit = 'sale.order'
 
+    _columns = {
+        'grouped_on_new_so': fields.boolean('Grouped?', help="Grouped in new Sale Order?", readonly=True),
+    }
+
     def copy_and_group_sale_orders(self, cr, uid, ids, context=None):        
         if context is None:
             context = {}
@@ -33,6 +37,9 @@ class sale_order(osv.osv):
         for line in so_lines:
             so_line_vals = self._so_line_vals(cr, new_user_id, line, new_user_partner, company, sale_id, context=context)
             saleline_obj.create(cr, new_user_id, so_line_vals, context=context)
+
+        # Write grouped_on_new_so = True
+        self.write(cr, uid, ids, {'grouped_on_new_so':True}, context=context)
         return True
 
     def _so_line_vals(self, cr, uid, line, partner, company, sale_id, context=None):

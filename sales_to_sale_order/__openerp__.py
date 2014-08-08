@@ -16,8 +16,10 @@ Orders. This wizard generates a Sale Order in another company for all sale order
         'portal_demo.xml',
     ],
     'data' : [
+        'security/sales_t_sale_order_security.xml',
         'wizard/sales_to_sale_order_wizard_view.xml',
         'res_users_view.xml',
+        'sale_view.xml',
         ],
     'active': False,
     'installable': True

@@ -26,7 +26,7 @@
             <field name="password">distributor</field>
             <field name="signature"><![CDATA[<span>--<br/>
 Mr Demo Portal Distributor</span>]]></field>
-            <field name="groups_id" eval="[(4,ref('base.group_sale_salesman_all_leads'))]"/>
+            <field name="groups_id" eval="[(4,ref('base.group_sale_salesman_all_leads')),(4,ref('sales_to_sale_order.allow_grouping_sale_orders'))]"/>
             <field name="company_ids" eval="[(6,0,[ref('demo_distributor_company')])]"/>
             <field name="company_id" ref="demo_distributor_company"/>
         </record>

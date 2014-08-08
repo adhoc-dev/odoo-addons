@@ -23,6 +23,7 @@
             id="action_group_sales_orders"
             src_model="sale.order"
             key2="client_action_multi"
+            groups="sales_to_sale_order.allow_grouping_sale_orders"
             res_model="sale.sales_to_sale_order_wizard"
             view_mode="form" target="new" view_type="form"
             view_id="view_sales_to_sale_order_wizard"/>
