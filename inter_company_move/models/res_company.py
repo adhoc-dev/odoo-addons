@@ -27,6 +27,8 @@ class res_company(osv.osv):
         # 'allow_intercompany': fields.boolean('Allow Intercompany',),
         # 'intercompany_document_ids': fields.one2many('intercompany.document', 'company_id', string='Intercompany Document', ),
         'invoice_move_type': fields.selection([('not_available','Not Available'),('move_auto','Move Automatically')], string='Invoice Move Type', required=True),
+        'open_after_move': fields.boolean('Open New Record After Move?', help="Please note that to open the new record you must have the right access rights. This is only advisible when it is moved to a child company."),
+        'record_moved_id': fields.boolean('Record Moved Id', help="Please note that to open the new record you must have the right access rights. This is only advisible when it is moved to a child company."),
         # TODO add move with wizard
 		# 'invoice_move_type': fields.selection([('not_available','Not Available'),('move_auto','Move Automatically'),('move_wizard','Move With Wizard')], string='Invoice Move Type', required=True),
 		'invoice_move_company_id': fields.many2one('res.company', 'Destiny Company',),
