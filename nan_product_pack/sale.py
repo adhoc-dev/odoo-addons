@@ -210,6 +210,8 @@ class sale_order(osv.osv):
                         updated_orders.append( order.id )
 
                 if line.product_id.totalice_price and not line.product_id.pack_fixed_price:
+                    if quantity and int(quantity) != 0:
+                        pack_price = pack_price / quantity
                     self.pool.get('sale.order.line').write(cr, uid, [line.id], 
                         {'price_unit':pack_price}, context=context)
 
