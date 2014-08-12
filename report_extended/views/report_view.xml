@@ -48,11 +48,11 @@
                             <field name="print_logo" colspan="2"/>
                             <field name="logo" widget="image" nolabel="1" colspan="2"/>
                         </group>                            
-                        <group colspan="4" col="2">
+                        <!-- <group colspan="4" col="2">
                             <separator string="Background Image" colspan="2"/>
                             <field name="use_background_image" colspan="2"/>
                             <field name="background_image" widget="image" nolabel="1" colspan="2"/>
-                        </group>
+                        </group> -->
                     </page>
 <!--                     <page string="Extended Conf.">
                         <group>
@@ -84,10 +84,12 @@
             <field name="model">report.configuration.line</field>
             <field name="arch" type="xml">
                 <form string="Report Configuration Line">
-                    <field name="name"/>
-                    <field name="value_type"/>
-                    <field name="value_boolean" attrs="{'invisible':[('value_type','!=', 'boolean')]}"/>
-                    <field name="value_text" attrs="{'invisible':[('value_type','!=', 'text')]}" colspan="4"/>
+                    <group>
+                        <field name="name"/>
+                        <field name="value_type"/>
+                        <field name="value_boolean" attrs="{'invisible':[('value_type','!=', 'boolean')]}"/>
+                        <field name="value_text" attrs="{'invisible':[('value_type','!=', 'text')]}" colspan="4"/>
+                    </group>
                 </form>
             </field>
         </record>
@@ -109,13 +111,15 @@
             <field name="model">report.configuration.default</field>            
             <field name="arch" type="xml">
                 <form string="Report Configuration Line">
-                    <field name="name"/>
-                    <field name="apply_to_all"/>
-                    <field name="apply_to_model_id" widget="selection" attrs="{'invisible':[('apply_to_all','=',True)]}"/>
-                    <field name="value_type"/>
-                    <field name="override_values"/>
-                    <field name="value_boolean" attrs="{'invisible':[('value_type','!=', 'boolean')]}"/>
-                    <field name="value_text" attrs="{'invisible':[('value_type','!=', 'text')]}" colspan="4"/>
+                    <group>
+                        <field name="name"/>
+                        <field name="apply_to_all"/>
+                        <field name="apply_to_model_id" widget="selection" attrs="{'invisible':[('apply_to_all','=',True)]}"/>
+                        <field name="value_type"/>
+                        <field name="override_values"/>
+                        <field name="value_boolean" attrs="{'invisible':[('value_type','!=', 'boolean')]}"/>
+                        <field name="value_text" attrs="{'invisible':[('value_type','!=', 'text')]}" colspan="4"/>
+                    </group>
                 </form>
             </field>
         </record>

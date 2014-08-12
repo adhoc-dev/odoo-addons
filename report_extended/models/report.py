@@ -55,7 +55,6 @@ class Report(osv.Model):
                     docargs.update({report_conf_line.name: report_conf_line.value_text})
                 elif report_conf_line.value_type == 'boolean':
                     docargs.update({report_conf_line.name: report_conf_line.value_boolean})        
-
             return self.render(cr, uid, [], report.report_name, docargs, context=context)
 
 
@@ -153,7 +152,8 @@ class report_configuration_line(osv.osv):
     _columns = {
         'name': fields.char('Key', size=256, required=True),
         'value_type': fields.selection([('text','Text'), ('boolean','Boolean')], 'Value Type', required=True),
-        'value_text': fields.text('Value', required=False, translate=True),
+        'value_text': fields.text('Value', required=False, translate=False),
+        # 'value_text': fields.text('Value', required=False, translate=True),
         'value_boolean': fields.boolean('Value', required=False),
         'report_id': fields.many2one('ir.actions.report.xml', 'Report', required=True, ondelete='cascade'),
     }
@@ -168,7 +168,8 @@ class configuration_default(osv.osv):
         'apply_to_model_id': fields.many2one('ir.model', string='Apply To Model', required=False),
         'override_values': fields.boolean('Override Values', help='If true, override values in already created Aeroo Report Configuration when saved.'),        
         'value_type': fields.selection([('text','Text'), ('boolean','Boolean')], 'Value Type', required=True),
-        'value_text': fields.text('Value', required=False, translate=True),
+        'value_text': fields.text('Value', required=False, translate=False),
+        # 'value_text': fields.text('Value', required=False, translate=True),
         'value_boolean': fields.boolean('Value', required=False),
     }
 

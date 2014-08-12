@@ -41,7 +41,6 @@ The parser proved a serie of fields an functions to use in the odt:
         'views/company_view.xml',
         'views/report_view.xml',
         'security/security.xml',
-        'data/report_configuration_defaults_data.xml',
     ],
     'demo': [
     ],
