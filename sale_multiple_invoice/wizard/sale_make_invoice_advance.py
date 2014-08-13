@@ -27,7 +27,7 @@ class sale_advance_payment_inv(osv.osv_memory):
     @api.one
     @api.constrains('invoice_qty')
     def _check_invoice_qty(self):
-        if self.invoice_qty <= 1:
+        if self.invoice_qty <= 1 and self.advance_payment_method == 'multiple':
             raise Warning(_('Invoices Quantity must be greater than 1!'))
 
     @api.onchange('invoice_qty')

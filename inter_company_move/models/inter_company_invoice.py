@@ -22,27 +22,32 @@ class account_invoice(osv.osv):
         TODO
         """
         invoice_type = False
+        moved_invoice_ids = []
         for invoice in self.browse(cr, uid, ids, context=context):
             move_company = invoice.company_id.invoice_move_company_id
             if invoice.invoice_move_type == 'move_auto':
                 moved_invoice_id = self.action_create_invoice(cr, SUPERUSER_ID, invoice, move_company, invoice.type, invoice.journal_id.type, context=context)
-                # TODO, ver de hacer esto configurable y que si se usa estructura de companias padre hija si se pueda ver, se puede verificar simplemente con un child of
-                # No escrivimos la factura destino porque por ahi el usuario no tiene permiso para ver la compania de la factura destino
-                # self.write(cr, SUPERUSER_ID, invoice.id, {'moved_invoice_id': moved_invoice_id}, context=context)
-                moved_description = _('Moved to invoice ') + str(moved_invoice_id)
+                if invoice.company_id.record_moved_id:
+                    invoice.write({'moved_invoice_id': moved_invoice_id})
+                moved_description = _('Moved to invoice id: ') + str(moved_invoice_id)
                 invoice.write({
                     'internal_number': moved_description,
                     'name': moved_description,
                     })
                 invoice_type = invoice.type
-        # self.signal_invoice_cancel(cr, uid, ids)
+                moved_invoice_ids.append(moved_invoice_id)
+        # Cancelamos la factura
         self.signal_workflow(cr, uid, ids, 'invoice_cancel')
+        
+        # sacamos la excepecion de las sales orders 
         sale_order_obj = self.pool['sale.order']
         sale_order_ids = sale_order_obj.search(cr, uid, [('invoice_ids','in',ids)], context=context)
         self.pool['sale.order'].signal_workflow(cr, uid, sale_order_ids, 'invoice_corrected')
+
+        # Si esta seteado asi, retornamos una accion de ventana par ver la factura
+        if invoice.company_id.open_after_move:
+            return self.action_view_invoice(cr, uid, moved_invoice_ids, invoice_type, context=context)
         return True
-        # No retornamos esta accion porque porq ahi el usuario no tiene permiso para ver este registro
-        # return self.action_view_invoice(cr, uid, invoice_ids, invoice_type, context=context)
 
     def action_view_invoice(self, cr, uid, ids, inv_type=False, context=None):
         '''

@@ -21,6 +21,24 @@
 								string="Allows you to configure options related to products, sales, purchase, warehouse and finance for your business according to argentinian common uses and ADHOC customizations. You may also find some tools that makes your life easier while workign with OpenERP." />
 						</p>
 					</div>
+
+ 					<separator string="Fixes" />
+					<group>
+						<label for="id" string="Vairous Fixes" />
+						<div name="various_fixes">
+							<div name='module_account_voucher_multic_fix'>
+								<field name="module_account_voucher_multic_fix"
+									class="oe_inline" />
+								<label for="module_account_voucher_multic_fix" />
+							</div>		
+							<div name='module_account_multic_fix'>
+								<field name="module_account_multic_fix"
+									class="oe_inline" />
+								<label for="module_account_multic_fix" />
+							</div>							
+						</div>
+					</group>
+
 					<separator string="Products" />
 					<group>
 						<label for="id" string="Product Features" />
