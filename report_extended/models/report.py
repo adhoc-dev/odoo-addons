@@ -28,6 +28,7 @@ class Report(osv.Model):
     _inherit = 'report'
 
     def get_html(self, cr, uid, ids, report_name, data=None, context=None):
+        #TODO mejorar este metodo para que sea "heredado"
         """This method generates and returns html version of a report.
         """
         # If the report is using a custom model to render its html, we must use it.
