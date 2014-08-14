@@ -60,6 +60,8 @@ class adhoc_base_configuration(osv.osv_memory):
             help = """Installs the module_portal_sale_distributor module."""),
         'module_sale_dummy_confirmation': fields.boolean('On a multi-company environment with stock and/or account, allow using only sale for some companies.',
             help = """Installs the sale_dummy_confirmation module."""),
+        'module_sale_stock_availability': fields.boolean('See Stock availability in sales order line.',
+            help = """Installs the sale_stock_availability module."""),
         
         # Project
         'module_project_issue_solutions': fields.boolean('Project Issue Solutions',

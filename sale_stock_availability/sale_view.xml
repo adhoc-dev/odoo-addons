@@ -8,13 +8,13 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
-                <field name="virtual_available_boolean" groups="sale_order_stock.see_stock_boolean"/>
-                <field name="virtual_available" groups="sale_order_stock.see_stock_value"/>
+                <field name="virtual_available_boolean" groups="sale_stock_availability.see_stock_boolean"/>
+                <field name="virtual_available" groups="sale_stock_availability.see_stock_value"/>
             </xpath>
         
             <xpath expr="//field[@name='order_line']/form//label[@for='product_uos_qty']" position="before">
-                <field name="virtual_available_boolean" groups="sale_order_stock.see_stock_boolean" attrs="{'invisible':[('state','!=','draft')]}"/>
-                <field name="virtual_available" groups="sale_order_stock.see_stock_value" attrs="{'invisible':[('state','!=','draft')]}"/>
+                <field name="virtual_available_boolean" groups="sale_stock_availability.see_stock_boolean" attrs="{'invisible':[('state','!=','draft')]}"/>
+                <field name="virtual_available" groups="sale_stock_availability.see_stock_value" attrs="{'invisible':[('state','!=','draft')]}"/>
             </xpath>  
         </field>
     </record>

@@ -11,7 +11,6 @@ class sale_order_line_stock(models.Model):
         'product_id')
     def _fnct_line_stock(self):
         available = False
-        print 'context',  self.env.context
         if self.order_id.state == 'draft':
             available = self.with_context(
                 warehouse=self.order_id.warehouse_id.id
@@ -19,6 +18,8 @@ class sale_order_line_stock(models.Model):
         self.virtual_available = available
         if available >= 0.0:
             available = True
+        else:
+            available = False
         self.virtual_available_boolean = available
 
     virtual_available = fields.Float(

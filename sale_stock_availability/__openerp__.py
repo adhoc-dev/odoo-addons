@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Stock information in sale order line',
+    'name': 'Stock availability in sales order line',
     'version': '0.1',
     'category': 'Tools',
     'description': "",
