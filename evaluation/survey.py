@@ -25,7 +25,7 @@ class survey_question(osv.Model):
     _inherit = 'survey.question'
 
     @api.one
-    @api.depends('score_ranges_ids','score_calc_method','type','copy_labels_ids','matrix_subtype','labels_ids_2')
+    @api.depends('score_ranges_ids','score_ranges_ids.score','score_calc_method','type','copy_labels_ids','copy_labels_ids.score','matrix_subtype','labels_ids_2','labels_ids_2.matrix_answer_score_ids','labels_ids_2.matrix_answer_score_ids.score')
     def _get_max_score(self):
         max_score = 0
         question = self 
@@ -440,5 +440,6 @@ class survey_survey(osv.Model):
     def compute_score(self, cr, uid, ids, context=None):    
         for survey in self.browse(cr, uid, ids, context=context):
             user_input_ids = [x.id for x in survey.user_input_ids]
+            print 'compute_score user input ids: ', user_input_ids
             self.pool.get('survey.user_input').compute_score(cr, uid, user_input_ids, context=context)
         return True
