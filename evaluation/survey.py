@@ -58,7 +58,7 @@ class survey_question(osv.Model):
         print 'Changing max_score'
         self.max_score = max_score
     
-    max_score = new_fields.Integer(compute='_get_max_score', string='Max Score', help='Max score an answer of this question can get',)
+    max_score = new_fields.Integer(compute='_get_max_score', string='Max Score', help='Max score an answer of this question can get', store=True)
 
     _columns = {
         'objective_id': fields.many2one('survey.objective', string='Objective', ),
