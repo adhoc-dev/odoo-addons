@@ -95,5 +95,11 @@ class account_voucher(osv.osv):
         else:
             if not account_type:
                 account_type = 'receivable'        
-        context['move_line_ids'] = move_line_pool.search(cr, uid, [('state','=','valid'), ('company_id','=',journal.company_id.id), ('account_id.type', '=', account_type), ('reconcile_id', '=', False), ('partner_id', '=', partner_id)], context=context)
+        move_line_ids = move_line_pool.search(cr, uid, [('state','=','valid'), ('company_id','=',journal.company_id.id), ('account_id.type', '=', account_type), ('reconcile_id', '=', False), ('partner_id', '=', partner_id)], context=context)
+        if move_line_ids:
+            context['move_line_ids'] = move_line_ids
+        else:            
+            return {
+                'value': {'line_dr_ids': [] ,'line_cr_ids': [] ,'pre_line': False,},
+            }        
         return super(account_voucher, self).recompute_voucher_lines(cr, uid, ids, partner_id, journal_id, price, currency_id, ttype, date, context=context)
