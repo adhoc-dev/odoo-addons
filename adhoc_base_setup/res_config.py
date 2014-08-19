@@ -14,6 +14,10 @@ class adhoc_base_configuration(osv.osv_memory):
             help = """Installs the account_voucher_multic_fix module."""),
         'module_account_multic_fix': fields.boolean('FiX account in multi-company father/son environment',
             help = """Installs the account_multic_fix module."""),
+        'module_sale_multic_fix': fields.boolean('FiX sale in multi-company father/son environment',
+            help = """Installs the sale_multic_fix module."""),
+        'module_purchase_multic_fix': fields.boolean('FiX purchase in multi-company father/son environment',
+            help = """Installs the purchase_multic_fix module."""),
         
         # Account modules
         'module_account_cancel': fields.boolean('Allows canceling accounting entries',
