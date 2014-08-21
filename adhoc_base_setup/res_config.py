@@ -18,6 +18,8 @@ class adhoc_base_configuration(osv.osv_memory):
             help = """Installs the sale_multic_fix module."""),
         'module_purchase_multic_fix': fields.boolean('FiX purchase in multi-company father/son environment',
             help = """Installs the purchase_multic_fix module."""),
+        'module_account_voucher_account_fix': fields.boolean('FiX vouchers so that if payment use journal credit account, if receipt use journal debit account',
+            help = """Installs the account_voucher_account_fix module."""),
         
         # Account modules
         'module_account_cancel': fields.boolean('Allows canceling accounting entries',

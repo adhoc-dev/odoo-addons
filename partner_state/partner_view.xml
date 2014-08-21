@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_partner_state_form" model="ir.ui.view">
+            <field name="name">partner_state_partner_form_view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form[@string='Partners']/notebook" position="after">
+                    <group col="4" colspan="4">
+                    <field name="state" widget="statusbar"/>
+                    <button name="partner_potential_2_pending" states="potential"
+                            string="A pendiente de aprobación" icon="gtk-apply"/>
+                    <button name="partner_pending_2_approved" states="pending"
+                            string="Aprovar" icon="gtk-apply" />
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_partner_state_tree" model="ir.ui.view">
+            <field name="name">partner_state_partner_tree_view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            
+            <field name="arch" type="xml">
+                <field name="user_id" position="after">
+                    <field name="state" />
+                </field>
+            </field>
+        </record>
+        
+        <record id="view_partner_state_search" model="ir.ui.view">
+            <field name="name">partner_state_partner_search_view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            
+            <field name="arch" type="xml">
+                <filter name="supplier" position="after">
+                    <separator orientation="vertical"/>
+                    <filter string="Potenciales" icon="terp-personal" domain="[('state','=','potential')]"/>
+                    <filter string="Pendientes" icon="terp-personal" domain="[('state','=','pending')]" />
+                    <filter string="Aprovados" icon="terp-personal" domain="[('state','=','approved')]" />
+                </filter>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

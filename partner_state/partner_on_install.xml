@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+        <function model="res.partner" name="create_workflow_on_existing_partners"/>
+    </data>
+</openerp>
