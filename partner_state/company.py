@@ -27,6 +27,6 @@ class res_company_partner_state_field(models.Model):
 class res_company(models.Model):
     _inherit = 'res.company'
 
-    partner_state = fields.Boolean('User partner state?')
+    partner_state = fields.Boolean('Use partner state?')
     partner_state_field_ids = fields.One2many(
         'res.company.partner_state_field', 'company_id', string='State Fields')

@@ -1,0 +1,172 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* partner_state
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0rc1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-08-25 17:35+0000\n"
+"PO-Revision-Date: 2014-08-25 14:36-0300\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: partner_state
+#: field:res.company.partner_state_field,approval:0
+msgid "Approval?"
+msgstr "Aprobación?"
+
+#. module: partner_state
+#: view:res.partner:partner_state.view_partner_state_form
+msgid "Approve"
+msgstr "Aprobar"
+
+#. module: partner_state
+#: model:res.groups,name:partner_state.approve_partners
+msgid "Approve Partners"
+msgstr "Aprobar Empresas"
+
+#. module: partner_state
+#: code:addons/partner_state/partner.py:15
+#: view:res.partner:partner_state.view_partner_state_search
+#, python-format
+msgid "Approved"
+msgstr "Aprobado"
+
+#. module: partner_state
+#: code:addons/partner_state/partner.py:56
+#, python-format
+msgid ""
+"Can not request approval,                             required field %s "
+"empty on partner id %i!"
+msgstr ""
+"No se puede requerir aprobación,                             el campo "
+"requerido %s se encuentra vacío en el partner con id %i!"
+
+#. module: partner_state
+#: model:ir.model,name:partner_state.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: partner_state
+#: field:res.company.partner_state_field,company_id:0
+msgid "Company"
+msgstr "Compañía"
+
+#. module: partner_state
+#: model:ir.model,name:partner_state.model_res_company_partner_state_field
+msgid "Company Partner State Fields"
+msgstr "Company Partner State Fields"
+
+#. module: partner_state
+#: field:res.company.partner_state_field,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: partner_state
+#: field:res.company.partner_state_field,create_date:0
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: partner_state
+#: field:res.company.partner_state_field,field_id:0
+msgid "Field"
+msgstr "Campo"
+
+#. module: partner_state
+#: field:res.company.partner_state_field,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: partner_state
+#: field:res.company.partner_state_field,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: partner_state
+#: field:res.company.partner_state_field,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: partner_state
+#: model:ir.model,name:partner_state.model_res_partner
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: partner_state
+#: view:res.company:partner_state.view_company_inherit_form
+msgid "Partner State"
+msgstr "Partner State"
+
+#. module: partner_state
+#: view:res.partner:partner_state.view_partner_state_search
+msgid "Pending"
+msgstr "Pendiente"
+
+#. module: partner_state
+#: code:addons/partner_state/partner.py:14
+#, python-format
+msgid "Pending Approval"
+msgstr "Aprobación Pendiente"
+
+#. module: partner_state
+#: code:addons/partner_state/partner.py:13
+#: view:res.partner:partner_state.view_partner_state_search
+#, python-format
+msgid "Potential"
+msgstr "Potencial"
+
+#. module: partner_state
+#: view:res.partner:partner_state.view_partner_state_form
+msgid "Request Approval"
+msgstr "Requerir Aprobación"
+
+#. module: partner_state
+#: help:res.company.partner_state_field,approval:0
+msgid "Required for Approval"
+msgstr "Requerido para Aprobación"
+
+#. module: partner_state
+#: field:res.company,partner_state_field_ids:0
+msgid "State Fields"
+msgstr "Campos de Estado"
+
+#. module: partner_state
+#: field:res.partner,state:0
+msgid "Status"
+msgstr "Estado"
+
+#. module: partner_state
+#: view:res.partner:partner_state.view_partner_state_form
+msgid "To Potential"
+msgstr "A Potencial"
+
+#. module: partner_state
+#: help:res.company.partner_state_field,track:0
+msgid "Track and, if change, go back to Potencial"
+msgstr "Seguir y, si hay un cambio, volver a Potencial"
+
+#. module: partner_state
+#: field:res.company.partner_state_field,track:0
+msgid "Track?"
+msgstr "Seguir?"
+
+#. module: partner_state
+#: field:res.company,partner_state:0
+msgid "Use partner state?"
+msgstr "Usar Estados en Empresas?"
+
+#. module: partner_state
+#: code:addons/partner_state/partner.py:71
+#, python-format
+msgid ""
+"User can't approve partners,                     please check user "
+"permissions!"
+msgstr ""
+"El usuario no puede aprobar empresas,                     por favor "
+"verificar los permisos!"
