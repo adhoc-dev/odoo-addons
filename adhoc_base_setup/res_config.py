@@ -125,6 +125,12 @@ class adhoc_base_configuration(osv.osv_memory):
             help = """Installs the partner_user module."""),
         'module_base_state_active': fields.boolean('Hide USA states and add active field for states',
             help = """Installs the base_state_active module."""),
+        'module_partner_tree_fields': fields.boolean('Add Fields on Partners Tree Views',
+            help = """Installs the partner_tree_fields module."""),
+        'module_partner_search_by_ref': fields.boolean('Search Partners by Reference',
+            help = """Installs the partner_search_by_ref module."""),
+        'module_partner_search_by_vat': fields.boolean('Search Partners by VAT',
+            help = """Installs the partner_search_by_vat module."""),
 
         # Product modules
         'module_product_pack': fields.boolean('Mange product packs',

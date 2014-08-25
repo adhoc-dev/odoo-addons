@@ -229,7 +229,22 @@
                                 <field name="module_base_state_active"
                                     class="oe_inline" />
                                 <label for="module_base_state_active" />
+                            </div>                    
+                            <div name='module_partner_tree_fields'>
+                                <field name="module_partner_tree_fields"
+                                    class="oe_inline" />
+                                <label for="module_partner_tree_fields" />
+                            </div>                         
+                            <div name='module_partner_search_by_ref'>
+                                <field name="module_partner_search_by_ref"
+                                    class="oe_inline" />
+                                <label for="module_partner_search_by_ref" />
                             </div>                            
+                            </div>                         
+                            <div name='module_partner_search_by_vat'>
+                                <field name="module_partner_search_by_vat"
+                                    class="oe_inline" />
+                                <label for="module_partner_search_by_vat" />
                         </div>
                     </group>
                     
