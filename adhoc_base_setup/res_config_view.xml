@@ -239,12 +239,17 @@
                                 <field name="module_partner_search_by_ref"
                                     class="oe_inline" />
                                 <label for="module_partner_search_by_ref" />
-                            </div>                            
-                            </div>                         
+                            </div>
                             <div name='module_partner_search_by_vat'>
                                 <field name="module_partner_search_by_vat"
                                     class="oe_inline" />
                                 <label for="module_partner_search_by_vat" />
+                            </div>
+                            <div name='module_partner_state'>
+                                <field name="module_partner_state"
+                                    class="oe_inline" />
+                                <label for="module_partner_state" />
+                            </div>
                         </div>
                     </group>
                     
