@@ -9,8 +9,8 @@
         <field name="report_type">aeroo</field>
         <field name="in_format">oo-ods</field>
         <field name="out_format" ref="report_aeroo_ooo.report_mimetypes_pdf_ods"/>
-        <field name="parser_loc">report_partner_account_statement/report/account_summary_parser.py</field>
-        <field name="report_rml">report_partner_account_statement/report/account_summary.ods</field>
+        <field name="parser_loc">partner_account_summary/report/account_summary_parser.py</field>
+        <field name="report_rml">partner_account_summary/report/account_summary.ods</field>
         <field name="parser_state">loc</field>
         <field name="tml_source">file</field>
     </record>

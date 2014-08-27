@@ -1,24 +1,4 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
 import netsvc
 
 from osv import fields, osv
@@ -36,7 +16,7 @@ class account_summary_wizard(osv.osv_memory):
         'result_selection': fields.selection([('customer','Receivable Accounts'),
                                               ('supplier','Payable Accounts'),
                                               ('customer_supplier','Receivable and Payable Accounts')],
-                                              "Partner's", required=True),
+                                              "Account Type's", required=True),
     }
     
     _defaults = {
@@ -70,19 +50,15 @@ class account_summary_wizard(osv.osv_memory):
         context['show_invoice_detail'] = show_invoice_detail
         context['show_receipt_detail'] = show_receipt_detail
         context['result_selection'] = result_selection
-        
+        active_ids = context.get('active_ids',False)
+
+        # if no active_ids then called from menuitem
+        if not active_ids:
+            partner_id = self.pool['res.users'].browse(cr, uid, uid, context=context).partner_id.id
+            active_ids = [partner_id]
+            context['active_ids'] = active_ids
+            context['active_id'] = partner_id
+            context['active_model'] = 'res.partner'
         return {'type' : 'ir.actions.report.xml',
                          'context' : context,
                          'report_name': 'report_account_summary'}
-    
-account_summary_wizard()
-
-
-
-
-
-
-
-
-
-
