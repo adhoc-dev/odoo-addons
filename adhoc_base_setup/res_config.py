@@ -52,6 +52,8 @@ class adhoc_base_configuration(osv.osv_memory):
             help = """Installs the account_clean_cancelled_invoice_number module. It adds a button on canceled invoice number so you can choose to remove internal number and then delete it or renumber by re-approving it."""),        
         'module_multi_store': fields.boolean('Manage a multi store environment with journals restrictions',
             help = """Installs the multi_store module. The main purpose of this module is to restrict journals access for users on different stores."""),
+        'module_account_journal_active': fields.boolean('Allow journals activation/deactivation (adds field "active")',
+            help = """Installs the account_journal_active module."""),
         
         # Sale / Purchase modules
         'module_purchase_discounts': fields.boolean('Mange disccounts on purchases',

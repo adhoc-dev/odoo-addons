@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from openerp import models, fields, api, _
+from openerp.osv import fields as old_fields
 from openerp.exceptions import except_orm, Warning, RedirectWarning
 
 
@@ -14,25 +15,31 @@ class res_partner(models.Model):
             ('pending', _('Pending Approval')),
             ('approved', _('Approved'))]
 
-    company_partner_state = fields.Boolean(
-        related='company_id.partner_state',
-        string="Company Partner State")
-    state = fields.Selection(
+    # Usamos la api vieja porque si no da error en permisos
+    # company_partner_state = fields.Boolean(
+    #     related='company_id.partner_state',
+    #     string="Company Partner State")
+    _columns = {
+        'company_partner_state': old_fields.related('company_id', 'partner_state', type='boolean'),
+    }
+
+    partner_state = fields.Selection(
         '_get_partner_states',
-        string='Status',
+        string='Partner State',
         readonly=True,
         required=True,
         default='potential')
 
     def write(self, cr, uid, ids, vals, context=None):
         for partner in self.browse(cr, uid, ids, context=context):
-            if partner.state in ['approved', 'pending']:
+            if partner.partner_state in ['approved', 'pending']:
                 fields = self.check_fields(
                     cr, uid, partner.id, 'track', context=context)
-                fields_set = set(fields)
-                vals_set = set(vals)
-                if fields_set & vals_set:
-                    partner.partner_state_potential()
+                if fields:
+                    fields_set = set(fields)
+                    vals_set = set(vals)
+                    if fields_set & vals_set:
+                        partner.partner_state_potential()
 
         ret = super(res_partner, self).write(
             cr, uid, ids, vals, context=context)
@@ -41,25 +48,26 @@ class res_partner(models.Model):
 
     @api.multi
     def partner_state_potential(self):
-        self.state = 'potential'
+        self.partner_state = 'potential'
 
     @api.multi
     def partner_state_pending(self):
         fields = self.check_fields('approval')
-        partners_read = self.read(fields)
-        for partner_read in partners_read:
-            for partner_field in partner_read:
-                if not partner_read[partner_field]:
-                    raise Warning(
-                        _("Can not request approval, \
-                            required field %s empty on partner id %i!"
-                            % (partner_field, partner_read['id'])))
-        self.state = 'pending'
+        if fields:
+            partners_read = self.read(fields)
+            for partner_read in partners_read:
+                for partner_field in partner_read:
+                    if not partner_read[partner_field]:
+                        raise Warning(
+                            _("Can not request approval, \
+                                required field %s empty on partner id %i!"
+                                % (partner_field, partner_read['id'])))
+        self.partner_state = 'pending'
 
     @api.multi
     def partner_state_approved(self):
         self.check_partner_approve()
-        self.state = 'approved'
+        self.partner_state = 'approved'
 
     @api.multi
     def check_partner_approve(self):

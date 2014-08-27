@@ -11,13 +11,11 @@
                 </form>
                 <sheet position="before">
                     <header attrs="{'invisible':[('company_partner_state','=',False)]}">
-                        <button name="partner_state_pending" states="potential"
-                            string="Request Approval" type="object" class="oe_highlight"/>
-                        <button name="partner_state_approved" states="pending"
+                        <button name="partner_state_pending" attrs="{'invisible':[('partner_state','not in',['potential'])]}" string="Request Approval" type="object" class="oe_highlight"/>
+                        <button name="partner_state_approved" attrs="{'invisible':[('partner_state','not in',['pending'])]}"
                             string="Approve" type="object" class="oe_highlight"/>
-                        <button name="partner_state_potential" states="approved,pending"
-                            string="To Potential" type="object"/>
-                        <field name="state" widget="statusbar"/>
+                        <button name="partner_state_potential" attrs="{'invisible':[('partner_state','not in',['approved','pending'])]}" string="To Potential" type="object"/>
+                        <field name="partner_state" widget="statusbar"/>
                     </header>
                 </sheet>
             </field>
@@ -42,9 +40,9 @@
             <field name="arch" type="xml">
                 <filter name="supplier" position="after">
                     <separator/>
-                    <filter string="Potential" domain="[('state','=','potential')]"/>
-                    <filter string="Pending" domain="[('state','=','pending')]" />
-                    <filter string="Approved" domain="[('state','=','approved')]" />
+                    <filter string="Potential" domain="[('partner_state','=','potential')]"/>
+                    <filter string="Pending" domain="[('partner_state','=','pending')]" />
+                    <filter string="Approved" domain="[('partner_state','=','approved')]" />
                 </filter>
             </field>
         </record>

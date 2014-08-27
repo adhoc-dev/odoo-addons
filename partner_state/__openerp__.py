@@ -17,6 +17,7 @@ Agrega tres estados para los Clientes: 'Potencial', 'Pendiente de aprobación' y
         'company_view.xml',
         'partner_view.xml',
         'security/partner_state_security.xml',
+        'security/ir.model.access.csv',
     ],
     'demo': [],
     'installable': True,
