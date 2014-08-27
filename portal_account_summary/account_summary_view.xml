@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem id="portal_account_summary_wizard" parent="portal.portal_orders" 
+            action="report_partner_account_statement.action_account_summary_wizard" sequence="40"/>
+
+    </data>
+</openerp>
