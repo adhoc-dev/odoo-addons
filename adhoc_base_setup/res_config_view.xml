@@ -254,10 +254,10 @@
                                     class="oe_inline" />
                                 <label for="module_partner_state" />
                             </div>
-                            <div name='partner_school'>
-                                <field name="partner_school"
+                            <div name='module_partner_school'>
+                                <field name="module_partner_school"
                                     class="oe_inline" />
-                                <label for="partner_school" />
+                                <label for="module_partner_school" />
                             </div>
                         </div>
                     </group>
