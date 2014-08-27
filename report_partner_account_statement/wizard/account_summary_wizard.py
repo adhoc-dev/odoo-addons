@@ -54,7 +54,7 @@ class account_summary_wizard(osv.osv_memory):
 
         # if no active_ids then called from menuitem
         if not active_ids:
-            partner_id = self.pool['res.users'].browse(cr, uid, uid, context=context).partner_id.id
+            partner_id = self.pool['res.users'].browse(cr, uid, uid, context=context).partner_id.commercial_partner_id.id
             active_ids = [partner_id]
             context['active_ids'] = active_ids
             context['active_id'] = partner_id
