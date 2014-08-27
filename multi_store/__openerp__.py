@@ -35,6 +35,7 @@ It is done with the same logic to journal. We do not limitate the "read" of this
         'views/res_users_view.xml',
         'views/account_view.xml',
         'security/multi_store_security.xml',
+        'security/ir.model.access.csv',
     ],
     'demo': [
     ],

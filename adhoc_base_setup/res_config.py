@@ -135,6 +135,8 @@ class adhoc_base_configuration(osv.osv_memory):
             help = """Installs the partner_search_by_vat module."""),
         'module_partner_state': fields.boolean('Manage different states on partners',
             help = """Installs the partner_state module."""),
+        'module_partner_school': fields.boolean('Manage School Data on partners',
+            help = """Installs the partner_school module."""),
 
         # Product modules
         'module_product_pack': fields.boolean('Mange product packs',
