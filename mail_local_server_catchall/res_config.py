@@ -173,16 +173,17 @@ class mail_configuration(osv.TransientModel):
         return '@' + (alias_domain or '') + ' ' + (alias_domain or '') + '@localhost'
 
 # set_local_alias
-    def get_default_set_local_alias(self, cr, uid, ids, context=None):
-        set_local_alias = self.pool.get("ir.config_parameter").get_param(cr, uid, "mail.catchall.set_local_alias", context=context)
-        if not set_local_alias:
-            set_local_alias = 'False'
-        return {'set_local_alias': eval(set_local_alias)}
+    def get_default_config_local_alias(self, cr, uid, ids, context=None):
+        config_local_alias = self.pool.get("ir.config_parameter").get_param(cr, uid, "mail.catchall.config_local_alias", context=context)
+        print 'config_local_alias', config_local_alias
+        if not config_local_alias:
+            config_local_alias = 'False'
+        return {'config_local_alias': eval(config_local_alias)}
 
-    def set_local_set_local_alias(self, cr, uid, ids, context=None):
+    def set_local_config_local_alias(self, cr, uid, ids, context=None):
         config_parameters = self.pool.get("ir.config_parameter")
         for record in self.browse(cr, uid, ids, context=context):
-            config_parameters.set_param(cr, uid, "mail.catchall.set_local_alias", str(record.set_local_alias) or 'False', context=context)
+            config_parameters.set_param(cr, uid, "mail.catchall.config_local_alias", str(record.config_local_alias) or 'False', context=context)
 
 # local_alias
     def get_default_local_alias(self, cr, uid, ids, context=None):

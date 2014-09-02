@@ -70,6 +70,8 @@ class adhoc_base_configuration(osv.osv_memory):
             help = """Installs the sale_dummy_confirmation module."""),
         'module_sale_stock_availability': fields.boolean('See Stock availability in sales order line.',
             help = """Installs the sale_stock_availability module."""),
+        'module_sale_restrict_partners': fields.boolean('Restrict see own leads partner to see their own partners only.',
+            help = """Installs the sale_restrict_partners module."""),
         
         # Project
         'module_project_issue_solutions': fields.boolean('Project Issue Solutions',
@@ -87,6 +89,14 @@ class adhoc_base_configuration(osv.osv_memory):
         'module_project_issue_order': fields.boolean('Add sequence field to issues and change default order to "priority desc, sequence, date_deadline, duration, create_date desc"',
             help = """Installs the project_issue_order module."""),
 
+        # Multi Company
+        'module_web_easy_switch_company': fields.boolean('Multi company - Enable Company Easy Change',
+            help = """Installs the web_easy_switch_company module."""),
+        'module_inter_company_rules': fields.boolean('Manager inter company rules',
+            help = """Installs the inter_company_rules module."""),
+        'module_inter_company_move': fields.boolean('Manager inter company document move',
+            help = """Installs the inter_company_move module."""),
+
         # Usability and tools modules
         'module_web_group_expand': fields.boolean('Allow group by lists to be expanded and collapased with buttons',
             help = """Installs the web_group_expand module."""),
@@ -97,8 +107,6 @@ class adhoc_base_configuration(osv.osv_memory):
         'module_currency_rate_update': fields.boolean('Mass Editing',
             help = """Installs the currency_rate_update module."""),
             # Not functional for now
-        'module_web_easy_switch_company': fields.boolean('Multi company - Enable Company Easy Change',
-            help = """Installs the web_easy_switch_company module."""),
         'module_web_export_view': fields.boolean('Web Export View. Export to csv',
             help = """Installs the web_export_view module."""),
         'module_visual_export': fields.boolean('Visual Export. Export to ods',

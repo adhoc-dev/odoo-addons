@@ -295,6 +295,11 @@
                                 <field name="module_sale_stock_availability"
                                     class="oe_inline" />
                                 <label for="module_sale_stock_availability" />
+                            </div>                                      
+                            <div name='module_sale_restrict_partners'>
+                                <field name="module_sale_restrict_partners"
+                                    class="oe_inline" />
+                                <label for="module_sale_restrict_partners"/>
                             </div>                                
                         </div>
                     </group>
@@ -365,6 +370,28 @@
                         </div>
                     </group> -->
                     
+                    <separator string="Multi Company" />
+                    <group>
+                        <label for="id" string="Multi Company"/>
+                        <div name="multi_company">
+                            <div name='module_web_easy_switch_company'>
+                                <field name="module_web_easy_switch_company"
+                                    class="oe_inline"/>
+                                <label for="module_web_easy_switch_company" />
+                            </div> 
+                            <div name='module_inter_company_rules'>
+                                <field name="module_inter_company_rules"
+                                    class="oe_inline" readonly="1"/>
+                                <label for="module_inter_company_rules" />
+                            </div>  
+                            <div name='module_inter_company_move'>
+                                <field name="module_inter_company_move"
+                                    class="oe_inline"/>
+                                <label for="module_inter_company_move" />
+                            </div>  
+                        </div>
+                    </group>
+
                     <separator string="Usability And Tools" />
                     <group>
                         <label for="id" string="Tools"/>
@@ -374,14 +401,15 @@
                                     class="oe_inline" />
                                 <label for="module_mass_editing" />
                             </div>
+                            <div name='module_currency_rate_update'>
+                                <field name="module_currency_rate_update"
+                                    class="oe_inline" />
+                                <label for="module_currency_rate_update" />
+                            </div>
                         </div>        
                         <label for="id" string="Web Tools"/>
                         <div name="web_tools">
-                            <div name='module_web_easy_switch_company'>
-                                <field name="module_web_easy_switch_company"
-                                    class="oe_inline"/>
-                                <label for="module_web_easy_switch_company" />
-                            </div>        
+      
                             <div name='module_web_group_expand'>
                                 <field name="module_web_group_expand" class="oe_inline" readonly="1"/>
                                 <label for="module_web_group_expand" />
