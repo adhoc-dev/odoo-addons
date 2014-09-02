@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
-import netsvc
+from openerp import netsvc 
 
-from osv import fields, osv
-import pooler
+from openerp.osv import fields, osv
+from openerp import pooler
 
-class account_summary_wizard(osv.osv_memory):
+class account_summary_wizard(osv.osv):
     _name = 'account_summary_wizard'
     _description = 'account_summary_wizard'
     
