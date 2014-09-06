@@ -6,7 +6,7 @@
     'category': 'Aeroo Reporting',
     'author': 'Ingenieria ADHOC',
     'website': 'www.ingadhoc.com',
-    'depends': ['sale', 'report_aeroo', 'report_aeroo_ooo'],
+    'depends': ['sale'],
     'data': [
         'wizard/account_summary_wizard_view.xml',
         'report/account_summary_report.xml'],

@@ -29,11 +29,11 @@
 #
 ##############################################################################
 
-from report import report_sxw
-from report.report_sxw import rml_parse
+from openerp.report import report_sxw
+from openerp.report.report_sxw import rml_parse
 import time
-from tools.translate import _
-from osv import osv
+from openerp import _
+from openerp.osv import osv
 
 class Parser(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):

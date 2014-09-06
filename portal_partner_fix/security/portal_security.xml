@@ -5,7 +5,7 @@
     <record model="ir.rule" id="portal_parent_partner">
         <field name="name">res_partner: read access on my partner and parent</field>
         <field name="model_id" ref="base.model_res_partner"/>
-            <field name="groups" eval="[(4, ref('portal.group_portal'))]"/>
+            <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
             <field name="domain_force">[('id', '=', user.commercial_partner_id.id)]</field>
             <field eval="0" name="perm_unlink"/>
             <field eval="0" name="perm_write"/>
