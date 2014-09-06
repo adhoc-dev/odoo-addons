@@ -1,0 +1,147 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* purchase_discount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 5.0.6\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2009-11-25 14:05:57+0000\n"
+"PO-Revision-Date: 2009-11-25 14:05:57+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_discount
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr ""
+
+#. module: purchase_discount
+#: model:ir.module.module,shortdesc:purchase_discount.module_meta_information
+msgid "Purchase Order Lines With Discounts"
+msgstr ""
+
+#. module: purchase_discount
+#: field:purchase.order.line,discount:0
+msgid "Discount (%)"
+msgstr ""
+
+#. module: purchase_discount
+#: sql_constraint:purchase.order:0
+msgid "Order Reference must be unique per Company!"
+msgstr ""
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: purchase_discount
+#: model:ir.model,name:purchase_discount.model_stock_picking
+msgid "Picking List"
+msgstr ""
+
+#. module: purchase
+#: report:purchase.discount.order:0
+msgid "Date Promised"
+msgstr ""
+
+#. module: purchase
+#: report:purchase.discount.order:0
+msgid "UoM"
+msgstr ""
+
+#. module: purchase
+#: report:purchase.discount.order:0
+msgid "TVA :"
+msgstr ""
+
+#. module: purchase
+#: report:purchase.discount.order:0
+msgid "Net Price"
+msgstr ""
+
+#. module: purchase
+#: report:purchase.discount.order:0
+msgid "Validated by :"
+msgstr ""
+
+#. module: purchase
+#: report:purchase.discount.order:0
+msgid "Shipping address :"
+msgstr ""
+
+#. module: purchase
+#: report:purchase.discount.order:0
+msgid "Net Total :"
+msgstr ""
+
+#. module: purchase
+#: report:purchase.discount.order:0
+msgid "Our order reference :"
+msgstr ""
+
+#. module: purchase
+#: report:purchase.discount.order:0
+msgid "Your order reference :"
+msgstr ""
+
+#. module: purchase
+#: report:purchase.discount.order:0
+#: report:purchase.quotation:0
+msgid "Qty"
+msgstr ""
+
+#. module: purchase
+#: report:purchase.discount.order:0
+msgid "Discount (%)"
+msgstr ""
+
+#. module: purchase
+#: report:purchase.discount.order:0
+msgid "Applicable Taxes"
+msgstr ""
+
+#. module: purchase
+#: report:purchase.discount.order:0
+msgid "Product Description"
+msgstr ""
+
+#. module: purchase
+#: report:purchase.discount.order:0
+msgid "Unit Price"
+msgstr ""
+
+#. module: purchase
+#: report:purchase.discount.order:0
+msgid "Tel. :"
+msgstr ""
+
+#. module: purchase
+#: report:purchase.discount.order:0
+msgid "Taxes :"
+msgstr ""
+
+#. module: purchase
+#: report:purchase.discount.order:0
+msgid "Date ordered :"
+msgstr ""
+
+#. module: purchase
+#: report:purchase.discount.order:0
+msgid "Order Nº"
+msgstr ""
+
+#. module: purchase
+#: report:purchase.discount.order:0
+msgid "Quotation Nº"
+msgstr ""

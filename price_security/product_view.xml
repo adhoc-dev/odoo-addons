@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_price_security_product_form" model="ir.ui.view">
+            <field name="name">price_security.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="user_can_modify_prices" invisible="1"/>
+                </form>
+                <field name="list_price" position="attributes">
+                    <attribute name="attrs">{'readonly':[('user_can_modify_prices','=',False)]}
+                </field>
+                <field name="list_price" position="after">
+                    <field name="can_modify_prices" attrs="{'readonly':[('user_can_modify_prices','=',False)]}"/>
+                </field>
+            </field>
+        </record>                
+    </data>
+</openerp>

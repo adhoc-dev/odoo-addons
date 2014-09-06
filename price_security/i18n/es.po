@@ -1,0 +1,168 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* price_security
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.1-20120823-233253\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-08-27 22:28+0000\n"
+"PO-Revision-Date: 2012-08-27 22:28+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: price_security
+#: sql_constraint:sale.order:0
+msgid "Order Reference must be unique per Company!"
+msgstr "¡La referencia del pedido debe ser única por compañía!"
+
+#. module: price_security
+#: sql_constraint:res.users:0
+msgid "You can not have two users with the same login !"
+msgstr "¡No puede tener dos usuarios con el mismo identificador de usuario!"
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_price_security_discount_restriction
+msgid "Discount Restriction"
+msgstr "Restriccion de Descuento"
+
+#. module: price_security
+#: code:addons/price_security/res_users.py:54
+#, python-format
+msgid "Discount out of range"
+msgstr "Descuento fuera de rango"
+
+#. module: price_security
+#: field:account.invoice.line,price_unit_copy:0
+#: field:sale.order.line,price_unit_copy:0
+msgid "Unit Price"
+msgstr "Precio Unitario"
+
+#. module: price_security
+#: constraint:res.users:0
+msgid "The chosen company is not in the allowed companies for this user"
+msgstr "La compañía seleccionada no está en las compañías permitidas para este usuario"
+
+#. module: price_security
+#: view:res.users:0
+#: field:res.users,discount_restriction_ids:0
+msgid "Discount Restrictions"
+msgstr "Restricciones de Descuento"
+
+#. module: price_security
+#: code:addons/price_security/product.py:75
+#, python-format
+msgid "Violation of permissions"
+msgstr "Violación de permisos"
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: price_security
+#: field:price_security.discount_restriction,max_discount:0
+msgid "Max. Discount"
+msgstr "Max. Descuento"
+
+#. module: price_security
+#: field:price_security.discount_restriction,user_id:0
+msgid "User"
+msgstr "Usuario"
+
+#. module: price_security
+#: help:product.product,list_price_copy:0
+msgid "Base price for computing the customer price. Sometimes called the catalog price."
+msgstr "Precio base para calcular el precio de cliente. También llamado el precio del catálogo."
+
+#. module: price_security
+#: field:price_security.discount_restriction,pricelist_id:0
+#: field:sale.order,pricelist_id_copy:0
+msgid "Pricelist"
+msgstr "Lista de Precios"
+
+#. module: price_security
+#: field:price_security.discount_restriction,name:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: price_security
+#: help:product.product,can_modify_prices:0
+msgid "If checked all users can modify the price of this product in a sale order or invoice."
+msgstr "Cuando esta marcado, todos los usuarios pueden modificar el precio de este producto en una orden de venta o en una factura."
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_res_users
+msgid "res.users"
+msgstr "res.usuarios"
+
+#. module: price_security
+#: code:addons/price_security/res_users.py:55
+#, python-format
+msgid "The applied discount is out of range with respect to the allowed. The discount can be between %s and %s for the current price list."
+msgstr "El descuento aplicado esta fuera de rango con respecto al permitido. El descuento puede ser entre %s y %s para la actual Lista de Precios."
+
+#. module: price_security
+#: model:res.groups,name:price_security.hide_purchase_prices
+msgid "Hide purchase prices"
+msgstr "Ocultar precios de compra"
+
+#. module: price_security
+#: field:account.invoice.line,can_modify_prices:0
+#: field:product.product,can_modify_prices:0
+#: model:res.groups,name:price_security.can_modify_prices
+#: field:sale.order.line,can_modify_prices:0
+msgid "Can modify prices"
+msgstr "Puede modificar precios"
+
+#. module: price_security
+#: code:addons/price_security/product.py:76
+#, python-format
+msgid "You do not have the necesary permissions to modify the price of the products"
+msgstr "No cuenta con los permisos necesarios para modificar el precio de los productos"
+
+#. module: price_security
+#: field:product.product,list_price_copy:0
+msgid "Sale Price"
+msgstr "Precio de Venta"
+
+#. module: price_security
+#: code:addons/price_security/res_users.py:56
+#, python-format
+msgid "The applied discount is out of range with respect to the allowed. You cannot give any discount with the current price list."
+msgstr "El descuento aplicado esta fuera de rango con respecto al permitido. No puede ofrecer descuentos con la actual Lista de Precios"
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Línea de factura"
+
+#. module: price_security
+#: constraint:product.product:0
+msgid "Error: Invalid ean code"
+msgstr "Error: Código EAN erróneo"
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_res_partner
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: price_security
+#: field:price_security.discount_restriction,min_discount:0
+msgid "Min. Discount"
+msgstr "Min. Descuento"
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea pedido de venta"
+

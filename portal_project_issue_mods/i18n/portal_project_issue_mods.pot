@@ -1,0 +1,92 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* portal_project_issue_mods
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-30 16:23+0000\n"
+"PO-Revision-Date: 2013-10-30 16:23+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: portal_project_issue_mods
+#: view:project.issue:0
+msgid "Status"
+msgstr ""
+
+#. module: portal_project_issue_mods
+#: view:project.issue:0
+msgid "Statistics"
+msgstr ""
+
+#. module: portal_project_issue_mods
+#: view:project.issue:0
+msgid "Description"
+msgstr ""
+
+#. module: portal_project_issue_mods
+#: model:ir.model,name:portal_project_issue_mods.model_project_issue
+msgid "Project Issue"
+msgstr ""
+
+#. module: portal_project_issue_mods
+#: view:project.issue:0
+msgid "Internal Description"
+msgstr ""
+
+#. module: portal_project_issue_mods
+#: view:project.issue:0
+msgid "Add issue description..."
+msgstr ""
+
+#. module: portal_project_issue_mods
+#: field:project.issue,solution:0
+msgid "Solution"
+msgstr ""
+
+#. module: portal_project_issue_mods
+#: view:project.issue:0
+msgid "Issue Data"
+msgstr ""
+
+#. module: portal_project_issue_mods
+#: view:project.issue:0
+msgid "⇒ Escalate"
+msgstr ""
+
+#. module: portal_project_issue_mods
+#: view:project.issue:0
+msgid "Extra Info"
+msgstr ""
+
+#. module: portal_project_issue_mods
+#: field:project.issue,issue_description:0
+msgid "Issue Description"
+msgstr ""
+
+#. module: portal_project_issue_mods
+#: view:project.issue:0
+msgid "Open"
+msgstr ""
+
+#. module: portal_project_issue_mods
+#: view:project.issue:0
+msgid "Issue"
+msgstr ""
+
+#. module: portal_project_issue_mods
+#: model:ir.ui.menu,name:portal_project_issue_mods.portal_after_sales_claims
+msgid "Issues"
+msgstr ""
+
+#. module: portal_project_issue_mods
+#: view:project.issue:0
+msgid "Add solution..."
+msgstr ""
+

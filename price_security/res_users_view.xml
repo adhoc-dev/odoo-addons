@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <!-- Form -->
+        <record id="view_price_security_users_form" model="ir.ui.view">
+            <field name="name">price_security.users.form</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <notebook>
+                    <page string="Discounts Restrictions"/>
+                        <group>
+                            <field name="restrict_prices"/>
+                            <field name="discount_restriction_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="pricelist_id"/>
+                                    <field name="min_discount"/>
+                                    <field name="max_discount"/>
+                                </tree>
+                                <form>
+                                    <field name="name"/>
+                                    <field name="pricelist_id"/>
+                                    <field name="min_discount"/>
+                                    <field name="max_discount"/>
+                                </form>
+                            </field>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

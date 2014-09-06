@@ -1,0 +1,309 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* account_create_journal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 8.0alpha1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-06-23 14:03+0000\n"
+"PO-Revision-Date: 2014-06-23 14:03+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_create_journal
+#: field:account.journal.to_create,account_id:0
+msgid "Account"
+msgstr ""
+
+#. module: account_create_journal
+#: field:account.journal.config.wizard,account_ids:0
+msgid "Accounts"
+msgstr ""
+
+#. module: account_create_journal
+#: field:account.journal.to_create,update_posted:0
+msgid "Allow Cancelling"
+msgstr ""
+
+#. module: account_create_journal
+#: help:account.journal.to_create,use_issued_check:0
+msgid "Allow to user Issued Checks in associated vouchers."
+msgstr ""
+
+#. module: account_create_journal
+#: help:account.journal.to_create,use_third_check:0
+msgid "Allow to user Third Checks in associated vouchers."
+msgstr ""
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,global_type:0
+msgid "Bank"
+msgstr ""
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,type:0
+msgid "Bank and Checks"
+msgstr ""
+
+#. module: account_create_journal
+#: view:account.journal.config.wizard:0
+msgid "Cancel"
+msgstr ""
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,global_type:0
+#: selection:account.journal.to_create,type:0
+msgid "Cash"
+msgstr ""
+
+#. module: account_create_journal
+#: help:account.journal.to_create,update_posted:0
+msgid "Check this box if you want to allow the cancellation the entries related to this journals or of the invoice related to this journals"
+msgstr ""
+
+#. module: account_create_journal
+#: field:account.journal.to_create,code:0
+msgid "Code"
+msgstr ""
+
+#. module: account_create_journal
+#: field:account.journal.config.wizard,code_sufix:0
+msgid "Code Sufix"
+msgstr ""
+
+#. module: account_create_journal
+#: field:account.journal.config.wizard,company_id:0
+msgid "Company"
+msgstr ""
+
+#. module: account_create_journal
+#: field:account.journal.to_create,config_id:0
+msgid "Config"
+msgstr ""
+
+#. module: account_create_journal
+#: view:adhoc.base.config.settings:0
+msgid "Configure Payment Journals."
+msgstr ""
+
+#. module: account_create_journal
+#: view:account.journal.config.wizard:0
+msgid "Confirm"
+msgstr ""
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,global_type:0
+msgid "Credit Card"
+msgstr ""
+
+#. module: account_create_journal
+#: field:account.journal.to_create,allow_date:0
+msgid "Date in Period"
+msgstr ""
+
+#. module: account_create_journal
+#: field:account.journal.to_create,direction:0
+msgid "Direction"
+msgstr ""
+
+#. module: account_create_journal
+#: field:account.journal.config.wizard,remove_old_journals:0
+msgid "Eliminar los diarios existentes"
+msgstr ""
+
+#. module: account_create_journal
+#: help:account.journal.config.wizard,point_of_sale:0
+msgid "Este es el número que aparecerá como prefijo del número de la factura. Si solo tiene un solo talonario ese número es 1. Si necesita agregar un nuevo punto de venta debe acceder a opciones Administración/Configuración/Wizards de Configuración/Wizards de Configuración y ejecutar nuevamente el wizard de \"Configuración de Facturación\"."
+msgstr ""
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,type:0
+msgid "General"
+msgstr ""
+
+#. module: account_create_journal
+#: field:account.journal.to_create,global_type:0
+msgid "Global Type"
+msgstr ""
+
+#. module: account_create_journal
+#: help:account.journal.to_create,allow_date:0
+msgid "If checked, the entry won't be created if the entry date is not included into the selected period"
+msgstr ""
+
+#. module: account_create_journal
+#: help:account.journal.to_create,validate_only_checks:0
+msgid "If marked, when validating a voucher, verifies that the total amounth of the voucher is the same as the checks used."
+msgstr ""
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,direction:0
+msgid "In"
+msgstr ""
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,global_type:0
+msgid "Issue Check"
+msgstr ""
+
+#. module: account_create_journal
+#: field:account.journal.to_create,name:0
+msgid "Journal Name"
+msgstr ""
+
+#. module: account_create_journal
+#: view:account.journal.config.wizard:0
+#: view:account.journal.to_create:0
+msgid "Journals To Create"
+msgstr ""
+
+#. module: account_create_journal
+#: field:account.journal.config.wizard,journals_to_create_ids:0
+msgid "Journals to Create"
+msgstr ""
+
+#. module: account_create_journal
+#: view:account.journal.config.wizard:0
+msgid "Journals to Remove"
+msgstr ""
+
+#. module: account_create_journal
+#: field:account.journal.config.wizard,journals_to_remove_ids:0
+msgid "Journals to delete"
+msgstr ""
+
+#. module: account_create_journal
+#: field:account.journal.config.wizard,name_prefix:0
+msgid "Name Prefix"
+msgstr ""
+
+#. module: account_create_journal
+#: field:account.journal.config.wizard,name_sufix:0
+msgid "Name Sufix"
+msgstr ""
+
+#. module: account_create_journal
+#: field:account.journal.config.wizard,point_of_sale:0
+msgid "Número de Punto de Venta"
+msgstr ""
+
+#. module: account_create_journal
+#: view:account.journal.config.wizard:0
+msgid "Only Journal without moves and without vouchers are displayed"
+msgstr ""
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,type:0
+msgid "Opening/Closing Situation"
+msgstr ""
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,direction:0
+msgid "Out"
+msgstr ""
+
+#. module: account_create_journal
+#: view:account.journal.config.wizard:0
+msgid "Payment Journal Config Wizard"
+msgstr ""
+
+#. module: account_create_journal
+#: model:ir.actions.act_window,name:account_create_journal.view_journal_config_action
+msgid "Payment Journal Configuration Wizard"
+msgstr ""
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,type:0
+msgid "Purchase"
+msgstr ""
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,type:0
+msgid "Purchase Refund"
+msgstr ""
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,type:0
+msgid "Sale"
+msgstr ""
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,type:0
+msgid "Sale Refund"
+msgstr ""
+
+#. module: account_create_journal
+#: help:account.journal.to_create,direction:0
+msgid "Select 'In' for customer payments. Select 'Out' for supplier payments."
+msgstr ""
+
+#. module: account_create_journal
+#: help:account.journal.to_create,type:0
+msgid "Select 'Sale' for customer invoices journals. Select 'Purchase' for supplier invoices journals. Select 'Cash' or 'Bank' for journals that are used in customer or supplier payments. Select 'General' for miscellaneous operations journals. Select 'Opening/Closing Situation' for entries generated for new fiscal years."
+msgstr ""
+
+#. module: account_create_journal
+#: help:account.journal.config.wizard,remove_old_journals:0
+msgid "Si es su primera instalación indique que necesita borrar los diarios existentes. Si agrega un nuevo punto de ventas indique que no va a eliminar los journals. Igual, puede indicar cuales borra y cuales no en el próximo paso."
+msgstr ""
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,global_type:0
+msgid "Tax"
+msgstr ""
+
+#. module: account_create_journal
+#: help:account.journal.to_create,code:0
+msgid "The code will be displayed on reports."
+msgstr ""
+
+#. module: account_create_journal
+#: selection:account.journal.to_create,global_type:0
+msgid "Third Check"
+msgstr ""
+
+#. module: account_create_journal
+#: field:account.journal.to_create,type:0
+msgid "Type"
+msgstr ""
+
+#. module: account_create_journal
+#: view:account.journal.config.wizard:0
+msgid "Update Journals To Create"
+msgstr ""
+
+#. module: account_create_journal
+#: field:account.journal.to_create,use_issued_check:0
+msgid "Use Issued Checks"
+msgstr ""
+
+#. module: account_create_journal
+#: field:account.journal.to_create,use_third_check:0
+msgid "Use Third Checks"
+msgstr ""
+
+#. module: account_create_journal
+#: field:account.journal.to_create,validate_only_checks:0
+msgid "Validate only Checks"
+msgstr ""
+
+#. module: account_create_journal
+#: model:ir.model,name:account_create_journal.model_account_journal_config_wizard
+msgid "account.journal.config.wizard"
+msgstr ""
+
+#. module: account_create_journal
+#: model:ir.model,name:account_create_journal.model_account_journal_to_create
+msgid "account.journal.to_create"
+msgstr ""
+
+#. module: account_create_journal
+#: view:account.journal.config.wizard:0
+msgid "or"
+msgstr ""
+

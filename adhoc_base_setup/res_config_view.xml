@@ -60,7 +60,7 @@
                         <div name="product_features">
                             <div name='module_product_pack'>
                                 <field name="module_product_pack"
-                                    class="oe_inline" />
+                                    class="oe_inline" readonly="1"/>
                                 <label for="module_product_pack" />
                             </div>    
                             <div name='module_product_pack_sale_order_warning' attrs="{'invisible':[('module_product_pack','!=',True)]}">
