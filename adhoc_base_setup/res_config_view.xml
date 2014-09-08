@@ -50,6 +50,11 @@
                                 <field name="module_account_voucher_account_fix"
                                     class="oe_inline" />
                                 <label for="module_account_voucher_account_fix" />
+                            </div>              
+                            <div name='module_account_onchange_fix'>
+                                <field name="module_account_onchange_fix"
+                                    class="oe_inline" />
+                                <label for="module_account_onchange_fix" />
                             </div>                            
                         </div>
                     </group>
