@@ -48,32 +48,12 @@
                             <field name="print_logo" colspan="2"/>
                             <field name="logo" widget="image" nolabel="1" colspan="2"/>
                         </group>                            
-                        <!-- <group colspan="4" col="2">
+                        <group colspan="4" col="2">
                             <separator string="Background Image" colspan="2"/>
                             <field name="use_background_image" colspan="2"/>
                             <field name="background_image" widget="image" nolabel="1" colspan="2"/>
-                        </group> -->
-                    </page>
-<!--                     <page string="Extended Conf.">
-                        <group>
-                            <group>
-                                <field name="print_header"/>
-                                <field name="print_title"/>
-                            </group>
-                            <group>
-                                <field name="print_letter"/>
-                                <field name="print_number"/>
-                            </group>
-                            <group>
-                                <field name="print_logo"/>
-                                <field name="logo" widget="image" nolabel="1" colspan="2"/>
-                            </group>
-                            <group>
-                                <field name="use_background_image"/>
-                                <field name="background_image" widget="image" nolabel="1" colspan="2"/>
-                            </group>
                         </group>
-                    </page>           -->                                
+                    </page>                      
                 </notebook>
             </field>
         </record>
