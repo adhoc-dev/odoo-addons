@@ -1,0 +1,108 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* surveyor_payments
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0rc1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-09 12:20+0000\n"
+"PO-Revision-Date: 2014-09-09 09:20-0300\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: surveyor_payments
+#: field:project.task.payment,amount:0
+msgid "Amount"
+msgstr "Monto"
+
+#. module: surveyor_payments
+#: field:project.task,balance_amount:0
+msgid "Balance Amount"
+msgstr "Saldo"
+
+#. module: surveyor_payments
+#: field:project.task.payment,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: surveyor_payments
+#: field:project.task.payment,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: surveyor_payments
+#: field:project.task.payment,description:0
+msgid "Description"
+msgstr "Descripción"
+
+#. module: surveyor_payments
+#: view:project.task:0
+msgid "Extra Info"
+msgstr "Información extra"
+
+#. module: surveyor_payments
+#: field:project.task.payment,date:0
+msgid "Fecha"
+msgstr "Fecha"
+
+#. module: surveyor_payments
+#: field:project.task.payment,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: surveyor_payments
+#: field:project.task.payment,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: surveyor_payments
+#: field:project.task.payment,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: surveyor_payments
+#: field:project.task,payment_term_id:0
+msgid "Payment Terms"
+msgstr "Término de pago"
+
+#. module: surveyor_payments
+#: field:project.task,payment_ids:0
+msgid "Payments"
+msgstr "Pagos"
+
+#. module: surveyor_payments
+#: view:project.task:0
+msgid "Price and Payments"
+msgstr "Precio y Pagos"
+
+#. module: surveyor_payments
+#: model:ir.model,name:surveyor_payments.model_project_task
+#: field:project.task.payment,task_id:0
+msgid "Task"
+msgstr "Tarea"
+
+#. module: surveyor_payments
+#: view:project.task:0
+msgid "Total"
+msgstr "Total"
+
+#. module: surveyor_payments
+#: field:project.task,total_amount:0
+msgid "Total Amount"
+msgstr "Monto Total"
+
+#. module: surveyor_payments
+#: view:project.task:0
+msgid "Total Paid"
+msgstr "Total Pagado"
+
+#. module: surveyor_payments
+#: view:project.task:0
+msgid "With Debt?"
+msgstr "Con Deuda?"
