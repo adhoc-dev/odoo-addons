@@ -5,9 +5,9 @@ from openerp.osv import fields, osv
 class task(osv.osv):
     _inherit = 'project.task'
 
-    def create(self, cr, uid, ids, context=None):
+    def create(self, cr, uid, vals, context=None):
              
-        task_id = super(task, self).create(cr, uid, ids, context=context)
+        task_id = super(task, self).create(cr, uid, vals, context=context)
         
         partner_to_unfollow_ids = []
         for partner in self.browse(cr, uid, task_id, context=context).message_follower_ids:
