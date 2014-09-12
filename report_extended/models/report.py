@@ -95,9 +95,7 @@ class ir_actions_report(osv.Model):
         domains = self.get_domains(cr, model, record, context=context)
         for domain in domains:
             domain.append(('model','=',model))
-            print 'domain', domain
             report_ids = self.search(cr, uid, domain, order='sequence', context=context)
-            print 'report_ids', report_ids
             if report_ids:
                 break
         if report_ids:

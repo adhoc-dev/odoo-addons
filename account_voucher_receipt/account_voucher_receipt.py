@@ -60,6 +60,7 @@ class account_voucher_receipt (osv.osv):
             'has_vouchers': old_fields.function(_get_receipt_data, type='boolean', string='Has Vouchers?', multi='_get_receipt_data',),
             'receipt_amount': old_fields.function(_get_receipt_data, type='float', string='Receipt Amount', multi='_get_receipt_data',),
             'voucher_ids':old_fields.one2many('account.voucher','receipt_id',string='Payments', readonly=True, states={'draft':[('readonly',False)]}),
+            'comment': old_fields.text('Comment',),
             # We add supplier and customer vouchers only to open different views depending on receipt type
             'customer_voucher_ids':old_fields.related('voucher_ids',relation='account.voucher',type='one2many',string='Customer Payments', readonly=True, states={'draft':[('readonly',False)]}),
             'supplier_voucher_ids':old_fields.related('voucher_ids',relation='account.voucher',type='one2many',string='Supplier Payments', readonly=True, states={'draft':[('readonly',False)]}),

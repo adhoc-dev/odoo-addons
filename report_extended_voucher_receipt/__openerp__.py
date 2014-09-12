@@ -35,7 +35,8 @@ Report Configurator - Account
     ],
     'depends': [
         'report_extended',
-        'account_voucher_receipt', 
+        'account_voucher_receipt',
+        'account_check',
     ],
     'data': [
         'views/report_view.xml',
