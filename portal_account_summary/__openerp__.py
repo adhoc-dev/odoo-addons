@@ -14,7 +14,7 @@ Portal Account Summary
     'images': [
     ],
     'depends': [
-        'partner_account_summary',
+        'account_partner_account_summary',
         'portal',
         'report_aeroo_portal_fix',
         'portal_partner_fix',
