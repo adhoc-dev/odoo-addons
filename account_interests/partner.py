@@ -67,15 +67,16 @@ class partner(models.Model):
             context = {}
         if ids is None:
             ids = self.search(cr, uid, [], context=context)
-        res = None
+        company_obj = self.pool['res.company']
+        company_ids = company_obj.search(cr, 1, [], context=context)
         context['date_invoice'] = time.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        # Date from 1 month before
-        date_from = datetime.strftime(
-            date.today() + relativedelta(months=-1), DEFAULT_SERVER_DATE_FORMAT)
-        date_to = time.strftime(DEFAULT_SERVER_DATE_FORMAT)
-        res = self.calculate_interest(
-            cr, uid, ids, date_from, date_to, context=context)
-        return res
+        for company in company_obj.browse(cr, 1, company_ids, context=context):
+            if company.debt_interest_period:
+                date_from = datetime.strftime(
+                    date.today() + relativedelta(months=-company.debt_interest_period), DEFAULT_SERVER_DATE_FORMAT)
+                date_to = time.strftime(DEFAULT_SERVER_DATE_FORMAT)
+                self.calculate_interest(
+                    cr, 1, ids, date_from, date_to, context=context)
 
     def _prepare_description(self, cr, uid, invoice, date_start, date_end, balance, interest_rate, context=None):
         date_diff = datetime.strptime(
@@ -104,7 +105,7 @@ class partner(models.Model):
         interest_days = float(date_diff.days) / 365
         return interest_days * interest_porcent * balance
 
-    def calculate_interest(self, cr, uid, ids, date_from, date_to, exclude_debit_note=True, context=None):
+    def calculate_interest(self, cr, uid, ids, date_from, date_to, exclude_debit_note=True, company_id=False, context=None):
 
         if context is None:
             context = {}
@@ -114,13 +115,35 @@ class partner(models.Model):
         account_move_line_obj = self.pool.get('account.move.line')
         account_account_obj = self.pool.get('account.account')
         user = self.pool.get('res.users').browse(cr, uid, uid, context)
-
+        # If not company defined we use the user company
+        if not company_id:
+            company_id = user.company_id.id
         # for partner in self.browse(cr, uid, [73], context=context):
         for partner in self.browse(cr, uid, ids, context=context):
+            journal_domain = [
+                ('type', '=', 'sale'),
+                ('company_id', '=', company_id),
+                ]
+                # Ahora el debit se elije en la invoice
+                # ('afip_document_class_id.document_type', '=', 'debit_note')
+
+            journal_ids = self.pool.get('account.journal').search(
+                cr, uid, journal_domain, limit=1)
+            if not journal_ids:
+                raise except_orm(_('Error!'),
+                                     _('Please define sales journal for this company id = %d.') % (company_id))
+
+            # TODO si se quiere mejorar, habria que poder setear algun diarion en algun lugar que se quiera usar pore defecto, y tal vez un document type (si el diario usa doucments)
+            journal_id = journal_ids[0]
+
+            values = {}
+            interest = 0
+
             move_line_domain = [
                 ('partner_id', '=', partner.id),
                 ('journal_id.type', 'in', ['sale']),
                 ('account_id.type', '=', 'receivable'),
+                ('company_id', '=', company_id),
                 # No se puede buscar por amoun_residual porque es una funcion
                 # ('amount_residual', '>', 0),
                 # We add this line for filtering thos moves that reconciled
@@ -130,29 +153,15 @@ class partner(models.Model):
                 ('date_maturity', '<', date_to)
             ]
             if exclude_debit_note:
-                move_line_domain.append(
-                    ('afip_document_class_id.document_type',
+                move_line_domain.extend([
+                    '|',
+                    ('invoice.afip_document_class_id', '=', False),
+                    ('invoice.afip_document_class_id.document_type',
                         '!=',
-                        'debit_note'))
-
-            journal_domain = [
-                ('type', '=', 'sale'),
-                ('company_id', '=', user.company_id.id),
-                ('afip_document_class_id.document_type', '=', 'debit_note')
-                ]
-
-            journal_ids = self.pool.get('account.journal').search(
-                cr, uid, journal_domain, limit=1)
-            if not journal_ids:
-                raise except_orm(_('Error!'),
-                                     _('Please define sales debit note journal for this company: "%s" (id:%d).') % (user.company_id.name, user.company_id.id))
-
-            journal_id = journal_ids[0]
-
-            values = {}
-            interest = 0
+                        'debit_note')])
             move_line_ids = account_move_line_obj.search(
                 cr, uid, move_line_domain, order='date_maturity')
+
             # We generate a list of partial reconcile ids
             partial_reconcile_ids = []
             for line in account_move_line_obj.browse(cr, uid, move_line_ids):
@@ -168,72 +177,74 @@ class partner(models.Model):
 
                 interest_data = account_account_obj.get_active_interest_data(
                     cr, uid, [line.account_id.id], date_from, date_to, context=context)
-                interest_rate = interest_data[line.account_id.id].interest_rate
-                account_id = interest_data[
-                    line.account_id.id].interest_account_id.id
-                analytic_id = interest_data[
-                    line.account_id.id].analytic_account_id.id or False
+                print 'interest_data', interest_data
+                if line.account_id.id in interest_data:
+                    interest_rate = interest_data[line.account_id.id].interest_rate
+                    account_id = interest_data[
+                        line.account_id.id].interest_account_id.id
+                    analytic_id = interest_data[
+                        line.account_id.id].analytic_account_id.id or False
 
-                if line.reconcile_partial_id:
-                    # we check if we have already make the appointemnt for this
-                    # account move
-                    if line.id in partial_reconcile_ids:
+                    if line.reconcile_partial_id:
+                        # we check if we have already make the appointemnt for this
+                        # account move
+                        if line.id in partial_reconcile_ids:
+                            for partial_reconcile_id in line.reconcile_partial_id.line_partial_ids:
+                                partial_reconcile_ids.append(
+                                    partial_reconcile_id.id)
+                            continue
+
                         for partial_reconcile_id in line.reconcile_partial_id.line_partial_ids:
-                            partial_reconcile_ids.append(
-                                partial_reconcile_id.id)
-                        continue
+                            partial_reconcile_ids.append(partial_reconcile_id.id)
+                        # partial_reconcile_ids += line.reconcile_partial_id.line_partial_ids
+                        print partial_reconcile_ids
+    # We replace the original way it calculate when partial reconliation
+                    # if line.reconcile:
+                    #     print 'aaaaaaaaaaaaaa'
+                    #     print line.ref
+                    #     move_line_all_ids =  account_move_line_obj.search(cr, uid, [
+                    # Removed becasuse we have add the filter of reconciled = False
+                    # '|',
+                    # ('reconcile_id.name', '=', line.reconcile),
+                    #                                                                 ('reconcile_partial_id.name', '=', line.reconcile),
+                    #                                                                 ('id', '!=', line.id),
+                    # ('date', '<', date_to),
+                    #                                                                 ], order='date')
+                    #     print move_line_all_ids
 
-                    for partial_reconcile_id in line.reconcile_partial_id.line_partial_ids:
-                        partial_reconcile_ids.append(partial_reconcile_id.id)
-                    # partial_reconcile_ids += line.reconcile_partial_id.line_partial_ids
-                    print partial_reconcile_ids
-# We replace the original way it calculate when partial reconliation
-                # if line.reconcile:
-                #     print 'aaaaaaaaaaaaaa'
-                #     print line.ref
-                #     move_line_all_ids =  account_move_line_obj.search(cr, uid, [
-                # Removed becasuse we have add the filter of reconciled = False
-                # '|',
-                # ('reconcile_id.name', '=', line.reconcile),
-                #                                                                 ('reconcile_partial_id.name', '=', line.reconcile),
-                #                                                                 ('id', '!=', line.id),
-                # ('date', '<', date_to),
-                #                                                                 ], order='date')
-                #     print move_line_all_ids
+                    # for line_all in account_move_line_obj.browse(cr, uid,
+                    # move_line_all_ids, context=context):
 
-                # for line_all in account_move_line_obj.browse(cr, uid,
-                # move_line_all_ids, context=context):
+                    #         if line_all.date <= date_start:
+                    #             balance -= line_all.credit
+                    #         else:
+                    #             interest_res = self.calc_interests(cr, uid, date_start, line_all.date, balance, interest_rate)
 
-                #         if line_all.date <= date_start:
-                #             balance -= line_all.credit
-                #         else:
-                #             interest_res = self.calc_interests(cr, uid, date_start, line_all.date, balance, interest_rate)
+                    #             comment = self._prepare_description(cr, uid, line, date_start, line_all.date, balance, interest_rate)
+                    #             values[len(values)] = [comment, round(interest_res,2), line.move_id.id]
 
-                #             comment = self._prepare_description(cr, uid, line, date_start, line_all.date, balance, interest_rate)
-                #             values[len(values)] = [comment, round(interest_res,2), line.move_id.id]
+                    #             interest += interest_res
+                    #             balance -= line_all.credit
+                    #             date_start = line_all.date
 
-                #             interest += interest_res
-                #             balance -= line_all.credit
-                #             date_start = line_all.date
+                    #     if round(balance,2) > 0:
+                    #         interest_res = self.calc_interests(cr, uid, date_start, date_to, balance, interest_rate)
+                    #         comment = self._prepare_description(cr, uid, line, date_start, date_to, balance, interest_rate)
+                    #         values[len(values)] = [comment, round(interest_res,2), line.move_id.id]
+                    #         interest += interest_res
 
-                #     if round(balance,2) > 0:
-                #         interest_res = self.calc_interests(cr, uid, date_start, date_to, balance, interest_rate)
-                #         comment = self._prepare_description(cr, uid, line, date_start, date_to, balance, interest_rate)
-                #         values[len(values)] = [comment, round(interest_res,2), line.move_id.id]
-                #         interest += interest_res
-
-                # else:
-                #     interest_res = self.calc_interests(cr, uid, date_start, date_to, balance, interest_rate)
-                #     comment = self._prepare_description(cr, uid, line, date_start, date_to, balance, interest_rate)
-                #     values[len(values)] = [comment, round(interest_res,2), line.move_id.id]
-                #     interest += interest_res
-                interest_res = self.calc_interests(
-                    cr, uid, date_start, date_to, balance, interest_rate)
-                comment = self._prepare_description(
-                    cr, uid, line, date_start, date_to, balance, interest_rate)
-                values[len(values)] = [
-                    comment, round(interest_res, 2), line.move_id.id]
-                interest += interest_res
+                    # else:
+                    #     interest_res = self.calc_interests(cr, uid, date_start, date_to, balance, interest_rate)
+                    #     comment = self._prepare_description(cr, uid, line, date_start, date_to, balance, interest_rate)
+                    #     values[len(values)] = [comment, round(interest_res,2), line.move_id.id]
+                    #     interest += interest_res
+                    interest_res = self.calc_interests(
+                        cr, uid, date_start, date_to, balance, interest_rate)
+                    comment = self._prepare_description(
+                        cr, uid, line, date_start, date_to, balance, interest_rate)
+                    values[len(values)] = [
+                        comment, round(interest_res, 2), line.move_id.id]
+                    interest += interest_res
 
             # if values:
             if values and round(interest, 2) > limit_value:

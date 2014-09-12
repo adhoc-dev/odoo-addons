@@ -8,7 +8,7 @@
     'description': """
 Interests Management
 ====================
-HACER APP, poner icono y dejar pendiente descripcion a cuando juan lo termine
+Se debe setear en las cuentas deseadas (pr ejemplo deudores por venta), los intereses a aplicar
     """,
     'author':  'Ingenieria ADHOC',
     'website': 'www.ingadhoc.com',
@@ -19,6 +19,7 @@ HACER APP, poner icono y dejar pendiente descripcion a cuando juan lo termine
     ],
     'data': [
         'interest_view.xml',
+        'company_view.xml',
         'security/ir.model.access.csv',    
     ],
     'demo': [
