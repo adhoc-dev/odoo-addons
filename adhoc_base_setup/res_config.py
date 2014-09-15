@@ -163,6 +163,8 @@ class adhoc_base_configuration(osv.osv_memory):
             help = """Installs the product_unique module."""),
         'module_product_historical_price': fields.boolean('Historical price for product in a product tab',
             help = """Installs the product_historical_price module."""),
+        'module_product_salesman_group': fields.boolean('Restrict salesman to see only authorized products by using salesman groups. ',
+            help = """Installs the product_salesman_group module."""),
     }        
     
     _defaults = {

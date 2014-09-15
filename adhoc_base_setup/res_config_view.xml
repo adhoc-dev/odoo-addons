@@ -92,6 +92,11 @@
                                 <field name="module_product_unique"
                                     class="oe_inline" />
                                 <label for="module_product_unique" />
+                            </div>               
+                            <div name='module_product_salesman_group'>
+                                <field name="module_product_salesman_group"
+                                    class="oe_inline" />
+                                <label for="module_product_salesman_group" />
                             </div>                                
                         </div>
                     </group>
