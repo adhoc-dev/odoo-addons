@@ -97,6 +97,11 @@
                                 <field name="module_product_salesman_group"
                                     class="oe_inline" />
                                 <label for="module_product_salesman_group" />
+                            </div>                    
+                            <div name='module_product_uom_prices'>
+                                <field name="module_product_uom_prices"
+                                    class="oe_inline" />
+                                <label for="module_product_uom_prices" />
                             </div>                                
                         </div>
                     </group>
