@@ -46,7 +46,8 @@ class product_template(models.Model):
     def _check_uoms(self):
         uom_ids = [x.uom_id.category_id.id for x in self.uom_price_ids]
         uom_ids = list(set(uom_ids))
-        if len(uom_ids) > 1 or uom_ids[0] != self.uom_id.category_id.id:
+        if uom_ids:
+        if len(uom_ids) > 1 or (uom_ids and uom_ids[0] != self.uom_id.category_id.id):
             raise Warning(_('UOM Prices Category must be of the same \
                 UOM Category as Product Unit of Measure'))
 
