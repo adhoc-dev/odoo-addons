@@ -13,8 +13,8 @@ Product UOM Prices
 * Add a new type of price calculation on pricelists (for the new o2m field
     on products)
 * Change domain on sale order lines so that only defined uoms can be choosen.
-(TODO: this should go in another module sale dependant)
 
+Video TUTORIAL: https://www.youtube.com/watch?v=-jGsbEZDOJE
 """,
     'init_xml': [],
     'installable': True,

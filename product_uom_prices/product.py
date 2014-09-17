@@ -18,7 +18,7 @@ class product_uom_price(models.Model):
     uom_id = fields.Many2one('product.uom', string='UOM', required=True,)
     price = fields.Float(
         'Price', digits_compute=dp.get_precision('Price'),
-        help="Sale Price for this UOM.")
+        help="Sale Price for this UOM.", required=True)
 
     _sql_constraints = [
         ('price_uniq', 'unique(product_tmpl_id, uom_id)',
@@ -44,10 +44,13 @@ class product_template(models.Model):
     @api.one
     @api.constrains('uom_price_ids')
     def _check_uoms(self):
-        uom_ids = [x.uom_id.category_id.id for x in self.uom_price_ids]
-        uom_ids = list(set(uom_ids))
-        if uom_ids:
-        if len(uom_ids) > 1 or (uom_ids and uom_ids[0] != self.uom_id.category_id.id):
+        uom_categ_ids = [x.uom_id.category_id.id for x in self.uom_price_ids]
+        uom_categ_ids = list(set(uom_categ_ids))
+        uom_ids = [x.uom_id.id for x in self.uom_price_ids]
+        if self.uom_id.id in uom_ids:
+            raise Warning(_('UOM %s is the default product uom, \
+                you can not se it in UOM prices') % (self.uom_id.name))
+        if len(uom_categ_ids) > 1 or (uom_categ_ids and uom_categ_ids[0] != self.uom_id.category_id.id):
             raise Warning(_('UOM Prices Category must be of the same \
                 UOM Category as Product Unit of Measure'))
 
