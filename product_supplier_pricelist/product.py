@@ -56,7 +56,6 @@ class product_supplierinfo(osv.osv):
 
 
 class pricelist_partnerinfo(osv.osv):
-    _name = 'pricelist.partnerinfo'
     _inherit = 'pricelist.partnerinfo'
     _columns = {
         'partner_id' : fields.related('suppinfo_id', 'name', domain = [('supplier','=',True)], relation='res.partner', store=True, type='many2one', string='Supplier', readonly="1", help="Supplier of this product"),
