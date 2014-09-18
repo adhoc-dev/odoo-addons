@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data noupdate="0">      
-        <record id="price_security.hide_purchase_prices" model="res.groups">
-            <field name="name">Hide purchase prices</field>
-        </record>
-    </data>
-</openerp>

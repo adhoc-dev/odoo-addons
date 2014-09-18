@@ -20,7 +20,9 @@ class product_template(models.Model):
         if not context:
             context = {}
         # For compatibility with other modules (like product_uom_prices
-            # we say in context that this module is installed
+        # we say in context that this module is installed
+        # We make this way becouse if not we have an error with frozendict
+        context = context.copy()
         context['product_price_currency'] = True
         res = super(product_template, self)._price_get(
             cr, uid, products, ptype=ptype, context=context)
@@ -31,7 +33,7 @@ class product_template(models.Model):
             price_type_currency_id = pricetype_obj.browse(
                 cr, uid, price_type_id).currency_id.id
             for product in products:
-                if product.sale_price_currency_id != price_type_currency_id:
+                if product.sale_price_currency_id.id != price_type_currency_id:
                     res[product.id] = self.pool.get('res.currency').compute(
                         cr, uid, product.sale_price_currency_id.id,
                         price_type_currency_id, res[product.id],

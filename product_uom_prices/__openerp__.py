@@ -4,7 +4,7 @@
     'category': 'base.module_category_knowledge_management',
     'demo_xml': [],
     'depends': [
-        'sale'
+        'sale',
         ],
     'description': """
 Product UOM Prices

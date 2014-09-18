@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <!-- sale.order -->
+        <record id="view_price_security_order_form" model="ir.ui.view">
+            <field name="name">price_security.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="user_restrict_prices" invisible="1"/>
+                </form>
+                <field name="pricelist_id" position="attributes">
+                    <attribute name="attrs">{'readonly':[('user_restrict_prices', '=', True)]}</attribute>
+                </field>
+                <!-- Make price readonly if user can not modify prices -->
+                <xpath expr="//field[@name='order_line']/form" position="inside">
+                    <field name="user_restrict_prices" invisible="1"/>
+                    <field name="product_can_modify_prices" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree" position="inside">
+                    <field name="user_restrict_prices" invisible="1"/>
+                    <field name="product_can_modify_prices" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('user_restrict_prices','=', True), ('product_can_modify_prices','=', False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('user_restrict_prices','=', True), ('product_can_modify_prices','=', False)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

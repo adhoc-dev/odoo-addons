@@ -18,16 +18,15 @@ a sale order.
     'author': 'Sistemas ADHOC',
     'website': 'http://www.sistemasadhoc.com.ar/',
     'depends': [
-        'product',
         'sale',
-        'purchase'
     ],
     'data': [
-        'res_users_view.xml',
-        # 'sale_view.xml',
-        'invoice_view.xml',
-        'product_view.xml',
-        'security/price_security_security.xml', ],
+        'views/res_users_view.xml',
+        'views/sale_view.xml',
+        'views/invoice_view.xml',
+        'views/product_view.xml',
+        'security/ir.model.access.csv',
+        ],
     'demo_xml': [],
     'test': [],
     'installable': True,

@@ -8,14 +8,18 @@
             <field name="inherit_id" ref="product.product_normal_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//page[@string='Information']/group/group" position="inside">
-                    <field name="use_uom_prices"/>
+                    <field name="use_uom_prices" readonly="1"/>
                     <field name="uom_category_id" invisible="1"/>
-                    <field name="uom_price_ids" context="{'uom_category_id': uom_category_id}" attrs="{'invisible':[('use_uom_prices','=',False)]}">
+                    <field name="uom_price_ids" readonly="1" context="{'uom_category_id': uom_category_id}" attrs="{'invisible':[('use_uom_prices','=',False)]}">
                         <tree editable="top">
                             <field name="uom_id" domain="[('category_id', '=', uom_category_id)]"/>
                             <field name="price"/>
                         </tree>
                     </field>
+                    <div attrs="{'invisible':[('use_uom_prices','=',False)]}">
+                        <label string=""/>
+                        <label string="(configurable on product template)"/>
+                    </div>
                 </xpath>
             </field>
         </record>

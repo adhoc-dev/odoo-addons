@@ -74,6 +74,8 @@ class adhoc_base_configuration(osv.osv_memory):
             help = """Installs the sale_stock_availability module."""),
         'module_sale_restrict_partners': fields.boolean('Restrict see own leads partner to see their own partners only.',
             help = """Installs the sale_restrict_partners module."""),
+        'module_sale_pricelist_discount': fields.boolean('See Pricelist Discount on Sales Orders.',
+            help = """Installs the sale_pricelist_discount module."""),
         
         # Project
         'module_project_issue_solutions': fields.boolean('Project Issue Solutions',

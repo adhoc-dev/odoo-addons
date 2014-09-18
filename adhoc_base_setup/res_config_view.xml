@@ -315,6 +315,11 @@
                                 <field name="module_sale_restrict_partners"
                                     class="oe_inline" />
                                 <label for="module_sale_restrict_partners"/>
+                            </div>                                      
+                            <div name='module_sale_pricelist_discount'>
+                                <field name="module_sale_pricelist_discount"
+                                    class="oe_inline" />
+                                <label for="module_sale_pricelist_discount"/>
                             </div>                                
                         </div>
                     </group>

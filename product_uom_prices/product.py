@@ -55,6 +55,13 @@ class product_template(models.Model):
                 UOM Category as Product Unit of Measure'))
 
     def _price_get(self, cr, uid, products, ptype='list_price', context=None):
+        if not context:
+            context = {}
+        # Just for information we say in context that this module is installed
+        # We make this way becouse if not we have an error with frozendict
+        context = context.copy()
+        context['product_uom_prices'] = True
+        # context['product_uom_prices'] = True
         res = super(product_template, self)._price_get(
             cr, uid, products, ptype=ptype, context=context)
         product_uom_price_obj = self.pool['product.uom.price']
@@ -69,6 +76,18 @@ class product_template(models.Model):
                     res[product.id] = product_uom_price_obj.browse(
                         cr, uid, product_uom_price_ids[0],
                         context=context).price
+                    # If product price currency is insatalled then we update
+                    # price in the correct currency
+                    if 'product_price_currency' in context:
+                        pricetype_obj = self.pool.get('product.price.type')
+                        price_type_id = pricetype_obj.search(
+                            cr, uid, [('field', '=', ptype)])[0]
+                        price_type_currency_id = pricetype_obj.browse(
+                            cr, uid, price_type_id).currency_id.id
+                        res[product.id] = self.pool['res.currency'].compute(
+                            cr, uid, product.sale_price_currency_id.id,
+                            price_type_currency_id, res[product.id],
+                            context=context)
         return res
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -8,22 +8,15 @@
             <field name="inherit_id" ref="base.view_users_form"/>
             <field name="arch" type="xml">
                 <notebook>
-                    <page string="Discounts Restrictions"/>
+                    <page string="Discounts Restrictions">
                         <group>
                             <field name="restrict_prices"/>
-                            <field name="discount_restriction_ids">
-                                <tree>
-                                    <field name="name"/>
+                            <field name="discount_restriction_ids" colspan="4" groups="sale.group_discount_per_so_line" attrs="{'invisible':[('restrict_prices', '=', False)]}">
+                                <tree editable="top">
                                     <field name="pricelist_id"/>
                                     <field name="min_discount"/>
                                     <field name="max_discount"/>
                                 </tree>
-                                <form>
-                                    <field name="name"/>
-                                    <field name="pricelist_id"/>
-                                    <field name="min_discount"/>
-                                    <field name="max_discount"/>
-                                </form>
                             </field>
                         </group>
                     </page>

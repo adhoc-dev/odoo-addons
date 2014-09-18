@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="product_template_only_form_view" model="ir.ui.view">
+            <field name="name">price_security.product.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="user_restrict_prices" invisible="0"/>
+                </form>
+                <field name="list_price" position="attributes">
+                    <attribute name="attrs">{'readonly':[('user_restrict_prices','=',True)]}</attribute>
+                </field>
+                <xpath expr="//page[@string='Information']/group/group" position="inside">
+                    <field name="can_modify_prices" attrs="{'invisible':[('user_restrict_prices','=',True)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_normal_form_view" model="ir.ui.view">
+            <field name="name">price_security.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="user_restrict_prices" invisible="0"/>
+                </form>
+                <field name="lst_price" position="attributes">
+                    <attribute name="attrs">{'readonly':[('user_restrict_prices','=',True)]}</attribute>
+                </field>
+                <xpath expr="//page[@string='Information']/group/group" position="inside">
+                    <field name="can_modify_prices" attrs="{'invisible':[('user_restrict_prices','=',True)]}"/>
+                </xpath>
+            </field>
+        </record>                
+    </data>
+</openerp>

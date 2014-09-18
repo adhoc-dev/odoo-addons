@@ -25,11 +25,11 @@ class sale_order_line(models.Model):
             product_obj = self.pool.get('product.product')
             product = product_obj.browse(
                 cr, uid, product, context=context_partner)
-            if product.use_uom_prices:
-                if 'domain' not in res:
-                    res['domain'] = {}
-                res['domain']['product_uom'] = [
-                    ('id', 'in', [x.uom_id.id for x in product.uom_price_ids])]
+            if 'domain' not in res:
+                res['domain'] = {}
+            res['domain']['product_uom'] = [
+                ('id', 'in', [x.uom_id.id for x in product.uom_price_ids]
+                    + [product.uom_id.id])]
         return res
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
