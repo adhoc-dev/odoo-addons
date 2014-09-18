@@ -169,6 +169,8 @@ class adhoc_base_configuration(osv.osv_memory):
             help = """Installs the product_salesman_group module."""),
         'module_product_uom_prices': fields.boolean('Allow to define different prices for different UOMs',
             help = """Installs the product_uom_prices module."""),
+        'module_product_force_create_variants': fields.boolean('Allow to force create variants on product templates',
+            help = """Installs the product_force_create_variants module."""),
     }        
     
     _defaults = {
