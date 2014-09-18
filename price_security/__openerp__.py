@@ -25,6 +25,7 @@ a sale order.
         'views/sale_view.xml',
         'views/invoice_view.xml',
         'views/product_view.xml',
+        'views/partner_view.xml',
         'security/ir.model.access.csv',
         ],
     'demo_xml': [],

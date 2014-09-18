@@ -325,6 +325,11 @@
                                 <field name="module_sale_pricelist_discount"
                                     class="oe_inline" />
                                 <label for="module_sale_pricelist_discount"/>
+                            </div>
+                            <div name='module_price_security'>
+                                <field name="module_price_security"
+                                    class="oe_inline" />
+                                <label for="module_price_security"/>
                             </div>                                
                         </div>
                     </group>
