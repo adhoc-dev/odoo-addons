@@ -9,6 +9,7 @@
                 <notebook>
                     <page string="Picking Information" attrs="{'invisible':[('model','!=', 'stock.picking')]}">
                         <group>
+                            <field name="stock_report_type"/>
                             <field name="stock_picking_lines_to_split"/>
                             <field name="stock_picking_dont_split_option"/>
                             <field name="stock_picking_split_picking_type_in"/>

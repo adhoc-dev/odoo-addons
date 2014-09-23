@@ -143,11 +143,6 @@
                                     class="oe_inline" />
                                 <label for="module_account_invoice_commercial" />
                             </div>    
-                            <div name='module_account_invoice_commercial'>
-                                <field name="module_account_invoice_commercial"
-                                    class="oe_inline" />
-                                <label for="module_account_invoice_commercial" />
-                            </div>    
                         </div>
                     </group>
                     <group>
@@ -184,7 +179,7 @@
                             </div>            
                             <div name='module_account_create_journal'>
                                 <field name="module_account_create_journal"
-                                    class="oe_inline" />
+                                    class="oe_inline" readonly="1"/>
                                 <label for="module_account_create_journal" />
                             </div>
                         </div>
@@ -212,7 +207,7 @@
                         <label for="id" string="Miscellaneous" />                    
                         <div name="misc">
                             <div name='module_account_interests'>
-                                <field name="module_account_interests" class="oe_inline" readonly="1"/>
+                                <field name="module_account_interests" class="oe_inline"/>
                                 <label for="module_account_interests" />
                             </div>    
                             <div name='module_account_journal_security'>

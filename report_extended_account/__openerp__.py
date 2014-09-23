@@ -15,7 +15,7 @@ Report Configurator - Account
     ],
     'depends': [
         'report_extended',
-        'account', 
+        'account',
     ],
     'data': [
         'views/report_view.xml',
