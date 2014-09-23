@@ -20,6 +20,7 @@ Report Configurator - Stock
     'data': [
         'views/report_view.xml',
         'views/stock_view.xml',
+        'wizard/stock_transfer_details_view.xml',
     ],
     'demo': [
     ],
