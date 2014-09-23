@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+      <record id="action_contract_purchase" model="ir.actions.act_window">
+            <field name="name">Contract</field>
+            <field name="res_model">account.analytic.account</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_purchase_contract_form"/>
+            <field name="search_view_id" ref=""/> 
+            <field name="domain">[('type','=','purchase_contract')]</field>
+            <field name="context">{'default_type':'purchase_contract','recurring_invoices':True}</field>
+        </record>
+
+        
+        <menuitem name="Contract" id="contract_purchase" parent="purchase.menu_procurement_management" action="action_contract_purchase" sequence="20"/>
+	</data>
+</openerp>
