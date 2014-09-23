@@ -29,7 +29,6 @@ class stock_picking(models.Model):
                 cr, uid, 'stock_remit', 'action_stock_print_remit')
             action_id = action and action[1] or False
             action = act_obj.read(cr, uid, [action_id], context=context)[0]
-            print 'action', action
             return action
         else:
             return super(stock_picking, self).do_print_picking(
