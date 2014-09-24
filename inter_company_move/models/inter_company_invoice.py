@@ -1,58 +1,66 @@
 # -*- coding: utf-8 -*-
-from openerp.osv import osv, fields
-from openerp.tools.translate import _
+from openerp.osv import osv
+from openerp import models, fields, _
 from openerp import SUPERUSER_ID
 
 
-class account_invoice(osv.osv):
+class account_invoice(models.Model):
     _inherit = 'account.invoice'
 
-    _columns = {
-        'invoice_move_type': fields.related('company_id', 'invoice_move_type', type='char', string='Invoice Move Type',),
-        'moved_invoice_id': fields.many2one('account.invoice', 'Moved Invoice', readonly=True),
-    }
-
-    def copy(self, cr, uid, id, default=None, context=None):
-        if default is None:
-            default = {}
-        default.update({'moved_invoice_id': False, })
-        return super(account_invoice, self).copy(cr, uid, id, default=default, context=context)
+    invoice_move_type = fields.Selection(
+        related='company_id.invoice_move_type',
+        string='Invoice Move Type',)
+    moved_invoice_id = fields.Many2one(
+        'account.invoice', 'Moved Invoice', readonly=True, copy=False)
 
     def invoice_move(self, cr, uid, ids, context=None):
+        for invoice in self.browse(cr, uid, ids, context=context):
+            if invoice.invoice_move_type == 'move_wizard':
+                mod_obj = self.pool['ir.model.data']
+                act_obj = self.pool['ir.actions.act_window']
+                action = mod_obj.get_object_reference(
+                    cr, uid, 'inter_company_move', 'action_intercompany_move')
+                action_id = action and action[1] or False
+                action = act_obj.read(cr, uid, [action_id], context=context)[0]
+                return action
+            elif invoice.invoice_move_type == 'move_auto':
+                move_company = invoice.company_id.invoice_move_company_id
+                return self._invoice_move(
+                    cr, uid, invoice, move_company, context=context)
+
+    def _invoice_move(self, cr, uid, invoice, move_company, context=None):
         """
         TODO
         """
-        invoice_type = False
-        moved_invoice_ids = []
-        for invoice in self.browse(cr, uid, ids, context=context):
-            move_company = invoice.company_id.invoice_move_company_id
-            if invoice.invoice_move_type == 'move_auto':
-                moved_invoice_id = self.action_create_invoice(
-                    cr, SUPERUSER_ID, invoice, move_company, invoice.type, invoice.journal_id.type, context=context)
-                if invoice.company_id.record_moved_id:
-                    invoice.write({'moved_invoice_id': moved_invoice_id})
-                moved_description = _(
-                    'Moved to invoice id: ') + str(moved_invoice_id)
-                invoice.write({
-                    'internal_number': moved_description,
-                    'name': moved_description,
-                })
-                invoice_type = invoice.type
-                moved_invoice_ids.append(moved_invoice_id)
+        moved_invoice_id = self.action_create_invoice(
+            cr, SUPERUSER_ID, invoice, move_company, invoice.type,
+            invoice.journal_id.type, context=context)
+
+        if invoice.company_id.record_moved_id:
+            invoice.write({'moved_invoice_id': moved_invoice_id})
+
+        moved_description = _(
+            'Moved to invoice id: ') + str(moved_invoice_id)
+        invoice.write({
+            'internal_number': moved_description,
+            'name': moved_description,
+        })
+
         # Cancelamos la factura
-        self.signal_workflow(cr, uid, ids, 'invoice_cancel')
+        self.signal_workflow(cr, uid, [invoice.id], 'invoice_cancel')
 
         # sacamos la excepecion de las sales orders
         sale_order_obj = self.pool['sale.order']
         sale_order_ids = sale_order_obj.search(
-            cr, uid, [('invoice_ids', 'in', ids)], context=context)
+            cr, uid, [('invoice_ids', 'in', [invoice.id])], context=context)
         self.pool['sale.order'].signal_workflow(
             cr, uid, sale_order_ids, 'invoice_corrected')
 
         # Si esta seteado asi, retornamos una accion de ventana par ver la
         # factura
         if invoice.company_id.open_after_move:
-            return self.action_view_invoice(cr, uid, moved_invoice_ids, invoice_type, context=context)
+            return self.action_view_invoice(
+                cr, uid, [moved_invoice_id], invoice.type, context=context)
         return True
 
     def action_view_invoice(self, cr, uid, ids, inv_type=False, context=None):
@@ -82,7 +90,9 @@ class account_invoice(osv.osv):
             result['res_id'] = ids and ids[0] or False
         return result
 
-    def action_create_invoice(self, cr, uid, invoice, company, inv_type, journal_type, context=None):
+    def action_create_invoice(
+            self, cr, uid, invoice, company,
+            inv_type, journal_type, context=None):
         if context is None:
             context = {}
         inv_obj = self.pool.get('account.invoice')
@@ -95,8 +105,12 @@ class account_invoice(osv.osv):
             # To find lot of data from product onchanges because its already
             # avail method in core.
             product_uom = line.product_id.uom_id and line.product_id.uom_id.id or False
-            line_data = inv_line_obj.product_id_change(cr, uid, [line.id], line.product_id.id, product_uom, qty=line.quantity, name='', type=inv_type,
-                                                       partner_id=invoice.commercial_partner_id.id, fposition_id=invoice.commercial_partner_id.property_account_position.id, context=ctx, company_id=company.id)
+            line_data = inv_line_obj.product_id_change(
+                cr, uid, [line.id], line.product_id.id, product_uom,
+                qty=line.quantity, name='', type=inv_type,
+                partner_id=invoice.commercial_partner_id.id,
+                fposition_id=invoice.commercial_partner_id.property_account_position.id,
+                context=ctx, company_id=company.id)
             if not line_data['value'].get('account_id', False):
                 account_id = inv_line_obj._default_account(cr, uid, ctx).id
                 line_data['value']['account_id'] = account_id
@@ -121,7 +135,8 @@ class account_invoice(osv.osv):
             'product_id': line.product_id.id or False,
             'uos_id': line.uos_id.id or False,
             'sequence': line.sequence,
-            'invoice_line_tax_id': [(6, 0, line_data['value'].get('invoice_line_tax_id', []))],
+            'invoice_line_tax_id': [
+                (6, 0, line_data['value'].get('invoice_line_tax_id', []))],
             'account_analytic_id': line.account_analytic_id.id or False,
         }
         if line_data['value'].get('account_id', False):
@@ -136,7 +151,9 @@ class account_invoice(osv.osv):
 
         # To find journal.
         journal_ids = journal_obj.search(
-            cr, uid, [('type', '=', jrnl_type), ('company_id', '=', company.id)], limit=1)
+            cr, uid,
+            [('type', '=', jrnl_type), ('company_id', '=', company.id)],
+            limit=1)
         if not journal_ids:
             raise osv.except_osv(_('Error!'),
                                  _('Please define %s journal for this company: "%s" (id:%d).') % (jrnl_type, company.name, company.id))

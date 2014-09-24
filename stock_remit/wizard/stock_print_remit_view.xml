@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <openerp>
     <data>
-        <record model="ir.ui.view" id="print_stock_picking_view">
+        <record model="ir.ui.view" id="stock_print_remit_view">
             <field name="name">print_stock_picking.form</field>
-            <field name="model">print_stock_picking</field>
+            <field name="model">stock.print_remit</field>
             <field name="arch" type="xml">
-                <form string="Print Stock Picking" version="7.0">
+                <form string="Print Stock Remit">
                     <group colspan="4" col="4" width="500">
-                        <field name="print_sequence_number" colspan="4" readonly="1"
+                        <field name="remit_number" colspan="4" readonly="1"
                                string="The Picking was assigned the next sequence number" />
                     </group>
                     <label colspan="4" string="If you want to print the Picking with another sequence number you should modify the sequence asociated with it."/>
@@ -22,12 +22,12 @@
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="action_print_stock_picking">
-            <field name="name">Print Stock Picking</field>
-            <field name="res_model">print_stock_picking</field>
+        <record model="ir.actions.act_window" id="action_stock_print_remit">
+            <field name="name">Print Stock Remit</field>
+            <field name="res_model">stock.print_remit</field>
             <field name="view_type">form</field>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="print_stock_picking_view"/>
+            <field name="view_id" ref="stock_print_remit_view"/>
             <field name="target">new</field>
         </record>
     </data>

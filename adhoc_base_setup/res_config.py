@@ -110,7 +110,7 @@ class adhoc_base_configuration(osv.osv_memory):
             help = """Installs the help_doc module."""),
         'module_mass_editing': fields.boolean('Mass Editing',
             help = """Installs the mass_editing module."""),
-        'module_currency_rate_update': fields.boolean('Mass Editing',
+        'module_currency_rate_update': fields.boolean('Update currencies rates automatically',
             help = """Installs the currency_rate_update module."""),
             # Not functional for now
         'module_web_export_view': fields.boolean('Web Export View. Export to csv',
