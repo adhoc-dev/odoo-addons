@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-23 19:03+0000\n"
-"PO-Revision-Date: 2014-09-23 16:04-0300\n"
+"PO-Revision-Date: 2014-09-24 12:16-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -82,7 +82,7 @@ msgstr ""
 #: code:addons/account_analytic_purchase_contract/account_analytic_analysis.py:54
 #, python-format
 msgid "Please define a sale journal for the company \"%s\"."
-msgstr "Please define a sale journal for the company \"%s\"."
+msgstr "Por favor, defina un diario de venta de la empresa\"%s\"."
 
 #. module: account_analytic_purchase_contract
 #: view:account.analytic.account:account_analytic_purchase_contract.view_purchase_contract_form
@@ -109,7 +109,7 @@ msgstr "Plazos y condiciones"
 #: code:addons/account_analytic_purchase_contract/account_analytic_analysis.py:48
 #, python-format
 msgid "You must first select a Supplier for Contract %s!"
-msgstr "You must first select a Supplier for Contract %s!"
+msgstr "Primero debe seleccionar un Proveedor de Contrato %s!"
 
 #. module: account_analytic_purchase_contract
 #: view:account.analytic.account:account_analytic_purchase_contract.view_purchase_contract_form

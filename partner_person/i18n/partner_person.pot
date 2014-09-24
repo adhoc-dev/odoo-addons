@@ -1,13 +1,13 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #	* partner_person
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 8.0alpha1\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-16 19:53+0000\n"
-"PO-Revision-Date: 2014-05-16 19:53+0000\n"
+"POT-Creation-Date: 2014-09-24 14:09+0000\n"
+"PO-Revision-Date: 2014-09-24 14:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: partner_person
-#: view:res.partner:0
+#: view:res.partner:partner_person.view_partner_person_form
 msgid "'is_person' in context"
 msgstr ""
 
@@ -26,12 +26,17 @@ msgid "Age"
 msgstr ""
 
 #. module: partner_person
-#: view:partner.config.settings:0
+#: view:partner.config.settings:partner_person.view_config_settings
 msgid "Apply"
 msgstr ""
 
 #. module: partner_person
-#: view:partner.config.settings:0
+#: field:res.users,birthdate:0
+msgid "Birthdate"
+msgstr ""
+
+#. module: partner_person
+#: view:partner.config.settings:partner_person.view_config_settings
 msgid "Cancel"
 msgstr ""
 
@@ -43,13 +48,23 @@ msgstr ""
 
 #. module: partner_person
 #: model:ir.actions.act_window,name:partner_person.action_config_settings
-#: view:partner.config.settings:0
+#: view:partner.config.settings:partner_person.view_config_settings
 msgid "Configure Partners"
 msgstr ""
 
 #. module: partner_person
-#: view:res.partner:0
+#: view:res.partner:partner_person.view_partner_person_form
 msgid "Contacts"
+msgstr ""
+
+#. module: partner_person
+#: field:partner.config.settings,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: partner_person
+#: field:partner.config.settings,create_date:0
+msgid "Created on"
 msgstr ""
 
 #. module: partner_person
@@ -73,7 +88,7 @@ msgid "Female"
 msgstr ""
 
 #. module: partner_person
-#: view:res.partner:0
+#: view:res.partner:partner_person.view_partner_person_form
 #: field:res.partner,firstname:0
 msgid "First Name"
 msgstr ""
@@ -84,9 +99,24 @@ msgid "Husband"
 msgstr ""
 
 #. module: partner_person
-#: view:res.partner:0
+#: field:partner.config.settings,id:0
+msgid "ID"
+msgstr ""
+
+#. module: partner_person
+#: view:res.partner:partner_person.view_partner_person_form
 #: field:res.partner,lastname:0
 msgid "Last Name"
+msgstr ""
+
+#. module: partner_person
+#: field:partner.config.settings,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: partner_person
+#: field:partner.config.settings,write_date:0
+msgid "Last Updated on"
 msgstr ""
 
 #. module: partner_person
@@ -161,7 +191,7 @@ msgstr ""
 
 #. module: partner_person
 #: model:ir.ui.menu,name:partner_person.menu_partner_config
-#: view:partner.config.settings:0
+#: view:partner.config.settings:partner_person.view_config_settings
 msgid "Partners"
 msgstr ""
 
@@ -171,12 +201,12 @@ msgid "Passport"
 msgstr ""
 
 #. module: partner_person
-#: view:partner.config.settings:0
+#: view:partner.config.settings:partner_person.view_config_settings
 msgid "Person - Personal Information"
 msgstr ""
 
 #. module: partner_person
-#: view:res.partner:0
+#: view:res.partner:partner_person.view_partner_person_form
 msgid "Personal Information"
 msgstr ""
 
@@ -261,27 +291,22 @@ msgid "Single"
 msgstr ""
 
 #. module: partner_person
+#: model:ir.model,name:partner_person.model_res_users
+msgid "Users"
+msgstr ""
+
+#. module: partner_person
 #: field:res.partner,wife_id:0
 msgid "Wife"
 msgstr ""
 
 #. module: partner_person
-#: view:res.partner:0
+#: view:res.partner:partner_person.view_partner_person_form
 msgid "Years)"
 msgstr ""
 
 #. module: partner_person
-#: view:partner.config.settings:0
-msgid "or"
-msgstr ""
-
-#. module: partner_person
-#: model:ir.model,name:partner_person.model_partner_config_settings
-msgid "partner.config.settings"
-msgstr ""
-
-#. module: partner_person
-#: view:res.partner:0
+#: view:res.partner:partner_person.view_partner_person_form
 msgid "{'invisible':[('is_company','=',False)]}"
 msgstr ""
 

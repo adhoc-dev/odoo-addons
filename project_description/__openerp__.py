@@ -10,8 +10,8 @@ Project Description
 ===================
 Adds account_analytic_account description field on project form view
     """,
-    'author':  'Sistemas ADHOC',
-    'website': 'www.sistemasadhoc.com.ar',
+    'author':  'Ingenieria ADHOC',
+    'website': 'www.ingadhoc.com.ar',
     'images': [
     ],
     'depends': [

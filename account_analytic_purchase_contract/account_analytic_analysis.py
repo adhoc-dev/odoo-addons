@@ -1,23 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+
 from dateutil.relativedelta import relativedelta
 import datetime
 import logging
@@ -73,6 +55,7 @@ class account_analytic_account(osv.osv):
                'fiscal_position': fpos and fpos.id,
                'company_id': contract.company_id.id or False,
             }
+            print invoice
             return invoice
         else:
             return super(account_analytic_account, self)._prepare_invoice_data(cr, uid, contract, context=context)
@@ -120,8 +103,7 @@ class account_analytic_account(osv.osv):
 
     def _cron_recurring_create_invoice_purchase(self, cr, uid, context=None):
         contract_ids = self.search(cr, uid, [('recurring_next_date','<=', current_date), ('state','=', 'open'), ('recurring_invoices','=', True), ('type', '=', 'purchase_contract')])
-        invoice = self._recurring_create_invoice(cr, uid, contract_ids, context=context)
-        return invoice
+        return self._recurring_create_invoice(cr, uid, contract_ids, context=context)
 
 
     
