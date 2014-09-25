@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-24 14:19+0000\n"
-"PO-Revision-Date: 2014-09-24 13:57-0300\n"
+"PO-Revision-Date: 2014-09-25 10:38-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -88,7 +88,7 @@ msgstr "Contents Score"
 #: field:survey.question.score.range,create_uid:0
 #: field:survey.user_input_question_score,create_uid:0
 msgid "Created by"
-msgstr "Created by"
+msgstr "Creado Por"
 
 #. module: evaluation
 #: field:survey.content,create_date:0 field:survey.level,create_date:0
@@ -105,7 +105,7 @@ msgstr "Created on"
 #. module: evaluation
 #: selection:survey.question,score_calc_method:0
 msgid "Direct Sum"
-msgstr "Direct Sum"
+msgstr "Suma Directa"
 
 #. module: evaluation
 #: view:survey.survey:evaluation.evaluation_survey_form
@@ -203,7 +203,7 @@ msgstr "Max score an answer of this question can get"
 #. module: evaluation
 #: help:survey.survey,max_score:0
 msgid "Maximum score that can be obtained in this evaluation"
-msgstr "Maximum score that can be obtained in this evaluation"
+msgstr "La puntuación máxima que pueden obtenerse en esta evaluación"
 
 #. module: evaluation
 #: view:survey.user_input:evaluation.evaluation_user_input_search
@@ -348,32 +348,32 @@ msgstr "Rangos de Puntuacion"
 #. module: evaluation
 #: help:survey.survey,content_questions_score:0
 msgid "Score for questions with content defined"
-msgstr "Score for questions with content defined"
+msgstr "Puntuacion para preguntas con contenidos definidos"
 
 #. module: evaluation
 #: help:survey.survey,level_questions_score:0
 msgid "Score for questions with level defined"
-msgstr "Score for questions with level defined"
+msgstr "Puntuacion para preguntas con nivel definido"
 
 #. module: evaluation
 #: help:survey.survey,obj_questions_score:0
 msgid "Score for questions with objetive defined"
-msgstr "Score for questions with objetive defined"
+msgstr "Puntuacion para preguntas con objetivo definido"
 
 #. module: evaluation
 #: help:survey.survey,non_content_questions_score:0
 msgid "Score for questions without content defined"
-msgstr "Score for questions without content defined"
+msgstr "Puntuacion para preguntas sin contenidos definidos"
 
 #. module: evaluation
 #: help:survey.survey,non_level_questions_score:0
 msgid "Score for questions without level defined"
-msgstr "Score for questions without level defined"
+msgstr "Puntuacion para preguntas sin nivel definidos"
 
 #. module: evaluation
 #: help:survey.survey,non_obj_questions_score:0
 msgid "Score for questions without objetive defined"
-msgstr "Score for questions without objetive defined"
+msgstr "Puntuacion para preguntas sin objetivo definido"
 
 #. module: evaluation
 #: model:ir.model,name:evaluation.model_survey_user_input_question_score

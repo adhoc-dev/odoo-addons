@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-25 13:58+0000\n"
-"PO-Revision-Date: 2014-09-25 13:58+0000\n"
+"POT-Creation-Date: 2014-09-25 13:57+0000\n"
+"PO-Revision-Date: 2014-09-25 13:57+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,60 +18,60 @@ msgstr ""
 #. module: product_salesman_group
 #: field:sale.salesman.group,child_id:0
 msgid "Children Groups"
-msgstr "Grupos Hijos"
+msgstr ""
 
 #. module: product_salesman_group
 #: field:sale.salesman.group,create_uid:0
 msgid "Created by"
-msgstr "Created by"
+msgstr ""
 
 #. module: product_salesman_group
 #: field:sale.salesman.group,create_date:0
 msgid "Created on"
-msgstr "Created on"
+msgstr ""
 
 #. module: product_salesman_group
 #: constraint:sale.salesman.group:0
 msgid "Error ! You cannot create recursive categories."
-msgstr "Error ! No puede crear categorías recursivas."
+msgstr ""
 
 #. module: product_salesman_group
 #: field:sale.salesman.group,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: product_salesman_group
 #: field:sale.salesman.group,write_uid:0
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr ""
 
 #. module: product_salesman_group
 #: field:sale.salesman.group,write_date:0
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr ""
 
 #. module: product_salesman_group
 #: field:sale.salesman.group,complete_name:0
 #: field:sale.salesman.group,name:0
 msgid "Name"
-msgstr "Nombre"
+msgstr ""
 
 #. module: product_salesman_group
 #: field:sale.salesman.group,parent_id:0
 msgid "Parent Group"
-msgstr "Grupo Padre"
+msgstr ""
 
 #. module: product_salesman_group
 #: model:ir.model,name:product_salesman_group.model_product_product
 msgid "Product"
-msgstr "Producto"
+msgstr ""
 
 #. module: product_salesman_group
 #: model:ir.model,name:product_salesman_group.model_sale_salesman_group
 #: field:product.product,salesman_group_ids:0
 #: field:res.users,salesman_group_id:0
 msgid "Salesman Group"
-msgstr "Grupo de Vendedores"
+msgstr ""
 
 #. module: product_salesman_group
 #: model:ir.actions.act_window,name:product_salesman_group.sale_salesman_group_action
@@ -81,10 +81,10 @@ msgstr "Grupo de Vendedores"
 #: view:sale.salesman.group:product_salesman_group.sale_salesman_group_search_view
 #: view:sale.salesman.group:product_salesman_group.sale_salesman_group_tree_view
 msgid "Salesman Groups"
-msgstr "Grupos de Vendedores"
+msgstr ""
 
 #. module: product_salesman_group
 #: model:ir.model,name:product_salesman_group.model_res_users
 msgid "Users"
-msgstr "Usuarios"
+msgstr ""
 
