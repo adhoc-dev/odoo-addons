@@ -1,0 +1,114 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mail_local_server_catchall
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-29 17:38+0000\n"
+"PO-Revision-Date: 2014-09-29 14:46-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: mail_local_server_catchall
+#: code:addons/mail_local_server_catchall/res_config.py:79
+#: code:addons/mail_local_server_catchall/res_config.py:85
+#: code:addons/mail_local_server_catchall/res_config.py:114
+#: code:addons/mail_local_server_catchall/res_config.py:123
+#, python-format
+msgid "Error!"
+msgstr "Error!"
+
+#. module: mail_local_server_catchall
+#: code:addons/mail_local_server_catchall/res_config.py:114
+#, python-format
+msgid "File could not be writed!"
+msgstr "El archivo no se puede escribir!"
+
+#. module: mail_local_server_catchall
+#: code:addons/mail_local_server_catchall/res_config.py:123
+#, python-format
+msgid "File not found!"
+msgstr "Archivo no encontrado!"
+
+#. module: mail_local_server_catchall
+#: code:addons/mail_local_server_catchall/res_config.py:47
+#: code:addons/mail_local_server_catchall/res_config.py:56
+#, python-format
+msgid "File writed ok!"
+msgstr "Escritura de archivos ok!"
+
+#. module: mail_local_server_catchall
+#: field:base.config.settings,local_alias:0
+msgid "Local Alias"
+msgstr "Alias ​​local"
+
+#. module: mail_local_server_catchall
+#: field:base.config.settings,local_alias_path:0
+msgid "Local Alias Path"
+msgstr "Ruta de Alias ​​Local"
+
+#. module: mail_local_server_catchall
+#: code:addons/mail_local_server_catchall/res_config.py:47
+#: code:addons/mail_local_server_catchall/res_config.py:56
+#, python-format
+msgid "Ok!"
+msgstr "Ok!"
+
+#. module: mail_local_server_catchall
+#: field:base.config.settings,overwrite:0
+msgid "Over Write Line"
+msgstr "Sobrescribir Línea"
+
+#. module: mail_local_server_catchall
+#: view:base.config.settings:mail_local_server_catchall.view_general_configuration_mail_alias_domain
+msgid "Reload Postfix"
+msgstr "Reload Postfix"
+
+#. module: mail_local_server_catchall
+#: field:base.config.settings,config_local_alias:0
+msgid "Set Local Alias"
+msgstr "Set Local Alias"
+
+#. module: mail_local_server_catchall
+#: code:addons/mail_local_server_catchall/res_config.py:85
+#, python-format
+msgid "There is already a line for this alias %s!"
+msgstr "There is already a line for this alias %s!"
+
+#. module: mail_local_server_catchall
+#: code:addons/mail_local_server_catchall/res_config.py:79
+#, python-format
+msgid "There is already a line with this data: %s"
+msgstr "There is already a line with this data: %s"
+
+#. module: mail_local_server_catchall
+#: model:ir.model,name:mail_local_server_catchall.model_res_users
+msgid "Users"
+msgstr "Usuarios"
+
+#. module: mail_local_server_catchall
+#: field:base.config.settings,virtual_alias:0
+msgid "Virtual Alias"
+msgstr "Alias ​​Virtual"
+
+#. module: mail_local_server_catchall
+#: field:base.config.settings,virtual_alias_path:0
+msgid "Virtual Alias Path"
+msgstr "Ruta de Alias ​​Virtual"
+
+#. module: mail_local_server_catchall
+#: view:base.config.settings:mail_local_server_catchall.view_general_configuration_mail_alias_domain
+msgid "Write"
+msgstr "Escribir"
+
+#. module: mail_local_server_catchall
+#: view:base.config.settings:mail_local_server_catchall.view_general_configuration_mail_alias_domain
+msgid "on_change_alias_domain(alias_domain,context)"
+msgstr "on_change_alias_domain(alias_domain,context)"
