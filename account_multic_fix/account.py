@@ -21,10 +21,10 @@ class account_invoice_line(models.Model):
     @api.multi
     def product_id_change(self, product, uom_id, qty=0, name='', type='out_invoice',
                           partner_id=False, fposition_id=False, price_unit=False, currency_id=False,
-                          context=None, company_id=None):
+                          company_id=None):
         res = super(account_invoice_line, self).product_id_change(product, uom_id, qty=qty, name=name, type=type,
                                                                   partner_id=partner_id, fposition_id=fposition_id, price_unit=price_unit, currency_id=currency_id,
-                                                                  context=context, company_id=company_id)
+                                                                  company_id=company_id)
         if not 'value' in res:
             res['value'] = {}
 
