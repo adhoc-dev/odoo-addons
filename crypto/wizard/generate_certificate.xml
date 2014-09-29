@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+	<record id="generate_certificate_form" model="ir.ui.view">
+	    <field name="name">crypto.generate_certificate.form</field>
+	    <field name="model">crypto.generate_certificate</field>
+	    <field name="type">form</field>
+	    <field name="arch" type="xml">
+		<form string="Generate Certificate">
+		    <field name="company_id" on_change="onchange_company_id(company_id)"/>
+				<newline/>
+		    <field name="date_begin"/>
+		    <field name="date_end"/>
+		    <field name="version"/>
+		    <field name="serial_number"/>
+				<newline/>
+		    <group col="4" colspan="4" string='Issuer X509 Fields Name'>
+			    <label string='Update values when you change the Company' colspan="4"/>
+			    <field name="name_c"/>
+			    <field name="name_sp"/>
+			    <field name="name_l"/>
+			    <field name="name_o"/>
+			    <field name="name_ou"/>
+			    <field name="name_cn"/>
+			    <field name="name_gn"/>
+			    <field name="name_sn"/>
+			    <field name="name_email"/>
+			    <field name="name_serialnumber"/>
+		    </group>
+		    <group col="2" colspan="4">
+			    <button string="Generate" name="on_generate" icon="gtk-ok" type="object"/> 
+			    <button string="Cancel" name="on_cancel" special="cancel" icon="gtk-ok" /> 
+		    </group>
+	      </form>
+	    </field>
+	</record>
+
+	<act_window id="action_generate_certificate_wizard" 
+		    name="Generate Certificate" 
+		    src_model="crypto.certificate" 
+		    res_model="crypto.generate_certificate"		
+		    view_mode="form" 
+		    view_type="form"
+		    target="new"
+		    />
+	
+    </data>
+</openerp>

@@ -1,0 +1,134 @@
+-
+ Pair key test created a certificate request. Now I test it.
+-
+  !assert {model: crypto.certificate, search: "[('name','=','C=AR, O=Moldeo Interactive, CN=Testing')]" }:
+        - status == 'valid_request'
+
+-
+ I will create an empty certificate.
+-
+  !record {model: crypto.certificate, id: cert_0 }:
+     name: Test 2
+     pairkey_id: pairkey_0
+
+-
+ I will check the empty certificate.
+-
+  !assert {model: crypto.certificate, id: cert_0, string: The new certificate must be empty }:
+       - status == 'empty'
+
+-
+ Create a certificate from the certification request.
+-
+  !assert {model: crypto.certificate, search: "[('name','=','C=AR, O=Moldeo Interactive, CN=Testing')]", string: Check if the Moldeo certificate is a valid request }:
+       - status == 'valid_request'
+
+-
+ Create a certificate from the certification request.
+-
+  !python {model: crypto.certificate }: |
+        cer_id = self.search(cr, uid, [('name','=','C=AR, O=Moldeo Interactive, CN=Testing')])
+        cer = self.browse(cr, uid, cer_id).pop()
+
+        from M2Crypto import X509
+        issuer = X509.X509_Name()
+        issuer.CN = 'The Issuer Monkey'
+        issuer.O = 'The Organization Otherwise Known as My CA, Inc.'
+        cer.generate_certificate(issuer)
+
+-
+ The certificate now is valid.
+-
+  !assert {model: crypto.certificate, search: "[('name','=','C=AR, O=Moldeo Interactive, CN=Testing')]", string: Check if the Moldeo certificate is a valid request }:
+       - status == 'valid'
+
+-
+ Create a Signed MIME message from a raw message.
+-
+  !python {model: crypto.certificate }: |
+        cer_id = self.search(cr, uid, [('name','=','C=AR, O=Moldeo Interactive, CN=Testing')])
+        cer = self.browse(cr, uid, cer_id).pop()
+
+        smime = cer.smime("Hola mundo")
+        assert(len(smime)>0)
+
+-
+  Invoque generate certificate wizard with default values
+-
+  !record {model: crypto.generate_certificate, id: pk_wizard_3}:
+        name_c: 
+
+-
+ Assert default values.
+-
+  !assert {model: crypto.generate_certificate, id: pk_wizard_3, string: Assert certificate default values (3)}:
+        - company_id.name == 'Your Company'
+        - date_begin == (datetime.today() + timedelta(days=(0))).strftime('%Y-%m-%d')
+        - date_end == (datetime.today() + timedelta(days=(365))).strftime('%Y-%m-%d')
+        - serial_number == 1
+        - version == 2
+        - name_c == False
+        - name_sp == False
+        - name_l == False
+        - name_o == False
+        - name_ou == False
+        - name_cn == False
+        - name_gn == False
+        - name_sn == False
+        - name_email == False
+        - name_serialnumber == False
+
+-
+ Change the company.
+-
+  !python {model: crypto.generate_certificate}: |
+        wizard = self.browse(cr, uid, ref('pk_wizard_3'))
+        value = wizard.onchange_company_id(wizard.company_id.id).get('value', {})
+        wizard.write(value)
+        
+-
+ Check values after onchange_company_id
+-
+  !assert {model: crypto.generate_certificate, id: pk_wizard_3, string: Assert certificate request values after onchange_company_id}:
+        - company_id.name == 'Your Company'
+        - date_begin == (datetime.today() + timedelta(days=(0))).strftime('%Y-%m-%d')
+        - date_end == (datetime.today() + timedelta(days=(365))).strftime('%Y-%m-%d')
+        - serial_number == 1
+        - version == 2
+        - name_c == False
+        - name_sp == False
+        - name_l == False
+        - name_o == 'Your Company'
+        - name_ou == False
+        - name_cn ==  'Your Company'
+        - name_gn == False
+        - name_sn == False
+        - name_email == 'info@yourcompany.com'
+        - name_serialnumber == False
+
+-
+ Check if request is in draft.
+-
+  !assert {model: crypto.certificate, search: "[('name','=','C=AR, ST=Capital Federal, L=Chacarita, O=Coop. Trab. Moldeo Interactive Ltda., OU=Business Lab., CN=moldeo.coop/serialNumber=CUIT 30712007288')]", string: Check if the Moldeo certificate is a valid request }:
+       - len(csr) > 0
+       - crt == False
+       - state == 'draft'
+       - status == 'valid_request'
+
+-
+ Create a certificate from the certification request.
+-
+  !python {model: crypto.generate_certificate }: |
+        cer_obj = self.pool.get('crypto.certificate')
+        x509_name = u'C=AR, ST=Capital Federal, L=Chacarita, O=Coop. Trab. Moldeo Interactive Ltda., OU=Business Lab., CN=moldeo.coop/serialNumber=CUIT 30712007288'
+        ids = cer_obj.search(cr, uid, [('name','=',x509_name)])
+        if len(ids)!=1:
+                print "ERROR: Not found:", x509_name
+                print "Only exists:"
+                ids = cer_obj.search(cr, uid, [])
+                for cert in cer_obj.browse(cr, uid, ids): print "  %s" % cert.name 
+        else:
+                self.on_generate(cr, uid, [ref('pk_wizard_3')],
+                        context={'active_ids': ids})
+        pass
+

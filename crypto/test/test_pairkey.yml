@@ -1,0 +1,243 @@
+-
+ Create a new pair key.
+-
+  !record {model: crypto.pairkey, id: pairkey_0}:
+        name: Test pairkey
+-
+ Now we generate a new pair key
+-
+  !python {model: crypto.pairkey }: |
+        id = ref('pairkey_0')
+        pk = self.browse(cr, uid, id)
+        pk.generate_keys()
+
+-
+ Check as_pem()
+-
+  !assert {model: crypto.pairkey, id: pairkey_0, string: Check as_pem() }:
+     - as_pem()[ref('pairkey_0')] == key.encode('ascii')+pub.encode('ascii')
+
+-
+ Check as_rsa()
+-
+  !assert {model: crypto.pairkey, id: pairkey_0, string: Check as_rsa() }:
+     - as_rsa()[ref('pairkey_0')].as_pem(None) == key.encode('ascii')
+
+-
+ Check as_rsa() in public key
+-
+  !python {model: crypto.pairkey }: |
+        id = ref('pairkey_0')
+        pk = self.browse(cr, uid, id)
+        rsa = pk.as_rsa()[id]
+        from M2Crypto import BIO
+        buf = BIO.MemoryBuffer()
+        rsa.save_pub_key_bio(buf)
+        assert(pk.pub.encode('ascii') == buf.read())
+
+-
+ Check as_pkey()
+-
+  !assert {model: crypto.pairkey, id: pairkey_0, string: Check as_pkey() }:
+     - ('BEGIN PRIVATE KEY' in as_pkey()[ref('pairkey_0')].as_pem(None))
+
+-
+ Generate Certificate Request
+-
+  !python {model: crypto.pairkey }: |
+        id = ref('pairkey_0')
+        pk = self.browse(cr, uid, id)
+        from M2Crypto import X509
+        name = X509.X509_Name()
+        name.C = 'AR'
+        name.O = 'Moldeo Interactive'
+        name.CN = 'Testing'
+        csr = pk.generate_certificate_request(name)
+        assert(len(csr) > 0)
+
+-
+ Create new Pairkey
+-
+  !record {model: crypto.pairkey, id: pairkey_1}:
+        name: Test 2 pairkey
+
+-
+ Check state in draft
+-
+  !assert {model: crypto.pairkey, id: pairkey_1, string: Check state is draft }:
+     - state == 'draft'
+
+-
+ Try to accept but error must appear
+-
+  !python {model: crypto.pairkey }: |
+        ids = ref('pairkey_1')
+        try:
+                self.action_validate(cr, uid, [ids])
+        except:
+                pass
+        else:
+                raise Exception('This action must fail! There not keys to validate it.')
+
+-
+ We generate a pairkey now
+-
+  !python {model: crypto.pairkey }: |
+        ids = ref('pairkey_1')
+        self.action_generate(cr, uid, [ids,])
+
+-
+ Confirm
+-
+  !workflow {model: crypto.pairkey, ref: pairkey_1, action: sgn_confirm }
+
+
+-
+ Check state in confirmed
+-
+  !assert {model: crypto.pairkey, id: pairkey_1, string: Check state is confirmed }:
+     - state == 'confirmed'
+
+-
+ Cancel
+-
+  !workflow {model: crypto.pairkey, ref: pairkey_1, action: sgn_cancel }
+
+-
+ Check if canceled
+-
+  !assert {model: crypto.pairkey, id: pairkey_1, string: Check state is cancelled }:
+     - state == 'cancel'
+
+-
+ Test the generete key wizard
+-
+  !record {model: crypto.pairkey, id: pairkey_2}:
+        name: Test wizard
+
+-
+  Invoque generate key wizard.
+-
+  !record {model: crypto.generate_pairkey, id: pk_wizard_0}:
+        key_length: 1024
+
+-
+  Push generate button.
+-
+  !python {model: crypto.generate_pairkey}: |
+        self.on_generate(cr, uid, [ref('pk_wizard_0')],
+                context={'active_ids': [ref('pairkey_2')]})
+
+-
+ Confirm
+-
+  !workflow {model: crypto.pairkey, ref: pairkey_2, action: sgn_confirm }
+
+-
+ Check state in confirmed
+-
+  !assert {model: crypto.pairkey, id: pairkey_2, string: Check state is confirmed }:
+     - state == 'confirmed'
+
+-
+  Invoque generate certificate wizard.
+-
+  !record {model: crypto.generate_certificate_request, id: pk_wizard_1}:
+        name_c: AR
+        name_sp: Capital Federal
+        name_l: Chacarita
+        name_o: Coop. Trab. Moldeo Interactive Ltda.
+        name_ou: Business Lab.
+        name_cn: moldeo.coop 
+        name_email: info@moldeo.coop 
+        name_serialnumber: CUIT 30712007288
+
+-
+  Push generate button.
+-
+  !python {model: crypto.generate_certificate_request}: |
+        self.on_generate(cr, uid, [ref('pk_wizard_1')],
+                context={'active_ids': [ref('pairkey_2')]})
+
+-
+ Check if certificate was created
+-
+  !python {model: crypto.certificate}: |
+        x509_name = u'C=AR, ST=Capital Federal, L=Chacarita, O=Coop. Trab. Moldeo Interactive Ltda., OU=Business Lab., CN=moldeo.coop/serialNumber=CUIT 30712007288'
+        ids = self.search(cr, uid, [('name','=',x509_name)])
+        if len(ids)!=1:
+                print "ERROR: Not found:", x509_name
+                print "Only exists:"
+                ids = self.search(cr, uid, [])
+                for cert in self.browse(cr, uid, ids): print "  %s" % cert.name
+
+-
+ Check if certificate was created in correct state.
+-
+  !assert {model: crypto.certificate, search: "[('name','=','C=AR, ST=Capital Federal, L=Chacarita, O=Coop. Trab. Moldeo Interactive Ltda., OU=Business Lab., CN=moldeo.coop/serialNumber=CUIT 30712007288')]", string: Check if certificate was created in correct state}:
+        - len(csr) > 0
+        - crt == False
+        - status == 'valid_request'
+        - state == 'draft'
+
+-
+  Invoque generate certificate wizard with default values
+-
+  !record {model: crypto.generate_certificate_request, id: pk_wizard_2}:
+        name_c: 
+
+-
+ Assert default values.
+-
+  !assert {model: crypto.generate_certificate_request, id: pk_wizard_2, string: Assert certificate request default values}:
+        - company_id.name == 'Your Company'
+        - name_c == False
+        - name_sp == False
+        - name_l == False
+        - name_o == False
+        - name_ou == False
+        - name_cn == False
+        - name_gn == False
+        - name_sn == False
+        - name_email == False
+        - name_serialnumber == False
+
+-
+ Change the company.
+-
+  !python {model: crypto.generate_certificate_request}: |
+        wizard = self.browse(cr, uid, ref('pk_wizard_2'))
+        value = wizard.onchange_company_id(wizard.company_id.id).get('value', {})
+        wizard.write(value)
+        
+-
+ Check values after onchange_company_id
+-
+  !assert {model: crypto.generate_certificate_request, id: pk_wizard_2, string: Assert certificate request values after onchange_company_id}:
+        - company_id.name == 'Your Company'
+        - name_c == False
+        - name_sp == False
+        - name_l == False
+        - name_o == 'Your Company'
+        - name_ou == False
+        - name_cn == 'Your Company'
+        - name_gn == False
+        - name_sn == False
+        - name_email == 'info@yourcompany.com'
+        - name_serialnumber == False
+
+-
+ Test the generete key wizard
+-
+  !record {model: crypto.pairkey, id: pairkey_2}:
+        name: Test wizard
+
+
+-
+  Push generate button.
+-
+  !python {model: crypto.generate_certificate_request}: |
+        self.on_generate(cr, uid, [ref('pk_wizard_2')],
+                context={'active_ids': [ref('pairkey_2')]})
+
+

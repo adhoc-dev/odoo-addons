@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp><data>
+
+    <record id="group_crypto_admin" model="res.groups">
+        <field name="name">Cryptography Manager</field>
+    </record>
+
+    <record id="group_crypto_user" model="res.groups" context="{'noadmin':True}">
+        <field name="name">Cryptography User</field>
+    </record>
+
+</data></openerp>
+
+

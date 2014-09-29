@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Workflow -->
+
+        <record id="crypto_certificate_wkf" model="workflow">
+            <field name="name">crypto.certificate.wkf</field>
+            <field name="osv">crypto.certificate</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <!-- Activities -->
+
+        <record id="c_a_draft" model="workflow.activity">
+            <field name="wkf_id" ref="crypto_certificate_wkf"/>
+            <field name="flow_start">True</field>
+            <field name="name">draft</field>
+            <field name="action">
+                write({'state':'draft'})
+            </field>
+            <field name="kind">function</field>
+        </record>
+        <record id="c_a_waiting" model="workflow.activity">
+            <field name="wkf_id" ref="crypto_certificate_wkf"/>
+            <field name="name">waiting</field>
+            <field name="action">
+                write({'state':'waiting'})
+            </field>
+            <field name="kind">function</field>
+        </record>
+        <record id="c_a_confirmed" model="workflow.activity">
+            <field name="wkf_id" ref="crypto_certificate_wkf"/>
+            <field name="name">confirmed</field>
+            <field name="action">
+                have_crt(can_raise=True)
+                write({'state':'confirmed'})
+            </field>
+            <field name="kind">function</field>
+        </record>
+        <record id="c_a_cancel" model="workflow.activity">
+            <field name="wkf_id" ref="crypto_certificate_wkf"/>
+            <field name="flow_stop">True</field>
+            <field name="name">cancel</field>
+            <field name="action">
+                write({'state':'cancel'})
+            </field>
+            <field name="kind">function</field>
+        </record>
+
+        <!-- Transitions -->
+
+        <record id="c_t_draft_waiting" model="workflow.transition">
+            <field name="act_from" ref="c_a_draft"/>
+            <field name="act_to" ref="c_a_waiting"/>
+            <field name="signal">sgn_confirm</field>
+            <field name="condition">have_csr(can_raise=True)</field>
+        </record>
+        <record id="c_t_waiting_cancel" model="workflow.transition">
+            <field name="act_from" ref="c_a_waiting"/>
+            <field name="act_to" ref="c_a_cancel"/>
+            <field name="signal">sgn_cancel</field>
+            <field name="condition">True</field>
+        </record>
+        <record id="c_t_waiting_confirmed" model="workflow.transition">
+            <field name="act_from" ref="c_a_waiting"/>
+            <field name="act_to" ref="c_a_confirmed"/>
+            <field name="signal">sgn_confirm</field>
+        </record>
+        <record id="c_t_confirmed_cancel" model="workflow.transition">
+            <field name="act_from" ref="c_a_confirmed"/>
+            <field name="act_to" ref="c_a_cancel"/>
+            <field name="signal">sgn_cancel</field>
+            <field name="condition">True</field>
+        </record>
+        <record id="c_t_draft_cancel" model="workflow.transition">
+            <field name="act_from" ref="c_a_draft"/>
+            <field name="act_to" ref="c_a_cancel"/>
+            <field name="signal">sgn_to_draft</field>
+            <field name="condition">True</field>
+        </record>
+    </data>
+</openerp>
+<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4
+     -->

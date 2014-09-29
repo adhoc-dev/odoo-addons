@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+	<record id="generate_pairkey_form" model="ir.ui.view">
+	    <field name="name">crypto.generate_pairkey.form</field>
+	    <field name="model">crypto.generate_pairkey</field>
+	    <field name="type">form</field>
+	    <field name="arch" type="xml">
+	      <form string="Generate Pairkeys">
+		    <field name="key_length"/>
+		    <group col="2" colspan="4">
+			    <button string="Generate" name="on_generate" icon="gtk-ok" type="object"/> 
+			    <button string="Cancel" name="on_cancel" special="cancel" icon="gtk-ok" /> 
+		    </group>
+	      </form>
+	    </field>
+	</record>
+
+	<act_window id="action_generate_pairkey_wizard" 
+		    name="Generate Pairkey" 
+		    res_model="crypto.generate_pairkey"		
+		    view_mode="form" 
+		    view_type="form"
+		    target="new"
+		    />
+	
+    </data>
+</openerp>

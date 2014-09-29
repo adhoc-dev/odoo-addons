@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_pairkey_tree" model="ir.ui.view">
+		<field name="name">crypto.pairkey.tree</field>
+		<field name="model">crypto.pairkey</field>
+		<field name="arch" type="xml">
+			<tree string="Pair key">
+				<field name="name"/>
+				<field name="user_id"/>
+				<field name="group_id"/>
+				<field name="state"/>
+			</tree>
+		</field>
+	</record>
+        <record id="view_pairkey_form" model="ir.ui.view">
+		<field name="name">crypto.pairkey.tree</field>
+		<field name="model">crypto.pairkey</field>
+		<field name="arch" type="xml">
+			<form string="Pair key" version="7.0">
+				<header>
+				<button name="sgn_confirm"
+				    states="draft"
+				    string="Confirm"
+				    />
+				<button name="sgn_cancel"
+				    states="draft,waiting,confirmed"
+				    string="Cancel"
+				    />
+				<button name="action_wfk_set_draft"
+				    type="object"
+				    states="cancel"
+				    string="To Draft"
+				    />
+				<field name="state" widget="statusbar"
+				    statusbar_colors='{}'
+				    />
+				</header>
+				<sheet string="Key Pair">
+					<group>
+					<field name="name"/>
+					<newline/>
+					<field name="user_id"/>
+					<field name="group_id"/>
+					<newline/>
+					<field name="pub" domain="[('user_id','=',user_id)]"/>
+					<field name="key"/>
+					<group col="3" colspan="4">
+						<button name="%(action_generate_pairkey_wizard)s" type="action" states="draft"
+							string="Generate keys" icon="terp-camera_test"/>
+					</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_pairkey_tree" model="ir.actions.act_window">
+            <field name="name">Pairkeys</field>
+            <field name="res_model">crypto.pairkey</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_pairkey_tree"/>
+        </record>
+
+	<menuitem action="action_pairkey_tree" id="menu_action_pairkey_tree" parent="menu_crypto"/>
+
+    </data>
+</openerp>

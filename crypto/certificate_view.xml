@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_certificate_tree" model="ir.ui.view">
+		<field name="name">crypto.certificate.tree</field>
+		<field name="model">crypto.certificate</field>
+		<field name="arch" type="xml">
+			<tree string="Pair key">
+				<field name="name"/>
+				<field name="status"/>
+			</tree>
+		</field>
+	</record>
+        <record id="view_certificate_form" model="ir.ui.view">
+		<field name="name">crypto.certificate.form</field>
+		<field name="model">crypto.certificate</field>
+		<field name="arch" type="xml">
+			<form string="Certificate" version="7.0">
+				<header>
+				<button name="sgn_confirm"
+				    states="draft,waiting"
+				    string="Confirm"
+				    />
+				<button name="sgn_cancel"
+				    states="draft,waiting,confirmed"
+				    string="Cancel"
+				    />
+				<button name="action_wfk_set_draft"
+				    type="object"
+				    states="cancel"
+				    string="To Draft"
+				    />
+				<field name="state" widget="statusbar"
+				    statusbar_colors='{}'
+				    />
+				</header>
+				<sheet string="Certificate">
+					<group>
+						<field name="name"/>
+						<field name="pairkey_id"/>
+						<newline/>
+						<field name="csr"/>
+						<field name="crt"/>
+						<group col="3" colspan="4">
+							<button name="%(action_generate_certificate_wizard)s" type="action" states="draft"
+								string="Generate certifate" icon="terp-camera_test"/>
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_certificate_tree" model="ir.actions.act_window">
+            <field name="name">Certificates</field>
+            <field name="res_model">crypto.certificate</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_certificate_tree"/>
+        </record>
+
+	<menuitem action="action_certificate_tree" id="menu_action_certificate_tree" parent="menu_crypto"/>
+
+    </data>
+</openerp>
