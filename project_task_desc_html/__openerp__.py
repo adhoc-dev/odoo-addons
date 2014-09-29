@@ -10,8 +10,8 @@ Project Task Description in HTML
 ================================
 Changes description type on tasks to html
     """,
-    'author':  'Sistemas ADHOC',
-    'website': 'www.sistemasadhoc.com.ar',
+    'author':  'Ingenieria ADHOC',
+    'website': 'www.ingadhoc.com.ar',
     'images': [
     ],
     'depends': [

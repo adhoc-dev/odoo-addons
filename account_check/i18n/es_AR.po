@@ -1,22 +1,22 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #	* account_check
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 8.0alpha1\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-03 19:08+0000\n"
-"PO-Revision-Date: 2014-06-03 16:12-0300\n"
-"Last-Translator: Juan Jose Scarafia <scarafia.juanjose@gmail.com>\n"
+"POT-Creation-Date: 2014-09-24 12:56+0000\n"
+"PO-Revision-Date: 2014-09-24 12:56+0000\n"
+"Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
 #. module: account_check
-#: code:addons/account_check/models/account_checkbook.py:83
+#: code:addons/account_check/models/account_checkbook.py:65
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (copia)"
@@ -77,23 +77,23 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #. module: account_check
-#: view:account.check:0
+#: view:account.check:account_check.view_account_check_form
 msgid "Cancel Debit"
 msgstr "Cancelar Debito"
 
 #. module: account_check
-#: view:account.check:0
+#: view:account.check:account_check.view_account_check_form
 msgid "Cancel Deposit"
 msgstr "Cancelar Deposito"
 
 #. module: account_check
-#: view:account.check:0
+#: view:account.check:account_check.view_account_check_form
 msgid "Cancel Rejection"
 msgstr "Cancelar Rechazo"
 
 #. module: account_check
-#: code:addons/account_check/wizard/check_action.py:52
-#: code:addons/account_check/wizard/check_action.py:56
+#: code:addons/account_check/wizard/check_action.py:34
+#: code:addons/account_check/wizard/check_action.py:38
 #, python-format
 msgid "Check %s selected error"
 msgstr "Error de selección de cheque %s"
@@ -109,7 +109,7 @@ msgid "Check Deposit"
 msgstr "Deposito de Cheque"
 
 #. module: account_check
-#: code:addons/account_check/models/account_voucher.py:113
+#: code:addons/account_check/models/account_voucher.py:97
 #, python-format
 msgid "Check Error!"
 msgstr "Error de Cheque!"
@@ -135,8 +135,8 @@ msgid "Check Rejected"
 msgstr "Cheque Rechazado"
 
 #. module: account_check
-#: code:addons/account_check/wizard/check_reject.py:102
-#: code:addons/account_check/wizard/check_reject.py:133
+#: code:addons/account_check/wizard/check_reject.py:84
+#: code:addons/account_check/wizard/check_reject.py:115
 #, python-format
 msgid "Check Rejected N: "
 msgstr "Cheque Rechazado N:"
@@ -164,15 +164,22 @@ msgid "Checkbook"
 msgstr "Chequera"
 
 #. module: account_check
-#: view:account.checkbook:0
-#: view:account.journal:0
+#: view:account.checkbook:account_check.view_account_checkbook_form
+#: view:account.checkbook:account_check.view_account_checkbook_search
+#: view:account.checkbook:account_check.view_account_checkbook_tree
+#: view:account.journal:account_check.view_account_check_journal_form
 #: field:account.journal,checkbook_ids:0
 msgid "Checkbooks"
 msgstr "Chequeras"
 
 #. module: account_check
-#: view:account.check:0
-#: view:account.voucher:0
+#: view:account.check:account_check.view_account_check_calendar
+#: view:account.check:account_check.view_account_check_create_tree
+#: view:account.check:account_check.view_account_check_form
+#: view:account.check:account_check.view_account_check_tree
+#: view:account.check:account_check.view_checks_search
+#: view:account.voucher:account_check.view_vendor_payment_check_form
+#: view:account.voucher:account_check.view_vendor_receipt_check_form
 msgid "Checks"
 msgstr "Cheques"
 
@@ -191,6 +198,22 @@ msgstr "Clearing"
 #: field:account.checkbook,company_id:0
 msgid "Company"
 msgstr "Compañía"
+
+#. module: account_check
+#: field:account.check,create_uid:0
+#: field:account.check.action,create_uid:0
+#: field:account.check.dreject,create_uid:0
+#: field:account.checkbook,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: account_check
+#: field:account.check,create_date:0
+#: field:account.check.action,create_date:0
+#: field:account.check.dreject,create_date:0
+#: field:account.checkbook,create_date:0
+msgid "Created on"
+msgstr "Created on"
 
 #. module: account_check
 #: selection:account.checkbook,issue_check_subtype:0
@@ -214,7 +237,7 @@ msgid "Debit Account Move"
 msgstr "Asiento de Débito"
 
 #. module: account_check
-#: code:addons/account_check/wizard/check_action.py:69
+#: code:addons/account_check/wizard/check_action.py:51
 #, python-format
 msgid "Debit Check Nr. "
 msgstr "Debito de Cheque Nr. "
@@ -230,7 +253,7 @@ msgid "Debit Journal"
 msgstr "Diario de Débito"
 
 #. module: account_check
-#: view:account.check:0
+#: view:account.check:account_check.view_account_check_form
 #: selection:account.check,state:0
 msgid "Debited"
 msgstr "Debitado"
@@ -251,13 +274,13 @@ msgid "Deposit Account Move"
 msgstr "Asiento de Depósito"
 
 #. module: account_check
-#: code:addons/account_check/wizard/check_action.py:61
+#: code:addons/account_check/wizard/check_action.py:43
 #, python-format
 msgid "Deposit Check Nr. "
 msgstr "Depósito de Cheque Nr. "
 
 #. module: account_check
-#: view:account.check:0
+#: view:account.check:account_check.view_account_check_form
 #: selection:account.check,state:0
 msgid "Deposited"
 msgstr "Depositado"
@@ -274,25 +297,25 @@ msgid "Draft"
 msgstr "Borrador"
 
 #. module: account_check
+#: code:addons/account_check/models/account_check.py:148
+#: code:addons/account_check/models/account_check.py:154
+#: code:addons/account_check/models/account_check.py:158
 #: code:addons/account_check/models/account_check.py:166
-#: code:addons/account_check/models/account_check.py:172
-#: code:addons/account_check/models/account_check.py:176
-#: code:addons/account_check/models/account_check.py:184
-#: code:addons/account_check/models/account_check.py:246
-#: code:addons/account_check/models/account_check.py:248
-#: code:addons/account_check/models/account_check.py:250
-#: code:addons/account_check/models/account_check.py:258
-#: code:addons/account_check/models/account_check.py:265
-#: code:addons/account_check/models/account_checkbook.py:91
-#: code:addons/account_check/models/account_checkbook.py:101
+#: code:addons/account_check/models/account_check.py:228
+#: code:addons/account_check/models/account_check.py:230
+#: code:addons/account_check/models/account_check.py:232
+#: code:addons/account_check/models/account_check.py:240
+#: code:addons/account_check/models/account_check.py:247
+#: code:addons/account_check/models/account_checkbook.py:73
+#: code:addons/account_check/models/account_checkbook.py:83
 #, python-format
 msgid "Error !"
 msgstr "Error !"
 
 #. module: account_check
-#: code:addons/account_check/models/account_voucher.py:69
-#: code:addons/account_check/models/account_voucher.py:72
-#: code:addons/account_check/models/account_voucher.py:75
+#: code:addons/account_check/models/account_voucher.py:50
+#: code:addons/account_check/models/account_voucher.py:53
+#: code:addons/account_check/models/account_voucher.py:56
 #, python-format
 msgid "Error!"
 msgstr "Error!"
@@ -324,7 +347,7 @@ msgid "From Check Number"
 msgstr "Desde Cheque Número"
 
 #. module: account_check
-#: view:account.check:0
+#: view:account.check:account_check.view_checks_search
 msgid "Group By..."
 msgstr "Agrupar Por..."
 
@@ -355,6 +378,14 @@ msgid "Holds the Chatter summary (number of messages, ...). This summary is dire
 msgstr "Mantén el resumen de Mensajería (número de mensajes, ...). Este resumen está directamente en formato html para ser insertado en vistas kanban."
 
 #. module: account_check
+#: field:account.check,id:0
+#: field:account.check.action,id:0
+#: field:account.check.dreject,id:0
+#: field:account.checkbook,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: account_check
 #: help:account.check,message_unread:0
 #: help:account.checkbook,message_unread:0
 msgid "If checked new messages require your attention."
@@ -366,7 +397,7 @@ msgid "If marked, when validating a voucher, verifies that the total amounth of 
 msgstr "Si está marcado, cuando validamos un pago, verificamos que el monto total del pago es el mismo a los cheques utilizados."
 
 #. module: account_check
-#: view:account.checkbook:0
+#: view:account.checkbook:account_check.view_account_checkbook_form
 #: selection:account.checkbook,state:0
 msgid "In Use"
 msgstr "En Uso"
@@ -401,7 +432,7 @@ msgid "Issue Checks"
 msgstr "Cheques Propios"
 
 #. module: account_check
-#: view:account.check:0
+#: view:account.check:account_check.view_checks_search
 #: field:account.check,issue_date:0
 msgid "Issue Date"
 msgstr "Fecha de Emisión"
@@ -417,7 +448,7 @@ msgid "It will be used to make the debit of the check on checks "
 msgstr "Se va a utilizar para hacer el debito del cheque en cheques"
 
 #. module: account_check
-#: view:account.check:0
+#: view:account.check:account_check.view_checks_search
 #: field:account.check,journal_id:0
 #: field:account.checkbook,journal_id:0
 #: model:ir.model,name:account_check.model_account_journal
@@ -434,6 +465,22 @@ msgstr "Diario en el cual va  a ser utilizado"
 #: field:account.checkbook,message_last_post:0
 msgid "Last Message Date"
 msgstr "Última Fecha de Mensaje"
+
+#. module: account_check
+#: field:account.check,write_uid:0
+#: field:account.check.action,write_uid:0
+#: field:account.check.dreject,write_uid:0
+#: field:account.checkbook,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: account_check
+#: field:account.check,write_date:0
+#: field:account.check.action,write_date:0
+#: field:account.check.dreject,write_date:0
+#: field:account.checkbook,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
 
 #. module: account_check
 #: field:account.check,message_ids:0
@@ -474,19 +521,20 @@ msgid "Only if this check is post dated"
 msgstr "Solo si el cheque es diferido"
 
 #. module: account_check
-#: view:account.check:0
+#: view:account.check:account_check.view_checks_search
 #: field:account.check,payment_date:0
 msgid "Payment Date"
 msgstr "Fecha de Pago"
 
 #. module: account_check
-#: code:addons/account_check/models/account_check.py:166
+#: code:addons/account_check/models/account_check.py:148
 #, python-format
 msgid "Payment Date must be greater than Issue Date"
 msgstr "La Fecha de Pago debe ser mayor a la Fecha de Emisión"
 
 #. module: account_check
-#: view:account.voucher:0
+#: view:account.voucher:account_check.view_vendor_payment_check_form
+#: view:account.voucher:account_check.view_vendor_receipt_check_form
 msgid "Payment Information"
 msgstr "Información de pago"
 
@@ -501,25 +549,25 @@ msgid "Reject Date"
 msgstr "Fecha Rechazo"
 
 #. module: account_check
-#: view:account.check:0
+#: view:account.check:account_check.view_account_check_form
 #: selection:account.check,state:0
 msgid "Rejected"
 msgstr "Rechazado"
 
 #. module: account_check
-#: code:addons/account_check/wizard/check_reject.py:140
+#: code:addons/account_check/wizard/check_reject.py:122
 #, python-format
 msgid "Rejected Check Nr. "
 msgstr "Rechazo Cheque Nr. "
 
 #. module: account_check
-#: code:addons/account_check/wizard/check_reject.py:72
+#: code:addons/account_check/wizard/check_reject.py:54
 #, python-format
 msgid "Rejected Expenses, Check N: "
 msgstr "Rechazo Cheque Nr: "
 
 #. module: account_check
-#: view:account.check:0
+#: view:account.check:account_check.view_account_check_form
 msgid "Related Documents"
 msgstr "Documentos Relacionados"
 
@@ -529,7 +577,7 @@ msgid "Source Partner"
 msgstr "Empresa Origen"
 
 #. module: account_check
-#: view:account.check:0
+#: view:account.check:account_check.view_checks_search
 #: field:account.check,state:0
 #: field:account.checkbook,state:0
 msgid "State"
@@ -552,19 +600,19 @@ msgid "Supplier Reject Debit Note"
 msgstr "Nota de Débito de Rechazo de Proveedor"
 
 #. module: account_check
-#: code:addons/account_check/models/account_check.py:184
+#: code:addons/account_check/models/account_check.py:166
 #, python-format
 msgid "The Check must be in draft state for unlink !"
 msgstr "El Cheque debe estar en borrador para poder ser borrado!"
 
 #. module: account_check
-#: code:addons/account_check/wizard/check_action.py:57
+#: code:addons/account_check/wizard/check_action.py:39
 #, python-format
 msgid "The selected checks must be in handed state."
 msgstr "Los cheques seleccionados deben estar en estadoentregados."
 
 #. module: account_check
-#: code:addons/account_check/wizard/check_action.py:53
+#: code:addons/account_check/wizard/check_action.py:35
 #, python-format
 msgid "The selected checks must be in holding state."
 msgstr "Los cheques seleccionados deben estar en estado en mano."
@@ -589,36 +637,36 @@ msgid "To Check Number"
 msgstr "Hasta Cheque Número"
 
 #. module: account_check
-#: view:account.checkbook:0
+#: view:account.checkbook:account_check.view_account_checkbook_form
 msgid "To Draft"
 msgstr "A Borrador"
 
 #. module: account_check
-#: code:addons/account_check/models/account_check.py:258
+#: code:addons/account_check/models/account_check.py:240
 #, python-format
 msgid "To cancel a debit you must first delete Debit Account Move!"
 msgstr "Para cancelar un débito primero debe borrar el Asiento de Débito!"
 
 #. module: account_check
-#: code:addons/account_check/models/account_check.py:265
+#: code:addons/account_check/models/account_check.py:247
 #, python-format
 msgid "To cancel a deposit you must first delete the Deposit Account Move!"
 msgstr "Para cancelar un depósito primero debe borrar el Asiento de Depósito!"
 
 #. module: account_check
-#: code:addons/account_check/models/account_check.py:250
+#: code:addons/account_check/models/account_check.py:232
 #, python-format
 msgid "To cancel a rejection you must first delete Expense Account Move!"
 msgstr "Para cancelar un rechazo primero debe borrar el Asiento de Gasto!"
 
 #. module: account_check
-#: code:addons/account_check/models/account_check.py:246
+#: code:addons/account_check/models/account_check.py:228
 #, python-format
 msgid "To cancel a rejection you must first delete the customer reject debit note!"
 msgstr "Para cancelar un rechazo primero debe borrar la nota de débito del cliente!"
 
 #. module: account_check
-#: code:addons/account_check/models/account_check.py:248
+#: code:addons/account_check/models/account_check.py:230
 #, python-format
 msgid "To cancel a rejection you must first delete the supplier reject debit note!"
 msgstr "Para cancelar un rechazo primero debe borrar la nota de débito del proveedor!"
@@ -629,7 +677,8 @@ msgid "Total"
 msgstr "Total"
 
 #. module: account_check
-#: view:account.check:0
+#: view:account.check:account_check.view_account_check_create_tree
+#: view:account.check:account_check.view_account_check_tree
 msgid "Total Amount"
 msgstr "Monto Total"
 
@@ -645,7 +694,7 @@ msgid "Unread Messages"
 msgstr "Mensajes No Leídos"
 
 #. module: account_check
-#: view:account.checkbook:0
+#: view:account.checkbook:account_check.view_account_checkbook_form
 #: selection:account.checkbook,state:0
 msgid "Used"
 msgstr "Usado"
@@ -668,13 +717,13 @@ msgid "Vat"
 msgstr "CUIT"
 
 #. module: account_check
-#: code:addons/account_check/models/account_check.py:176
+#: code:addons/account_check/models/account_check.py:158
 #, python-format
 msgid "Vat number must be 11 numbers !"
 msgstr "El número de cuit debe ser de 11 dígitos!"
 
 #. module: account_check
-#: code:addons/account_check/models/account_check.py:172
+#: code:addons/account_check/models/account_check.py:154
 #, python-format
 msgid "Vat number must be not null !"
 msgstr "El número de cuit no puede ser nulo!"
@@ -685,50 +734,40 @@ msgid "Voucher"
 msgstr "Voucher"
 
 #. module: account_check
-#: code:addons/account_check/models/account_checkbook.py:91
+#: code:addons/account_check/models/account_checkbook.py:73
 #, python-format
 msgid "You can drop the checkbook(s) only in draft state !"
 msgstr "Solo puede borrar Chequera(s) en estado borrador!"
 
 #. module: account_check
-#: code:addons/account_check/models/account_voucher.py:75
+#: code:addons/account_check/models/account_voucher.py:56
 #, python-format
 msgid "You can not cancel a voucher thas has delivered checks in states other than \"handed\". First try to change check state."
 msgstr "No puede cancelar un voucher que tiene cheques entregados en estado distinto a  \"entregado\". Primero intente cambiar el estado del cheque."
 
 #. module: account_check
-#: code:addons/account_check/models/account_voucher.py:72
+#: code:addons/account_check/models/account_voucher.py:53
 #, python-format
 msgid "You can not cancel a voucher thas has issue checks in states other than \"draft or \"handed\". First try to change check state."
 msgstr "No puede cancelar un voucher que tiene cheques propios en estado distinto a  \"borrador\" o  \"entregado\". Primero intente cambiar el estado del cheque."
 
 #. module: account_check
-#: code:addons/account_check/models/account_voucher.py:69
+#: code:addons/account_check/models/account_voucher.py:50
 #, python-format
 msgid "You can not cancel a voucher thas has received third checks in states other than \"draft or \"holding\". First try to change check state."
 msgstr "No puede cancelar un voucher que tiene cheques terceros recibidos en estado distinto a  \"En Mano\" o  \"Borrador\". Primero intente cambiar el estado del cheque."
 
 #. module: account_check
-#: code:addons/account_check/models/account_voucher.py:114
+#: code:addons/account_check/models/account_voucher.py:98
 #, python-format
 msgid "You can not change the journal if there are checks"
 msgstr "No puede cambiar el diario si existen cheques"
 
 #. module: account_check
-#: code:addons/account_check/models/account_checkbook.py:101
+#: code:addons/account_check/models/account_checkbook.py:83
 #, python-format
 msgid "You cant change the checkbook´s state, there is one active for this Bank Account!"
 msgstr "No puede cambiar el estado de la chequera, hay una activa para esta cuenta!"
-
-#. module: account_check
-#: model:ir.model,name:account_check.model_account_check_action
-msgid "account.check.action"
-msgstr "account.check.action"
-
-#. module: account_check
-#: model:ir.model,name:account_check.model_account_check_dreject
-msgid "account.check.dreject"
-msgstr "account.check.dreject"
 
 #. module: account_check
 #: help:account.checkbook,padding:0
@@ -736,7 +775,8 @@ msgid "automatically adds some '0' on the left of the 'Number' to get the requir
 msgstr "automáticamente agrega algunos '0' a la izquierda del 'Número' para tener un formato adecuado."
 
 #. module: account_check
-#: view:account.voucher:0
+#: view:account.voucher:account_check.view_vendor_payment_check_form
+#: view:account.voucher:account_check.view_vendor_receipt_check_form
 msgid "{'invisible':[('validate_only_checks','=', True)]}"
 msgstr "{'invisible':[('validate_only_checks','=', True)]}"
 

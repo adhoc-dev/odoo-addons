@@ -20,6 +20,9 @@ sales.
         'purchase',
     ],
     'data': [
+    'view/account_purchase_contract_view.xml',
+    'view/account_purchase_contract_menu.xml',
+    'account_analytic_analysis_cron.xml'
     ],
     'demo': [
     ],
