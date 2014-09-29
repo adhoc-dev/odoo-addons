@@ -249,10 +249,10 @@
                                     class="oe_inline" />
                                 <label for="module_base_state_active" />
                             </div>                    
-                            <div name='module_partner_tree_fields'>
-                                <field name="module_partner_tree_fields"
+                            <div name='module_partner_views_fields'>
+                                <field name="module_partner_views_fields"
                                     class="oe_inline" />
-                                <label for="module_partner_tree_fields" />
+                                <label for="module_partner_views_fields" />
                             </div>                         
                             <div name='module_partner_search_by_ref'>
                                 <field name="module_partner_search_by_ref"
