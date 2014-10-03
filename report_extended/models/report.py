@@ -74,8 +74,30 @@ class ir_actions_report(models.Model):
         if isinstance(record, list):
             record = record[0]
         domains = self.get_domains(cr, model, record, context=context)
+
+
+        # TODO habria que mejorar esto porque se podria recibir un listado de
+        # ids con distintas cias
+        active_model_obj = self.pool.get(model)
+        active_object = active_model_obj.browse(
+            cr, uid, model_ids, context=context)
+        if hasattr(active_object, 'company_id') and active_object[0].company_id:
+            company = active_object.company_id
+        else:
+            company = self.pool['res.users'].browse(
+                cr, uid, uid, context=context).company_id
         for domain in domains:
             domain.append(('model', '=', model))
+
+            # Search for company specific
+            domain_with_company_ = domain + [('company_id', '=', company.id)]
+            report_ids = self.search(
+                cr, uid, domain_with_company_,
+                order='sequence', context=context)
+            if report_ids:
+                break
+
+            # If not company specific, then for any company (allowed to the user)
             report_ids = self.search(
                 cr, uid, domain, order='sequence', context=context)
             if report_ids:

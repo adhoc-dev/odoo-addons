@@ -41,6 +41,7 @@ The parser proved a serie of fields an functions to use in the odt:
         'views/company_view.xml',
         'views/report_view.xml',
         'security/security.xml',
+        'security/ir.model.access.csv', #TODO borrar este parche de reglas, es por un error que me estaba dando al querer imprimir ocn users distintos de admin
     ],
     'demo': [
     ],

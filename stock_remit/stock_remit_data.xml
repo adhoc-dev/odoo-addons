@@ -16,5 +16,8 @@
             <field name="company_id" eval="False"/>
         </record>
 
+        <record id="stock.picking_type_out" model="stock.picking.type">
+            <field name="remit_sequence_id" ref="seq_stock_remit"/>
+        </record>
     </data>
 </openerp>
