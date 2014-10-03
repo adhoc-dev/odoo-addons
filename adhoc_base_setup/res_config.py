@@ -56,6 +56,8 @@ class adhoc_base_configuration(osv.osv_memory):
             help = """Installs the multi_store module. The main purpose of this module is to restrict journals access for users on different stores."""),
         'module_account_journal_active': fields.boolean('Allow journals activation/deactivation (adds field "active")',
             help = """Installs the account_journal_active module."""),
+        'module_account_invoice_company_search': fields.boolean('Add to Invoice a filter by company and group by Company',
+            help = """Installs the account_invoice_company_search module."""),
         
         # Sale / Purchase modules
         'module_purchase_discounts': fields.boolean('Mange disccounts on purchases',
