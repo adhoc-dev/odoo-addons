@@ -13,8 +13,8 @@ Location Security
 Users can be assigned many Stock Journals and then they can be
 restricted to see only this Journals.
     """,
-    'author':  'Sistemas ADHOC',
-    'website': 'www.sistemasadhoc.com.ar',
+    'author':  'Ingenieria ADHOC',
+    'website': 'www.ingadhoc.com',
     'images': [
     ],
     'depends': [
