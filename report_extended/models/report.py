@@ -90,9 +90,9 @@ class ir_actions_report(models.Model):
             domain.append(('model', '=', model))
 
             # Search for company specific
-            domain_with_company_ = domain + [('company_id', '=', company.id)]
+            domain_with_company = domain + [('company_id', '=', company.id)]
             report_ids = self.search(
-                cr, uid, domain_with_company_,
+                cr, uid, domain_with_company,
                 order='sequence', context=context)
             if report_ids:
                 break
