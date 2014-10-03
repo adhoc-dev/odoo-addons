@@ -8,6 +8,7 @@ from openerp.tools.translate import _
 class account_voucher_receipt (osv.osv):
        
     _name = "account.voucher.receipt" 
+    _inherit = ['mail.thread']
     _description = 'Account Voucher Receipt'
 
     def _get_receipt_data(self, cr, uid, ids, name, args, context=None):
