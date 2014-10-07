@@ -1,0 +1,272 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* report_extended_stock
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-10-07 13:40+0000\n"
+"PO-Revision-Date: 2014-10-07 11:24-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: report_extended_stock
+#: model:email.template,body_html:report_extended_stock.email_template_report_stock
+msgid ""
+"\n"
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-"
+"serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"    <p>Hello ${object.partner_id.name},</p>\n"
+"    \n"
+"    <p>Here is your delivery order from ${object.company_id.name} </p>\n"
+"\n"
+"    \n"
+"    <p>If you have any question, do not hesitate to contact us.</p>\n"
+"    <p>Thank you for choosing ${object.company_id.name or 'us'}!</p>\n"
+"    <br/>\n"
+"    <br/>\n"
+"    <div style=\"width: 375px; margin: 0px; padding: 0px; background-color: "
+"#8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; "
+"background-repeat: repeat no-repeat;\">\n"
+"        <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; color: "
+"#DDD;\">\n"
+"            <strong style=\"text-transform:uppercase;\">${object.company_id."
+"name}</strong></h3>\n"
+"    </div>\n"
+"    <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-height: "
+"16px; background-color: #F2F2F2;\">\n"
+"        <span style=\"color: #222; margin-bottom: 5px; display: block; \">\n"
+"        % if object.company_id.street:\n"
+"            ${object.company_id.street}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.street2:\n"
+"            ${object.company_id.street2}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.city or object.company_id.zip:\n"
+"            ${object.company_id.zip} ${object.company_id.city}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.country_id:\n"
+"            ${object.company_id.state_id and ('%s, ' % object.company_id."
+"state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>\n"
+"        % endif\n"
+"        </span>\n"
+"        % if object.company_id.phone:\n"
+"            <div style=\"margin-top: 0px; margin-right: 0px; margin-bottom: "
+"0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: "
+"0px; padding-left: 0px; \">\n"
+"                Phone:&nbsp; ${object.company_id.phone}\n"
+"            </div>\n"
+"        % endif\n"
+"        % if object.company_id.website:\n"
+"            <div>\n"
+"                Web :&nbsp;<a href=\"${object.company_id.website}\">${object."
+"company_id.website}</a>\n"
+"            </div>\n"
+"        %endif\n"
+"        <p></p>\n"
+"    </div>\n"
+"</div>\n"
+"            "
+msgstr ""
+"\n"
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-"
+"serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"    <p>Hola ${object.partner_id.name},</p>\n"
+"    \n"
+"    <p>Aquí está su pedido de entrega de ${object.company_id.name} </p>\n"
+"\n"
+"    \n"
+"    <p>Si usted tiene alguna pregunta, no dude en ponerse en contacto con "
+"nosotros.</p>\n"
+"    <p>Gracias por elegir ${object.company_id.name or 'us'}!</p>\n"
+"    <br/>\n"
+"    <br/>\n"
+"    <div style=\"width: 375px; margin: 0px; padding: 0px; background-color: "
+"#8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; "
+"background-repeat: repeat no-repeat;\">\n"
+"        <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; color: "
+"#DDD;\">\n"
+"            <strong style=\"text-transform:uppercase;\">${object.company_id."
+"name}</strong></h3>\n"
+"    </div>\n"
+"    <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-height: "
+"16px; background-color: #F2F2F2;\">\n"
+"        <span style=\"color: #222; margin-bottom: 5px; display: block; \">\n"
+"        % if object.company_id.street:\n"
+"            ${object.company_id.street}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.street2:\n"
+"            ${object.company_id.street2}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.city or object.company_id.zip:\n"
+"            ${object.company_id.zip} ${object.company_id.city}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.country_id:\n"
+"            ${object.company_id.state_id and ('%s, ' % object.company_id."
+"state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>\n"
+"        % endif\n"
+"        </span>\n"
+"        % if object.company_id.phone:\n"
+"            <div style=\"margin-top: 0px; margin-right: 0px; margin-bottom: "
+"0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: "
+"0px; padding-left: 0px; \">\n"
+"                Telefono:&nbsp; ${object.company_id.phone}\n"
+"            </div>\n"
+"        % endif\n"
+"        % if object.company_id.website:\n"
+"            <div>\n"
+"                Web :&nbsp;<a href=\"${object.company_id.website}\">${object."
+"company_id.website}</a>\n"
+"            </div>\n"
+"        %endif\n"
+"        <p></p>\n"
+"    </div>\n"
+"</div>\n"
+"            "
+
+#. module: report_extended_stock
+#: model:email.template,report_name:report_extended_stock.email_template_report_stock
+msgid ""
+"${(object.name or '').replace('/','_')}_${object.state == 'draft' and "
+"'draft' or ''}"
+msgstr ""
+"${(object.name or '').replace('/','_')}_${object.state == 'draft' and "
+"'draft' or ''}"
+
+#. module: report_extended_stock
+#: model:email.template,subject:report_extended_stock.email_template_report_stock
+msgid ""
+"${object.company_id.name|safe} ${object.state in ('draft', 'sent') and "
+"'Quotation' or 'Order'} (Ref ${object.name or 'n/a' })"
+msgstr ""
+"${object.company_id.name|safe} ${object.state in ('draft', 'sent') and "
+"'Quotation' or 'Order'} (Ref ${object.name or 'n/a' })"
+
+#. module: report_extended_stock
+#: help:ir.actions.report.xml,stock_picking_dont_split_option:0
+msgid "Add a 'Don't Split' option on picking that should be splitted."
+msgstr "Add a 'Don't Split' option on picking that should be splitted."
+
+#. module: report_extended_stock
+#: field:stock.transfer_details,allow_dont_split:0
+msgid "Allow Dont Split"
+msgstr "Permitir No Dividir"
+
+#. module: report_extended_stock
+#: field:stock.transfer_details,dont_split:0
+msgid "Don't Split"
+msgstr "Don't Split"
+
+#. module: report_extended_stock
+#: field:ir.actions.report.xml,stock_picking_dont_split_option:0
+msgid "Dont Split Option"
+msgstr "Dont Split Option"
+
+#. module: report_extended_stock
+#: field:ir.actions.report.xml,stock_picking_lines_to_split:0
+msgid "Lines to split"
+msgstr "Líneas de dividir"
+
+#. module: report_extended_stock
+#: field:stock.transfer_details,max_lines:0
+msgid "Maximum number of lines"
+msgstr "Número máximo de líneas"
+
+#. module: report_extended_stock
+#: help:stock.transfer_details,max_lines:0
+msgid "Maximum number of lines allowed by the report"
+msgstr "Número máximo de líneas permitido por el informe"
+
+#. module: report_extended_stock
+#: field:stock.picking,observations:0
+msgid "Observations"
+msgstr "Observaciones"
+
+#. module: report_extended_stock
+#: view:ir.actions.report.xml:report_extended_stock.act_report_extended_xml_view
+msgid "Picking Information"
+msgstr "Picking Information"
+
+#. module: report_extended_stock
+#: selection:ir.actions.report.xml,stock_report_type:0
+#: model:ir.model,name:report_extended_stock.model_stock_picking
+msgid "Picking List"
+msgstr "Lista de Remitos"
+
+#. module: report_extended_stock
+#: field:ir.actions.report.xml,stock_picking_type_ids:0
+msgid "Picking Types"
+msgstr "Picking Types"
+
+#. module: report_extended_stock
+#: model:ir.model,name:report_extended_stock.model_stock_transfer_details
+msgid "Picking wizard"
+msgstr "Picking wizard"
+
+#. module: report_extended_stock
+#: view:stock.picking:report_extended_stock.view_picking_form
+msgid "Print Remit"
+msgstr "Imprimir Remito"
+
+#. module: report_extended_stock
+#: selection:ir.actions.report.xml,stock_report_type:0
+msgid "Remit"
+msgstr "Remito"
+
+#. module: report_extended_stock
+#: field:stock.transfer_details,remove_excess_lines:0
+msgid "Remove Excess Lines"
+msgstr "Eliminar el exceso de líneas"
+
+#. module: report_extended_stock
+#: view:stock.picking:report_extended_stock.view_picking_form
+msgid "Send by Email"
+msgstr "Enviar por Mail"
+
+#. module: report_extended_stock
+#: field:ir.actions.report.xml,stock_picking_split_picking_type_in:0
+msgid "Split In Picking"
+msgstr "Split In Picking"
+
+#. module: report_extended_stock
+#: field:ir.actions.report.xml,stock_picking_split_picking_type_internal:0
+msgid "Split Internal Picking"
+msgstr "Split Internal Picking"
+
+#. module: report_extended_stock
+#: field:ir.actions.report.xml,stock_picking_split_picking_type_out:0
+msgid "Split Out Picking"
+msgstr "Split Out Picking"
+
+#. module: report_extended_stock
+#: help:ir.actions.report.xml,stock_picking_split_picking_type_in:0
+msgid "Split picking if type operation is 'In'."
+msgstr "Split picking if type operation is 'In'."
+
+#. module: report_extended_stock
+#: help:ir.actions.report.xml,stock_picking_split_picking_type_internal:0
+msgid "Split picking if type operation is 'Internal'."
+msgstr "Split picking if type operation is 'Internal'."
+
+#. module: report_extended_stock
+#: help:ir.actions.report.xml,stock_picking_split_picking_type_out:0
+msgid "Split picking if type operation is 'Out'."
+msgstr "Split picking if type operation is 'Out'."
+
+#. module: report_extended_stock
+#: field:ir.actions.report.xml,stock_report_type:0
+msgid "Stock Report Type"
+msgstr "Informe Tipo de Stock"
+
+#. module: report_extended_stock
+#: view:stock.picking:report_extended_stock.view_picking_form
+msgid "{'stock_report_type':'picking_list'}"
+msgstr "{'stock_report_type':'picking_list'}"
