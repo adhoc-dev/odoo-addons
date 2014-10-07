@@ -21,6 +21,7 @@ Report Configurator - Account
     'data': [
         'views/report_view.xml',
         'views/account_voucher_receipt_view.xml',
+        'views/account_action_data.xml',
     ],
     'demo': [
     ],

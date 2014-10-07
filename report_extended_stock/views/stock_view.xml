@@ -11,6 +11,8 @@
                 </button>
                 <button name="do_print_picking" position="after">
                     <button name="do_print_picking" string="Print Remit" groups="stock.group_stock_user" type="object" attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}" context="{'stock_report_type':'remit'}"/>
+                
+                <button name="receipt_send_rfq" string="Send by Email" groups="stock.group_stock_user" type="object" attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}" context="{'stock_report_type':'remit'}"/>
                 </button>
                 <field name="move_lines" position="after">
                     <label for="observations"/>

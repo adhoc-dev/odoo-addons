@@ -7,6 +7,7 @@
             <field name="arch" type="xml">
                 <button position="before">
                     <button name="receipt_print" class="oe_highlight" string="Print Receipt" type="object" states="posted"/>
+                    <button name="receipt_send_rfq" string="Send by Email" type="object" states="posted" groups="base.group_user" context="{'send_rfq':True}"/>
                 </button>                
             </field>
         </record>
