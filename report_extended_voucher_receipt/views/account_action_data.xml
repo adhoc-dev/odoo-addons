@@ -14,7 +14,6 @@
             <field name="partner_to">${object.supplier_id.id}</field>
             <field name="model_id" ref="account_voucher_receipt.model_account_voucher_receipt"/>
             <field name="auto_delete" eval="True"/>
-            <field name="report_template" ref="l10n_ar_aeroo_receipt.action_aeroo_report_ar_receipt"/>
             <field name="report_name">${(object.name or '').replace('/','_')}_${object.state == 'draft' and 'draft' or ''}</field>
             <field name="lang">${object.partner_id.lang}</field>
             <field name="body_html"><![CDATA[
