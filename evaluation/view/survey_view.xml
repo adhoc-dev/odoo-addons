@@ -26,9 +26,9 @@
                 <!-- <group position="replace"> -->
                 <field name="type" position="replace">
                     <group>
-                        <field name="objective_id" domain="[('survey_id','=',survey_id)]" widget="selection"/>
-                        <field name="level_id" domain="[('survey_id','=',survey_id)]" widget="selection"/>
-                        <field name="content_id" domain="[('survey_id','=',survey_id)]" widget="selection"/>                        
+                        <field name="objective_id" widget="selection"/>
+                        <field name="level_id" widget="selection"/>
+                        <field name="content_id" widget="selection"/>
                         <field name="type" widget="radio" />
                     </group>
                     <group>

@@ -73,9 +73,9 @@ class survey_question(osv.Model):
     max_score = new_fields.Integer(compute='_get_max_score', string='Max Score', help='Max score an answer of this question can get', store=True)
 
     _columns = {
-        'objective_id': fields.many2one('survey.objective', string='Objective', ),
-        'level_id': fields.many2one('survey.level', string='Level', ),
-        'content_id': fields.many2one('survey.content', string='Content', ),
+        'objective_id': fields.many2one('survey.question.objective', string='Objective', ),
+        'level_id': fields.many2one('survey.question.level', string='Level', ),
+        'content_id': fields.many2one('survey.question.content', string='Content', ),
         # 'max_score': fields.function(_get_max_score, type='integer', string='Max Score', help='Max score an answer of this question can get',),
         'score_calc_method': fields.selection([('direct_sum','Direct Sum'),('ranges', 'Ranges')], 
                 string='Score Method', 
@@ -272,11 +272,19 @@ class survey_level(osv.Model):
         'level_id': fields.many2one('survey.question.level', string="Level", required=True, translate=True),
         'score': fields.function(_get_score, type='integer', string='Score', readonly=True,),
         'survey_id': fields.many2one('survey.survey', string='Survey', required=True,),
-        'question_ids': fields.one2many('survey.question', 'level_id', string='Questions',),
     }
-    
-    _defaults = {
-    }
+
+    @api.one
+    @api.depends('survey_id.page_ids.question_ids.level_id')
+    def get_question_ids(self):
+        self.question_ids = self.env['survey.question'].search(
+            [('page_id.survey_id', '=', self.survey_id.id),
+             ('level_id', '=', self.level_id.id)])
+
+    question_ids = new_fields.One2many(
+        'survey.question',
+        compute='get_question_ids',
+        string='Questions',)
 
 class survey_question_content(osv.Model):
     
@@ -317,11 +325,20 @@ class survey_content(osv.Model):
         'content_id': fields.many2one('survey.question.content', string="Content", required=True, translate=True),
         'score': fields.function(_get_score, type='integer', string='Score', readonly=True,),
         'survey_id': fields.many2one('survey.survey', string='Survey', required=True,),
-        'question_ids': fields.one2many('survey.question', 'content_id', string='Questions',),
     }
-    
-    _defaults = {
-    }
+
+    @api.one
+    @api.depends('survey_id.page_ids.question_ids.content_id')
+    def get_question_ids(self):
+        self.question_ids = self.env['survey.question'].search(
+            [('page_id.survey_id', '=', self.survey_id.id),
+             ('content_id', '=', self.content_id.id)])
+
+    question_ids = new_fields.One2many(
+        'survey.question',
+        compute='get_question_ids',
+        string='Questions',)
+
 
 class survey_question_objective(osv.Model):
     
@@ -361,12 +378,20 @@ class survey_objective(osv.Model):
     _columns = {
         'objective_id': fields.many2one('survey.question.objective', string="Objective", required=True, translate=True),
         'score': fields.function(_get_score, type='integer', string='Score', readonly=True,),
-        'survey_id': fields.many2one('survey.survey', string='Survey', required=True,),
-        'question_ids': fields.one2many('survey.question', 'objective_id', string='Questions',),
+        'survey_id': fields.many2one('survey.survey', string='Survey', required=True, ondelete='cascade'),
     }
-    
-    _defaults = {
-    }
+
+    @api.one
+    @api.depends('survey_id.page_ids.question_ids.objective_id')
+    def get_question_ids(self):
+        self.question_ids = self.env['survey.question'].search(
+            [('page_id.survey_id', '=', self.survey_id.id),
+             ('objective_id', '=', self.objective_id.id)])
+
+    question_ids = new_fields.One2many(
+        'survey.question',
+        compute='get_question_ids',
+        string='Questions',)
 
 class survey_survey(osv.Model):
 
@@ -420,11 +445,11 @@ class survey_survey(osv.Model):
         #         \n-Manually Evaluated: someone will need to correct the evaluation and complete with the score.\
         #         \n-Only Score: Evaluations without questions and that should be manually evaluated. For example, you can make evaluations without questions just to enter results from evaluations make outside this system."),
         'question_objective_ids': fields.one2many('survey.objective', 'survey_id',
-            string='Questions Objectives',),
+            string='Questions Objectives', copy=True),
         'question_level_ids': fields.one2many('survey.level', 'survey_id',
-            string='Questions Levels',),
+            string='Questions Levels', copy=True),
         'question_content_ids': fields.one2many('survey.content', 'survey_id',
-            string='Questions Contents',),
+            string='Questions Contents', copy=True),
         'obj_questions_score': fields.function(_get_scores, type='integer', string='Objetives Score', help='Score for questions with objetive defined', multi='_get_scores', ),
         'non_obj_questions_score': fields.function(_get_scores, type='integer', string='Other Questions Score', help='Score for questions without objetive defined', multi='_get_scores', ),
         'content_questions_score': fields.function(_get_scores, type='integer', string='Contents Score', help='Score for questions with content defined', multi='_get_scores', ),
