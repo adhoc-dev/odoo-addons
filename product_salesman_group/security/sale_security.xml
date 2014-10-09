@@ -1,66 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 <data noupdate="1">    
-
     <!-- Multi - Salesmen product assignation rules -->
     <record id="product_product_salesman_group_rule" model="ir.rule">
         <field name="name">Salesman Group Product</field>
-        <field ref="product.model_product_product" name="model_id"/>
+        <field ref="product.model_product_template" name="model_id"/>
         <!-- <field ref="product.model_product_product" name="model_id"/> -->
         <field name="domain_force">['|',('salesman_group_ids','child_of',[user.salesman_group_id.id]),('salesman_group_ids','=',False)]</field>
         <field name="groups" eval="[(4, ref('base.group_sale_salesman'))]"/>
     </record>
     <record id="product_product_all_group_rule" model="ir.rule">
         <field name="name">All Products</field>
-        <field ref="product.model_product_product" name="model_id"/>
+        <field ref="product.model_product_template" name="model_id"/>
         <!-- <field ref="product.model_product_product" name="model_id"/> -->
         <field name="domain_force">[(1,'=',1)]</field>
         <field name="groups" eval="[(4, ref('base.group_sale_salesman_all_leads'))]"/>
     </record>
-
-<!-- 
-    <record id="sale_order_line_personal_rule" model="ir.rule">
-        <field name="name">Personal Order Lines</field>
-        <field ref="model_sale_order_line" name="model_id"/>
-        <field name="domain_force">['|',('order_id.user_id','=',user.id),('order_id.user_id','=',False)]</field>
-        <field name="groups" eval="[(4, ref('base.group_sale_salesman'))]"/>
-    </record>
-
-    <record id="sale_order_line_see_all" model="ir.rule">
-        <field name="name">All Orders Lines</field>
-        <field ref="model_sale_order_line" name="model_id"/>
-        <field name="domain_force">[(1,'=',1)]</field>
-        <field name="groups" eval="[(4, ref('base.group_sale_salesman_all_leads'))]"/>
-    </record> -->
-
-
-<!--     <record id="sale_order_personal_rule" model="ir.rule">
-        <field name="name">Personal Orders</field>
-        <field ref="model_sale_order" name="model_id"/>
-        <field name="domain_force">['|',('user_id','=',user.id),('user_id','=',False)]</field>
-        <field name="groups" eval="[(4, ref('base.group_sale_salesman'))]"/>
-    </record>
-    <record id="sale_order_see_all" model="ir.rule">
-        <field name="name">All Orders</field>
-        <field ref="model_sale_order" name="model_id"/>
-        <field name="domain_force">[(1,'=',1)]</field>
-        <field name="groups" eval="[(4, ref('base.group_sale_salesman_all_leads'))]"/>
-    </record>
-
-
-    <record id="sale_order_line_personal_rule" model="ir.rule">
-        <field name="name">Personal Order Lines</field>
-        <field ref="model_sale_order_line" name="model_id"/>
-        <field name="domain_force">['|',('order_id.user_id','=',user.id),('order_id.user_id','=',False)]</field>
-        <field name="groups" eval="[(4, ref('base.group_sale_salesman'))]"/>
-    </record>
-
-    <record id="sale_order_line_see_all" model="ir.rule">
-        <field name="name">All Orders Lines</field>
-        <field ref="model_sale_order_line" name="model_id"/>
-        <field name="domain_force">[(1,'=',1)]</field>
-        <field name="groups" eval="[(4, ref('base.group_sale_salesman_all_leads'))]"/>
-    </record>
- -->
 </data>
 </openerp>
