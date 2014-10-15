@@ -5,7 +5,7 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//page[@string='Other Info']//field[@name='move_id']" position="after">
+                <xpath expr="//page[@string='Other Info']//field[@name='date_due']" position="after">
                     <field name="splitter_invoice_id"/>
                     <field name="splitted_invoice_id"/>
                 </xpath>

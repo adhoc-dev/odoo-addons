@@ -147,7 +147,9 @@ class ir_actions_report(models.Model):
         '''
         id = super(ir_actions_report, self).create(
             cr, uid, vals, context=context)
-        self.update_lines_that_apply(cr, uid, [id], context=context)
+        no_key_lines = context.get('no_key_lines', False)
+        if not no_key_lines:
+            self.update_lines_that_apply(cr, uid, [id], context=context)
         return id
 
 

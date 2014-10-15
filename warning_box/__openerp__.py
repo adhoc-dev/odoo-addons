@@ -5,7 +5,7 @@
     'category': 'Tools',
     'description': """
         [ENG] Add Warning box.
-        usage return self.pool.get('warning_box').info(cr, uid, title='The title', message='the message')   
+        usage return self.pool.get('warning_box').info(cr, uid, title='The title', message='the message')
     """,
     'author': 'Ingenieria ADHOC',
     'website': 'www.ingadhoc.com',
