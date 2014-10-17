@@ -10,7 +10,9 @@
                     <field name="date"/>
                     <field name="name"/>
                     <field name="receiptbook_id"/>
-                    <field name="partner_id"/>
+                    <field name="partner_id" invisible="1"/>
+                    <field name="supplier_id" invisible="context.get('type')!='payment'"/>
+                    <field name="customer_id" invisible="context.get('type')!='receipt'"/>
                     <field name="type" invisible="1"/>
                     <field name="state"/>
                 </tree> 
@@ -99,7 +101,9 @@
             <field name="arch" type="xml">
                 <search string="Receipts">               
                     <field name="name"/>
-                    <field name="partner_id"/>
+                    <!-- <field name="partner_id"/> -->
+                    <field name="supplier_id" invisible="context.get('type')!='payment'"/>
+                    <field name="customer_id" invisible="context.get('type')!='receipt'"/>
                 </search>
             </field>
         </record>   
