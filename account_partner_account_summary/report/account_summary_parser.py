@@ -13,6 +13,8 @@ class Parser(rml_parse):
         # user"
         uid = 1
 
+        print 'context', context
+        print 'name', name
         if not context:
             return False
         active_model = context.get('active_model', False)

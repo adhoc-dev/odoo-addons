@@ -1,63 +1,26 @@
-from openerp import netsvc 
+from openerp import api, fields, models
 
-from openerp.osv import fields, osv
-from openerp import pooler
 
-class account_summary_wizard(osv.osv):
+class account_summary_wizard(models.TransientModel):
     _name = 'account_summary_wizard'
-    _description = 'account_summary_wizard'
-    
-    _columns = {
-        'from_date': fields.date('From'),
-        'to_date': fields.date('To'),
-        'show_invoice_detail': fields.boolean('Show Invoice Detail'),
-        'show_receipt_detail': fields.boolean('Show Receipt Detail'),
-        'result_selection': fields.selection([('customer','Receivable Accounts'),
-                                              ('supplier','Payable Accounts'),
-                                              ('customer_supplier','Receivable and Payable Accounts')],
-                                              "Account Type's", required=True),
-    }
-    
-    _defaults = {
-        'result_selection': 'customer_supplier',
-    }
-    
-    def account_summary(self, cr, uid, ids, context=None):
-        wizard = self.browse(cr, uid, ids, context=context)[0]
-        
-        from_date = False
-        to_date = False
-        show_invoice_detail = False
-        show_receipt_detail = False
-        result_selection = False
-        
-        if wizard.from_date:
-            from_date = wizard.from_date
-        if wizard.to_date:
-            to_date = wizard.to_date
-        if wizard.show_invoice_detail:
-            show_invoice_detail = wizard.show_invoice_detail
-        if wizard.show_receipt_detail:
-            show_receipt_detail = wizard.show_receipt_detail
-        if wizard.result_selection:
-            result_selection = wizard.result_selection
-        
-        if not context:
-            context = {}
-        context['from_date'] = from_date
-        context['to_date'] = to_date
-        context['show_invoice_detail'] = show_invoice_detail
-        context['show_receipt_detail'] = show_receipt_detail
-        context['result_selection'] = result_selection
-        active_ids = context.get('active_ids',False)
+    _description = 'Partner Account Summary Wizard'
 
-        # if no active_ids then called from menuitem
-        if not active_ids:
-            partner_id = self.pool['res.users'].browse(cr, uid, uid, context=context).partner_id.commercial_partner_id.id
-            active_ids = [partner_id]
-            context['active_ids'] = active_ids
-            context['active_id'] = partner_id
-            context['active_model'] = 'res.partner'
-        return {'type' : 'ir.actions.report.xml',
-                         'context' : context,
-                         'report_name': 'report_account_summary'}
+    from_date = fields.Date('From')
+    to_date = fields.Date('To')
+    show_invoice_detail = fields.Boolean('Show Invoice Detail')
+    show_receipt_detail = fields.Boolean('Show Receipt Detail')
+    result_selection = fields.Selection(
+        [('customer', 'Receivable Accounts'),
+        ('supplier', 'Payable Accounts'),
+        ('customer_supplier', 'Receivable and Payable Accounts')],
+        "Account Type's", required=True, default='customer_supplier')
+
+    @api.multi
+    def account_summary(self):
+        return self.env['report'].with_context(
+            from_date=self.from_date,
+            to_date=self.to_date,
+            show_invoice_detail=self.show_invoice_detail,
+            show_receipt_detail=self.show_receipt_detail,
+            result_selection=self.result_selection).get_action(
+            self, 'report_account_summary')        

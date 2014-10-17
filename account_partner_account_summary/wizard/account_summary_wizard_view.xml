@@ -6,7 +6,7 @@
             <field name="model">account_summary_wizard</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Account Summary" version="7.0">
+                <form string="Account Summary">
                     <group>
                         <group>
                             <field name="from_date"/>
