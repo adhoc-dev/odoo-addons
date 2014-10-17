@@ -43,6 +43,7 @@ class account_analytic_account(osv.osv):
             invoice = {
                 'account_id': contract.partner_id.property_account_payable.id,
                 'type': 'in_invoice',
+                'reference': contract.name,
                 'partner_id': contract.partner_id.id,
                 'currency_id': currency_id,
                 'journal_id': len(journal_ids) and journal_ids[0] or False,
@@ -51,7 +52,6 @@ class account_analytic_account(osv.osv):
                 'fiscal_position': fpos and fpos.id,
                 'company_id': contract.company_id.id or False,
             }
-            print invoice
             return invoice
         else:
             return super(account_analytic_account, self)._prepare_invoice_data(cr, uid, contract, context=context)
@@ -60,7 +60,6 @@ class account_analytic_account(osv.osv):
 
         if not context:
             context = {}
-        company_id = context.get('company_id', False)
         if contract.type == 'purchase_contract':
             fpos_obj = self.pool.get('account.fiscal.position')
             fiscal_position = None
