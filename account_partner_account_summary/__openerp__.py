@@ -9,6 +9,7 @@
     'depends': [
         'sale',
         'report_aeroo',
+        'l10n_ar_invoice',
         ],
     'data': [
         'wizard/account_summary_wizard_view.xml',
