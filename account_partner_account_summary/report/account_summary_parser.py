@@ -84,24 +84,32 @@ class Parser(rml_parse):
         that correspond with the field 'result_selection' of the wizard. If it does not, then
         the move should no be printed.
         '''
+        res = False
         for line in move.line_id:
             if self.result_selection == 'customer':
                 if line.account_id.type == 'receivable':
-                    return True
+                    res = True
+                    break
             elif self.result_selection == 'supplier':
                 if line.account_id.type == 'payable':
-                    return True
+                    res = True
+                    break
             else:
                 if line.account_id.type == 'receivable' or line.account_id.type == 'payable':
-                    return True
+                    res = True
+                    break
+        if res:
+            debit, credit = self.get_move_debit_and_credit(move)
+            if debit or credit:
+                return True
         return False
 
     def get_move_name(self, move):
-        name = ''
-        if move.journal_id:
-            name += move.journal_id.name + ' '
-        name += move.name
-        return name
+        # name = ''
+        # if move.journal_id:
+        #     name += move.journal_id.name + ' '
+        # name += move.name
+        return move.document_number
 
     def get_move_debit_and_credit(self, move):
         debit = 0.0
@@ -119,6 +127,13 @@ class Parser(rml_parse):
                 if line.account_id.type == 'receivable' or line.account_id.type == 'payable':
                     debit += line.debit
                     credit += line.credit
+        if debit and credit:
+            if debit > credit:
+                debit = debit - credit
+                credit = 0.0
+            else:
+                credit = credit - debit
+                debit = 0.0
         return debit, credit
 
     def get_move_debit(self, move):
