@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-from openerp.osv import osv, fields
+from openerp import models, fields
 
-class account_journal(osv.osv):
-    _name = 'account.journal'
+
+class account_journal(models.Model):
     _inherit = 'account.journal'
-    
-    _columns = {
-        'store_id': fields.many2one('res.store', 'Store', help='Users that are not of this store, can see this journals records but can not post or modify any entry on them.'),
-    }
+
+    store_ids = fields.Many2many(
+        'res.store', 'res_store_journal_rel', 'journal_id', 'store_id',
+        'Store', help="""Users that are not of this store, can see this\
+        journals records but can not post or modify any entry on them.""")

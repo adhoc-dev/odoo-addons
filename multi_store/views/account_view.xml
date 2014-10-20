@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="account.view_account_journal_form"/>
             <field name="arch" type="xml">
                 <field name="company_id" position="after">
-                    <field name="store_id" groups="multi_store.group_multi_store"/>
+                    <field name="store_ids" widget="many2many_tags" groups="multi_store.group_multi_store"/>
                 </field>                
             </field>
         </record>

@@ -25,7 +25,7 @@
             <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
             <field name="arch" type="xml">
                 <field name="company_id" position="after">
-                    <field name="store_id" readonly="0" options="{'no_create': True}" groups="multi_store.group_multi_store"/>                
+                    <field name="store_id" readonly="0" contest="{'user_preference':0}" options="{'no_create': True}" groups="multi_store.group_multi_store"/>                
                 </field>
             </field>
         </record>

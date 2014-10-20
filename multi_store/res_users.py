@@ -1,19 +1,15 @@
 # -*- coding: utf-8 -*-
-from openerp.osv import osv, fields
+from openerp import models, fields
 
 
-class res_users(osv.osv):
-    _name = 'res.users'
+class res_users(models.Model):
     _inherit = 'res.users'
 
-    _columns = {
-        # Special behavior for this field: res.store.search() will only return the stores
-        # available to the current user (should be the user's stores?), when the user_preference
-        # context is set.
-        'store_id': fields.many2one('res.store', 'Store',
-                                    help='The store this user is currently working for.', context={'user_preference': True}),
-        'store_ids': fields.many2many('res.store', 'res_store_users_rel', 'user_id', 'cid', 'Stores'),
-    }
+    store_id = fields.Many2one(
+        'res.store', 'Store', context={'user_preference': True},
+        help='The store this user is currently working for.')
+    store_ids = fields.Many2many(
+        'res.store', 'res_store_users_rel', 'user_id', 'cid', 'Stores')
 
     def __init__(self, pool, cr):
         """ Override of __init__ to add access rights on
