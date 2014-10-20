@@ -17,7 +17,7 @@ class res_store(models.Model):
     company_id = fields.Many2one(
         'res.company', 'Company', required=True,
         default=lambda self: self.env[
-            'res.company']._company_default_get('account.invoice'))
+            'res.company']._company_default_get('res.store'))
     user_ids = fields.Many2many(
         'res.users', 'res_store_users_rel', 'cid', 'user_id', 'Accepted Users')
 
