@@ -335,6 +335,11 @@
                                 <field name="module_account_analytic_analysis_mods"
                                     class="oe_inline" />
                                 <label for="module_account_analytic_analysis_mods"/>
+                            </div>   
+                            <div name='module_partner_samples'>
+                                <field name="module_partner_samples"
+                                    class="oe_inline" />
+                                <label for="module_partner_samples"/>
                             </div>                                
                         </div>
                     </group>
