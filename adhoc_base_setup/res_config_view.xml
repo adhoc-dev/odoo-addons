@@ -107,6 +107,11 @@
                                 <field name="module_product_force_create_variants"
                                     class="oe_inline" />
                                 <label for="module_product_force_create_variants"/>
+                            </div>                        
+                            <div name='module_product_variant_imp'>
+                                <field name="module_product_variant_imp"
+                                    class="oe_inline" />
+                                <label for="module_product_variant_imp"/>
                             </div>                                
                         </div>
                     </group>

@@ -190,6 +190,8 @@ then on sale orders lines this description will be used and no code"""),
             help="""Installs the product_uom_prices module."""),
         'module_product_force_create_variants': fields.boolean('Allow to force create variants on product templates',
             help="""Installs the product_force_create_variants module."""),
+        'module_product_variant_imp': fields.boolean('Make Some Improovements in Variants and Attributes management',
+            help="""Installs the product_variant_imp module."""),
     }        
     
     _defaults = {
