@@ -4,7 +4,7 @@ from openerp import models, fields, api, SUPERUSER_ID
 
 class product_attribute(models.Model):
     _inherit = "product.attribute"
-    add_to_name = fields.Boolean('Add To Name?', default=True)
+    add_to_name = fields.Boolean('Add To Name?')
 
 
 class product_product(models.Model):
