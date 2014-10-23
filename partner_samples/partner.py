@@ -27,6 +27,7 @@ class res_partner_sample(models.Model):
         string='Product')
     quantity = fields.Float(
         'Quantity',
+        required=True,
         digits_compute=dp.get_precision('Product UoS'))
     return_date = fields.Date(
         string='Return Date',)
