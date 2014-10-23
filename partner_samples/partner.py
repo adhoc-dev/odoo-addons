@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from openerp import models, fields
+import openerp.addons.decimal_precision as dp
 
 
 class res_partner_sample(models.Model):
@@ -24,6 +25,9 @@ class res_partner_sample(models.Model):
         'product.product',
         required=True,
         string='Product')
+    quantity = fields.Float(
+        'Quantity',
+        digits_compute=dp.get_precision('Product UoS'))
     return_date = fields.Date(
         string='Return Date',)
 
