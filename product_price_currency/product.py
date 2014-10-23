@@ -9,7 +9,9 @@ class product_template(models.Model):
     def get_currency_id(self):
         price_type_obj = self.env['product.price.type']
         price_type_ids = price_type_obj.search([('field', '=', 'list_price')])
-        return price_type_ids.currency_id.id
+        if not price_type_ids.currency_id:
+            return self.env.user.company_id.currency_id
+        return price_type_ids.currency_id
 
     sale_price_currency_id = fields.Many2one(
         'res.currency', 'Sale Price Currency',

@@ -84,6 +84,8 @@ class adhoc_base_configuration(osv.osv_memory):
             help="""Installs the account_analytic_purchase_contract module."""),
         'module_partner_samples': fields.boolean('Manage Samples Given to Customers.',
             help="""Installs the partner_samples module."""),
+        'module_sale_multiple_invoice': fields.boolean('On Invoicing from sale order, adds an option to make multiple invoices by once.',
+            help="""Installs the sale_multiple_invoice module."""),
         'module_account_analytic_analysis_mods': fields.boolean('Make some improovements on contracts managements.',
             help="""Installs the account_analytic_analysis_mods module. Basically:\
             * On creating invoice fill "reference" with contract name\

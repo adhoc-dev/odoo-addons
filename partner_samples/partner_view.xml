@@ -9,7 +9,14 @@
             <field name="arch" type="xml">
                 <notebook>
                     <page string="Samples" name="samples" attrs="{'invisible':[('customer','!=',True)]}">
-                        <field name="sample_ids"/>
+                        <field name="sample_ids">
+                            <tree>
+                                <field name="user_id"/>
+                                <field name="delivery_date"/>
+                                <field name="product_id"/>
+                                <field name="return_date"/>
+                            </tree>
+                        </field>
                     </page>
                 </notebook>
             </field>

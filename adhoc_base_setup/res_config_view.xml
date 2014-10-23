@@ -340,6 +340,11 @@
                                 <field name="module_partner_samples"
                                     class="oe_inline" />
                                 <label for="module_partner_samples"/>
+                            </div>     
+                            <div name='module_sale_multiple_invoice'>
+                                <field name="module_sale_multiple_invoice"
+                                    class="oe_inline" />
+                                <label for="module_sale_multiple_invoice"/>
                             </div>                                
                         </div>
                     </group>
