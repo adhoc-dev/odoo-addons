@@ -345,6 +345,11 @@
                                 <field name="module_sale_multiple_invoice"
                                     class="oe_inline" />
                                 <label for="module_sale_multiple_invoice"/>
+                            </div>        
+                            <div name='module_sale_other_product_description'>
+                                <field name="module_sale_other_product_description"
+                                    class="oe_inline" />
+                                <label for="module_sale_other_product_description"/>
                             </div>                                
                         </div>
                     </group>

@@ -86,6 +86,9 @@ class adhoc_base_configuration(osv.osv_memory):
             help="""Installs the partner_samples module."""),
         'module_sale_multiple_invoice': fields.boolean('On Invoicing from sale order, adds an option to make multiple invoices by once.',
             help="""Installs the sale_multiple_invoice module."""),
+        'module_sale_other_product_description': fields.boolean('Add "Other Sale Description" field on Products.',
+            help="""Installs the sale_other_product_description module. Add "Other Sale Description" field on Products. If this field is set,
+then on sale orders lines this description will be used and no code"""),
         'module_account_analytic_analysis_mods': fields.boolean('Make some improovements on contracts managements.',
             help="""Installs the account_analytic_analysis_mods module. Basically:\
             * On creating invoice fill "reference" with contract name\
