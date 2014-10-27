@@ -20,6 +20,7 @@ Report Configurator - Account
     'data': [
         'views/report_view.xml',
         'views/account_invoice_view.xml',
+        'report_extended_invoice.xml',
     ],
     'demo': [
     ],
