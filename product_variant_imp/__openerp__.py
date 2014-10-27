@@ -7,6 +7,14 @@
     'description': """
 Product Variant Improvements
 ============================
+TODO para agregar bien y traducir:
+Ya estaría esto, por favor probarlo (mejor en bd de test primero, aunque no pasaría nada de necesitar desisntalarlo). 
+El modulo se llama "product_variant_imp" y tmb es instlable desde adhoc config (subcategoría productos). 
+
+Para cada atributo se debe marcar si se quiere incluirlo o no en el nombre (por defecto no van incluido). 
+
+Cada vez que marques un atributo y guardes, es probable que tarde un poquito porque a todos los productos que usen ese atributo le va a crear un mobre con eso. 
+
 """,
     'init_xml': [],
     'installable': True,
