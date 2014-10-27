@@ -102,6 +102,7 @@ class partner(models.Model):
         date_diff = datetime.strptime(
             dt_to, '%Y-%m-%d') - datetime.strptime(dt_from, '%Y-%m-%d')
         interest_porcent = in_rate / 100
+        print interest_porcent
         interest_days = float(date_diff.days) / 365
         return interest_days * interest_porcent * balance
 

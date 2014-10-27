@@ -11,7 +11,7 @@
             <field name="inherit_id" ref="base.view_company_form"/>
             <field name="arch" type="xml">
                 <group name="account_grp" string="Accounting">  
-                        <field name="debt_interest_period"/>
+                        <field name="debt_interest_period" help="Number of months for imputation of default interest"/>
                 </group>
             </field>
 

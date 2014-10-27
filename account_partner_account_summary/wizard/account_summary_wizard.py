@@ -19,7 +19,14 @@ class account_summary_wizard(models.TransientModel):
     def account_summary(self):
         active_id = self._context.get('active_id', False)
         if not active_id:
-            return False
+            partner = self.env['res.users'].browse(self._uid).partner_id
+            return self.env['report'].with_context(
+                from_date=self.from_date,
+                to_date=self.to_date,
+                show_invoice_detail=self.show_invoice_detail,
+                show_receipt_detail=self.show_receipt_detail,
+                result_selection=self.result_selection).get_action(
+                partner, 'report_account_summary')
         partner = self.env['res.partner'].browse(active_id)
         return self.env['report'].with_context(
             from_date=self.from_date,
