@@ -5,9 +5,14 @@
     'category': 'Accounting & Finance',
     'data': [
         'product_view.xml',
+        'report.xml',
     ],
     'demo': [],
-    'depends': ['sale'],
+    'depends': [
+        'l10n_ar_aeroo_invoice',
+        'l10n_ar_aeroo_stock',
+        'l10n_ar_aeroo_einvoice',
+        ],
     'description': '''
 Sale Other Product Description
 ==============================
