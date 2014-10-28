@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-28 16:29+0000\n"
-"PO-Revision-Date: 2014-10-28 16:29+0000\n"
+"POT-Creation-Date: 2014-10-28 16:25+0000\n"
+"PO-Revision-Date: 2014-10-28 16:25+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,85 +20,85 @@ msgstr ""
 #: model:ir.actions.act_window,name:account_partner_account_summary.action_account_summary_wizard
 #: model:ir.actions.report.xml,name:account_partner_account_summary.report_account_summary
 msgid "Account Summary"
-msgstr "Resumen de Cuentas"
+msgstr ""
 
 #. module: account_partner_account_summary
 #: field:account_summary_wizard,result_selection:0
 msgid "Account Type's"
-msgstr "Tipo de Cuentas"
+msgstr ""
 
 #. module: account_partner_account_summary
 #: view:account_summary_wizard:account_partner_account_summary.account_summary_wizard_form
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr ""
 
 #. module: account_partner_account_summary
 #: view:account_summary_wizard:account_partner_account_summary.account_summary_wizard_form
 msgid "Confirm"
-msgstr "Confirmar"
+msgstr ""
 
 #. module: account_partner_account_summary
 #: field:account_summary_wizard,create_uid:0
 msgid "Created by"
-msgstr "Created by"
+msgstr ""
 
 #. module: account_partner_account_summary
 #: field:account_summary_wizard,create_date:0
 msgid "Created on"
-msgstr "Created on"
+msgstr ""
 
 #. module: account_partner_account_summary
 #: field:account_summary_wizard,from_date:0
 msgid "From"
-msgstr "Desde"
+msgstr ""
 
 #. module: account_partner_account_summary
 #: field:account_summary_wizard,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: account_partner_account_summary
 #: field:account_summary_wizard,write_uid:0
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr ""
 
 #. module: account_partner_account_summary
 #: field:account_summary_wizard,write_date:0
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr ""
 
 #. module: account_partner_account_summary
 #: model:ir.model,name:account_partner_account_summary.model_account_summary_wizard
 msgid "Partner Account Summary Wizard"
-msgstr "Partner Account Summary Wizard"
+msgstr ""
 
 #. module: account_partner_account_summary
 #: selection:account_summary_wizard,result_selection:0
 msgid "Payable Accounts"
-msgstr "Cuentas a Pagar"
+msgstr ""
 
 #. module: account_partner_account_summary
 #: selection:account_summary_wizard,result_selection:0
 msgid "Receivable Accounts"
-msgstr "Cuentas a Cobrar"
+msgstr ""
 
 #. module: account_partner_account_summary
 #: selection:account_summary_wizard,result_selection:0
 msgid "Receivable and Payable Accounts"
-msgstr "Cuentas a Cobrar y a Pagar"
+msgstr ""
 
 #. module: account_partner_account_summary
 #: field:account_summary_wizard,show_invoice_detail:0
 msgid "Show Invoice Detail"
-msgstr "Mostrar Detalle de Facturas"
+msgstr ""
 
 #. module: account_partner_account_summary
 #: field:account_summary_wizard,show_receipt_detail:0
 msgid "Show Receipt Detail"
-msgstr "Mostrar Detalle de Recibos"
+msgstr ""
 
 #. module: account_partner_account_summary
 #: field:account_summary_wizard,to_date:0
 msgid "To"
-msgstr "Hasta"
+msgstr ""
 

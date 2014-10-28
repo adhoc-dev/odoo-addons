@@ -14,13 +14,10 @@ class Parser(rml_parse):
         uid = 1
 
         if not context:
-            return False
-        active_model = context.get('active_model', False)
-        # if not active_model or active_model != 'res.partner':
-        #     return False
+            return None
         partner_ids = context.get('active_ids', False)
         if not partner_ids:
-            partner_ids = self.env['res.partner'].browse(cr, uid,active_ids)
+            return None
         if not isinstance(partner_ids, list):
             partner_ids = [partner_ids]
 
