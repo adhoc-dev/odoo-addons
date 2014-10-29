@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-24 13:38+0000\n"
-"PO-Revision-Date: 2014-09-25 11:02-0300\n"
+"POT-Creation-Date: 2014-10-29 15:57+0000\n"
+"PO-Revision-Date: 2014-10-29 12:58-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,7 @@ msgstr ""
 
 #. module: account_interests
 #: code:addons/account_interests/partner.py:95
+#: code:addons/sources/odoo-addons/account_interests/partner.py:95
 #, python-format
 msgid " days. "
 msgstr "días. "
@@ -45,6 +46,7 @@ msgstr "Cuenta analítica"
 
 #. module: account_interests
 #: code:addons/account_interests/partner.py:96
+#: code:addons/sources/odoo-addons/account_interests/partner.py:96
 #, python-format
 msgid "Base(ARS): "
 msgstr "Base(ARS): "
@@ -82,11 +84,13 @@ msgstr "Fecha hasta"
 #. module: account_interests
 #: field:res.company,debt_interest_period:0
 msgid "Debt Interest Months"
-msgstr "Debt Interest Months"
+msgstr "Meses de interés de la deuda"
 
 #. module: account_interests
 #: code:addons/account_interests/partner.py:47
 #: code:addons/account_interests/partner.py:133
+#: code:addons/sources/odoo-addons/account_interests/partner.py:47
+#: code:addons/sources/odoo-addons/account_interests/partner.py:133
 #, python-format
 msgid "Error!"
 msgstr "Error!"
@@ -108,6 +112,7 @@ msgstr "Cuenta de Interés"
 
 #. module: account_interests
 #: code:addons/account_interests/partner.py:97
+#: code:addons/sources/odoo-addons/account_interests/partner.py:97
 #, python-format
 msgid "Interest Rate(%): "
 msgstr "Tasa de Interés(%): "
@@ -120,6 +125,7 @@ msgstr "Tasas de Interés"
 
 #. module: account_interests
 #: code:addons/account_interests/partner.py:263
+#: code:addons/sources/odoo-addons/account_interests/partner.py:263
 #, python-format
 msgid "Interests "
 msgstr "Intereses"
@@ -145,30 +151,39 @@ msgid "Last Updated on"
 msgstr "Last Updated on"
 
 #. module: account_interests
+#: view:res.company:account_interests.view_kinesis_athletics_company_form
+msgid "Number of months for imputation of default interest"
+msgstr "Número de meses para la imputación de intereses de demora"
+
+#. module: account_interests
 #: model:ir.model,name:account_interests.model_res_partner
 msgid "Partner"
-msgstr "Empresa"
+msgstr "Partner"
 
 #. module: account_interests
 #: code:addons/account_interests/partner.py:94
+#: code:addons/sources/odoo-addons/account_interests/partner.py:94
 #, python-format
 msgid "Period: "
 msgstr "Período: "
 
 #. module: account_interests
 #: code:addons/account_interests/partner.py:134
+#: code:addons/sources/odoo-addons/account_interests/partner.py:134
 #, python-format
 msgid "Please define sales journal for this company id = %d."
 msgstr "Please define sales journal for this company id = %d."
 
 #. module: account_interests
 #: code:addons/account_interests/partner.py:261
+#: code:addons/sources/odoo-addons/account_interests/partner.py:261
 #, python-format
 msgid "Punitive Interests "
 msgstr "Intereses Punitorios"
 
 #. module: account_interests
 #: code:addons/account_interests/partner.py:92
+#: code:addons/sources/odoo-addons/account_interests/partner.py:92
 #, python-format
 msgid "Punitive Interests Invoice: "
 msgstr "Factura de Intereses Punitorios:"
