@@ -6,6 +6,8 @@ class sale_order(models.Model):
     _inherit = 'sale.order'
 
     @api.one
+    # Dummy depend on name so that it is updated on view load
+    @api.depends('name')
     def _get_user_restrict_prices(self):
         self.user_restrict_prices = self.env.user.restrict_prices
 
@@ -18,6 +20,8 @@ class sale_order_line(models.Model):
     _inherit = 'sale.order.line'
 
     @api.one
+    # Dummy depend on name so that it is updated on view load
+    @api.depends('product_id')
     def _get_user_restrict_prices(self):
         self.user_restrict_prices = self.env.user.restrict_prices
 

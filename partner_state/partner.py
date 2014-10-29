@@ -2,7 +2,7 @@
 
 from openerp import models, fields, api, _
 from openerp.osv import fields as old_fields
-from openerp.exceptions import except_orm, Warning, RedirectWarning
+from openerp.exceptions import Warning
 
 
 class res_partner(models.Model):
@@ -19,6 +19,9 @@ class res_partner(models.Model):
     # company_partner_state = fields.Boolean(
     #     related='company_id.partner_state',
     #     string="Company Partner State")
+    # TODO: tal vez mejor que usar un campo related a traves de company_id podriamos hacer un campo
+    # property que dependa de la compania y entonces un partner pueda estar aprobado en una cia y en otra no
+    # Ademas haria que la barra de partner_state se muestre o no segun sea la compania del usuario logueado (se puede ver el codigo de price_security que trae un campo en funcion a los datos del usuario logueado)
     _columns = {
         'company_partner_state': old_fields.related('company_id', 'partner_state', type='boolean'),
     }

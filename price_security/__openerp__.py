@@ -13,6 +13,14 @@ can apply to sale orders and invoices.
 
 Allow the posibility to mark products so that anyone can modify their price in
 a sale order.
+
+For users with price restriction, it restricts:
+* on sales orders: change payment term or pricelist
+* on sales order lines: change unit price and set limits on discount (limits configured on user)
+* on partners: change payment term or pricelist
+* on invoices: change unit price
+* on product: change price
+
 """,
     'category': 'Sales Management',
     'author': 'Sistemas ADHOC',
@@ -27,7 +35,7 @@ a sale order.
         'views/product_view.xml',
         'views/partner_view.xml',
         'security/ir.model.access.csv',
-        ],
+    ],
     'demo_xml': [],
     'test': [],
     'installable': True,

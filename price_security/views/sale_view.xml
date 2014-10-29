@@ -13,6 +13,9 @@
                 <field name="pricelist_id" position="attributes">
                     <attribute name="attrs">{'readonly':[('user_restrict_prices', '=', True)]}</attribute>
                 </field>
+                <field name="payment_term" position="attributes">
+                    <attribute name="attrs">{'readonly':[('user_restrict_prices', '=', True)]}</attribute>
+                </field>
                 <!-- Make price readonly if user can not modify prices -->
                 <xpath expr="//field[@name='order_line']/form" position="inside">
                     <field name="user_restrict_prices" invisible="1"/>

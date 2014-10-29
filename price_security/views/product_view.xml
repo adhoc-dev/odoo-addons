@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="product.product_template_only_form_view"/>
             <field name="arch" type="xml">
                 <form>
-                    <field name="user_restrict_prices" invisible="0"/>
+                    <field name="user_restrict_prices" invisible="1"/>
                 </form>
                 <field name="list_price" position="attributes">
                     <attribute name="attrs">{'readonly':[('user_restrict_prices','=',True)]}</attribute>
@@ -24,7 +24,7 @@
             <field name="inherit_id" ref="product.product_normal_form_view"/>
             <field name="arch" type="xml">
                 <form>
-                    <field name="user_restrict_prices" invisible="0"/>
+                    <field name="user_restrict_prices" invisible="1"/>
                 </form>
                 <field name="lst_price" position="attributes">
                     <attribute name="attrs">{'readonly':[('user_restrict_prices','=',True)]}</attribute>

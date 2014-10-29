@@ -16,6 +16,8 @@
                                 <field name="track"/>
                             </tree>
                         </field>
+                        <field name="restrict_sales" attrs="{'invisible':[('partner_state','=',False)]}"/>
+                        <field name="restrict_sales_amount" attrs="{'invisible':[('restrict_sales','!=','amount_depends')],'required':[('restrict_sales','=','amount_depends')]}"/>
                     </group>     
                 </group>
             </field>

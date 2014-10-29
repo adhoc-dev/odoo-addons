@@ -12,6 +12,9 @@
                 <field name="property_product_pricelist" position="attributes">
                     <attribute name="attrs">{'readonly':[('user_restrict_prices', '=', True)]}</attribute>
                 </field>
+                <field name="property_payment_term" position="attributes">
+                    <attribute name="attrs">{'readonly':[('user_restrict_prices', '=', True)]}</attribute>
+                </field>
             </field>
         </record>
         
