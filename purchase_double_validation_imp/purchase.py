@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
+from openerp.osv import osv
 
-
-from openerp.osv import fields, osv
-from openerp import netsvc
-from openerp import pooler
-from openerp.tools.translate import _
 
 class purchase_order(osv.osv):
 

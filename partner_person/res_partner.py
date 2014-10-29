@@ -1,17 +1,6 @@
 # -*- coding: utf-8 -*-
-
-
-from lxml import etree
-import math
-import pytz
-import re
-
-import openerp
-from openerp import SUPERUSER_ID
-from openerp import pooler, tools
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
-from openerp.tools.yaml_import import is_comment
 from datetime import date, datetime
 
 
