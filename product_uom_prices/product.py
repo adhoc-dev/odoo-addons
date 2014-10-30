@@ -76,18 +76,23 @@ class product_template(models.Model):
                     res[product.id] = product_uom_price_obj.browse(
                         cr, uid, product_uom_price_ids[0],
                         context=context).price
+                    # TODO mejorar 
+                    # Antes intenamos hacer idependinete este modulo de
+                    # price_currency pero no pudimos, por eso el if de bajo
+                    # esta comentadosolo el calculo de currency
+
                     # If product price currency is insatalled then we update
                     # price in the correct currency
-                    if 'product_price_currency' in context:
-                        pricetype_obj = self.pool.get('product.price.type')
-                        price_type_id = pricetype_obj.search(
-                            cr, uid, [('field', '=', ptype)])[0]
-                        price_type_currency_id = pricetype_obj.browse(
-                            cr, uid, price_type_id).currency_id.id
-                        res[product.id] = self.pool['res.currency'].compute(
-                            cr, uid, product.sale_price_currency_id.id,
-                            price_type_currency_id, res[product.id],
-                            context=context)
+                    # if 'product_price_currency' in context:
+                    pricetype_obj = self.pool.get('product.price.type')
+                    price_type_id = pricetype_obj.search(
+                        cr, uid, [('field', '=', ptype)])[0]
+                    price_type_currency_id = pricetype_obj.browse(
+                        cr, uid, price_type_id).currency_id.id
+                    res[product.id] = self.pool['res.currency'].compute(
+                        cr, uid, product.sale_price_currency_id.id,
+                        price_type_currency_id, res[product.id],
+                        context=context)
         return res
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

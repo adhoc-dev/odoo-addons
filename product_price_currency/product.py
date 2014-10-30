@@ -21,11 +21,6 @@ class product_template(models.Model):
     def _price_get(self, cr, uid, products, ptype='list_price', context=None):
         if not context:
             context = {}
-        # For compatibility with other modules (like product_uom_prices
-        # we say in context that this module is installed
-        # We make this way becouse if not we have an error with frozendict
-        context = context.copy()
-        context['product_price_currency'] = True
         res = super(product_template, self)._price_get(
             cr, uid, products, ptype=ptype, context=context)
         if ptype == 'list_price':

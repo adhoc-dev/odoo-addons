@@ -3,7 +3,10 @@
     'author': 'Ingenieria ADHOC.',
     'category': 'base.module_category_knowledge_management',
     'demo_xml': [],
-    'depends': ['product'],
+    'depends': [
+        'product',
+        'website_sale',
+        ],
     'description': """
 Product Search by Website Category
 ==================================

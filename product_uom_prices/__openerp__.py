@@ -5,6 +5,7 @@
     'demo_xml': [],
     'depends': [
         'sale',
+        'product_price_currency',
         ],
     'description': """
 Product UOM Prices
