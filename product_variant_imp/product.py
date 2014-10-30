@@ -82,8 +82,10 @@ class product_product(models.Model):
                     lambda x: x.name.id in partner_ids, product.seller_ids)
             if sellers:
                 for s in sellers:
-                    seller_variant = s.product_name and "%s (%s)" % (
-                        s.product_name, variant) or False
+                    seller_variant = s.product_name and "%s" % (
+                        s.product_name) or False
+                    # seller_variant = s.product_name and "%s (%s)" % (
+                    #     s.product_name, variant) or False
                     mydict = {
                         'id': product.id,
                         'name': seller_variant or name,
