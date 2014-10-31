@@ -66,21 +66,22 @@ class stock_picking(osv.osv):
                 # product_uoms[move.id] = product_uom
                 # partial_qty[move.id] = uom_obj._compute_qty(cr, uid,
                     #product_uoms[move.id], product_qty, move.product_uom.id)
-                production = move.procurements[0].production_id
-                if move.procurements and production.bom_id and production.bom_id.auto_produce_on_picking:
-                    remaining_prod_qty = self._get_product_qty(
-                        cr,
-                        uid,
-                        production.id, context=context)
-                    if remaining_prod_qty < product_qty:
-                        product_qty = remaining_prod_qty
-                    self.pool.get('mrp.production').action_produce(
-                        cr,
-                        uid,
-                        production.id,
-                        product_qty,
-                        'consume_produce',
-                        context=context)
+                if move.procurements:
+                    production = move.procurements[0].production_id
+                    if production.bom_id and production.bom_id.auto_produce_on_picking:
+                        remaining_prod_qty = self._get_product_qty(
+                            cr,
+                            uid,
+                            production.id, context=context)
+                        if remaining_prod_qty < product_qty:
+                            product_qty = remaining_prod_qty
+                        self.pool.get('mrp.production').action_produce(
+                            cr,
+                            uid,
+                            production.id,
+                            product_qty,
+                            'consume_produce',
+                            context=context)
         res = super(stock_picking, self).do_partial(
             cr, uid, ids, partial_datas, context=context)
         return res
