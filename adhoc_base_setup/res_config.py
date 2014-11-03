@@ -95,6 +95,8 @@ then on sale orders lines this description will be used and no code"""),
             * On creating invoice compute tax for total
             * On creating invoice take only tax of contract company
             """),
+        'module_purchase_uom_prices_uoms': fields.boolean('Restrict purchase uom to the product uom, purchase product uom and uoms defined in UOM Prices.',
+            help="""Installs the purchase_uom_prices_uoms."""),
         
         # Project
         'module_project_issue_solutions': fields.boolean('Project Issue Solutions',

@@ -367,7 +367,12 @@
                                 <field name="module_purchase_discounts"
                                     class="oe_inline" />
                                 <label for="module_purchase_discounts" />
-                            </div>  
+                            </div>
+                            <div name='module_purchase_uom_prices_uoms'>
+                                <field name="module_purchase_uom_prices_uoms"
+                                    class="oe_inline" />
+                                <label for="module_purchase_uom_prices_uoms" />
+                            </div>   
                             <div name='module_account_analytic_purchase_contract'>
                                 <field name="module_account_analytic_purchase_contract"
                                     class="oe_inline" />
