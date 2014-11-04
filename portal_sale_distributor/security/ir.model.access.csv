@@ -14,3 +14,5 @@ access_product_attribute_value,product.attribute.value.portal.distributor,produc
 access_product_attribute_line,product.attribute.line.portal.distributor,product.model_product_attribute_line,base.group_portal_distributor,1,0,0,0
 access_product_attribute_price,product.attribute.price.portal.distributor,product.model_product_attribute_price,base.group_portal_distributor,1,0,0,0
 access_product_procurement,procurement.order.portal.distributor,procurement.model_procurement_order,base.group_portal_distributor,1,0,0,0
+access_product_packaging,product_packaging.distributor,product.model_product_packaging,base.group_portal_distributor,1,0,0,0
+access_ir_sequence,ir_sequence.distributor,base.model_ir_sequence,base.group_portal_distributor,1,0,0,0

@@ -16,6 +16,7 @@ Give access to output mime types
     ],
     'depends': [
         'report_aeroo',
+        'portal',
     ],
     'data': [
         'security/ir.model.access.csv',
