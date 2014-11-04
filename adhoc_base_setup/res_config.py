@@ -95,6 +95,8 @@ then on sale orders lines this description will be used and no code"""),
             * On creating invoice compute tax for total
             * On creating invoice take only tax of contract company
             """),
+        'module_purchase_uom_prices_uoms': fields.boolean('Restrict purchase uom to the product uom, purchase product uom and uoms defined in UOM Prices.',
+            help="""Installs the purchase_uom_prices_uoms."""),
         
         # Project
         'module_project_issue_solutions': fields.boolean('Project Issue Solutions',
@@ -111,6 +113,8 @@ then on sale orders lines this description will be used and no code"""),
             help="""Installs the project_task_order module."""),
         'module_project_issue_order': fields.boolean('Add sequence field to issues and change default order to "priority desc, sequence, date_deadline, duration, create_date desc"',
             help="""Installs the project_issue_order module."""),
+        'module_project_task_issues': fields.boolean('Add Issue in to task view',
+            help="""Installs the project_task_issues module."""),
 
         # Multi Company
         'module_web_easy_switch_company': fields.boolean('Multi company - Enable Company Easy Change',
