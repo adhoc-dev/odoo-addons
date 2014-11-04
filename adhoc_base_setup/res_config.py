@@ -113,6 +113,8 @@ then on sale orders lines this description will be used and no code"""),
             help="""Installs the project_task_order module."""),
         'module_project_issue_order': fields.boolean('Add sequence field to issues and change default order to "priority desc, sequence, date_deadline, duration, create_date desc"',
             help="""Installs the project_issue_order module."""),
+        'module_project_task_issues': fields.boolean('Add Issue in to task view',
+            help="""Installs the project_task_issues module."""),
 
         # Multi Company
         'module_web_easy_switch_company': fields.boolean('Multi company - Enable Company Easy Change',
