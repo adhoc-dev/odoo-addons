@@ -64,6 +64,7 @@
                         <group>
                             <field name="checkbook_id" widget="selection" on_change="onchange_checkbook_id(checkbook_id,context)" domain="[('journal_id','=',journal_id),('state','=','active')]" attrs="{'invisible':[('type','!=','issue')],'required':[('type','=','issue')]}"/>
                             <field name="bank_id" attrs="{'invisible':[('type','!=','third')],'required':[('type','=','third')]}"/>
+                            <field name="vat" attrs="{'invisible':[('type','!=','third')],'required':[('type','=','third')]}"/>
                             <field name="number"/>
                             <field name="amount"/>                            
                         </group>
