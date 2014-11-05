@@ -172,6 +172,8 @@ then on sale orders lines this description will be used and no code"""),
             help="""Installs the partner_state module."""),
         'module_partner_school': fields.boolean('Manage School Data on partners',
             help="""Installs the partner_school module."""),
+        'module_partner_credit_limit': fields.boolean('Restrict credit limit edition on partners and restrict sale orders approval for partners without credit',
+            help="""Installs the partner_credit_limit module."""),
 
         # Product modules
         'module_product_pack': fields.boolean('Mange product packs',

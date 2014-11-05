@@ -284,6 +284,11 @@
                                     class="oe_inline" />
                                 <label for="module_partner_school" />
                             </div>
+                            <div name='module_partner_credit_limit'>
+                                <field name="module_partner_credit_limit"
+                                    class="oe_inline" />
+                                <label for="module_partner_credit_limit" />
+                            </div>
                         </div>
                     </group>
                     

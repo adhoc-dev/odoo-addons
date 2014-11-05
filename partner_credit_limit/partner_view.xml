@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_partner_form" model="ir.ui.view">
+            <field name="name">res.partner.partner_credit_limit.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="user_edit_credit_limit" invisible="1"/>
+                </form>
+                <xpath expr="//form[@string='Partners']//field[@name='credit_limit']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('user_edit_credit_limit', '=', False)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
