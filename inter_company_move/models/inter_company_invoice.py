@@ -179,6 +179,7 @@ class account_invoice(models.Model):
             'fiscal_position': partner_data['value'].get('fiscal_position', False),
             'payment_term': partner_data['value'].get('payment_term', False),
             'company_id': company.id,
+            'comment': invoice.comment,
             'period_id': period_ids and period_ids[0] or False,
             'partner_bank_id': partner_data['value'].get('partner_bank_id', False),
         }
