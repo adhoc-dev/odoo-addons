@@ -73,6 +73,7 @@ TODO
         'res_config_view.xml',
     ],
     'demo': [
+        'demo/company_demo.xml',
     ],
     'test': [
     ],
