@@ -191,6 +191,11 @@
                                 <field name="module_account_create_journal"
                                     class="oe_inline" readonly="1"/>
                                 <label for="module_account_create_journal" />
+                            </div>            
+                            <div name='module_account_bank_voucher'>
+                                <field name="module_account_bank_voucher"
+                                    class="oe_inline" readonly="1"/>
+                                <label for="module_account_bank_voucher" />
                             </div>
                         </div>
                     </group>    
@@ -210,6 +215,10 @@
                             <div name='module_account_tax_analysis'>
                                 <field name="module_account_tax_analysis" class="oe_inline" readonly="1"/>
                                 <label for="module_account_tax_analysis" />
+                            </div>      
+                            <div name='module_account_partner_account_summary'>
+                                <field name="module_account_partner_account_summary" class="oe_inline"/>
+                                <label for="module_account_partner_account_summary" />
                             </div>    
                         </div>
                     </group>

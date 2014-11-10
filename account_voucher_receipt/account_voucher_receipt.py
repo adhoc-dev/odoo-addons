@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from openerp.osv import fields as old_fields
-from openerp.osv import osv 
+from openerp.osv import osv
 from openerp import fields, api
 from openerp.tools.translate import _
 
 
 class account_voucher_receipt (osv.osv):
-       
-    _name = "account.voucher.receipt" 
+
+    _name = "account.voucher.receipt"
     _inherit = ['mail.thread']
     _description = 'Account Voucher Receipt'
 

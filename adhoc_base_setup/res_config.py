@@ -58,6 +58,10 @@ class adhoc_base_configuration(osv.osv_memory):
             help="""Installs the account_journal_active module."""),
         'module_account_invoice_company_search': fields.boolean('Add to Invoice a filter by company and group by Company',
             help="""Installs the account_invoice_company_search module."""),
+        'module_account_partner_account_summary': fields.boolean('Add Aeroo Partner Account Summary Report',
+            help="""Installs the account_partner_account_summary module."""),
+        'module_account_bank_voucher': fields.boolean('Add import vouchers on Bank and Cash Statements',
+            help="""Installs the account_bank_voucher module."""),
         
         # Sale / Purchase modules
         'module_purchase_discounts': fields.boolean('Mange disccounts on purchases',
