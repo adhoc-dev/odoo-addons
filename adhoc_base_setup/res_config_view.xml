@@ -194,7 +194,7 @@
                             </div>            
                             <div name='module_account_bank_voucher'>
                                 <field name="module_account_bank_voucher"
-                                    class="oe_inline" readonly="1"/>
+                                    class="oe_inline"/>
                                 <label for="module_account_bank_voucher" />
                             </div>
                         </div>
