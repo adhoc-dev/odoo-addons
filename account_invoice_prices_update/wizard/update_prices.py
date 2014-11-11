@@ -7,7 +7,7 @@ class account_invoice_prices_update(osv.osv_memory):
 
     _columns = {
         'pricelist_id': fields.many2one(
-            'product.pricelist', string="Price List"),
+            'product.pricelist', string="Price List", required=True),
     }
 
     _defaults = {
