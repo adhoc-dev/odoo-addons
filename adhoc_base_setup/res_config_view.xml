@@ -162,7 +162,12 @@
                                 <field name="module_account_journal_sequence"
                                     class="oe_inline" />
                                 <label for="module_account_journal_sequence" />
-                            </div>                                        
+                            </div> 
+                            <div name='module_account_invoice_prices_update'>
+                                <field name="module_account_invoice_prices_update"
+                                    class="oe_inline" />
+                                <label for="module_account_invoice_prices_update" />
+                            </div> 
                         </div>
                     </group>    
                     <group>

@@ -62,6 +62,8 @@ class adhoc_base_configuration(osv.osv_memory):
             help="""Installs the account_partner_account_summary module."""),
         'module_account_bank_voucher': fields.boolean('Add import vouchers on Bank and Cash Statements',
             help="""Installs the account_bank_voucher module."""),
+        'module_account_invoice_prices_update': fields.boolean('Allow prices update on invoices based on pricelist',
+            help="""Installs the account_invoice_prices_update module."""),
         
         # Sale / Purchase modules
         'module_purchase_discounts': fields.boolean('Mange disccounts on purchases',
