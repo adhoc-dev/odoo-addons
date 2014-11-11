@@ -64,6 +64,8 @@ class adhoc_base_configuration(osv.osv_memory):
             help="""Installs the account_bank_voucher module."""),
         'module_account_invoice_prices_update': fields.boolean('Allow prices update on invoices based on pricelist',
             help="""Installs the account_invoice_prices_update module."""),
+        'module_account_refund_invoice_fix': fields.boolean('Fix related to invoice refund generation',
+            help="""Installs the account_refund_invoice_fix module."""),
         
         # Sale / Purchase modules
         'module_purchase_discounts': fields.boolean('Mange disccounts on purchases',
