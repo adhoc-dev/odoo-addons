@@ -23,9 +23,10 @@ class account_invoice_prices_update(osv.osv_memory):
         wizard = self.browse(cr, uid, ids[0], context=context)
         if not wizard.pricelist_id:
             return {}
-        invoice_line = self.pool['account.invoice'].browse(
-            cr, uid, active_id, context=context).invoice_line
-        for line in invoice_line:
+        invoice = self.pool['account.invoice'].browse(
+            cr, uid, active_id, context=context)
+        invoice.write({'currency_id': wizard.pricelist_id.currency_id.id})
+        for line in invoice.invoice_line:
             price = self.pool.get('product.pricelist').price_get(
                 cr, uid, [wizard.pricelist_id.id],
                 line.product_id.id, line.quantity or 1.0, partner_id.id, {
