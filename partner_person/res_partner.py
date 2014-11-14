@@ -1,119 +1,102 @@
 # -*- coding: utf-8 -*-
-from openerp.osv import osv, fields
-from openerp.tools.translate import _
-from datetime import date, datetime
+from openerp import models, fields, api, _
+from datetime import date
+from openerp.osv import fields as old_fields
+from openerp.osv import osv
 
 
-class res_users(osv.osv):
+class res_users(models.Model):
     _inherit = "res.users"
-    # added this here because in v8 there is a conflict with a char birthdate field in partner
-    # it is supose to be fixed
-    _columns = {
-        'birthdate': fields.date(string='Birthdate'),
-        }
+    # added this here because in v8 there is a conflict with a char birthdate
+    # field in partner it is supose to be fixed
+    birthdate = fields.Date(string='Birthdate')
 
-class res_partner(osv.osv):
+
+class res_partner(models.Model):
     _inherit = "res.partner"
 
-    def _get_age(self, cr, uid, ids, name, args, context=None):
-        if context == None:
-            context = {}
-        res = {}
-
+    @api.one
+    @api.depends('birthdate')
+    def _get_age(self):
         today = date.today()
-        for record in self.browse(cr, uid, ids, context=context):
-            if record.birthdate:
-                birthdate = (datetime.strptime(record.birthdate, '%Y-%m-%d')).date()
-                try: 
-                    birthday = birthdate.replace(year=today.year)
-                except ValueError: # raised when birth date is February 29 and the current year is not a leap year
-                    birthday = birthdate.replace(year=today.year, day=birthdate.day-1)
-                if birthday > today:
-                    age = today.year - birthdate.year - 1
-                else:
-                    age = today.year - birthdate.year                
-                res[record.id] = age
+        age = False
+        if self.birthdate:
+            birthdate = fields.Date.from_string(self.birthdate)
+            try:
+                birthday = birthdate.replace(year=today.year)
+            # raised when birth date is February 29 and the current year is
+            # not a leap year
+            except ValueError:
+                birthday = birthdate.replace(
+                    year=today.year, day=birthdate.day - 1)
+            if birthday > today:
+                age = today.year - birthdate.year - 1
             else:
-                res[record.id] = False
-        return res
+                age = today.year - birthdate.year
+        self.age = age
 
+    @api.one
+    # @api.depends('wife_id')
+    def _get_husband(self):
+        husbands = self.search([('wife_id', '=', self.id)])
+        self.husband_id = husbands.id
 
-    def _get_husband(self, cr, uid, ids, name, args, context=None):
-        if context == None:
-            context = {}
-
-        res = {}
-        for i in ids:
-            husband_ids = self.search(cr, uid, [('wife_id','=',i)], context=context)
-            husband_id = False
-            if husband_ids:
-                husband_id = husband_ids[0]
-            res[i] = husband_id
-        return res
-
-    def _set_wife(self, cr, uid, wife_id, field_name, field_value, arg, context=None):
-        husband_ids = self.search(cr, uid, [('wife_id','=',wife_id)], context=context)
-        # If wife related to this partner, we set husband = False for those wifes
-        self.write(cr, uid, husband_ids, {'wife_id':False}, context=context)
+    def _set_wife(self):
+        husbands = self.search([('wife_id', '=', self.id)])
+        # If wife related to this partner, we set husband = False for those
+        # wifes
+        husbands.write({'wife_id': False})
 
         # We write the husband for the actual wife
-        if field_value:
-            return self.write(cr, uid, field_value, {'wife_id':wife_id}, context=context)
-        return True
-        
-    _columns = {
-        'disabled_person': fields.boolean(string='Disabled Person?'),
-        'firstname': fields.char(string='First Name'),
-        'lastname': fields.char(string='Last Name'),
-        'national_identity': fields.char(string='National Identity'),
-        'passport': fields.char(string='Passport'),
-        'marital_status': fields.selection([(u'single', u'Single'), (u'married', u'Married'), (u'divorced', u'Divorced')], string='Marital Status'),
-        'birthdate': fields.date(string='Birthdate'),
-        'father_id': fields.many2one('res.partner', string='Father', context={'default_is_company':False,'default_sex':'M','from_member':True}, domain=[('is_company','=',False),('sex','=','M')]),
-        'mother_id': fields.many2one('res.partner', string='Mother', context={'default_is_company':False,'default_sex':'F','from_member':True}, domain=[('is_company','=',False),('sex','=','F')]),
-        'sex': fields.selection([(u'M', u'Male'), (u'F', u'Female')], string='Sex'),
-        'age': fields.function (_get_age, type='integer', string='Age'),
-        'father_child_ids': fields.one2many ('res.partner', 'father_id', string='Childs',),
-        'mother_child_ids': fields.one2many ('res.partner', 'mother_id', string='Childs',),
-        'nationality_id': fields.many2one('res.country', string='Nationality'),
-        'husband_id': fields.function (_get_husband, fnct_inv=_set_wife, type='many2one', relation='res.partner',string='Husband', domain=[('sex','=','M'),('is_company','=',False)], context={'default_sex':'M','is_person':True}),
-        'wife_id': fields.many2one ('res.partner', string='Wife', domain=[('sex','=','F'),('is_company','=',False)], context={'default_sex':'F','is_person':True}),
-    }
+        if self.husband_id:
+            self.husband_id.wife_id = self.id
 
-    def write(self, cr, uid, ids, vals, context=None):
-        if not ids:
-            return False
-        if isinstance(ids, (int, long)):
-            ids = [ids]
-        partner_id = ids[0]
-        lastname = vals.get('lastname',False)
-        firstname = vals.get('firstname',False)
-        if lastname or firstname:
-            if not firstname:
-                partner = self.browse(cr, uid, partner_id, context=context)
-                firstname = partner.firstname
-            if not lastname:
-                partner = self.browse(cr, uid, partner_id, context=context)
-                lastname = partner.lastname
-            vals['name'] = (firstname or '' ) + ' ' + (lastname or '')
-        result = super(res_partner,self).write(cr, uid, ids, vals, context=context)
-        return result
+    disabled_person = fields.Boolean(string='Disabled Person?')
+    firstname = fields.Char(string='First Name')
+    lastname = fields.Char(string='Last Name')
+    national_identity = fields.Char(string='National Identity')
+    passport = fields.Char(string='Passport')
+    marital_status = fields.Selection(
+        [(u'single', u'Single'), (u'married', u'Married'),
+         (u'divorced', u'Divorced')], string='Marital Status')
+    birthdate = fields.Date(string='Birthdate')
+    father_id = fields.Many2one(
+        'res.partner', string='Father',
+        context={'default_is_company': False, 'default_sex': 'M',
+                 'from_member': True},
+        domain=[('is_company', '=', False), ('sex', '=', 'M')])
+    mother_id = fields.Many2one(
+        'res.partner', string='Mother',
+        context={'default_is_company': False, 'default_sex': 'F',
+                 'from_member': True},
+        domain=[('is_company', '=', False), ('sex', '=', 'F')])
+    sex = fields.Selection(
+        [(u'M', u'Male'), (u'F', u'Female')], string='Sex')
+    age = fields.Integer(compute='_get_age', type='integer', string='Age')
+    father_child_ids = fields.One2many(
+        'res.partner', 'father_id', string='Childs',)
+    mother_child_ids = fields.One2many(
+        'res.partner', 'mother_id', string='Childs',)
+    nationality_id = fields.Many2one('res.country', string='Nationality')
+    husband_id = fields.Many2one(
+        'res.partner',
+        compute='_get_husband',
+        inverse='_set_wife',
+        string='Husband',
+        domain=[('sex', '=', 'M'), ('is_company', '=', False)],
+        context={'default_sex': 'M', 'is_person': True})
+    wife_id = fields.Many2one(
+        'res.partner', string='Wife',
+        domain=[('sex', '=', 'F'), ('is_company', '=', False)],
+        context={'default_sex': 'F', 'is_person': True})
 
-    def create(self, cr, uid, vals, context=None):
-        lastname = vals.get('lastname', False)
-        firstname = vals.get('firstname', False)
-        if lastname or firstname:
-            vals['name'] = (firstname or '' ) + ' ' + (lastname or '')
-        new_id = super(res_partner, self).create(cr, uid, vals, context=context)
-        return new_id
-
-    def onchange_name(self, cr, uid, ids, firstname, lastname, context=None):
-        v = {}
-        
-        v['name'] = (firstname or '' ) + ' ' + (lastname or '')
-
-        return {'value': v}  
-
+    @api.one
+    @api.onchange('firstname', 'lastname')
+    @api.constrains('firstname', 'lastname')
+    def _build_name(self):
+        print '111111'
+        self.name = '%s %s' % (
+            self.firstname or '', self.lastname or '')
 
     def name_get(self, cr, uid, ids, context=None):
         if context is None:
@@ -126,13 +109,15 @@ class res_partner(osv.osv):
             national_identity = ''
             if record.national_identity:
                 national_identity = '[' + record.national_identity + ']'
-            name =  "%s %s" % (national_identity, name)
+            name = "%s %s" % (national_identity, name)
             if record.parent_id and not record.is_company:
-                name =  "%s, %s" % (record.parent_id.name, name)
+                name = "%s, %s" % (record.parent_id.name, name)
             if context.get('show_address'):
-                name = name + "\n" + self._display_address(cr, uid, record, without_company=True, context=context)
-                name = name.replace('\n\n','\n')
-                name = name.replace('\n\n','\n')
+                name = name + "\n" + \
+                    self._display_address(
+                        cr, uid, record, without_company=True, context=context)
+                name = name.replace('\n\n', '\n')
+                name = name.replace('\n\n', '\n')
             if context.get('show_email') and record.email:
                 name = "%s <%s>" % (name, record.email)
             res.append((record.id, name))
@@ -176,9 +161,40 @@ class res_partner(osv.osv):
                 query_args['limit'] = limit
             cr.execute(query, query_args)
             ids = map(lambda x: x[0], cr.fetchall())
-            ids = self.search(cr, uid, [('id', 'in', ids)] + args, limit=limit, context=context)
+            ids = self.search(
+                cr, uid, [('id', 'in', ids)] + args, limit=limit, context=context)
             if ids:
                 return self.name_get(cr, uid, ids, context)
-        return super(res_partner,self).name_search(cr, uid, name, args, operator=operator, context=context, limit=limit)
-        
+        return super(res_partner, self).name_search(cr, uid, name, args, operator=operator, context=context, limit=limit)
+
+    # Como no anduvo sobre escribiendo con la nueva api, tuvimos que hacerlo con la vieja
+    # display_name = fields.Char(
+    #     compute='_display_name', string='Name', store=True, select=True)
+
+    # @api.one
+    # @api.depends(
+    #     'name',
+    #     'firstname',
+    #     'lastname',
+    #     'is_company',
+    #     'national_identity',
+    #     'parent_id',
+    #     'parent_id.name',
+    #     )
+    # def _diplay_name(self):
+    #     self.display_name = self.with_context({}).name_get()
+
+
+    _display_name = lambda self, *args, **kwargs: self._display_name_compute(*args, **kwargs)
+
+    _display_name_store_triggers = {
+        'res.partner': (lambda self,cr,uid,ids,context=None: self.search(cr, uid, [('id','child_of',ids)], context=dict(active_test=False)),
+                        ['parent_id', 'is_company', 'name', 'national_identity'], 10)
+        # Se agrega national_identity aqui
+    }
+
+    _columns = {
+        'display_name': old_fields.function(_display_name, type='char', string='N2222asdasdadsame', store=_display_name_store_triggers, select=True),
+    }
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
