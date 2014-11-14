@@ -66,6 +66,8 @@ class adhoc_base_configuration(osv.osv_memory):
             help="""Installs the account_invoice_prices_update module."""),
         'module_account_refund_invoice_fix': fields.boolean('Fix related to invoice refund generation',
             help="""Installs the account_refund_invoice_fix module."""),
+        'module_account_invoice_journal_filter': fields.boolean('Add to Invoice a filter by Journal and group by Journal',
+            help="""Installs the account_invoice_journal_filter module."""),
         
         # Sale / Purchase modules
         'module_purchase_discounts': fields.boolean('Mange disccounts on purchases',

@@ -157,7 +157,12 @@
                                 <field name="module_account_invoice_company_search"
                                     class="oe_inline" />
                                 <label for="module_account_invoice_company_search" />
-                            </div> 
+                            </div>
+                            <div name='module_account_invoice_journal_filter'>
+                                <field name="module_account_invoice_journal_filter"
+                                    class="oe_inline" />
+                                <label for="module_account_invoice_journal_filter" />
+                            </div>  
                         </div>
                     </group>
                     <group>
