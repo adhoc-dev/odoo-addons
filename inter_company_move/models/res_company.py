@@ -14,6 +14,8 @@ class res_company(osv.osv):
         'open_after_move': fields.boolean(
             'Open New Record After Move?',
             help="Please note that to open the new record you must have the right access rights. This is only advisible when it is moved to a child company."),
+        'deactivate_invoice': fields.boolean(
+            'Deactivate Invoice'),
         'record_moved_id': fields.boolean(
             'Record Moved Id',
             help="Please note that to open the new record you must have the right access rights. This is only advisible when it is moved to a child company."),
