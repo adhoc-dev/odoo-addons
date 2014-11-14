@@ -7,6 +7,7 @@ from openerp import SUPERUSER_ID
 class account_invoice(models.Model):
     _inherit = 'account.invoice'
 
+    active = fields.Boolean('Active', default=True)
     invoice_move_type = fields.Selection(
         related='company_id.invoice_move_type',
         string='Invoice Move Type',)
@@ -38,6 +39,9 @@ class account_invoice(models.Model):
 
         if invoice.company_id.record_moved_id:
             invoice.write({'moved_invoice_id': moved_invoice_id})
+        if invoice.company_id.deactivate_invoice:
+            invoice.write({'active': False})
+            
 
         moved_description = _(
             'Moved to invoice id: ') + str(moved_invoice_id)
@@ -183,3 +187,5 @@ class account_invoice(models.Model):
             'period_id': period_ids and period_ids[0] or False,
             'partner_bank_id': partner_data['value'].get('partner_bank_id', False),
         }
+
+  
