@@ -240,7 +240,11 @@ class Parser(rml_parse):
         return invoices
 
     def get_invoice_line_name(self, line):
-        name = line.name + ' x ' + str(line.quantity) + ' '
+        print 'line.name', line.name
+        name = line.name
+        if len(name) >= 2:
+            name = name[:-2]
+        name += ' x ' + str(line.quantity) + ' '
         if line.uos_id:
             name += line.uos_id.name + ' '
         # Sacamos esto porque confunde y no parece necesario, si se quiere conservar habria que tener en cuenta imprimir ocn iva incluido o no
