@@ -30,9 +30,9 @@ For users with price restriction, it restricts:
     ],
     'data': [
         'views/res_users_view.xml',
+        'views/product_view.xml',
         'views/sale_view.xml',
         'views/invoice_view.xml',
-        'views/product_view.xml',
         'views/partner_view.xml',
         'security/ir.model.access.csv',
     ],
