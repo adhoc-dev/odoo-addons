@@ -240,12 +240,12 @@ class Parser(rml_parse):
         return invoices
 
     def get_invoice_line_name(self, line):
-        name = line.name + ' [' + str(line.quantity) + ' '
+        name = line.name + ' x ' + str(line.quantity) + ' '
         if line.uos_id:
             name += line.uos_id.name + ' '
-        name += ' x ' + str(line.price_unit * (1 - line.discount / 100)
-                            ) + ']' + ' (' + str(line.discount) + '%' + ' dto)'
-
+        # Sacamos esto porque confunde y no parece necesario, si se quiere conservar habria que tener en cuenta imprimir ocn iva incluido o no
+        # name += ' x ' + str(line.price_unit * (1 - line.discount / 100)
+        #                     ) + ']' + ' (' + str(line.discount) + '%' + ' dto)'
         return name
 
     def get_initial_credit(self, partner):
