@@ -10,11 +10,12 @@ Account Refund Invoice Fix
 =========================
 Fix related to invoice refund generation
 ''',
-    'init_xml': [],
+    'init': [],
     'installable': True,
     'name': 'Account Refund Invoice Fix',
     'test': [],
-    'update_xml': [
+    'data': [
+    'account_invoice_refund_view.xml'
         ],
     'version': '0.0',
     'website': 'www.ingadhoc.com'}
