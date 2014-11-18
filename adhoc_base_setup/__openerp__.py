@@ -11,6 +11,7 @@ ADHOC Modules Configuration
 Here, you can configure the whole business suite based on your requirements. You'll be provided different configuration options in the Settings where by only selecting some booleans you will be able to install several modules and apply access rights in just one go.
 Repositories required:
 ---------------------
+* https://github.com/OCA/account-invoicing
 * lp:server-env-tools (web_export_view da error por ahora)
 * lp:account-financial-report
 * lp:account-financial-tools

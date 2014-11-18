@@ -24,6 +24,10 @@ class adhoc_base_configuration(osv.osv_memory):
             help="""Installs the account_onchange_fix module."""),        
         
         # Account modules
+        'module_account_fiscal_position_no_source_tax': fields.boolean('Give posibility to define tax mapping in fiscal position without source tax',
+            help="""Installs the account_fiscal_position_no_source_tax module."""),
+        'module_invoice_fiscal_position_update': fields.boolean('Invoice Update on Fiscal Position Change',
+            help="""Installs the invoice_fiscal_position_update module."""),
         'module_account_cancel': fields.boolean('Allows canceling accounting entries',
             help="""Installs the account_cancel module."""),
         'module_account_check': fields.boolean('Checks Management, issued and third checks',

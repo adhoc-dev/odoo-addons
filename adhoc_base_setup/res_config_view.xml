@@ -138,6 +138,11 @@
                     <group>
                         <label for="id" string="Invoicing" />    
                         <div name="invoicing">
+                            <div name='module_invoice_fiscal_position_update'>
+                                <field name="module_invoice_fiscal_position_update"
+                                    class="oe_inline" />
+                                <label for="module_invoice_fiscal_position_update" />
+                            </div>  
                             <div name='module_account_cancel'>
                                 <field name="module_account_cancel"
                                     class="oe_inline" />
@@ -168,6 +173,11 @@
                     <group>
                         <label for="id" string="Accounting" />
                         <div name="accounting">                
+                            <div name='module_account_fiscal_position_no_source_tax'>
+                                <field name="module_account_fiscal_position_no_source_tax"
+                                    class="oe_inline" />
+                                <label for="module_account_fiscal_position_no_source_tax" />
+                            </div>                 
                             <div name='module_account_journal_sequence'>
                                 <field name="module_account_journal_sequence"
                                     class="oe_inline" />
