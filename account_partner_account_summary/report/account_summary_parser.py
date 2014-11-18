@@ -7,11 +7,11 @@ logger = logging.getLogger('report_aeroo')
 class Parser(rml_parse):
 
     def __init__(self, cr, uid, name, context):
+        uid = 1
         super(self.__class__, self).__init__(cr, uid, name, context)
         # Se fuerza el usuario administador por un error de permisos que no
         # pude detectar para usuarios sin permiso contable, solo con "sale
         # user"
-        uid = 1
 
         if not context:
             return None

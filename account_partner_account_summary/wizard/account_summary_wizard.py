@@ -11,8 +11,8 @@ class account_summary_wizard(models.TransientModel):
     show_receipt_detail = fields.Boolean('Show Receipt Detail')
     result_selection = fields.Selection(
         [('customer', 'Receivable Accounts'),
-        ('supplier', 'Payable Accounts'),
-        ('customer_supplier', 'Receivable and Payable Accounts')],
+         ('supplier', 'Payable Accounts'),
+         ('customer_supplier', 'Receivable and Payable Accounts')],
         "Account Type's", required=True, default='customer_supplier')
 
     @api.multi
@@ -34,4 +34,4 @@ class account_summary_wizard(models.TransientModel):
             show_invoice_detail=self.show_invoice_detail,
             show_receipt_detail=self.show_receipt_detail,
             result_selection=self.result_selection).get_action(
-            partner, 'report_account_summary')        
+            partner.commercial_partner_id, 'report_account_summary')
