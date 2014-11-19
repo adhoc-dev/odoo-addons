@@ -240,7 +240,11 @@ class Parser(rml_parse):
         return invoices
 
     def get_invoice_line_name(self, line):
-        print 'line.name', line.name
+        # Patch feo por errores con unicode
+        import sys
+        reload(sys)
+        sys.setdefaultencoding("utf-8")
+
         name = line.name
         if len(name) >= 2:
             name = name[:-2]

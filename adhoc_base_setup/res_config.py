@@ -36,7 +36,7 @@ class adhoc_base_configuration(osv.osv_memory):
             help="""Installs the account_interests module."""),
         'module_account_invoice_commercial': fields.boolean('Use commercial on invoices related to partner',
             help="""Installs the account_invoice_commercial module, will also install stock module as it change invoice creation from stock."""),
-        'module_account_partner_balance': fields.boolean('Aeroo Partner Balance Report',
+        'module_account_partner_balance': fields.boolean('See Partner Balance on Partner tree view and balance on account move lines',
             help="""Installs the account_partner_balance module."""),
         'module_account_voucher_receipt': fields.boolean('Manage Payment Receipts',
             help="""Installs the account_voucher_receipt module."""),
