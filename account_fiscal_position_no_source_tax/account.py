@@ -9,7 +9,6 @@ class account_fiscal_position(models.Model):
     def map_tax(self, cr, uid, fposition_id, taxes, context=None):
         result = super(account_fiscal_position, self).map_tax(
             cr, uid, fposition_id, taxes, context=context)
-        print 'fposition_id', fposition_id
         if fposition_id:
             taxes_without_src_ids = [
                 x.tax_dest_id.id for x in fposition_id.tax_ids if not x.tax_src_id]

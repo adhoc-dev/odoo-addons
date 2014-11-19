@@ -74,8 +74,8 @@ class adhoc_base_configuration(osv.osv_memory):
             help="""Installs the account_invoice_journal_filter module."""),
         
         # Sale / Purchase modules
-        'module_purchase_discounts': fields.boolean('Mange disccounts on purchases',
-            help="""Installs the purchase_discounts module."""),
+        'module_purchase_discount': fields.boolean('Mange disccounts on purchases',
+            help="""Installs the purchase_discount module."""),
         'module_sale_prices_update': fields.boolean('Add update system for sale order lines',
             help="""Installs the sale_prices_update module."""),
         'module_sale_order_validity': fields.boolean('Mange Sale Orders Validity',

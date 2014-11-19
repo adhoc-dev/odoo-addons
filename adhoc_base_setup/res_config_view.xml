@@ -402,10 +402,10 @@
                     <group>
                         <label for="id" string="Purchase Features" />
                         <div name="purchase_features">
-                            <div name='module_purchase_discounts'>
-                                <field name="module_purchase_discounts"
+                            <div name='module_purchase_discount'>
+                                <field name="module_purchase_discount"
                                     class="oe_inline" />
-                                <label for="module_purchase_discounts" />
+                                <label for="module_purchase_discount" />
                             </div>
                             <div name='module_purchase_uom_prices_uoms'>
                                 <field name="module_purchase_uom_prices_uoms"
