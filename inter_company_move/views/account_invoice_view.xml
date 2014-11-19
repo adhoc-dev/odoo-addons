@@ -10,7 +10,7 @@
                     <field name="invoice_move_type" invisible="1"/>
                 </form>
                 <button name="invoice_proforma2" position="after">
-                    <button name="invoice_move" string="Move Invoice" type="object" attrs="{'invisible':['|','|',('moved_invoice_id','!=',False),('invoice_move_type','not in',['move_wizard','move_auto']),('state','not in',['draft'])]}" context="{'default_actual_company_id':company_id}"/>
+                    <button name="invoice_move" groups="base.group_user" string="Move Invoice" type="object" attrs="{'invisible':['|','|',('moved_invoice_id','!=',False),('invoice_move_type','not in',['move_wizard','move_auto']),('state','not in',['draft'])]}" context="{'default_actual_company_id':company_id}"/>
                 </button>
                 <field name="move_id" position="before">
                     <field name="moved_invoice_id" attrs="{'invisible':[('moved_invoice_id','=',False)]}"/>
@@ -27,7 +27,7 @@
                     <field name="invoice_move_type" invisible="1"/>
                 </form>
                 <button name="invoice_open" position="after">
-                    <button name="invoice_move" string="Move Invoice" type="object" attrs="{'invisible':['|','|',('moved_invoice_id','!=',False),('invoice_move_type','not in',['move_wizard','move_auto']),('state','not in',['draft'])]}" context="{'default_actual_company_id':company_id}"/>
+                    <button name="invoice_move" groups="base.group_user" string="Move Invoice" type="object" attrs="{'invisible':['|','|',('moved_invoice_id','!=',False),('invoice_move_type','not in',['move_wizard','move_auto']),('state','not in',['draft'])]}" context="{'default_actual_company_id':company_id}"/>
                 </button>
                 <field name="move_id" position="before">
                     <field name="moved_invoice_id" attrs="{'invisible':[('moved_invoice_id','=',False)]}"/>
