@@ -18,6 +18,7 @@
                     <field name="destiny_partner_id"/>
                     <field name="bank_id" invisible="context.get('default_type',False) != 'third'"/>
                     <field name="amount" sum="Total Amount"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
                     <field name="state"/>
                 </tree>
             </field>
@@ -76,8 +77,9 @@
                     </group>
                     <group string="Related Documents">
                         <group>
-                            <field name="voucher_id" invisible="'from_voucher' in context" required="'from_voucher' not in context"/>
-                            <field name="third_handed_voucher_id" invisible="'from_voucher' in context" attrs="{'invisible':[('third_handed_voucher_id','=',False)]}"/>
+                            <field name="voucher_id" invisible="'from_voucher' in context" required="'from_voucher' not in context" context="{'form_view_ref':'account_voucher.view_vendor_receipt_form'}" readonly="0"/>
+                            <!-- <field name="voucher_id" invisible="'from_voucher' in context" required="'from_voucher' not in context" context="{'form_view_ref':'account_voucher.view_vendor_payment_form'}"/> -->
+                            <field name="third_handed_voucher_id" invisible="'from_voucher' in context"  context="{'form_view_ref':'account_voucher.view_vendor_payment_form'}" attrs="{'invisible':[('third_handed_voucher_id','=',False)]}"/>
                             <field name="source_partner_id" invisible="'from_voucher' in context" attrs="{'invisible':[('source_partner_id','=',False)]}"/>
                             <field name="destiny_partner_id" invisible="'from_voucher' in context" attrs="{'invisible':[('destiny_partner_id','=',False)]}"/>
                         </group>
@@ -107,6 +109,7 @@
                     <field name="destiny_partner_id"/>
                     <field name="journal_id"/>
                     <field name="voucher_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
                     <field name="state"/>
                     <group expand="0" string="Group By...">
                         <filter string="Issue Date" context="{'group_by':'issue_date'}"/>

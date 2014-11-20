@@ -8,9 +8,10 @@
             <field name="arch" type="xml">
                 <form string="Check Action" version="7.0">
                     <field name="action_type" invisible="1"/>
+                    <field name="company_id" invisible="1"/>
                     <group >
                         <field name="date"/>
-                        <field name="account_id" attrs="{'invisible':[('action_type','!=','deposit')],'required':[('action_type','=','deposit')]}"/>
+                        <field name="account_id" domain="[('company_id','=',company_id),('type', 'in', ['other', 'liquidity'])]" attrs="{'invisible':[('action_type','!=','deposit')],'required':[('action_type','=','deposit')]}"/>
                     </group>
                     <footer>
                         <button string="Confirm" name="action_confirm" type="object" class="oe_highlight"/>

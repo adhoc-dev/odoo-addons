@@ -1,45 +1,60 @@
 # -*- coding: utf-8 -*-
+from openerp.exceptions import Warning
+from openerp import models, fields, api, _
 
 
-from openerp.osv import osv, fields
-from openerp.tools.translate import _
-import time
-
-class account_check_action(osv.osv_memory):
+class account_check_action(models.TransientModel):
     _name = 'account.check.action'
 
-    _columns = {
-        'account_id': fields.many2one('account.account', 'Account', domain=[('type','in',['other','liquidity'])]),
-        'date': fields.date('Debit Date',required=True),
-        'action_type': fields.char('Action type passed on the context', required=True),
-    }
+    @api.model
+    def _get_company_id(self):
+        active_ids = self._context.get('active_ids', [])
+        checks = self.env['account.check'].browse(active_ids)
+        company_ids = [x.company_id.id for x in checks]
+        if len(set(company_ids)) > 1:
+            raise Warning(_('All checks must be from the same company!'))
+        if company_ids:
+            return company_ids[0]
 
-    _defaults = {
-        'date': lambda *a: time.strftime('%Y-%m-%d'),
-    }
+    account_id = fields.Many2one(
+        'account.account', 'Account',
+        domain=[('type', 'in', ['other', 'liquidity'])])
+    date = fields.Date(
+        'Debit Date', required=True, default=fields.Date.context_today)
+    action_type = fields.Char(
+        'Action type passed on the context', required=True)
+    company_id = fields.Many2one(
+        'res.company',
+        'Company',
+        required=True,
+        default=_get_company_id)
 
     def action_confirm(self, cr, uid, ids, context=None):
         check_obj = self.pool.get('account.check')
         move_line_obj = self.pool.get('account.move.line')
         wizard = self.browse(cr, uid, ids[0], context=context)
-        period_id = self.pool.get('account.period').find(cr, uid, wizard.date)[0]
+        context['company_id'] = wizard.company_id.id
+
+        # used to get correct ir properties
+        context['force_company'] = wizard.company_id.id
+
+        period_id = self.pool.get('account.period').find(
+            cr, uid, wizard.date, context=context)[0]
         if context is None:
             context = {}
 
         record_ids = context.get('active_ids', [])
         for check in check_obj.browse(cr, uid, record_ids, context=context):
-            print 'check.type ', check.type 
             if check.type == 'third':
                 if check.state != 'holding':
-                    raise osv.except_osv(_('Check %s selected error' % (check.name)),
-                        _('The selected checks must be in holding state.'))                    
+                    raise Warning(_('The selected checks must be in holding state.'))
             elif check.type == 'issue':
                 if check.state != 'handed':
-                    raise osv.except_osv(_('Check %s selected error' % (check.name)),
-                        _('The selected checks must be in handed state.'))
+                    raise Warning(_('The selected checks must be in handed state.'))
 
             if wizard.action_type == 'deposit':
-                # TODO: tal vez la cuenta de deposito del cheque deberia salir de la seleccion de un jorunal y el journal tambien.
+                # TODO: tal vez la cuenta de deposito del cheque deberia salir
+                # de la seleccion de un jorunal y el journal tambien.
                 ref = _('Deposit Check Nr. ')
                 check_move_field = 'deposit_account_move_id'
                 journal = check.voucher_id.journal_id
@@ -56,34 +71,35 @@ class account_check_action(osv.osv_memory):
                 check_vals = {}
                 signal = 'handed_debited'
 
-            name = self.pool.get('ir.sequence').next_by_id(cr, uid, journal.sequence_id.id, context=context)
+            name = self.pool.get('ir.sequence').next_by_id(
+                cr, uid, journal.sequence_id.id, context=context)
             ref += check.name
             move_id = self.pool.get('account.move').create(cr, uid, {
-                    'name': name,
-                    'journal_id': journal.id,
-                    'period_id': period_id,
-                    'date': wizard.date,
-                    'ref':  ref,
-            })
-            
-            move_line_obj.create(cr, uid, {
-                    'name': name,
-                    'account_id': debit_account_id,
-                    'move_id': move_id,
-                    'debit': check.amount,
-                    'ref': ref,
+                'name': name,
+                'journal_id': journal.id,
+                'period_id': period_id,
+                'date': wizard.date,
+                'ref':  ref,
             })
             move_line_obj.create(cr, uid, {
-                    'name': name,
-                    'account_id': credit_account_id,
-                    'move_id': move_id,
-                    'credit': check.amount,
-                    'ref': ref,
+                'name': name,
+                'account_id': debit_account_id,
+                'move_id': move_id,
+                'debit': check.amount,
+                'ref': ref,
+            })
+            move_line_obj.create(cr, uid, {
+                'name': name,
+                'account_id': credit_account_id,
+                'move_id': move_id,
+                'credit': check.amount,
+                'ref': ref,
             })
 
             check_vals[check_move_field] = move_id
             check.write(check_vals)
             check.signal_workflow(signal)
-        self.pool.get('account.move').write(cr, uid, [move_id], {'state': 'posted',})
+        self.pool.get('account.move').write(
+            cr, uid, [move_id], {'state': 'posted', }, context=context)
 
         return {}
