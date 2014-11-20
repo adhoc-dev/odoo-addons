@@ -77,8 +77,7 @@
                     </group>
                     <group string="Related Documents">
                         <group>
-                            <field name="voucher_id" invisible="'from_voucher' in context" required="'from_voucher' not in context" context="{'form_view_ref':'account_voucher.view_vendor_receipt_form'}" readonly="0"/>
-                            <!-- <field name="voucher_id" invisible="'from_voucher' in context" required="'from_voucher' not in context" context="{'form_view_ref':'account_voucher.view_vendor_payment_form'}"/> -->
+                            <field name="voucher_id" invisible="'from_voucher' in context" required="'from_voucher' not in context" readonly="1"/>
                             <field name="third_handed_voucher_id" invisible="'from_voucher' in context"  context="{'form_view_ref':'account_voucher.view_vendor_payment_form'}" attrs="{'invisible':[('third_handed_voucher_id','=',False)]}"/>
                             <field name="source_partner_id" invisible="'from_voucher' in context" attrs="{'invisible':[('source_partner_id','=',False)]}"/>
                             <field name="destiny_partner_id" invisible="'from_voucher' in context" attrs="{'invisible':[('destiny_partner_id','=',False)]}"/>
