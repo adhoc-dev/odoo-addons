@@ -13,8 +13,7 @@ class account_check_action(models.TransientModel):
         company_ids = [x.company_id.id for x in checks]
         if len(set(company_ids)) > 1:
             raise Warning(_('All checks must be from the same company!'))
-        if company_ids:
-            return company_ids[0]
+        return self.env['res.company'].search(company_ids, limit=1)
 
     account_id = fields.Many2one(
         'account.account', 'Account',
