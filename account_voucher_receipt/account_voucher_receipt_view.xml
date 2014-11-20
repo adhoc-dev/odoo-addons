@@ -60,7 +60,7 @@
                             <page string="Payments">
                                 <button name="new_payment_normal" states="draft" string="Add Payment" type="object" class="oe_highlight"/>
                                 <!-- <label for="voucher_ids" string="Payments" attrs="{'invisible':[('state','=','draft')]}"/> -->
-                                <field name="supplier_voucher_ids" nolabel="1" attrs="{'readonly':[('id','=',False)],'invisible':[('type','=','payment')]}" context="{'partner_id': partner_id, 'date': date, 'company_id': company_id, 'from_receipt': True,'default_receipt_id': id, 'form_view_ref':'account_voucher.view_vendor_payment_form',}" colspan="4">
+                                <field name="supplier_voucher_ids" nolabel="1" attrs="{'readonly':[('id','=',False)],'invisible':[('type','=','receipt')]}" context="{'partner_id': partner_id, 'date': date, 'company_id': company_id, 'from_receipt': True,'default_receipt_id': id, 'form_view_ref':'account_voucher.view_vendor_payment_form',}" colspan="4">
                                     <tree create="false" colors="blue:state == 'draft';gray:state == 'cancel';red:audit" string="Voucher Entries">
                                         <field name="number"/>
                                         <field name="reference"/>
@@ -70,7 +70,7 @@
                                         <field name="state"/>
                                     </tree>
                                 </field>
-                                <field name="customer_voucher_ids" nolabel="1" attrs="{'readonly':[('id','=',False)],'invisible':[('type','=','receipt')]}" context="{'partner_id': partner_id, 'date': date, 'company_id': company_id, 'from_receipt': True,'default_receipt_id': id, 'form_view_ref':'account_voucher.view_vendor_receipt_form',}" colspan="4">
+                                <field name="customer_voucher_ids" nolabel="1" attrs="{'readonly':[('id','=',False)],'invisible':[('type','=','payment')]}" context="{'partner_id': partner_id, 'date': date, 'company_id': company_id, 'from_receipt': True,'default_receipt_id': id, 'form_view_ref':'account_voucher.view_vendor_receipt_form',}" colspan="4">
                                     <tree create="false" colors="blue:state == 'draft';gray:state == 'cancel';red:audit" string="Voucher Entries">
                                         <field name="number"/>
                                         <field name="reference"/>
