@@ -13,7 +13,8 @@ class account_check_action(models.TransientModel):
         company_ids = [x.company_id.id for x in checks]
         if len(set(company_ids)) > 1:
             raise Warning(_('All checks must be from the same company!'))
-        return self.env['res.company'].search(company_ids, limit=1)
+        return self.env['res.company'].search(
+            [('id', 'in', company_ids)], limit=1)
 
     account_id = fields.Many2one(
         'account.account', 'Account',
@@ -26,7 +27,8 @@ class account_check_action(models.TransientModel):
         'res.company',
         'Company',
         required=True,
-        default=_get_company_id)
+        default=_get_company_id
+        )
 
     def action_confirm(self, cr, uid, ids, context=None):
         check_obj = self.pool.get('account.check')
