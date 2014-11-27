@@ -49,9 +49,13 @@ class account_check_action(models.TransientModel):
             if check.type == 'third':
                 if check.state != 'holding':
                     raise Warning(_('The selected checks must be in holding state.'))
+                if wizard.action_type == 'debit':
+                    raise Warning(_('You can not debit a Third Check.'))
             elif check.type == 'issue':
                 if check.state != 'handed':
                     raise Warning(_('The selected checks must be in handed state.'))
+                if wizard.action_type == 'deposit':
+                    raise Warning(_('You can not deposit a Issue Check.'))
 
             if wizard.action_type == 'deposit':
                 # TODO: tal vez la cuenta de deposito del cheque deberia salir
