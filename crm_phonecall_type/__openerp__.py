@@ -12,6 +12,8 @@
     'name': 'CRM Phonecall Type',
     'test': [],
     'data': [
+        'wizard/crm_opportunity_to_phonecall_view.xml',
+        'wizard/crm_phonecall_to_phonecall_view.xml',
         'crm_phonecall_view.xml',
         'security/ir.model.access.csv',
     ],
