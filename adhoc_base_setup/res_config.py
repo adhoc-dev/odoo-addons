@@ -18,13 +18,13 @@ class adhoc_base_configuration(osv.osv_memory):
             help="""Installs the sale_multic_fix module."""),
         'module_purchase_multic_fix': fields.boolean('FiX purchase in multi-company father/son environment',
             help="""Installs the purchase_multic_fix module."""),
-        'module_account_voucher_account_fix': fields.boolean('FiX vouchers so that if payment use journal credit account, if receipt use journal debit account',
+        'module_account_voucher_account_fix': fields.boolean('FIX vouchers credit/debit account choose. If payment, use credit account; if receipt, use debit account',
             help="""Installs the account_voucher_account_fix module."""),
-        'module_account_onchange_fix': fields.boolean('Fix on change partner or company in multicompany environment',
+        'module_account_onchange_fix': fields.boolean('FIX account on changes in multicompany environment',
             help="""Installs the account_onchange_fix module."""),
-        'module_stock_multic_fix': fields.boolean('Fix for creating an invoice to filter by company Journal field',
+        'module_stock_multic_fix': fields.boolean('FIX invoice creation wizard from picking in multicompany environment',
             help="""Installs the stock_multic_fix module."""),        
-        
+
         # Account modules
         'module_account_fiscal_position_no_source_tax': fields.boolean('Give posibility to define tax mapping in fiscal position without source tax',
             help="""Installs the account_fiscal_position_no_source_tax module."""),
