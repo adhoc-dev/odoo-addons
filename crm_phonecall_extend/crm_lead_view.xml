@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+    
+
+    <record model="ir.ui.view" id="crm_lead_form_view">
+        <field name="name">CRM -LEAD</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+        <field name="arch" type="xml">
+            <field name="date_action" position='after'>
+                <field name="next_phonecall_id" />
+                <field name="phonecall_categ_id"/>
+                <field name="phonecall_user_id"/>
+            </field>
+        </field>
+    </record>
+
+    
+    </data>
+</openerp>
