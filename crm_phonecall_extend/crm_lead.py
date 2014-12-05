@@ -29,9 +29,9 @@ class crm_lead(osv.osv):
     _columns = {
 
         'next_phonecall_id': fields.function(_get_phonecall,
-            type='many2one',string='Next Phonecall', multi="call", relation='crm.lead'
+            type='many2one',string='Next Phonecall', multi="call", relation='crm.phonecall'
             ),
-        'phonecall_categ_id':fields.function(_get_phonecall, type='many2one', string='Category Phonecall',multi="call",relation='crm.lead'),
-        'phonecall_user_id':fields.function(_get_phonecall, type='many2one', string='Users Phonecall', multi="call",relation='crm.lead'),
+        'phonecall_categ_id':fields.function(_get_phonecall, type='many2one', string='Category Phonecall',multi="call",relation='crm.case.categ'),
+        'phonecall_user_id':fields.function(_get_phonecall, type='many2one', string='Users Phonecall', multi="call",relation='res.users'),
 
     }
