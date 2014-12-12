@@ -9,61 +9,13 @@
             <field name="arch" type="xml">
                 <field name="move_lines" position="before">
                     <group colspan="4" col="6">
-                        <field name="location_id"/>
-                        <field name="location_dest_id"/>
-                        <button name="update_locations" string="Update Locations" type="object"
-                                icon="gtk-ok" states="draft,auto,confirmed,assigned"/>
+                        <field name="new_location_id"/>
+                        <field name="new_location_dest_id"/>
+                        <button name="update_locations" string="Update Locations" type="object" icon="gtk-ok" states="draft,waiting,confirmed"/>
                     </group>
                 </field>
-                
-<!-- No funcionaba y parece mejor no pasarlo -->
-<!--                 <field name="move_lines" position="attributes">
-                    <attribute name="context">{'partner_id': partner_id, 'location_id': location_id, 'location_dest_id': location_dest_id}</attribute>
-                </field> -->
             </field>
         </record>
-        
-        <record id="stock_picking_location_stock_picking_out_form" model="ir.ui.view">
-            <field name="name">stock_picking_location.stock.picking.out.form</field>
-            <field name="model">stock.picking.out</field>
-            <field name="inherit_id" ref="stock.view_picking_out_form"/>
-            <field name="arch" type="xml">
-                <field name="move_lines" position="before">
-                    <group colspan="4" col="6">
-                        <field name="location_id"/>
-                        <field name="location_dest_id"/>
-                        <button name="update_locations" string="Update Locations" type="object"
-                                icon="gtk-ok" states="draft,auto,confirmed,assigned"/>
-                    </group>
-                </field>
-                
-<!-- No funcionaba y parece mejor no pasarlo -->
-<!--                 <field name="move_lines" position="attributes">
-                    <attribute name="context">{'partner_id': partner_id, 'location_id': location_id, 'location_dest_id': location_dest_id}</attribute>
-                </field> -->
-            </field>
-        </record>
-        
-        <record id="stock_picking_location_stock_picking_in_form" model="ir.ui.view">
-            <field name="name">stock_picking_location.stock.picking.in.form</field>
-            <field name="model">stock.picking.in</field>
-            <field name="inherit_id" ref="stock.view_picking_in_form"/>
-            <field name="arch" type="xml">
-                <field name="move_lines" position="before">
-                    <group colspan="4" col="6">
-                        <field name="location_id"/>
-                        <field name="location_dest_id"/>
-                        <button name="update_locations" string="Update Locations" type="object"
-                                icon="gtk-ok" states="draft,auto,confirmed,assigned"/>
-                    </group>
-                </field>
-                
-<!-- No funcionaba y parece mejor no pasarlo -->
-<!--                 <field name="move_lines" position="attributes">
-                    <attribute name="context">{'partner_id': partner_id, 'location_id': location_id, 'location_dest_id': location_dest_id}</attribute>
-                </field> -->
-            </field>
-        </record>
-        
+
     </data>
 </openerp>

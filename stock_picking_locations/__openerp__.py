@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-
-
 {
     'name': 'Stock Picking Locations',
     'version': '1.0',
@@ -23,7 +21,7 @@ Location.
         'stock',
     ],
     'data': [
-        'stock_view.xml', 
+        'stock_view.xml',
     ],
     'demo': [
     ],
