@@ -430,10 +430,10 @@
                     <group>
                         <label for="id" string="Stock Features" />
                         <div name="stock_features">
-                            <div name='module_stock_picking_location'>
-                                <field name="module_stock_picking_location"
+                            <div name='module_stock_picking_locations'>
+                                <field name="module_stock_picking_locations"
                                     class="oe_inline" />
-                                <label for="module_stock_picking_location" />
+                                <label for="module_stock_picking_locations" />
                             </div>                   
                         </div>
                     </group>
