@@ -15,7 +15,7 @@ class sale_order_line(models.Model):
             discount = (list_price - self.price_unit) * 100.0 / list_price
 
         total_discount = discount + self.discount - (
-            discount * self.discount or 0.0)
+            discount * self.discount or 0.0) / 100.0
         self.pricelist_discount = discount
         self.total_discount = total_discount
 
