@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-
-
 {
     'name': 'Project Tags',
     'version': '1.0',
@@ -16,18 +14,12 @@ Project Tags
     'images': [
     ],
     'depends': [
-        'project_security',
+        'project',
     ],
     'data': [
-      'security/project_tags_group.xml',
-      'view/project_view.xml',
-      'view/project_tag_view.xml',
-      'view/project_tags_menuitem.xml',
-      'data/project_properties.xml',
-      'data/project_tag_properties.xml',
-      'data/project_track.xml',
-      'data/project_tag_track.xml',
-      'security/ir.model.access.csv'
+        'security/ir.model.access.csv',
+        'view/project_view.xml',
+        'view/project_tag_view.xml',
     ],
     'demo': [
     ],

@@ -446,6 +446,11 @@
                                 <field name="module_project_description"
                                     class="oe_inline" />
                                 <label for="module_project_description" />
+                            </div> 
+                            <div name='module_project_tags'>
+                                <field name="module_project_tags"
+                                    class="oe_inline" />
+                                <label for="module_project_tags" />
                             </div>    
                         </div>    
                         <label for="id" string="Tasks" />

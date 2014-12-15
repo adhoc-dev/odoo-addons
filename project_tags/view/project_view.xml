@@ -1,29 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-##############################################################################
-#
-#    Project Tags
-#    Copyright (C) 2013 Sistemas ADHOC
-#    No email
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
--->
-<!-- project_tags.project -->
-<!-- project.project -->
-<!-- project.project -->
 <openerp>
     <data>
 
@@ -51,16 +26,7 @@
             </field>
         </record>
 
-        <!-- INHERITED TREE
-        <record id="view_project_tags_project_tree" model="ir.ui.view">
-            <field name="name">project_tags.project.tree</field>
-            <field name="model">project.project</field>
-            <field name="inherit_id" ref="project.view_project"/>
-            <field name="arch" type="xml">
-                <tree position="inside">
-                </tree>
-            </field>
-        </record> -->
+        <!-- INHERITED KANBAN -->
         <record model="ir.ui.view" id="view_project_kanban">
             <field name="name">project.project.kanban</field>
             <field name="model">project.project</field>
@@ -71,14 +37,11 @@
                 </field>
                 <div class="oe_kanban_project_avatars" position="after">
                     <div class="oe_kanban_footer_left" style="margin-top:5px;">
-                     <!--<t t-raw="record.message_summary.raw_value"/>-->
                         <field name="project_tag_ids"/>
                     </div>
-                </div>-->
+                </div>
             </field>
         </record>
-
-
 
     </data>
 </openerp>

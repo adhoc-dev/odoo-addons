@@ -131,6 +131,8 @@ then on sale orders lines this description will be used and no code"""),
             help="""Installs the project_issue_order module."""),
         'module_project_task_issues': fields.boolean('Add Issue in to task view',
             help="""Installs the project_task_issues module."""),
+        'module_project_tags': fields.boolean('Add Tags on Projects',
+            help="""Installs the project_tags module."""),
 
         # Stock
         'module_stock_picking_locations': fields.boolean('Allow changing stock locations globaly from picking',
