@@ -11,13 +11,14 @@ class task(models.Model):
 
     @api.multi
     def action_open_task(self):
+        print 'context', self._context
         return {
             'name': _('User Story'),
             'view_type': 'form',
             'view_mode': 'form',
             # 'view_id': [res_id],
             'res_model': 'project.task',
-            # 'context': "{'type':'out_invoice'}",
+            'context': self._context,
             'type': 'ir.actions.act_window',
             'nodestroy': True,
             'target': 'current',
