@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <!--<data noupdate="0">-->
-    <data>
-        <record id="location_security.restrict_locations" model="res.groups">
-            <field name="name">Restrict Locations</field>
-        </record>
-    </data>
-</openerp>
