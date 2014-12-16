@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <openerp>
     <data>
  
-
-        
- 
-
         <record id="action_areas" model="ir.actions.act_window">
             <field name="name">Areas</field>
             <field name="res_model">res.partner.area</field>
@@ -23,7 +18,6 @@
             sequence="70"
             action="action_areas"
             parent="base.menu_config_address_book"
-            
             />
 
     </data>

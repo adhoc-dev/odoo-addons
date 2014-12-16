@@ -2,9 +2,6 @@
 <openerp>
     <data>
 
-
- 
-
     <!-- Phonecalls Form View -->
     <record model="ir.ui.view" id="crm_lead_area_form_view">
         <field name="name">CRM - Lead Area</field>
