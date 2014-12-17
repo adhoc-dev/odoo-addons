@@ -1,19 +1,20 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* report_aeroo_generator
+# 	* report_aeroo_generator
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-22 22:30+0000\n"
-"PO-Revision-Date: 2014-01-22 19:36-0300\n"
+"PO-Revision-Date: 2014-12-17 11:58-0300\n"
 "Last-Translator: Juan Jose Scarafia <scarafia.juanjose@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
 
 #. module: report_aeroo_generator
 #: view:report_aeroo_generator.report_configuration:0
@@ -110,8 +111,11 @@ msgstr "Dividir Albarán de Entrada"
 
 #. module: report_aeroo_generator
 #: view:report_aeroo_generator.product_catalog_wizard:0
-msgid "Select the pricelist from where the prices of the products are computed."
-msgstr "Seleccione la lista de precios desde donde computar el precio de los productos."
+msgid ""
+"Select the pricelist from where the prices of the products are computed."
+msgstr ""
+"Seleccione la lista de precios desde donde computar el precio de los "
+"productos."
 
 #. module: report_aeroo_generator
 #: field:account.invoice,splitted_invoice_id:0
@@ -165,9 +169,7 @@ msgid "Split Internal Picking"
 msgstr "Dividir Albarán Interno"
 
 #. module: report_aeroo_generator
-#: view:account.invoice:0
-#: view:purchase.order:0
-#: view:sale.order:0
+#: view:account.invoice:0 view:purchase.order:0 view:sale.order:0
 msgid "Print"
 msgstr "Imprimir"
 
@@ -267,8 +269,12 @@ msgstr "Parser"
 
 #. module: report_aeroo_generator
 #: help:report_aeroo_generator.report_configuration,account_invoice_split_invoice:0
-msgid "If true, when validating the invoice, if it contains more than the specified number of lines, new invoices will be generated."
-msgstr "Si esta marcado, cuando se valida una Factura, si esta contiene más lineas de las especificadas, una nueva Factura es generada con las lineas sobrantes."
+msgid ""
+"If true, when validating the invoice, if it contains more than the specified "
+"number of lines, new invoices will be generated."
+msgstr ""
+"Si esta marcado, cuando se valida una Factura, si esta contiene más lineas "
+"de las especificadas, una nueva Factura es generada con las lineas sobrantes."
 
 #. module: report_aeroo_generator
 #: view:report_aeroo_generator.report_configuration:0
@@ -309,8 +315,12 @@ msgstr "Información"
 
 #. module: report_aeroo_generator
 #: help:report_aeroo_generator.report_configuration_defaults,override_values:0
-msgid "If true, override values in already created Aeroo Report Configuration when saved."
-msgstr "Si esta marcado, sobreescribe los valores en Configuraciones de Reportes de Aeroo ya almacenados."
+msgid ""
+"If true, override values in already created Aeroo Report Configuration when "
+"saved."
+msgstr ""
+"Si esta marcado, sobreescribe los valores en Configuraciones de Reportes de "
+"Aeroo ya almacenados."
 
 #. module: report_aeroo_generator
 #: field:report_aeroo_generator.report_configuration,report_xml_id:0
@@ -319,13 +329,19 @@ msgstr "Reporte XML"
 
 #. module: report_aeroo_generator
 #: help:report_aeroo_generator.report_configuration,report_rml:0
-msgid "The path to the main report file (depending on Report Type) or NULL if the content is in another data field"
-msgstr "The path to the main report file (depending on Report Type) or NULL if the content is in another data field"
+msgid ""
+"The path to the main report file (depending on Report Type) or NULL if the "
+"content is in another data field"
+msgstr ""
+"The path to the main report file (depending on Report Type) or NULL if the "
+"content is in another data field"
 
 #. module: report_aeroo_generator
 #: help:account.invoice,splitter_invoice_id:0
-msgid "This field contain the invoice that was splitted, generating another invoice."
-msgstr "Este campo contiene la Factura que fue generada cuando se dividio la actual."
+msgid ""
+"This field contain the invoice that was splitted, generating another invoice."
+msgstr ""
+"Este campo contiene la Factura que fue generada cuando se dividio la actual."
 
 #. module: report_aeroo_generator
 #: selection:report_aeroo_generator.report_configuration,sale_order_state:0
@@ -344,8 +360,10 @@ msgstr "Base de Datos"
 
 #. module: report_aeroo_generator
 #: view:report_aeroo_generator.product_catalog_wizard:0
-msgid "Select the categories from which you want to generate the Catalog Report."
-msgstr "Seleccione la categoría a utilizar para generar el Reporte del Catalogo."
+msgid ""
+"Select the categories from which you want to generate the Catalog Report."
+msgstr ""
+"Seleccione la categoría a utilizar para generar el Reporte del Catalogo."
 
 #. module: report_aeroo_generator
 #: model:ir.model,name:report_aeroo_generator.model_res_company
@@ -360,7 +378,7 @@ msgstr "Fuente de la Plantilla"
 #. module: report_aeroo_generator
 #: field:res.company,report_company_name:0
 msgid "Report Company Name"
-msgstr "Nombre de Compañía del Reporte"
+msgstr "Nombre Cia. para Reportes"
 
 #. module: report_aeroo_generator
 #: field:account.invoice,splitter_invoice_id:0
@@ -561,4 +579,3 @@ msgstr "Booleano"
 #: selection:report_aeroo_generator.report_configuration,tml_source:0
 msgid "File"
 msgstr "File"
-

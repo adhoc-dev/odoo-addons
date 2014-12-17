@@ -5,7 +5,7 @@
             <field name="model">res.company</field>
             <field name="inherit_id" ref="base.view_company_form"/>
             <field name="arch" type="xml">
-                <field name="custom_footer" positon='before'>
+                <field name="partner_id" position='after'>
                     <field name="report_company_name"/>
                 </field>
             </field>
