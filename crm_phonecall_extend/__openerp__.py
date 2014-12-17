@@ -3,7 +3,7 @@
     'demo_xml': [
     ],
     'depends': [
-        'crm'
+        'crm_phonecall_type'
         ],
     'description': 'CRM Phonecalls Extension',
     'init_xml': [],

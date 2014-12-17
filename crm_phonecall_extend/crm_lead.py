@@ -10,22 +10,24 @@ class crm_lead(osv.osv):
         phonecall_obj = self.pool['crm.phonecall']
         for lead in self.browse(cr, uid, ids, context=context):
             phonecall_id = False
-            categ_id = False
+            type_id = False
             user_id = False
+            phonecall_date = False
             phonecall_ids = phonecall_obj.search(cr, uid, [(
                 'opportunity_id', '=', lead.id),
                 ('state', 'in', ('open', 'pending'))],
                 order='date desc', context=context)
             if phonecall_ids:
-                phonecall_id = phonecall_ids[0]
-                categ_id = phonecall_obj.browse(
-                    cr, uid, phonecall_id, context=context).categ_id.id
-                user_id = phonecall_obj.browse(
-                    cr, uid, phonecall_id, context=context).user_id.id
+                phonecall = phonecall_obj.browse(
+                    cr, uid, phonecall_ids[0], context=context)
+                type_id = phonecall.type_id.id
+                user_id = phonecall.user_id.id
+                phonecall_date = phonecall.date
             result[lead.id] = {
                 'next_phonecall_id': phonecall_id,
-                'phonecall_categ_id': categ_id,
+                'phonecall_type_id': type_id,
                 'phonecall_user_id': user_id,
+                'phonecall_date': phonecall_date,
             }
         return result
 
@@ -36,16 +38,21 @@ class crm_lead(osv.osv):
             string='Next Phonecall',
             multi="call",
             relation='crm.phonecall'),
-        'phonecall_categ_id': fields.function(
+        'phonecall_date': fields.function(
+            _get_phonecall,
+            type='datetime',
+            string='Phonecall Date',
+            multi="call",),
+        'phonecall_type_id': fields.function(
             _get_phonecall,
             type='many2one',
-            string='Category Phonecall',
+            string='Phonecall Type',
             multi="call",
-            relation='crm.case.categ'),
+            relation='crm.phonecall.type'),
         'phonecall_user_id': fields.function(
             _get_phonecall,
             type='many2one',
-            string='Users Phonecall',
+            string='Phonecall Responsible',
             multi="call",
             relation='res.users'),
     }

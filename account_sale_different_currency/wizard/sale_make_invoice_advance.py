@@ -150,9 +150,13 @@ class sale_advance_payment_inv(osv.osv_memory):
             else:
                 res['invoice_line_tax_id'] = False
 
+            line_name = res.get('name')
+            for line in sale.order_line:
+                line_name += '\n* %s' % (line.name)
+
             # create the invoice
             inv_line_values = {
-                'name': res.get('name'),
+                'name': line_name,
                 'origin': sale.name,
                 'account_id': res['account_id'],
                 'price_unit': inv_amount,
