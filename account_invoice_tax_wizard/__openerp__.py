@@ -12,6 +12,7 @@
     'description': '''
 Account Invoice Tax Wizard
 ==========================
+Add a wizard to add manual taxes on invoices
 ''',
     'installable': True,
     'name': 'Account Invoice Tax Wizard',
