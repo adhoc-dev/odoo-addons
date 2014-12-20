@@ -26,6 +26,8 @@ class adhoc_base_configuration(osv.osv_memory):
             help="""Installs the stock_multic_fix module."""),        
 
         # Account modules
+        'module_account_invoice_tax_wizard': fields.boolean('Add a wizard to add manual taxes on invoices',
+            help="""Installs the account_invoice_tax_wizard module."""),
         'module_account_fiscal_position_no_source_tax': fields.boolean('Give posibility to define tax mapping in fiscal position without source tax',
             help="""Installs the account_fiscal_position_no_source_tax module."""),
         'module_invoice_fiscal_position_update': fields.boolean('Invoice Update on Fiscal Position Change',

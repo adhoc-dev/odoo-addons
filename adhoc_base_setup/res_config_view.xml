@@ -144,6 +144,11 @@
                     <group>
                         <label for="id" string="Invoicing" />    
                         <div name="invoicing">
+                            <div name='module_account_invoice_tax_wizard'>
+                                <field name="module_account_invoice_tax_wizard"
+                                    class="oe_inline" />
+                                <label for="module_account_invoice_tax_wizard" />
+                            </div>  
                             <div name='module_invoice_fiscal_position_update'>
                                 <field name="module_invoice_fiscal_position_update"
                                     class="oe_inline" />
