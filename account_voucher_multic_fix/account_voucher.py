@@ -30,7 +30,7 @@ class account_voucher(models.Model):
                 ('type', 'in', ('cash', 'bank'))]
             # Esto seria si esta instalado el modulo de direction
             print 'context', context
-            if self.pool['account.journal'].fields_get(cr, uid, ['type']):
+            if self.pool['account.journal'].fields_get(cr, uid, ['direction']):
                 if context.get('type', False) == 'payment':
                     domain.append(('direction', 'in', [False, 'out']))
                 elif context.get('type', False) == 'receipt':
