@@ -7,6 +7,9 @@ class account_summary_wizard(models.TransientModel):
 
     from_date = fields.Date('From')
     to_date = fields.Date('To')
+    company_id = fields.Many2one(
+        'res.company',
+        help="If blank are to list all movements for which the user has permission , if a company is defined will be shown only movements that company")
     show_invoice_detail = fields.Boolean('Show Invoice Detail')
     show_receipt_detail = fields.Boolean('Show Receipt Detail')
     result_selection = fields.Selection(
@@ -29,6 +32,7 @@ class account_summary_wizard(models.TransientModel):
         return self.env['report'].with_context(
             from_date=self.from_date,
             to_date=self.to_date,
+            company_id=self.company_id.id,
             active_id=active_id,
             active_ids=active_ids,
             show_invoice_detail=self.show_invoice_detail,

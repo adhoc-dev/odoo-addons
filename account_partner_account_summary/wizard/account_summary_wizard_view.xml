@@ -12,6 +12,7 @@
                             <field name="from_date"/>
                             <field name="to_date"/>
                             <field name="result_selection"/>
+                            <field name="company_id" string="Company"/>
                         </group>
                         <group>
                             <field name="show_invoice_detail"/>

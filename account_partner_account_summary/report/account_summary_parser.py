@@ -23,6 +23,7 @@ class Parser(rml_parse):
 
         self.from_date = context.get('from_date', False)
         self.to_date = context.get('to_date', False)
+        self.company_id = context.get('company_id', False)
         self.show_invoice_detail = context.get('show_invoice_detail', False)
         self.show_receipt_detail = context.get('show_receipt_detail', False)
         self.result_selection = context.get('result_selection', False)
@@ -31,11 +32,19 @@ class Parser(rml_parse):
         partner_obj = self.pool.get('res.partner')
 
         moves_dic = {}
-        for partner in partner_obj.browse(cr, uid, partner_ids, context=context):
-            move_ids = self.select_account_move_ids(
-                partner.id, self.from_date, self.to_date)
-            moves = move_obj.browse(cr, uid, move_ids, context=context)
-            moves_dic[partner] = moves
+        if self.company_id:
+            for partner in partner_obj.browse(cr, uid, partner_ids, context=context):
+                move_ids = self.select_account_move_ids(
+                    partner.id, self.from_date, self.to_date)
+                moves_ids = move_obj.search(cr, uid, (['id','in', move_ids],['company_id','=',self.company_id]), context=context)
+                moves = move_obj.browse(cr, uid, moves_ids, context=context)
+                moves_dic[partner] = moves
+        else:
+            for partner in partner_obj.browse(cr, uid, partner_ids, context=context):
+                move_ids = self.select_account_move_ids(
+                    partner.id, self.from_date, self.to_date)
+                moves = move_obj.browse(cr, uid, move_ids, context=context)
+                moves_dic[partner] = moves
 
         self.moves_dic = moves_dic
         self.localcontext.update({
