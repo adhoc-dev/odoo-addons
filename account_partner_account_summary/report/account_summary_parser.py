@@ -36,7 +36,9 @@ class Parser(rml_parse):
             for partner in partner_obj.browse(cr, uid, partner_ids, context=context):
                 move_ids = self.select_account_move_ids(
                     partner.id, self.from_date, self.to_date)
-                moves_ids = move_obj.search(cr, uid, (['id','in', move_ids],['company_id','=',self.company_id]), context=context)
+                moves_ids = move_obj.search(cr, uid, (['id', 'in', move_ids], ['company_id', '=', self.company_id]),
+                                            order='date asc',
+                                            context=context)
                 moves = move_obj.browse(cr, uid, moves_ids, context=context)
                 moves_dic[partner] = moves
         else:
@@ -48,6 +50,7 @@ class Parser(rml_parse):
 
         self.moves_dic = moves_dic
         self.localcontext.update({
+            'context': context,
             'moves_dic': moves_dic,
             'show_invoice_detail': self.show_invoice_detail,
             'show_receipt_detail': self.show_receipt_detail,
@@ -162,9 +165,9 @@ class Parser(rml_parse):
         else:
             return credit
 
-    def get_move_accumulated_balance(self, move, partner):
+    def get_move_accumulated_balance(self, move, partner, context=None):
         moves = self.moves_dic[partner]
-        accumulated_balance = self.get_initial_balance(partner)
+        accumulated_balance = self.get_initial_balance(partner, context)
         for it_move in moves:
             accumulated_balance += self.get_move_debit(
                 it_move) - self.get_move_credit(it_move)
@@ -265,7 +268,9 @@ class Parser(rml_parse):
         #                     ) + ']' + ' (' + str(line.discount) + '%' + ' dto)'
         return name
 
-    def get_initial_credit(self, partner):
+    def get_initial_credit(self, partner, context=None):
+        if not context:
+            context={}
         if not self.from_date:
             return 0.0
 
@@ -284,6 +289,9 @@ class Parser(rml_parse):
             'AND a.type IN %s ' \
             'AND m.date < \'%s\'' \
                   % (partner.id, account_type, self.from_date)
+        company_id = context.get('company_id', False)
+        if company_id:
+            sql_stm += 'AND m.company_id = %s ' % company_id
         self.cr.execute(sql_stm)
         res = self.cr.fetchall()
         if not res[0][0]:
@@ -291,7 +299,9 @@ class Parser(rml_parse):
         else:
             return res[0][0]
 
-    def get_initial_debit(self, partner):
+    def get_initial_debit(self, partner, context=None):
+        if not context:
+            context={}
         if not self.from_date:
             return 0.0
 
@@ -310,6 +320,9 @@ class Parser(rml_parse):
             'AND a.type IN %s ' \
             'AND m.date < \'%s\'' \
                   % (partner.id, account_type, self.from_date)
+        company_id = context.get('company_id', False)
+        if company_id:
+            sql_stm += 'AND m.company_id = %s ' % company_id
         self.cr.execute(sql_stm)
         res = self.cr.fetchall()
         if not res[0][0]:
@@ -317,25 +330,25 @@ class Parser(rml_parse):
         else:
             return res[0][0]
 
-    def get_initial_balance(self, partner):
-        return self.get_initial_debit(partner) - self.get_initial_credit(partner)
+    def get_initial_balance(self, partner, context=None):
+        return self.get_initial_debit(partner, context) - self.get_initial_credit(partner, context)
 
-    def get_initial_credit_to_print(self, partner):
-        initial_credit = self.get_initial_credit(partner)
+    def get_initial_credit_to_print(self, partner, context=None):
+        initial_credit = self.get_initial_credit(partner, context)
         if not initial_credit:
             return 0
         else:
             return initial_credit
 
-    def get_initial_debit_to_print(self, partner):
-        initial_debit = self.get_initial_debit(partner)
+    def get_initial_debit_to_print(self, partner, context=None):
+        initial_debit = self.get_initial_debit(partner, context)
         if not initial_debit:
             return 0
         else:
             return initial_debit
 
-    def get_initial_balance_to_print(self, partner):
-        initial_balance = self.get_initial_balance(partner)
+    def get_initial_balance_to_print(self, partner, context=None):
+        initial_balance = self.get_initial_balance(partner, context)
         if not initial_balance:
             return 0
         else:
@@ -354,9 +367,9 @@ class Parser(rml_parse):
         res = [r[0] for r in res]
         return res
 
-    def get_final_balance(self, partner):
+    def get_final_balance(self, partner, context=None):
         moves = self.moves_dic[partner]
-        final_balance = self.get_initial_balance(partner)
+        final_balance = self.get_initial_balance(partner, context)
         for it_move in moves:
             final_balance += self.get_move_debit(it_move) - \
                 self.get_move_credit(it_move)
