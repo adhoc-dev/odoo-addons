@@ -1,51 +1,43 @@
 # -*- coding: utf-8 -*-
-from openerp import models, fields, api, _
+from openerp import models, fields, api
+
 
 class account_invoice_refund(models.TransientModel):
 
     _inherit = 'account.invoice.refund'
 
-   
     @api.model
     def _get_invoice_id(self):
         return self._context.get('active_id', False)
 
-    @api.one
-    @api.depends('invoice_id')
-    def _get_journal_type(self):
+    # @api.one
+    @api.multi
+    @api.onchange('invoice_id')
+    def _onchange_invoice(self):
+        journal_type = False
         if self.invoice_id.type == 'out_refund' or 'out_invoice':
-            self.journal_type = 'sale_refund'
+            journal_type = 'sale_refund'
         elif self.invoice_id.type == 'in_refund' or 'in_invoice':
-            self.journal_type = 'purchase_refund'
+            journal_type = 'purchase_refund'
+        # return {'domain': {'journal_id': price}}
+        journals = self.env['account.journal'].search(
+            [('type', '=', journal_type),
+             ('company_id', '=', self.invoice_id.company_id.id)])
+        periods = self.env['account.period'].search(
+            [('company_id', '=', self.invoice_id.company_id.id)])
+        # self.journal_type = journal_type
+        if journals:
+            self.journal_id = journals[0].id
+        return {'domain': {
+            'journal_id': [('id', 'in', journals.ids)],
+            'period': [('id', 'in', periods.ids)]
+        }}
 
     invoice_id = fields.Many2one(
         'account.invoice',
         'Invoice',
         default=_get_invoice_id,
         store=True)
-
-   
-    company_id = fields.Many2one(
-        'res.company',
-        string='Company',
-        related='invoice_id.company_id'
-        )
-
-    journal_type = fields.Char(
-        'Journal type',
-        compute='_get_journal_type'
-        )
-
-    
-    @api.model
-    def _get_journal(self):
-        company_id = self.company_id
-        journal = self.env['account.journal'].search([('type', '=', self.journal_type), ('company_id','=',self.company_id.id)], limit=1)
-        return journal and journal[0] or False
-
-    _defaults = {
-        'journal_id': _get_journal,
-    }
 
     def compute_refund(self, cr, uid, ids, data_refund, context=None):
         res = super(account_invoice_refund, self).compute_refund(
@@ -62,10 +54,11 @@ class account_invoice_refund(models.TransientModel):
             cr, uid, invoice_ids) if x.number])
         invoice_obj.write(cr, uid, refund_invoice_ids, {
             'origin': origin,
-            })
-        if not self.browse(cr, uid ,ids, context=context)[0].period:
+        })
+        if not self.browse(cr, uid, ids, context=context)[0].period:
             invoice_obj.write(cr, uid, refund_invoice_ids, {
-            'period_id': invoice_obj.browse(cr, uid, invoice_ids)[0].period_id.id
+                'period_id': invoice_obj.browse(
+                    cr, uid, invoice_ids)[0].period_id.id
             })
         for invoice_id in refund_invoice_ids:
             self.pool['sale.order'].write(

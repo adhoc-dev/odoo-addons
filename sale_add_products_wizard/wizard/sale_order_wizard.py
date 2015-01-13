@@ -10,7 +10,8 @@ class sale_order_add_multiple(models.TransientModel):
                             default='1.0')
     products_ids = fields.Many2many(
         'product.product',
-        string='Products'
+        string='Products',
+        domain=[('sale_ok', '=', True)],
     )
 
     @api.one
