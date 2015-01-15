@@ -123,7 +123,12 @@
                                 <field name="module_product_variant_imp"
                                     class="oe_inline" />
                                 <label for="module_product_variant_imp"/>
-                            </div>                                
+                            </div>
+                            <div name='module_product_prices_update'>
+                                <field name="module_product_prices_update"
+                                    class="oe_inline" />
+                                <label for="module_product_prices_update"/>
+                            </div>                                  
                         </div>
                     </group>
 
