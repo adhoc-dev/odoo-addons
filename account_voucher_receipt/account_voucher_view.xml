@@ -30,7 +30,7 @@
                 <form>
                     <field name="receipt_state" invisible="1"/>
                 </form>
-                <button name="button_proforma_voucher" string="Pay" class="oe_highlight" type="object" position="replace">
+                <button name="button_proforma_voucher" position="replace">
                     <button name="validate_finish" string="Validate and Close Receipt" type="object" states="draft" invisible="context.get('line_type', False)" class="oe_highlight"/> or
                     <button name="validate_and_new_dialog" string="Validate and New Payment" type="object" states="draft" invisible="context.get('line_type', False)" class="oe_highlight"/> or
                 </button>
