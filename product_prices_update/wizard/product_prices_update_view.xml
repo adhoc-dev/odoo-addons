@@ -42,10 +42,10 @@
             <field name="name">product.prices_update_wizard_result</field>
             <field name="model">product.prices_update_wizard_result</field>
             <field name="arch" type="xml">
-                <header>
-                    <button name="confirm" string="Confirm" type="object" class="oe_highlight"/>
-                </header>
                 <form string="Products">
+                    <header>
+                        <button name="confirm" string="Confirm" type="object" class="oe_highlight"/>
+                    </header>
                     <field name="detail_ids"/>
                 </form> 
             </field>
@@ -55,11 +55,11 @@
             <field name="name">product.prices_update_wizard_result_detail.tree</field>
             <field name="model">product.prices_update_wizard_result_detail</field>
             <field name="arch" type="xml">
-                    <tree string="Products" create="false" editable="top">
-                        <field name="product_tmpl_id"/>
-                        <field name="old_price"/>
-                        <field name="new_price"/>
-                    </tree>
+                <tree string="Products" create="false" editable="top">
+                    <field name="product_tmpl_id"/>
+                    <field name="old_price"/>
+                    <field name="new_price"/>
+                </tree>
             </field>
         </record>
 
