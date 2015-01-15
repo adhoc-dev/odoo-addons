@@ -341,6 +341,11 @@
                     <group>
                         <label for="id" string="Sales Features" />
                         <div name="sale_features">
+                            <div name='module_sale_add_products_wizard'>
+                                <field name="module_sale_add_products_wizard"
+                                    class="oe_inline" />
+                                <label for="module_sale_add_products_wizard" />
+                            </div>  
                             <div name='module_sale_prices_update'>
                                 <field name="module_sale_prices_update"
                                     class="oe_inline" />
