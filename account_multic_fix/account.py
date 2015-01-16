@@ -37,4 +37,23 @@ class account_invoice_line(models.Model):
             res['value']['invoice_line_tax_id'] = taxes.ids
         return res
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+
+class account_move(models.Model):
+    _inherit = "account.move"
+
+    @api.model
+    @api.onchange('journal_id')
+    def onchange_journal_id(self):
+        res = {}
+        if self.journal_id:
+            print 'adsadsad', self.journal_id.company_id.id
+            self.company_id = self.journal_id.company_id.id
+            period_ids = self.env['account.period'].search(
+                [('company_id', '=', self.company_id.id)],
+                order='date_start desc')
+            print period_ids[0]
+            self.period_id = period_ids[0].id
+            res = {'domain': {
+                'period_id': [('id', 'in', [x.id for x in period_ids])]
+            }}
+        return res
