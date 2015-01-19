@@ -415,6 +415,11 @@
                                 <field name="module_sale_other_product_description"
                                     class="oe_inline" />
                                 <label for="module_sale_other_product_description"/>
+                            </div>              
+                            <div name='module_sale_contract_restrict_domain'>
+                                <field name="module_sale_contract_restrict_domain"
+                                    class="oe_inline" />
+                                <label for="module_sale_contract_restrict_domain"/>
                             </div>                                
                         </div>
                     </group>

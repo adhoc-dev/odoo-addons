@@ -117,6 +117,8 @@ then on sale orders lines this description will be used and no code"""),
             """),
         'module_purchase_uom_prices_uoms': fields.boolean('Restrict purchase uom to the product uom, purchase product uom and uoms defined in UOM Prices.',
             help="""Installs the purchase_uom_prices_uoms."""),
+        'module_sale_contract_restrict_domain': fields.boolean('Restrict contracts/projects on sales order to contract and same partner or no partner set.',
+            help="""Installs the sale_contract_restrict_domain."""),
         
         # Project
         'module_project_issue_solutions': fields.boolean('Project Issue Solutions',
