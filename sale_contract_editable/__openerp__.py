@@ -17,7 +17,6 @@ Sale Contract Restrict Domain
         'sale',
     ],
     'data': [
-        'sale_view.xml',
     ],
     'demo': [
     ],
