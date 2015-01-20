@@ -42,6 +42,12 @@ class account_bank_statement_line(models.Model):
             account_move_obj.button_cancel(cr, uid, move_ids, context=context)
             account_move_obj.unlink(cr, uid, move_ids, context)
 
+    def unlink(self, cr, uid, ids, context=None):
+        none_voucher_ids = self.search(
+            cr, uid,
+            [('id', 'in', ids), ('voucher_id', '=', False)])
+        return super(account_bank_statement_line, self).unlink(
+            cr, uid, none_voucher_ids, context=context)
 
 class account_voucher(models.Model):
     _inherit = 'account.voucher'
