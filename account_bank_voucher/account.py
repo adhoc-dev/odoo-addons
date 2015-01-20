@@ -43,11 +43,14 @@ class account_bank_statement_line(models.Model):
             account_move_obj.unlink(cr, uid, move_ids, context)
 
     def unlink(self, cr, uid, ids, context=None):
-        none_voucher_ids = self.search(
+        line_voucher_ids = self.search(
             cr, uid,
-            [('id', 'in', ids), ('voucher_id', '=', False)])
+            [('id', 'in', ids), ('voucher_id', '!=', False)])
+        # First remove journal_entry_id id in order to avoid constraint
+        self.write(cr, uid, line_voucher_ids, {'journal_entry_id': False})
         return super(account_bank_statement_line, self).unlink(
-            cr, uid, none_voucher_ids, context=context)
+            cr, uid, ids, context=context)
+
 
 class account_voucher(models.Model):
     _inherit = 'account.voucher'
