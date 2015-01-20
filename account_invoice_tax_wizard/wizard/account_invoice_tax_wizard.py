@@ -57,8 +57,8 @@ class account_invoice_tax_wizard(models.TransientModel):
         else:
             val['base_code_id'] = self.tax_id.ref_base_code_id.id
             val['tax_code_id'] = self.tax_id.ref_tax_code_id.id
-            val['base_amount'] = self.base * self.ref_base_sign.base_sign
-            val['tax_amount'] = self.amount * self.ref_tax_sign.tax_sign
+            val['base_amount'] = self.base * self.tax_id.ref_base_sign
+            val['tax_amount'] = self.amount * self.tax_id.ref_tax_sign
             val['account_id'] = self.tax_id.account_paid_id.id
             val['account_analytic_id'] = self.tax_id.account_analytic_paid_id.id
 
