@@ -1,44 +1,24 @@
 # -*- coding: utf-8 -*-
-from lxml import etree
-from openerp.osv import fields, osv
+from openerp import fields, models, api
 
 
-class account_voucher_populate_statement(osv.osv_memory):
+class account_voucher_populate_statement(models.TransientModel):
     _name = "account.voucher.populate.statement"
     _description = "Account Voucher Populate Statement"
-    _columns = {
-        'lines': fields.many2many('account.voucher', 'account_voucher_line_rel_', 'voucher_id', 'line_id', 'Vouchers')
-    }
 
-    def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
-        if context is None:
-            context = {}
-        line_obj = self.pool.get('account.voucher')
-        res = super(account_voucher_populate_statement, self).fields_view_get(
-            cr, uid, view_id=view_id, view_type=view_type, context=context, toolbar=toolbar, submenu=False)
-        if view_type != 'form' or not context.get('active_id', False):
-            return res
-        statement = self.pool.get('account.bank.statement').browse(
-            cr, uid, context.get('active_id'), context=context)
-        account_ids = [statement.journal_id.default_credit_account_id.id,
-                       statement.journal_id.default_debit_account_id.id]
-        journal_ids = self.pool.get('account.journal').search(cr, uid, [
-            '|', ('default_credit_account_id', 'in', account_ids),
-            ('default_debit_account_id', 'in', account_ids)], context=context)
-        line_ids = line_obj.search(cr, uid, [
-            ('type', 'not in', ['sale', 'purchase']),
-            ('bank_statement_line_ids', '=', False),
-            ('state', '=', 'posted'),
-            '|', ('journal_id', 'in', journal_ids),
-            ('line_ids.account_id', 'in', account_ids)], context=context)
-        domain = '[("id", "in", ' + str(line_ids) + ')]'
-        doc = etree.XML(res['arch'])
-        nodes = doc.xpath("//field[@name='lines']")
-        for node in nodes:
-            node.set('domain', domain)
-        res['arch'] = etree.tostring(doc)
-        return res
-
+    journal_id = fields.Many2one(
+        'account.journal',
+        'Journal',
+        required=True
+    )
+    line_ids = fields.Many2many(
+        'account.voucher',
+        'account_voucher_line_rel_',
+        'voucher_id', 'line_id',
+        'Vouchers',
+        domain="[('journal_id', '=', journal_id), ('state', '=', 'posted'), ('bank_statement_line_ids', '=', False)]"
+    )
+    
     def get_statement_line_new(self, cr, uid, voucher, statement, context=None):
         # Override thi method to modifiy the new statement line to create
         ctx = context.copy()
@@ -58,6 +38,7 @@ class account_voucher_populate_statement(osv.osv_memory):
             'statement_id': statement.id,
             'ref': voucher.name,
             'voucher_id': voucher.id,
+            'journal_entry_id': voucher.move_id.id,
         }
 
     def populate_statement(self, cr, uid, ids, context=None):
@@ -68,7 +49,7 @@ class account_voucher_populate_statement(osv.osv_memory):
         if context is None:
             context = {}
         data = self.read(cr, uid, ids, [], context=context)[0]
-        voucher_ids = data['lines']
+        voucher_ids = data['line_ids']
         if not voucher_ids:
             return {'type': 'ir.actions.act_window_close'}
         statement = statement_obj.browse(
@@ -79,7 +60,5 @@ class account_voucher_populate_statement(osv.osv_memory):
         voucher_obj.write(
             cr, uid, voucher_ids, {'is_bank_voucher': True}, context=context)
         return {'type': 'ir.actions.act_window_close'}
-
-account_voucher_populate_statement()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
