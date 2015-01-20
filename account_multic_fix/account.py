@@ -37,4 +37,17 @@ class account_invoice_line(models.Model):
             res['value']['invoice_line_tax_id'] = taxes.ids
         return res
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+
+class account_move(models.Model):
+    _inherit = "account.move"
+
+    period_id = fields.Many2one(domain="[('company_id','=',company_id)]")
+
+    @api.onchange('journal_id')
+    def onchange_journal_id(self):
+        self.period_id = False
+        if self.journal_id:
+            self.company_id = self.journal_id.company_id.id
+            periods = self.with_context(
+                company_id=self.journal_id.company_id.id).env['account.period'].find()
+            self.period_id = periods and periods[0].id or False
