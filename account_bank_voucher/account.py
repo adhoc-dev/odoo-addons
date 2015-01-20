@@ -51,7 +51,6 @@ class account_voucher(models.Model):
 
     @api.multi
     def cancel_voucher(self):
-        account_bank = self.env['account.bank.statement.line']
         if self.bank_statement_line_ids.statement_id.state == 'confirm':
             raise Warning(
                 _("You can not cancel a voucher that is linked to a confirm bank statement"))
