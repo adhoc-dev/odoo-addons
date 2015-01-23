@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from openerp.osv import osv
-from openerp import models, fields, _
-from openerp import SUPERUSER_ID
+from openerp import models, fields, _, SUPERUSER_ID
 
 
 class account_invoice(models.Model):
@@ -41,7 +40,6 @@ class account_invoice(models.Model):
             invoice.write({'moved_invoice_id': moved_invoice_id})
         if invoice.company_id.deactivate_invoice:
             invoice.write({'active': False})
-            
 
         moved_description = _(
             'Moved to invoice id: ') + str(moved_invoice_id)
@@ -187,5 +185,3 @@ class account_invoice(models.Model):
             'period_id': period_ids and period_ids[0] or False,
             'partner_bank_id': partner_data['value'].get('partner_bank_id', False),
         }
-
-  

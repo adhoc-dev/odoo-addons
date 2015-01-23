@@ -14,13 +14,12 @@ Inter Company Move
     'images': [
     ],
     'depends': [
-        'sale',#we add sale depency because invoice report inheritance error, it also make sense because this module is only usefull if sale is installed
-        'l10n_ar_invoice_sale', #we add this dependency also for same error mentioned above
+        # we add sale depency because invoice report inheritance error, it also
+        # make sense because this module is only usefull if sale is installed
+        'sale',
     ],
     'data': [
-        'views/res_company_view.xml',
-        'views/account_invoice_view.xml',
-        'wizard/inter_company_move_wizard_view.xml',
+        'report/invoice_report_view.xml',
     ],
     'demo': [
     ],
