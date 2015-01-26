@@ -63,15 +63,15 @@
                     </h1>
                     <group>  
                         <group>
-                            <field name="checkbook_id" widget="selection" on_change="onchange_checkbook_id(checkbook_id,context)" domain="[('journal_id','=',journal_id),('state','=','active')]" attrs="{'invisible':[('type','!=','issue')],'required':[('type','=','issue')]}"/>
+                            <field name="checkbook_id" widget="selection" domain="[('journal_id','=',journal_id),('state','=','active')]" attrs="{'invisible':[('type','!=','issue')],'required':[('type','=','issue')]}"/>
                             <field name="bank_id" attrs="{'invisible':[('type','!=','third')],'required':[('type','=','third')]}"/>
                             <field name="vat" attrs="{'invisible':[('type','!=','third')],'required':[('type','=','third')]}"/>
                             <field name="number"/>
                             <field name="amount"/>                            
                         </group>
                         <group>    
-                            <field name="issue_date" on_change="onchange_date(issue_date,payment_date)"/>
-                            <field name="payment_date" on_change="onchange_date(issue_date,payment_date)" attrs="{'invisible':[('type','=','issue'),('issue_check_subtype','=','currents')],'required':[('type','=','issue'),('issue_check_subtype','=','deferred')]}"/>
+                            <field name="issue_date"/>
+                            <field name="payment_date" attrs="{'invisible':[('type','=','issue'),('issue_check_subtype','=','currents')],'required':[('type','=','issue'),('issue_check_subtype','=','deferred')]}"/>
                             <field name="company_id" groups="base.group_multi_company" widget="selection"/>
                         </group>
                     </group>

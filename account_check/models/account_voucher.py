@@ -1,68 +1,75 @@
 # -*- coding: utf-8 -*-
-from openerp.osv import osv, fields
-from openerp.tools.translate import _
+from openerp import models, fields, _, api
 import openerp.addons.decimal_precision as dp
 import logging
+from openerp.exceptions import Warning
 _logger = logging.getLogger(__name__)
 
 
-class account_voucher(osv.osv):
+class account_voucher(models.Model):
 
     _inherit = 'account.voucher'
 
-    _columns = {
-        'received_third_check_ids': fields.one2many('account.check', 'voucher_id', 'Third Checks', domain=[('type', '=', 'third')], context={'default_type': 'third', 'from_voucher': True}, required=False, readonly=True, states={'draft': [('readonly', False)]}),
-        # 'issued_check_ids': fields.one2many('account.check','delivery_voucher_id', 'Issued Checks', required=False, readonly=True, states={'draft':[('readonly',False)]}),
-        'issued_check_ids': fields.one2many('account.check', 'voucher_id', 'Issued Checks', domain=[('type', '=', 'issue')], context={'default_type': 'issue', 'from_voucher': True}, required=False, readonly=True, states={'draft': [('readonly', False)]}),
-        'delivered_third_check_ids': fields.one2many('account.check', 'third_handed_voucher_id', 'Third Checks', domain=[('type', '=', 'third')], context={'from_voucher': True}, required=False, readonly=True, states={'draft': [('readonly', False)]}),
-        'validate_only_checks': fields.related('journal_id', 'validate_only_checks', type='boolean', string='Validate only Checks', readonly=True,),
-        'check_type': fields.related('journal_id', 'check_type', type='char', string='Check Type', readonly=True,),
-        'issue_check_subtype': fields.related('journal_id', 'issue_check_subtype', type='char', string='Check subtype', readonly=True,),
-        'amount_readonly': fields.related('amount', type='float', string='Total', digits_compute=dp.get_precision('Account'), readonly=True,),
-    }
+    received_third_check_ids = fields.One2many(
+        'account.check', 'voucher_id', 'Third Checks',
+        domain=[('type', '=', 'third')],
+        context={'default_type': 'third', 'from_voucher': True},
+        required=False, readonly=True, copy=False,
+        states={'draft': [('readonly', False)]}
+        )
+    issued_check_ids = fields.One2many(
+        'account.check', 'voucher_id', 'Issued Checks',
+        domain=[('type', '=', 'issue')],
+        context={'default_type': 'issue', 'from_voucher': True}, copy=False,
+        required=False, readonly=True, states={'draft': [('readonly', False)]}
+        )
+    delivered_third_check_ids = fields.One2many(
+        'account.check', 'third_handed_voucher_id',
+        'Third Checks', domain=[('type', '=', 'third')], copy=False,
+        context={'from_voucher': True}, required=False, readonly=True,
+        states={'draft': [('readonly', False)]}
+        )
+    validate_only_checks = fields.Boolean(
+        related='journal_id.validate_only_checks',
+        string='Validate only Checks', readonly=True,
+        )
+    check_type = fields.Selection(
+        related='journal_id.check_type', string='Check Type', readonly=True,
+        )
+    amount_readonly = fields.Float(
+        related='amount', string='Total',
+        digits_compute=dp.get_precision('Account'), readonly=True,
+        )
 
-
-    def copy(self, cr, uid, id, default=None, context=None):
-        if default is None:
-            default = {}
-        default.update({
-            'delivered_third_check_ids': False,
-            'received_third_check_ids': False,
-            'issued_check_ids': False,
-        })
-        return super(account_voucher, self).copy(cr, uid, id, default, context)
-
-    def action_cancel_draft(self, cr, uid, ids, context=None):
-        res = super(account_voucher, self).action_cancel_draft(
-            cr, uid, ids, context=None)
-        check_domain = [('voucher_id', 'in', ids)]
-        # check_domain = ['|',('voucher_id','in',ids),('third_handed_voucher_id','in',ids)]
-        check_obj = self.pool['account.check']
-        check_ids = check_obj.search(cr, uid, check_domain, context=context)
-        check_obj.action_cancel_draft(cr, uid, check_ids)
+    @api.multi
+    def action_cancel_draft(self):
+        res = super(account_voucher, self).action_cancel_draft()
+        checks = self.env['account.check'].search(
+            [('voucher_id', 'in', self.ids)])
+        checks.action_cancel_draft()
         return res
 
-    def cancel_voucher(self, cr, uid, ids, context=None):
-        for voucher in self.browse(cr, uid, ids, context=context):
+    @api.multi
+    def cancel_voucher(self):
+        for voucher in self:
             for check in voucher.received_third_check_ids:
                 if check.state not in ['draft', 'holding']:
-                    raise osv.except_osv(_('Error!'), _(
+                    raise Warning(_(
                         'You can not cancel a voucher thas has received third checks in states other than "draft or "holding". First try to change check state.'))
             for check in voucher.issued_check_ids:
                 if check.state not in ['draft', 'handed']:
-                    raise osv.except_osv(_('Error!'), _(
+                    raise Warning(_(
                         'You can not cancel a voucher thas has issue checks in states other than "draft or "handed". First try to change check state.'))
             for check in voucher.delivered_third_check_ids:
                 if check.state not in ['handed']:
-                    raise osv.except_osv(_('Error!'), _(
+                    raise Warning(_(
                         'You can not cancel a voucher thas has delivered checks in states other than "handed". First try to change check state.'))
-        res = super(account_voucher, self).cancel_voucher(
-            cr, uid, ids, context=None)
-        check_domain = [
-            '|', ('voucher_id', 'in', ids), ('third_handed_voucher_id', 'in', ids)]
-        check_obj = self.pool['account.check']
-        check_ids = check_obj.search(cr, uid, check_domain, context=context)
-        for check in check_obj.browse(cr, uid, check_ids, context=context):
+        res = super(account_voucher, self).cancel_voucher()
+        checks = self.env['account.check'].search([
+            '|',
+            ('voucher_id', 'in', self.ids),
+            ('third_handed_voucher_id', 'in', self.ids)])
+        for check in checks:
             check.signal_workflow('cancel')
         return res
 
@@ -80,15 +87,18 @@ class account_voucher(osv.osv):
                     check.signal_workflow('draft_router')
         return res
 
-    def onchange_journal(self, cr, uid, ids, journal_id, line_ids, tax_id, partner_id, date, amount, ttype, company_id, context=None):
+    def onchange_journal(
+            self, cr, uid, ids, journal_id, line_ids, tax_id,
+            partner_id, date, amount, ttype, company_id, context=None):
         '''
         Override the onchange_journal function to check which are the page and fields that should be shown
         in the view.
         '''
         check_type = False
         validate_only_checks = False
-        ret = super(account_voucher, self).onchange_journal(cr, uid, ids, journal_id,
-                                                            line_ids, tax_id, partner_id, date, amount, ttype, company_id, context=context)
+        ret = super(account_voucher, self).onchange_journal(
+            cr, uid, ids, journal_id, line_ids, tax_id, partner_id,
+            date, amount, ttype, company_id, context=context)
         if not ret:
             ret = {}
         if 'value' not in ret:
@@ -120,41 +130,20 @@ class account_voucher(osv.osv):
         ret['value']['validate_only_checks'] = validate_only_checks
         return ret
 
-    def onchange_customer_checks(self, cr, uid, ids, received_third_check_ids, context=None):
-        data = {}
-        amount = self.get_one2many_amount(
-            cr, uid, received_third_check_ids, context=context)
-        data['amount'] = amount
-        data['amount_readonly'] = amount
-        return {'value': data}
+    @api.one
+    @api.onchange('amount_readonly')
+    def onchange_amount_readonly(self):
+        self.amount = self.amount_readonly
 
-    def onchange_supplier_checks(self, cr, uid, ids, delivered_third_check_ids, issued_check_ids, context=None):
-        data = {}
-        amount = 0.00
-        third_checks = self.pool.get('account.check').browse(
-            cr, uid, delivered_third_check_ids[0][2])
-        for check in third_checks:
-            amount += check.amount
-        amount += self.get_one2many_amount(cr,
-                                           uid, issued_check_ids, context=context)
-        data['amount'] = amount
-        data['amount_readonly'] = amount
-        return {'value': data}
+    @api.one
+    @api.onchange('received_third_check_ids', 'issued_check_ids')
+    def onchange_customer_checks(self):
+        self.amount_readonly = sum(
+            x.amount for x in self.received_third_check_ids)
 
-    def get_one2many_amount(self, cr, uid, check_ids, context=None):
-        amount = 0.0
-        for check in check_ids:
-            check_amount = 0.0
-            if check[0] == 0:  # new check
-                check_amount = check[2].get('amount', 0.00)
-            # editing a check and amount being modified
-            elif check[0] == 1 and 'amount' in check[2]:
-                check_amount = check[2].get('amount', 0.00)
-            # already existing check
-            elif check[0] == 4 or (check[0] == 1 and 'amount' not in check[2]):
-                check_id = check[1]
-                check_amount = self.pool.get('account.check').browse(
-                    cr, uid, check_id, context).amount
-            # elif check[0] == 2 --> se esta borrando, no lo tenemos en cuenta
-            amount += check_amount
-        return amount
+    @api.one
+    @api.onchange('delivered_third_check_ids', 'issued_check_ids')
+    def onchange_supplier_checks(self):
+        amount = sum(x.amount for x in self.delivered_third_check_ids)
+        amount += sum(x.amount for x in self.issued_check_ids)
+        self.amount_readonly = amount

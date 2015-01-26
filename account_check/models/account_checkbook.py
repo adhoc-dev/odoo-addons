@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from openerp import fields, models, api, _
 import logging
+from openerp.exceptions import Warning
 _logger = logging.getLogger(__name__)
 
 
@@ -48,7 +49,7 @@ class account_checkbook(models.Model):
         compute='_get_next_check_number',
         string='Next Check Number',)
     padding = fields.Integer(
-        'Number Padding', default=8,
+        'Number Padding', default=8, required=True,
         help="automatically adds some '0' on the left of the 'Number' to get the required padding size.")
     company_id = fields.Many2one(
         'res.company',
@@ -59,7 +60,7 @@ class account_checkbook(models.Model):
         'account.check', 'checkbook_id', string='Issue Checks', readonly=True,)
     state = fields.Selection(
         [('draft', 'Draft'), ('active', 'In Use'), ('used', 'Used')],
-        string='State', readonly=True, default='draft')
+        string='State', readonly=True, default='draft', copy=False)
 
     _order = "name"
 
@@ -76,50 +77,36 @@ class account_checkbook(models.Model):
     ]
 
     @api.one
+    @api.constrains('padding')
+    @api.onchange('padding')
+    def check_padding(self):
+        if self.padding > 32:
+            raise Warning(
+                _('Padding must be lower than 32'))
+
+    @api.one
     @api.constrains('debit_journal_id', 'journal_id')
     def check_journals(self):
         if self.journal_id.company_id != self.debit_journal_id.company_id:
             raise Warning(
                 _('Journal And Debit Journal must belong to the same company'))
 
-    def copy(self, cr, uid, id, default=None, context=None):
-        default = {} if default is None else default.copy()
-        context = {} if context is None else context.copy()
-        record = self.browse(cr, uid, id, context=context)
-        default.update({
-            'state': 'draft',
-            'ref': False,
-            'name': _("%s (copy)") % (record.name or ''),
-        })
-        return super(account_checkbook, self).copy(cr, uid, id, default, context)
+    @api.one
+    def unlink(self):
+        if self.state not in ('draft'):
+            raise Warning(
+                _('You can drop the checkbook(s) only in draft state !'))
+        return super(account_checkbook, self).unlink()
 
-    def unlink(self, cr, uid, ids, context=None):
-        for record in self.browse(cr, uid, ids, context=context):
-
-            if record.state not in ('draft'):
-                raise Warning(
-                    _('You can drop the checkbook(s) only in draft state !'))
-                return False
-        return super(account_checkbook, self).unlink(cr, uid, ids, context=context)
-
-    def wkf_active(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-        res = {}
-        for record in self.browse(cr, uid, ids, context=context):
-            if res:
-                raise Warning(_(
-                    'You cant change the checkbook´s state, there is one active for this Bank Account!'))
-                return False
-            else:
-                self.write(cr, uid, ids, {'state': 'active'})
-                return True
-
-    def wkf_used(self, cr, uid, ids, context=None):
-        self.write(cr, uid, ids, {'state': 'used'})
+    @api.multi
+    def wkf_used(self):
+        self.write({'state': 'used'})
         return True
 
-    def action_cancel_draft(self, cr, uid, ids, *args):
-        self.write(cr, uid, ids, {'state': 'draft'})
-        self.delete_workflow(cr, uid, ids)
-        self.create_workflow(cr, uid, ids)
+    @api.multi
+    def action_cancel_draft(self):
+        # go from canceled state to draft state
+        self.write({'state': 'draft'})
+        self.delete_workflow()
+        self.create_workflow()
+        return True
