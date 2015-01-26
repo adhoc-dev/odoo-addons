@@ -1,31 +1,31 @@
 # -*- coding: utf-8 -*-
-
-
 from openerp.osv import fields, osv
 from openerp.tools.translate import _
 import time
 import logging
 _logger = logging.getLogger(__name__)
 
+
 class account_check(osv.osv):
 
     _name = 'account.check'
     _description = 'Account Check'
     _order = "id desc"
-    _inherit = ['mail.thread']    
+    _inherit = ['mail.thread']
 
-    def _get_name(self, cr, uid, ids, field_name, args,context=None):
+    def _get_name(self, cr, uid, ids, field_name, args, context=None):
         res = {}
         for line in self.browse(cr, uid, ids, context=None):
             if line.checkbook_id:
                 padding = line.checkbook_id.padding
             else:
                 # TODO make padding configurable
-                padding = 8        
+                padding = 8
             res[line.id] = '%%0%sd' % padding % line.number
         return res
 
-    def _get_destiny_partner(self, cr, uid, ids, field_name, args,context=None):
+    def _get_destiny_partner(
+            self, cr, uid, ids, field_name, args, context=None):
         res = {}
         for line in self.browse(cr, uid, ids, context=None):
             partner_id = False
@@ -36,7 +36,7 @@ class account_check(osv.osv):
             res[line.id] = partner_id
         return res
 
-    def _get_source_partner(self, cr, uid, ids, field_name, args,context=None):
+    def _get_source_partner(self, cr, uid, ids, field_name, args, context=None):
         res = {}
         for line in self.browse(cr, uid, ids, context=None):
             partner_id = False
@@ -121,51 +121,60 @@ class account_check(osv.osv):
     ]
 
     def _get_checkbook_id(self, cr, uid, context=None):
-        res={}
-        if context is None: 
+        res = {}
+        if context is None:
             context = {}
         journal_id = context.get('default_journal_id', False)
-        check_type = context.get('default_type',False)
+        check_type = context.get('default_type', False)
         if journal_id and check_type == 'issue':
             checkbook_pool = self.pool.get('account.checkbook')
-            res = checkbook_pool.search(cr, uid, [('state', '=', 'active'),('journal_id', '=', journal_id)],)            
+            res = checkbook_pool.search(cr, uid, [('state', '=', 'active'), ('journal_id', '=', journal_id)],)            
             if res:
-                return res[0] 
+                return res[0]
         else:
-            return False    
+            return False
 
     _defaults = {
         'state': 'draft',
         'issue_date': lambda *a: time.strftime('%Y-%m-%d'),
         'user_id': lambda s, cr, u, c: u,
-        'checkbook_id': _get_checkbook_id, 
-    }    
-  
-    def onchange_date(self, cr, uid, ids, issue_date, payment_date, context=None):
+        'checkbook_id': _get_checkbook_id,
+    }
+
+    def onchange_date(
+            self, cr, uid, ids, issue_date, payment_date, context=None):
         res = {}
         if issue_date and payment_date and issue_date > payment_date:
-            res = {'value':{'payment_date': False}}
+            res = {'value': {'payment_date': False}}
             res.update({'warning': {'title': _('Error !'), 'message': _('Payment Date must be greater than Issue Date')}})
         return res
-        
+
     def onchange_vat(self, cr, uid, ids, vat, context=None):
         res = {}
         if not vat:
-            res.update({'warning': {'title': _('Error !'), 'message': _('Vat number must be not null !')}})
+            res.update({
+                'warning': {
+                    'title': _('Error !'),
+                    'message': _('Vat number must be not null !')}})
         else:
             if len(vat) != 11:
-                res = {'value':{'vat': None}}
-                res.update({'warning': {'title': _('Error !'), 'message': _('Vat number must be 11 numbers !')}})
-            else:    
-                res = {'value':{'vat': vat}}
-        return res    
-        
+                res = {'value': {'vat': None}}
+                res.update({
+                    'warning': {
+                        'title': _('Error !'),
+                        'message': _('Vat number must be 11 numbers !')}})
+            else:
+                res = {'value': {'vat': vat}}
+        return res
+
     def unlink(self, cr, uid, ids, context=None):
-        for record in self.browse(cr,uid,ids,context=context):
-            if  record.state not in ('draft'):
-                raise osv.except_osv(_('Error !'), _('The Check must be in draft state for unlink !'))
-                return False 
-        return super(account_check, self).unlink(cr, uid, ids, context=context)     
+        for record in self.browse(cr, uid, ids, context=context):
+            if record.state not in ('draft'):
+                raise osv.except_osv(
+                    _('Error !'),
+                    _('The Check must be in draft state for unlink !'))
+                return False
+        return super(account_check, self).unlink(cr, uid, ids, context=context)
 
     def onchange_checkbook_id(self, cr, uid, ids, checkbook_id, context=None):
         values = {}
@@ -173,19 +182,20 @@ class account_check(osv.osv):
         number = False
         issue_check_subtype = False
         if checkbook_id:
-            checkbook = checkbook_obj.browse(cr, uid, checkbook_id, context=context)
+            checkbook = checkbook_obj.browse(
+                cr, uid, checkbook_id, context=context)
             number = checkbook.next_check_number
             issue_check_subtype = checkbook.issue_check_subtype
         values = {
             'number': number,
             'issue_check_subtype': issue_check_subtype,
             }
-        return {'value':values}     
+        return {'value': values}
 
     def action_cancel_draft(self, cr, uid, ids, *args):
-        self.write(cr, uid, ids, {'state':'draft'})
+        self.write(cr, uid, ids, {'state': 'draft'})
         self.delete_workflow(cr, uid, ids)
-        self.create_workflow(cr, uid, ids)        
+        self.create_workflow(cr, uid, ids)
 
     def action_hold(self, cr, user, ids, context=None):
         for check in self.browse(cr, user, ids):
@@ -225,32 +235,40 @@ class account_check(osv.osv):
     def action_cancel_rejection(self, cr, user, ids, context=None):
         for check in self.browse(cr, user, ids):
             if check.customer_reject_debit_note_id:
-                raise osv.except_osv(_('Error !'), _('To cancel a rejection you must first delete the customer reject debit note!'))
+                raise osv.except_osv(
+                    _('Error !'),
+                    _('To cancel a rejection you must first delete the customer reject debit note!'))
             if check.supplier_reject_debit_note_id:
-                raise osv.except_osv(_('Error !'), _('To cancel a rejection you must first delete the supplier reject debit note!'))
+                raise osv.except_osv(
+                    _('Error !'),
+                    _('To cancel a rejection you must first delete the supplier reject debit note!'))
             if check.expense_account_move_id:
-                raise osv.except_osv(_('Error !'), _('To cancel a rejection you must first delete Expense Account Move!'))
-            print 'check', check
+                raise osv.except_osv(
+                    _('Error !'),
+                    _('To cancel a rejection you must first delete Expense Account Move!'))
             check.signal_workflow('cancel_rejection')
         return True
 
     def action_cancel_debit(self, cr, user, ids, context=None):
         for check in self.browse(cr, user, ids):
             if check.debit_account_move_id:
-                raise osv.except_osv(_('Error !'), _('To cancel a debit you must first delete Debit Account Move!'))
+                raise osv.except_osv(
+                    _('Error !'),
+                    _('To cancel a debit you must first delete Debit Account Move!'))
             check.signal_workflow('debited_handed')
         return True
 
     def action_cancel_deposit(self, cr, user, ids, context=None):
         for check in self.browse(cr, user, ids):
             if check.deposit_account_move_id:
-                raise osv.except_osv(_('Error !'), _('To cancel a deposit you must first delete the Deposit Account Move!'))
+                raise osv.except_osv(
+                    _('Error !'),
+                    _('To cancel a deposit you must first delete the Deposit Account Move!'))
             check.signal_workflow('cancel_deposit')
         return True
-        
+
     def action_cancel(self, cr, user, ids, context=None):
         for check in self.browse(cr, user, ids):
             check.write({
-                'state': 'cancel',})
+                'state': 'cancel'})
         return True
-
