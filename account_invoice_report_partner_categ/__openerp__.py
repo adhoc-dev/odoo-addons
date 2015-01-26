@@ -1,21 +1,19 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Inter Company Move',
+    'name': 'Invoice Reporte Partner Categ',
     'version': '1.0',
     'category': 'Accounting',
     'sequence': 14,
-    'summary': 'Moves documents around companies in a multicompany environment,',
     'description': """
-Inter Company Move
-==================
+Invoice Reporte Partner Category
+================================
+Adds partner category on account invoice report
     """,
     'author':  'ADHOC',
     'website': 'www.ingadhoc.com',
     'images': [
     ],
     'depends': [
-        # we add sale depency because invoice report inheritance error, it also
-        # make sense because this module is only usefull if sale is installed
         'sale',
     ],
     'data': [
