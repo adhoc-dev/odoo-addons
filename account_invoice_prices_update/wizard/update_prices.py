@@ -1,36 +1,35 @@
 # -*- coding: utf-8 -*-
-from openerp.osv import osv, fields
+from openerp import models, fields, api
 
 
-class account_invoice_prices_update(osv.osv_memory):
+class account_invoice_prices_update(models.TransientModel):
     _name = 'account_invoice_update'
 
-    _columns = {
-        'pricelist_id': fields.many2one(
-            'product.pricelist', string="Price List", required=True),
-    }
+    @api.model
+    def _get_pricelist(self):
+        invoice_id = self._context.get('active_id', False)
+        if invoice_id:
+            invoice = self.env['account.invoice'].browse(invoice_id)
+            if invoice.type in ('out_invoice', 'out_refund'):
+                return invoice.partner_id.property_product_pricelist
+            else:
+                return invoice.partner_id.property_product_pricelist_purchase
 
-    _defaults = {
-        'pricelist_id': lambda s, cr, u, c: s.pool.get('res.users').browse(
-            cr, u, u, c).partner_id.property_product_pricelist.id,
-    }
+    pricelist_id = fields.Many2one(
+        'product.pricelist', string="Price List",
+        required=True, default=_get_pricelist)
 
-    def update_prices(self, cr, uid, ids, context=None):
-        context = context or {}
-        active_id = context.get('active_id', False)
-        invoice_line_obj = self.pool.get('account.invoice.line')
-        partner_id = self.pool.get('res.users').browse(cr, uid, uid).partner_id
-        wizard = self.browse(cr, uid, ids[0], context=context)
-        if not wizard.pricelist_id:
-            return {}
-        invoice = self.pool['account.invoice'].browse(
-            cr, uid, active_id, context=context)
-        invoice.write({'currency_id': wizard.pricelist_id.currency_id.id})
+    @api.one
+    def update_prices(self):
+        active_id = self._context.get('active_id', False)
+        invoice = self.env['account.invoice'].browse(active_id)
+        invoice.write({'currency_id': self.pricelist_id.currency_id.id})
         for line in invoice.invoice_line:
-            price = self.pool.get('product.pricelist').price_get(
-                cr, uid, [wizard.pricelist_id.id],
-                line.product_id.id, line.quantity or 1.0, partner_id.id, {
-                    'uom': line.uos_id.id,
-                })[wizard.pricelist_id.id]
-            invoice_line_obj.write(cr, uid, [line.id], {'price_unit': price})
+            price = self.pricelist_id.price_get(
+                line.product_id.id, line.quantity or 1.0,
+                self.partner_id.id,
+                {'uom': line.uos_id.id})
+            print 'price', price
+            # [self.pricelist_id.id]
+            line.price_unit = price
         return True
