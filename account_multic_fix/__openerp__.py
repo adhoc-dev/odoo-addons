@@ -4,7 +4,8 @@
     'website': 'www.ingadhoc.com',
     'category': 'Accounting & Finance',
     'data': [
-        'security/rule.xml'
+        'security/rule.xml',
+        'wizard/account_statement_from_invoice_view.xml',
     ],
     'demo': [],
     'depends': ['account'],

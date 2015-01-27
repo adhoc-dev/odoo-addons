@@ -79,6 +79,20 @@ class account_statement(models.Model):
         ]
 
 
+class account_bank_statement_line(models.Model):
+    _inherit = "account.bank.statement.line"
+
+    def _domain_move_lines_for_reconciliation(self, cr, uid, st_line, excluded_ids=None, str=False, additional_domain=None, context=None):
+        domain = super(account_bank_statement_line, self)._domain_move_lines_for_reconciliation(cr, uid, st_line, excluded_ids, str, additional_domain, context)
+        domain.append(('company_id', '=', st_line.statement_id.company_id.id))
+        return domain
+
+    def _domain_reconciliation_proposition(self, cr, uid, st_line, excluded_ids=None, context=None):
+        domain = super(account_bank_statement_line, self)._domain_reconciliation_proposition(cr, uid, st_line, excluded_ids, context)
+        domain.append(('company_id', '=', st_line.statement_id.company_id.id))
+        return domain
+
+
 class AccountStatementOperationTemplate(models.Model):
     _inherit = 'account.statement.operation.template'
 
