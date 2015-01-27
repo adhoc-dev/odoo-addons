@@ -8,12 +8,10 @@ class sale_order_line(models.Model):
 
     @api.one
     def _get_list_price(self):
-        list_price = 0.0
-        if self.product_id.list_price:
-            list_price = self.with_context(
-                currency_id=self.invoice_id.currency_id.id
-            ).product_id.price_get()[self.product_id.id]
-        self.list_price = list_price
+        price_get = self.with_context(
+            currency_id=self.invoice_id.currency_id.id
+        ).product_id.price_get()
+        self.list_price = price_get and price_get[self.product_id.id] or 0.0
 
     list_price = fields.Float(
         compute='_get_list_price',
