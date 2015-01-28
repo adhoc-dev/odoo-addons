@@ -217,12 +217,7 @@
                                 <field name="module_account_voucher_receipt"
                                     class="oe_inline" />
                                 <label for="module_account_voucher_receipt" />
-                            </div>        
-                            <div name='module_account_invoice_adjust'>
-                                <field name="module_account_invoice_adjust"
-                                    class="oe_inline" />
-                                <label for="module_account_invoice_adjust" />
-                            </div>        
+                            </div>             
                             <div name='module_account_payment_direction'>
                                 <field name="module_account_payment_direction"
                                     class="oe_inline" />
