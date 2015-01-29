@@ -10,12 +10,6 @@
                     <page string="Picking Information" attrs="{'invisible':[('model','!=', 'stock.picking')]}">
                         <group>
                             <field name="stock_report_type"/>
-                            <field name="stock_picking_lines_to_split"/>
-                            <field name="stock_picking_dont_split_option"/>
-                            <!-- TODO: See if we want this options -->
-                            <!-- <field name="stock_picking_split_picking_type_in"/> -->
-                            <!-- <field name="stock_picking_split_picking_type_internal"/> -->
-                            <field name="stock_picking_split_picking_type_out"/>
                             <field name="stock_picking_type_ids"/>
                         </group>
                     </page>

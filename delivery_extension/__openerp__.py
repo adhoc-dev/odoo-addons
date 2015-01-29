@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Delivery Extension',
+    'name': 'Delivery Extension (depreciado)',
     'version': '1.0',
     'category': 'Warehouse Management',
     'sequence': 14,
     'summary': '',
     'description': """
-Delivery Extension
+Delivery Extension (depreciado)
 ==================
 Add a field declared_value to Stock Picking that contains the declared valued.
 It also adds to Stock Picking the address of the carrier.
@@ -25,7 +25,7 @@ It also adds to Stock Picking the address of the carrier.
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }
