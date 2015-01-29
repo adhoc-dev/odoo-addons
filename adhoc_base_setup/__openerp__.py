@@ -12,19 +12,15 @@ Here, you can configure the whole business suite based on your requirements. You
 Repositories required:
 ---------------------
 * https://github.com/OCA/account-invoicing
-* lp:server-env-tools (web_export_view da error por ahora)
-* lp:account-financial-report
-* lp:account-financial-tools
-* lp:openerp-reporting-engines
-* lp:web-addons
-* lp:~ingenieria-adhoc/openerp-adhoc-project/trunk
-* lp:~ingenieria-adhoc/openerp-adhoc-sale-purchase/trunk
-* lp:~ingenieria-adhoc/openerp-adhoc-product/trunk
-* lp:~ingenieria-adhoc/openerp-adhoc-misc/trunk
-* lp:~ingenieria-adhoc/openerp-adhoc-account/trunk
-* lp:~ingenieria-adhoc/openerp-adhoc-reports/trunk
-* lp:~ingenieria-adhoc/openerp-adhoc-documentation/trunk
-* lp:~ingenieria-adhoc/openerp-adhoc-stock/trunk
+* https://github.com/akretion/odoo-usability
+* https://github.com/OCA/knowledge
+* https://github.com/OCA/server-tools
+* https://github.com/OCA/account-financial-reporting
+* https://github.com/OCA/account-financial-tools
+* https://github.com/OCA/reporting-engine
+* https://github.com/ovnicraft/web-addons
+* https://github.com/ingadhoc/odoo-addons
+* https://github.com/aeroo/aeroo_reports
 
 Features
 +++++++++++++++

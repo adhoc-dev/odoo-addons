@@ -66,7 +66,6 @@
                                     class="oe_inline" />
                                 <label for="module_stock_multic_fix" />
                             </div>    
-                              
                         </div>
                     </group>
 
@@ -128,7 +127,32 @@
                                 <field name="module_product_prices_update"
                                     class="oe_inline" />
                                 <label for="module_product_prices_update"/>
-                            </div>                                  
+                            </div>
+                            <div name='module_product_customer_price'>
+                                <field name="module_product_customer_price"
+                                    class="oe_inline" />
+                                <label for="module_product_customer_price"/>
+                            </div>
+                            <div name='module_product_website_categ_search'>
+                                <field name="module_product_website_categ_search"
+                                    class="oe_inline" />
+                                <label for="module_product_website_categ_search"/>
+                            </div>
+                            <div name='module_product_variant_csv_import'>
+                                <field name="module_product_variant_csv_import"
+                                    class="oe_inline" />
+                                <label for="module_product_variant_csv_import"/>
+                            </div>
+                            <div name='module_partner_products_shortcut'>
+                                <field name="module_partner_products_shortcut"
+                                    class="oe_inline" />
+                                <label for="module_partner_products_shortcut"/>
+                            </div>
+                            <div name='module_product_no_translation'>
+                                <field name="module_product_no_translation"
+                                    class="oe_inline" />
+                                <label for="module_product_no_translation"/>
+                            </div>                                   
                         </div>
                     </group>
 
@@ -183,7 +207,12 @@
                                 <field name="module_account_invoice_journal_filter"
                                     class="oe_inline" />
                                 <label for="module_account_invoice_journal_filter" />
-                            </div>  
+                            </div> 
+                            <div name='module_account_invoice_pricelist_discount'>
+                                <field name="module_account_invoice_pricelist_discount"
+                                    class="oe_inline" />
+                                <label for="module_account_invoice_pricelist_discount" />
+                            </div> 
                         </div>
                     </group>
                     <group>
@@ -203,6 +232,11 @@
                                 <field name="module_account_invoice_prices_update"
                                     class="oe_inline" />
                                 <label for="module_account_invoice_prices_update" />
+                            </div>
+                            <div name='module_account_export_csv'>
+                                <field name="module_account_export_csv"
+                                    class="oe_inline" />
+                                <label for="module_account_export_csv" />
                             </div> 
                         </div>
                     </group>    
@@ -252,6 +286,11 @@
                                 <field name="module_account_financial_report_webkit_xls"
                                     class="oe_inline" />
                                 <label for="module_account_financial_report_webkit_xls" />
+                            </div>
+                            <div name='module_account_financial_report_webkit'>
+                                <field name="module_account_financial_report_webkit"
+                                    class="oe_inline" />
+                                <label for="module_account_financial_report_webkit" />
                             </div>    
                             <div name='module_account_tax_analysis'>
                                 <field name="module_account_tax_analysis" class="oe_inline" readonly="1"/>
@@ -260,6 +299,11 @@
                             <div name='module_account_partner_account_summary'>
                                 <field name="module_account_partner_account_summary" class="oe_inline"/>
                                 <label for="module_account_partner_account_summary" />
+                            </div>
+                            <div name='module_product_catalog_aeroo_report'>
+                                <field name="module_product_catalog_aeroo_report"
+                                    class="oe_inline" />
+                                <label for="module_product_catalog_aeroo_report" />
                             </div>    
                         </div>
                     </group>
@@ -298,12 +342,7 @@
                                 <field name="module_partner_social_fields"
                                     class="oe_inline" />
                                 <label for="module_partner_social_fields" />
-                            </div>                
-                            <!-- <div name='module_partner_user'>
-                                <field name="module_partner_user"
-                                    class="oe_inline" />
-                                <label for="module_partner_user" />
-                            </div>     -->                
+                            </div>                               
                             <div name='module_base_state_active'>
                                 <field name="module_base_state_active"
                                     class="oe_inline" />
@@ -420,7 +459,32 @@
                                 <field name="module_sale_contract_restrict_domain"
                                     class="oe_inline" />
                                 <label for="module_sale_contract_restrict_domain"/>
-                            </div>                                
+                            </div>
+                            <div name='module_crm_partner_history'>
+                                <field name="module_crm_partner_history"
+                                    class="oe_inline" />
+                                <label for="module_crm_partner_history"/>
+                            </div>
+                            <div name='module_sale_contract_editable'>
+                                <field name="module_sale_contract_editable"
+                                    class="oe_inline" />
+                                <label for="module_sale_contract_editable"/>
+                            </div>
+                            <div name='module_sale_require_ref'>
+                                <field name="module_sale_require_ref"
+                                    class="oe_inline" />
+                                <label for="module_sale_require_ref"/>
+                            </div>
+                            <div name='module_sale_line_product_required'>
+                                <field name="module_sale_line_product_required"
+                                    class="oe_inline" />
+                                <label for="module_sale_line_product_required"/>
+                            </div>
+                            <div name='module_sale_usability_extension'>
+                                <field name="module_sale_usability_extension"
+                                    class="oe_inline" />
+                                <label for="module_sale_usability_extension"/>
+                            </div>
                         </div>
                     </group>
 
@@ -442,7 +506,17 @@
                                 <field name="module_account_analytic_purchase_contract"
                                     class="oe_inline" />
                                 <label for="module_account_analytic_purchase_contract" />
-                            </div>                            
+                            </div>
+                            <div name='module_purchase_double_validation_imp'>
+                                <field name="module_purchase_double_validation_imp"
+                                    class="oe_inline" />
+                                <label for="module_purchase_double_validation_imp" />
+                            </div>
+                            <div name='module_purchase_usability_extension'>
+                                <field name="module_purchase_usability_extension"
+                                    class="oe_inline" />
+                                <label for="module_purchase_usability_extension" />
+                            </div>
                         </div>
                     </group>
 
@@ -454,7 +528,47 @@
                                 <field name="module_stock_picking_locations"
                                     class="oe_inline" />
                                 <label for="module_stock_picking_locations" />
-                            </div>                   
+                            </div>
+                            <div name='module_delivery_extension'>
+                                <field name="module_delivery_extension"
+                                    class="oe_inline" />
+                                <label for="module_delivery_extension" />
+                            </div>
+                            <div name='module_stock_display_destination_move'>
+                                <field name="module_stock_display_destination_move"
+                                    class="oe_inline" />
+                                <label for="module_stock_display_destination_move" />
+                            </div>
+                            <div name='module_stock_display_sale_id'>
+                                <field name="module_stock_display_sale_id"
+                                    class="oe_inline" />
+                                <label for="module_stock_display_sale_id" />
+                            </div> 
+                            <div name='module_stock_display_src_location'>
+                                <field name="module_stock_display_src_location"
+                                    class="oe_inline" />
+                                <label for="module_stock_display_src_location" />
+                            </div>
+                            <div name='module_stock_invoice_try_again'>
+                                <field name="module_stock_invoice_try_again"
+                                    class="oe_inline" />
+                                <label for="module_stock_invoice_try_again" />
+                            </div>
+                            <div name='module_stock_cancel'>
+                                <field name="module_stock_cancel"
+                                    class="oe_inline" />
+                                <label for="module_stock_cancel" />
+                            </div>
+                            <div name='module_picking_dispatch'>
+                                <field name="module_picking_dispatch"
+                                    class="oe_inline" />
+                                <label for="module_picking_dispatch" />
+                            </div>
+                            <div name='module_stock_picking_invoice_link'>
+                                <field name="module_stock_picking_invoice_link"
+                                    class="oe_inline" />
+                                <label for="module_stock_picking_invoice_link" />
+                            </div>                    
                         </div>
                     </group>
 
@@ -471,13 +585,34 @@
                                 <field name="module_project_tags"
                                     class="oe_inline" />
                                 <label for="module_project_tags" />
-                            </div>    
+                            </div>
+                            <div name='module_project_task_phase'>
+                                <field name="module_project_task_phase"
+                                    class="oe_inline" />
+                                <label for="module_project_task_phase" />
+                            </div>
+                            <div name='module_project_user_story'>
+                                <field name="module_project_user_story"
+                                    class="oe_inline" />
+                                <label for="module_project_user_story" />
+                            </div>     
                         </div>    
                         <label for="id" string="Tasks" />
                         <div name="tasks">
                             <div name='module_project_alert_upcoming_tasks'>
-                                <field name="module_project_alert_upcoming_tasks" class="oe_inline" readonly="1"/>
+                                <field name="module_project_alert_upcoming_tasks"
+                                    class="oe_inline" readonly="1"/>
                                 <label for="module_project_alert_upcoming_tasks" />
+                            </div>
+                            <div name='module_project_task_desc_html'>
+                                <field name="module_project_task_desc_html"
+                                    class="oe_inline" />
+                                <label for="module_project_task_desc_html" />
+                            </div>
+                            <div name='module_project_task_portal_unfollow'>
+                                <field name="module_project_task_portal_unfollow"
+                                    class="oe_inline" />
+                                <label for="module_project_task_portal_unfollow" />
                             </div>    
                         </div>    
                         <label for="id" string="Issues" />
@@ -558,6 +693,21 @@
                                     class="oe_inline" />
                                 <label for="module_currency_rate_update" />
                             </div>
+                            <div name='module_evaluation'>
+                                <field name="module_evaluation"
+                                    class="oe_inline" />
+                                <label for="module_evaluation" />
+                            </div>
+                            <div name='module_help_online'>
+                                <field name="module_help_online"
+                                    class="oe_inline" />
+                                <label for="module_help_online" />
+                            </div>
+                            <div name='module_web_m2x_options'>
+                                <field name="module_web_m2x_options"
+                                    class="oe_inline" />
+                                <label for="module_web_m2x_options" />
+                            </div>
                         </div>        
                         <label for="id" string="Web Tools"/>
                         <div name="web_tools">
@@ -600,7 +750,12 @@
                                 <field name="module_mail_local_server_catchall"
                                     class="oe_inline" />
                                 <label for="module_mail_local_server_catchall" />
-                            </div>    
+                            </div>
+                            <div name='module_attachment_preview'>
+                                <field name="module_attachment_preview"
+                                    class="oe_inline" />
+                                <label for="module_attachment_preview" />
+                            </div>
                         </div>    
                         <label for="id" string="Support"/>
                         <div name="support">
