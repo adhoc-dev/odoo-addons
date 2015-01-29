@@ -716,15 +716,14 @@
                                     class="oe_inline"/>
                                 <label for="module_currency_rate_update"/>
                             </div>
+                        </div>        
+                        <label for="id" string="Surveys"/>
+                        <div name="survey">           
                             <div name='module_evaluation'>
                                 <field name="module_evaluation"
                                     class="oe_inline"/>
                                 <label for="module_evaluation"/>
                             </div>
-                        </div>        
-                        <label for="id" string="Web Tools"/>
-                        <div name="web_tools">
-           
                         </div>                
                         <label for="id" string="Knowladege and Documentation"/>
                         <div name="documentation">
