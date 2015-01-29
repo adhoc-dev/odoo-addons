@@ -214,6 +214,7 @@
                                     class="oe_inline"/>
                                 <label for="module_account_invoice_prices_update"/>
                             </div>
+                        </div>
                         <label for="id" string="Advanced Accounting Features"/>
                         <div name="advanced_accounting">
                             <div name='module_account_interests'>
