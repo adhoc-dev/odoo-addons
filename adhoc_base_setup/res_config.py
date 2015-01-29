@@ -30,6 +30,9 @@ class adhoc_base_configuration(models.TransientModel):
         help="""Installs the stock_multic_fix module.""")
 
     # Account modules
+    module_account_followup = fields.Boolean(
+        'Use account folloup to automate letters for unpaid invoices, with multi-level recalls',
+        help="""Installs the account_followup module.""")
     module_account_invoice_tax_wizard = fields.Boolean(
         'Add a wizard to add manual taxes on invoices',
         help="""Installs the account_invoice_tax_wizard module.""")

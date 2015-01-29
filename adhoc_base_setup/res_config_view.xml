@@ -70,18 +70,8 @@
 
                     <separator string="Products"/>
                     <group>
-                        <label for="id" string="Product Features"/>
+                        <label for="id" string="Common Features"/>
                         <div name="product_features">
-                            <div name='module_product_pack'>
-                                <field name="module_product_pack"
-                                    class="oe_inline"/>
-                                <label for="module_product_pack"/>
-                            </div>         
-                            <div name='module_product_price_currency'>
-                                <field name="module_product_price_currency"
-                                    class="oe_inline"/>
-                                <label for="module_product_price_currency"/>
-                            </div>            
                             <div name='module_product_dimensions'>
                                 <field name="module_product_dimensions"
                                     class="oe_inline"/>
@@ -97,16 +87,24 @@
                                     class="oe_inline"/>
                                 <label for="module_product_unique"/>
                             </div>               
+                            <div name='module_product_website_categ_search'>
+                                <field name="module_product_website_categ_search"
+                                    class="oe_inline"/>
+                                <label for="module_product_website_categ_search"/>
+                            </div>
+                        </div>                 
+                        <label for="id" string="Advance Features"/>
+                        <div name="product_advance_features">
+                            <div name='module_product_pack'>
+                                <field name="module_product_pack"
+                                    class="oe_inline"/>
+                                <label for="module_product_pack"/>
+                            </div>         
                             <div name='module_product_salesman_group'>
                                 <field name="module_product_salesman_group"
                                     class="oe_inline"/>
                                 <label for="module_product_salesman_group"/>
                             </div>                    
-                            <div name='module_product_uom_prices'>
-                                <field name="module_product_uom_prices"
-                                    class="oe_inline"/>
-                                <label for="module_product_uom_prices"/>
-                            </div>                      
                             <div name='module_product_force_create_variants'>
                                 <field name="module_product_force_create_variants"
                                     class="oe_inline"/>
@@ -117,6 +115,36 @@
                                     class="oe_inline"/>
                                 <label for="module_product_variant_imp"/>
                             </div>
+                            <div name='module_partner_products_shortcut'>
+                                <field name="module_partner_products_shortcut"
+                                    class="oe_inline"/>
+                                <label for="module_partner_products_shortcut"/>
+                            </div>
+                            <div name='module_product_no_translation'>
+                                <field name="module_product_no_translation"
+                                    class="oe_inline"/>
+                                <label for="module_product_no_translation"/>
+                            </div>  
+                        <label for="id" string="Import / Export"/>
+                        <div name="product_import_export">
+                            <div name='module_product_variant_csv_import'>
+                                <field name="module_product_variant_csv_import"
+                                    class="oe_inline"/>
+                                <label for="module_product_variant_csv_import"/>
+                            </div>
+                        </div>
+                        <label for="id" string="Product Prices and Pricelist"/>
+                        <div name="product_advance_features">         
+                            <div name='module_product_price_currency'>
+                                <field name="module_product_price_currency"
+                                    class="oe_inline"/>
+                                <label for="module_product_price_currency"/>
+                            </div>            
+                            <div name='module_product_uom_prices'>
+                                <field name="module_product_uom_prices"
+                                    class="oe_inline"/>
+                                <label for="module_product_uom_prices"/>
+                            </div>    
                             <div name='module_product_prices_update'>
                                 <field name="module_product_prices_update"
                                     class="oe_inline"/>
@@ -127,26 +155,7 @@
                                     class="oe_inline"/>
                                 <label for="module_product_customer_price"/>
                             </div>
-                            <div name='module_product_website_categ_search'>
-                                <field name="module_product_website_categ_search"
-                                    class="oe_inline"/>
-                                <label for="module_product_website_categ_search"/>
-                            </div>
-                            <div name='module_product_variant_csv_import'>
-                                <field name="module_product_variant_csv_import"
-                                    class="oe_inline"/>
-                                <label for="module_product_variant_csv_import"/>
-                            </div>
-                            <div name='module_partner_products_shortcut'>
-                                <field name="module_partner_products_shortcut"
-                                    class="oe_inline"/>
-                                <label for="module_partner_products_shortcut"/>
-                            </div>
-                            <div name='module_product_no_translation'>
-                                <field name="module_product_no_translation"
-                                    class="oe_inline"/>
-                                <label for="module_product_no_translation"/>
-                            </div>                                   
+                        </div>    
                         </div>
                     </group>
 
@@ -213,6 +222,11 @@
                                 <field name="module_account_invoice_prices_update"
                                     class="oe_inline"/>
                                 <label for="module_account_invoice_prices_update"/>
+                            </div>    
+                            <div name='module_account_followup'>
+                                <field name="module_account_followup"
+                                    class="oe_inline"/>
+                                <label for="module_account_followup"/>
                             </div>
                         </div>
                         <label for="id" string="Advanced Accounting Features"/>
