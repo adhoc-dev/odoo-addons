@@ -267,14 +267,13 @@ then on sale orders lines this description will be used and no code""")
         'This module adds a link between pickings and generated invoices.',
         help="""Installs the stock_picking_invoice_link module.""")
     module_picking_dispatch = fields.Boolean(
-        'This module allows you to group various pickings into a dispatch order (picking wave),\
-         having all the related moves in it and assigned to a warehouse keeper.',
+        'This module allows you to group various pickings into a dispatch order ,having all the related moves in it and assigned to a warehouse keeper.',
         help="""Installs the picking_dispatch module.""")
     module_stock_display_src_location = fields.Boolean(
         'Display the source location on the tree view of the move lines of the pickings (by default, only the destination location is displayed).',
         help="""Installs the stock_display_src_location module.""")
     module_stock_invoice_try_again = fields.Boolean(
-        'When the sale order has "Create Invoice" set to "On Delivery Order", there is a button "Create Invoice" on the Delivery Order once the goods are shipped.',
+        'When the sale order has "Create Invoice" set to "On Delivery Order", add a button "Create Invoice" on the Delivery Order once the goods are shipped.',
         help="""Installs the stock_invoice_try_again module.""")
 
     # Multi Company
@@ -421,8 +420,7 @@ then on sale orders lines this description will be used and no code""")
         'Product Search by Website Category.',
         help="""Installs the product_website_categ_search module.""")
     module_product_variant_csv_import = fields.Boolean(
-        'This module adds a menu entry in *Sales > Configuration > Product Categories and attributes > Product Template CSV Import",\
-         that will work with the import of CSV file product.template.csv that contains variants.',
+        'This module adds a menu entry in *Sales > Configuration > Product Categories and attributes > Product Template CSV Import".',
         help="""Installs the product_variant_csv_import module.""")
     module_partner_products_shortcut = fields.Boolean(
         'Adds a shortcut on supplier partner form to the products supplied by this partner.',

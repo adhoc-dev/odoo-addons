@@ -559,16 +559,16 @@
                                     class="oe_inline" />
                                 <label for="module_stock_cancel" />
                             </div>
-                            <div name='module_picking_dispatch'>
-                                <field name="module_picking_dispatch"
-                                    class="oe_inline" />
-                                <label for="module_picking_dispatch" />
-                            </div>
                             <div name='module_stock_picking_invoice_link'>
                                 <field name="module_stock_picking_invoice_link"
                                     class="oe_inline" />
                                 <label for="module_stock_picking_invoice_link" />
                             </div>                    
+                            <div name='module_picking_dispatch'>
+                                <field name="module_picking_dispatch"
+                                    class="oe_inline" />
+                                <label for="module_picking_dispatch" />
+                            </div>
                         </div>
                     </group>
 
