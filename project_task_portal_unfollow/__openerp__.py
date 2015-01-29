@@ -18,6 +18,7 @@
         'project',
     ],
     'data': [
+        'subtype.xml'
     ],
     'demo': [
     ],
