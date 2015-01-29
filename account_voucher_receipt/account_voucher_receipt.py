@@ -167,7 +167,6 @@ class account_voucher_receipt (osv.osv):
     def cancel_receipt_and_payments(self, cr, uid, ids, context=None):
         for receipt in self.browse(cr, uid, ids, context=context):
             voucher_ids = [voucher.id for voucher in receipt.voucher_ids]   
-            print 'voucher_ids', voucher_ids
             self.pool['account.voucher'].cancel_voucher(cr, uid, voucher_ids, context=context)
         self.cancel_receipt(cr, uid, ids, context)
         return True

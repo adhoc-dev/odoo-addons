@@ -15,13 +15,11 @@ Report Configurator - Stock
     ],
     'depends': [
         'report_extended',
-        'stock',
+        'stock_voucher',
     ],
     'data': [
         'views/report_view.xml',
-        'views/stock_view.xml',
-        'wizard/stock_transfer_details_view.xml',
-        'report_extended_action_data.xml',
+        # 'report_extended_action_data.xml',
     ],
     'demo': [
     ],

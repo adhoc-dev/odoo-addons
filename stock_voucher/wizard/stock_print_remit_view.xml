@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_print_stock_voucher_form">
+            <field name="name">print_stock_picking.form</field>
+            <field name="model">stock.print_stock_voucher</field>
+            <field name="arch" type="xml">
+                <form string="Print Stock Voucher">
+                    <group>
+                        <field name="picking_id" invisible="1"/>
+                        <field name="printed" invisible="1"/>
+                        <field name="book_id" attrs="{'invisible':[('printed', '=', True)],'required':[('printed', '=', False)]}"/>
+                    </group>
+                    <group col="4" attrs="{'invisible':[('printed', '=', True)]}">
+                        <field name="next_voucher_number"/>
+                        <field name="estimated_number_of_pages"/>
+                    </group>
+                <footer>
+                    <button name="do_print_voucher" type="object" class="oe_highlight" string="Assign and Print" attrs="{'invisible':[('printed', '=', True)]}"/>
+                    <button name="do_print_voucher" type="object" class="oe_highlight" string="Print" attrs="{'invisible':[('printed', '=', False)]}"/>
+                    or
+                    <button name="do_clean" type="object" string="Clean Voucher Data" attrs="{'invisible':[('printed', '=', False)]}"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_stock_print_voucher">
+            <field name="name">Print Stock Remit</field>
+            <field name="res_model">stock.print_stock_voucher</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_print_stock_voucher_form"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

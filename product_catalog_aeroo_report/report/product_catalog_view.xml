@@ -9,7 +9,7 @@
         <field name="report_name">report_product_catalog_ods</field>
         <field name="report_type">aeroo</field>
         <field name="in_format">oo-ods</field>
-        <field name="out_format" ref="report_aeroo_ooo.report_mimetypes_pdf_odt"/>
+        <!-- <field name="out_format" ref="report_aeroo_ooo.report_mimetypes_pdf_odt"/> -->
         <field name="parser_loc">product_catalog_aeroo_report/report/product_catalog_parser.py</field>
         <field name="report_rml">product_catalog_aeroo_report/report/product_catalog.ods</field>
         <!-- <field name="report_rml">product_catalog_aeroo_report/report/product_catalog.odt</field> -->
@@ -26,7 +26,7 @@
         <field name="report_name">report_product_catalog_simple_odt</field>
         <field name="report_type">aeroo</field>
         <field name="in_format">oo-odt</field>
-        <field name="out_format" ref="report_aeroo_ooo.report_mimetypes_pdf_odt"/>
+        <!-- <field name="out_format" ref="report_aeroo_ooo.report_mimetypes_pdf_odt"/> -->
         <field name="parser_loc">product_catalog_aeroo_report/report/product_catalog_parser.py</field>
         <field name="report_rml">product_catalog_aeroo_report/report/product_catalog_simple.odt</field>
         <field name="parser_state">loc</field>
@@ -41,7 +41,7 @@
         <field name="report_name">report_product_catalog_by_categories_odt</field>
         <field name="report_type">aeroo</field>
         <field name="in_format">oo-odt</field>
-        <field name="out_format" ref="report_aeroo_ooo.report_mimetypes_pdf_odt"/>
+        <!-- <field name="out_format" ref="report_aeroo_ooo.report_mimetypes_pdf_odt"/> -->
         <field name="parser_loc">product_catalog_aeroo_report/report/product_catalog_parser.py</field>
         <field name="report_rml">product_catalog_aeroo_report/report/product_catalog_by_categories.odt</field>
         <field name="parser_state">loc</field>

@@ -51,3 +51,51 @@ class account_move(models.Model):
             periods = self.with_context(
                 company_id=self.journal_id.company_id.id).env['account.period'].find()
             self.period_id = periods and periods[0].id or False
+
+
+class account_statement(models.Model):
+    _inherit = "account.bank.statement"
+
+    period_id = fields.Many2one(domain="[('company_id','=',company_id)]")
+
+    @api.multi
+    def onchange_journal_id(self, journal_id):
+        res = super(account_statement, self).onchange_journal_id(journal_id)
+        if journal_id:
+            periods = self.with_context(
+                company_id=self.env['account.journal'].browse(journal_id).company_id.id).env['account.period'].find()
+            res['value']['period_id'] = periods and periods[0].id or False
+        return res
+
+    def _check_company_id(self, cr, uid, ids, context=None):
+        for statement in self.browse(cr, uid, ids, context=context):
+            if statement.journal_id.company_id.id != statement.period_id.company_id.id:
+                return False
+        return True
+
+    _constraints = [
+            (_check_company_id, 'The journal and period chosen have to belong to the same company.', [
+             'journal_id', 'period_id']),
+        ]
+
+
+class account_bank_statement_line(models.Model):
+    _inherit = "account.bank.statement.line"
+
+    def _domain_move_lines_for_reconciliation(self, cr, uid, st_line, excluded_ids=None, str=False, additional_domain=None, context=None):
+        domain = super(account_bank_statement_line, self)._domain_move_lines_for_reconciliation(cr, uid, st_line, excluded_ids, str, additional_domain, context)
+        domain.append(('company_id', '=', st_line.statement_id.company_id.id))
+        return domain
+
+    def _domain_reconciliation_proposition(self, cr, uid, st_line, excluded_ids=None, context=None):
+        domain = super(account_bank_statement_line, self)._domain_reconciliation_proposition(cr, uid, st_line, excluded_ids, context)
+        domain.append(('company_id', '=', st_line.statement_id.company_id.id))
+        return domain
+
+
+class AccountStatementOperationTemplate(models.Model):
+    _inherit = 'account.statement.operation.template'
+
+    company_id = fields.Many2one(
+        'res.company', string='Company', related='account_id.company_id',
+        store=True)
