@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Stock Remit',
+    'name': 'Stock Remit (depreciado)',
     'version': '1.0',
     'category': 'Warehouse Management',
     'sequence': 14,
     'summary': '',
     'description': """
-Stock Remit
+Stock Remit (depreciado)
 ===========
 Para que la asignacion del diario funcione bien (en funcion a la tienda de la sale.order), se debe verificar también el diario de encadenamiento configurado en las ubicaciones de stock (principalmente en salida)
     """,
@@ -27,7 +27,7 @@ Para que la asignacion del diario funcione bien (en funcion a la tienda de la sa
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }

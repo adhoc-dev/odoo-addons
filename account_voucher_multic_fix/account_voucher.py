@@ -9,10 +9,10 @@ class account_voucher(models.Model):
     def on_change_company(
             self, cr, uid, ids, date, currency_id, payment_rate_currency_id,
             amount, company_id, context=None):
-        ''' We add this function so that journal_id value and domain is updated
+        ''' We replace the original one by this function so that journal_id
+        value and domain is updated
         when company_id is change. We also call to onchange_date in order to
         update the selected period'''
-
         # Run onchange_date to update period and other values
         result = self.onchange_date(
             cr, uid, ids, date, currency_id, payment_rate_currency_id, amount,
@@ -29,7 +29,6 @@ class account_voucher(models.Model):
                 ('company_id', '=', company_id),
                 ('type', 'in', ('cash', 'bank'))]
             # Esto seria si esta instalado el modulo de direction
-            print 'context', context
             if self.pool['account.journal'].fields_get(cr, uid, ['direction']):
                 if context.get('type', False) == 'payment':
                     domain.append(('direction', 'in', [False, 'out']))

@@ -46,8 +46,6 @@ class adhoc_base_configuration(osv.osv_memory):
             help="""Installs the account_voucher_receipt module."""),
         'module_account_journal_security': fields.boolean('Restrict users to some journals',
             help="""Installs the account_journal_security module."""),
-        'module_account_invoice_adjust': fields.boolean('Adjust Customer and Suppliers Invoices',
-            help="""Installs the account_invoice_adjust module. Allows reconciling between receivable and payable accounts of same partner"""),        
         'module_account_create_journal': fields.boolean('Configure Payment Journals With a Wizard',
             help="""Installs the account_create_journal module installs checks, payment direction an other modules."""),
         'module_account_journal_sequence': fields.boolean('Add sequence on account journals',
