@@ -83,18 +83,19 @@
             <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form"/>
             <field name="arch" type="xml">
                 <field name="partner_id" position="after">
-                    <field name="book_id"/>
-                    <field name="voucher_ids" widget="many2many_tags"/>
+                    <field name="book_id" attrs="{'invisible': [('picking_type_code','=','incoming')}"/>
+                    <field name="voucher_ids" attrs="{'invisible': [('picking_type_code','=','incoming')]}" widget="many2many_tags"/>
                 </field>
                 <field name="number_of_packages" position="before">
-                    <field name="declared_value"/>
+                    <field name="declared_value" attrs="{'invisible': [('picking_type_code','=','incoming')]}"/>
                 </field>
                 <button name="do_print_picking" position="after">
-                    <button name="%(action_stock_print_voucher)d" string="Vouchers" type="action" attrs="{'invisible': [('picking_type_code', 'not in', ('outgoing', 'internal')), ('state', 'not in', ('done'))]}" class="oe_highlight"/>
+                    <button name="%(action_stock_print_voucher)d" string="Vouchers" type="action" attrs="{'invisible': ['|',('book_id','=',False),'|', ('picking_type_code','=','incoming'), ('state','!=','done'), ]}"/>
+                    <button name="%(action_stock_print_voucher)d" string="Vouchers" type="action" attrs="{'invisible': ['|',('book_id','!=',False),'|', ('picking_type_code','=','incoming'), ('state','!=','done'), ]}" class="oe_highlight"/>
                 </button>
                 <field name="move_lines" position="after">
-                    <label for="observations"/>
-                    <field name="observations"/>
+                    <label for="observations" attrs="{'invisible': [('picking_type_code','=','incoming')]}"/>
+                    <field name="observations" attrs="{'invisible': [('picking_type_code','=','incoming')]}"/>
                 </field>
             </field>
         </record>        
