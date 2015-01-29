@@ -8,7 +8,7 @@
     'description': """
 Stock Voucher
 =============
-Para que la asignacion del diario funcione bien (en funcion a la tienda de la sale.order), se debe verificar también el diario de encadenamiento configurado en las ubicaciones de stock (principalmente en salida)
+Add stock voucher report on stock picking
 TODO:
 -----
 * agregar el boton de enviar por email

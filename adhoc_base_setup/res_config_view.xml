@@ -9,615 +9,777 @@
             <field name="arch" type="xml">
                 <form string="Configure" class="oe_form_configuration" version="7.0">
                     <header>
-                        <button string="Apply" type="object" name="execute" class="oe_highlight" />
+                        <button string="Apply" type="object" name="execute" class="oe_highlight"/>
                         or
-                        <button string="Cancel" type="object" name="cancel" class="oe_link" />
+                        <button string="Cancel" type="object" name="cancel" class="oe_link"/>
                     </header>
-
                     <separator string="ADHOC Base Setup"/>
                     <div>
                         <p>
                             <label
-                                string="Allows you to configure options related to products, sales, purchase, warehouse and finance for your business according to argentinian common uses and ADHOC customizations. You may also find some tools that makes your life easier while workign with OpenERP." />
+                                string="Allows you to configure options related to products, sales, purchase, warehouse and finance for your business according to argentinian common uses and ADHOC customizations. You may also find some tools that makes your life easier while workign with OpenERP."/>
                         </p>
                     </div>
 
-                     <separator string="Fixes" />
+                     <separator string="Fixes"/>
                     <group>
-                        <label for="id" string="Vairous Fixes" />
+                        <label for="id" string="Vairous Fixes"/>
                         <div name="various_fixes">
                             <div name='module_account_voucher_multic_fix'>
                                 <field name="module_account_voucher_multic_fix"
-                                    class="oe_inline" />
-                                <label for="module_account_voucher_multic_fix" />
+                                    class="oe_inline"/>
+                                <label for="module_account_voucher_multic_fix"/>
                             </div>        
                             <div name='module_account_multic_fix'>
                                 <field name="module_account_multic_fix"
-                                    class="oe_inline" />
-                                <label for="module_account_multic_fix" />
+                                    class="oe_inline"/>
+                                <label for="module_account_multic_fix"/>
                             </div>           
                             <div name='module_sale_multic_fix'>
                                 <field name="module_sale_multic_fix"
-                                    class="oe_inline" />
-                                <label for="module_sale_multic_fix" />
+                                    class="oe_inline"/>
+                                <label for="module_sale_multic_fix"/>
                             </div>           
                             <div name='module_purchase_multic_fix'>
                                 <field name="module_purchase_multic_fix"
-                                    class="oe_inline" />
-                                <label for="module_purchase_multic_fix" />
+                                    class="oe_inline"/>
+                                <label for="module_purchase_multic_fix"/>
                             </div>            
                             <div name='module_account_voucher_account_fix'>
                                 <field name="module_account_voucher_account_fix"
-                                    class="oe_inline" />
-                                <label for="module_account_voucher_account_fix" />
+                                    class="oe_inline"/>
+                                <label for="module_account_voucher_account_fix"/>
                             </div>              
                             <div name='module_account_onchange_fix'>
                                 <field name="module_account_onchange_fix"
-                                    class="oe_inline" />
-                                <label for="module_account_onchange_fix" />
+                                    class="oe_inline"/>
+                                <label for="module_account_onchange_fix"/>
                             </div>
                              <div name='module_account_refund_invoice_fix'>
                                 <field name="module_account_refund_invoice_fix"
-                                    class="oe_inline" />
-                                <label for="module_account_refund_invoice_fix" />
+                                    class="oe_inline"/>
+                                <label for="module_account_refund_invoice_fix"/>
                             </div>
                             <div name='module_stock_multic_fix'>
                                 <field name="module_stock_multic_fix"
-                                    class="oe_inline" />
-                                <label for="module_stock_multic_fix" />
+                                    class="oe_inline"/>
+                                <label for="module_stock_multic_fix"/>
                             </div>    
-                              
                         </div>
                     </group>
 
-                    <separator string="Products" />
+                    <separator string="Products"/>
                     <group>
-                        <label for="id" string="Product Features" />
+                        <label for="id" string="Product Features"/>
                         <div name="product_features">
                             <div name='module_product_pack'>
                                 <field name="module_product_pack"
-                                    class="oe_inline" readonly="1"/>
-                                <label for="module_product_pack" />
-                            </div>    
-                            <div name='module_product_pack_sale_order_warning' attrs="{'invisible':[('module_product_pack','!=',True)]}">
-                                <field name="module_product_pack_sale_order_warning"
-                                    class="oe_inline" />
-                                <label for="module_product_pack_sale_order_warning" />
-                            </div>        
+                                    class="oe_inline"/>
+                                <label for="module_product_pack"/>
+                            </div>         
                             <div name='module_product_price_currency'>
                                 <field name="module_product_price_currency"
-                                    class="oe_inline" />
-                                <label for="module_product_price_currency" />
+                                    class="oe_inline"/>
+                                <label for="module_product_price_currency"/>
                             </div>            
                             <div name='module_product_dimensions'>
                                 <field name="module_product_dimensions"
-                                    class="oe_inline" />
-                                <label for="module_product_dimensions" />
+                                    class="oe_inline"/>
+                                <label for="module_product_dimensions"/>
                             </div>            
                             <div name='module_product_supplier_pricelist'>
                                 <field name="module_product_supplier_pricelist"
                                     class="oe_inline" readonly="1"/>
-                                <label for="module_product_supplier_pricelist" />
+                                <label for="module_product_supplier_pricelist"/>
                             </div>                
                             <div name='module_product_unique'>
                                 <field name="module_product_unique"
-                                    class="oe_inline" />
-                                <label for="module_product_unique" />
+                                    class="oe_inline"/>
+                                <label for="module_product_unique"/>
                             </div>               
                             <div name='module_product_salesman_group'>
                                 <field name="module_product_salesman_group"
-                                    class="oe_inline" />
-                                <label for="module_product_salesman_group" />
+                                    class="oe_inline"/>
+                                <label for="module_product_salesman_group"/>
                             </div>                    
                             <div name='module_product_uom_prices'>
                                 <field name="module_product_uom_prices"
-                                    class="oe_inline" />
-                                <label for="module_product_uom_prices" />
+                                    class="oe_inline"/>
+                                <label for="module_product_uom_prices"/>
                             </div>                      
                             <div name='module_product_force_create_variants'>
                                 <field name="module_product_force_create_variants"
-                                    class="oe_inline" />
+                                    class="oe_inline"/>
                                 <label for="module_product_force_create_variants"/>
                             </div>                        
                             <div name='module_product_variant_imp'>
                                 <field name="module_product_variant_imp"
-                                    class="oe_inline" />
+                                    class="oe_inline"/>
                                 <label for="module_product_variant_imp"/>
                             </div>
                             <div name='module_product_prices_update'>
                                 <field name="module_product_prices_update"
-                                    class="oe_inline" />
+                                    class="oe_inline"/>
                                 <label for="module_product_prices_update"/>
-                            </div>                                  
+                            </div>
+                            <div name='module_product_customer_price'>
+                                <field name="module_product_customer_price"
+                                    class="oe_inline"/>
+                                <label for="module_product_customer_price"/>
+                            </div>
+                            <div name='module_product_website_categ_search'>
+                                <field name="module_product_website_categ_search"
+                                    class="oe_inline"/>
+                                <label for="module_product_website_categ_search"/>
+                            </div>
+                            <div name='module_product_variant_csv_import'>
+                                <field name="module_product_variant_csv_import"
+                                    class="oe_inline"/>
+                                <label for="module_product_variant_csv_import"/>
+                            </div>
+                            <div name='module_partner_products_shortcut'>
+                                <field name="module_partner_products_shortcut"
+                                    class="oe_inline"/>
+                                <label for="module_partner_products_shortcut"/>
+                            </div>
+                            <div name='module_product_no_translation'>
+                                <field name="module_product_no_translation"
+                                    class="oe_inline"/>
+                                <label for="module_product_no_translation"/>
+                            </div>                                   
                         </div>
                     </group>
 
-<!--                     <separator string="Warehouse" />
+                    <separator string="Accounting"/>
                     <group>
-                        <label for="id" string="Warehouse Features" />
-                        <div name="warehouse_features">
-                        </div>
-                    </group>
-
-                    <group>
-                        <label for="id" string="Product Tracking" />
-                        <div name="product_features">
-                        </div>
-                    </group>
- -->
-                    <separator string="Accounting" />
-                    <group>
-                        <label for="id" string="Invoicing" />    
+                        <label for="id" string="Invoicing"/>    
                         <div name="invoicing">
                             <div name='module_account_invoice_tax_wizard'>
                                 <field name="module_account_invoice_tax_wizard"
-                                    class="oe_inline" />
-                                <label for="module_account_invoice_tax_wizard" />
+                                    class="oe_inline"/>
+                                <label for="module_account_invoice_tax_wizard"/>
                             </div>  
                             <div name='module_invoice_fiscal_position_update'>
                                 <field name="module_invoice_fiscal_position_update"
-                                    class="oe_inline" />
-                                <label for="module_invoice_fiscal_position_update" />
+                                    class="oe_inline"/>
+                                <label for="module_invoice_fiscal_position_update"/>
                             </div>  
-                            <div name='module_account_cancel'>
-                                <field name="module_account_cancel"
-                                    class="oe_inline" />
-                                <label for="module_account_cancel" />
-                            </div>    
                             <div name='module_account_clean_cancelled_invoice_number'>
                                 <field name="module_account_clean_cancelled_invoice_number"
-                                    class="oe_inline" />
-                                <label for="module_account_clean_cancelled_invoice_number" />
+                                    class="oe_inline"/>
+                                <label for="module_account_clean_cancelled_invoice_number"/>
                             </div>    
                             <div name='module_account_invoice_commercial'>
                                 <field name="module_account_invoice_commercial"
-                                    class="oe_inline" />
-                                <label for="module_account_invoice_commercial" />
+                                    class="oe_inline"/>
+                                <label for="module_account_invoice_commercial"/>
                             </div>     
                             <div name='module_account_invoice_company_search'>
                                 <field name="module_account_invoice_company_search"
-                                    class="oe_inline" />
-                                <label for="module_account_invoice_company_search" />
+                                    class="oe_inline"/>
+                                <label for="module_account_invoice_company_search"/>
                             </div>
                             <div name='module_account_invoice_journal_filter'>
                                 <field name="module_account_invoice_journal_filter"
-                                    class="oe_inline" />
-                                <label for="module_account_invoice_journal_filter" />
-                            </div>  
-                        </div>
-                    </group>
-                    <group>
-                        <label for="id" string="Accounting" />
-                        <div name="accounting">                
-                            <div name='module_account_fiscal_position_no_source_tax'>
-                                <field name="module_account_fiscal_position_no_source_tax"
-                                    class="oe_inline" />
-                                <label for="module_account_fiscal_position_no_source_tax" />
-                            </div>                 
-                            <div name='module_account_journal_sequence'>
-                                <field name="module_account_journal_sequence"
-                                    class="oe_inline" />
-                                <label for="module_account_journal_sequence" />
+                                    class="oe_inline"/>
+                                <label for="module_account_invoice_journal_filter"/>
                             </div> 
+                            <div name='module_account_invoice_pricelist_discount'>
+                                <field name="module_account_invoice_pricelist_discount"
+                                    class="oe_inline"/>
+                                <label for="module_account_invoice_pricelist_discount"/>
+                            </div>
+                            <div name='module_multi_store'>
+                                <field name="module_multi_store" class="oe_inline"/>
+                                <label for="module_multi_store"/>
+                            </div>
+                        </div>
+                        <label for="id" string="Analytic, contracts and Projects"/>
+                        <div name="accounting_analytic">
+                            <div name='module_account_analytic_analysis_mods'>
+                                <field name="module_account_analytic_analysis_mods"
+                                    class="oe_inline"/>
+                                <label for="module_account_analytic_analysis_mods"/>
+                            </div> 
+                        </div> 
+                        <label for="id" string="Common Accounting Features"/>
+                        <div name="common_accounting">
+                            <div name='module_account_cancel'>
+                                <field name="module_account_cancel"
+                                    class="oe_inline"/>
+                                <label for="module_account_cancel"/>
+                            </div>    
                             <div name='module_account_invoice_prices_update'>
                                 <field name="module_account_invoice_prices_update"
-                                    class="oe_inline" />
-                                <label for="module_account_invoice_prices_update" />
+                                    class="oe_inline"/>
+                                <label for="module_account_invoice_prices_update"/>
+                            </div>
+                        <label for="id" string="Advanced Accounting Features"/>
+                        <div name="advanced_accounting">
+                            <div name='module_account_interests'>
+                                <field name="module_account_interests" class="oe_inline"/>
+                                <label for="module_account_interests"/>
+                            </div>            
+                            <div name='module_account_journal_sequence'>
+                                <field name="module_account_journal_sequence"
+                                    class="oe_inline"/>
+                                <label for="module_account_journal_sequence"/>
                             </div> 
+                            <div name='module_account_journal_active'>
+                                <field name="module_account_journal_active" class="oe_inline"/>
+                                <label for="module_account_journal_active"/>
+                            </div>
                         </div>
-                    </group>    
-                    <group>
-                        <label for="id" string="Payments" />
+                        <label for="id" string="Payments"/>
                         <div name="payments">
                             <div name='module_account_check'>
                                 <field name="module_account_check" class="oe_inline"/>
-                                <label for="module_account_check" />
+                                <label for="module_account_check"/>
                             </div>    
                             <div name='module_account_voucher_receipt'>
                                 <field name="module_account_voucher_receipt"
-                                    class="oe_inline" />
-                                <label for="module_account_voucher_receipt" />
+                                    class="oe_inline"/>
+                                <label for="module_account_voucher_receipt"/>
                             </div>             
                             <div name='module_account_payment_direction'>
                                 <field name="module_account_payment_direction"
-                                    class="oe_inline" />
-                                <label for="module_account_payment_direction" />
+                                    class="oe_inline"/>
+                                <label for="module_account_payment_direction"/>
                             </div>            
                             <div name='module_account_create_journal'>
                                 <field name="module_account_create_journal"
                                     class="oe_inline" readonly="1"/>
-                                <label for="module_account_create_journal" />
+                                <label for="module_account_create_journal"/>
                             </div>            
                             <div name='module_account_bank_voucher'>
                                 <field name="module_account_bank_voucher"
                                     class="oe_inline"/>
-                                <label for="module_account_bank_voucher" />
+                                <label for="module_account_bank_voucher"/>
                             </div>
-                        </div>
-                    </group>    
-                    <group>    
-                        <label for="id" string="Reports" />
+                        </div>    
+                        <label for="id" string="Security"/>
+                        <div name="reports">
+                            <div name='module_account_journal_security'>
+                                <field name="module_account_journal_security" class="oe_inline"/>
+                                <label for="module_account_journal_security"/>
+                            </div>
+                        </div>                            
+                        <label for="id" string="Reports"/>
                         <div name="reports">                                
+                            <div name='module_account_export_csv'>
+                                <field name="module_account_export_csv"
+                                    class="oe_inline"/>
+                                <label for="module_account_export_csv"/>
+                            </div> 
                             <div name='module_account_partner_balance'>
                                 <field name="module_account_partner_balance"
-                                    class="oe_inline" />
-                                <label for="module_account_partner_balance" />
+                                    class="oe_inline"/>
+                                <label for="module_account_partner_balance"/>
                             </div>                                            
                             <div name='module_account_financial_report_webkit_xls'>
                                 <field name="module_account_financial_report_webkit_xls"
-                                    class="oe_inline" />
-                                <label for="module_account_financial_report_webkit_xls" />
+                                    class="oe_inline"/>
+                                <label for="module_account_financial_report_webkit_xls"/>
+                            </div>
+                            <div name='module_account_financial_report_webkit'>
+                                <field name="module_account_financial_report_webkit"
+                                    class="oe_inline"/>
+                                <label for="module_account_financial_report_webkit"/>
                             </div>    
                             <div name='module_account_tax_analysis'>
                                 <field name="module_account_tax_analysis" class="oe_inline" readonly="1"/>
-                                <label for="module_account_tax_analysis" />
+                                <label for="module_account_tax_analysis"/>
                             </div>      
                             <div name='module_account_partner_account_summary'>
                                 <field name="module_account_partner_account_summary" class="oe_inline"/>
-                                <label for="module_account_partner_account_summary" />
-                            </div>    
-                        </div>
-                    </group>
-                    <group>    
-                        <label for="id" string="Miscellaneous" />                    
-                        <div name="misc">
-                            <div name='module_account_interests'>
-                                <field name="module_account_interests" class="oe_inline"/>
-                                <label for="module_account_interests" />
-                            </div>    
-                            <div name='module_account_journal_security'>
-                                <field name="module_account_journal_security" class="oe_inline"/>
-                                <label for="module_account_journal_security" />
-                            </div>    
-                            <div name='module_multi_store'>
-                                <field name="module_multi_store" class="oe_inline"/>
-                                <label for="module_multi_store" />
-                            </div>    
-                            <div name='module_account_journal_active'>
-                                <field name="module_account_journal_active" class="oe_inline"/>
-                                <label for="module_account_journal_active" />
+                                <label for="module_account_partner_account_summary"/>
                             </div>
+                            <div name='module_product_catalog_aeroo_report'>
+                                <field name="module_product_catalog_aeroo_report"
+                                    class="oe_inline"/>
+                                <label for="module_product_catalog_aeroo_report"/>
+                            </div>    
                         </div>
-                    </group>                            
+                    </group>                        
 
-                    <separator string="Partners" />
+                    <separator string="Partners"/>
                     <group>
-                        <label for="id" string="Data" />
+                        <label for="id" string="Data"/>
                         <div name="partners_data">
-                            <div name='module_partner_person'>
-                                <field name="module_partner_person"
-                                    class="oe_inline" />
-                                <label for="module_partner_person" />
-                            </div>            
-                            <div name='module_partner_social_fields'>
-                                <field name="module_partner_social_fields"
-                                    class="oe_inline" />
-                                <label for="module_partner_social_fields" />
-                            </div>                
-                            <!-- <div name='module_partner_user'>
-                                <field name="module_partner_user"
-                                    class="oe_inline" />
-                                <label for="module_partner_user" />
-                            </div>     -->                
                             <div name='module_base_state_active'>
                                 <field name="module_base_state_active"
-                                    class="oe_inline" />
-                                <label for="module_base_state_active" />
+                                    class="oe_inline"/>
+                                <label for="module_base_state_active"/>
                             </div>                    
+                        </div>                    
+                        <label for="id" string="Common Features"/>
+                        <div name="partner_features">  
+                            <div name='module_partner_social_fields'>
+                                <field name="module_partner_social_fields"
+                                    class="oe_inline"/>
+                                <label for="module_partner_social_fields"/>
+                            </div>
                             <div name='module_partner_views_fields'>
                                 <field name="module_partner_views_fields"
-                                    class="oe_inline" />
-                                <label for="module_partner_views_fields" />
+                                    class="oe_inline"/>
+                                <label for="module_partner_views_fields"/>
                             </div>                         
                             <div name='module_partner_search_by_ref'>
                                 <field name="module_partner_search_by_ref"
-                                    class="oe_inline" />
-                                <label for="module_partner_search_by_ref" />
+                                    class="oe_inline"/>
+                                <label for="module_partner_search_by_ref"/>
                             </div>
                             <div name='module_partner_search_by_vat'>
                                 <field name="module_partner_search_by_vat"
-                                    class="oe_inline" />
-                                <label for="module_partner_search_by_vat" />
-                            </div>
-                            <div name='module_partner_state'>
-                                <field name="module_partner_state"
-                                    class="oe_inline" />
-                                <label for="module_partner_state" />
-                            </div>
-                            <div name='module_partner_school'>
-                                <field name="module_partner_school"
-                                    class="oe_inline" />
-                                <label for="module_partner_school" />
+                                    class="oe_inline"/>
+                                <label for="module_partner_search_by_vat"/>
                             </div>
                             <div name='module_partner_credit_limit'>
                                 <field name="module_partner_credit_limit"
-                                    class="oe_inline" />
-                                <label for="module_partner_credit_limit" />
+                                    class="oe_inline"/>
+                                <label for="module_partner_credit_limit"/>
                             </div>
+                        </div>
+                        <label for="id" string="Advance Features"/>
+                        <div name="partner_advance_features">
+                            <div name='module_partner_person'>
+                                <field name="module_partner_person"
+                                    class="oe_inline"/>
+                                <label for="module_partner_person"/>
+                            </div>            
+                            <div name='module_partner_state'>
+                                <field name="module_partner_state"
+                                    class="oe_inline"/>
+                                <label for="module_partner_state"/>
+                            </div>
+                            <div name='module_partner_school'>
+                                <field name="module_partner_school"
+                                    class="oe_inline"/>
+                                <label for="module_partner_school"/>
+                            </div>
+                            <div name='module_partner_samples'>
+                                <field name="module_partner_samples"
+                                    class="oe_inline"/>
+                                <label for="module_partner_samples"/>
+                            </div> 
                         </div>
                     </group>
                     
-                    <separator string="Sales" />
+                    <separator string="Sales"/>
                     <group>
-                        <label for="id" string="Sales Features" />
+                        <label for="id" string="Portal and Distributor"/>
                         <div name="sale_features">
-                            <div name='module_sale_add_products_wizard'>
-                                <field name="module_sale_add_products_wizard"
-                                    class="oe_inline" />
-                                <label for="module_sale_add_products_wizard" />
-                            </div>  
-                            <div name='module_sale_prices_update'>
-                                <field name="module_sale_prices_update"
-                                    class="oe_inline" />
-                                <label for="module_sale_prices_update" />
-                            </div>            
-                            <div name='module_sale_order_validity'>
-                                <field name="module_sale_order_validity"
-                                    class="oe_inline" />
-                                <label for="module_sale_order_validity" />
-                            </div>                
                             <div name='module_sales_to_sale_order'>
                                 <field name="module_sales_to_sale_order"
-                                    class="oe_inline" />
-                                <label for="module_sales_to_sale_order" />
+                                    class="oe_inline"/>
+                                <label for="module_sales_to_sale_order"/>
                             </div>                        
                             <div name='module_portal_sale_distributor'>
                                 <field name="module_portal_sale_distributor"
-                                    class="oe_inline" />
-                                <label for="module_portal_sale_distributor" />
+                                    class="oe_inline"/>
+                                <label for="module_portal_sale_distributor"/>
                             </div>                            
                             <div name='module_sale_dummy_confirmation'>
                                 <field name="module_sale_dummy_confirmation"
-                                    class="oe_inline" />
-                                <label for="module_sale_dummy_confirmation" />
+                                    class="oe_inline"/>
+                                <label for="module_sale_dummy_confirmation"/>
                             </div>                                
-                            <div name='module_sale_stock_availability'>
-                                <field name="module_sale_stock_availability"
-                                    class="oe_inline" />
-                                <label for="module_sale_stock_availability" />
-                            </div>                                      
-                            <div name='module_sale_restrict_partners'>
-                                <field name="module_sale_restrict_partners"
-                                    class="oe_inline" />
-                                <label for="module_sale_restrict_partners"/>
-                            </div>                                      
+                        </div>  
+                        <label for="id" string="Prices and Pricelist"/>
+                        <div name="sale_features">  
+                            <div name='module_sale_prices_update'>
+                                <field name="module_sale_prices_update"
+                                    class="oe_inline"/>
+                                <label for="module_sale_prices_update"/>
+                            </div>            
+                            <div name='module_sale_order_validity'>
+                                <field name="module_sale_order_validity"
+                                    class="oe_inline"/>
+                                <label for="module_sale_order_validity"/>
+                            </div>
                             <div name='module_sale_pricelist_discount'>
                                 <field name="module_sale_pricelist_discount"
-                                    class="oe_inline" />
+                                    class="oe_inline"/>
                                 <label for="module_sale_pricelist_discount"/>
+                            </div>
+                        </div>                
+                        <label for="id" string="Security"/>
+                        <div name="sale_features">
+                            <div name='module_sale_restrict_partners'>
+                                <field name="module_sale_restrict_partners"
+                                    class="oe_inline"/>
+                                <label for="module_sale_restrict_partners"/>
                             </div>
                             <div name='module_price_security'>
                                 <field name="module_price_security"
-                                    class="oe_inline" />
+                                    class="oe_inline"/>
                                 <label for="module_price_security"/>
+                            </div>
+                        </div>  
+                        <label for="id" string="Common Features"/>
+                        <div name="sale_features">  
+                            <div name='module_sale_add_products_wizard'>
+                                <field name="module_sale_add_products_wizard"
+                                    class="oe_inline"/>
+                                <label for="module_sale_add_products_wizard"/>
                             </div>  
-                            <div name='module_account_analytic_analysis_mods'>
-                                <field name="module_account_analytic_analysis_mods"
-                                    class="oe_inline" />
-                                <label for="module_account_analytic_analysis_mods"/>
-                            </div>   
-                            <div name='module_partner_samples'>
-                                <field name="module_partner_samples"
-                                    class="oe_inline" />
-                                <label for="module_partner_samples"/>
-                            </div>     
+                            <div name='module_sale_stock_availability'>
+                                <field name="module_sale_stock_availability"
+                                    class="oe_inline"/>
+                                <label for="module_sale_stock_availability"/>
+                            </div>                                      
+                            <div name='module_crm_partner_history'>
+                                <field name="module_crm_partner_history"
+                                    class="oe_inline"/>
+                                <label for="module_crm_partner_history"/>
+                            </div>
+                            <div name='module_sale_require_ref'>
+                                <field name="module_sale_require_ref"
+                                    class="oe_inline"/>
+                                <label for="module_sale_require_ref"/>
+                            </div>
+                            <div name='module_sale_line_product_required'>
+                                <field name="module_sale_line_product_required"
+                                    class="oe_inline"/>
+                                <label for="module_sale_line_product_required"/>
+                            </div>
+                            <div name='module_sale_usability_extension'>
+                                <field name="module_sale_usability_extension"
+                                    class="oe_inline"/>
+                                <label for="module_sale_usability_extension"/>
+                            </div>
+                        </div>
+                        <label for="id" string="Advanced Features"/>
+                        <div name="sale_advanced_features">
                             <div name='module_sale_multiple_invoice'>
                                 <field name="module_sale_multiple_invoice"
-                                    class="oe_inline" />
+                                    class="oe_inline"/>
                                 <label for="module_sale_multiple_invoice"/>
                             </div>        
                             <div name='module_sale_other_product_description'>
                                 <field name="module_sale_other_product_description"
-                                    class="oe_inline" />
+                                    class="oe_inline"/>
                                 <label for="module_sale_other_product_description"/>
-                            </div>              
+                            </div>
+                        </div>
+                        <label for="id" string="Contracts and projects"/>
+                        <div name="sale_contracts">
                             <div name='module_sale_contract_restrict_domain'>
                                 <field name="module_sale_contract_restrict_domain"
-                                    class="oe_inline" />
+                                    class="oe_inline"/>
                                 <label for="module_sale_contract_restrict_domain"/>
-                            </div>                                
+                            </div>
+                            <div name='module_sale_contract_editable'>
+                                <field name="module_sale_contract_editable"
+                                    class="oe_inline"/>
+                                <label for="module_sale_contract_editable"/>
+                            </div>
+                            <div name='module_sale_require_contract'>
+                                <field name="module_sale_require_contract"
+                                    class="oe_inline"/>
+                                <label for="module_sale_require_contract"/>
+                            </div>
                         </div>
                     </group>
 
-                    <separator string="Purchase" />
+                    <separator string="Purchase"/>
                     <group>
-                        <label for="id" string="Purchase Features" />
+                        <label for="id" string="Purchase Features"/>
                         <div name="purchase_features">
                             <div name='module_purchase_discount'>
                                 <field name="module_purchase_discount"
-                                    class="oe_inline" />
-                                <label for="module_purchase_discount" />
+                                    class="oe_inline"/>
+                                <label for="module_purchase_discount"/>
                             </div>
                             <div name='module_purchase_uom_prices_uoms'>
                                 <field name="module_purchase_uom_prices_uoms"
-                                    class="oe_inline" />
-                                <label for="module_purchase_uom_prices_uoms" />
+                                    class="oe_inline"/>
+                                <label for="module_purchase_uom_prices_uoms"/>
                             </div>   
                             <div name='module_account_analytic_purchase_contract'>
                                 <field name="module_account_analytic_purchase_contract"
-                                    class="oe_inline" />
-                                <label for="module_account_analytic_purchase_contract" />
-                            </div>                            
+                                    class="oe_inline"/>
+                                <label for="module_account_analytic_purchase_contract"/>
+                            </div>
+                            <div name='module_purchase_double_validation_imp'>
+                                <field name="module_purchase_double_validation_imp"
+                                    class="oe_inline"/>
+                                <label for="module_purchase_double_validation_imp"/>
+                            </div>
+                            <div name='module_purchase_usability_extension'>
+                                <field name="module_purchase_usability_extension"
+                                    class="oe_inline"/>
+                                <label for="module_purchase_usability_extension"/>
+                            </div>
                         </div>
                     </group>
 
-                    <separator string="Stock" />
+                    <separator string="Stock"/>
                     <group>
-                        <label for="id" string="Stock Features" />
+                        <label for="id" string="Reports"/>
+                        <div name="stock_features">
+                            <div name='module_stock_picking_list'>
+                                <field name="module_stock_picking_list"
+                                    class="oe_inline"/>
+                                <label for="module_stock_picking_list"/>
+                            </div>
+                            <div name='module_stock_picking_labels'>
+                                <field name="module_stock_picking_labels"
+                                    class="oe_inline"/>
+                                <label for="module_stock_picking_labels"/>
+                            </div>
+                            <div name='module_stock_voucher'>
+                                <field name="module_stock_voucher"
+                                    class="oe_inline"/>
+                                <label for="module_stock_voucher"/>
+                            </div>
+                        </div>
+                        <label for="id" string="Stock Features"/>
                         <div name="stock_features">
                             <div name='module_stock_picking_locations'>
                                 <field name="module_stock_picking_locations"
-                                    class="oe_inline" />
-                                <label for="module_stock_picking_locations" />
-                            </div>                   
+                                    class="oe_inline"/>
+                                <label for="module_stock_picking_locations"/>
+                            </div>
+                            <div name='module_stock_display_destination_move'>
+                                <field name="module_stock_display_destination_move"
+                                    class="oe_inline"/>
+                                <label for="module_stock_display_destination_move"/>
+                            </div>
+                            <div name='module_stock_display_sale_id'>
+                                <field name="module_stock_display_sale_id"
+                                    class="oe_inline"/>
+                                <label for="module_stock_display_sale_id"/>
+                            </div> 
+                            <div name='module_stock_display_src_location'>
+                                <field name="module_stock_display_src_location"
+                                    class="oe_inline"/>
+                                <label for="module_stock_display_src_location"/>
+                            </div>
+                            <div name='module_stock_invoice_try_again'>
+                                <field name="module_stock_invoice_try_again"
+                                    class="oe_inline" readonly="1"/>
+                                <label for="module_stock_invoice_try_again"/>
+                            </div>
+                            <div name='module_stock_cancel'>
+                                <field name="module_stock_cancel"
+                                    class="oe_inline"/>
+                                <label for="module_stock_cancel"/>
+                            </div>
+                            <div name='module_stock_picking_invoice_link'>
+                                <field name="module_stock_picking_invoice_link"
+                                    class="oe_inline"/>
+                                <label for="module_stock_picking_invoice_link"/>
+                            </div>                    
+                            <div name='module_picking_dispatch'>
+                                <field name="module_picking_dispatch"
+                                    class="oe_inline"/>
+                                <label for="module_picking_dispatch"/>
+                            </div>
                         </div>
                     </group>
 
-                    <separator string="Project" />
+                    <separator string="Project"/>
                     <group>
-                        <label for="id" string="Projects" />
+                        <label for="id" string="Projects"/>
                         <div name="project">
                             <div name='module_project_description'>
                                 <field name="module_project_description"
-                                    class="oe_inline" />
-                                <label for="module_project_description" />
+                                    class="oe_inline"/>
+                                <label for="module_project_description"/>
                             </div> 
                             <div name='module_project_tags'>
                                 <field name="module_project_tags"
-                                    class="oe_inline" />
-                                <label for="module_project_tags" />
-                            </div>    
+                                    class="oe_inline"/>
+                                <label for="module_project_tags"/>
+                            </div>
+                            <div name='module_project_task_phase'>
+                                <field name="module_project_task_phase"
+                                    class="oe_inline"/>
+                                <label for="module_project_task_phase"/>
+                            </div>
                         </div>    
-                        <label for="id" string="Tasks" />
+                        <label for="id" string="Tasks"/>
                         <div name="tasks">
-                            <div name='module_project_alert_upcoming_tasks'>
-                                <field name="module_project_alert_upcoming_tasks" class="oe_inline" readonly="1"/>
-                                <label for="module_project_alert_upcoming_tasks" />
+                            <div name='module_project_user_story'>
+                                <field name="module_project_user_story"
+                                    class="oe_inline"/>
+                                <label for="module_project_user_story"/>
+                            </div>     
+                            <div name='module_project_task_desc_html'>
+                                <field name="module_project_task_desc_html"
+                                    class="oe_inline"/>
+                                <label for="module_project_task_desc_html"/>
+                            </div>
+                            <div name='module_project_task_portal_unfollow'>
+                                <field name="module_project_task_portal_unfollow"
+                                    class="oe_inline"/>
+                                <label for="module_project_task_portal_unfollow"/>
                             </div>    
+                            <div name='module_project_task_order'>
+                                <field name="module_project_task_order"
+                                    class="oe_inline"/>
+                                <label for="module_project_task_order"/>
+                            </div>                                   
                         </div>    
-                        <label for="id" string="Issues" />
+                        <label for="id" string="Issues"/>
                         <div name="Issues">
                             <div name='module_project_issue_solutions'>
                                 <field name="module_project_issue_solutions"
-                                    class="oe_inline" />
-                                <label for="module_project_issue_solutions" />
+                                    class="oe_inline"/>
+                                <label for="module_project_issue_solutions"/>
                             </div>        
                             <div name='module_project_issue_product'>
                                 <field name="module_project_issue_product"
-                                    class="oe_inline" />
-                                <label for="module_project_issue_product" />
+                                    class="oe_inline"/>
+                                <label for="module_project_issue_product"/>
                             </div>                            
                             <div name='module_project_issue_create_task_defaults'>
                                 <field name="module_project_issue_create_task_defaults"
-                                    class="oe_inline" />
-                                <label for="module_project_issue_create_task_defaults" />
+                                    class="oe_inline"/>
+                                <label for="module_project_issue_create_task_defaults"/>
                             </div>                                
-                            <div name='module_project_task_order'>
-                                <field name="module_project_task_order"
-                                    class="oe_inline" />
-                                <label for="module_project_task_order" />
-                            </div>                                   
                             <div name='module_project_issue_order'>
                                 <field name="module_project_issue_order"
-                                    class="oe_inline" />
-                                <label for="module_project_issue_order" />
+                                    class="oe_inline"/>
+                                <label for="module_project_issue_order"/>
                             </div>
                             <div name='module_project_task_issues'>
                                 <field name="module_project_task_issues"
-                                    class="oe_inline" />
-                                <label for="module_project_task_issues" />
+                                    class="oe_inline"/>
+                                <label for="module_project_task_issues"/>
                             </div>                             
                         </div>
                     </group>
-
-<!--                     <separator string="Sales" />                
-                    <group>
-                        <label for="id" string="Sales Features" />
-                        <div name="sales_invoice_features">
-                        </div>
-                    </group> -->
                     
-                    <separator string="Multi Company" />
+                    <separator string="Multi Company"/>
                     <group>
                         <label for="id" string="Multi Company"/>
                         <div name="multi_company">
                             <div name='module_web_easy_switch_company'>
                                 <field name="module_web_easy_switch_company"
                                     class="oe_inline"/>
-                                <label for="module_web_easy_switch_company" />
+                                <label for="module_web_easy_switch_company"/>
                             </div> 
                             <div name='module_inter_company_rules'>
                                 <field name="module_inter_company_rules"
-                                    class="oe_inline" readonly="1"/>
-                                <label for="module_inter_company_rules" />
+                                    class="oe_inline"/>
+                                <label for="module_inter_company_rules"/>
                             </div>  
                             <div name='module_inter_company_move'>
                                 <field name="module_inter_company_move"
                                     class="oe_inline"/>
-                                <label for="module_inter_company_move" />
+                                <label for="module_inter_company_move"/>
                             </div>  
                         </div>
                     </group>
 
-                    <separator string="Usability And Tools" />
+                    <separator string="Usability And Tools"/>
                     <group>
-                        <label for="id" string="Tools"/>
+                        <label for="id" string="Web interface"/>
                         <div name="web_features">
+                            <div name='module_web_recipients_uncheck'>
+                                <field name="module_web_recipients_uncheck"
+                                    class="oe_inline"/>
+                                <label for="module_web_recipients_uncheck"/>
+                            </div>
+                            <div name='module_web_ckeditor4'>
+                                <field name="module_web_ckeditor4"
+                                    class="oe_inline"/>
+                                <label for="module_web_ckeditor4"/>
+                            </div>
+                            <div name='module_web_sheet_full_width'>
+                                <field name="module_web_sheet_full_width"
+                                    class="oe_inline"/>
+                                <label for="module_web_sheet_full_width"/>
+                            </div>
+                            <div name='module_web_m2x_options'>
+                                <field name="module_web_m2x_options"
+                                    class="oe_inline"/>
+                                <label for="module_web_m2x_options"/>
+                            </div>
+                            <div name='module_web_group_expand'>
+                                <field name="module_web_group_expand" class="oe_inline"/>
+                                <label for="module_web_group_expand"/>
+                            </div>     
+                        </div>
+                        <label for="id" string="Tools"/>
+                        <div name="tools">
                             <div name='module_mass_editing'>
                                 <field name="module_mass_editing"
-                                    class="oe_inline" />
-                                <label for="module_mass_editing" />
+                                    class="oe_inline"/>
+                                <label for="module_mass_editing"/>
                             </div>
                             <div name='module_currency_rate_update'>
                                 <field name="module_currency_rate_update"
-                                    class="oe_inline" />
-                                <label for="module_currency_rate_update" />
+                                    class="oe_inline"/>
+                                <label for="module_currency_rate_update"/>
+                            </div>
+                            <div name='module_evaluation'>
+                                <field name="module_evaluation"
+                                    class="oe_inline"/>
+                                <label for="module_evaluation"/>
                             </div>
                         </div>        
                         <label for="id" string="Web Tools"/>
                         <div name="web_tools">
-      
-                            <div name='module_web_group_expand'>
-                                <field name="module_web_group_expand" class="oe_inline" readonly="1"/>
-                                <label for="module_web_group_expand" />
-                            </div>                
+           
                         </div>                
-                        <label for="id" string="Documentation"/>
+                        <label for="id" string="Knowladege and Documentation"/>
                         <div name="documentation">
+                            <div name='module_document_url'>
+                                <field name="module_document_url"
+                                    class="oe_inline"/>
+                                <label for="module_document_url"/>
+                            </div>
+                            <div name='module_attachment_preview'>
+                                <field name="module_attachment_preview"
+                                    class="oe_inline"/>
+                                <label for="module_attachment_preview"/>
+                            </div>
                             <div name='module_help_doc'>
                                 <field name="module_help_doc"
-                                    class="oe_inline" />
-                                <label for="module_help_doc" />
-                            </div>                                    
+                                    class="oe_inline"/>
+                                <label for="module_help_doc"/>
+                            </div>
+                            <div name='module_help_online'>
+                                <field name="module_help_online"
+                                    class="oe_inline"/>
+                                <label for="module_help_online"/>
+                            </div>
                         </div>                    
-                        <label for="id" string="Export to csv, xls, etc"/>
+                        <label for="id" string="Reporting and Exporting to csv, xls, etc"/>
                         <div name="export">
                             <div name='module_web_export_view'>
                                 <field name="module_web_export_view" class="oe_inline" readonly="0"/>
-                                <label for="module_web_export_view" />
-                            </div>    
-                            <div name='module_visual_export'>
-                                <field name="module_visual_export" class="oe_inline" readonly="1"/>
-                                <label for="module_visual_export" />
-                            </div>                                    
-                            <div name='module_web_printscreen_zb'>
-                                <field name="module_web_printscreen_zb" class="oe_inline" readonly="1"/>
-                                <label for="module_web_printscreen_zb" />
-                            </div>    
+                                <label for="module_web_export_view"/>
+                            </div>
                         </div>                                    
                     </group>
 
-                    <separator string="Technical" />
+                    <separator string="Technical"/>
                     <group>
-                        <label for="id" string="Mail"/>
-                        <div name="web_features">
-                            <div name='module_mail_local_server_catchall'>
-                                <field name="module_mail_local_server_catchall"
-                                    class="oe_inline" />
-                                <label for="module_mail_local_server_catchall" />
-                            </div>    
-                        </div>    
                         <label for="id" string="Support"/>
                         <div name="support">
                             <div name='module_auth_admin_passkey'>
-                                <field name="module_auth_admin_passkey" class="oe_inline" />
-                                <label for="module_auth_admin_passkey" />
+                                <field name="module_auth_admin_passkey" class="oe_inline"/>
+                                <label for="module_auth_admin_passkey"/>
                             </div>    
                             <div name='module_adhoc_support'>
                                 <field name="module_adhoc_support" class="oe_inline"  readonly="1"/>
-                                <label for="module_adhoc_support" />
+                                <label for="module_adhoc_support"/>
                             </div>        
                         </div>
                         <label for="id" string="Server"/>
                         <div name="server">
                             <div name='module_disable_openerp_online'>
-                                <field name="module_disable_openerp_online" class="oe_inline" />
-                                <label for="module_disable_openerp_online" />
+                                <field name="module_disable_openerp_online" class="oe_inline"/>
+                                <label for="module_disable_openerp_online"/>
                             </div>        
                             <div name='module_cron_run_manually'>
                                 <field name="module_cron_run_manually"
-                                    class="oe_inline" />
-                                <label for="module_cron_run_manually" />
+                                    class="oe_inline"/>
+                                <label for="module_cron_run_manually"/>
                             </div>            
                         </div>
                     </group>
@@ -637,7 +799,7 @@
 
         <!-- Base Config Settings Menu -->
         <menuitem id="menu_adhoc_base_setup" action="action_adhoc_base_setup"
-            name="ADHOC Base Setup" parent="base.menu_config" sequence="110" />
+            name="ADHOC Base Setup" parent="base.menu_config" sequence="110"/>
 
     </data>
 </openerp>
