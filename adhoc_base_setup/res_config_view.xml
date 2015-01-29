@@ -354,6 +354,11 @@
                                     class="oe_inline"/>
                                 <label for="module_partner_credit_limit"/>
                             </div>
+                            <div name='module_partner_vat_unique'>
+                                <field name="module_partner_vat_unique"
+                                    class="oe_inline"/>
+                                <label for="module_partner_vat_unique"/>
+                            </div>
                         </div>
                         <label for="id" string="Advance Features"/>
                         <div name="partner_advance_features">

@@ -351,6 +351,9 @@ then on sale orders lines this description will be used and no code""")
         help="""Installs the disable_openerp_online module.""")
 
     # Partner modules
+    module_partner_vat_unique = fields.Boolean(
+        'Add a constraint on partners so that vat must be unique except in partner with parent/child relationship.',
+        help="""Installs the partner_vat_unique module.""")
     module_partner_person = fields.Boolean(
         'Add person information to partners.',
         help="""Installs the partner_person module. Add firstname, lastname, birthdate, etc.""")
