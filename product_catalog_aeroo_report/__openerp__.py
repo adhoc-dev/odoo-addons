@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-
-
 {
     'name': 'Product Catalog Aeroo Report',
     'version': '1.0',
@@ -16,15 +14,14 @@ Product Catalog Aeroo Report
     'images': [
     ],
     'depends': [
-        'product', 
-        'report_aeroo', 
-        'report_aeroo_ooo', 
+        'product',
+        'report_aeroo',
     ],
     'data': [
-		'wizard/product_catalog_wizard.xml',
-		'security/ir.model.access.csv',
-		'product_catalog.xml',
-		'report/product_catalog_view.xml'
+        'wizard/product_catalog_wizard.xml',
+        'security/ir.model.access.csv',
+        'product_catalog.xml',
+        'report/product_catalog_view.xml'
     ],
     'demo': [
     ],
