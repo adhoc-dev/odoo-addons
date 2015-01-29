@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
-import logging
-from openerp import models, fields, api
-
-_logger = logging.getLogger(__name__)
+from openerp import models, fields
 
 
 class adhoc_base_configuration(models.TransientModel):
@@ -36,9 +33,6 @@ class adhoc_base_configuration(models.TransientModel):
     module_account_invoice_tax_wizard = fields.Boolean(
         'Add a wizard to add manual taxes on invoices',
         help="""Installs the account_invoice_tax_wizard module.""")
-    module_account_fiscal_position_no_source_tax = fields.Boolean(
-        'Give posibility to define tax mapping in fiscal position without source tax',
-        help="""Installs the account_fiscal_position_no_source_tax module.""")
     module_invoice_fiscal_position_update = fields.Boolean(
         'Invoice Update on Fiscal Position Change',
         help="""Installs the invoice_fiscal_position_update module.""")
@@ -79,7 +73,7 @@ class adhoc_base_configuration(models.TransientModel):
         'Add XLS export to accounting reports',
         help="""Installs the account_financial_report_webkit_xls module.""")
     module_account_financial_report_webkit = fields.Boolean(
-        'This module adds or replaces the following standard OpenERP financial reports',
+        'Add or replaces the following standard OpenERP financial reports',
         help="""Installs the account_financial_report_webkit module.""")
     module_account_tax_analysis = fields.Boolean(
         'Tax analysis View',
@@ -106,7 +100,7 @@ class adhoc_base_configuration(models.TransientModel):
         'Allow prices update on invoices based on pricelist',
         help="""Installs the account_invoice_prices_update module.""")
     module_account_refund_invoice_fix = fields.Boolean(
-        'Fix related to invoice refund generation',
+        'FIX related to invoice refund generation',
         help="""Installs the account_refund_invoice_fix module.""")
     module_account_invoice_journal_filter = fields.Boolean(
         'Add to Invoice a filter by Journal and group by Journal',
@@ -248,12 +242,18 @@ then on sale orders lines this description will be used and no code""")
         help="""Installs the project_user_story module.""")
 
     # Stock
+    module_stock_picking_labels = fields.Boolean(
+        'Add a picking label doc report on stock picking',
+        help="""Installs the stock_picking_labels module.""")
+    module_stock_picking_list = fields.Boolean(
+        'Add an xls picking list report on stock picking',
+        help="""Installs the stock_picking_list module.""")
     module_stock_picking_locations = fields.Boolean(
         'Allow changing stock locations globaly from picking',
         help="""Installs the stock_picking_locations module.""")
-    module_delivery_extension = fields.Boolean(
-        'Add a field declared_value to Stock Picking that contains the declared valued.',
-        help="""Installs the module_delivery_extension module.""")
+    module_stock_voucher = fields.Boolean(
+        'Add stock voucher report on stock picking.',
+        help="""Installs the module_stock_voucher module.""")
     module_stock_display_destination_move = fields.Boolean(
         'Display the field Destination Move in the Stock Move form view for Stock Managers in read-only. Very usefull for advanced users and debug purposes.',
         help="""Installs the stock_display_destination_move module.""")
@@ -261,13 +261,13 @@ then on sale orders lines this description will be used and no code""")
         'Display the link to the sale order in the Delivery Order form view.',
         help="""Installs the stock_display_sale_id module.""")
     module_stock_cancel = fields.Boolean(
-        'This module allows you to bring back a completed stock picking to draft state',
+        'Allow you to bring back a completed stock picking to draft state',
         help="""Installs the stock_cancel module.""")
     module_stock_picking_invoice_link = fields.Boolean(
-        'This module adds a link between pickings and generated invoices.',
+        'Add a link between pickings and generated invoices.',
         help="""Installs the stock_picking_invoice_link module.""")
     module_picking_dispatch = fields.Boolean(
-        'This module allows you to group various pickings into a dispatch order ,having all the related moves in it and assigned to a warehouse keeper.',
+        'Allow you to group various pickings into a dispatch order ,having all the related moves in it and assigned to a warehouse keeper.',
         help="""Installs the picking_dispatch module.""")
     module_stock_display_src_location = fields.Boolean(
         'Display the source location on the tree view of the move lines of the pickings (by default, only the destination location is displayed).',
@@ -288,9 +288,21 @@ then on sale orders lines this description will be used and no code""")
         help="""Installs the inter_company_move module.""")
 
     # Usability and tools modules
+    module_web_recipients_uncheck = fields.Boolean(
+        'Uncheck recipients on res.partner',
+        help="""Installs the web_recipients_uncheck module.""")
+    module_web_sheet_full_width = fields.Boolean(
+        'Use the whole available screen width when displaying sheets',
+        help="""Installs the web_sheet_full_width module.""")
+    module_web_ckeditor4 = fields.Boolean(
+        'Provides a widget for editing HTML fields using CKEditor 4.x',
+        help="""Installs the module_web_ckeditor4 module.""")
     module_web_group_expand = fields.Boolean(
         'Allow group by lists to be expanded and collapased with buttons',
         help="""Installs the web_group_expand module.""")
+    module_document_url = fields.Boolean(
+        'Allow to attach an URL as a document.',
+        help="""Installs the document_url module.""")
     module_help_doc = fields.Boolean(
         'Install Help Documentation',
         help="""Installs the help_doc module.""")
@@ -298,7 +310,7 @@ then on sale orders lines this description will be used and no code""")
         'Mass Editing',
         help="""Installs the mass_editing module.""")
     module_help_online = fields.Boolean(
-        'This module allows the creation of an online help available from the lists and forms in Odoo.',
+        'Allows the creation of an online help available from the lists and forms in Odoo.',
         help="""Installs the help_online module.""")
     module_currency_rate_update = fields.Boolean(
         'Update currencies rates automatically',
@@ -307,19 +319,13 @@ then on sale orders lines this description will be used and no code""")
         'Extends the functionality of the survey module in order to make assessments that are corrected automatically.',
         help="""Installs the evaluation module.""")
     module_web_m2x_options = fields.Boolean(
-        'This modules modifies "many2one" and "many2manytags" form widgets so as to add some new display control options.',
+        'Modifies "many2one" and "many2manytags" form widgets so as to add some new display control options.',
         help="""Installs the web_m2x_options module.""")
 
     # Not functional for now
     module_web_export_view = fields.Boolean(
         'Web Export View. Export to csv',
         help="""Installs the web_export_view module.""")
-    module_visual_export = fields.Boolean(
-        'Visual Export. Export to ods',
-        help="""Installs the visual_export module.""")
-    module_web_printscreen_zb = fields.Boolean(
-        'Web Printscreen. Export to pdf or to xls',
-        help="""Installs the web_printscreen_zb module.""")
     module_attachment_preview = fields.Boolean(
         'The module adds a little print preview icon right of download links for attachments or binary fields',
         help="""Installs the attachment_preview module.""")
@@ -328,9 +334,6 @@ then on sale orders lines this description will be used and no code""")
         help="""Installs the document_url module.""")
 
     # Technical
-    module_mail_local_server_catchall = fields.Boolean(
-        'Configure catchall on local server',
-        help="""Installs the mail_local_server_catchall module.""")
     module_auth_admin_passkey = fields.Boolean(
         'Use admin password as a passkey for all active logins',
         help="""Installs the auth_admin_passkey module.""")
@@ -377,9 +380,6 @@ then on sale orders lines this description will be used and no code""")
     module_product_pack = fields.Boolean(
         'Mange product packs',
         help="""Installs the product_pack module.""")
-    module_product_pack_sale_order_warning = fields.Boolean(
-        'Mange stock warnings on product packs',
-        help="""Installs the product_pack_sale_order_warning module.""")
     module_product_price_currency = fields.Boolean(
         'Manage different currencies on product sale price',
         help="""Installs the product_price_currency module.""")
@@ -420,11 +420,11 @@ then on sale orders lines this description will be used and no code""")
         'Product Search by Website Category.',
         help="""Installs the product_website_categ_search module.""")
     module_product_variant_csv_import = fields.Boolean(
-        'This module adds a menu entry in *Sales > Configuration > Product Categories and attributes > Product Template CSV Import".',
+        'Add a menu entry in *Sales > Configuration > Product Categories and attributes > Product Template CSV Import".',
         help="""Installs the product_variant_csv_import module.""")
     module_partner_products_shortcut = fields.Boolean(
         'Adds a shortcut on supplier partner form to the products supplied by this partner.',
         help="""Installs the partner_products_shortcut module.""")
     module_product_no_translation = fields.Boolean(
-        'This module sets the translatable fields of the product object (name,descriptions) to non-translatable fields.',
+        'Set the translatable fields of the product object (name,descriptions) to non-translatable fields.',
         help="""Installs the product_no_translation module.""")

@@ -10,7 +10,7 @@
                 <field name="project_id" position="after">
                     <field name="phase_id"/>
                 </field>
-                <filter name="group_project_id" position="after">
+                <filter position="after">
                     <filter string="Phase" name="group_phase_id" icon="terp-folder-violet" domain="[]" context="{'group_by':'phase_id'}"/>
                 </filter>
             </field>
