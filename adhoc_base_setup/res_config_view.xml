@@ -125,6 +125,7 @@
                                     class="oe_inline"/>
                                 <label for="module_product_no_translation"/>
                             </div>  
+                        </div>
                         <label for="id" string="Import / Export"/>
                         <div name="product_import_export">
                             <div name='module_product_variant_csv_import'>
@@ -156,7 +157,6 @@
                                 <label for="module_product_customer_price"/>
                             </div>
                         </div>    
-                        </div>
                     </group>
 
                     <separator string="Accounting"/>
