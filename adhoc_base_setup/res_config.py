@@ -118,7 +118,6 @@ class adhoc_base_configuration(models.TransientModel):
         ' Add a wizard that allow you to export a csv file based on accounting journal entries.',
         help="""Installs the account_export_csv.""")
 
-<<<<<<< HEAD
     # Sale / Purchase modules
     module_sale_add_products_wizard = fields.Boolean(
         'Add a wizard to add multiple products on a sale order',
