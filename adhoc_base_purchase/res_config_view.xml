@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<!-- Base Config Settings Form View -->
+<record id="view_adhoc_base_configuration" model="ir.ui.view">
+    <field name="name">adhoc.base.config.settings</field>
+    <field name="model">adhoc.base.config.settings</field>
+    <field name="inherit_id" ref="adhoc_base_setup.view_adhoc_base_configuration"/>
+    <field name="arch" type="xml">
+        <group string="Fixes">
+            <label for="id" string="Vairous Fixes"/>
+            <div name="various_fixes">
+                <div name='module_purchase_multic_fix'>
+                    <field name="module_purchase_multic_fix"
+                        class="oe_inline"/>
+                    <label for="module_purchase_multic_fix"/>
+                </div>            
+            </div>
+        </group>
+
+        <group string="Purchases">
+            <label for="id" string="Purchase Features"/>
+            <div name="purchase_features">
+                <div name='module_purchase_discount'>
+                    <field name="module_purchase_discount"
+                        class="oe_inline"/>
+                    <label for="module_purchase_discount"/>
+                </div>
+                <div name='module_purchase_uom_prices_uoms'>
+                    <field name="module_purchase_uom_prices_uoms"
+                        class="oe_inline"/>
+                    <label for="module_purchase_uom_prices_uoms"/>
+                </div>   
+                <div name='module_account_analytic_purchase_contract'>
+                    <field name="module_account_analytic_purchase_contract"
+                        class="oe_inline"/>
+                    <label for="module_account_analytic_purchase_contract"/>
+                </div>
+                <div name='module_purchase_double_validation_imp'>
+                    <field name="module_purchase_double_validation_imp"
+                        class="oe_inline"/>
+                    <label for="module_purchase_double_validation_imp"/>
+                </div>
+                <div name='module_purchase_usability_extension'>
+                    <field name="module_purchase_usability_extension"
+                        class="oe_inline"/>
+                    <label for="module_purchase_usability_extension"/>
+                </div>
+            </div>
+        </group>
+    </field>
+</record>
+</data>
+</openerp>

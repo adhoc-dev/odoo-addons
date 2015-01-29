@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<!-- Base Config Settings Form View -->
+<record id="view_adhoc_base_configuration" model="ir.ui.view">
+    <field name="name">adhoc.base.config.settings</field>
+    <field name="model">adhoc.base.config.settings</field>
+    <field name="inherit_id" ref="adhoc_base_setup.view_adhoc_base_configuration"/>
+    <field name="arch" type="xml">
+        <group string="Projects">
+            <label for="id" string="Projects"/>
+            <div name="project">
+                <div name='module_project_description'>
+                    <field name="module_project_description"
+                        class="oe_inline"/>
+                    <label for="module_project_description"/>
+                </div> 
+                <div name='module_project_tags'>
+                    <field name="module_project_tags"
+                        class="oe_inline"/>
+                    <label for="module_project_tags"/>
+                </div>
+                <div name='module_project_task_phase'>
+                    <field name="module_project_task_phase"
+                        class="oe_inline"/>
+                    <label for="module_project_task_phase"/>
+                </div>
+            </div>    
+            <label for="id" string="Tasks"/>
+            <div name="tasks">
+                <div name='module_project_user_story'>
+                    <field name="module_project_user_story"
+                        class="oe_inline"/>
+                    <label for="module_project_user_story"/>
+                </div>     
+                <div name='module_project_task_desc_html'>
+                    <field name="module_project_task_desc_html"
+                        class="oe_inline"/>
+                    <label for="module_project_task_desc_html"/>
+                </div>
+                <div name='module_project_task_portal_unfollow'>
+                    <field name="module_project_task_portal_unfollow"
+                        class="oe_inline"/>
+                    <label for="module_project_task_portal_unfollow"/>
+                </div>    
+                <div name='module_project_task_order'>
+                    <field name="module_project_task_order"
+                        class="oe_inline"/>
+                    <label for="module_project_task_order"/>
+                </div>                                   
+            </div>    
+            <label for="id" string="Issues"/>
+            <div name="Issues">
+                <div name='module_project_issue_solutions'>
+                    <field name="module_project_issue_solutions"
+                        class="oe_inline"/>
+                    <label for="module_project_issue_solutions"/>
+                </div>        
+                <div name='module_project_issue_product'>
+                    <field name="module_project_issue_product"
+                        class="oe_inline"/>
+                    <label for="module_project_issue_product"/>
+                </div>                            
+                <div name='module_project_issue_create_task_defaults'>
+                    <field name="module_project_issue_create_task_defaults"
+                        class="oe_inline"/>
+                    <label for="module_project_issue_create_task_defaults"/>
+                </div>                                
+                <div name='module_project_issue_order'>
+                    <field name="module_project_issue_order"
+                        class="oe_inline"/>
+                    <label for="module_project_issue_order"/>
+                </div>
+                <div name='module_project_task_issues'>
+                    <field name="module_project_task_issues"
+                        class="oe_inline"/>
+                    <label for="module_project_task_issues"/>
+                </div>                             
+            </div>
+        </group>
+    </field>
+</record>
+</data>
+</openerp>

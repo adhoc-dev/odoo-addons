@@ -1,0 +1,948 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* adhoc_base_setup
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-25 14:19+0000\n"
+"PO-Revision-Date: 2014-09-25 14:19+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+#: model:ir.ui.menu,name:adhoc_base_setup.menu_adhoc_base_setup
+msgid "ADHOC Base Setup"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Accounting"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_partner_tree_fields:0
+msgid "Add Fields on Partners Tree Views"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_account_financial_report_webkit_xls:0
+msgid "Add XLS export to accounting reports"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_sales_to_sale_order:0
+msgid "Add functionalty for grouping sales orders into a new sale order on other company"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_partner_person:0
+msgid "Add person information to partners."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_project_issue_order:0
+msgid "Add sequence field to issues and change default order to \"priority desc, sequence, date_deadline, duration, create_date desc\""
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_account_journal_sequence:0
+msgid "Add sequence on account journals"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_partner_social_fields:0
+msgid "Add social fields to partners"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_sale_prices_update:0
+msgid "Add update system for sale order lines"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_partner_user:0
+msgid "Add user quick creation from partners"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: model:ir.actions.act_window,name:adhoc_base_setup.action_adhoc_base_setup
+msgid "Adhoc Base Setup"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_account_invoice_adjust:0
+msgid "Adjust Customer and Suppliers Invoices"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_account_partner_balance:0
+msgid "Aeroo Partner Balance Report"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_project_alert_upcoming_tasks:0
+msgid "Alert upcoming task"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_account_clean_cancelled_invoice_number:0
+msgid "Allow canceled invoice number renumber and deletion"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_web_group_expand:0
+msgid "Allow group by lists to be expanded and collapased with buttons"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_account_journal_active:0
+msgid "Allow journals activation/deactivation (adds field \"active\")"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_product_uom_prices:0
+msgid "Allow to define different prices for different UOMs"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_product_force_create_variants:0
+msgid "Allow to force create variants on product templates"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_account_payment_direction:0
+msgid "Allow to set up In or Out on payment journals"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_account_cancel:0
+msgid "Allows canceling accounting entries"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Allows you to configure options related to products, sales, purchase, warehouse and finance for your business according to argentinian common uses and ADHOC customizations. You may also find some tools that makes your life easier while workign with OpenERP."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Apply"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Cancel"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_project_task_order:0
+msgid "Change default tasks order to \"priority desc, sequence, date_deadline, planned_hours, date_start, create_date desc\""
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_account_check:0
+msgid "Checks Management, issued and third checks"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Configure"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_account_create_journal:0
+msgid "Configure Payment Journals With a Wizard"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_mail_local_server_catchall:0
+msgid "Configure catchall on local server"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_portal_sale_distributor:0
+msgid "Create a portal group \"distributors\" and allow them to create and confirm sale orders"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Data"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_disable_openerp_online:0
+msgid "Disable OpenERP Online"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Documentation"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_cron_run_manually:0
+msgid "Enable Run Cron Manually"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Export to csv, xls, etc"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_account_multic_fix:0
+msgid "FiX account in multi-company father/son environment"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_purchase_multic_fix:0
+msgid "FiX purchase in multi-company father/son environment"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_sale_multic_fix:0
+msgid "FiX sale in multi-company father/son environment"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_account_voucher_multic_fix:0
+msgid "FiX voucher in multi-company father/son environment"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_account_voucher_account_fix:0
+msgid "FiX vouchers so that if payment use journal credit account, if receipt use journal debit account"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_account_onchange_fix:0
+msgid "Fix on change partner or company in multicompany environment"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Fixes"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_base_state_active:0
+msgid "Hide USA states and add active field for states"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_product_historical_price:0
+msgid "Historical price for product in a product tab"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,id:0
+msgid "ID"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_help_doc:0
+msgid "Install Help Documentation"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_account_cancel:0
+msgid "Installs the account_cancel module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_account_check:0
+msgid "Installs the account_check module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_account_clean_cancelled_invoice_number:0
+msgid "Installs the account_clean_cancelled_invoice_number module. It adds a button on canceled invoice number so you can choose to remove internal number and then delete it or renumber by re-approving it."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_account_create_journal:0
+msgid "Installs the account_create_journal module installs checks, payment direction an other modules."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_account_financial_report_webkit_xls:0
+msgid "Installs the account_financial_report_webkit_xls module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_account_interests:0
+msgid "Installs the account_interests module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_account_invoice_adjust:0
+msgid "Installs the account_invoice_adjust module. Allows reconciling between receivable and payable accounts of same partner"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_account_invoice_commercial:0
+msgid "Installs the account_invoice_commercial module, will also install stock module as it change invoice creation from stock."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_account_journal_active:0
+msgid "Installs the account_journal_active module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_account_journal_security:0
+msgid "Installs the account_journal_security module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_account_journal_sequence:0
+msgid "Installs the account_journal_sequence module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_account_multic_fix:0
+msgid "Installs the account_multic_fix module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_account_onchange_fix:0
+msgid "Installs the account_onchange_fix module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_account_partner_balance:0
+msgid "Installs the account_partner_balance module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_account_payment_direction:0
+msgid "Installs the account_payment_direction module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_account_tax_analysis:0
+msgid "Installs the account_tax_analysis module. Generate a menu under Accounting / Tax / Tax analysis you are able to group accounting entries by Taxes (VAT codes) and/or financial accounts."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_account_voucher_account_fix:0
+msgid "Installs the account_voucher_account_fix module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_account_voucher_multic_fix:0
+msgid "Installs the account_voucher_multic_fix module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_account_voucher_receipt:0
+msgid "Installs the account_voucher_receipt module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_adhoc_support:0
+msgid "Installs the adhoc_support module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_auth_admin_passkey:0
+msgid "Installs the auth_admin_passkey module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_base_state_active:0
+msgid "Installs the base_state_active module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_cron_run_manually:0
+msgid "Installs the cron_run_manually module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_currency_rate_update:0
+msgid "Installs the currency_rate_update module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_disable_openerp_online:0
+msgid "Installs the disable_openerp_online module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_help_doc:0
+msgid "Installs the help_doc module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_inter_company_move:0
+msgid "Installs the inter_company_move module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_inter_company_rules:0
+msgid "Installs the inter_company_rules module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_mail_local_server_catchall:0
+msgid "Installs the mail_local_server_catchall module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_mass_editing:0
+msgid "Installs the mass_editing module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_portal_sale_distributor:0
+msgid "Installs the module_portal_sale_distributor module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_multi_store:0
+msgid "Installs the multi_store module. The main purpose of this module is to restrict journals access for users on different stores."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_partner_person:0
+msgid "Installs the partner_person module. Add firstname, lastname, birthdate, etc."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_partner_school:0
+msgid "Installs the partner_school module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_partner_search_by_ref:0
+msgid "Installs the partner_search_by_ref module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_partner_search_by_vat:0
+msgid "Installs the partner_search_by_vat module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_partner_social_fields:0
+msgid "Installs the partner_social_fields module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_partner_state:0
+msgid "Installs the partner_state module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_partner_tree_fields:0
+msgid "Installs the partner_tree_fields module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_partner_user:0
+msgid "Installs the partner_user module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_price_security:0
+msgid "Installs the price_security module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_product_dimensions:0
+msgid "Installs the product_dimensions module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_product_force_create_variants:0
+msgid "Installs the product_force_create_variants module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_product_historical_price:0
+msgid "Installs the product_historical_price module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_product_pack:0
+msgid "Installs the product_pack module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_product_pack_sale_order_warning:0
+msgid "Installs the product_pack_sale_order_warning module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_product_price_currency:0
+msgid "Installs the product_price_currency module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_product_salesman_group:0
+msgid "Installs the product_salesman_group module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_product_supplier_pricelist:0
+msgid "Installs the product_supplier_pricelist module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_product_unique:0
+msgid "Installs the product_unique module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_product_uom_prices:0
+msgid "Installs the product_uom_prices module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_project_alert_upcoming_tasks:0
+msgid "Installs the project_alert_upcoming_tasks module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_project_description:0
+msgid "Installs the project_description module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_project_issue_create_task_defaults:0
+msgid "Installs the project_issue_create_task_defaults module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_project_issue_order:0
+msgid "Installs the project_issue_order module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_project_issue_product:0
+msgid "Installs the project_issue_product module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_project_issue_solutions:0
+msgid "Installs the project_issue_solutions module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_project_task_order:0
+msgid "Installs the project_task_order module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_purchase_discounts:0
+msgid "Installs the purchase_discounts module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_purchase_multic_fix:0
+msgid "Installs the purchase_multic_fix module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_sale_dummy_confirmation:0
+msgid "Installs the sale_dummy_confirmation module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_sale_multic_fix:0
+msgid "Installs the sale_multic_fix module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_sale_order_validity:0
+msgid "Installs the sale_order_validity module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_sale_pricelist_discount:0
+msgid "Installs the sale_pricelist_discount module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_sale_prices_update:0
+msgid "Installs the sale_prices_update module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_sale_restrict_partners:0
+msgid "Installs the sale_restrict_partners module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_sale_stock_availability:0
+msgid "Installs the sale_stock_availability module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_sales_to_sale_order:0
+msgid "Installs the sales_to_sale_order module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_visual_export:0
+msgid "Installs the visual_export module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_web_easy_switch_company:0
+msgid "Installs the web_easy_switch_company module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_web_export_view:0
+msgid "Installs the web_export_view module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_web_group_expand:0
+msgid "Installs the web_group_expand module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: help:adhoc.base.config.settings,module_web_printscreen_zb:0
+msgid "Installs the web_printscreen_zb module."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_account_interests:0
+msgid "Interests management."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Invoicing"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Issues"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Mail"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_account_voucher_receipt:0
+msgid "Manage Payment Receipts"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_partner_school:0
+msgid "Manage School Data on partners"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_multi_store:0
+msgid "Manage a multi store environment with journals restrictions"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_product_price_currency:0
+msgid "Manage different currencies on product sale price"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_partner_state:0
+msgid "Manage different states on partners"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_product_dimensions:0
+msgid "Manage product dimmensions"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_inter_company_move:0
+msgid "Manager inter company document move"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_inter_company_rules:0
+msgid "Manager inter company rules"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_sale_order_validity:0
+msgid "Mange Sale Orders Validity"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_purchase_discounts:0
+msgid "Mange disccounts on purchases"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_product_supplier_pricelist:0
+msgid "Mange easier supplier pricelist"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_product_pack:0
+msgid "Mange product packs"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_product_pack_sale_order_warning:0
+msgid "Mange stock warnings on product packs"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_mass_editing:0
+msgid "Mass Editing"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Miscellaneous"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Multi Company"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_web_easy_switch_company:0
+msgid "Multi company - Enable Company Easy Change"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_sale_dummy_confirmation:0
+msgid "On a multi-company environment with stock and/or account, allow using only sale for some companies."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Partners"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Payments"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Product Features"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Products"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Project"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_project_issue_solutions:0
+msgid "Project Issue Solutions"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Projects"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Purchase"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Purchase Features"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_project_issue_product:0
+msgid "Relate issues to products (and viceversa)"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Reports"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_product_salesman_group:0
+msgid "Restrict salesman to see only authorized products by using salesman groups."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_sale_restrict_partners:0
+msgid "Restrict see own leads partner to see their own partners only."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_price_security:0
+msgid "Restrict some users to edit prices or change pricelist on sales and partners."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_account_journal_security:0
+msgid "Restrict users to some journals"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Sales"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Sales Features"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_partner_search_by_ref:0
+msgid "Search Partners by Reference"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_partner_search_by_vat:0
+msgid "Search Partners by VAT"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_sale_pricelist_discount:0
+msgid "See Pricelist Discount on Sales Orders."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_sale_stock_availability:0
+msgid "See Stock availability in sales order line."
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Server"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Support"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Tasks"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_account_tax_analysis:0
+msgid "Tax analysis View"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Technical"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Tools"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_currency_rate_update:0
+msgid "Update currencies rates automatically"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Usability And Tools"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_adhoc_support:0
+msgid "Use ADHOC support"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_auth_admin_passkey:0
+msgid "Use admin password as a passkey for all active logins"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_account_invoice_commercial:0
+msgid "Use commercial on invoices related to partner"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_project_description:0
+msgid "Use description on projects"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_project_issue_create_task_defaults:0
+msgid "Use issue task information on creating a task from an issue"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Vairous Fixes"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_product_unique:0
+msgid "Validate product unicity per company on ean13 and interal reference fields"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_visual_export:0
+msgid "Visual Export. Export to ods"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_web_export_view:0
+msgid "Web Export View. Export to csv"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: field:adhoc.base.config.settings,module_web_printscreen_zb:0
+msgid "Web Printscreen. Export to pdf or to xls"
+msgstr ""
+
+#. module: adhoc_base_setup
+#: view:adhoc.base.config.settings:adhoc_base_setup.view_adhoc_base_configuration
+msgid "Web Tools"
+msgstr ""
+

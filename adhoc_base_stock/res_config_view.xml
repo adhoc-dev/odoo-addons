@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<!-- Base Config Settings Form View -->
+<record id="view_adhoc_base_configuration" model="ir.ui.view">
+    <field name="name">adhoc.base.config.settings</field>
+    <field name="model">adhoc.base.config.settings</field>
+    <field name="inherit_id" ref="adhoc_base_setup.view_adhoc_base_configuration"/>
+    <field name="arch" type="xml">
+        <group string="Fixes">
+            <label for="id" string="Stock Fixes"/>
+            <div name="stock_fixes">
+                <div name='module_stock_multic_fix'>
+                    <field name="module_stock_multic_fix"
+                        class="oe_inline"/>
+                    <label for="module_stock_multic_fix"/>
+                </div>    
+            </div>
+        </group>
+
+        <group string="Stock">
+            <label for="id" string="Reports"/>
+            <div name="stock_features">
+                <div name='module_stock_picking_list'>
+                    <field name="module_stock_picking_list"
+                        class="oe_inline"/>
+                    <label for="module_stock_picking_list"/>
+                </div>
+                <div name='module_stock_picking_labels'>
+                    <field name="module_stock_picking_labels"
+                        class="oe_inline"/>
+                    <label for="module_stock_picking_labels"/>
+                </div>
+                <div name='module_stock_voucher'>
+                    <field name="module_stock_voucher"
+                        class="oe_inline"/>
+                    <label for="module_stock_voucher"/>
+                </div>
+            </div>
+            <label for="id" string="Stock Features"/>
+            <div name="stock_features">
+                <div name='module_stock_picking_locations'>
+                    <field name="module_stock_picking_locations"
+                        class="oe_inline"/>
+                    <label for="module_stock_picking_locations"/>
+                </div>
+                <div name='module_stock_display_destination_move'>
+                    <field name="module_stock_display_destination_move"
+                        class="oe_inline"/>
+                    <label for="module_stock_display_destination_move"/>
+                </div>
+                <div name='module_stock_display_sale_id'>
+                    <field name="module_stock_display_sale_id"
+                        class="oe_inline"/>
+                    <label for="module_stock_display_sale_id"/>
+                </div> 
+                <div name='module_stock_display_src_location'>
+                    <field name="module_stock_display_src_location"
+                        class="oe_inline"/>
+                    <label for="module_stock_display_src_location"/>
+                </div>
+                <div name='module_stock_invoice_try_again'>
+                    <field name="module_stock_invoice_try_again"
+                        class="oe_inline" readonly="1"/>
+                    <label for="module_stock_invoice_try_again"/>
+                </div>
+                <div name='module_stock_cancel'>
+                    <field name="module_stock_cancel"
+                        class="oe_inline"/>
+                    <label for="module_stock_cancel"/>
+                </div>
+                <div name='module_stock_picking_invoice_link'>
+                    <field name="module_stock_picking_invoice_link"
+                        class="oe_inline"/>
+                    <label for="module_stock_picking_invoice_link"/>
+                </div>                    
+                <div name='module_picking_dispatch'>
+                    <field name="module_picking_dispatch"
+                        class="oe_inline"/>
+                    <label for="module_picking_dispatch"/>
+                </div>
+            </div>
+        </group>
+
+    </field>
+</record>
+</data>
+</openerp>
