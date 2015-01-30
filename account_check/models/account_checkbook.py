@@ -104,6 +104,11 @@ class account_checkbook(models.Model):
         return True
 
     @api.multi
+    def wkf_active(self):
+        self.write({'state': 'active'})
+        return True
+
+    @api.multi
     def action_cancel_draft(self):
         # go from canceled state to draft state
         self.write({'state': 'draft'})
