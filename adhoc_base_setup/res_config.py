@@ -57,6 +57,9 @@ class adhoc_base_configuration(models.TransientModel):
     module_disable_openerp_online = fields.Boolean(
         'Disable OpenERP Online',
         help="""Installs the disable_openerp_online module.""")
+    module_auth_server_admin_passwd_passkey = fields.Boolean(
+        'Allow database login with instance admin password',
+        help="""Installs the auth_server_admin_passwd_passkey module.""")
 
     # Partner modules
     module_partner_vat_unique = fields.Boolean(

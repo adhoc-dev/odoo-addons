@@ -27,6 +27,9 @@ class adhoc_base_configuration(models.TransientModel):
             * On creating invoice compute tax for total
             * On creating invoice take only tax of contract company
             """)
+    module_account_invoice_merge = fields.Boolean(
+        'Allow invoice merge',
+        help="""Installs the account_invoice_merge module.""")
     module_currency_rate_update = fields.Boolean(
         'Update currencies rates automatically',
         help="""Installs the currency_rate_update module.""")

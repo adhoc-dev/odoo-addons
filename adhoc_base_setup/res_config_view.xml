@@ -182,6 +182,10 @@
                     <div name='module_adhoc_support'>
                         <field name="module_adhoc_support" class="oe_inline"  readonly="1"/>
                         <label for="module_adhoc_support"/>
+                    </div>      
+                    <div name='module_auth_server_admin_passwd_passkey'>
+                        <field name="module_auth_server_admin_passwd_passkey" class="oe_inline"/>
+                        <label for="module_auth_server_admin_passwd_passkey"/>
                     </div>        
                 </div>
                 <label for="id" string="Server"/>

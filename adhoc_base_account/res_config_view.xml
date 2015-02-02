@@ -76,9 +76,10 @@
                         class="oe_inline"/>
                     <label for="module_account_invoice_pricelist_discount"/>
                 </div>
-                <div name='module_multi_store'>
-                    <field name="module_multi_store" class="oe_inline"/>
-                    <label for="module_multi_store"/>
+                <div name='module_account_invoice_merge'>
+                    <field name="module_account_invoice_merge"
+                        class="oe_inline"/>
+                    <label for="module_account_invoice_merge"/>
                 </div>
             </div>
             <label for="id" string="Analytic, contracts and Projects"/>
@@ -125,6 +126,10 @@
                 <div name='module_currency_rate_update'>
                     <field name="module_currency_rate_update" class="oe_inline"/>
                     <label for="module_currency_rate_update"/>
+                </div>
+                <div name='module_multi_store'>
+                    <field name="module_multi_store" class="oe_inline"/>
+                    <label for="module_multi_store"/>
                 </div>
             </div>
             <label for="id" string="Payments"/>
