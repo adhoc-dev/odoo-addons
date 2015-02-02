@@ -15,7 +15,6 @@
     'website': 'www.ingadhoc.com',
     'depends': ['sale'],
     'data': [
-        'sale_workflow.xml',
         'partner_view.xml',
         'security/partner_credit_limit_security.xml',
         ],

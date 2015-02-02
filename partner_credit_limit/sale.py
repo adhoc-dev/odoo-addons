@@ -7,6 +7,11 @@ class sale_order(models.Model):
     _inherit = "sale.order"
 
     @api.one
+    def action_wait(self):
+        self.check_limit()
+        return super(sale_order, self).action_wait()
+
+    @api.model
     def check_limit(self):
 
         if self.order_policy == 'prepaid':
