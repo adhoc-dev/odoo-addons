@@ -11,7 +11,7 @@ class sale_order(models.Model):
         self.check_limit()
         return super(sale_order, self).action_wait()
 
-    @api.model
+    @api.one
     def check_limit(self):
 
         if self.order_policy == 'prepaid':

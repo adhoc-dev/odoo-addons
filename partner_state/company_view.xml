@@ -6,7 +6,9 @@
             <field name="inherit_id" ref="base.view_company_form"/>
             <field name="model">res.company</field>
             <field name="arch" type="xml">
-                <group name="account_grp" position="after">
+                <xpath expr="//notebook/page[@string='Configuration']" position="inside">
+                    <!-- <group string="Inter-Company Rules"> -->
+                <!-- <group name="account_grp" position="after"> -->
                     <group name="partner_state" string="Partner State">
                         <field name="partner_state"/>
                         <field name="partner_state_field_ids" colspan="4" attrs="{'invisible':[('partner_state','=',False)]}">
@@ -18,8 +20,9 @@
                         </field>
                         <field name="restrict_sales" attrs="{'invisible':[('partner_state','=',False)]}"/>
                         <field name="restrict_sales_amount" attrs="{'invisible':[('restrict_sales','!=','amount_depends')],'required':[('restrict_sales','=','amount_depends')]}"/>
-                    </group>     
-                </group>
+                    </group>   
+                </xpath>  
+                <!-- </group> -->
             </field>
         </record>
 

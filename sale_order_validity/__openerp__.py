@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-
-
 {
     'name': 'Sale Order Validity',
     'version': '1.0',
@@ -19,9 +17,8 @@ Sale Order Validity
         'sale_prices_update',
     ],
     'data': [
-	 	'sale_order_view.xml',
-	 	'company_view.xml',
-	 	'workflow/sale_workflow.xml',
+        'sale_order_view.xml',
+        'company_view.xml',
     ],
     'demo': [
     ],

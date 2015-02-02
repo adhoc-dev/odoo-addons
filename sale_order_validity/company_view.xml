@@ -3,12 +3,11 @@
         <record model="ir.ui.view" id="sale_order_validity">
             <field name="name">res.company.form.inherit</field>
             <field name="model">res.company</field>
-            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="inherit_id" ref="sale.view_company_inherit_form2"/>
             <field name="arch" type="xml">
-                <group name="account_grp" position="after">
-                    <group name="sale_grp" string="Sales">
-                        <field name="sale_order_validity_days"/>
-                    </group>
+                <group name="sale_grp">
+                    <newline/>
+                    <field name="sale_order_validity_days"/>
                 </group>
             </field>
         </record>
