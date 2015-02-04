@@ -17,6 +17,7 @@
         <record model="res.groups" id="see_stock_value">
             <field name="category_id" ref="module_category_sales_stock"/>
             <field name="name">Stock Value</field>
+            <!-- No lo podemos agregar porque si es asi va a mostrar los dos campos -->
             <!-- <field name="implied_ids" eval="[(4, ref('see_stock_boolean'))]"/> -->
         </record>
 
