@@ -27,7 +27,7 @@ Para que la asignacion del diario funcione bien (en funcion a la tienda de la sa
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
