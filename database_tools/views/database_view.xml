@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- SEARCH VIEW -->
+        <record id="view_database_select" model="ir.ui.view">
+            <field name="name">db.database.select</field>
+            <field name="model">db.database</field>
+            <field name="arch" type="xml">
+                <search string="Databases">
+                    <field name="not_self_name"/>
+                    <field name="type"/>
+                    <field name="host"/>
+                    <field name="port"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- FORM VIEW -->
+        <record id="view_database_form" model="ir.ui.view">
+            <field name="name">db.database.form</field>
+            <field name="model">db.database</field>
+            <field name="arch" type="xml">
+                <form string="Databases">
+                    <header>
+                        <button name="%(action_db_database_tools_wizard)d" type="action" string="Duplicate" context="{'default_action_type': 'duplicate'}" groups="base.group_no_one"/>
+                        <button name="drop_con" type="object" string="Drop Connections" groups="base.group_no_one"/>
+                    </header>
+                    <sheet>
+                        <div class="col-md-6">
+                            <h1>
+                                <field name="not_self_name" placeholder="Database name..." attrs="{'invisible':[('type','=','self')],'required':[('type','!=','self')]}"/>
+                                <field name="name" attrs="{'invisible':[('type','!=','self')]}"/>
+                            </h1>
+                        </div>
+                        <div class="oe_right oe_button_box" name="buttons">
+                            <button name="%(action_database_backup_form)d" icon="fa-th-list" type="action" class="oe_stat_button" context="{'search_default_database_id': active_id}">
+                                <field name="backup_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="type"/>
+                                <field name="backups_path"/>
+                            </group>
+                            <group>
+                                <field name="host" attrs="{'invisible': [('type', '!=', 'remote')]}"/>
+                                <field name="port" attrs="{'invisible': [('type', '!=', 'remote')]}"/>
+                                <field name="admin_pass" attrs="{'invisible': [('type', '!=', 'remote')]}"/>
+                            </group>
+                        </group>
+                        <group col="6">
+                            <field name="daily_backup"/>
+                            <field name="daily_save_periods" attrs="{'invisible': [('daily_backup', '=', False)]}"/>
+                            <field name="daily_next_date" attrs="{'invisible': [('daily_backup', '=', False)]}"/>
+                            <field name="weekly_backup"/>
+                            <field name="weekly_save_periods" attrs="{'invisible': [('weekly_backup', '=', False)]}"/>
+                            <field name="weekly_next_date" attrs="{'invisible': [('weekly_backup', '=', False)]}"/>
+                            <field name="monthly_backup"/>
+                            <field name="monthly_save_periods" attrs="{'invisible': [('monthly_backup', '=', False)]}"/>
+                            <field name="monthly_next_date" attrs="{'invisible': [('monthly_backup', '=', False)]}"/>
+                        </group>
+                        <field name="backup_ids"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- TREE VIEW -->
+        <record id="view_database_tree" model="ir.ui.view">
+            <field name="name">db.database.tree</field>
+            <field name="model">db.database</field>
+            <field name="arch" type="xml">
+                <tree string="Databases">
+                    <field name="type"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_database_form">
+                <field name="name">Databases</field>
+                <field name="res_model">db.database</field>
+                <field name="view_type">form</field>
+                <field name='view_mode'>tree,form</field>
+        </record>
+
+        <menuitem parent="base.menu_administration" sequence="7" name="Database Tools" id="menu_database_tools"/>
+
+        <menuitem parent="menu_database_tools" action="action_database_form" id="menu_database_form"/>
+</data>
+</openerp>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- Create Portal Distributor Group and Make Portal Distributor Implied Portal group -->
+<!--         <record id="base.group_portal_distributor" model="res.groups">
+            <field name="name">Portal - Distributor</field>
+            <field name="is_portal" eval="True"/>
+            <field name="comment">Portal Distributor members have specific access rights (such as record rules and restricted menus).
+                They usually do not belong to the usual odoo groups.</field>
+            <field name="implied_ids" eval="[(4,ref('base.group_portal'))]"/>
+        </record> -->
+        
+        <!-- Sale Portal Disrtibutor CRUD all orders -->
+<!--         <record id="portal_sale_order_user_rule" model="ir.rule">
+            <field name="name">Portal Distributor same partner Quotations/Sales Orders</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="domain_force">[('partner_id','in',[user.partner_id.id])]</field>
+            <field name="groups" eval="[(4, ref('base.group_portal_distributor'))]"/>
+            <field eval="1" name="perm_unlink"/>
+            <field eval="1" name="perm_write"/>
+            <field eval="1" name="perm_read"/>
+            <field eval="1" name="perm_create"/>
+        </record> -->
+
+    </data>
+</openerp>

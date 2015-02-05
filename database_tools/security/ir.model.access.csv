@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_database_al,access_database_all,model_db_database,,1,0,0,0
+access_database_backup,access_database_backup_all,model_db_database_backup,,1,0,0,0
+access_database_backup,access_database_backup_admin,model_db_database_backup,base.group_system,1,1,1,1
+access_database,access_database_admin,model_db_database,base.group_system,1,1,0,0
+access_database,access_database_tech,model_db_database,base.group_no_one,1,1,1,1

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_db_database_tools_wizard_form">
+            <field name="name">view.db.database.tools.wizard.form</field>
+            <field name="model">db.database.tools.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Database Tools">
+                    <field name="action_type" invisible="1"/>
+                    <group>
+                        <field name="name"/>
+                        <field name="backups_enable"/>
+                    </group>
+                    <footer>
+                        <button string="Confirm" name="action_confirm" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>  
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="action_db_database_tools_wizard">
+            <field name="name">Database Tools Wizard</field>
+            <field name="res_model">db.database.tools.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>
