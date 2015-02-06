@@ -48,6 +48,7 @@
                     <field name="type" invisible="1"/>
                     <field name="issue_check_subtype" invisible="1"/>
                     <field name="journal_id" invisible="1"/>
+                    <field name="currency_id" invisible="1"/>
                 <header>
                     <button name="%(action_check_deposit)d" type="action" string="Deposited" states="holding" class="oe_highlight"/>
                     <button name="%(action_check_debit)d" type="action" string="Debited" attrs="{'invisible':['|',('type','!=','issue'),('state','!=','handed')]}" class="oe_highlight"/>
@@ -67,7 +68,8 @@
                             <field name="bank_id" attrs="{'invisible':[('type','!=','third')],'required':[('type','=','third')]}"/>
                             <field name="vat" attrs="{'invisible':[('type','!=','third')],'required':[('type','=','third')]}"/>
                             <field name="number"/>
-                            <field name="amount"/>                            
+                            <field name="amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="company_currency_amount" attrs="{'invisible':[('company_currency_amount','=', False)]}" /> <!-- groups="base.group_no_one" -->
                         </group>
                         <group>    
                             <field name="issue_date"/>

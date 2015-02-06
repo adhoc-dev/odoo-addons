@@ -90,14 +90,16 @@ class account_check_action(models.TransientModel):
                 'name': name,
                 'account_id': debit_account_id,
                 'move_id': move_id,
-                'debit': check.amount,
+                'debit': check.company_currency_amount or check.amount,
+                'amount_currency': check.company_currency_amount and check.amount or False,
                 'ref': ref,
             })
             move_line_obj.create(cr, uid, {
                 'name': name,
                 'account_id': credit_account_id,
                 'move_id': move_id,
-                'credit': check.amount,
+                'credit': check.company_currency_amount or check.amount,
+                'amount_currency': check.company_currency_amount and -1 * check.amount or False,
                 'ref': ref,
             })
 

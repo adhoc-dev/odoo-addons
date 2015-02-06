@@ -2,6 +2,7 @@
 from openerp import fields, models, _, api
 from openerp.exceptions import Warning
 import logging
+import openerp.addons.decimal_precision as dp
 _logger = logging.getLogger(__name__)
 
 
@@ -64,7 +65,13 @@ class account_check(models.Model):
         )
     amount = fields.Float(
         'Amount', required=True, readonly=True,
-        states={'draft': [('readonly', False)]}
+        digits=dp.get_precision('Account'),
+        states={'draft': [('readonly', False)]},
+        )
+    company_currency_amount = fields.Float(
+        'Company Currency Amount', readonly=True,
+        digits=dp.get_precision('Account'),
+        help='This value is only set for those checks that has a different currency than the company one.'
         )
     voucher_id = fields.Many2one(
         'account.voucher', 'Voucher', readonly=True, required=True
@@ -151,6 +158,10 @@ class account_check(models.Model):
         'res.bank', 'Bank', readonly=True,
         states={'draft': [('readonly', False)]}
         )
+    currency_id = fields.Many2one(
+        'res.currency', string='Currency', readonly=True,
+        related='voucher_id.journal_id.currency',
+        )
     vat = fields.Char(
         'Vat', size=11, states={'draft': [('readonly', False)]}
         )
@@ -222,8 +233,22 @@ class account_check(models.Model):
         self.create_workflow()
         return True
 
+    # @api.one
+    # def paid_amount_in_company_currency(self):
+    #     voucher = self.env['account.voucher'].with_context(
+    #         date=self.voucher_id.date
+    #         ).browse(self.voucher_id.id)
+    #     company_currency_amount = self.currency_id.with_context(
+    #         voucher_special_currency=voucher.payment_rate_currency_id and voucher.payment_rate_currency_id.id or False,
+    #         voucher_special_currency_rate=voucher.currency_id.rate * voucher.payment_rate,
+    #         ).compute(self.amount, self.company_id.currency_id)
+    #     print 'company_currency_amount', company_currency_amount
+    #     self.company_currency_amount = company_currency_amount
+
     @api.multi
     def action_hold(self):
+        # TODO borrar si no usamos. Por ahora uso una modifico first_move_line_get en account voucher para tener mas precisos estos numeros
+        # self.paid_amount_in_company_currency()
         self.write({'state': 'holding'})
         return True
 

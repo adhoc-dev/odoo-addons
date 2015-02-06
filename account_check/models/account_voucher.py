@@ -49,6 +49,29 @@ class account_voucher(models.Model):
         checks.action_cancel_draft()
         return res
 
+    # def first_move_line_get(self):
+    @api.model
+    def first_move_line_get(
+            self, voucher_id, move_id, company_currency,
+            current_currency):
+        vals = super(account_voucher, self).first_move_line_get(
+            voucher_id, move_id, company_currency, current_currency)
+        voucher = self.browse(voucher_id)
+        if company_currency != current_currency:
+            debit = vals.get('debit')
+            credit = vals.get('credit')
+            total = debit - credit
+            exchange_rate = total / voucher.amount
+            checks = []
+            if voucher.check_type == 'third':
+                checks = voucher.received_third_check_ids
+            elif voucher.check_type == 'issue':
+                checks = voucher.issued_check_ids
+            for check in checks:
+                company_currency_amount = abs(check.amount * exchange_rate)
+                check.company_currency_amount = company_currency_amount
+        return vals
+
     @api.multi
     def cancel_voucher(self):
         for voucher in self:
