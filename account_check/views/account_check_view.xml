@@ -69,7 +69,7 @@
                             <field name="vat" attrs="{'invisible':[('type','!=','third')],'required':[('type','=','third')]}"/>
                             <field name="number"/>
                             <field name="amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                            <field name="company_currency_amount" attrs="{'invisible':[('company_currency_amount','=', False)]}" /> <!-- groups="base.group_no_one" -->
+                            <field name="company_currency_amount" attrs="{'invisible':[('company_currency_amount','=', 0)]}" /> <!-- groups="base.group_no_one" -->
                         </group>
                         <group>    
                             <field name="issue_date"/>
