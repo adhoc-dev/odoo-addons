@@ -22,6 +22,14 @@
             </div>
 
             <group string="Fixes">
+                <label for="id" string="Mail Fixes"/>
+                <div name="mail_fixes"> 
+                    <div name='module_mail_sender_patch'>
+                        <field name="module_mail_sender_patch"
+                            class="oe_inline"/>
+                        <label for="module_mail_sender_patch"/>
+                    </div> 
+                </div>
             </group>
 
             <group string="Products">

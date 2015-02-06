@@ -6,6 +6,11 @@ class adhoc_base_configuration(models.TransientModel):
     _name = 'adhoc.base.config.settings'
     _inherit = 'res.config.settings'
 
+    # Fixes
+    module_mail_sender_patch = fields.Boolean(
+        'Patch mail sender when using own smtp server instead of localhost',
+        help="""Installs the mail_sender_patch module.""")
+
     # Usability and tools modules
     module_web_recipients_uncheck = fields.Boolean(
         'Uncheck recipients on res.partner',
