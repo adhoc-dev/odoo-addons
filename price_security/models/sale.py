@@ -33,12 +33,13 @@ class sale_order_line(models.Model):
         readonly=True,
         string='Product Can modify prices')
     # agregamos este campo porque si hacemos readonly el campo tax_id el impuesto puede ser sobre escritor por la funcion create de sale order line. de esta manera, oculamos tax para que escriba y ponemos esta copia readonly
-    tax_id_copy = fields.Many2many(
-        'account.tax',
-        string='Taxes',
-        related='tax_id',
-        readonly=True
-        )
+    # tampoco nos anduvo porque no podiamos hacerlo visible segun el grupo
+    # tax_id_copy = fields.Many2many(
+    #     'account.tax',
+    #     string='Taxes',
+    #     related='tax_id',
+    #     readonly=True
+    #     )
 
     @api.one
     @api.constrains(
