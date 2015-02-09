@@ -4,14 +4,15 @@
     'version': '0.1',
     'category': 'Tools',
     'description': """
-    Stock availability in sales order line
-    ======================================
-    * Add two groups. One for seeing stock on sale orders and other to see only if or not available
-    * Add an option in warehouse to disable stock warning
-    IMPORTANT:
-    ----------
-        * This module could break some warnings as the ones implemented by "warning" module
-        * If you dont disable warning and give a user availbility to see only "true/false" on sale order stock, he can see stock if the warning is raised
+Stock availability in sales order line
+======================================
+* Add two groups. One for seeing stock on sale orders and other to see only if or not available
+* Add an option in warehouse to disable stock warning
+
+IMPORTANT:
+----------
+    * This module could break some warnings as the ones implemented by "warning" module
+    * If you dont disable warning and give a user availbility to see only "true/false" on sale order stock, he can see stock if the warning is raised
     """,
     'author': 'Moldeo Interactive & Ingenieria Adhoc',
     'website': 'http://business.moldeo.coop http://ingadhoc.com/',
