@@ -19,6 +19,7 @@ Project Stage
     'data': [
         'view/project_view.xml',
         'view/menu_item.xml',
+        'security/ir.model.access.csv',
     ],
     'demo': [
     ],
