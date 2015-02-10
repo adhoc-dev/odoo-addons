@@ -10,7 +10,7 @@ class product_template(models.Model):
         price of this product in a sale order or invoice.',
         string='Can modify prices')
 
-    @api.multi
+    @api.one
     # Dummy depend on name so that it is updated on view load
     @api.depends('name')
     def _get_user_restrict_prices(self):
