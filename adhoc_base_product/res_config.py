@@ -8,6 +8,9 @@ class adhoc_base_configuration(models.TransientModel):
     # Fixes
 
     # Product modules
+    module_product_template_search_by_ean13 = fields.Boolean(
+        'Allow search by ean13 on product template',
+        help="""Installs the product_template_search_by_ean13 module.""")
     module_product_pack = fields.Boolean(
         'Mange product packs',
         help="""Installs the product_pack module.""")
