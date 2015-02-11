@@ -17,7 +17,7 @@
             <field name="name">Product Catalog Reports</field>
             <field name="model">product.product_catalog_report</field>
             <field name="arch" type="xml">
-                <form string="Product Catalog Reports" version="7.0">
+                <form string="Product Catalog Reports">
                     <header>
                         <button name="generate_report" string="Print" type="object" class="oe_highlight"/>
                     </header>
@@ -34,6 +34,8 @@
                             <field name="report_xml_id"/>
                             <field name="categories_order"/>
                             <field name="products_order"/>
+                            <field name="only_with_stock"/>
+                            <field name="include_sub_categories"/>
                         </group>
                         <group col="1" colspan="4">
                             <field name="category_ids"/>

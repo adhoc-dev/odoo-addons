@@ -1,48 +1,73 @@
 # -*- coding: utf-8 -*-
-from openerp.osv import fields, osv
+from openerp import fields, models, api
 
 
-class product_catalog_report(osv.osv):
+class product_catalog_report(models.Model):
     _name = 'product.product_catalog_report'
     _description = 'Product Catalog Report with Aeroo'
 
-    _columns = {
-        'name': fields.char('Name', required=True),
-        'products_order': fields.char('Products Order Sintax', help='for eg. name desc', required=False),
-        'categories_order': fields.char('Categories Order Sintax', help='for eg. name desc', required=False),
-        'report_xml_id': fields.many2one('ir.actions.report.xml', 'Report XML', domain="[('report_type','=','aeroo'),('model','=','product.product')]", context="{'default_report_type': 'aeroo', 'default_model': 'product.product'}", required=True),
-        'category_ids': fields.many2many('product.category', 'product_catalog_report_categories', 'product_catalog_report_id', 'category_id', 'Product Categories', required=True),
-        'pricelist_ids': fields.many2many('product.pricelist', 'product_catalog_report_pricelists', 'product_catalog_report_id', 'pricelist_id', 'Pricelist', required=False),
-    }
+    name = fields.Char(
+        'Name',
+        required=True
+        )
+    products_order = fields.Char(
+        'Products Order Sintax',
+        help='for eg. name desc', required=False
+        )
+    categories_order = fields.Char(
+        'Categories Order Sintax',
+        help='for eg. name desc',
+        )
+    include_sub_categories = fields.Boolean(
+        'Include Subcategories?',
+        )
+    only_with_stock = fields.Boolean(
+        'Only With Stock Products?',
+        )
+    report_xml_id = fields.Many2one(
+        'ir.actions.report.xml',
+        'Report XML',
+        domain=[('report_type','=','aeroo'),('model','=','product.product')],
+        context={'default_report_type': 'aeroo', 'default_model': 'product.product'},
+        required=True
+        )
+    category_ids = fields.Many2many(
+        'product.category',
+        'product_catalog_report_categories',
+        'product_catalog_report_id',
+        'category_id',
+        'Product Categories',
+        required=True
+        )
+    pricelist_ids = fields.Many2many(
+        'product.pricelist',
+        'product_catalog_report_pricelists',
+        'product_catalog_report_id',
+        'pricelist_id',
+        'Pricelist',
+        )
 
-    _defaults = {
-    }
+    @api.multi
+    def generate_report(self):
+        """ Print the catalog
+        """
+        assert len(self) == 1, 'This option should only be used for a single id at a time.'
 
-    def generate_report(self, cr, uid, ids, context=None):
-        for report in self.browse(cr, uid, ids):
+        context = self._context.copy()
 
-            categories = report.category_ids
-            if not categories:
-                return {'type': 'ir.actions.act_window_close'}
-            if not isinstance(categories, list):
-                categories = [categories]
-            context['category_ids'] = map(lambda cat: cat.id, categories)
+        category_ids = self.category_ids.ids
+        print 'category_ids', category_ids
+        category_ids2 = map(lambda lst: lst.id, self.category_ids)
+        print 'category_ids2', category_ids2
+        # if self.include_sub_categories:
+        #     category_ids = self.env['product.category'].search(
+        #         [('id', 'child_of', category_ids)]).ids
 
-            pricelist_ids = report.pricelist_ids
-            if not pricelist_ids:
-                pricelist_ids = []
-            if not isinstance(pricelist_ids, list):
-                pricelist_ids = [pricelist_ids]
+        context['category_ids'] = category_ids
+        context['pricelist_ids'] = self.pricelist_ids.ids
+        context['products_order'] = self.products_order
+        context['categories_order'] = self.categories_order
+        context['only_with_stock'] = self.only_with_stock
 
-            context['pricelist_ids'] = map(lambda lst: lst.id, pricelist_ids)
-
-            context['products_order'] = report.products_order
-            context['categories_order'] = report.categories_order
-
-            report_product_catalog = self.pool.get('ir.actions.report.xml').browse(
-                cr, uid, [report.report_xml_id.id])[0].report_name
-
-            result = {'type': 'ir.actions.report.xml',
-                      'context': context,
-                      'report_name': report_product_catalog, }
-        return result
+        return self.env['report'].with_context(context).get_action(
+            self, self.report_xml_id.report_name)

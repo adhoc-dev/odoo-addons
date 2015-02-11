@@ -65,11 +65,6 @@
                         class="oe_inline" readonly="1"/>
                     <label for="module_stock_invoice_try_again"/>
                 </div>
-                <div name='module_stock_cancel'>
-                    <field name="module_stock_cancel"
-                        class="oe_inline"/>
-                    <label for="module_stock_cancel"/>
-                </div>
                 <div name='module_stock_picking_invoice_link'>
                     <field name="module_stock_picking_invoice_link"
                         class="oe_inline"/>
@@ -79,6 +74,19 @@
                     <field name="module_picking_dispatch"
                         class="oe_inline"/>
                     <label for="module_picking_dispatch"/>
+                </div>
+            </div>
+            <label for="id" string="Advance Features"/>
+            <div name="stock_advance_features">
+                <div name='module_stock_cancel'>
+                    <field name="module_stock_cancel"
+                        class="oe_inline"/>
+                    <label for="module_stock_cancel"/>
+                </div>
+                <div name='module_stock_warehouse_edit'>
+                    <field name="module_stock_warehouse_edit"
+                        class="oe_inline"/>
+                    <label for="module_stock_warehouse_edit"/>
                 </div>
             </div>
         </group>
