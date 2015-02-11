@@ -9,6 +9,7 @@
               <!-- Locations -->
               <field name="wh_input_stock_loc_id" position="before">
                 <field name="view_location_id"/>
+                <field name="lot_stock_id"/>
               </field>
               <field name="wh_input_stock_loc_id" position="attributes">
                 <attribute name="readonly">0</attribute>
