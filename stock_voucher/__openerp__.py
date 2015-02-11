@@ -30,6 +30,7 @@ TODO:
         'views/report_stockpicking.xml',
         'stock_view.xml',
         'stock_remit_data.xml',
+        'stock_menu.xml',
     ],
     'demo': [
     ],
