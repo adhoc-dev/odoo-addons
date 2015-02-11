@@ -29,8 +29,6 @@ class Parser(report_sxw.rml_parse):
         categories = categories.browse(
             cr, uid, category_ids, context=context)
 
-        fields = ['name']
-
         products = self.get_products(category_ids, context=context)
 
         company_id = self.pool['res.users'].browse(
