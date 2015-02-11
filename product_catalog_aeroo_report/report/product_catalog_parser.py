@@ -28,8 +28,9 @@ class Parser(report_sxw.rml_parse):
             order=categories_order, context=context)
         categories = categories.browse(
             cr, uid, category_ids, context=context)
-        
-        only_with_stock = context.get('only_with_stock', False)
+
+        fields = ['name']
+
         products = self.get_products(category_ids, context=context)
 
         company_id = self.pool['res.users'].browse(
@@ -45,10 +46,24 @@ class Parser(report_sxw.rml_parse):
             'get_price': self.get_price,
             'get_products': self.get_products,
             'context': context,
+            'field_value_get': self.field_value_get,
         })
 
-    def get_price(self, product, pricelist):
-        context = {'pricelist': pricelist.id}
+    def field_value_get(self, product, field, context=None):
+        # TODO hacer funcioal esto en el reporte ods. El problema es que deberiamos usar export_data en vez de read para poder elegir que ver del padre, por ejemplo "categ_id/name"
+        if not context:
+            context = {}
+
+        product_obj = self.pool.get('product.product')
+        field_value = product_obj.read(
+            self.cr, self.uid, [product.id], [field], context=context)
+        return field_value[0].get(field, '')
+
+    def get_price(self, product, pricelist, context=None):
+        if not context:
+            context = {}
+        context['pricelist'] = pricelist.id
+
         product_obj = self.pool.get('product.product')
         price = product_obj._product_price(
             self.cr, self.uid, [product.id], False, False, context=context)
