@@ -51,17 +51,14 @@ class product_catalog_report(models.Model):
     def generate_report(self):
         """ Print the catalog
         """
-        assert len(self) == 1, 'This option should only be used for a single id at a time.'
+        self.ensure_one()
 
         context = self._context.copy()
 
         category_ids = self.category_ids.ids
-        print 'category_ids', category_ids
-        category_ids2 = map(lambda lst: lst.id, self.category_ids)
-        print 'category_ids2', category_ids2
-        # if self.include_sub_categories:
-        #     category_ids = self.env['product.category'].search(
-        #         [('id', 'child_of', category_ids)]).ids
+        if self.include_sub_categories:
+            category_ids = self.env['product.category'].search(
+                [('id', 'child_of', category_ids)]).ids
 
         context['category_ids'] = category_ids
         context['pricelist_ids'] = self.pricelist_ids.ids
