@@ -14,6 +14,9 @@ class adhoc_base_configuration(models.TransientModel):
     module_stock_warehouse_edit = fields.Boolean(
         'Make Stock Warehouse Editable',
         help="""Installs the stock_warehouse_edit module. It allow to change locations linked to a warehouse. Used when you have to fix a migration or something similar. After use it is recommended to uninstall it.""")
+    module_stock_inventory_negative_line = fields.Boolean(
+        'Give availability to define negative stocks on a inventory',
+        help="""Installs the stock_inventory_negative_line module.""")
     module_stock_picking_labels = fields.Boolean(
         'Add a picking label doc report on stock picking',
         help="""Installs the stock_picking_labels module.""")

@@ -88,6 +88,11 @@
                         class="oe_inline"/>
                     <label for="module_stock_warehouse_edit"/>
                 </div>
+                <div name='module_stock_inventory_negative_line'>
+                    <field name="module_stock_inventory_negative_line"
+                        class="oe_inline"/>
+                    <label for="module_stock_inventory_negative_line"/>
+                </div>
             </div>
         </group>
 
