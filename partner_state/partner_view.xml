@@ -21,17 +21,16 @@
             </field>
         </record>
         
-<!-- Lo sacamos de la vista tree porque depende de la compania -->
-<!--         <record id="view_partner_state_tree" model="ir.ui.view">
+        <record id="view_partner_state_tree" model="ir.ui.view">
             <field name="name">partner_state_partner_tree_view</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_tree"/>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="state"/>
+                    <field name="partner_state"/>
                 </tree>
             </field>
-        </record> -->
+        </record>
         
         <record id="view_partner_state_search" model="ir.ui.view">
             <field name="name">partner_state_partner_search_view</field>
