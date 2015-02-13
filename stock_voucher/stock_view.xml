@@ -71,7 +71,7 @@
             <field name="inherit_id" ref="stock.view_picking_type_form"/>
             <field name="arch" type="xml">
                 <field name="return_picking_type_id" position="after">
-                    <field name="book_id" attrs="{'invisible':[('code','in', ('internal', 'outgoing'))]}"/>
+                    <field name="book_id" attrs="{'invisible':[('code','=','incoming')]}"/>
                 </field>
             </field>
         </record>

@@ -44,7 +44,7 @@
                             <group>
                                 <field name="customer_id" attrs="{'readonly':[('has_vouchers','=',True)],'invisible':[('type','!=','receipt')],'required':[('type','=','receipt')]}"/>
                                 <field name="supplier_id" attrs="{'readonly':[('has_vouchers','=',True)],'invisible':[('type','!=','payment')],'required':[('type','=','payment')]}"/>
-                                <field name="receiptbook_id" domain="[('type','=',type)]" on_change="on_change_receiptbook(receiptbook_id, context)"/>
+                                <field name="receiptbook_id" domain="[('type','=',type)]"/>
                                 <field name="manual_prefix" attrs="{'invisible':['|',('receiptbook_sequence_type','!=','manual'),('state','!=','draft')]}"/>
                                 <field name="manual_sufix" attrs="{'invisible':['|',('receiptbook_sequence_type','!=','manual'),('state','!=','draft')],'required':[('receiptbook_sequence_type','=','manual')]}"/>
                                 <field name="next_receipt_number" attrs="{'invisible':['|',('receiptbook_sequence_type','!=','automatic'),('name','!=',False)]}"/>
@@ -53,7 +53,7 @@
                             <group>
                                 <field name="date" attrs="{'readonly':[('has_vouchers','=',True)]}"/>
                                 <field name="period_id" domain="[('company_id','=',company_id)]" attrs="{'readonly':[('has_vouchers','=',True)]}"/>
-                                <field name="company_id" widget="selection" groups="base.group_multi_company" on_change="on_change_company(type, company_id)" attrs="{'readonly':[('has_vouchers','=',True)]}"/>
+                                <field name="company_id" widget="selection" groups="base.group_multi_company" attrs="{'readonly':[('has_vouchers','=',True)]}"/>
                             </group>
                         </group>              
                         <notebook>

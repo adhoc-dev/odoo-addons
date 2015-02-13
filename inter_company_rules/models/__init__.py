@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-
-import inter_company_so_po
-import inter_company_invoice
 import res_config
+import res_company
+import purchase_order
+import sale_order
+import account_invoice

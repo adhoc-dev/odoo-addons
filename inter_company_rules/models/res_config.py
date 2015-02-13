@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 from openerp import models, fields, api
 
 class inter_company_rules_configuration(models.TransientModel):
+
     _inherit = 'base.config.settings'
 
     company_id = fields.Many2one('res.company', string='Select Company',
-        default=lambda self: self.env['res.company']._company_default_get('base.config.settings'),
         help='Select company to setup Inter company rules.')
     rule_type = fields.Selection([('so_and_po', 'SO and PO setting for inter company'),
         ('invoice_and_refunds', 'Create Invoice/Refunds when encoding invoice/refunds')],
@@ -14,9 +15,9 @@ class inter_company_rules_configuration(models.TransientModel):
     po_from_so = fields.Boolean(string='Create Purchase Orders when selling to this company',
         help='Generate a Purchase Order when a Sale Order with this company as customer is created.')
     auto_validation = fields.Boolean(string='Sale/Purchase Orders Auto Validation',
-        help='''When a Sale Order or a Purchase Order is created by a multi 
+        help='''When a Sale Order or a Purchase Order is created by a multi
             company rule for this company, it will automatically validate it.''')
-    warehouse_id = fields.Many2one('stock.warehouse', string='Warehouse For Purchase Orders', 
+    warehouse_id = fields.Many2one('stock.warehouse', string='Warehouse For Purchase Orders',
         help='Default value to set on Purchase Orders that will be created based on Sale Orders made to this company.')
 
     @api.onchange('rule_type')
@@ -55,5 +56,3 @@ class inter_company_rules_configuration(models.TransientModel):
                 'warehouse_id': self.warehouse_id.id
             }
             self.company_id.write(vals)
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

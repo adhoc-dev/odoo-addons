@@ -23,7 +23,8 @@ class stock_book(models.Model):
     sequence_id = fields.Many2one(
         'ir.sequence', 'Stock Voucher Sequence',
         domain=[('code', '=', 'stock.voucher')],
-        context={'default_code': 'stock.voucher'}, required=True,
+        context="{'default_code': 'stock.voucher', 'default_name': name, 'default_prefix': '000X-', 'default_padding': 8}",
+        required=True,
         )
     lines_per_voucher = fields.Integer(
         'Lines Per Voucher', required=True,
