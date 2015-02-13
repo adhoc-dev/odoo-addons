@@ -27,9 +27,7 @@ class account_invoice_prices_update(models.TransientModel):
         for line in invoice.invoice_line:
             price = self.pricelist_id.price_get(
                 line.product_id.id, line.quantity or 1.0,
-                self.partner_id.id,
-                {'uom': line.uos_id.id})
-            print 'price', price
-            # [self.pricelist_id.id]
+                partner=line.partner_id.id,
+                context={'uom': line.uos_id.id})[self.pricelist_id.id]
             line.price_unit = price
         return True
