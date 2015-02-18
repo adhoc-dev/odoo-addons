@@ -19,7 +19,6 @@ It also choose the salesperson when creating invoices from stock.picking
     ],
     'depends': [
         'account',
-        'stock',
     ],
     'data': [
     ],

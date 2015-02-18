@@ -13,18 +13,11 @@ class account_invoice(models.Model):
             type=type, partner_id=partner_id, date_invoice=date_invoice,
             payment_term=payment_term, partner_bank_id=partner_bank_id,
             company_id=company_id)
-
         if 'value' not in ret:
             ret['value'] = {}
         if partner_id:
-            res_partner_obj = self.env['res.partner']
-            partner = res_partner_obj.browse(partner_id)
-            ret['value'] = {
-                'user_id': partner.user_id.id or self.env.uid,
-            }
+            partner = self.env['res.partner'].browse(partner_id)
+            ret['value']['user_id'] = partner.user_id.id or self.env.uid
         else:
-            ret['value'] = {
-                'user_id': self.env.uid,
-            }
-
+            ret['value']['user_id'] = self.env.uid
         return ret
