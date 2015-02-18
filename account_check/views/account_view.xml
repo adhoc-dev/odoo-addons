@@ -12,7 +12,7 @@
                 </field>
                 <notebook>
                     <page string="Checkbooks" attrs="{'invisible':[('check_type','!=', 'issue')]}">
-                        <field name="checkbook_ids" attrs="{'required':[('check_type', '=', 'issue')]}"/>
+                        <field name="checkbook_ids" attrs="{'required':[('check_type', '=', 'issue')]}" context="{'default_company_id':company_id}"/>
                     </page>
                 </notebook>
             </field>

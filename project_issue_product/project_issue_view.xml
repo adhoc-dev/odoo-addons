@@ -7,9 +7,9 @@
             <field name="model">project.issue</field>
             <field name="inherit_id" ref="project_issue.project_issue_form_view"/>
             <field name="arch" type="xml">       
-                <div position="after">
+                <label for="project_id" position="before">
                     <field name="product_id"/>
-                </div>
+                </label>
             </field>
         </record>
 
