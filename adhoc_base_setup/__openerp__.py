@@ -19,6 +19,7 @@ Repositories required:
 * https://github.com/OCA/account-financial-reporting
 * https://github.com/OCA/account-financial-tools
 * https://github.com/OCA/reporting-engine
+* https://github.com/OCA/purchase-workflow
 * https://github.com/aeroo/aeroo_reports
     """,
     'author':  'Ingenieria ADHOC',
