@@ -28,7 +28,7 @@ class account_check_action(models.TransientModel):
         'Company',
         required=True,
         default=_get_company_id
-        )
+    )
 
     def action_confirm(self, cr, uid, ids, context=None):
         check_obj = self.pool.get('account.check')
@@ -48,12 +48,14 @@ class account_check_action(models.TransientModel):
         for check in check_obj.browse(cr, uid, record_ids, context=context):
             if check.type == 'third':
                 if check.state != 'holding':
-                    raise Warning(_('The selected checks must be in holding state.'))
+                    raise Warning(
+                        _('The selected checks must be in holding state.'))
                 if wizard.action_type == 'debit':
                     raise Warning(_('You can not debit a Third Check.'))
             elif check.type == 'issue':
                 if check.state != 'handed':
-                    raise Warning(_('The selected checks must be in handed state.'))
+                    raise Warning(
+                        _('The selected checks must be in handed state.'))
                 if wizard.action_type == 'deposit':
                     raise Warning(_('You can not deposit a Issue Check.'))
 
@@ -64,6 +66,7 @@ class account_check_action(models.TransientModel):
                 check_move_field = 'deposit_account_move_id'
                 journal = check.voucher_id.journal_id
                 debit_account_id = wizard.account_id.id
+                partner = check.source_partner_id.id,
                 credit_account_id = check.voucher_id.journal_id.default_credit_account_id.id
                 check_vals = {'deposit_account_id': debit_account_id}
                 signal = 'holding_deposited'
@@ -71,6 +74,7 @@ class account_check_action(models.TransientModel):
                 ref = _('Debit Check Nr. ')
                 check_move_field = 'debit_account_move_id'
                 journal = check.checkbook_id.debit_journal_id
+                partner = check.destiny_partner_id.id
                 debit_account_id = journal.default_debit_account_id.id
                 credit_account_id = check.voucher_id.journal_id.default_credit_account_id.id
                 check_vals = {}
@@ -89,6 +93,7 @@ class account_check_action(models.TransientModel):
             move_line_obj.create(cr, uid, {
                 'name': name,
                 'account_id': debit_account_id,
+                'partner_id': partner,
                 'move_id': move_id,
                 'debit': check.company_currency_amount or check.amount,
                 'amount_currency': check.company_currency_amount and check.amount or False,
@@ -97,6 +102,7 @@ class account_check_action(models.TransientModel):
             move_line_obj.create(cr, uid, {
                 'name': name,
                 'account_id': credit_account_id,
+                'partner_id': partner,
                 'move_id': move_id,
                 'credit': check.company_currency_amount or check.amount,
                 'amount_currency': check.company_currency_amount and -1 * check.amount or False,
