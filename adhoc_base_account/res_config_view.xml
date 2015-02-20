@@ -92,6 +92,11 @@
             </div> 
             <label for="id" string="Common Accounting Features"/>
             <div name="common_accounting">
+                <div name='module_account_security_modifications'>
+                    <field name="module_account_security_modifications"
+                        class="oe_inline"/>
+                    <label for="module_account_security_modifications"/>
+                </div>  
                 <div name='module_account_cancel'>
                     <field name="module_account_cancel"
                         class="oe_inline"/>

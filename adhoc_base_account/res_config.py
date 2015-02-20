@@ -27,6 +27,9 @@ class adhoc_base_configuration(models.TransientModel):
             * On creating invoice compute tax for total
             * On creating invoice take only tax of contract company
             """)
+    module_account_security_modifications = fields.Boolean(
+        'Make modifications in security related to accounting (for eg. Inv and Pay. group can choose journals)',
+        help="""Installs the account_security_modifications module.""")
     module_account_invoice_merge = fields.Boolean(
         'Allow invoice merge',
         help="""Installs the account_invoice_merge module.""")

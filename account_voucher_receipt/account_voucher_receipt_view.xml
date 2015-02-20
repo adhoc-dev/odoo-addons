@@ -64,7 +64,7 @@
                                     <tree create="false" colors="blue:state == 'draft';gray:state == 'cancel';red:audit" string="Voucher Entries">
                                         <field name="number"/>
                                         <field name="reference"/>
-                                        <field name="journal_id" groups="account.group_account_user"/>
+                                        <field name="journal_id"/>
                                         <field name="amount" sum="Total Amount"/>
                                         <field name="audit" invisible="1"/>
                                         <field name="state"/>
@@ -74,7 +74,7 @@
                                     <tree create="false" colors="blue:state == 'draft';gray:state == 'cancel';red:audit" string="Voucher Entries">
                                         <field name="number"/>
                                         <field name="reference"/>
-                                        <field name="journal_id" groups="account.group_account_user"/>
+                                        <field name="journal_id"/>
                                         <field name="amount" sum="Total Amount"/>
                                         <field name="audit" invisible="1"/>
                                         <field name="state"/>
