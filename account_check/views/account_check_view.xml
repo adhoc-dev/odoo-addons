@@ -33,6 +33,7 @@
                     <field name="name"/>
                     <field name="issue_date"/>
                     <field name="payment_date"/>
+                    <field name="source_partner_id" invisible="context.get('default_type',False) != 'third'"/>
                     <field name="bank_id" invisible="context.get('default_type',False) != 'third'"/>
                     <field name="amount" sum="Total Amount"/>
                     <field name="state"/>
