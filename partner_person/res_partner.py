@@ -50,6 +50,19 @@ class res_partner(models.Model):
         # We write the husband for the actual wife
         if self.husband_id:
             self.husband_id.wife_id = self.id
+            
+    def _search_husband(self, operator, value):
+
+        if operator == 'like':
+            operator = 'ilike'
+
+        ids = self.search([('wife_id', '!=' , False) ,('name', operator, value )])
+
+        ret=[]
+        for result in ids:
+            ret.append(result.wife_id.id)
+
+        return [('id', 'in' , ret)]
 
     disabled_person = fields.Boolean(string='Disabled Person?')
     firstname = fields.Char(string='First Name')
@@ -82,6 +95,7 @@ class res_partner(models.Model):
         'res.partner',
         compute='_get_husband',
         inverse='_set_wife',
+        search='_search_husband',
         string='Husband',
         domain=[('sex', '=', 'M'), ('is_company', '=', False)],
         context={'default_sex': 'M', 'is_person': True})
