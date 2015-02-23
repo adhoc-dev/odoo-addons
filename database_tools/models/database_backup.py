@@ -54,15 +54,20 @@ class database_backup(models.Model):
 
     @api.one
     def restore(self, new_name, backups_enable):
-        f = file(os.path.join(self.path, self.name), 'r')
+        source_path = os.path.join(self.path, self.name)
+        self.restore_from_path(source_path, new_name, backups_enable)
+
+    @api.model
+    def restore_from_path(self, source_path, new_name, backups_enable):
+        f = file(source_path, 'r')
         data_b64 = base64.encodestring(f.read())
         f.close()
         try:
-            db_ws.exp_restore(self.name, data_b64)
+            db_ws.exp_restore(new_name, data_b64)
         except Exception, e:
             raise Warning(_(
                 'Unable to restore bd %s, this is what we get: \n %s') % (
-                self.name, e))
+                new_name, e))
         else:
             self.env['db.database'].backups_state(new_name, backups_enable)
 
