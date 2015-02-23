@@ -73,7 +73,12 @@
                     <field name="module_partner_samples"
                         class="oe_inline"/>
                     <label for="module_partner_samples"/>
-                </div>  
+                </div>
+                <div name='module_product_reference_required'>
+                    <field name="module_product_reference_required"
+                        class="oe_inline"/>
+                    <label for="module_product_reference_required"/>
+                </div> 
             </div>
             <label for="id" string="Import / Export and Reports"/>
             <div name="product_import_export">
