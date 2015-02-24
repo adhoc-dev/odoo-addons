@@ -9,6 +9,10 @@
             <field name="arch" type="xml">
                 <field name="price_unit" position="before">
                     <field name="list_price"/>
+                    <field name="list_discount"/>
+                </field>
+                <field name="discount" position="after">
+                    <field name="total_discount"/>
                 </field>
             </field>
         </record>

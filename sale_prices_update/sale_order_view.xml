@@ -5,7 +5,6 @@
 		<record model="ir.ui.view" id="sale_order_pricelist_form_view_inh">
 			<field name="name">sale.order.pricelist.form.inh</field>
 			<field name="model">sale.order</field>
-			<field name="type">form</field>
 			<field name="inherit_id" ref="sale.view_order_form" />
 			<field name="arch" type="xml">
 				<field name="pricelist_id" position="replace">
