@@ -7,18 +7,18 @@
             <field name="model">res.users</field>
             <field name="inherit_id" ref="base.view_users_form"/>
             <field name="arch" type="xml">
+                <form>
+                    <field name="restrict_prices" invisible="1"/>
+                </form>
                 <notebook>
-                    <page string="Discounts Restrictions">
-                        <group>
-                            <field name="restrict_prices"/>
-                            <field name="discount_restriction_ids" colspan="4" groups="sale.group_discount_per_so_line" attrs="{'invisible':[('restrict_prices', '=', False)]}">
-                                <tree editable="top">
-                                    <field name="pricelist_id"/>
-                                    <field name="min_discount"/>
-                                    <field name="max_discount"/>
-                                </tree>
-                            </field>
-                        </group>
+                    <page string="Discounts Restrictions" attrs="{'invisible':[('restrict_prices', '=', False)]}">
+                        <field name="discount_restriction_ids" colspan="4">
+                            <tree editable="top">
+                                <field name="pricelist_id"/>
+                                <field name="min_discount"/>
+                                <field name="max_discount"/>
+                            </tree>
+                        </field>
                     </page>
                 </notebook>
             </field>

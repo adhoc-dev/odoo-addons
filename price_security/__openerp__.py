@@ -35,6 +35,7 @@ For users with price restriction, it restricts:
         'views/invoice_view.xml',
         'views/partner_view.xml',
         'security/ir.model.access.csv',
+        'security/security.xml',
     ],
     'demo_xml': [],
     'test': [],

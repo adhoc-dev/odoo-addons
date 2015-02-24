@@ -24,11 +24,18 @@ class users(models.Model):
     _inherit = 'res.users'
 
     restrict_prices = fields.Boolean(
-        'Restrict Prices for this User?')
+        'Restrict Prices for this User?',
+        compute='get_restrict_prices',
+        )
     discount_restriction_ids = fields.One2many(
         'res.users.discount_restriction',
         'user_id',
         string='Discount Restrictions')
+
+    @api.one
+    @api.depends('groups_id')
+    def get_restrict_prices(self):
+        self.restrict_prices = self.has_group('price_security.group_restrict_prices')
 
     @api.multi
     def check_discount(self, discount, pricelist_id):
