@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from openerp import fields, models, api
+import openerp.addons.decimal_precision as dp
 
 
 class product_template(models.Model):
@@ -16,7 +17,27 @@ class product_template(models.Model):
     sale_price_currency_id = fields.Many2one(
         'res.currency', 'Sale Price Currency',
         required=True, default=get_currency_id,
-        help="Currency used for the Currency List Price.")
+        help="Currency used for the Currency List Price."
+        )
+    cia_currency_list_price = fields.Float(
+        'Company Currency Sale Price',
+        digits=dp.get_precision('Product Price'),
+        compute='get_cia_currency_list_price',
+        help="Base price on company currency at actual exchange rate",
+        )
+
+    @api.multi
+    @api.depends('list_price', 'sale_price_currency_id')
+    def get_cia_currency_list_price(self):
+        company_currency = self.env.user.company_id.currency_id
+        for product in self:
+            if product.sale_price_currency_id != company_currency:
+                cia_currency_list_price = product.sale_price_currency_id.compute(
+                    product.list_price, company_currency)
+            else:
+                cia_currency_list_price = product.list_price
+            product.cia_currency_list_price = cia_currency_list_price
+
 
     def _price_get(self, cr, uid, products, ptype='list_price', context=None):
         if not context:

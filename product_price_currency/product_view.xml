@@ -55,6 +55,7 @@
             <field name="arch" type="xml">
                 <field name="list_price" position="after">
                     <field name="sale_price_currency_id"/>
+                    <field name="cia_currency_list_price"/>
                 </field>
             </field>
         </record>
