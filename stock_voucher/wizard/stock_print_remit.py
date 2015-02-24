@@ -9,7 +9,10 @@ class stock_print_stock_voucher(models.TransientModel):
 
     @api.model
     def _get_picking(self):
+        print 'context', self._context
         active_id = self._context.get('active_id', False)
+        if not active_id:
+            active_id = 24
         return self.env['stock.picking'].browse(active_id)
 
     @api.model
@@ -33,8 +36,11 @@ class stock_print_stock_voucher(models.TransientModel):
         related='book_id.sequence_id.number_next_actual', readonly=True,
         )
     estimated_number_of_pages = fields.Integer(
-        'Estimated Number of Pages', readonly=True,
-        compute='get_estimated_number_of_pages',
+        'Number of Pages',
+        )
+    lines_per_voucher = fields.Integer(
+        'Lines Per Voucher',
+        related='book_id.lines_per_voucher',
         )
 
     @api.depends('picking_id', 'picking_id.voucher_ids')
@@ -44,9 +50,9 @@ class stock_print_stock_voucher(models.TransientModel):
             printed = True
         self.printed = printed
 
-    @api.depends('book_id', 'picking_id')
+    @api.onchange('book_id', 'picking_id')
     def get_estimated_number_of_pages(self):
-        lines_per_voucher = self.book_id.lines_per_voucher
+        lines_per_voucher = self.lines_per_voucher
         if lines_per_voucher == 0:
             estimated_number_of_pages = 1
         else:
@@ -58,19 +64,26 @@ class stock_print_stock_voucher(models.TransientModel):
 
     @api.multi
     def do_print_voucher(self):
-        voucher_ids = []
-        if not self.printed:
-            for page in range(self.estimated_number_of_pages):
-                number = self.env['ir.sequence'].next_by_id(
-                    self.book_id.sequence_id.id,)
-                voucher_ids.append(self.env['stock.picking.voucher'].create({
-                    'number': number,
-                    'book_id': self.book_id.id,
-                    'picking_id': self.picking_id.id,
-                    }).id)
-            self.picking_id.write({
-                'book_id': self.book_id.id})
         return self.picking_id.do_print_voucher()
+
+    @api.one
+    def assign_numbers(self):
+        voucher_ids = []
+        for page in range(self.estimated_number_of_pages):
+            number = self.env['ir.sequence'].next_by_id(
+                self.book_id.sequence_id.id,)
+            voucher_ids.append(self.env['stock.picking.voucher'].create({
+                'number': number,
+                'book_id': self.book_id.id,
+                'picking_id': self.picking_id.id,
+                }).id)
+        self.picking_id.write({
+            'book_id': self.book_id.id})
+
+    @api.multi
+    def do_print_and_assign(self):
+        self.assign_numbers()
+        return self.do_print_voucher()
 
     @api.multi
     def do_clean(self):

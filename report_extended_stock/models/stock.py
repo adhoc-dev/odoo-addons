@@ -23,7 +23,12 @@ class stock_picking(models.Model):
         report_name = report_obj.with_context(
             stock_report_type='voucher').get_report_name(
             'stock.picking', self.ids)
-        return self.env['report'].get_action(self, report_name)
+        report = self.env['report'].get_action(self, report_name)
+        print 'context', self._context
+        if self._context.get('keep_wizard_open', False):
+            report['type'] = 'ir.actions.report_dont_close_xml'
+        return report
+
 
     # def receipt_send_rfq(self, cr, uid, ids, context=None):
     #     '''  Override to use a modified template that includes a portal signup link '''

@@ -21,7 +21,6 @@ TODO:
     ],
     'depends': [
         'delivery',
-        # 'report_extended_stock', #lo requiere para garantizar que se pase por contexto "remit"
     ],
     'data': [
         'security/security.xml',
@@ -31,6 +30,7 @@ TODO:
         'stock_view.xml',
         'stock_remit_data.xml',
         'stock_menu.xml',
+        'views/views_templates.xml',
     ],
     'demo': [
     ],
