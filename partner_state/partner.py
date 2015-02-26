@@ -21,7 +21,9 @@ class res_partner(models.Model):
     #     string="Company Partner State")
     # TODO: tal vez mejor que usar un campo related a traves de company_id podriamos hacer un campo
     # property que dependa de la compania y entonces un partner pueda estar aprobado en una cia y en otra no
-    # Ademas haria que la barra de partner_state se muestre o no segun sea la compania del usuario logueado (se puede ver el codigo de price_security que trae un campo en funcion a los datos del usuario logueado)
+    # Ademas haria que la barra de partner_state se muestre o no segun sea la
+    # compania del usuario logueado (se puede ver el codigo de price_security
+    # que trae un campo en funcion a los datos del usuario logueado)
     _columns = {
         'company_partner_state': old_fields.related('company_id', 'partner_state', type='boolean'),
     }
@@ -60,11 +62,12 @@ class res_partner(models.Model):
             partners_read = self.read(fields)
             for partner_read in partners_read:
                 for partner_field in partner_read:
+                    partner_name = self.browse(partner_read['id']).display_name
                     if not partner_read[partner_field]:
                         raise Warning(
-                            _("Can not request approval, \
-                                required field %s empty on partner id %i!"
-                                % (partner_field, partner_read['id'])))
+                            _("Can not request approval,\
+                            required field %s empty on partner  %s!"
+                                % (partner_field, partner_name)))
         self.partner_state = 'pending'
 
     @api.multi
@@ -89,7 +92,9 @@ class res_partner(models.Model):
         if self.company_id.partner_state:
             company_field_ids = self.company_id.partner_state_field_ids
             if field_type == 'approval':
-                ret = [field.field_id.name for field in company_field_ids if field.approval]
+                ret = [
+                    field.field_id.name for field in company_field_ids if field.approval]
             elif field_type == 'track':
-                ret = [field.field_id.name for field in company_field_ids if field.track]
+                ret = [
+                    field.field_id.name for field in company_field_ids if field.track]
         return ret
