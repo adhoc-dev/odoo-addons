@@ -65,3 +65,6 @@ class adhoc_base_configuration(models.TransientModel):
     module_partner_samples = fields.Boolean(
         'Manage Samples Given to Customers.',
         help="""Installs the partner_samples module.""")
+    module_product_reference_required = fields.Boolean(
+        'Add required in field reference.',
+        help="""Installs the product_reference_required.""")
