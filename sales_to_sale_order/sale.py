@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from openerp.osv import fields, osv
 from openerp import SUPERUSER_ID, _
-from openerp.exceptions import except_orm, Warning, RedirectWarning
+from openerp.exceptions import Warning
 
 
 class sale_order(osv.osv):
