@@ -30,6 +30,14 @@
                         <label for="module_mail_sender_patch"/>
                     </div> 
                 </div>
+                <label for="id" string="Portal Fixes"/>
+                <div name="portal_fixes"> 
+                    <div name='module_portal_fix'>
+                        <field name="module_portal_fix"
+                            class="oe_inline"/>
+                        <label for="module_portal_fix"/>
+                    </div> 
+                </div>
             </group>
 
             <group string="Products">

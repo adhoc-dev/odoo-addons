@@ -6,10 +6,11 @@ class sale_order(models.Model):
     _inherit = 'sale.order'
 
     @api.one
-    # Dummy depend on name so that it is updated on view load
-    @api.depends('name')
+    # Dummy depend so that it is updated on view load
+    @api.depends('partner_id')
     def _get_user_restrict_prices(self):
-        self.user_restrict_prices = self.env.user.restrict_prices
+        self.user_restrict_prices = self.env['res.users'].has_group(
+            'price_security.group_restrict_prices')
 
     user_restrict_prices = fields.Boolean(
         compute='_get_user_restrict_prices',
@@ -20,10 +21,11 @@ class sale_order_line(models.Model):
     _inherit = 'sale.order.line'
 
     @api.one
-    # Dummy depend on name so that it is updated on view load
+    # Dummy depend so that it is updated on view load
     @api.depends('product_id')
     def _get_user_restrict_prices(self):
-        self.user_restrict_prices = self.env.user.restrict_prices
+        self.user_restrict_prices = self.env['res.users'].has_group(
+            'price_security.group_restrict_prices')
 
     user_restrict_prices = fields.Boolean(
         compute='_get_user_restrict_prices',

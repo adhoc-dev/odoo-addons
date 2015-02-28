@@ -1,28 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Ingenieria ADHOC - ADHOC SA
-#    https://launchpad.net/~ingenieria-adhoc
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
-
 import re
 import unicodedata
-from openerp import netsvc
 from openerp.osv import osv, fields
 from openerp import SUPERUSER_ID
 from openerp.tools.translate import _
@@ -31,23 +9,28 @@ from openerp.tools import ustr
 import string
 import random
 
+
 def extract_email(email):
     """ extract the email address from a user-friendly email address """
     addresses = email_split(email)
     return addresses[0] if addresses else ''
 
 # Inspired by http://stackoverflow.com/questions/517923
+
+
 def remove_accents(input_str):
     """Suboptimal-but-better-than-nothing way to replace accented
     latin letters by an ASCII equivalent. Will obviously change the
     meaning of input_str and work only for some cases"""
     input_str = ustr(input_str)
     nkfd_form = unicodedata.normalize('NFKD', input_str)
-    return u''.join([c for c in nkfd_form if not unicodedata.combining(c)])    
+    return u''.join([c for c in nkfd_form if not unicodedata.combining(c)])
+
 
 class partner(osv.osv):
+
     """"""
-    
+
     _inherit = 'res.partner'
 
     def _retrieve_user(self, cr, uid, ids, arg, karg, context=None):
@@ -69,18 +52,20 @@ class partner(osv.osv):
 
     _columns = {
         'login': fields.related('related_user_id', 'login', string='Login', type='char', size=64, readonly=True,
-            help="Used to log into the system"),
+                                help="Used to log into the system"),
         'password': fields.related('related_user_id', 'password', string='Password', type='char', size=64, readonly=True,
-            help="Keep empty if you don't want the user to be able to connect on the system."),
+                                   help="Keep empty if you don't want the user to be able to connect on the system."),
         'related_user_id': fields.function(_retrieve_user, relation='res.users', string='User', type='many2one', ),
         'template_user_id': fields.many2one('res.users', string="Template User", domain=[('active', '=', False)],),
     }
 
     def open_related_user(self, cr, uid, ids, context=None):
-        user_id = self.browse(cr, uid, ids[0], context=context).related_user_id.id
+        user_id = self.browse(
+            cr, uid, ids[0], context=context).related_user_id.id
         if not user_id:
             return False
-        view_ref = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'base', 'view_users_form')
+        view_ref = self.pool.get('ir.model.data').get_object_reference(
+            cr, uid, 'base', 'view_users_form')
         view_id = view_ref and view_ref[1] or False,
         return {
             'type': 'ir.actions.act_window',
@@ -90,10 +75,11 @@ class partner(osv.osv):
             'res_id': user_id,
             'target': 'current',
             # 'flags': {'form': {'action_buttons': True, 'options': {'mode': 'edit'}}}
-        }   
+        }
 
     def delete_user(self, cr, uid, ids, context=None):
-        user_id = self.browse(cr, uid, ids[0], context=context).related_user_id.id
+        user_id = self.browse(
+            cr, uid, ids[0], context=context).related_user_id.id
         if not user_id:
             return False
         return self.pool.get('res.users').unlink(cr, uid, [user_id], context=context)
@@ -121,17 +107,20 @@ class partner(osv.osv):
             group_ids = []
             if not partner.template_user_id:
                 raise osv.except_osv(_('Non template user selected!'),
-                _('Please define a template user for this partner: "%s" (id:%d).') % (partner.name, partner.id))
+                                     _('Please define a template user for this partner: "%s" (id:%d).') % (partner.name, partner.id))
             group_ids = [x.id for x in partner.template_user_id.groups_id]
             user_ids = self.retrieve_user(cr, SUPERUSER_ID, partner, context)
             if create_user:
-                # create a user if necessary, and make sure it is in the portal group
+                # create a user if necessary, and make sure it is in the portal
+                # group
                 if not user_ids:
-                    user_ids = [self._create_user(cr, SUPERUSER_ID, partner, context)]
-                res_users.write(cr, SUPERUSER_ID, user_ids, {'active': True, 'groups_id': [(6, 0, group_ids)]})
+                    user_ids = [
+                        self._create_user(cr, SUPERUSER_ID, partner, context)]
+                res_users.write(
+                    cr, SUPERUSER_ID, user_ids, {'active': True, 'groups_id': [(6, 0, group_ids)]})
                 # prepare for the signup process
                 # TODO make an option of this
-                # partner.signup_prepare()                
+                # partner.signup_prepare()
                 # TODO option to send or not email
                 # self._send_email(cr, uid, partner, context)
             elif user_ids:
@@ -144,11 +133,14 @@ class partner(osv.osv):
             @return: browse record of model res.users
         """
         res_users = self.pool.get('res.users')
-        create_context = dict(context or {}, noshortcut=True, no_reset_password=True)       # to prevent shortcut creation
+        # to prevent shortcut creation
+        create_context = dict(
+            context or {}, noshortcut=True, no_reset_password=True)
         if partner.email:
             login = extract_email(partner.email)
         else:
-            login = self._clean_and_make_unique(cr, uid, partner.name, context=context)
+            login = self._clean_and_make_unique(
+                cr, uid, partner.name, context=context)
         values = {
             # 'email': extract_email(partner.email),
             'login': login,
@@ -162,7 +154,8 @@ class partner(osv.osv):
         return res_users.create(cr, uid, values, context=create_context)
 
     def _clean_and_make_unique(self, cr, uid, name, context=None):
-        # when an alias name appears to already be an email, we keep the local part only
+        # when an alias name appears to already be an email, we keep the local
+        # part only
         name = remove_accents(name).lower().split('@')[0]
         name = re.sub(r'[^\w+.]+', '.', name)
         return self._find_unique(cr, uid, name, context=context)
@@ -174,10 +167,11 @@ class partner(osv.osv):
         """
         sequence = None
         while True:
-            new_name = "%s%s" % (name, sequence) if sequence is not None else name
+            new_name = "%s%s" % (
+                name, sequence) if sequence is not None else name
             if not self.pool.get('res.users').search(cr, uid, [('login', '=', new_name)]):
                 break
             sequence = (sequence + 1) if sequence else 2
-        return new_name    
+        return new_name
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

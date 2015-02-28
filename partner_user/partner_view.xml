@@ -1,26 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-
         <!-- INHERITED FORM -->
         <record id="view_partner_user_form" model="ir.ui.view">
             <field name="name">partner.user.form</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-<!--                 <page string="Contacts" position="after">
-                    <page string="Related User" name="User">
-                        <group>
-                            <button name="open_related_user" string="Open User" type="object" attrs="{'invisible':[('related_user_id','=',False)]}"/>
-                            <button name="delete_user" string="Delete User" type="object" attrs="{'invisible':[('related_user_id','=',False)]}"/>
-                            <button name="quickly_create_user" string="Quickly Create User" type="object"/>
-                            <field name="login"/>
-                            <field name="password"/>
-                            <field name="related_user_id" options="{'no_open': True}"/>
-                            <field name="template_user_id" options="{'no_open': True}"/>
-                        </group>
-                    </page>
-                </page> -->
                 <!-- We make email not required -->
                 <field name="email" position="attributes">
                     <!-- attrs="{'required': [('user_ids','!=', [])]}"/> -->

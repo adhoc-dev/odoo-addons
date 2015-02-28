@@ -10,6 +10,9 @@ class adhoc_base_configuration(models.TransientModel):
     module_mail_sender_patch = fields.Boolean(
         'Patch mail sender when using own smtp server instead of localhost',
         help="""Installs the mail_sender_patch module.""")
+    module_portal_fix = fields.Boolean(
+        'Fix company assigne on portal user creation from partner (assign partner company)',
+        help="""Installs the portal_fix module.""")
 
     # Usability and tools modules
     module_web_recipients_uncheck = fields.Boolean(

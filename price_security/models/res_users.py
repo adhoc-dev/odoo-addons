@@ -2,6 +2,7 @@
 from openerp import models, api, fields, _
 from openerp.exceptions import Warning
 
+
 class discount_restriction(models.Model):
     _name = 'res.users.discount_restriction'
     _description = 'Discount Restriction'
@@ -23,24 +24,14 @@ class discount_restriction(models.Model):
 class users(models.Model):
     _inherit = 'res.users'
 
-    restrict_prices = fields.Boolean(
-        'Restrict Prices for this User?',
-        compute='get_restrict_prices',
-        )
     discount_restriction_ids = fields.One2many(
         'res.users.discount_restriction',
         'user_id',
         string='Discount Restrictions')
 
-    @api.one
-    @api.depends('groups_id')
-    def get_restrict_prices(self):
-        self.restrict_prices = self.has_group('price_security.group_restrict_prices')
-
     @api.multi
     def check_discount(self, discount, pricelist_id):
-        """TODO"""
-        if self.restrict_prices and discount and discount != 0.0:
+        if discount and discount != 0.0:
             disc_restriction_env = self.env['res.users.discount_restriction']
             domain = [
                 ('pricelist_id', '=', pricelist_id), ('user_id', '=', self.id)]

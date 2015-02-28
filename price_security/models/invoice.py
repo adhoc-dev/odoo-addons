@@ -9,7 +9,8 @@ class account_invoice_line(models.Model):
     # Dummy depend on name so that it is updated on view load
     @api.depends('name')
     def _get_user_restrict_prices(self):
-        self.user_restrict_prices = self.env.user.restrict_prices
+        self.user_restrict_prices = self.env['res.users'].has_group(
+            'price_security.group_restrict_prices')
 
     user_restrict_prices = fields.Boolean(
         compute='_get_user_restrict_prices',

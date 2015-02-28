@@ -7,11 +7,8 @@
             <field name="model">res.users</field>
             <field name="inherit_id" ref="base.view_users_form"/>
             <field name="arch" type="xml">
-                <form>
-                    <field name="restrict_prices" invisible="1"/>
-                </form>
                 <notebook>
-                    <page string="Discounts Restrictions" attrs="{'invisible':[('restrict_prices', '=', False)]}">
+                    <page string="Discounts Permissions">
                         <field name="discount_restriction_ids" colspan="4">
                             <tree editable="top">
                                 <field name="pricelist_id"/>
