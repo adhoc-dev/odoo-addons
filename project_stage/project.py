@@ -41,4 +41,6 @@ class project(models.Model):
         " * Ready for next stage indicates the task is ready to be pulled to the next stage",
         required=False,
         copy=False)
+
+    _order = "sequence"
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
