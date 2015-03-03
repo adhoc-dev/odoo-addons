@@ -57,7 +57,7 @@ class account_voucher(models.Model):
         vals = super(account_voucher, self).first_move_line_get(
             voucher_id, move_id, company_currency, current_currency)
         voucher = self.browse(voucher_id)
-        if company_currency != current_currency:
+        if company_currency != current_currency and voucher.amount:
             debit = vals.get('debit')
             credit = vals.get('credit')
             total = debit - credit
