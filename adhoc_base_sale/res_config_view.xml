@@ -132,6 +132,11 @@
                         class="oe_inline"/>
                     <label for="module_sale_require_contract"/>
                 </div>
+                <div name='module_sale_contract_default'>
+                    <field name="module_sale_contract_default"
+                        class="oe_inline"/>
+                    <label for="module_sale_contract_default"/>
+                </div>
             </div>
         </group>
     </field>
