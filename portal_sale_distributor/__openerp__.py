@@ -9,9 +9,11 @@ Portal Distributor Sale
 =======================
     """,
     'author': 'Ingenieria ADHOC',
-    'depends': ['portal_sale'],
+    'depends': [
+        'portal_sale',
+        'portal_account_distributor',
+        ],
     'demo': [
-        'portal_demo.xml',
     ],
     'data': [
         'security/portal_security.xml',
