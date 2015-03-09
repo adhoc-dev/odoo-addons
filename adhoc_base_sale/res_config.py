@@ -69,3 +69,6 @@ then on sale orders lines this description will be used and no code""")
     module_sale_usability_extension = fields.Boolean(
         'Display Invoices and Delivery Orders on Sale Order form view (in dedicated tabs).',
         help="""Installs the sale_usability_extension module.""")
+    module_sale_contract_default = fields.Boolean(
+        'Concatenating the name of the contract with the name of the Partner',
+        help="""Installs the sale_contract_default module.""")

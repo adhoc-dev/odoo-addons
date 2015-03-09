@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-from openerp.osv import fields, osv
+from openerp import fields, models
 
-class hr_so_project(osv.osv_memory):
+
+class hr_so_project(models.TransientModel):
     _inherit = 'hr.sign.out.project'
-    _columns = {
-        'account_id': fields.many2one('account.analytic.account', 'Project / Analytic Account', domain=[('type','in',['normal','contract'])]),
-        }
+
+    account_id = fields.Many2one(
+        domain=[('type', 'in', ['normal', 'contract']), ('state', '=', 'open')]
+    )
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
