@@ -6,8 +6,11 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="commercial_partner_id" invisible="1"/>
+                </field>
                 <field name="project_id" position="attributes">
-                    <attribute name="domain">[('type','in',['contract']),('partner_id','in',[False, partner_id])]</attribute>
+                    <attribute name="domain">[('type','in',['contract']),'|',('partner_id','=',False),('partner_id.commercial_partner_id','=',commercial_partner_id)]</attribute>
                 </field>
             </field>
         </record>

@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Sale Contract Restrict Domain',
+    'name': 'Sale Contract Editable',
     'version': '1.0',
     'category': 'Projects & Services',
     'sequence': 14,
     'summary': '',
     'description': """
-Sale Contract Restrict Domain
+Sale Contract Editable
 =============================
     """,
     'author':  'ADHOC SA',
