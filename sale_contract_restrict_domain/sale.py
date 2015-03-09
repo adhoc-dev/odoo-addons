@@ -10,5 +10,4 @@ class sale_order(models.Model):
         string='Commercial Entity',
         related='partner_id.commercial_partner_id',
         store=True,
-        readonly=True,
-        help="The commercial entity that will be used on Journal Entries for this invoice")
+        readonly=True)
