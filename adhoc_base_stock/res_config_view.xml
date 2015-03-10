@@ -21,7 +21,7 @@
 
         <group string="Stock">
             <label for="id" string="Reports"/>
-            <div name="stock_features">
+            <div name="stock_reports">
                 <div name='module_stock_picking_list'>
                     <field name="module_stock_picking_list"
                         class="oe_inline"/>
@@ -40,6 +40,11 @@
             </div>
             <label for="id" string="Stock Features"/>
             <div name="stock_features">
+                <div name='module_product_stock_location'>
+                    <field name="module_product_stock_location"
+                        class="oe_inline"/>
+                    <label for="module_product_stock_location"/>
+                </div>
                 <div name='module_stock_picking_locations'>
                     <field name="module_stock_picking_locations"
                         class="oe_inline"/>
