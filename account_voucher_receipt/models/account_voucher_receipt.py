@@ -274,12 +274,28 @@ class account_voucher_receipt(models.Model):
                 residual_amount = 0.0
             context['amount'] = residual_amount
 
+        # Look for a default journal in order to avoid an error on wrong accont selection
+        journal_ids = []
+        if receipt.company_id:
+            domain = [
+                ('company_id', '=', receipt.company_id.id),
+                ('type', 'in', ('cash', 'bank'))]
+            # Esto seria si esta instalado el modulo de direction
+            if self.pool['account.journal'].fields_get(cr, uid, ['direction']):
+                if context.get('type', False) == 'payment':
+                    domain.append(('direction', 'in', [False, 'out']))
+                elif context.get('type', False) == 'receipt':
+                    domain.append(('direction', 'in', [False, 'in']))
+            journal_ids = self.pool['account.journal'].search(
+                cr, uid, domain, context=context)
+
         context['default_partner_id'] = receipt.partner_id.id
         context['default_receipt_id'] = receipt.id
         context['default_date'] = receipt.date
         context['default_period_id'] = receipt.period_id.id
         context['default_receiptbook_id'] = receipt.receiptbook_id.id
         context['default_company_id'] = receipt.company_id.id
+        context['default_journal_id'] = journal_ids and journal_ids[0] or False
         context['show_cancel_special'] = True
         context['from_receipt'] = True
 

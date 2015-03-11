@@ -11,9 +11,6 @@ class account_voucher(models.Model):
         compute='_get_available_journals',
         string='Available Journals',
         )
-    journal_id = fields.Many2one(
-        domain="[('id', 'in', available_journal_ids[0][2])]"
-        )
 
     @api.one
     @api.depends('company_id')
