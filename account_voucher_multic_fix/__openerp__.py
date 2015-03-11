@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-{   'active': False,
+{'active': False,
     'author':  'Ingenieria ADHOC',
     'website': 'www.ingadhoc.com',
     'category': 'Accounting & Finance',
-    'data': [   
-                'account_voucher_view.xml',
-                ],
+    'data': [
+        'account_voucher_view.xml',
+    ],
     'demo': [],
     'depends': ['account_voucher'],
     'description': '''

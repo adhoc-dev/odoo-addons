@@ -18,20 +18,20 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{   'active': False,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+{'active': False,
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'category': 'Accounting & Finance',
-    'data': [   
-                'security/account_voucher_receipt_security.xml',
-                'security/ir.model.access.csv',
-                'account_voucher_view.xml',
-                'account_voucher_receipt_view.xml',
-                'account_voucher_receiptbook_view.xml',
-                'workflow/account_voucher_receipt_workflow.xml',
-                'data/receipt_data.xml',
-                'res_config_view.xml',
-                ],
+    'data': [
+        'security/account_voucher_receipt_security.xml',
+        'security/ir.model.access.csv',
+        'views/account_voucher_view.xml',
+        'views/account_voucher_receipt_view.xml',
+        'views/account_voucher_receiptbook_view.xml',
+        'views/res_config_view.xml',
+        'workflow/account_voucher_receipt_workflow.xml',
+        'data/receipt_data.xml',
+    ],
     'demo': [],
     'depends': ['account_voucher'],
     'description': '''
@@ -43,6 +43,6 @@ Receipt
 * Add in another module report receipt and buttons
 ''',
     'installable': True,
-    'name': 'Receipt',
+    'name': 'Voucher Receipts',
     'test': [],
     'version': '1.243'}

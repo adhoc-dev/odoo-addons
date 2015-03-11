@@ -10,6 +10,7 @@
             <field name="arch" type="xml">
                 <page string="Payment Information" position="after" >
                     <page string="Checks" attrs="{'invisible':[('check_type','=', False)]}">
+                        <field name="dummy_journal_id" invisible="1"/>
                         <field name="check_type" invisible="1"/>
                         <field name="validate_only_checks" invisible="1"/>
                         <field name="delivered_third_check_ids" attrs="{'invisible':[('check_type','!=', 'third')]}" widget="many2many" domain="[('type','=','third'),('state', '=', 'holding'),('third_handed_voucher_id', '=', False),('journal_id', '=', journal_id)]" context="{'default_type':'third'}"/> 
@@ -18,9 +19,6 @@
                 </page>
                 <field name="amount" position="after">
                     <field name="amount_readonly" attrs="{'invisible':[('validate_only_checks','!=', True)]}"/>
-                </field>
-                <field name="journal_id" position="attributes">
-                    <attribute name="attrs">{'readonly':[('delivered_third_check_ids','!=',[]),('issued_check_ids','!=',[])]}</attribute>
                 </field>
                 <field name="amount" position="attributes">
                     <attribute name="attrs">{'invisible':[('validate_only_checks','=', True)]}</attribute>
@@ -36,6 +34,7 @@
             <field name="arch" type="xml">
                 <page string="Payment Information" position="after" >
                     <page string="Checks" attrs="{'invisible':[('check_type','!=', 'third')]}">
+                        <field name="dummy_journal_id" invisible="1"/>
                         <field name="check_type" invisible="1"/>
                         <field name="validate_only_checks" invisible="1"/>
                         <field name="received_third_check_ids"/> 
@@ -43,9 +42,6 @@
                 </page>
                 <field name="amount" position="after">
                     <field name="amount_readonly" attrs="{'invisible':[('validate_only_checks','!=', True)]}"/>
-                </field>
-                <field name="journal_id" position="attributes">
-                    <attribute name="attrs">{'readonly':[('received_third_check_ids','!=',[])]}</attribute>
                 </field>
                 <field name="amount" position="attributes">
                     <attribute name="attrs">{'invisible':[('validate_only_checks','=', True)]}</attribute>

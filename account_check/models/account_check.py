@@ -78,7 +78,7 @@ class account_check(models.Model):
         )
     type = fields.Selection(
         related='voucher_id.journal_id.check_type', string='Type',
-        required=True, readonly=True, store=True
+        readonly=True, store=True
         )
     journal_id = fields.Many2one(
         'account.journal',
@@ -166,7 +166,7 @@ class account_check(models.Model):
         'Vat', size=11, states={'draft': [('readonly', False)]}
         )
     deposit_account_move_id = fields.Many2one(
-        'account.move','Deposit Account Move', readonly=True
+        'account.move', 'Deposit Account Move', readonly=True
         )
     # this one is used for check rejection
     deposit_account_id = fields.Many2one(
@@ -182,21 +182,30 @@ class account_check(models.Model):
     def _check_number_issue(self, cr, uid, ids, context=None):
         for obj in self.browse(cr, uid, ids, context=context):
             if obj.type =='issue':
-                same_number_check_ids = self.search(cr, uid, [('id','!=',obj.id),('number','=',obj.number),('checkbook_id','=',obj.checkbook_id.id)], context=context)
+                same_number_check_ids = self.search(
+                    cr, uid, [
+                        ('id', '!=', obj.id),
+                        ('number', '=', obj.number),
+                        ('checkbook_id', '=', obj.checkbook_id.id)],
+                    context=context)
                 if same_number_check_ids:
                     return False
         return True
 
     def _check_number_third(self, cr, uid, ids, context=None):
         for obj in self.browse(cr, uid, ids, context=context):
-            if obj.type =='third':
-                same_number_check_ids = self.search(cr, uid, [('id','!=',obj.id),('number','=',obj.number),('voucher_id.partner_id','=',obj.voucher_id.partner_id.id)], context=context)
+            if obj.type == 'third':
+                same_number_check_ids = self.search(
+                    cr, uid, [
+                        ('id', '!=', obj.id),
+                        ('number', '=', obj.number),
+                        ('voucher_id.partner_id', '=', obj.voucher_id.partner_id.id)], context=context)
                 if same_number_check_ids:
                     return False
         return True
 
     _constraints = [
-        (_check_number_interval, 'Check Number Must be in Checkbook interval!', ['number','checkbook_id']),
+        (_check_number_interval,'Check Number Must be in Checkbook interval!', ['number','checkbook_id']),
         (_check_number_issue, 'Check Number must be unique per Checkbook!', ['number','checkbook_id']),
         (_check_number_third, 'Check Number must be unique per Customer and Bank!', ['number','bank_id']),
     ]

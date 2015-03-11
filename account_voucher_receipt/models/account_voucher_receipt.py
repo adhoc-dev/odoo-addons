@@ -266,14 +266,14 @@ class account_voucher_receipt(models.Model):
         mod_obj = self.pool.get('ir.model.data')
         act_obj = self.pool.get('ir.actions.act_window')
         receipt = self.browse(cr, uid, ids[0], context=context)
-        
+
         receipt_amount = context.get('receipt_amount', False)
         if receipt_amount:
             residual_amount = receipt_amount * 1.0 - receipt.receipt_amount
             if residual_amount < 0.0:
                 residual_amount = 0.0
             context['amount'] = residual_amount
-        
+
         context['default_partner_id'] = receipt.partner_id.id
         context['default_receipt_id'] = receipt.id
         context['default_date'] = receipt.date
@@ -292,5 +292,5 @@ class account_voucher_receipt(models.Model):
         action_vendor = act_obj.read(cr, uid, [action_vendor_id], context=context)[0]
         action_vendor['target'] = 'new'
         action_vendor['context'] = context
-        action_vendor['views'] = [action_vendor['views'][1],action_vendor['views'][0]]
-        return action_vendor        
+        action_vendor['views'] = [action_vendor['views'][1], action_vendor['views'][0]]
+        return action_vendor

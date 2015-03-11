@@ -31,15 +31,28 @@ class account_voucher(models.Model):
         )
     validate_only_checks = fields.Boolean(
         related='journal_id.validate_only_checks',
-        string='Validate only Checks', readonly=True,
+        string='Validate only Checks',
         )
     check_type = fields.Selection(
-        related='journal_id.check_type', string='Check Type', readonly=True,
+        related='journal_id.check_type',
+        string='Check Type',
+        )
+    dummy_journal_id = fields.Many2one(
+        related='journal_id',
+        string='Dummy Journa',
+        help='Field used for new api onchange methods over journal',
         )
     amount_readonly = fields.Float(
         related='amount', string='Total',
         digits_compute=dp.get_precision('Account'), readonly=True,
         )
+
+    @api.onchange('dummy_journal_id')
+    def change_dummy_journal_id(self):
+        """Unlink checks on journal change"""
+        self.delivered_third_check_ids = False
+        self.issued_check_ids = False
+        self.received_third_check_ids = False
 
     @api.multi
     def action_cancel_draft(self):
