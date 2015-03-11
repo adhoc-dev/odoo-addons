@@ -4,6 +4,7 @@ from openerp import fields, models
 
 class account_journal(models.Model):
     _inherit = "account.journal"
+
     direction = fields.Selection(
         [('in', 'In'), ('out', 'Out')], 'Direction',
         help="Select 'In' for customer payments."

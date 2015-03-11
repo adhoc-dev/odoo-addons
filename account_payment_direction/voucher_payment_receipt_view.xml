@@ -2,36 +2,17 @@
 <openerp>
     <data>
 
-
-        <!-- Register Payment Form (old Pay Invoice wizard) -->
+        <!-- Receipt dialog Form  -->
         <record model="ir.ui.view" id="view_vendor_receipt_dialog_form">
-            <field name="name">account.voucher.receipt.dialog.form</field>
+            <field name="name">account.voucher.vendor.dialog.form</field>
             <field name="model">account.voucher</field>
             <field name="inherit_id" ref="account_voucher.view_vendor_receipt_dialog_form"/>
             <field name="arch" type="xml">
                 <field name="journal_id" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </field>
-                <field name="journal_id" position="after">
-                    <field name="out_journal_id"
-                        domain="[('type','in',['bank', 'cash']),'|',('direction','=',False),('direction','=','out')]"
-                        widget="selection"
-                        on_change="onchange_copy_journal(out_journal_id, in_journal_id, context)"
-                        attrs="{'invisible':[('type', 'in', ['sale', 'receipt'])], 'required':[('type', 'not in', ['sale', 'receipt'])]}"                        
-                        string="Payment Method"/>     
-                    <field name="in_journal_id"
-                        domain="[('type','in',['bank', 'cash']),'|',('direction','=',False),('direction','=','in')]"
-                        widget="selection"
-                        on_change="onchange_copy_journal(out_journal_id, in_journal_id, context)"
-                        attrs="{'invisible':[('type', 'not in', ['sale', 'receipt'])], 'required':[('type', 'in', ['sale', 'receipt'])]}"                        
-                        string="Payment Method"/>                    
-                </field>
-                <field name="type" position="attributes">
-                    <attribute name="invisible">0</attribute>
+                    <attribute name="domain">[('id', 'in', available_journal_ids[0][2])]</attribute>
                 </field>
             </field>
         </record>
-
 
         <!-- Supplier Payment -->
         <record model="ir.ui.view" id="view_vendor_payment_form">
@@ -40,7 +21,7 @@
             <field name="inherit_id" ref="account_voucher.view_vendor_payment_form"/>
             <field name="arch" type="xml">
                 <field name="journal_id" position="attributes">
-                    <attribute name="domain">[('type','in',['bank', 'cash']),'|',('direction','=',False),('direction','=','out')]</attribute>
+                    <attribute name="domain">[('id', 'in', available_journal_ids[0][2])]</attribute>
                 </field>
             </field>
         </record>
@@ -52,7 +33,7 @@
             <field name="inherit_id" ref="account_voucher.view_vendor_receipt_form"/>     
             <field name="arch" type="xml">
                 <field name="journal_id" position="attributes">
-                    <attribute name="domain">[('type','in',['bank', 'cash']),'|',('direction','=',False),('direction','=','in')]</attribute>
+                    <attribute name="domain">[('id', 'in', available_journal_ids[0][2])]</attribute>
                 </field>
             </field>
         </record>
