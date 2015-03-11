@@ -19,6 +19,8 @@ class sale_order_line(models.Model):
             currency_id=self.invoice_id.currency_id.id
         ).price_get()
         list_price = price_get and price_get[self.product_id.id] or 0.0
+        discount = 0.0
+        total_discount = 0.0
         discount = list_price and (
             (list_price - self.price_unit) * 100.0 / list_price) or 0.0
         total_discount = discount + self.discount - (
@@ -30,9 +32,12 @@ class sale_order_line(models.Model):
 
     @api.one
     def _set_discount(self):
-        total_discount_perc = self.total_discount / 100.0
-        list_discount_perc = self.list_discount / 100.0
-        discount = 1.0 - ((1.0 - total_discount_perc) / (1.0 - list_discount_perc))
+        discount = 0.0
+        # if price_unit = 0 then we dont calculate anything
+        if self.price_unit:
+            total_discount_perc = self.total_discount / 100.0
+            list_discount_perc = self.list_discount / 100.0
+            discount = 1.0 - ((1.0 - total_discount_perc) / (1.0 - list_discount_perc))
         self.discount = discount * 100.0
 
     list_price = fields.Float(

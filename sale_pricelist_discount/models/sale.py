@@ -31,9 +31,12 @@ class sale_order_line(models.Model):
 
     @api.one
     def _set_discount(self):
-        total_discount_perc = self.total_discount / 100.0
-        list_discount_perc = self.list_discount / 100.0
-        discount = 1.0 - ((1.0 - total_discount_perc) / (1.0 - list_discount_perc))
+        discount = 0.0
+        # if price_unit = 0 then we dont calculate anything
+        if self.price_unit:
+            total_discount_perc = self.total_discount / 100.0
+            list_discount_perc = self.list_discount / 100.0
+            discount = 1.0 - ((1.0 - total_discount_perc) / (1.0 - list_discount_perc))
         self.discount = discount * 100.0
 
     list_price = fields.Float(
