@@ -49,7 +49,6 @@ class account_voucher(models.Model):
         checks.action_cancel_draft()
         return res
 
-    # def first_move_line_get(self):
     @api.model
     def first_move_line_get(
             self, voucher_id, move_id, company_currency,
@@ -109,49 +108,6 @@ class account_voucher(models.Model):
                 for check in voucher.received_third_check_ids:
                     check.signal_workflow('draft_router')
         return res
-
-    def onchange_journal(
-            self, cr, uid, ids, journal_id, line_ids, tax_id,
-            partner_id, date, amount, ttype, company_id, context=None):
-        '''
-        Override the onchange_journal function to check which are the page and fields that should be shown
-        in the view.
-        '''
-        check_type = False
-        validate_only_checks = False
-        ret = super(account_voucher, self).onchange_journal(
-            cr, uid, ids, journal_id, line_ids, tax_id, partner_id,
-            date, amount, ttype, company_id, context=context)
-        if not ret:
-            ret = {}
-        if 'value' not in ret:
-            ret['value'] = {}
-        if journal_id:
-            journal_obj = self.pool.get('account.journal')
-            journal = journal_obj.browse(cr, uid, journal_id, context=context)
-            if ids:
-                for voucher in self.browse(cr, uid, ids, context=context):
-                    if voucher.delivered_third_check_ids or voucher.received_third_check_ids or voucher.issued_check_ids:
-                        # todo, este warning deberia sumarse a los warnings que
-                        # pueden venir en ret['warning']
-                        warning = {
-                            'title': _('Check Error!'),
-                            'message': _('You can not change the journal if there are checks')
-                        }
-                        ret['warning'] = warning
-                        ret['value']['journal_id'] = voucher.journal_id.id
-
-                        # so that check_type is readed ok later
-                        journal = voucher.journal_id
-            else:
-                ret['value']['delivered_third_check_ids'] = False
-                ret['value']['received_third_check_ids'] = False
-                ret['value']['issued_check_ids'] = False
-            validate_only_checks = journal.validate_only_checks
-            check_type = journal.check_type
-        ret['value']['check_type'] = check_type
-        ret['value']['validate_only_checks'] = validate_only_checks
-        return ret
 
     @api.one
     @api.onchange('amount_readonly')

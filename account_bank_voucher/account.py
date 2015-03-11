@@ -60,9 +60,10 @@ class account_voucher(models.Model):
 
     @api.multi
     def cancel_voucher(self):
-        if self.bank_statement_line_ids.statement_id.state == 'confirm':
+        # run with sudo because some users may not have access to statement line
+        if self.sudo().bank_statement_line_ids.statement_id.state == 'confirm':
             raise Warning(
                 _("You can not cancel a voucher that is linked to a confirm bank statement"))
         else:
             super(account_voucher, self).cancel_voucher()
-            return self.bank_statement_line_ids.unlink()
+            return self.sudo().bank_statement_line_ids.unlink()

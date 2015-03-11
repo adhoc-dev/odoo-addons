@@ -19,6 +19,9 @@
                 <field name="amount" position="after">
                     <field name="amount_readonly" attrs="{'invisible':[('validate_only_checks','!=', True)]}"/>
                 </field>
+                <field name="journal_id" position="attributes">
+                    <attribute name="attrs">{'readonly':[('delivered_third_check_ids','!=',[]),('issued_check_ids','!=',[])]}</attribute>
+                </field>
                 <field name="amount" position="attributes">
                     <attribute name="attrs">{'invisible':[('validate_only_checks','=', True)]}</attribute>
                 </field>
@@ -40,6 +43,9 @@
                 </page>
                 <field name="amount" position="after">
                     <field name="amount_readonly" attrs="{'invisible':[('validate_only_checks','!=', True)]}"/>
+                </field>
+                <field name="journal_id" position="attributes">
+                    <attribute name="attrs">{'readonly':[('received_third_check_ids','!=',[])]}</attribute>
                 </field>
                 <field name="amount" position="attributes">
                     <attribute name="attrs">{'invisible':[('validate_only_checks','=', True)]}</attribute>

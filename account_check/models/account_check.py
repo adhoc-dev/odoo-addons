@@ -233,22 +233,8 @@ class account_check(models.Model):
         self.create_workflow()
         return True
 
-    # @api.one
-    # def paid_amount_in_company_currency(self):
-    #     voucher = self.env['account.voucher'].with_context(
-    #         date=self.voucher_id.date
-    #         ).browse(self.voucher_id.id)
-    #     company_currency_amount = self.currency_id.with_context(
-    #         voucher_special_currency=voucher.payment_rate_currency_id and voucher.payment_rate_currency_id.id or False,
-    #         voucher_special_currency_rate=voucher.currency_id.rate * voucher.payment_rate,
-    #         ).compute(self.amount, self.company_id.currency_id)
-    #     print 'company_currency_amount', company_currency_amount
-    #     self.company_currency_amount = company_currency_amount
-
     @api.multi
     def action_hold(self):
-        # TODO borrar si no usamos. Por ahora uso una modifico first_move_line_get en account voucher para tener mas precisos estos numeros
-        # self.paid_amount_in_company_currency()
         self.write({'state': 'holding'})
         return True
 
