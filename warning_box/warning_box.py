@@ -1,57 +1,69 @@
-from openerp.osv import osv, fields
-from openerp.tools.translate import _
+# -*- coding: utf-8 -*-
+from openerp import models, fields, api, _
 
 WARNING_TYPES = [
     ('warning', 'Warning'), ('info', 'Information'), ('error', 'Error')]
 
 
-class warning_box(osv.osv_memory):
+class warning_box(models.TransientModel):
     _name = 'warning_box'
     _description = 'warning_box'
-    _columns = {'type': fields.selection(WARNING_TYPES, string='Type', readonly=True),
-                'title': fields.char(string="Title", size=100, readonly=True),
-                'message': fields.text(string="Message", readonly=True), }
     _req_name = 'title'
 
-    def _get_view_id(self, cr, uid):
-        res = self.pool.get('ir.model.data').get_object_reference(cr, uid,
-                                                                  'warning_box', 'warning_box_form')
-        if res:
-            return res[1]
-        else:
-            return False
+    type = fields.Selection(
+        WARNING_TYPES,
+        string='Type',
+        readonly=True
+        )
+    title = fields.Char(
+        string="Title",
+        size=100,
+        readonly=True
+        )
+    message = fields.Text(
+        string="Message",
+        readonly=True
+        )
 
-    def message(self, cr, uid, id, context):
-        message = self.browse(cr, uid, id)
-        message_type = [t[1]for t in WARNING_TYPES if message.type == t[0]][0]
+    @api.multi
+    def message_action(self):
+        self.ensure_one
+        message_type = [t[1]for t in WARNING_TYPES if self.type == t[0]][0]
         res = {
-            'name': '%s: %s' % (_(message_type), _(message.title)),
+            'name': '%s: %s' % (_(message_type), _(self.title)),
             'view_type': 'form',
             'view_mode': 'form',
-            'view_id': self._get_view_id(cr, uid),
+            'view_id': self.env['ir.model.data'].xmlid_to_res_id(
+                'warning_box.warning_box_form'),
             'res_model': 'warning_box',
             'domain': [],
-            'context': context,
+            'context': self._context,
             'type': 'ir.actions.act_window',
             'target': 'new',
-            'res_id': message.id
+            'res_id': self.id
         }
         return res
 
-    def warning(self, cr, uid, title, message, context=None):
-        id = self.create(
-            cr, uid, {'title': title, 'message': message, 'type': 'warning'})
-        res = self.message(cr, uid, id, context)
-        return res
+    @api.model
+    def warning(self, title, message):
+        record = self.create({
+            'title': title,
+            'message': message,
+            'type': 'warning'})
+        return record.message_action()
 
-    def info(self, cr, uid, title, message, context=None):
-        id = self.create(
-            cr, uid, {'title': title, 'message': message, 'type': 'info'})
-        res = self.message(cr, uid, id, context)
-        return res
+    @api.model
+    def info(self, title, message):
+        record = self.create({
+            'title': title,
+            'message': message,
+            'type': 'info'})
+        return record.message_action()
 
-    def error(self, cr, uid, title, message, context=None):
-        id = self.create(
-            cr, uid, {'title': title, 'message': message, 'type': 'error'})
-        res = self.message(cr, uid, id, context)
-        return res
+    @api.model
+    def error(self, title, message):
+        record = self.create({
+            'title': title,
+            'message': message,
+            'type': 'info'})
+        return record.message_action()

@@ -3,11 +3,12 @@
 		<record id="warning_box_form" model="ir.ui.view">
 			 <field name="name">warning_box.form</field> 
 			 <field name="model">warning_box</field> 
-			 <field eval="20" name="priority"/> 
 			 <field name="arch" type="xml"> 
-				 <form string="Warning" version="7.0"> 
+				 <form string="Warning">
 				 	<field name="message" nolabel="1"/> 
-				 	<footer> <button string="OK" class="oe_highlight" special="cancel"/> </footer> 
+				 	<footer>
+				 		<button string="OK" class="oe_highlight" special="cancel"/>
+				 	</footer> 
 				 </form> 
 			</field>
 		</record>
@@ -21,6 +22,5 @@
 	        <field name="target">new</field>
 	    </record>
 	</data>
- 
 </openerp>
 
