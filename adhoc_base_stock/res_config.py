@@ -11,6 +11,9 @@ class adhoc_base_configuration(models.TransientModel):
         help="""Installs the stock_multic_fix module.""")
 
     # Stock
+    module_stock_picking_partner_editable = fields.Boolean(
+        'Make Partner Editable on Confirmed Stock Pickings',
+        help="""Installs the stock_picking_partner_editable module.""")
     module_product_stock_location = fields.Boolean(
         'Filter by locations on product view to see product stock in specified location',
         help="""Installs the product_stock_location module.""")

@@ -40,6 +40,11 @@
             </div>
             <label for="id" string="Stock Features"/>
             <div name="stock_features">
+                <div name='module_stock_picking_partner_editable'>
+                    <field name="module_stock_picking_partner_editable"
+                        class="oe_inline"/>
+                    <label for="module_stock_picking_partner_editable"/>
+                </div>
                 <div name='module_product_stock_location'>
                     <field name="module_product_stock_location"
                         class="oe_inline"/>
