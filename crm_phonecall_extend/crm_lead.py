@@ -16,7 +16,7 @@ class crm_lead(osv.osv):
             phonecall_ids = phonecall_obj.search(cr, uid, [(
                 'opportunity_id', '=', lead.id),
                 ('state', 'in', ('open', 'pending'))],
-                order='date desc', context=context)
+                order='date asc', context=context)
             if phonecall_ids:
                 phonecall = phonecall_obj.browse(
                     cr, uid, phonecall_ids[0], context=context)

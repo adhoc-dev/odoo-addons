@@ -40,7 +40,18 @@
             </field>
         </record>
 
-
+        <!-- INHERITED Tree -->
+        <record model="ir.ui.view" id="partner_tree_view">
+            <field name="name">partner.tree</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <field name="email" position="after">
+                    <field name="area_id"/>
+                </field>
+            </field>
+        </record>
     </data>
 </openerp>
 
