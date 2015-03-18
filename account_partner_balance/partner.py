@@ -13,6 +13,6 @@ class res_partner(models.Model):
     @api.one
     @api.depends('debit', 'credit')
     def _get_balance(self):
-        self.balance = self.debit - self.credit
+        self.balance = self.credit - self.debit
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
