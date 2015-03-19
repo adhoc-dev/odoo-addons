@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'ADHOC Modules Configuration - Sales',
+    'name': 'ADHOC Modules Configuration - Purchase',
     'version': '1.0',
     'category': 'ADHOC Modules',
     'summary': 'extra, addons, modules',
     'description': """
-ADHOC Modules Configuration - Sales
+ADHOC Modules Configuration - Purchase
 ===================================
     """,
     'author':  'Ingenieria ADHOC',
