@@ -7,9 +7,8 @@
     'author': 'Ingenieria ADHOC',
     'website': 'www.ingadhoc.com',
     'depends': [
-        'sale',
+        'account',
         'report_aeroo',
-        'l10n_ar_invoice',
         ],
     'data': [
         'wizard/account_summary_wizard_view.xml',

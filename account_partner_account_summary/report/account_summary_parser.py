@@ -112,11 +112,11 @@ class Parser(rml_parse):
         return False
 
     def get_move_name(self, move):
-        # name = ''
-        # if move.journal_id:
-        #     name += move.journal_id.name + ' '
-        # name += move.name
-        return move.document_number
+        if move.fields_get(['document_number']):
+            name = move.document_number
+        else:
+            name = move.name
+        return name
 
     def get_move_debit_and_credit(self, move):
         debit = 0.0
