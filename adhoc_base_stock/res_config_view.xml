@@ -98,6 +98,11 @@
                         class="oe_inline"/>
                     <label for="module_stock_inventory_negative_line"/>
                 </div>
+                <div name='module_stock_move_defaults'>
+                    <field name="module_stock_move_defaults"
+                        class="oe_inline"/>
+                    <label for="module_stock_move_defaults"/>
+                </div>
             </div>
         </group>
 

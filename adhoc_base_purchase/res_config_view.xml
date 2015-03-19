@@ -47,6 +47,11 @@
                         class="oe_inline"/>
                     <label for="module_purchase_usability_extension"/>
                 </div>
+                <div name='module_purchase_line_defaults'>
+                    <field name="module_purchase_line_defaults"
+                        class="oe_inline"/>
+                    <label for="module_purchase_line_defaults"/>
+                </div>
             </div>
         </group>
     </field>
