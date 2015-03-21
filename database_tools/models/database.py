@@ -9,6 +9,8 @@ from openerp.tools import config
 from openerp.service import db as db_ws
 from dateutil.relativedelta import relativedelta
 import time
+import logging
+_logger = logging.getLogger(__name__)
 # TODO una buena forma generica de ejecutar metodos y devolver errores
 # def execute(connector, method, *args):
 #     res = False
@@ -249,28 +251,32 @@ class db_database(models.Model):
             database.unlink()
 
     @api.one
-    def database_backup(self, type='daily'):
+    def database_backup(self, type='manual'):
         now = datetime.now()
 
         # check if bd exists
         try:
             if not db_ws.exp_db_exist(self.name):
-                # TODO escribir en el log
-                print 'no existe'
-        except:
-            raise
-            # TODO escribir en el log
+                error = "Database %s do not exist" % (self.name)
+                _logger.warning(error)
+                return {'error': error}
+        except Exception, e:
+            error = "Could not check if database %s exists. This is what we get:\n\
+                %s" % (self.name, e)
+            _logger.warning(error)
+            return {'error': error}
 
-        # verificar o crear path para backups
+        # crear path para backups si no existe
         try:
-            # TODO escribir en el log
             if not os.path.isdir(self.backups_path):
                 os.makedirs(self.backups_path)
         except:
-            # TODO escribir en el log
-            raise
+            error = "Could not create folder %s for backups.\
+                This is what we get:\n\
+                %s" % (self.backups_path, e)
+            _logger.warning(error)
+            return {'error': error}
 
-        # TODO agregar monthly o lo que sea al nombre
         backup_name = '%s_%s_%s.zip' % (
             self.name, type, now.strftime('%Y%m%d_%H%M%S'))
         backup_path = os.path.join(self.backups_path, backup_name)
@@ -281,11 +287,11 @@ class db_database(models.Model):
             backup.write(base64.b64decode(
                 db_ws.exp_dump(self.name)))
         except:
-            # TODO escribir en el log
-            raise Warning(
-                _('Unable to dump Database. If you are working in an \
+            error = 'Unable to dump Database. If you are working in an\
                     instance with "workers" then you can try \
-                    restarting service.'))
+                    restarting service.'
+            _logger.warning(error)
+            return {'error': error}
         else:
             backup.close()
             self.backup_ids.create({
@@ -295,14 +301,10 @@ class db_database(models.Model):
                 'date': now,
                 'type': type,
                 })
-        # TODO analizar si hacemos como en los contratos
-        # next_date = datetime.datetime.strptime(
-            # contract.recurring_next_date or current_date, "%Y-%m-%d")
+
         current_date = time.strftime('%Y-%m-%d')
         next_date = datetime.strptime(current_date, '%Y-%m-%d')
         interval = 1
-        # next_date = datetime.datetime.strptime(
-            # contract.recurring_next_date or current_date, "%Y-%m-%d")
         if type == 'daily':
             new_date = next_date+relativedelta(days=+interval)
             self.daily_next_date = new_date
@@ -312,8 +314,7 @@ class db_database(models.Model):
         elif type == 'monthly':
             new_date = next_date+relativedelta(months=+interval)
             self.monthly_next_date = new_date
-            # logger.notifyChannel(
-                # 'backup', netsvc.LOG_INFO,
-                # "Could'nt backup database %s. Bad database administrator password for server running at http://%s:%s" %(rec.name, rec.host, rec.port))
+        _logger.info('Backup %s Created' % backup_name)
+        return {'backup_name': backup_name}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
