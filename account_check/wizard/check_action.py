@@ -75,8 +75,8 @@ class account_check_action(models.TransientModel):
                 check_move_field = 'debit_account_move_id'
                 journal = check.checkbook_id.debit_journal_id
                 partner = check.destiny_partner_id.id
-                debit_account_id = journal.default_debit_account_id.id
-                credit_account_id = check.voucher_id.journal_id.default_credit_account_id.id
+                credit_account_id = journal.default_debit_account_id.id
+                debit_account_id = check.voucher_id.journal_id.default_credit_account_id.id
                 check_vals = {}
                 signal = 'handed_debited'
 
