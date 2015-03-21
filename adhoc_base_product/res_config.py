@@ -8,6 +8,9 @@ class adhoc_base_configuration(models.TransientModel):
     # Fixes
 
     # Product modules
+    module_product_share_father_son = fields.Boolean(
+        'Share products between fother and son companies',
+        help="""Installs the product_share_father_son module.""")
     module_product_template_search_by_ean13 = fields.Boolean(
         'Allow search by ean13 on product template',
         help="""Installs the product_template_search_by_ean13 module.""")

@@ -20,6 +20,10 @@ class adhoc_base_configuration(models.TransientModel):
         help="""Installs the account_onchange_fix module.""")
 
     # Account modules
+
+    module_account_voucher_contact = fields.Boolean(
+        'Show Invoice Partner on voucher lines, usefull when you want to know the contact making a payment',
+        help="""Installs the account_voucher_contact module.""")
     module_account_analytic_analysis_mods = fields.Boolean(
         'Make some improovements on contracts managements.',
         help="""Installs the account_analytic_analysis_mods module. Basically:\

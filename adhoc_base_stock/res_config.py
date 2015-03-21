@@ -57,5 +57,5 @@ class adhoc_base_configuration(models.TransientModel):
         'When the sale order has "Create Invoice" set to "On Delivery Order", add a button "Create Invoice" on the Delivery Order once the goods are shipped.',
         help="""Installs the stock_invoice_try_again module.""")
     module_stock_move_defaults = fields.Boolean(
-        'Set default onchange calling methods in shipping  to facilitate the import of files.',
+        'Set defaults values on stock moves in order to facilitate file import.',
         help="""Installs the stock_move_defaults module.""")

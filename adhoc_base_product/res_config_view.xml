@@ -15,6 +15,11 @@
                     <field name="module_product_dimensions"
                         class="oe_inline"/>
                     <label for="module_product_dimensions"/>
+                </div> 
+                <div name='module_product_share_father_son'>
+                    <field name="module_product_share_father_son"
+                        class="oe_inline"/>
+                    <label for="module_product_share_father_son"/>
                 </div>            
                 <div name='module_product_supplier_pricelist'>
                     <field name="module_product_supplier_pricelist"

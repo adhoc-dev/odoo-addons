@@ -111,6 +111,11 @@
                     <field name="module_account_followup"
                         class="oe_inline"/>
                     <label for="module_account_followup"/>
+                </div>    
+                <div name='module_account_voucher_contact'>
+                    <field name="module_account_voucher_contact"
+                        class="oe_inline"/>
+                    <label for="module_account_voucher_contact"/>
                 </div>
             </div>
             <label for="id" string="Advanced Accounting Features"/>

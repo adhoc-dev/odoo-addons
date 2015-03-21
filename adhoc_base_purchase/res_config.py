@@ -27,5 +27,5 @@ class adhoc_base_configuration(models.TransientModel):
         'Restrict purchase uom to the product uom, purchase product uom and uoms defined in UOM Prices.',
         help="""Installs the purchase_uom_prices_uoms.""")
     module_purchase_line_defaults = fields.Boolean(
-        'Set default onchange calling methods in purchasing to facilitate the import of files.',
+        'Set defaults values on purchase orders in order to facilitate file import.',
         help="""Installs the purchase_line_defaults.""")
