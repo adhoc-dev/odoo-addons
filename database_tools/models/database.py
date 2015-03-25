@@ -138,22 +138,18 @@ class db_database(models.Model):
     def _get_backups(self):
         self.backup_count = len(self.backup_ids)
 
-    @api.one
-    def action_backups_state(self):
-        self.backups_state(self.name, True)
-
     @api.model
-    def backups_state(self, db_name, type):
+    def backups_state(self, db_name, state_type):
         registry = modules.registry.RegistryManager.get(db_name)
         with registry.cursor() as db_cr:
-            # registry['ir.config_parameter'].init(db_cr, force=True)
-            # TODO ver si mejor desactivamos modificando el cron
             registry['ir.config_parameter'].set_param(
-                db_cr, 1, 'prueba.prueba', 'aaaaaaaasdasdasdaaaa')
+                db_cr, 1, 'database.backups.enable', str(state_type))
         return True
 
     @api.one
     def duplicate(self, new_name, backups_enable):
+        # TODO Lo desactivamos porque no sabemos si vamos a usarlo
+        raise Warning(_('Not Implemented yet'))
         # TODO poner un warning o algo de que si se duplica la bd actual se
         # arroja un warning, ver si lo podemos controlar
         # (porque se cierran las conexiones)
@@ -204,7 +200,12 @@ class db_database(models.Model):
 
     @api.model
     def cron_database_backup(self):
-        # TODO log diciendo running backup_type backups
+        backups_enable = self.env['ir.config_parameter'].get_param(
+                'database.backups.enable')
+        if backups_enable != 'True':
+            _logger.warning('Backups are disable. If you want to enable it you should add the parameter database.backups.enable with value True')
+            return False
+        _logger.info('Running backups cron')
         current_date = time.strftime('%Y-%m-%d')
         daily_databases = self.search([
             ('daily_backup', '=', True),

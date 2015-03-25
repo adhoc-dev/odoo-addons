@@ -33,7 +33,8 @@ class database_backup(models.Model):
         required=True
     )
     type = fields.Selection(
-        [('daily', 'Daily'), ('weekly', 'Weekly'), ('monthly', 'Monthly')],
+        [('manual', 'Manual'), ('daily', 'Daily'),
+         ('weekly', 'Weekly'), ('monthly', 'Monthly')],
         string='Type',
         required=True
     )
@@ -59,6 +60,8 @@ class database_backup(models.Model):
 
     @api.model
     def restore_from_path(self, source_path, new_name, backups_enable):
+        # TODO Lo desactivamos porque no sabemos si vamos a usarlo
+        raise Warning(_('Not Implemented yet'))
         f = file(source_path, 'r')
         data_b64 = base64.encodestring(f.read())
         f.close()
