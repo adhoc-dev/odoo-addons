@@ -8,10 +8,8 @@
             <field name="model">project.project</field>
             <field name="inherit_id" ref="project.view_project_kanban"/>
             <field name="arch" type="xml">
-                <a t-if="record.use_tasks.raw_value" name="194" type="action" style="margin-right: 10px" position="replace">
-                    <a t-if="widget.view.is_action_enabled('edit')" name="194" type="edit" style="margin-right: 10px">
-                        <t t-raw="record.task_count.raw_value"/> Tasks
-                    </a>
+                <a t-if="record.use_tasks.raw_value" position="attributes">
+                    <attribute name="type">edit</attribute>
                 </a>
             </field>
         </record>
