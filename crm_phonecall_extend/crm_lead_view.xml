@@ -8,7 +8,6 @@
             <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
             <field name="arch" type="xml">
                 <field name="date_action" position='before'>
-                    <field name="next_phonecall_id" />
                     <field name="phonecall_date"/>
                     <field name="phonecall_type_id"/>
                     <field name="phonecall_user_id"/>
