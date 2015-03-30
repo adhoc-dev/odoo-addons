@@ -36,6 +36,7 @@ Ejemplo de uso:
         ],
     'data': [
         'wizard/sale_make_invoice_advance.xml',
+        'invoice_view.xml',
         'sale_view.xml',
         'company_view.xml',
     ],

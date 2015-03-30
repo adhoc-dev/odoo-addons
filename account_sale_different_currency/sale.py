@@ -96,6 +96,7 @@ class sale_order(osv.osv):
                 'invoice_line_tax_id': res.get('invoice_line_tax_id'),
                 'account_analytic_id': order.project_id.id or False,
                 'invoice_id': inv_id,
+                'sequence': 100,
             }
             obj_invoice_line.create(cr, uid, adjust_line_vals)
             inv_obj.button_compute(cr, uid, [inv_id])

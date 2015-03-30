@@ -8,6 +8,7 @@
                 <group name="account_grp" position="after">
                     <group name="sale_grp" string="Sales">
                         <field name="currency_adjust_product_id"/>
+                        <field name="default_advance_product_id"/>
                     </group>
                 </group>
             </field>

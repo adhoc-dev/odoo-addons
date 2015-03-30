@@ -43,14 +43,39 @@ class sale_advance_payment_inv(osv.osv_memory):
             invoice_currency_id = sale.different_currency_id and sale.different_currency_id.id or False
         return invoice_currency_id
 
+    def _get_product_id(self, cr, uid, context=None):
+        print 'context', context
+        sale_id = context.get('active_id', False)
+        product_id = False
+        if sale_id:
+            sale = self.pool['sale.order'].browse(
+                cr, uid, sale_id, context=context)
+            product_id = sale.company_id.default_advance_product_id and sale.company_id.default_advance_product_id.id or False
+        return product_id
+
     _defaults = {
         'invoice_currency_rate': _get_invoice_currency_rate,
         'invoice_currency_id': _get_invoice_currency_id,
+        'product_id': _get_product_id,
     }
+
+    def onchange_method(
+            self, cr, uid, ids,
+            advance_payment_method, product_id, context=None):
+        # Modificamos esta funcion para poder usar percentage con producto
+        # y que no ponga el product en null
+        if advance_payment_method == 'percentage':
+            return {'value': {'amount': 0}}
+            # return {'value': {'amount':0, 'product_id':False }}
+        if product_id and advance_payment_method == 'fixed':
+            product = self.pool.get('product.product').browse(cr, uid, product_id, context=context)
+            return {'value': {'amount': product.list_price}}
+        return {'value': {'amount': 0}}
 
     def create_invoices(self, cr, uid, ids, context=None):
         wizard = self.browse(cr, uid, ids[0], context)
-        if wizard.advance_payment_method in ('percentage', 'lines'):
+        if wizard.advance_payment_method in ('lines'):
+        # if wizard.advance_payment_method in ('percentage', 'lines'):
             raise osv.except_osv(
                 _('Configuration Error!'),
                 _("If Invoice in different Currency you can not select 'Percentage' or 'Some order lines'."))
@@ -117,7 +142,11 @@ class sale_advance_payment_inv(osv.osv_memory):
                 raise osv.except_osv(_('Incorrect Data'),
                                      _('The value of Advance Amount must be positive.'))
             if wizard.advance_payment_method == 'percentage':
-                inv_amount = sale.amount_total * wizard.amount / 100
+                # Esta es la parte que modificamos
+                inv_amount = sale.amount_untaxed * wizard.amount / 100
+                if wizard.invoice_currency_id:
+                    sale_currency_price_unit = inv_amount
+                    inv_amount = inv_amount * wizard.invoice_currency_rate
                 if not res.get('name'):
                     res['name'] = _("Advance of %s %%") % (wizard.amount)
             else:
@@ -151,6 +180,7 @@ class sale_advance_payment_inv(osv.osv_memory):
                 res['invoice_line_tax_id'] = False
 
             line_name = res.get('name')
+            line_name += '. TC: %s' % wizard.invoice_currency_rate
             for line in sale.order_line:
                 line_name += '\n* %s' % (line.name)
 
@@ -167,6 +197,7 @@ class sale_advance_payment_inv(osv.osv_memory):
                 'product_id': wizard.product_id.id,
                 'invoice_line_tax_id': res.get('invoice_line_tax_id'),
                 'account_analytic_id': sale.project_id.id or False,
+                'sequence': 99, #las seteamos en 99 asi luego son copiadas con igual sequencia y van al final de todo
             }
             inv_values = {
                 'name': sale.client_order_ref or sale.name,
@@ -175,8 +206,10 @@ class sale_advance_payment_inv(osv.osv_memory):
                 'reference': False,
                 'account_id': sale.partner_id.property_account_receivable.id,
                 'partner_id': sale.partner_invoice_id.id,
+                'invoice_currency_rate': wizard.invoice_currency_rate,
                 'invoice_line': [(0, 0, inv_line_values)],
                 # Aca tambien modificamos
+                'sale_currency_id': sale.pricelist_id.currency_id.id,
                 'currency_id': wizard.invoice_currency_id and wizard.invoice_currency_id.id or sale.pricelist_id.currency_id.id,
                 'comment': '',
                 'payment_term': sale.payment_term.id,
