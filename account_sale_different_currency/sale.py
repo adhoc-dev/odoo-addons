@@ -85,8 +85,19 @@ class sale_order(osv.osv):
                     _('There is no income account defined for this product: "%s" (id:%d).') %
                     (product.name, product.id,))
 
+            invoice_currency_rate = self.pool['res.currency'].compute(
+                cr, uid, order.pricelist_id.currency_id.id,
+                order.different_currency_id.id,
+                1.0, round=False, context=context)
+            # write invoice_currency_rate on invoice already created
+            inv_obj.write(
+                cr, uid, inv_id,
+                {'invoice_currency_rate': invoice_currency_rate})
+            line_name = res.get('name')
+            line_name += '. TC: %s' % invoice_currency_rate
+
             adjust_line_vals = {
-                'name': res.get('name'),
+                'name': line_name,
                 'account_id': res['account_id'],
                 'price_unit': adjust_value,
                 'quantity': 1.0,
@@ -98,6 +109,8 @@ class sale_order(osv.osv):
                 'invoice_id': inv_id,
                 'sequence': 100,
             }
-            obj_invoice_line.create(cr, uid, adjust_line_vals)
-            inv_obj.button_compute(cr, uid, [inv_id])
+            # Only if amount different from 0
+            if adjust_value and adjust_value != 0.0:
+                obj_invoice_line.create(cr, uid, adjust_line_vals)
+                inv_obj.button_compute(cr, uid, [inv_id])
         return inv_id

@@ -22,7 +22,7 @@
             <field name="inherit_id" ref="account.invoice_tree"/>
             <field name="arch" type="xml">
                 <field name="state" position="before">
-                    <field name="sale_currency_amount_total" options="{'currency_field': 'sale_currency_id'}"/>
+                    <field name="sale_currency_amount_total" sum='total'/>
                 </field>
             </field>
         </record>

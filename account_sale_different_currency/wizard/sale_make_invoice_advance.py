@@ -141,6 +141,7 @@ class sale_advance_payment_inv(osv.osv_memory):
             if wizard.amount <= 0.00:
                 raise osv.except_osv(_('Incorrect Data'),
                                      _('The value of Advance Amount must be positive.'))
+            sale_currency_price_unit = False
             if wizard.advance_payment_method == 'percentage':
                 # Esta es la parte que modificamos
                 inv_amount = sale.amount_untaxed * wizard.amount / 100
@@ -152,7 +153,6 @@ class sale_advance_payment_inv(osv.osv_memory):
             else:
                 # Esta es la parte que modificamos
                 # inv_amount = wizard.amount
-                sale_currency_price_unit = False
                 if wizard.invoice_currency_id:
                     # no uso invoice_currency_amount porque como es readonly
                     # no se guarda
