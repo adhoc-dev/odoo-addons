@@ -172,19 +172,6 @@ class account_voucher_receipt(models.Model):
         return ret
 
     def receipt_send_rfq(self, cr, uid, ids, context=None):
-        '''  Override to use a modified template that includes a portal signup link '''
-        action_dict = super(account_voucher_receipt, self).receipt_send_rfq(cr, uid, ids, context=context)
-        try:
-            template_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'report_extended_voucher_receipt', 'email_template_edi_receipt')[1]
-            # assume context is still a dict, as prepared by super
-            ctx = action_dict['context']
-            ctx['default_template_id'] = template_id
-            ctx['default_use_template'] = True
-        except Exception:
-            pass
-        return action_dict
-
-    def receipt_send_rfq(self, cr, uid, ids, context=None):
         '''
         This function opens a window to compose an email, with the edi receipt template message loaded by default
         '''
