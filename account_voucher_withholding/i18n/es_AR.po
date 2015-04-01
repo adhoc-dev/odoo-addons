@@ -1,0 +1,93 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_voucher_payline
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0rc1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-03 20:12+0000\n"
+"PO-Revision-Date: 2014-09-04 12:45-0300\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: account_voucher_payline
+#: model:ir.model,name:account_voucher_payline.model_account_voucher_payline
+msgid "Account Voucher Payline"
+msgstr "Línea de Pago de Comprobante Contable"
+
+#. module: account_voucher_payline
+#: model:ir.model,name:account_voucher_payline.model_account_voucher
+msgid "Accounting Voucher"
+msgstr "Comprobante de contabilidad"
+
+#. module: account_voucher_payline
+#: field:account.voucher.payline,ammount:0
+msgid "Amount"
+msgstr "Monto"
+
+#. module: account_voucher_payline
+#: field:account.voucher.payline,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: account_voucher_payline
+#: field:account.voucher.payline,create_date:0
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: account_voucher_payline
+#: field:account.voucher.payline,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: account_voucher_payline
+#: view:account.voucher:account_voucher_payline.view_voucher_filter_customer_pay
+#: view:account.voucher:account_voucher_payline.view_voucher_filter_vendor_pay
+#: field:account.voucher.payline,journal_id:0
+msgid "Journal"
+msgstr "Libro diario"
+
+#. module: account_voucher_payline
+#: field:account.voucher.payline,write_uid:0
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: account_voucher_payline
+#: field:account.voucher.payline,write_date:0
+msgid "Last Updated on"
+msgstr "Última Actualización en"
+
+#. module: account_voucher_payline
+#: field:account.voucher,payline_ids:0
+#: view:account.voucher.payline:account_voucher_payline.voucher_payline_form_view
+#: view:account.voucher.payline:account_voucher_payline.voucher_payline_tree_view
+msgid "Paylines"
+msgstr "Líneas de Pago"
+
+#. module: account_voucher_payline
+#: field:account.voucher.payline,reference:0
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: account_voucher_payline
+#: view:account.voucher.payline:account_voucher_payline.voucher_payline_tree_view
+msgid "Total"
+msgstr "Total"
+
+#. module: account_voucher_payline
+#: view:account.voucher:account_voucher_payline.view_vendor_payment_form
+#: view:account.voucher:account_voucher_payline.view_vendor_receipt_dialog_form
+#: view:account.voucher:account_voucher_payline.view_vendor_receipt_form
+msgid "True"
+msgstr "Verdadero"
+
+#. module: account_voucher_payline
+#: field:account.voucher.payline,voucher_id:0
+msgid "Voucher"
+msgstr "Comprobante"
