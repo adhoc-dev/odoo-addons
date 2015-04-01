@@ -14,6 +14,11 @@
             <field eval="1" name="interval_number"/>
         </record>
 
+        <record id="database_backups_enable" model="ir.config_parameter">
+            <field name="key">database.backups.enable</field>
+            <field name="value">True</field>
+        </record>
+
         <record id="db_self_database" model="db.database">
             <field name="type">self</field>
         </record>
