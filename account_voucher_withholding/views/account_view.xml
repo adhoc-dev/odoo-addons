@@ -9,7 +9,7 @@
                 <search string="Withholding Taxes">
                     <field name="name"/>
                     <field name="code"/>
-                    <field name="application"/>
+                    <!-- <field name="application"/> -->
                     <field name="company_id" groups="base.group_multi_company"/>
                 </search>
             </field>
@@ -21,7 +21,7 @@
                 <tree string="Withholding Taxes">
                     <field name="name"/>
                     <field name="code"/>
-                    <field name="application"/>
+                    <!-- <field name="application"/> -->
                     <field name="company_id" groups="base.group_multi_company"/>
                 </tree>
             </field>
@@ -33,18 +33,25 @@
             <field name="arch" type="xml"> 
                 <form string="Withholding Taxes">
                     <sheet string="Withholding Taxes">
+                        <h1>
+                            <field name="name" placeholder="Name..."/>
+                        </h1>
+                        <h2>
+                            <field name="code" placeholder="Name..."/>
+                        </h2>
                         <group>
-                            <field name="name"/>
-                            <field name="code"/>
-                            <field name="application"/>
-                            <field name="active"/>
-                            <field name="account_receipt_id"/>
-                            <field name="account_payment_id"/>
-                            <field name="account_analytic_receipt_id"/>
-                            <field name="account_analytic_payment_id"/>
-                            <field name="receipt_tax_code_id"/>
-                            <field name="payment_tax_code_id"/>
-                            <field name="company_id" groups="base.group_multi_company"/>
+                            <group>
+                                <field name="account_receipt_id"/>
+                                <field name="account_payment_id"/>
+                                <field name="account_analytic_receipt_id"/>
+                                <field name="account_analytic_payment_id"/>
+                            </group>
+                            <group>
+                                <field name="receipt_tax_code_id"/>
+                                <field name="payment_tax_code_id"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="active"/>
+                            </group>
                         </group>
                     </sheet>
                 </form>

@@ -124,8 +124,10 @@ class account_voucher(models.Model):
             self, voucher, move_id, company_currency, current_currency):
         paylines_total = super(account_voucher, self).paylines_moves_create(
             voucher, move_id, company_currency, current_currency)
+        print 'bbbb', paylines_total
         checks_total = self.create_check_lines(
             voucher, move_id, company_currency, current_currency)
+        print 'bbbb', checks_total
         return paylines_total + checks_total
 
     @api.model

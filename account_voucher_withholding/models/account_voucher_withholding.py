@@ -42,6 +42,7 @@ class account_voucher_withholding(models.Model):
     tax_withholding_id = fields.Many2one(
         'account.tax.withholding',
         string='Withholding',
+        required=True,
         readonly=True,
         states={'draft': [('readonly', False)]},
         )

@@ -14,11 +14,12 @@ class account_tax_withholding(models.Model):
         'Code',
         required=True,
         )
-    application = fields.Selection(
-        [('receipt', 'Receipt'), ('payment', 'Payment'), ('all', 'All')],
-        'Application',
-        required=True,
-        )
+    # TODO ver si lo usamos o no
+    # application = fields.Selection(
+    #     [('receipt', 'Receipt'), ('payment', 'Payment'), ('all', 'All')],
+    #     'Application',
+    #     required=True,
+    #     )
     active = fields.Boolean(
         'Active',
         help="If the active field is set to False, it will allow you to hide the tax without removing it.")

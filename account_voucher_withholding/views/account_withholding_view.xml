@@ -48,8 +48,8 @@
                     <sheet string="Withholding Vouchers">
                         <field name="type" invisible="1"/>
                         <field name="settlement_account_move_id" invisible="1"/>
-                        <h1 attrs="{'invisible': [('name','=',False)]}">
-                            <field name="name"/>
+                        <h1>
+                            <field name="name" placeholder="Number..."/>
                         </h1>
                         <group>  
                             <group>
