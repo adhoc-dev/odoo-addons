@@ -41,7 +41,7 @@ Al depositar el cheque hace el asiento 2 de la imagen, cosa que no esta bien, lo
     'images': [
     ],
     'depends': [
-        'account_voucher'
+        'account_voucher_payline',
     ],
     'data': [
         'wizard/check_action_view.xml',

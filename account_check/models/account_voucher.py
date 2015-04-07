@@ -62,28 +62,6 @@ class account_voucher(models.Model):
         checks.action_cancel_draft()
         return res
 
-    @api.model
-    def first_move_line_get(
-            self, voucher_id, move_id, company_currency,
-            current_currency):
-        vals = super(account_voucher, self).first_move_line_get(
-            voucher_id, move_id, company_currency, current_currency)
-        voucher = self.browse(voucher_id)
-        if company_currency != current_currency and voucher.amount:
-            debit = vals.get('debit')
-            credit = vals.get('credit')
-            total = debit - credit
-            exchange_rate = total / voucher.amount
-            checks = []
-            if voucher.check_type == 'third':
-                checks = voucher.received_third_check_ids
-            elif voucher.check_type == 'issue':
-                checks = voucher.issued_check_ids
-            for check in checks:
-                company_currency_amount = abs(check.amount * exchange_rate)
-                check.company_currency_amount = company_currency_amount
-        return vals
-
     @api.multi
     def cancel_voucher(self):
         for voucher in self:
@@ -123,19 +101,81 @@ class account_voucher(models.Model):
         return res
 
     @api.one
-    @api.onchange('amount_readonly')
-    def onchange_amount_readonly(self):
-        self.amount = self.amount_readonly
+    @api.onchange(
+        'received_third_check_ids',
+        'delivered_third_check_ids',
+        'issued_check_ids'
+        )
+    def onchange_checks(self):
+        """We force the update of paylines and amount"""
+        self._get_paylines_amount()
+        self._get_amount()
 
-    @api.one
-    @api.onchange('received_third_check_ids', 'issued_check_ids')
-    def onchange_customer_checks(self):
-        self.amount_readonly = sum(
-            x.amount for x in self.received_third_check_ids)
+    @api.multi
+    def get_paylines_amount(self):
+        res = super(account_voucher, self).get_paylines_amount()
+        for key, value in res.iteritems():
+            new_val = value
+            new_val += sum(x.amount for x in self.received_third_check_ids)
+            new_val += sum(x.amount for x in self.delivered_third_check_ids)
+            new_val += sum(x.amount for x in self.issued_check_ids)
+            res[key] = new_val
+        return res
 
-    @api.one
-    @api.onchange('delivered_third_check_ids', 'issued_check_ids')
-    def onchange_supplier_checks(self):
-        amount = sum(x.amount for x in self.delivered_third_check_ids)
-        amount += sum(x.amount for x in self.issued_check_ids)
-        self.amount_readonly = amount
+# TODO ver si borramos el amount readonly
+    @api.model
+    def paylines_moves_create(
+            self, voucher, move_id, company_currency, current_currency):
+        move_lines = self.env['account.move.line']
+        paylines_total = super(account_voucher, self).paylines_moves_create(
+            voucher, move_id, company_currency, current_currency)
+        if voucher.check_type == 'third':
+            if voucher.type == 'payment':
+                checks = voucher.delivered_third_check_ids
+            else:
+                checks = voucher.received_third_check_ids
+        elif voucher.check_type == 'issue':
+            checks = voucher.issued_check_ids
+        # Calculate total
+        paylines_total = 0.0
+        for check in checks:
+            bank_name = ''
+            if check.bank_id:
+                bank_name = '/' + check.bank_id.name
+            check_move_line = move_lines.create(
+                self.prepare_check_move_line(
+                    voucher, check.amount, move_id, check.name + bank_name,
+                    company_currency, current_currency, check.payment_date))
+            paylines_total += check_move_line.debit - check_move_line.credit
+        return paylines_total
+
+    @api.model
+    def prepare_check_move_line(
+            self, voucher, amount, move_id, name, company_currency,
+            current_currency, date_due):
+    # TODO convertir de otra manera el monto, usando una funcion que existe para tal fin
+        exchange_rate = voucher.paid_amount_in_company_currency / voucher.amount
+        debit = credit = 0.0
+        if voucher.type in ('purchase', 'payment'):
+            credit = amount * exchange_rate
+        elif voucher.type in ('sale', 'receipt'):
+            debit = amount * exchange_rate
+        if debit < 0: credit = -debit; debit = 0.0
+        if credit < 0: debit = -credit; credit = 0.0
+        sign = debit - credit < 0 and -1 or 1
+        move_line = {
+                'name': name,
+                'debit': debit,
+                'credit': credit,
+                'account_id': voucher.account_id.id,
+                'move_id': move_id,
+                'journal_id': voucher.journal_id.id,
+                'period_id': voucher.period_id.id,
+                'partner_id': voucher.partner_id.id,
+                'currency_id': company_currency <> current_currency and  current_currency or False,
+                'amount_currency': (sign * abs(amount) # amount < 0 for refunds
+                    if company_currency != current_currency else 0.0),
+                'date': voucher.date,
+                'date_maturity': date_due or False,
+            }
+        return move_line
