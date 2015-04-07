@@ -140,6 +140,7 @@ class account_voucher(models.Model):
     def create_check_lines(
             self, voucher, move_id, company_currency, current_currency):
         move_lines = self.env['account.move.line']
+        checks = []
         if voucher.check_type == 'third':
             if voucher.type == 'payment':
                 checks = voucher.delivered_third_check_ids
