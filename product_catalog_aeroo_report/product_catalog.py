@@ -9,28 +9,35 @@ class product_catalog_report(models.Model):
     name = fields.Char(
         'Name',
         required=True
-        )
+    )
     products_order = fields.Char(
         'Products Order Sintax',
         help='for eg. name desc', required=False
-        )
+    )
     categories_order = fields.Char(
         'Categories Order Sintax',
         help='for eg. name desc',
-        )
+    )
     include_sub_categories = fields.Boolean(
         'Include Subcategories?',
-        )
+    )
     only_with_stock = fields.Boolean(
         'Only With Stock Products?',
-        )
+    )
+    product_type = fields.Selection(
+        [('product.template', 'Product Template'),
+         ('product.product', 'Product')], 'Product Type',
+        required=True
+    )
     report_xml_id = fields.Many2one(
         'ir.actions.report.xml',
         'Report XML',
-        domain=[('report_type','=','aeroo'),('model','=','product.product')],
-        context={'default_report_type': 'aeroo', 'default_model': 'product.product'},
+        domain=[('report_type', '=', 'aeroo'),
+                ('model', '=', 'product.product')],
+        context={'default_report_type': 'aeroo',
+                 'default_model': 'product.product'},
         required=True
-        )
+    )
     category_ids = fields.Many2many(
         'product.category',
         'product_catalog_report_categories',
@@ -38,14 +45,14 @@ class product_catalog_report(models.Model):
         'category_id',
         'Product Categories',
         required=True
-        )
+    )
     pricelist_ids = fields.Many2many(
         'product.pricelist',
         'product_catalog_report_pricelists',
         'product_catalog_report_id',
         'pricelist_id',
         'Pricelist',
-        )
+    )
 
     @api.multi
     def generate_report(self):
@@ -54,13 +61,13 @@ class product_catalog_report(models.Model):
         self.ensure_one()
 
         context = self._context.copy()
-
         category_ids = self.category_ids.ids
         if self.include_sub_categories:
             category_ids = self.env['product.category'].search(
-                [('id', 'child_of', category_ids)]).ids
+                    [('id', 'child_of', category_ids)]).ids
 
         context['category_ids'] = category_ids
+        context['product_type'] = self.product_type
         context['pricelist_ids'] = self.pricelist_ids.ids
         context['products_order'] = self.products_order
         context['categories_order'] = self.categories_order

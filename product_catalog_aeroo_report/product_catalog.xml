@@ -36,6 +36,7 @@
                             <field name="products_order"/>
                             <field name="only_with_stock"/>
                             <field name="include_sub_categories"/>
+                            <field name="product_type"/>
                         </group>
                         <group col="1" colspan="4">
                             <field name="category_ids"/>
