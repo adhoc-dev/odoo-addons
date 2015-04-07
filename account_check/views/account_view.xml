@@ -8,7 +8,6 @@
             <field name="arch" type="xml">
                 <field name="type" position="after">
                     <field name="check_type" attrs="{'invisible':[('type','!=', 'bank')]}"/>
-                    <field name="validate_only_checks" attrs="{'invisible':[('check_type','=', False)]}"/>
                 </field>
                 <notebook>
                     <page string="Checkbooks" attrs="{'invisible':[('check_type','!=', 'issue')]}">

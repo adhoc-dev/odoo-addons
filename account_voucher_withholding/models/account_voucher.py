@@ -15,23 +15,37 @@ class account_voucher(models.Model):
         readonly=True,
         states={'draft': [('readonly', False)]}
         )
+    withholdings_amount = fields.Float(
+        'Withholdings Amount',
+        compute='_get_withholdings_amount',
+        digits=dp.get_precision('Account'),
+        help='Amount Paid With Withholdings',
+    )
 
     @api.one
-    @api.onchange(
+    @api.depends(
         'withholding_ids',
         )
-    def onchange_withholdings(self):
-        """We force the update of paylines and amount"""
+    def _get_withholdings_amount(self):
+        self.withholdings_amount = self.get_withholdings_amount()[self.id]
+        # We force the update of paylines and amount
         self._get_paylines_amount()
         self._get_amount()
 
     @api.multi
+    def get_withholdings_amount(self):
+        res = {}
+        for voucher in self:
+            withholdings_amount = sum(x.amount for x in voucher.withholding_ids)
+            res[voucher.id] = withholdings_amount
+        return res
+
+    @api.multi
     def get_paylines_amount(self):
         res = super(account_voucher, self).get_paylines_amount()
-        for key, value in res.iteritems():
-            new_val = value
-            new_val += sum(x.amount for x in self.withholding_ids)
-            res[key] = new_val
+        for voucher in self:
+            withholdings_amount = voucher.get_withholdings_amount()[voucher.id]
+            res[voucher.id] = res[voucher.id] + withholdings_amount
         return res
 
     @api.model

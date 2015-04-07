@@ -25,7 +25,7 @@
             <field name="name">account.voucher.withholding.tree</field>
             <field name="model">account.voucher.withholding</field>
             <field name="arch" type="xml"> 
-                <tree string="Withholding Vouchers">
+                <tree colors="blue:state == 'draft';gray:state == 'cancel';red:audit" string="Withholding Vouchers">
                     <field name="name"/>
                     <field name="date"/>
                     <field name="type"/>

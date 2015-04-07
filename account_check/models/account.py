@@ -9,8 +9,5 @@ class account_journal(models.Model):
         [('issue', 'Issue'), ('third', 'Third')],
         'Check Type',
         help='Choose check type, if none check journal then keep it empty.')
-    validate_only_checks = fields.Boolean(
-        'Only Checks?',
-        help='If True, voucher amount must be sum of checks amounts.')
     checkbook_ids = fields.One2many(
         'account.checkbook', 'journal_id', 'Checkbooks',)

@@ -8,7 +8,7 @@ class account_voucher(models.Model):
     _inherit = "account.voucher"
 
     net_amount = fields.Float(
-        'Journal Amount',
+        'Amount',
         digits=dp.get_precision('Account'),
         required=True,
         readonly=True,
@@ -27,12 +27,12 @@ class account_voucher(models.Model):
         inverse='_set_net_amount',
         help='Total Amount Paid',
     )
-    dummy_amount = fields.Float(
+    amount_readonly = fields.Float(
         related='amount',
+        string='Total Amount',
+        digits_compute=dp.get_precision('Account'),
         readonly=True,
-        string='Dummy Amount',
-        help='Field used for new api onchange methods over Amount',
-    )
+        )
     dummy_journal_id = fields.Many2one(
         related='journal_id',
         readonly=True,
@@ -46,7 +46,7 @@ class account_voucher(models.Model):
         self.amount = self.paylines_amount + self.net_amount
 
     @api.one
-    @api.onchange('dummy_amount')
+    @api.onchange('amount_readonly')
     def _set_net_amount(self):
         self.net_amount = self.amount - self.paylines_amount
 

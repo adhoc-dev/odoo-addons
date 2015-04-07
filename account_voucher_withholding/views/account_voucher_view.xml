@@ -2,13 +2,16 @@
 <openerp>
     <data> 
 
-        <!-- TODO ver si implementamos para el dialog -->
+        <!-- TODO agregar esta vista -->
         <!-- Receipt dialog Form  -->
 <!--         <record id="view_vendor_receipt_dialog_form" model="ir.ui.view">
             <field name="name">account.voucher.receipt.dialog.receipt.inherit.form</field>
             <field name="model">account.voucher</field>
             <field name="inherit_id" ref="account_voucher.view_vendor_receipt_dialog_form"/>
             <field name="arch" type="xml">
+                <field name="paylines_amount" position="before">
+                    <field name="withholdings_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                </field>
                 <page string="Withholdings">
                     <field name="withholding_ids"/>
                 </page>
@@ -21,6 +24,10 @@
             <field name="model">account.voucher</field>
             <field name="inherit_id" ref="account_voucher.view_vendor_receipt_form"/>
             <field name="arch" type="xml">
+                <!-- <field name="paylines_amount" position="before"> -->
+                <xpath expr="//group/group" position="inside">
+                    <field name="withholdings_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                </xpath>
                 <page string="Payment Information" position="after">
                     <!-- Withholding serian retenciones sufridas -->
                     <page string="Withholding">
@@ -36,6 +43,9 @@
             <field name="model">account.voucher</field>
             <field name="inherit_id" ref="account_voucher.view_vendor_payment_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//group/group" position="inside">
+                    <field name="withholdings_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                </xpath>
                 <page string="Payment Information" position="after">
                     <!-- Deductions Made serian retenciones aplicadas -->
                     <page string="Deductions Made">

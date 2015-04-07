@@ -29,18 +29,16 @@ class account_voucher(models.Model):
         context={'from_voucher': True}, required=False, readonly=True,
         states={'draft': [('readonly', False)]}
         )
-    validate_only_checks = fields.Boolean(
-        related='journal_id.validate_only_checks',
-        string='Validate only Checks', readonly=True,
-        )
     check_type = fields.Selection(
         related='journal_id.check_type',
         string='Check Type', readonly=True,
         )
-    amount_readonly = fields.Float(
-        related='amount', string='Total',
-        digits_compute=dp.get_precision('Account'), readonly=True,
-        )
+    checks_amount = fields.Float(
+        'Amount',
+        compute='_get_checks_amount',
+        digits=dp.get_precision('Account'),
+        help='Amount Paid With Checks',
+    )
 
     @api.onchange('dummy_journal_id')
     def change_dummy_journal_id(self):
@@ -48,6 +46,7 @@ class account_voucher(models.Model):
         self.delivered_third_check_ids = False
         self.issued_check_ids = False
         self.received_third_check_ids = False
+        self.net_amount = False
 
     @api.multi
     def action_cancel_draft(self):
@@ -96,28 +95,35 @@ class account_voucher(models.Model):
         return res
 
     @api.one
-    @api.onchange(
+    @api.depends(
         'received_third_check_ids',
         'delivered_third_check_ids',
         'issued_check_ids'
         )
-    def onchange_checks(self):
-        """We force the update of paylines and amount"""
+    def _get_checks_amount(self):
+        self.checks_amount = self.get_checks_amount()[self.id]
+        # We force the update of paylines and amount
         self._get_paylines_amount()
         self._get_amount()
 
     @api.multi
-    def get_paylines_amount(self):
-        res = super(account_voucher, self).get_paylines_amount()
-        for key, value in res.iteritems():
-            new_val = value
-            new_val += sum(x.amount for x in self.received_third_check_ids)
-            new_val += sum(x.amount for x in self.delivered_third_check_ids)
-            new_val += sum(x.amount for x in self.issued_check_ids)
-            res[key] = new_val
+    def get_checks_amount(self):
+        res = {}
+        for voucher in self:
+            checks_amount = 0.0
+            checks_amount += sum(x.amount for x in voucher.received_third_check_ids)
+            checks_amount += sum(x.amount for x in voucher.delivered_third_check_ids)
+            checks_amount += sum(x.amount for x in voucher.issued_check_ids)
+            res[voucher.id] = checks_amount
         return res
 
-# TODO ver si borramos el amount readonly
+    @api.multi
+    def get_paylines_amount(self):
+        res = super(account_voucher, self).get_paylines_amount()
+        for voucher in self:
+            checks_amount = voucher.get_checks_amount()[voucher.id]
+            res[voucher.id] = res[voucher.id] + checks_amount
+        return res
 
     @api.model
     def paylines_moves_create(
