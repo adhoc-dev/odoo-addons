@@ -20,8 +20,7 @@ Key Features
     "website": "http://cubicERP.com",
     "category": "Financial",
     "depends": [
-        "account",
-        "account_voucher",
+        "account_voucher_payline",
     ],
     "data": [
         "wizard/bank_statement_populate_view.xml",

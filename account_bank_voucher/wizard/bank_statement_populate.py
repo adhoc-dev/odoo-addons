@@ -18,13 +18,13 @@ class account_voucher_populate_statement(models.TransientModel):
         'Vouchers',
         domain="[('journal_id', '=', journal_id), ('state', '=', 'posted'), ('bank_statement_line_ids', '=', False)]"
     )
-    
+
     def get_statement_line_new(self, cr, uid, voucher, statement, context=None):
         # Override thi method to modifiy the new statement line to create
         ctx = context.copy()
         ctx['date'] = voucher.date
         amount = self.pool.get('res.currency').compute(cr, uid, voucher.currency_id.id,
-                                                       statement.currency.id, voucher.amount, context=ctx)
+                                                       statement.currency.id, voucher.net_amount, context=ctx)
 
         sign = voucher.type == 'payment' and -1.0 or 1.0
         type = voucher.type == 'payment' and 'supplier' or 'customer'
