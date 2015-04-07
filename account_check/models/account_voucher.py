@@ -37,11 +37,6 @@ class account_voucher(models.Model):
         related='journal_id.check_type',
         string='Check Type', readonly=True,
         )
-    dummy_journal_id = fields.Many2one(
-        related='journal_id', readonly=True,
-        string='Dummy Journa',
-        help='Field used for new api onchange methods over journal',
-        )
     amount_readonly = fields.Float(
         related='amount', string='Total',
         digits_compute=dp.get_precision('Account'), readonly=True,

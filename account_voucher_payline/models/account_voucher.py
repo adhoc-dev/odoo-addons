@@ -33,6 +33,12 @@ class account_voucher(models.Model):
         string='Dummy Amount',
         help='Field used for new api onchange methods over Amount',
     )
+    dummy_journal_id = fields.Many2one(
+        related='journal_id',
+        readonly=True,
+        string='Dummy Journa',
+        help='Field used for new api onchange methods over journal',
+        )
 
     @api.one
     @api.depends('net_amount')

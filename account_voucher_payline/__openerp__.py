@@ -14,7 +14,8 @@
 Account Voucher Payline
 =======================
 Module that modifies account voucher so that you can extend this module and add other payment lines that can generate new account.move.lines. 
-It is used, for example, in 'account_check' and 'account_voucher_withholding'
+It is used, for example, in 'account_check' and 'account_voucher_withholding'.
+It also addts dummy_journal_id and dummy_amount fields that can be used with new api onchange events.
 ''',
     'installable': True,
     'name': 'Account Voucher Payline',
