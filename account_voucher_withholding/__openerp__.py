@@ -12,7 +12,7 @@
     ],
     'demo': [],
     'depends': [
-        'account_voucher'
+        'account_voucher_payline'
     ],
     'description': '''
 Voucher Voucher Withholding

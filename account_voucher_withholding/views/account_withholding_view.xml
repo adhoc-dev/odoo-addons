@@ -46,16 +46,22 @@
                         <field name="state" widget="statusbar" statusbar_colors='{"hrejected":"red"}'/>
                     </header>
                     <sheet string="Withholding Vouchers">
-                        <group>
+                        <field name="type" invisible="1"/>
+                        <field name="settlement_account_move_id" invisible="1"/>
+                        <h1 attrs="{'invisible': [('name','=',False)]}">
                             <field name="name"/>
-                            <field name="date"/>
-                            <field name="type"/>
-                            <field name="comment"/>
-                            <field name="settlement_account_move_id"/>
-                            <field name="tax_withholding_id"/>
-                            <field name="company_id" groups="base.group_multi_company"/>
-                            <field name="amount" sum="Total"/>
+                        </h1>
+                        <group>  
+                            <group>
+                                <field name="tax_withholding_id"/>
+                                <field name="amount"/>
+                            </group>
+                            <group>
+                                <field name="date"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
                         </group>
+                        <field name="comment" placeholder="Comment..."/>
                     </sheet>
                 </form>
             </field>

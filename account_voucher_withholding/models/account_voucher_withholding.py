@@ -26,13 +26,16 @@ class account_voucher_withholding(models.Model):
         states={'draft': [('readonly', False)]},
         default=fields.Date.context_today,
         )
-    state = fields.Selection([
-            ('draft', 'Draft'),
-            ('available', 'Available'),
-            ('settled', 'Settled'),
-            ('cancel', 'Cancel'),
-        ],
-        'State',
+    state = fields.Selection(
+        # [
+        #     ('draft', 'Draft'),
+        #     ('available', 'Available'),
+        #     ('settled', 'Settled'),
+        #     ('cancel', 'Cancel'),
+        # ],
+        string='State',
+        related='voucher_id.state',
+        default='draft',
         required=True,
         track_visibility='onchange',
         )
