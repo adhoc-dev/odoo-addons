@@ -69,9 +69,10 @@ class account_voucher(models.Model):
         returns a total for all the lines created with this method
         """
         paylines_total = 0.0
-        move_line = self.create_first_line(
-            voucher, move_id, company_currency, current_currency)
-        if move_line:
+        # If net amount create first move line (journal line)
+        if voucher.net_amount:
+            move_line = self.create_first_line(
+                voucher, move_id, company_currency, current_currency)
             paylines_total = move_line.debit or move_line.credit
         return paylines_total
 
@@ -81,61 +82,51 @@ class account_voucher(models.Model):
         """Function that creates first move line and return the move line
         created.
         """
-        vals = self.first_move_line_get(
-            voucher, move_id, company_currency, current_currency)
-        move_line = False
-        if vals.get('credit', vals.get('debit')):
-            move_line = self.env['account.move.line'].create(vals)
+        move_lines = self.env['account.move.line']
+        name = voucher.name or '/'
+        payment_date = voucher.date_due
+        amount = voucher.net_amount
+        account = voucher.account_id
+        partner = voucher.partner_id
+        move_line = move_lines.create(
+            self.prepare_move_line(
+                voucher, amount, move_id, name, company_currency,
+                current_currency, payment_date, account, partner)
+                )
         return move_line
 
     @api.model
-    def first_move_line_get(
-            self, voucher, move_id, company_currency, current_currency):
-        '''
-        We modify the original function becouse first line now is created with
-        net_amount and not amount
-
-        Return a dict to be use to create the first account move line of given voucher.
-
-        :param voucher_id: Id of voucher what we are creating account_move.
-        :param move_id: Id of account move where this line will be added.
-        :param company_currency: id of currency of the company to which the voucher belong
-        :param current_currency: id of currency of the voucher
-        :return: mapping between fieldname and value of account move line to create
-        :rtype: dict
-        '''
+    def prepare_move_line(
+            self, voucher, amount, move_id, name, company_currency,
+            current_currency, date_due, account, partner):
+        """
+        Function that will be use to create first move line and can be used to
+        add every payline you add in your custom module.
+        """
         debit = credit = 0.0
-        # TODO: is there any other alternative then the voucher type ??
-        # ANSWER: We can have payment and receipt "In Advance".
-        # TODO: Make this logic available.
-        # -for sale, purchase we have but for the payment and receipt we do not have as based on the bank/cash journal we can not know its payment or receipt
         if voucher.type in ('purchase', 'payment'):
-            # credit = voucher.paid_amount_in_company_currency
-            credit = self._convert_amount(voucher.net_amount, voucher.id)
+            credit = self._convert_amount(amount, voucher.id)
         elif voucher.type in ('sale', 'receipt'):
-            # debit = voucher.paid_amount_in_company_currency
-            debit = self._convert_amount(voucher.net_amount, voucher.id)
+            debit = self._convert_amount(amount, voucher.id)
         if debit < 0: credit = -debit; debit = 0.0
         if credit < 0: debit = -credit; credit = 0.0
         sign = debit - credit < 0 and -1 or 1
-        #set the first line of the voucher
         move_line = {
-                'name': voucher.name or '/',
+                'name': name,
                 'debit': debit,
                 'credit': credit,
-                'account_id': voucher.account_id.id,
+                'account_id': account.id,
+                'partner_id': partner.id,
                 'move_id': move_id,
                 'journal_id': voucher.journal_id.id,
                 'period_id': voucher.period_id.id,
-                'partner_id': voucher.partner_id.id,
                 'currency_id': company_currency <> current_currency and  current_currency or False,
-                'amount_currency': (sign * abs(voucher.net_amount) # net_amount < 0 for refunds
+                'amount_currency': (sign * abs(amount) # amount < 0 for refunds
                     if company_currency != current_currency else 0.0),
                 'date': voucher.date,
-                'date_maturity': voucher.date_due
+                'date_maturity': date_due or False,
             }
         return move_line
-
 
     def action_move_line_create(self, cr, uid, ids, context=None):
         '''

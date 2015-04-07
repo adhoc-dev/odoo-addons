@@ -205,7 +205,7 @@ class account_check(models.Model):
         return True
 
     _constraints = [
-        (_check_number_interval,'Check Number Must be in Checkbook interval!', ['number','checkbook_id']),
+        (_check_number_interval, 'Check Number Must be in Checkbook interval!', ['number','checkbook_id']),
         (_check_number_issue, 'Check Number must be unique per Checkbook!', ['number','checkbook_id']),
         (_check_number_third, 'Check Number must be unique per Customer and Bank!', ['number','bank_id']),
     ]

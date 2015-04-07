@@ -118,12 +118,20 @@ class account_voucher(models.Model):
         return res
 
 # TODO ver si borramos el amount readonly
+
     @api.model
     def paylines_moves_create(
             self, voucher, move_id, company_currency, current_currency):
-        move_lines = self.env['account.move.line']
         paylines_total = super(account_voucher, self).paylines_moves_create(
             voucher, move_id, company_currency, current_currency)
+        checks_total = self.create_check_lines(
+            voucher, move_id, company_currency, current_currency)
+        return paylines_total + checks_total
+
+    @api.model
+    def create_check_lines(
+            self, voucher, move_id, company_currency, current_currency):
+        move_lines = self.env['account.move.line']
         if voucher.check_type == 'third':
             if voucher.type == 'payment':
                 checks = voucher.delivered_third_check_ids
@@ -132,45 +140,19 @@ class account_voucher(models.Model):
         elif voucher.check_type == 'issue':
             checks = voucher.issued_check_ids
         # Calculate total
-        paylines_total = 0.0
-        for check in checks:
-            bank_name = ''
-            if check.bank_id:
-                bank_name = '/' + check.bank_id.name
-            check_move_line = move_lines.create(
-                self.prepare_check_move_line(
-                    voucher, check.amount, move_id, check.name + bank_name,
-                    company_currency, current_currency, check.payment_date))
-            paylines_total += check_move_line.debit - check_move_line.credit
-        return paylines_total
-
-    @api.model
-    def prepare_check_move_line(
-            self, voucher, amount, move_id, name, company_currency,
-            current_currency, date_due):
-    # TODO convertir de otra manera el monto, usando una funcion que existe para tal fin
-        exchange_rate = voucher.paid_amount_in_company_currency / voucher.amount
-        debit = credit = 0.0
-        if voucher.type in ('purchase', 'payment'):
-            credit = amount * exchange_rate
-        elif voucher.type in ('sale', 'receipt'):
-            debit = amount * exchange_rate
-        if debit < 0: credit = -debit; debit = 0.0
-        if credit < 0: debit = -credit; credit = 0.0
-        sign = debit - credit < 0 and -1 or 1
-        move_line = {
-                'name': name,
-                'debit': debit,
-                'credit': credit,
-                'account_id': voucher.account_id.id,
-                'move_id': move_id,
-                'journal_id': voucher.journal_id.id,
-                'period_id': voucher.period_id.id,
-                'partner_id': voucher.partner_id.id,
-                'currency_id': company_currency <> current_currency and  current_currency or False,
-                'amount_currency': (sign * abs(amount) # amount < 0 for refunds
-                    if company_currency != current_currency else 0.0),
-                'date': voucher.date,
-                'date_maturity': date_due or False,
-            }
-        return move_line
+        checks_total = 0.0
+        for line in checks:
+            name = line.name
+            if line.bank_id:
+                name += '/' + line.bank_id.name
+            payment_date = line.payment_date
+            amount = line.amount
+            account = voucher.account_id
+            partner = voucher.partner_id
+            move_line = move_lines.create(
+                self.prepare_move_line(
+                    voucher, amount, move_id, name, company_currency,
+                    current_currency, payment_date, account, partner)
+                    )
+            checks_total += move_line.debit - move_line.credit
+        return checks_total
