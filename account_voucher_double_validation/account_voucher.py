@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 import openerp.addons.decimal_precision as dp
+from openerp.exceptions import Warning
 
 
 class account_voucher(models.Model):
@@ -22,14 +23,6 @@ class account_voucher(models.Model):
         #             \n* The \'Posted\' status is used when user create voucher,a voucher number is generated and voucher entries are created in account \
         #             \n* The \'Cancelled\' status is used when user cancel voucher.'),
     # partner_id = fields.Many2one('')
-    # to_pay_amount = fields.Float(
-    #     'To Pay Amount',
-    #     digits=dp.get_precision('Account'),
-    #     # required=True,
-    #     readonly=True,
-    #     states={'draft': [('readonly', False)]},
-    #     help='Amount To be Paid',
-    # )
     net_amount = fields.Float(
         states={'draft': [('readonly', False)],
                 'confirmed': [('readonly', False)]}
@@ -59,33 +52,44 @@ class account_voucher(models.Model):
         )
     payment_date = fields.Date(
         string='Payment Date',
-        readony=True,
+        readonly=True,
         states={'draft': [('readonly', False)]},
         help='Payment can not be validated before this date',
         )
+    to_pay_amount = fields.Float(
+        'To Pay Amount',
+        compute='_get_balance_amount',
+        digits=dp.get_precision('Account'),
+        help='Amount To be Paid',
+    )
+
+    @api.one
+    @api.depends('writeoff_amount')
+    def _get_balance_amount(self):
+        """In v9 should be calculated from debit and credit but can be used now
+        because of old onchanges
+        IMPORTANTE: We can not make it works when voucher is already saved.
+        The correct value is displayed after save in that case"""
+        # Can not use this way because old api
+        # debit = sum([x.amount for x in self.line_cr_ids])
+        # credit = sum([x.amount for x in self.line_dr_ids])
+        # balance_amount = debit - credit
+        balance_amount = self.amount - self.writeoff_amount
+        self.balance_amount = balance_amount
 
     @api.multi
-    def action_move_line_create(self):
-        """Fix not date on voucher error, set actual date"""
+    def proforma_voucher(self):
+        """Make two things:
+        * Check payment date valididy
+        * Fix not date on voucher error, set actual date.
+        """
         for voucher in self:
             if not voucher.date:
                 voucher.date = fields.Date.context_today(self)
-        return super(account_voucher, self).action_move_line_create()
-    # @api.one
-    # @api.depends('net_amount', 'type', 'to_pay_amount')
-    # def _get_amount(self):
-    #     if self.type == 'payment':
-    #         amount = self.to_pay_amount
-    #     else:
-    #         amount = self.paylines_amount + self.net_amount
-    #     self.amount = amount
-
-    # TODO si lo usamos para setear el to pay amount
-    # @api.one
-    # @api.onchange('amount_readonly')
-    # def _set_net_amount(self):
-    #     super(account_voucher, self)._set_net_amount()
-    #     self.to_pay_amount = self.amount
+            if voucher.payment_date >= fields.Date.context_today(self):
+                raise Warning(_('You can not validate a Voucher that has\
+                    Payment Date before Today'))
+        return super(account_voucher, self).proforma_voucher()
 
     def onchange_journal(self, cr, uid, ids, journal_id, line_ids, tax_id,
                          partner_id, date, amount, ttype, company_id,
