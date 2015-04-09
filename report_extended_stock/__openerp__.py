@@ -19,7 +19,6 @@ Report Configurator - Stock
     ],
     'data': [
         'views/report_view.xml',
-        # 'report_extended_action_data.xml',
     ],
     'demo': [
     ],

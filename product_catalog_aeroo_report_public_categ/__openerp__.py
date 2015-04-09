@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Report Category Public',
+    'name': 'Product Catalog Aeroo Report with public Category',
     'version': '1.0',
     'category': 'Aeroo Reporting',
     'sequence': 14,
     'summary': '',
     'description': """
-Report Category Public
-============================
+Product Catalog Aeroo Report with Public Category
+=================================================
     """,
     'author':  'ADHOC',
     'website': 'www.adhoc.com.ar',
@@ -17,7 +17,8 @@ Report Category Public
         'website_sale',
         'product_catalog_aeroo_report',
     ],
-    'data': ['product_catalog.xml'
+    'data': [
+        'product_catalog.xml'
     ],
     'demo': [
     ],
