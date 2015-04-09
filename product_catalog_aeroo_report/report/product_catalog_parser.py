@@ -14,6 +14,7 @@ class Parser(report_sxw.rml_parse):
         lang = context.get('lang', 'es_ES')
 
         self.product_type = context.get('product_type', 'product.product')
+        self.prod_display_type = context.get('prod_display_type', False)
         pricelist_ids = context.get('pricelist_ids', [])
         pricelists = self.pool['product.pricelist'].browse(
             cr, uid, pricelist_ids, context=context)
@@ -41,6 +42,7 @@ class Parser(report_sxw.rml_parse):
             'categories': categories,
             'products': products,
             'product_type': self.product_type,
+            'prod_display_type': self.prod_display_type,
             'company_logo': company_id.logo,
             'pricelists': pricelists,
             'today': time.localtime(),

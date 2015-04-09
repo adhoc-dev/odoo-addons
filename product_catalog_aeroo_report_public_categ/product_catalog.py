@@ -19,12 +19,8 @@ class product_catalog_report(models.Model):
     )
 
     @api.multi
-    def generate_report(self):
-        """ Print the catalog
-        """
-        self.ensure_one()
-
-        context = self._context.copy()
+    def prepare_report(self):
+        self = super(product_catalog_report, self).prepare_report()
         if self.category_type == 'public_category':
             category_ids = self.public_category_ids.ids
             if self.include_sub_categories:
@@ -36,13 +32,6 @@ class product_catalog_report(models.Model):
                 category_ids = self.env['product.category'].search(
                     [('id', 'child_of', category_ids)]).ids
 
-        context['category_ids'] = category_ids
-        context['category_type'] = self.category_type
-        context['product_type'] = self.product_type
-        context['pricelist_ids'] = self.pricelist_ids.ids
-        context['products_order'] = self.products_order
-        context['categories_order'] = self.categories_order
-        context['only_with_stock'] = self.only_with_stock
-
-        return self.env['report'].with_context(context).get_action(
-            self, self.report_xml_id.report_name)
+        return self.with_context(
+            category_ids=category_ids,
+            category_type=self.category_type)

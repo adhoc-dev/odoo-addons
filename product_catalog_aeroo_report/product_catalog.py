@@ -29,6 +29,12 @@ class product_catalog_report(models.Model):
          ('product.product', 'Product')], 'Product Type',
         required=True
     )
+    prod_display_type = fields.Selection(
+        [('prod_per_line', 'One Product Per Line'),
+         ('prod_list', 'Product List'),
+         ('variants', 'Variants'),
+         ], 'Product Display Type',
+    )
     report_xml_id = fields.Many2one(
         'ir.actions.report.xml',
         'Report XML',
@@ -54,11 +60,7 @@ class product_catalog_report(models.Model):
     )
 
     @api.multi
-    def generate_report(self):
-        """ Print the catalog
-        """
-        self.ensure_one()
-
+    def prepare_report(self):
         context = self._context.copy()
         category_ids = self.category_ids.ids
         if self.include_sub_categories:
@@ -71,6 +73,14 @@ class product_catalog_report(models.Model):
         context['products_order'] = self.products_order
         context['categories_order'] = self.categories_order
         context['only_with_stock'] = self.only_with_stock
+        context['prod_display_type'] = self.prod_display_type
+        return self.with_context(context)
 
-        return self.env['report'].with_context(context).get_action(
+    @api.multi
+    def generate_report(self):
+        """ Print the catalog
+        """
+        self.ensure_one()
+        self = self.prepare_report()
+        return self.env['report'].get_action(
             self, self.report_xml_id.report_name)
