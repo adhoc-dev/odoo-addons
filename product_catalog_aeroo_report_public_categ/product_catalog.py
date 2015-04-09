@@ -16,7 +16,6 @@ class product_catalog_report(models.Model):
         'product_catalog_report_id',
         'category_id',
         'Product Categories Public',
-        required=True
     )
 
     @api.multi

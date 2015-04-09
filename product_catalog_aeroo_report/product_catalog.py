@@ -44,7 +44,6 @@ class product_catalog_report(models.Model):
         'product_catalog_report_id',
         'category_id',
         'Product Categories',
-        required=True
     )
     pricelist_ids = fields.Many2many(
         'product.pricelist',
