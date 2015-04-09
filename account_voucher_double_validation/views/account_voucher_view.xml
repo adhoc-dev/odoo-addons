@@ -30,6 +30,10 @@
                 <field name="date" position="before">
                     <field name="payment_date"/>
                 </field>
+
+                <field name="amount" position="before">
+                    <field name="to_pay_amount"/>
+                </field>
             </field>
         </record>
 
@@ -59,6 +63,10 @@
                 <field name="date" position="before">
                     <field name="payment_date"/>
                 </field>
+
+                <field name="amount" position="before">
+                    <field name="to_pay_amount"/>
+                </field>
             </field>
         </record>
 
@@ -69,6 +77,10 @@
             <field name="arch" type="xml">
                 <field name="date" position="before">
                     <field name="payment_date"/>
+                </field>
+
+                <field name="amount" position="before">
+                    <field name="to_pay_amount"/>
                 </field>
             </field>
         </record>

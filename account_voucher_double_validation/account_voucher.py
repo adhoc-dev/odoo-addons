@@ -58,14 +58,14 @@ class account_voucher(models.Model):
         )
     to_pay_amount = fields.Float(
         'To Pay Amount',
-        compute='_get_balance_amount',
+        compute='_get_to_pay_amount',
         digits=dp.get_precision('Account'),
         help='Amount To be Paid',
     )
 
     @api.one
     @api.depends('writeoff_amount')
-    def _get_balance_amount(self):
+    def _get_to_pay_amount(self):
         """In v9 should be calculated from debit and credit but can be used now
         because of old onchanges
         IMPORTANTE: We can not make it works when voucher is already saved.
@@ -74,8 +74,8 @@ class account_voucher(models.Model):
         # debit = sum([x.amount for x in self.line_cr_ids])
         # credit = sum([x.amount for x in self.line_dr_ids])
         # balance_amount = debit - credit
-        balance_amount = self.amount - self.writeoff_amount
-        self.balance_amount = balance_amount
+        to_pay_amount = self.amount - self.writeoff_amount
+        self.to_pay_amount = to_pay_amount
 
     @api.multi
     def proforma_voucher(self):
@@ -86,7 +86,7 @@ class account_voucher(models.Model):
         for voucher in self:
             if not voucher.date:
                 voucher.date = fields.Date.context_today(self)
-            if voucher.payment_date >= fields.Date.context_today(self):
+            if voucher.payment_date > fields.Date.context_today(self):
                 raise Warning(_('You can not validate a Voucher that has\
                     Payment Date before Today'))
         return super(account_voucher, self).proforma_voucher()
