@@ -5,15 +5,13 @@
             <field name="name">res.partner.product.property.form.inherit</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="product.view_partner_property_form"/>
+            <field name="groups_id" eval="[(6, 0, [ref('group_restrict_prices')])]"/>
             <field name="arch" type="xml">
-                <form>
-                    <field name="user_restrict_prices" invisible="1"/>
-                </form>
                 <field name="property_product_pricelist" position="attributes">
-                    <attribute name="attrs">{'readonly':[('user_restrict_prices', '=', True)]}</attribute>
+                    <attribute name="readonly">1</attribute>
                 </field>
                 <field name="property_payment_term" position="attributes">
-                    <attribute name="attrs">{'readonly':[('user_restrict_prices', '=', True)]}</attribute>
+                    <attribute name="readonly">1</attribute>
                 </field>
             </field>
         </record>

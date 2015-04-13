@@ -7,11 +7,8 @@
 			<field name="model">sale.order</field>
 			<field name="inherit_id" ref="sale.view_order_form" />
 			<field name="arch" type="xml">
-				<field name="pricelist_id" position="replace">
-					<group col="3" colspan="2">
-                    	<field domain="[('type','=','sale')]" name="pricelist_id" groups="product.group_sale_pricelist" on_change="onchange_pricelist_id(pricelist_id,order_line)"/>
-						<button name="update_prices" string="Update Prices" type="object" attrs="{'invisible':[('state','not in',['draft','sent'])]}" class="oe_link" groups="product.group_sale_pricelist"/>
-					</group>
+				<field name="order_line" position="before">
+					<button name="update_prices" string="Update Prices" type="object" attrs="{'invisible':[('state','not in',['draft','sent'])]}" groups="product.group_sale_pricelist"/>
 				</field>
 			</field>
 		</record>
