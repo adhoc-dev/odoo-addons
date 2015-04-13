@@ -3,6 +3,15 @@ from openerp import models, fields, api,  _
 from openerp.exceptions import Warning
 
 
+class account_bank_statement(models.Model):
+    _inherit = 'account.bank.statement'
+
+    def button_cancel(self, cr, uid, ids, context=None):
+        context['cancel_from_statement'] = True
+        return super(account_bank_statement, self).button_cancel(
+            cr, uid, ids, context=context)
+
+
 class account_bank_statement_line(models.Model):
     _inherit = 'account.bank.statement.line'
 
@@ -10,7 +19,7 @@ class account_bank_statement_line(models.Model):
 
     def cancel(self, cr, uid, ids, context=None):
         # if we are canceling the statement then we dont raise the warning
-        if context.get('params', {}).get('model') == 'account.bank.statement':
+        if context.get('cancel_from_statement', False):
             none_voucher_ids = self.search(
                 cr, uid,
                 [('id', 'in', ids), ('voucher_id', '=', False)])
@@ -20,7 +29,7 @@ class account_bank_statement_line(models.Model):
         for line in self.browse(cr, uid, ids, context):
             if line.voucher_id:
                 raise Warning(
-                    _("You can not cancel a line that has been impored from a Voucher, you should cancel the voucher first"))
+                    _("You can not cancel a line that has been imported from a Voucher, you should cancel the voucher first"))
         return super(account_bank_statement_line, self).cancel(
             cr, uid, ids, context)
 
