@@ -1,0 +1,15 @@
+<openerp>
+    <data>        
+        <record id="receipt_form_view" model="ir.ui.view">
+            <field name="name">account.voucher.receipt.report.generator.form</field>
+            <field name="model">account.voucher.receipt</field>
+            <field name="inherit_id" ref="account_voucher_receipt.receipt_form_view"/>
+            <field name="arch" type="xml">
+                <button position="before">
+                    <button name="receipt_print" class="oe_highlight" string="Print Receipt" type="object" states="posted"/>
+                    <button name="receipt_send_rfq" string="Send by Email" type="object" states="posted" groups="base.group_user" context="{'send_rfq':True}"/>
+                </button>                
+            </field>
+        </record>
+    </data>
+</openerp>
