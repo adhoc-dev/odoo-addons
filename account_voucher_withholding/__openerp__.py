@@ -8,7 +8,7 @@
         'views/account_withholding_view.xml',
         'views/account_voucher_view.xml',
         'security/security.xml',
-        # 'security/ir.model.access.csv'
+        'security/ir.model.access.csv'
     ],
     'demo': [],
     'depends': [
