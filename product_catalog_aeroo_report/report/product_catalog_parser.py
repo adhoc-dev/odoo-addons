@@ -13,6 +13,7 @@ class Parser(report_sxw.rml_parse):
 
         lang = context.get('lang', 'es_ES')
 
+        self.print_product_uom = context.get('print_product_uom', False)
         self.product_type = context.get('product_type', 'product.product')
         self.prod_display_type = context.get('prod_display_type', False)
         pricelist_ids = context.get('pricelist_ids', [])
@@ -41,6 +42,7 @@ class Parser(report_sxw.rml_parse):
             'lang': lang,
             'categories': categories,
             'products': products,
+            'print_product_uom': self.print_product_uom,
             'product_type': self.product_type,
             'prod_display_type': self.prod_display_type,
             'company_logo': company_id.logo,

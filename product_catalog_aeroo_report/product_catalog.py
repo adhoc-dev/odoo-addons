@@ -24,6 +24,9 @@ class product_catalog_report(models.Model):
     only_with_stock = fields.Boolean(
         'Only With Stock Products?',
     )
+    print_product_uom = fields.Boolean(
+        'Print Product UOM?',
+        )
     product_type = fields.Selection(
         [('product.template', 'Product Template'),
          ('product.product', 'Product')], 'Product Type',
@@ -74,6 +77,7 @@ class product_catalog_report(models.Model):
         context['categories_order'] = self.categories_order
         context['only_with_stock'] = self.only_with_stock
         context['prod_display_type'] = self.prod_display_type
+        context['print_product_uom'] = self.print_product_uom
         return self.with_context(context)
 
     @api.multi

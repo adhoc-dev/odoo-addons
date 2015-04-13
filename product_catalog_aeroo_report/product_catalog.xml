@@ -35,6 +35,7 @@
                             <field name="categories_order"/>
                             <field name="products_order"/>
                             <field name="only_with_stock"/>
+                            <field name="print_product_uom"/>
                             <field name="include_sub_categories"/>
                             <field name="product_type"/>
                             <field name="prod_display_type" attrs="{'invisible':[('product_type','!=','product.template')],'required':[('product_type','','product.template')]}"/>
