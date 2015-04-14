@@ -62,9 +62,16 @@ class account_voucher(models.Model):
         digits=dp.get_precision('Account'),
         help='Amount To be Paid',
     )
+    advance_amount = fields.Float(
+        'Advance Amount',
+        digits=dp.get_precision('Account'),
+        readonly=True,
+        states={'draft': [('readonly', False)]},
+        help='Amount to be advance and not conciliated with debts',
+    )
 
     @api.one
-    @api.depends('writeoff_amount')
+    @api.depends('writeoff_amount', 'advance_amount')
     def _get_to_pay_amount(self):
         """In v9 should be calculated from debit and credit but can be used now
         because of old onchanges
@@ -74,8 +81,16 @@ class account_voucher(models.Model):
         # debit = sum([x.amount for x in self.line_cr_ids])
         # credit = sum([x.amount for x in self.line_dr_ids])
         # balance_amount = debit - credit
-        to_pay_amount = self.amount - self.writeoff_amount
+        to_pay_amount = self.amount - self.writeoff_amount + self.advance_amount
         self.to_pay_amount = to_pay_amount
+
+    @api.multi
+    def check_to_pay_amount(self):
+        for voucher in self:
+            if not voucher.to_pay_amount:
+                raise Warning(_('You can not confirm a voucher with to pay\
+                    amount equal to 0'))
+        return True
 
     @api.multi
     def proforma_voucher(self):

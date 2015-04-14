@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-       
+
         <record id="act_confirmed" model="workflow.activity">
             <field name="wkf_id" ref="account_voucher.wkf"/>
             <field name="name">confirmed</field>
@@ -13,7 +13,7 @@
             <field name="act_from" ref="account_voucher.act_proforma"/>
             <field name="act_to" ref="act_confirmed"/>
             <field name="signal">proforma_confirmed</field>
-            <field name="condition">True</field>
+            <field name="condition">check_to_pay_amount()</field>
         </record>
 
         <record id="confirmed_done" model="workflow.transition">
