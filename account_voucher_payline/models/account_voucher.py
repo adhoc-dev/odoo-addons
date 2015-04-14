@@ -11,6 +11,7 @@ class account_voucher(models.Model):
         'Amount',
         digits=dp.get_precision('Account'),
         required=True,
+        default=0.0,    # for compatibility with other modules
         readonly=True,
         states={'draft': [('readonly', False)]},
         help='Amount Paid With Journal Method',
