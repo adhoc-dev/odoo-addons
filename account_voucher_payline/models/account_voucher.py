@@ -178,6 +178,8 @@ class account_voucher(models.Model):
             line_total = self.paylines_moves_create(
                 cr, uid, voucher, move_id, company_currency,
                 current_currency, context)
+            if voucher.type in ('purchase', 'payment'):
+                line_total = line_total * -1
             # END AGREGADO
             # END CHANGE
             rec_list_ids = []
