@@ -31,8 +31,6 @@ class users(models.Model):
 
     @api.multi
     def check_discount(self, discount, pricelist_id):
-        if self.env.user.has_group('price_security.group_restrict_prices'):
-            return True
         if discount and discount != 0.0:
             disc_restriction_env = self.env['res.users.discount_restriction']
             domain = [

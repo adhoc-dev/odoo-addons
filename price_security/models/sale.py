@@ -22,7 +22,7 @@ class sale_order_line(models.Model):
     @api.constrains(
         'discount', 'product_can_modify_prices')
     def check_discount(self):
-        if not self.product_can_modify_prices:
+        if self.user_has_groups('price_security.group_restrict_prices') and not self.product_can_modify_prices:
             self.env.user.check_discount(
                 self.discount,
                 self.order_id.pricelist_id.id)
