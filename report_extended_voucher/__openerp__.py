@@ -1,26 +1,25 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Report Configurator - Voucher Receipt',
+    'name': 'Report Configurator - Account Voucher',
     'version': '1.0',
     'category': 'Reporting Subsystem',
     'sequence': 14,
     'summary': '',
     'description': """
-Report Configurator - Account
-=============================
+Report Configurator - Account Voucher
+=====================================
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [
         'report_extended',
-        'account_voucher_receipt',
-        'account_check',
+        'account_voucher',
     ],
     'data': [
         'views/report_view.xml',
-        'views/account_voucher_receipt_view.xml',
+        'views/account_voucher_view.xml',
         'views/account_action_data.xml',
     ],
     'demo': [
