@@ -84,23 +84,3 @@ class account_invoice(models.Model):
         if report and report.account_invoice_split_invoice and report.account_invoice_lines_to_split:
             self.split_invoice(report.account_invoice_lines_to_split)
         return super(account_invoice, self).action_date_assign()
-
-    def confirm_paid(self, cr, uid, ids, context=None):
-        res = super(account_invoice, self).confirm_paid(
-            cr, uid, ids, context=context)
-        self.check_sale_order_paid(cr, uid, ids, context=context)
-        return res
-
-    def check_sale_order_paid(self, cr, uid, ids, context=None):
-        '''Esta funcion la hacemos para verificar si toda la orden de venta fue pagada en el caso de
-         'pago antes de la entrega' porque el problema es el siguiente, de manera original openerp
-         genera una factura que queda vinculada por el subflow avisando cuando fue pagada a la orden de venta, 
-         el problema es que en este caso tendriamos mas de una factura ligada, por eso el chequeo hay que hacerlo aparte
-         '''
-        sale_order_obj = self.pool.get('sale.order')
-        so_ids = sale_order_obj.search(
-            cr, uid, [('invoice_ids', 'in', ids)], context=context)
-        for so in sale_order_obj.browse(cr, uid, so_ids, context=context):
-            if so.order_policy == 'prepaid' and so.invoiced:
-                so.signal_workflow('subflow.paid')
-        return True
