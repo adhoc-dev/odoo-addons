@@ -23,58 +23,57 @@ class account_invoice(models.Model):
         self.sent = True
         return self.env['report'].get_action(self, report_name)
 
-    @api.one
+    @api.multi
     def split_invoice(self, lines_to_split):
         '''
         Split the invoice when the lines exceed the maximum lines_to_split
         '''
-        if not lines_to_split:
-            return
+        res = {}
+        for line in self:
+            new_invoice = False
+            if not lines_to_split:
+                return
 
-        if self.type in ["out_invoice", "out_refund"]:
+            if line.type in ["out_invoice", "out_refund"]:
 
-            if len(self.invoice_line) > lines_to_split:
-                lst = []
-                invoice = self.read(
-                    ['name', 'type', 'number', 'reference', 'comment',
-                     'date_due', 'partner_id', 'partner_contact',
-                     'partner_insite', 'partner_ref', 'payment_term',
-                     'account_id', 'currency_id', 'invoice_line',
-                     'tax_line', 'journal_id', 'period_id',
-                     'company_id', 'origin', 'user_id'])[0]
-                print 'invoice', invoice
-                invoice.update({
-                    'state': 'draft',
-                    'number': False,
-                    'invoice_line': [],
-                    'tax_line': [],
-                    'splitter_invoice_id': self.id,
-                })
-                # take the id part of the tuple returned for many2one
-                # fields
-                for field in ('partner_id', 'account_id', 'currency_id',
-                              'payment_term', 'journal_id', 'period_id',
-                              'company_id', 'user_id'):
-                    invoice[field] = invoice[field] and invoice[field][0]
+                if len(line.invoice_line) > lines_to_split:
+                    lst = []
+                    invoice = line.read(
+                        ['name', 'type', 'number', 'reference', 'comment',
+                         'date_due', 'partner_id', 'partner_contact',
+                         'partner_insite', 'partner_ref', 'payment_term',
+                         'account_id', 'currency_id', 'invoice_line',
+                         'tax_line', 'journal_id', 'period_id',
+                         'company_id', 'origin', 'user_id'])[0]
+                    invoice.update({
+                        'state': 'draft',
+                        'number': False,
+                        'invoice_line': [],
+                        'tax_line': [],
+                        'splitter_invoice_id': line.id,
+                    })
+                    # take the id part of the tuple returned for many2one
+                    # fields
+                    for field in ('partner_id', 'account_id', 'currency_id',
+                                  'payment_term', 'journal_id', 'period_id',
+                                  'company_id', 'user_id'):
+                        invoice[field] = invoice[field] and invoice[field][0]
 
-                inv_id = self.create(invoice).id
-                lst = self.invoice_line
-                lst = lst[lines_to_split:]
+                    new_invoice = line.create(invoice)
+                    lst = line.invoice_line
+                    lst = lst[lines_to_split:]
 
-                for il in lst:
-                    self.env['account.invoice.line'].browse(il.id).write(
-                        {'invoice_id': inv_id})
+                    for il in lst:
+                        line.env['account.invoice.line'].browse(il.id).write(
+                            {'invoice_id': new_invoice.id})
 
-                self.write(
-                    {'splitted_invoice_id': inv_id})
+                    line.write(
+                        {'splitted_invoice_id': new_invoice.id})
 
-                self.button_compute(set_total=True)
+                    line.button_compute(set_total=True)
+            res[line.id] = new_invoice
 
-                sale_orders = self.env['sale.order'].search(
-                    [('invoice_ids', 'in', [self.id])])
-                sale_orders.write({'invoice_ids': [(4, inv_id)]})
-
-        return True
+        return res
 
     # This is the first action on the invoice
     @api.multi
