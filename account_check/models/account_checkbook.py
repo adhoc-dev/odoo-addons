@@ -99,19 +99,16 @@ class account_checkbook(models.Model):
         return super(account_checkbook, self).unlink()
 
     @api.multi
-    def wkf_used(self):
+    def set_used(self):
         self.write({'state': 'used'})
         return True
 
     @api.multi
-    def wkf_active(self):
+    def set_active(self):
         self.write({'state': 'active'})
         return True
 
     @api.multi
-    def action_cancel_draft(self):
-        # go from canceled state to draft state
+    def set_draft(self):
         self.write({'state': 'draft'})
-        self.delete_workflow()
-        self.create_workflow()
         return True

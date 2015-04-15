@@ -51,7 +51,6 @@ Al depositar el cheque hace el asiento 2 de la imagen, cosa que no esta bien, lo
         'views/account_voucher_view.xml',
         'views/account_check_view.xml',
         'workflow/account_check_workflow.xml',
-        'workflow/workflow_checkbook.xml',
         'security/ir.model.access.csv',
         'security/account_check_security.xml',
     ],
