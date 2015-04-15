@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <field name="order_line" position="before">
-                    <button name="%(action_sale_add_multiple)d" class="oe_link" type="action" string="Add multiple" attrs="{'invisible':[('state','not in',['draft','sent'])]}"/>
+                    <button name="%(action_sale_add_multiple)d" type="action" string="Add multiple" attrs="{'invisible':[('state','not in',['draft','sent'])]}"/>
                 </field>
             </field>
         </record>

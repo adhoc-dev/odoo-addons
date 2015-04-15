@@ -1,24 +1,24 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Report Configurator - Stock',
+    'name': 'Product Catalog Aeroo Report with public Category',
     'version': '1.0',
-    'category': 'Reporting Subsystem',
+    'category': 'Aeroo Reporting',
     'sequence': 14,
     'summary': '',
     'description': """
-Report Configurator - Stock
-=============================
+Product Catalog Aeroo Report with Public Category
+=================================================
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [
-        'report_extended',
-        'stock_voucher',
+        'website_sale',
+        'product_catalog_aeroo_report',
     ],
     'data': [
-        'views/report_view.xml',
+        'product_catalog.xml'
     ],
     'demo': [
     ],

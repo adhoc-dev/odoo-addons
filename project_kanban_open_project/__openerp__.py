@@ -1,31 +1,30 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Report Configurator - Stock',
+    'name': 'Project Kanban Open Project',
     'version': '1.0',
-    'category': 'Reporting Subsystem',
+    'category': 'Projects & Services',
     'sequence': 14,
     'summary': '',
     'description': """
-Report Configurator - Stock
-=============================
+Project Kanban Open Project
+=====================
     """,
-    'author':  'Ingenieria ADHOC',
+    'author':  'ADHOC SA',
     'website': 'www.ingadhoc.com',
     'images': [
     ],
     'depends': [
-        'report_extended',
-        'stock_voucher',
+        'project',
     ],
     'data': [
-        'views/report_view.xml',
+        'view/project_view.xml',
     ],
     'demo': [
     ],
     'test': [
     ],
     'installable': True,
-    'auto_install': True,
+    'auto_install': False,
     'application': False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

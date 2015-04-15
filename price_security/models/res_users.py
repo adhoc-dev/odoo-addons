@@ -46,3 +46,4 @@ class users(models.Model):
             disc_restriction = disc_restrictions[0]
             if discount < disc_restriction.min_discount or discount > disc_restriction.max_discount:
                     raise Warning(_('The applied discount is out of range with respect to the allowed. The discount can be between %s and %s for the current price list') % (disc_restriction.min_discount, disc_restriction.max_discount))
+        return True

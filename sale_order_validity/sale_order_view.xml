@@ -6,12 +6,14 @@
         <field name="name">sale.order.form.validity</field>
         <field name="model">sale.order</field>
         <field name="type">form</field>
-        <field name="inherit_id" ref="sale_prices_update.sale_order_pricelist_form_view_inh"/>
+        <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <button name="update_prices" position="after">
-                    <field name="validity_date"/>
-                    <button name="update_prices_and_validity" help="Update Prices and Validity" string="Update Validity" type="object" attrs="{'invisible':[('state','not in',['draft','sent'])]}" class="oe_link"/>
-            </button>
+            <field name="pricelist_id" position="after">
+                <field name="validity_date"/>
+            </field>
+            <field name="order_line" position="before">
+                <button name="update_prices_and_validity" help="Update Prices and Validity" string="Update Validity" type="object" attrs="{'invisible':[('state','not in',['draft','sent'])]}"/>
+            </field>
         </field>
     </record>
 

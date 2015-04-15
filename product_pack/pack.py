@@ -2,8 +2,9 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp import fields, models
+from openerp import fields, models, api, _
 from openerp.osv import fields as old_fields
+from openerp.exceptions import Warning
 import math
 
 
@@ -25,6 +26,9 @@ class product_product(models.Model):
 
     pack_line_ids = fields.One2many(
         'product.pack.line', 'parent_product_id', 'Pack Products',
+        help='List of products that are part of this pack.')
+    used_pack_line_ids = fields.One2many(
+        'product.pack.line', 'product_id', 'Pack Products',
         help='List of products that are part of this pack.')
 
     def _product_available(
@@ -51,10 +55,10 @@ class product_product(models.Model):
                         subproduct_stock['virtual_available'] / sub_qty))
             # TODO calcular correctamente pack virtual available para negativos
             res[product.id] = {
-                'qty_available': min(pack_qty_available),
+                'qty_available': pack_qty_available and min(pack_qty_available) or False,
                 'incoming_qty': 0,
                 'outgoing_qty': 0,
-                'virtual_available': max(min(pack_virtual_available), 0),
+                'virtual_available': pack_virtual_available and max(min(pack_virtual_available), 0) or False,
             }
         return res
 
@@ -76,6 +80,15 @@ class product_product(models.Model):
             _product_available, multi='qty_available',
             fnct_search=_search_product_quantity),
     }
+
+    @api.one
+    @api.constrains('company_id', 'pack_line_ids')
+    def check_pack_line_company(self):
+        for line in self.pack_line_ids + self.used_pack_line_ids:
+            if line.parent_product_id.company_id != self.company_id:
+                raise Warning(_(
+                    'Pack lines products company must be the same as the\
+                    parent product company'))
 
 
 class product_template(models.Model):
