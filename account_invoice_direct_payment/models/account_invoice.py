@@ -33,6 +33,7 @@ class account_invoice(models.Model):
         journal = self.direct_payment_journal_id
         partner = self.commercial_partner_id
         company = self.company_id
+        voucher_type = self.type in ('out_invoice', 'out_refund') and 'receipt' or 'payment'
         amount = self.type in (
             'out_refund', 'in_refund') and -self.residual or self.residual
 
@@ -41,6 +42,7 @@ class account_invoice(models.Model):
             payment_expected_currency=self.currency_id.id,
             close_after_process=True,
             invoice_id=self.id,
+            ttype=voucher_type,
             )
 
         # call onchange journal
@@ -51,7 +53,7 @@ class account_invoice(models.Model):
                 partner.id,
                 self.date_invoice,
                 amount,
-                type,
+                voucher_type,
                 company.id,
                 )['value']
 
@@ -72,6 +74,7 @@ class account_invoice(models.Model):
             'line_cr_ids': line_cr_ids,
             'currency_id': journal_vals['currency_id'],
             'period_id': journal_vals['period_id'],
+            'date': self.date_invoice,
             'pre_line': journal_vals['pre_line'],
             'payment_rate': journal_vals['payment_rate'],
             'account_id': journal_vals['account_id'],
@@ -85,7 +88,7 @@ class account_invoice(models.Model):
             'close_after_process': True,
             'invoice_type': self.type,
             'invoice_id': self.id,
-            'type': self.type in ('out_invoice', 'out_refund') and 'receipt' or 'payment'
+            'type': voucher_type,
         }
         return vals
 

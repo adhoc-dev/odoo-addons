@@ -82,8 +82,7 @@
                 </field>
 
                 <field name="amount" position="before">
-                    <field name="advance_amount"/>
-                    <field name="to_pay_amount"/>
+                    <field name="to_pay_amount" sum="Total"/>
                 </field>
             </field>
         </record>
