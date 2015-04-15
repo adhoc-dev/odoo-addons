@@ -43,10 +43,11 @@ class account_voucher(models.Model):
     @api.onchange('dummy_journal_id')
     def change_dummy_journal_id(self):
         """Unlink checks on journal change"""
+        # TODO tal vez esta funcion deberia ir a voucher payline
+        self.net_amount = False
         self.delivered_third_check_ids = False
         self.issued_check_ids = False
         self.received_third_check_ids = False
-        self.net_amount = False
 
     @api.multi
     def action_cancel_draft(self):

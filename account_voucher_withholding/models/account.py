@@ -22,6 +22,7 @@ class account_tax_withholding(models.Model):
     #     )
     active = fields.Boolean(
         'Active',
+        default=True,
         help="If the active field is set to False, it will allow you to hide the tax without removing it.")
     # TODO add this field  and other for automation
     # type = fields.Selection(

@@ -79,7 +79,8 @@ class account_voucher(models.Model):
         # Can not use this way because old api
         debit = sum([x.amount for x in self.line_cr_ids])
         credit = sum([x.amount for x in self.line_dr_ids])
-        to_pay_amount = debit - credit + self.advance_amount
+        # TODO probablemente haya que multiplicar por sign dependiendo receipt o payment
+        to_pay_amount = credit - debit + self.advance_amount
         # TODO remove this old way
         # to_pay_amount = self.amount - self.writeoff_amount + self.advance_amount
         self.to_pay_amount = to_pay_amount
