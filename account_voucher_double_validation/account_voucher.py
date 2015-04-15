@@ -73,15 +73,15 @@ class account_voucher(models.Model):
     @api.one
     @api.depends('writeoff_amount', 'advance_amount')
     def _get_to_pay_amount(self):
-        """In v9 should be calculated from debit and credit but can be used now
-        because of old onchanges
-        IMPORTANTE: We can not make it works when voucher is already saved.
-        The correct value is displayed after save in that case"""
+        """On v8 it is only updated on save. 
+        In v9 should be updated live
+        """
         # Can not use this way because old api
-        # debit = sum([x.amount for x in self.line_cr_ids])
-        # credit = sum([x.amount for x in self.line_dr_ids])
-        # balance_amount = debit - credit
-        to_pay_amount = self.amount - self.writeoff_amount + self.advance_amount
+        debit = sum([x.amount for x in self.line_cr_ids])
+        credit = sum([x.amount for x in self.line_dr_ids])
+        to_pay_amount = debit - credit + self.advance_amount
+        # TODO remove this old way
+        # to_pay_amount = self.amount - self.writeoff_amount + self.advance_amount
         self.to_pay_amount = to_pay_amount
 
     @api.multi
