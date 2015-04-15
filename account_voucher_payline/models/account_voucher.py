@@ -74,7 +74,7 @@ class account_voucher(models.Model):
         if voucher.net_amount:
             move_line = self.create_first_line(
                 voucher, move_id, company_currency, current_currency)
-            paylines_total = move_line.debit or move_line.credit
+            paylines_total = move_line.debit - move_line.credit
         return paylines_total
 
     @api.model
@@ -179,8 +179,6 @@ class account_voucher(models.Model):
             line_total = self.paylines_moves_create(
                 cr, uid, voucher, move_id, company_currency,
                 current_currency, context)
-            # if voucher.type in ('purchase', 'payment'):
-                # line_total = line_total * -1
             # END AGREGADO
             # END CHANGE
             rec_list_ids = []
