@@ -20,6 +20,10 @@ class account_voucher(models.Model):
         states={'draft': [('readonly', False)],
                 'confirmed': [('readonly', False)]}
         )
+    account_id = fields.Many2one(
+        states={'draft': [('readonly', False)],
+                'confirmed': [('readonly', False)]}
+        )
     net_amount = fields.Float(
         states={'draft': [('readonly', False)],
                 'confirmed': [('readonly', False)]}
@@ -101,22 +105,30 @@ class account_voucher(models.Model):
             self, cr, uid, ids, amount, rate, partner_id, journal_id,
             currency_id, ttype, date, payment_rate_currency_id, company_id,
             context=None):
-        for voucher in self.browse(cr, uid, ids, context=context):
-            # if confirmed we dont return anything
-            if voucher.state == 'confirmed':
-                return {}
-        return super(account_voucher, self).onchange_amount(
+        res = super(account_voucher, self).onchange_amount(
             cr, uid, ids, amount, rate, partner_id, journal_id,
             currency_id, ttype, date, payment_rate_currency_id, company_id,
             context=context)
+        for voucher in self.browse(cr, uid, ids, context=context):
+            # if confirmed we clean voucher lines
+            if res.get('value') and voucher.state == 'confirmed':
+                if res['value'].get('line_cr_ids'):
+                    del res['value']['line_cr_ids']
+                if res['value'].get('line_dr_ids'):
+                    del res['value']['line_dr_ids']
+        return res
 
     def onchange_journal(self, cr, uid, ids, journal_id, line_ids, tax_id,
                          partner_id, date, amount, ttype, company_id,
                          context=None):
-        for voucher in self.browse(cr, uid, ids, context=context):
-            # if confirmed we dont return anything
-            if voucher.state == 'confirmed':
-                return {}
-        return super(account_voucher, self).onchange_journal(
+        res = super(account_voucher, self).onchange_journal(
             cr, uid, ids, journal_id, line_ids, tax_id, partner_id, date,
             amount, ttype, company_id, context=context)
+        for voucher in self.browse(cr, uid, ids, context=context):
+            # if confirmed we clean voucher lines
+            if res.get('value') and voucher.state == 'confirmed':
+                if res['value'].get('line_cr_ids'):
+                    del res['value']['line_cr_ids']
+                if res['value'].get('line_dr_ids'):
+                    del res['value']['line_dr_ids']
+        return res
