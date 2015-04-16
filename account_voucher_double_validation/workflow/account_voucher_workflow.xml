@@ -13,7 +13,7 @@
             <field name="act_from" ref="account_voucher.act_proforma"/>
             <field name="act_to" ref="act_confirmed"/>
             <field name="signal">proforma_confirmed</field>
-            <field name="condition">check_to_pay_amount()</field>
+            <field name="condition">True</field>
         </record>
 
         <record id="confirmed_done" model="workflow.transition">

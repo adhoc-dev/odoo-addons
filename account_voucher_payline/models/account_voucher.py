@@ -25,7 +25,7 @@ class account_voucher(models.Model):
     amount = fields.Float(
         string='Total Amount',
         compute='_get_amount',
-        # inverse='_set_net_amount',
+        inverse='_set_net_amount',
         help='Total Amount Paid',
     )
     amount_readonly = fields.Float(
@@ -46,10 +46,9 @@ class account_voucher(models.Model):
     def _get_amount(self):
         self.amount = self.paylines_amount + self.net_amount
 
-    # @api.one
-    # @api.onchange('amount_readonly')
-    # def _set_net_amount(self):
-    #     self.net_amount = self.amount - self.paylines_amount
+    @api.one
+    def _set_net_amount(self):
+        self.net_amount = self.amount - self.paylines_amount
 
     @api.one
     def _get_paylines_amount(self):

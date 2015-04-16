@@ -10,13 +10,11 @@
                     <field name="name"/>
                     <field name="date"/>
                     <field name="type"/>
-                    <field name="state"/>
                     <field name="tax_withholding_id"/>
                     <field name="company_id" groups="base.group_multi_company"/>
                     <group expand="0" string="Group By...">
                         <filter string="Type" context="{'group_by':'type'}"/>
                         <filter string="Withholding Tax" context="{'group_by':'tax_withholding_id'}"/>                        
-                        <filter string="State" context="{'group_by':'state'}"/>
                     </group>
                 </search>
             </field>
@@ -25,11 +23,10 @@
             <field name="name">account.voucher.withholding.tree</field>
             <field name="model">account.voucher.withholding</field>
             <field name="arch" type="xml"> 
-                <tree colors="blue:state == 'draft';gray:state == 'cancel'" string="Withholding Vouchers">
+                <tree string="Withholding Vouchers">
                     <field name="name"/>
                     <field name="date"/>
                     <field name="type"/>
-                    <field name="state"/>
                     <field name="tax_withholding_id"/>
                     <field name="company_id" groups="base.group_multi_company"/>
                     <field name="amount" sum="Total"/>
@@ -42,9 +39,6 @@
             <field name="model">account.voucher.withholding</field>
             <field name="arch" type="xml"> 
                 <form string="Withholding Vouchers">
-                    <header>
-                        <field name="state" widget="statusbar" statusbar_colors='{"hrejected":"red"}'/>
-                    </header>
                     <sheet string="Withholding Vouchers">
                         <field name="type" invisible="1"/>
                         <field name="settlement_account_move_id" invisible="1"/>

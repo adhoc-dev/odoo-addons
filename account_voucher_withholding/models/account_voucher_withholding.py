@@ -16,35 +16,29 @@ class account_voucher_withholding(models.Model):
     name = fields.Char(
         'Number',
         required=True,
-        readonly=True,
-        states={'draft': [('readonly', False)]},
         )
     date = fields.Date(
         'Date',
         required=True,
-        readonly=True,
-        states={'draft': [('readonly', False)]},
         default=fields.Date.context_today,
         )
-    state = fields.Selection(
-        # [
-        #     ('draft', 'Draft'),
-        #     ('available', 'Available'),
-        #     ('settled', 'Settled'),
-        #     ('cancel', 'Cancel'),
-        # ],
-        string='State',
-        related='voucher_id.state',
-        default='draft',
-        required=True,
-        track_visibility='onchange',
-        )
+    # state = fields.Selection(
+    #     # [
+    #     #     ('draft', 'Draft'),
+    #     #     ('available', 'Available'),
+    #     #     ('settled', 'Settled'),
+    #     #     ('cancel', 'Cancel'),
+    #     # ],
+    #     string='State',
+    #     related='voucher_id.state',
+    #     default='draft',
+    #     required=True,
+    #     track_visibility='onchange',
+    #     )
     tax_withholding_id = fields.Many2one(
         'account.tax.withholding',
         string='Withholding',
         required=True,
-        readonly=True,
-        states={'draft': [('readonly', False)]},
         )
     comment = fields.Text(
         'Additional Information',
@@ -52,8 +46,6 @@ class account_voucher_withholding(models.Model):
     amount = fields.Float(
         'Amount',
         required=True,
-        readonly=True,
-        states={'draft': [('readonly', False)]},
         digits=dp.get_precision('Account'),
         )
     settlement_account_move_id = fields.Many2one(

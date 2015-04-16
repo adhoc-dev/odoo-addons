@@ -8,8 +8,6 @@ class account_voucher(models.Model):
     _inherit = "account.voucher"
 
     state = fields.Selection(
-        # selection_add=[
-        #     ('confirmed', 'Confirmed'),
         selection=[
             ('draft', 'Draft'),
             ('confirmed', 'Confirmed'),
@@ -17,12 +15,11 @@ class account_voucher(models.Model):
             ('proforma', 'Pro-forma'),
             ('posted', 'Posted')
         ])
-    # TODO Agregar al help
-        # help=' * The \'Draft\' status is used when a user is encoding a new and unconfirmed Voucher. \
-        #             \n* The \'Pro-forma\' when voucher is in Pro-forma status,voucher does not have an voucher number. \
-        #             \n* The \'Posted\' status is used when user create voucher,a voucher number is generated and voucher entries are created in account \
-        #             \n* The \'Cancelled\' status is used when user cancel voucher.'),
-    # partner_id = fields.Many2one('')
+    # we need amount to be not readonly on confirmed in order to compute the value
+    amount = fields.Float(
+        states={'draft': [('readonly', False)],
+                'confirmed': [('readonly', False)]}
+        )
     net_amount = fields.Float(
         states={'draft': [('readonly', False)],
                 'confirmed': [('readonly', False)]}
@@ -81,19 +78,7 @@ class account_voucher(models.Model):
         credit = sum([x.amount for x in self.line_dr_ids])
         # TODO probablemente haya que multiplicar por sign dependiendo receipt o payment
         to_pay_amount = credit - debit + self.advance_amount
-        # TODO remove this old way
-        # to_pay_amount = self.amount - self.writeoff_amount + self.advance_amount
         self.to_pay_amount = to_pay_amount
-
-    @api.multi
-    def proforma_voucher(self):
-        """Check Amount = to Amount To Pay
-        """
-        for voucher in self:
-            if voucher.amount != voucher.to_pay_amount:
-                raise Warning(_('You can not validate a Voucher that has\
-                    Total Amount different from To Pay Amount'))
-        return super(account_voucher, self).proforma_voucher()
 
     @api.multi
     def proforma_voucher(self):
@@ -102,6 +87,9 @@ class account_voucher(models.Model):
         * Fix not date on voucher error, set actual date.
         """
         for voucher in self:
+            if voucher.amount != voucher.to_pay_amount:
+                raise Warning(_('You can not validate a Voucher that has\
+                    Total Amount different from To Pay Amount'))
             if not voucher.date:
                 voucher.date = fields.Date.context_today(self)
             if voucher.payment_date > fields.Date.context_today(self):
@@ -109,30 +97,26 @@ class account_voucher(models.Model):
                     Payment Date before Today'))
         return super(account_voucher, self).proforma_voucher()
 
+    def onchange_amount(
+            self, cr, uid, ids, amount, rate, partner_id, journal_id,
+            currency_id, ttype, date, payment_rate_currency_id, company_id,
+            context=None):
+        for voucher in self.browse(cr, uid, ids, context=context):
+            # if confirmed we dont return anything
+            if voucher.state == 'confirmed':
+                return {}
+        return super(account_voucher, self).onchange_amount(
+            cr, uid, ids, amount, rate, partner_id, journal_id,
+            currency_id, ttype, date, payment_rate_currency_id, company_id,
+            context=context)
+
     def onchange_journal(self, cr, uid, ids, journal_id, line_ids, tax_id,
                          partner_id, date, amount, ttype, company_id,
                          context=None):
-        if not journal_id:
-            return False
-        if ids:
-            vouchers = self.browse(cr, uid, ids, context=context)
-            # Si esta confirmado solo actualizamos la currency y otra data
-            if vouchers[0].state == 'confirmed':
-                journal_pool = self.pool.get('account.journal')
-                journal = journal_pool.browse(
-                    cr, uid, journal_id, context=context)
-                vals = {'value': {}}
-                currency_id = False
-                if journal.currency:
-                    currency_id = journal.currency.id
-                else:
-                    currency_id = journal.company_id.currency_id.id
-
-                vals['value'].update({
-                    'currency_id': currency_id,
-                    'payment_rate_currency_id': currency_id,
-                })
-                return vals
+        for voucher in self.browse(cr, uid, ids, context=context):
+            # if confirmed we dont return anything
+            if voucher.state == 'confirmed':
+                return {}
         return super(account_voucher, self).onchange_journal(
             cr, uid, ids, journal_id, line_ids, tax_id, partner_id, date,
             amount, ttype, company_id, context=context)
