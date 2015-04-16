@@ -15,7 +15,7 @@
     'description': '''
 Account Invoice Auto Pay
 ========================
-Auto pay invoice if customer account is of type "regular"
+Auto pay invoice if residual = 0
 ''',
     'installable': True,
     'name': 'Account Invoice Auto Pay',
