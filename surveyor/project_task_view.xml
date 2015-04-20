@@ -21,7 +21,7 @@
             </field>
         </record>
 
-<!--         <record model="ir.ui.view" id="view_task_kanban">
+        <record model="ir.ui.view" id="view_task_kanban">
             <field name="name">Project Task</field>
             <field name="model">project.task</field>
             <field name="inherit_id" ref="project.view_task_kanban"/>
@@ -33,7 +33,7 @@
                     <br/><field name="partner_id"/>
                 </field>
             </field>
-        </record> -->
+        </record>
 
         <record model="ir.ui.view" id="view_task_form2">
             <field name="name">Project Task</field>
