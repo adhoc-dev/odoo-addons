@@ -26,12 +26,14 @@ class RestoreDB(http.Controller):
                 'Unable to read file %s\n\
                 This is what we get: \n %s') % (
                 file_path, e))
+            return {'error': error}
         try:
             db_ws.exp_restore(db_name, data_b64)
         except Exception, e:
             error = (_(
                 'Unable to restore bd %s, this is what we get: \n %s') % (
                 db_name, e))
+            return {'error': error}
 
         # # disable or enable backups
         # TODO unificar con la que esta en database
@@ -39,4 +41,3 @@ class RestoreDB(http.Controller):
         with registry.cursor() as db_cr:
             registry['ir.config_parameter'].set_param(
                 db_cr, 1, 'database.backups.enable', str(backups_state))
-        return {'error': error}
