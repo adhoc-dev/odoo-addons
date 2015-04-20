@@ -20,16 +20,24 @@ class RestoreDB(http.Controller):
             self, admin_pass, db_name, file_path,
             backups_state, remote_server=False):
         if remote_server:
+            local_path = '/opt/odoo/backups/tmp/%s' % db_name
             user_name = remote_server.get('user_name')
             password = remote_server.get('password')
             host_string = remote_server.get('host_string')
             port = remote_server.get('port')
+            if not user_name or not password or not host_string or not port:
+                return {'error': 'You need user_name, password, host_string\
+                and port in order to use remote_server'}
             env.user = user_name
             env.password = password
             env.host_string = host_string
             env.port = port
-            get(remote_path=file_path, local_path=file_path, use_sudo=True)
-            return False
+            _logger.info("Getting file '%s' from '%s:%s' with user %s" % (
+                file_path, host_string, port, user_name))
+            get(remote_path=file_path, local_path=local_path, use_sudo=True)
+            if not get.succeeded:
+                return {'error': 'Could not copy file from remote server'}
+            file_path = local_path
 
         _logger.info("Restoring database %s from %s" % (db_name, file_path))
         error = False
