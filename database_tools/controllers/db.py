@@ -4,6 +4,8 @@ import base64
 from openerp import _, modules
 from openerp.service import db as db_ws
 import logging
+from fabric.api import env
+from fabric.operations import get
 _logger = logging.getLogger(__name__)
 
 
@@ -14,7 +16,21 @@ class RestoreDB(http.Controller):
         type='json',
         auth='none',
         )
-    def restore_db(self, admin_pass, db_name, file_path, backups_state):
+    def restore_db(
+            self, admin_pass, db_name, file_path,
+            backups_state, remote_server=False):
+        if remote_server:
+            user_name = remote_server.get('user_name')
+            password = remote_server.get('password')
+            host_string = remote_server.get('host_string')
+            port = remote_server.get('port')
+            env.user = user_name
+            env.password = password
+            env.host_string = host_string
+            env.port = port
+            get(remote_path=file_path, local_path=file_path, use_sudo=True)
+            return False
+
         _logger.info("Restoring database %s from %s" % (db_name, file_path))
         error = False
         try:
