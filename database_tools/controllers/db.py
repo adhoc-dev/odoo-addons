@@ -3,9 +3,9 @@ import openerp.http as http
 import base64
 from openerp import _, modules
 from openerp.service import db as db_ws
-import logging
 from fabric.api import env
-from fabric.operations import get
+from fabric.operations import get, sudo
+import logging
 _logger = logging.getLogger(__name__)
 
 
@@ -34,9 +34,11 @@ class RestoreDB(http.Controller):
             env.port = port
             _logger.info("Getting file '%s' from '%s:%s' with user %s" % (
                 file_path, host_string, port, user_name))
-            get(remote_path=file_path, local_path=local_path, use_sudo=True)
-            if not get.succeeded:
+            res = get(remote_path=file_path, local_path=local_path, use_sudo=True)
+            print 'res', res
+            if not res.succeeded:
                 return {'error': 'Could not copy file from remote server'}
+            sudo('chmod 777 %s' % local_path)
             file_path = local_path
 
         _logger.info("Restoring database %s from %s" % (db_name, file_path))
