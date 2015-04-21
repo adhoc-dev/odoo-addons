@@ -271,7 +271,7 @@ class db_database(models.Model):
         try:
             if not os.path.isdir(self.backups_path):
                 os.makedirs(self.backups_path)
-        except:
+        except Exception, e:
             error = "Could not create folder %s for backups.\
                 This is what we get:\n\
                 %s" % (self.backups_path, e)

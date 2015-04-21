@@ -42,6 +42,7 @@ class RestoreDB(http.Controller):
         _logger.info("Restoring database %s from %s" % (db_name, file_path))
         error = False
         try:
+            _logger.info("Reading file for restore")
             f = file(file_path, 'r')
             data_b64 = base64.encodestring(f.read())
             f.close()
@@ -52,6 +53,7 @@ class RestoreDB(http.Controller):
                 file_path, e))
             return {'error': error}
         try:
+            _logger.info("Restoring....")
             db_ws.exp_restore(db_name, data_b64)
         except Exception, e:
             error = (_(
@@ -59,9 +61,12 @@ class RestoreDB(http.Controller):
                 db_name, e))
             return {'error': error}
 
+        _logger.info("Databse %s restored succesfully!" % db_name)
         # # disable or enable backups
         # TODO unificar con la que esta en database
         registry = modules.registry.RegistryManager.get(db_name)
+        _logger.info("Disable/Enable Backups on %s!" % db_name)
         with registry.cursor() as db_cr:
             registry['ir.config_parameter'].set_param(
                 db_cr, 1, 'database.backups.enable', str(backups_state))
+        return True
