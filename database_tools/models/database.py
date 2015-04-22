@@ -146,11 +146,13 @@ class db_database(models.Model):
                 db_cr, 1, 'database.backups.enable', str(state_type))
         return True
 
-    @api.one
+    @api.multi
     def update_backups_data(self):
+        self.ensure_one()
         for backup in self.backup_ids:
             if not os.path.isfile(backup.full_path):
                 backup.unlink()
+        return True
 
     @api.multi
     def drop_con(self):
@@ -244,10 +246,12 @@ class db_database(models.Model):
     @api.one
     def action_database_backup(self):
         """Action to be call from buttons"""
+        self.ensure_one()
         return self.database_backup('manual')
 
-    @api.one
-    def database_backup(self, type):
+    @api.multi
+    def database_backup(self, Type):
+        self.ensure_one()
         now = datetime.now()
 
         # check if bd exists
