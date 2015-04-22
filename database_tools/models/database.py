@@ -147,20 +147,10 @@ class db_database(models.Model):
         return True
 
     @api.one
-    def duplicate(self, new_name, backups_enable):
-        # TODO Lo desactivamos porque no sabemos si vamos a usarlo
-        raise Warning(_('Not Implemented yet'))
-        # TODO poner un warning o algo de que si se duplica la bd actual se
-        # arroja un warning, ver si lo podemos controlar
-        # (porque se cierran las conexiones)
-        try:
-            db_ws.exp_duplicate_database(self.name, new_name)
-        except Exception, e:
-            raise Warning(_(
-                'Unable to duplicate bd %s, this is what we get: \n %s') % (
-                self.name, e))
-        else:
-            self.backups_state(new_name, backups_enable)
+    def update_backups_data(self):
+        for backup in self.backup_ids:
+            if not os.path.isfile(backup.full_path):
+                backup.unlink()
 
     @api.multi
     def drop_con(self):
@@ -252,7 +242,12 @@ class db_database(models.Model):
             database.unlink()
 
     @api.one
-    def database_backup(self, type='manual'):
+    def action_database_backup(self):
+        """Action to be call from buttons"""
+        return self.database_backup('manual')
+
+    @api.one
+    def database_backup(self, type):
         now = datetime.now()
 
         # check if bd exists

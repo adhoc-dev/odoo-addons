@@ -24,6 +24,8 @@
                 <form string="Databases">
                     <header>
                         <button name="%(action_db_database_tools_wizard)d" type="action" string="Duplicate" context="{'default_action_type': 'duplicate'}" groups="base.group_no_one"/>
+                        <button name="update_backups_data" type="object" string="Update Backups Data" groups="base.group_no_one"/>
+                        <button name="action_database_backup" type="object" string="Backup Now" groups="base.group_no_one"/>
                         <button name="drop_con" type="object" string="Drop Connections" groups="base.group_no_one"/>
                     </header>
                     <sheet>
