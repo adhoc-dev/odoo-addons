@@ -1,21 +1,23 @@
 # -*- coding: utf-8 -*-
 
+import json
 import logging
 import werkzeug
 import werkzeug.utils
-from openerp import http
+from math import ceil
+from openerp.addons.web import http
+from openerp.addons.survey.controllers.main import WebsiteSurvey
 from openerp.addons.web.http import request
+from openerp.tools.misc import DEFAULT_SERVER_DATETIME_FORMAT as DTF
+
 
 _logger = logging.getLogger(__name__)
 
 
-class WebsiteSurvey(http.Controller):
+class SurveyConditional(WebsiteSurvey):
 
-    @http.route(['/survey/fill/<model("survey.survey"):survey>/<string:token>',
-                 '/survey/fill/<model("survey.survey"):survey>/<string:token>/<string:prev>'],
-                type='http', auth='public', website=True)
+    @http.route()
     def fill_survey(self, survey, token, prev=None, **post):
-        print 'addsssss'
         '''Display and validates a survey'''
         cr, uid, context = request.cr, request.uid, request.context
         survey_obj = request.registry['survey.survey']
