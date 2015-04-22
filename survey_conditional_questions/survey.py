@@ -1,5 +1,5 @@
  #-*- coding: utf-8 -*-
-from openerp import fields, models
+from openerp import fields, models, api
 
 
 class survey_question(models.Model):
@@ -13,6 +13,11 @@ class survey_question(models.Model):
     answer_id = fields.Many2one(
         'survey.label',
         'Answer')
+
+    @api.onchange('question_conditional_id')
+    def onchange_question(self):
+        if self.question_conditional_id:
+            return {'domain': {'answer_id': [('question_id', '=', self.question_conditional_id.id)]}}
 
 
 class survey_user_input(models.Model):
@@ -36,7 +41,7 @@ class survey_user_input(models.Model):
                             uid,
                             [('user_input_id', '=', user_input_id),
                              ('question_id', '=', question2.id)])
-                        if question.answer_id == obj_user_input_line.browse(
+                        if question.answer_id != obj_user_input_line.browse(
                                 cr,
                                 uid,
                                 input_answer_id).value_suggested:
