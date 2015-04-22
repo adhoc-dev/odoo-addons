@@ -4,7 +4,8 @@ import base64
 from openerp import _, modules
 from openerp.service import db as db_ws
 from fabric.api import env
-from fabric.operations import get, sudo
+from fabric.operations import get
+import os
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -17,10 +18,11 @@ class RestoreDB(http.Controller):
         auth='none',
         )
     def restore_db(
-            self, admin_pass, db_name, file_path,
+            self, admin_pass, db_name, file_path, file_name,
             backups_state, remote_server=False):
+        database_file = os.path.join(file_path, file_name)
         if remote_server:
-            local_path = '/opt/odoo/backups/tmp/%s' % db_name
+            local_path = '/opt/odoo/backups/tmp/'
             user_name = remote_server.get('user_name')
             password = remote_server.get('password')
             host_string = remote_server.get('host_string')
@@ -33,26 +35,24 @@ class RestoreDB(http.Controller):
             env.host_string = host_string
             env.port = port
             _logger.info("Getting file '%s' from '%s:%s' with user %s" % (
-                file_path, host_string, port, user_name))
-            res = get(remote_path=file_path, local_path=local_path, use_sudo=True)
-            print 'res', res
+                database_file, host_string, port, user_name))
+            res = get(remote_path=database_file, local_path=local_path, use_sudo=True)
             if not res.succeeded:
                 return {'error': 'Could not copy file from remote server'}
-            sudo('chmod 777 %s' % local_path)
-            file_path = local_path
+            database_file = os.path.join(local_path, file_name)
 
-        _logger.info("Restoring database %s from %s" % (db_name, file_path))
+        _logger.info("Restoring database %s from %s" % (db_name, database_file))
         error = False
         try:
             _logger.info("Reading file for restore")
-            f = file(file_path, 'r')
+            f = file(database_file, 'r')
             data_b64 = base64.encodestring(f.read())
             f.close()
         except Exception, e:
             error = (_(
                 'Unable to read file %s\n\
                 This is what we get: \n %s') % (
-                file_path, e))
+                database_file, e))
             return {'error': error}
         try:
             _logger.info("Restoring....")
@@ -71,4 +71,4 @@ class RestoreDB(http.Controller):
         with registry.cursor() as db_cr:
             registry['ir.config_parameter'].set_param(
                 db_cr, 1, 'database.backups.enable', str(backups_state))
-        return True
+        return {}
