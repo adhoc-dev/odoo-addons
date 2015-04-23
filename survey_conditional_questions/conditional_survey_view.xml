@@ -7,9 +7,11 @@
             <field name="inherit_id" ref="survey.survey_question_form"/>
             <field name="arch" type="xml">
                 <field name="constr_mandatory" position="after">
-                    <field name="conditional"/>
-                    <field name="question_conditional_id" attrs="{'invisible':[('conditional','!=',True)]}"/>
-                    <field name="answer_id" attrs="{'invisible':[('conditional','!=',True)]}"/>
+                    <field name="survey_id" invisible="1"/>
+                    <field name="page_id" invisible="1" required="0"/>
+                    <field name="conditional" attrs="{'readonly':[('survey_id', '=', False)]}"/>
+                    <field name="question_conditional_id" domain="[('survey_id', '=', survey_id),('page_id', '!=', page_id)]" attrs="{'invisible':[('conditional','!=',True)]}"/>
+                    <field name="answer_id" domain="[('question_id', '=', question_conditional_id)]" attrs="{'invisible':[('conditional','!=',True)]}"/>
                 </field>
             </field>
         </record>

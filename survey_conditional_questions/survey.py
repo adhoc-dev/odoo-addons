@@ -1,5 +1,5 @@
  #-*- coding: utf-8 -*-
-from openerp import fields, models, api
+from openerp import fields, models
 
 
 class survey_question(models.Model):
@@ -9,15 +9,12 @@ class survey_question(models.Model):
         'Conditional Question')
     question_conditional_id = fields.Many2one(
         'survey.question',
-        'Question')
+        'Question',
+        help="In order to edit this field you should first save the question")
     answer_id = fields.Many2one(
         'survey.label',
-        'Answer')
-
-    @api.onchange('question_conditional_id')
-    def onchange_question(self):
-        if self.question_conditional_id:
-            return {'domain': {'answer_id': [('question_id', '=', self.question_conditional_id.id)]}}
+        'Answer'
+    )
 
 
 class survey_user_input(models.Model):
