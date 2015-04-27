@@ -221,23 +221,23 @@ class db_database(models.Model):
         databases.database_backup_clean('monthly')
 
     @api.one
-    def database_backup_clean(self, type='daily'):
+    def database_backup_clean(self, bu_type='daily'):
         current_date = time.strftime('%Y-%m-%d')
         from_date = datetime.strptime(current_date, '%Y-%m-%d')
-        if type == 'daily':
+        if bu_type == 'daily':
             interval = self.daily_save_periods
             from_date = from_date+relativedelta(days=-interval)
-        elif type == 'weekly':
+        elif bu_type == 'weekly':
             interval = self.weekly_save_periods
             from_date = from_date+relativedelta(weeks=-interval)
-        elif type == 'monthly':
+        elif bu_type == 'monthly':
             interval = self.monthly_save_periods
             from_date = from_date+relativedelta(months=-interval)
 
         from_date = from_date.strftime('%Y-%m-%d')
         databases = self.env['db.database.backup'].search([
             ('database_id', '=', self.id),
-            ('type', '=', type),
+            ('type', '=', bu_type),
             ('date', '<=', from_date),
             ])
         for database in databases:
@@ -250,7 +250,7 @@ class db_database(models.Model):
         return self.database_backup('manual')
 
     @api.multi
-    def database_backup(self, Type):
+    def database_backup(self, bu_type):
         self.ensure_one()
         now = datetime.now()
 
@@ -278,7 +278,7 @@ class db_database(models.Model):
             return {'error': error}
 
         backup_name = '%s_%s_%s.zip' % (
-            self.name, type, now.strftime('%Y%m%d_%H%M%S'))
+            self.name, bu_type, now.strftime('%Y%m%d_%H%M%S'))
         backup_path = os.path.join(self.backups_path, backup_name)
         backup = open(backup_path, 'wb')
 
@@ -299,19 +299,19 @@ class db_database(models.Model):
                 'name': backup_name,
                 'path': self.backups_path,
                 'date': now,
-                'type': type,
+                'type': bu_type,
                 })
 
         current_date = time.strftime('%Y-%m-%d')
         next_date = datetime.strptime(current_date, '%Y-%m-%d')
         interval = 1
-        if type == 'daily':
+        if bu_type == 'daily':
             new_date = next_date+relativedelta(days=+interval)
             self.daily_next_date = new_date
-        elif type == 'weekly':
+        elif bu_type == 'weekly':
             new_date = next_date+relativedelta(weeks=+interval)
             self.weekly_next_date = new_date
-        elif type == 'monthly':
+        elif bu_type == 'monthly':
             new_date = next_date+relativedelta(months=+interval)
             self.monthly_next_date = new_date
         _logger.info('Backup %s Created' % backup_name)
