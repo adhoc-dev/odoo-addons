@@ -1,17 +1,10 @@
 # -*- coding: utf-8 -*-
-from openerp import models, fields, api, _
+from openerp import models, api, _
 from openerp.exceptions import Warning
 
 
 class product_product(models.Model):
     _inherit = "product.product"
-
-    company_id = fields.Many2one(
-        'res.company',
-        related='product_tmpl_id.company_id',
-        string='Company',
-        store=True,
-        select=True)
 
     @api.one
     @api.constrains('company_id', 'default_code', 'active')
