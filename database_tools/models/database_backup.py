@@ -49,10 +49,11 @@ class database_backup(models.Model):
 
     @api.multi
     def unlink(self):
-        try:
-            os.remove(self.full_path)
-        except Exception, e:
-            _logger.warning(
-                'Unable to remoove database file on %s, this is what we get:\
-                \n %s' % (self.full_path, e.strerror))
+        for backup in self:
+            try:
+                os.remove(backup.full_path)
+            except Exception, e:
+                _logger.warning(
+                    'Unable to remoove database file on %s, this is what we get:\
+                    \n %s' % (backup.full_path, e.strerror))
         return super(database_backup, self).unlink()
