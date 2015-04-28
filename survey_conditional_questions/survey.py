@@ -1,4 +1,4 @@
- #-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from openerp import fields, models
 
 
@@ -6,15 +6,32 @@ class survey_question(models.Model):
     _inherit = 'survey.question'
 
     conditional = fields.Boolean(
-        'Conditional Question')
+        'Conditional Question',
+        copy=False,
+        # we add copy = false to avoid wrong link on survey copy,
+        # should be improoved
+    )
     question_conditional_id = fields.Many2one(
         'survey.question',
         'Question',
-        help="In order to edit this field you should first save the question")
+        copy=False,
+        help="In order to edit this field you should first save the question"
+    )
     answer_id = fields.Many2one(
         'survey.label',
-        'Answer'
+        'Answer',
+        copy=False,
     )
+
+    def validate_free_text(
+            self, cr, uid, question, post, answer_tag, context=None):
+        """We add answer_tag if not in post because it gets an error in this
+        method, this happens when question is not display so the answer_tag
+        value is no on post dictionary"""
+        if answer_tag not in post:
+            post[answer_tag] = ''
+        return super(survey_question, self).validate_free_text(
+             cr, uid, question, post, answer_tag, context=context)
 
 
 class survey_user_input(models.Model):
