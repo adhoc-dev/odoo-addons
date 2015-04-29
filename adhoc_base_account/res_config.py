@@ -124,6 +124,9 @@ class adhoc_base_configuration(models.TransientModel):
     module_account_export_csv = fields.Boolean(
         ' Add a wizard that allow you to export a csv file based on accounting journal entries.',
         help="""Installs the account_export_csv.""")
+    module_account_move_line_no_filter = fields.Boolean(
+        'Remove the filter that filters by period and journal in the tree view account move line',
+        help="""Installs the account_move_line_no_filter module.""")
 
     # Multi Company
     module_web_easy_switch_company = fields.Boolean(
@@ -135,3 +138,4 @@ class adhoc_base_configuration(models.TransientModel):
     module_inter_company_move = fields.Boolean(
         'Manager inter company document move',
         help="""Installs the inter_company_move module.""")
+
