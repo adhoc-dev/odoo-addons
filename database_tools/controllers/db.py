@@ -20,6 +20,13 @@ class RestoreDB(http.Controller):
     def restore_db(
             self, admin_pass, db_name, file_path, file_name,
             backups_state, remote_server=False):
+        _logger.info("Starting restorce process with data:\n\
+            * db_name: %s\n\
+            * file_path: %s\n\
+            * file_name: %s\n\
+            * backups_state: %s\n\
+            * remote_server: %s\n\
+            " % (db_name, file_path, file_name, backups_state, remote_server))
         database_file = os.path.join(file_path, file_name)
         if remote_server:
             local_path = '/opt/odoo/backups/tmp/'
