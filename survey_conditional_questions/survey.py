@@ -23,6 +23,16 @@ class survey_question(models.Model):
         copy=False,
     )
 
+    # NO HACEMOS ESTA MOD GENERICA PORQUE DA ERROR AL ALMACENAR LOS CHOICE
+    # def validate_question(
+    #         self, cr, uid, question, post, answer_tag, context=None):
+    #     """We add answer_tag if not in post because it gets an error in this
+    #     method, this happens when question is not display so the answer_tag
+    #     value is no on post dictionary"""
+    #     if answer_tag not in post:
+    #         post[answer_tag] = ''
+    #     return super(survey_question, self).validate_question(
+    #          cr, uid, question, post, answer_tag, context=context)
     def validate_free_text(
             self, cr, uid, question, post, answer_tag, context=None):
         """We add answer_tag if not in post because it gets an error in this
@@ -31,6 +41,36 @@ class survey_question(models.Model):
         if answer_tag not in post:
             post[answer_tag] = ''
         return super(survey_question, self).validate_free_text(
+             cr, uid, question, post, answer_tag, context=context)
+
+    def validate_textbox(
+            self, cr, uid, question, post, answer_tag, context=None):
+        """We add answer_tag if not in post because it gets an error in this
+        method, this happens when question is not display so the answer_tag
+        value is no on post dictionary"""
+        if answer_tag not in post:
+            post[answer_tag] = ''
+        return super(survey_question, self).validate_textbox(
+             cr, uid, question, post, answer_tag, context=context)
+
+    def validate_numerical_box(
+            self, cr, uid, question, post, answer_tag, context=None):
+        """We add answer_tag if not in post because it gets an error in this
+        method, this happens when question is not display so the answer_tag
+        value is no on post dictionary"""
+        if answer_tag not in post:
+            post[answer_tag] = ''
+        return super(survey_question, self).validate_numerical_box(
+             cr, uid, question, post, answer_tag, context=context)
+
+    def validate_datetime(
+            self, cr, uid, question, post, answer_tag, context=None):
+        """We add answer_tag if not in post because it gets an error in this
+        method, this happens when question is not display so the answer_tag
+        value is no on post dictionary"""
+        if answer_tag not in post:
+            post[answer_tag] = ''
+        return super(survey_question, self).validate_datetime(
              cr, uid, question, post, answer_tag, context=context)
 
 
