@@ -117,6 +117,11 @@
                         class="oe_inline"/>
                     <label for="module_account_voucher_contact"/>
                 </div>
+                <div name='module_account_move_line_no_filter'>
+                    <field name="module_account_move_line_no_filter"
+                        class="oe_inline"/>
+                    <label for="module_account_move_line_no_filter"/>
+                </div>
             </div>
             <label for="id" string="Advanced Accounting Features"/>
             <div name="advanced_accounting">
