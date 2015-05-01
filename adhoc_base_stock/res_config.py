@@ -50,9 +50,9 @@ class adhoc_base_configuration(models.TransientModel):
     module_picking_dispatch = fields.Boolean(
         'Allow you to group various pickings into a dispatch order ,having all the related moves in it and assigned to a warehouse keeper.',
         help="""Installs the picking_dispatch module.""")
-    module_stock_display_src_location = fields.Boolean(
-        'Display the source location on the tree view of the move lines of the pickings (by default, only the destination location is displayed).',
-        help="""Installs the stock_display_src_location module.""")
+    module_stock_usability = fields.Boolean(
+        'Usability improovements for stock management.',
+        help="""Installs the stock_display_src_location module. The usability enhancements inclure: * display the source location on the tree view of the move lines of the pickings (by default, only the destination location is displayed). * always display the field Backorder on the form view of picking (by default, this field is only displayed when it has a value, so the user doesn't know when the field has no value because he doesn't see the field !) * add a group by Partner in the picking search view (particularly usefull for receptions)""")
     module_stock_invoice_try_again = fields.Boolean(
         'When the sale order has "Create Invoice" set to "On Delivery Order", add a button "Create Invoice" on the Delivery Order once the goods are shipped.',
         help="""Installs the stock_invoice_try_again module.""")
