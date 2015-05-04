@@ -1,0 +1,66 @@
+Para testear se puede correr:
+import requests
+import simplejson
+
+# COMPELTAR ACA
+url = "https://test_cedent_roc.nubeadhoc.com:443/restore_db"
+file_path = 'XXXXXXXX'
+admin_pass = 'XXXXXXXX'
+db_name = 'XXXXXXXX'
+
+headers = {'content-type': 'application/json'}
+data = {'jsonrpc': '2.0',
+ 'method': 'call',
+ 'params': {'admin_pass': admin_pass,
+  'backups_state': False,
+  'db_name': db_name,
+  'file_path': file_path,
+  'remote_server': {}}}
+
+request = requests.post(
+    url,
+    data=simplejson.dumps(data),
+    headers=headers,
+    verify=False, #disable verify because an error
+    ).json()
+============
+2 formas vimos de hacer el llamado por rpc:
+
+FORMA 1
+import json
+import urllib2
+file_path = '/opt/odoo/backups/adhocsa-80/up/up_adhocsa_80/up_adhocsa_80_manual_20150326_120502.zip'
+data = {
+    "jsonrpc": "2.0",
+    "method": "call",
+    "params": {
+        'admin_pass': 'admin',
+        'db_name': 'newebd',
+        'file_path': file_path,
+        'backups_state': True,
+        },
+}
+req = urllib2.Request('http://localhost:9069/restore_db')
+req.add_header('Content-Type', 'application/json')
+response = urllib2.urlopen(req, json.dumps(data))
+
+----------------
+FORMA 2
+import requests
+import simplejson
+url = "http://localhost:9069/restore_db"
+headers = {'content-type': 'application/json'}
+
+file_path = '/opt/odoo/backups/adhocsa-80/up/up_adhocsa_80/up_adhocsa_80_manual_20150326_120502.zip'
+# Example echo method
+data = {
+    "jsonrpc": "2.0",
+    "method": "call",
+    "params": {
+        'admin_pass': 'admin',
+        'db_name': 'newebd',
+        'file_path': file_path,
+        'backups_state': True,
+        },
+}
+response = requests.post(url, data=simplejson.dumps(data), headers=headers).json()

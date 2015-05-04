@@ -38,7 +38,7 @@
                             <field name="print_product_uom"/>
                             <field name="include_sub_categories"/>
                             <field name="product_type"/>
-                            <field name="prod_display_type" attrs="{'invisible':[('product_type','!=','product.template')],'required':[('product_type','','product.template')]}"/>
+                            <field name="prod_display_type" attrs="{'invisible':[('product_type','!=','product.template')],'required':[('product_type','=','product.template')]}"/>
                         </group>
                         <group col="1" colspan="4">
                             <field name="category_ids"/>

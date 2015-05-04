@@ -146,21 +146,13 @@ class db_database(models.Model):
                 db_cr, 1, 'database.backups.enable', str(state_type))
         return True
 
-    @api.one
-    def duplicate(self, new_name, backups_enable):
-        # TODO Lo desactivamos porque no sabemos si vamos a usarlo
-        raise Warning(_('Not Implemented yet'))
-        # TODO poner un warning o algo de que si se duplica la bd actual se
-        # arroja un warning, ver si lo podemos controlar
-        # (porque se cierran las conexiones)
-        try:
-            db_ws.exp_duplicate_database(self.name, new_name)
-        except Exception, e:
-            raise Warning(_(
-                'Unable to duplicate bd %s, this is what we get: \n %s') % (
-                self.name, e))
-        else:
-            self.backups_state(new_name, backups_enable)
+    @api.multi
+    def update_backups_data(self):
+        self.ensure_one()
+        for backup in self.backup_ids:
+            if not os.path.isfile(backup.full_path):
+                backup.unlink()
+        return True
 
     @api.multi
     def drop_con(self):
@@ -229,30 +221,37 @@ class db_database(models.Model):
         databases.database_backup_clean('monthly')
 
     @api.one
-    def database_backup_clean(self, type='daily'):
+    def database_backup_clean(self, bu_type='daily'):
         current_date = time.strftime('%Y-%m-%d')
         from_date = datetime.strptime(current_date, '%Y-%m-%d')
-        if type == 'daily':
+        if bu_type == 'daily':
             interval = self.daily_save_periods
             from_date = from_date+relativedelta(days=-interval)
-        elif type == 'weekly':
+        elif bu_type == 'weekly':
             interval = self.weekly_save_periods
             from_date = from_date+relativedelta(weeks=-interval)
-        elif type == 'monthly':
+        elif bu_type == 'monthly':
             interval = self.monthly_save_periods
             from_date = from_date+relativedelta(months=-interval)
 
         from_date = from_date.strftime('%Y-%m-%d')
         databases = self.env['db.database.backup'].search([
             ('database_id', '=', self.id),
-            ('type', '=', type),
+            ('type', '=', bu_type),
             ('date', '<=', from_date),
             ])
         for database in databases:
             database.unlink()
 
     @api.one
-    def database_backup(self, type='manual'):
+    def action_database_backup(self):
+        """Action to be call from buttons"""
+        self.ensure_one()
+        return self.database_backup('manual')
+
+    @api.multi
+    def database_backup(self, bu_type):
+        self.ensure_one()
         now = datetime.now()
 
         # check if bd exists
@@ -271,7 +270,7 @@ class db_database(models.Model):
         try:
             if not os.path.isdir(self.backups_path):
                 os.makedirs(self.backups_path)
-        except:
+        except Exception, e:
             error = "Could not create folder %s for backups.\
                 This is what we get:\n\
                 %s" % (self.backups_path, e)
@@ -279,7 +278,7 @@ class db_database(models.Model):
             return {'error': error}
 
         backup_name = '%s_%s_%s.zip' % (
-            self.name, type, now.strftime('%Y%m%d_%H%M%S'))
+            self.name, bu_type, now.strftime('%Y%m%d_%H%M%S'))
         backup_path = os.path.join(self.backups_path, backup_name)
         backup = open(backup_path, 'wb')
 
@@ -300,19 +299,19 @@ class db_database(models.Model):
                 'name': backup_name,
                 'path': self.backups_path,
                 'date': now,
-                'type': type,
+                'type': bu_type,
                 })
 
         current_date = time.strftime('%Y-%m-%d')
         next_date = datetime.strptime(current_date, '%Y-%m-%d')
         interval = 1
-        if type == 'daily':
+        if bu_type == 'daily':
             new_date = next_date+relativedelta(days=+interval)
             self.daily_next_date = new_date
-        elif type == 'weekly':
+        elif bu_type == 'weekly':
             new_date = next_date+relativedelta(weeks=+interval)
             self.weekly_next_date = new_date
-        elif type == 'monthly':
+        elif bu_type == 'monthly':
             new_date = next_date+relativedelta(months=+interval)
             self.monthly_next_date = new_date
         _logger.info('Backup %s Created' % backup_name)

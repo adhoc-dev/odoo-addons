@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
-import base64
-from openerp import models, fields, api, _
-from openerp.exceptions import Warning
-from openerp.service import db as db_ws
+from openerp import models, fields, api
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class database_backup(models.Model):
@@ -32,6 +31,10 @@ class database_backup(models.Model):
         readonly=True,
         required=True
     )
+    full_path = fields.Char(
+        string='Path',
+        compute='get_full_path',
+    )
     type = fields.Selection(
         [('manual', 'Manual'), ('daily', 'Daily'),
          ('weekly', 'Weekly'), ('monthly', 'Monthly')],
@@ -40,50 +43,17 @@ class database_backup(models.Model):
     )
 
     @api.one
-    def delete(self):
-        """"""
-        try:
-            raise Warning(_('Not Implemented yet'))
-
-        except SystemExit:
-            raise Warning(
-                _("Unable to delete database backup"))
-
-    def download(self):
-        """Descarga el back up en el exploradorador del usuario"""
-        raise Warning(_('Not Implemented yet'))
-
-    @api.one
-    def restore(self, new_name, backups_enable):
-        source_path = os.path.join(self.path, self.name)
-        self.restore_from_path(source_path, new_name, backups_enable)
-
-    @api.model
-    def restore_from_path(self, source_path, new_name, backups_enable):
-        # TODO Lo desactivamos porque no sabemos si vamos a usarlo
-        raise Warning(_('Not Implemented yet'))
-        f = file(source_path, 'r')
-        data_b64 = base64.encodestring(f.read())
-        f.close()
-        try:
-            db_ws.exp_restore(new_name, data_b64)
-        except Exception, e:
-            raise Warning(_(
-                'Unable to restore bd %s, this is what we get: \n %s') % (
-                new_name, e))
-        else:
-            self.env['db.database'].backups_state(new_name, backups_enable)
+    @api.depends('path', 'name')
+    def get_full_path(self):
+        self.full_path = os.path.join(self.path, self.name)
 
     @api.multi
     def unlink(self):
-        # raise Warning(_('Not Implemented yet'))
-        database_path = os.path.join(self.path, self.name)
-        try:
-            os.remove(database_path)
-        except Exception, e:
-            # TODO cambiar por un alerta en log y algo en los registros
-            # raise Warning(_(
-                # 'Unable to remoove database file on %s, this is what we get: \n %s') % (
-                # database_path, e))
-            print 'error', e
+        for backup in self:
+            try:
+                os.remove(backup.full_path)
+            except Exception, e:
+                _logger.warning(
+                    'Unable to remoove database file on %s, this is what we get:\
+                    \n %s' % (backup.full_path, e.strerror))
         return super(database_backup, self).unlink()

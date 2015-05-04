@@ -21,9 +21,6 @@
             <field name="model">db.database.backup</field>
             <field name="arch" type="xml">
                 <form string="Databases">
-                    <header>
-                        <button name="%(action_db_database_tools_wizard)d" type="action" string="Restore" context="{'default_action_type': 'restore'}" groups="base.group_no_one"/>
-                    </header>
                     <sheet>
                         <group>
                             <field name="date"/>

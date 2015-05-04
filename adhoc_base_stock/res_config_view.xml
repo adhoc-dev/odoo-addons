@@ -65,10 +65,10 @@
                         class="oe_inline"/>
                     <label for="module_stock_display_sale_id"/>
                 </div> 
-                <div name='module_stock_display_src_location'>
-                    <field name="module_stock_display_src_location"
+                <div name='module_stock_usability'>
+                    <field name="module_stock_usability"
                         class="oe_inline"/>
-                    <label for="module_stock_display_src_location"/>
+                    <label for="module_stock_usability"/>
                 </div>
                 <div name='module_stock_invoice_try_again'>
                     <field name="module_stock_invoice_try_again"
