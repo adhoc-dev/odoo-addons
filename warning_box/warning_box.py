@@ -44,7 +44,7 @@ class warning_box(models.TransientModel):
         }
         return res
 
-    @api.model
+    @api.multi
     def warning(self, title, message):
         record = self.create({
             'title': title,
@@ -52,7 +52,7 @@ class warning_box(models.TransientModel):
             'type': 'warning'})
         return record.message_action()
 
-    @api.model
+    @api.multi
     def info(self, title, message):
         record = self.create({
             'title': title,
@@ -60,7 +60,7 @@ class warning_box(models.TransientModel):
             'type': 'info'})
         return record.message_action()
 
-    @api.model
+    @api.multi
     def error(self, title, message):
         record = self.create({
             'title': title,
