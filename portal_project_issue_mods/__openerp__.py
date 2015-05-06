@@ -28,6 +28,7 @@
     'description': """
 This module adds issue menu and features to your portal if project_issue and portal are installed.
 ==================================================================================================
+MODULO DEPRECIADO: no lo usariamos mas ya que ahora los issues se crean con el modulo de support web_support_client_issue
     """,
     'author':  'Sistemas ADHOC',
     'website': 'www.sistemasadhoc.com.ar',
@@ -41,13 +42,13 @@ This module adds issue menu and features to your portal if project_issue and por
     'data': [
         'portal_project_issue_view.xml',
         'security/ir.model.access.csv',
-        'security/portal_security.xml',
+        # 'security/portal_security.xml',
     ],
     'demo': [
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }
