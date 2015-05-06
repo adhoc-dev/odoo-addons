@@ -24,22 +24,27 @@ class res_partner(models.Model):
     # Ademas haria que la barra de partner_state se muestre o no segun sea la
     # compania del usuario logueado (se puede ver el codigo de price_security
     # que trae un campo en funcion a los datos del usuario logueado)
+    # Igualemtne, despues de penarlo y agregar el company_dependt vimos mejor que no porque en realida dun partner
+    # aprobado podria estar para todos, de hecho si lo hacemos properties, trabajando desde la padre, contra quien
+    # verificamos? seria medio lio
     _columns = {
         'company_partner_state': old_fields.related('company_id', 'partner_state', type='boolean'),
     }
 
     partner_state = fields.Selection(
         '_get_partner_states',
+        # company_dependent=True,
         string='Partner State',
         readonly=True,
         required=True,
-        default='potential')
+        default='potential'
+        )
 
     def write(self, cr, uid, ids, vals, context=None):
         for partner in self.browse(cr, uid, ids, context=context):
             if partner.partner_state in ['approved', 'pending']:
                 fields = self.check_fields(
-                    cr, uid, partner.id, 'track', context=context)
+                    cr, 1, partner.id, 'track', context=context)
                 if fields:
                     fields_set = set(fields)
                     vals_set = set(vals)
