@@ -6,6 +6,9 @@ class adhoc_base_configuration(models.TransientModel):
     _inherit = 'adhoc.base.config.settings'
 
     # Project
+    module_project_issue_views_modifications = fields.Boolean(
+        'Simplify issue views',
+        help="""Installs the project_issue_views_modifications module.""")
     module_project_issue_solutions = fields.Boolean(
         'Project Issue Solutions',
         help="""Installs the project_issue_solutions module.""")
