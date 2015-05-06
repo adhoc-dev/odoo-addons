@@ -165,18 +165,18 @@ class db_database(models.Model):
         #     db_ws._drop_conn(pg_cr, self.name)
         return True
 
-    @api.multi
-    def get_sock(self):
-        self.ensure_one()
-        base_url = self.host
-        server_port = self.port
-        rpc_db_url = 'http://%s:%d/xmlrpc/db' % (base_url, server_port)
-        # TODO implementar en las distintas funciones, tal vez mejor hacer como
-        # un parser generico
-        # example of use
-        # sock = self.get_sock()
-        # if not sock.db_exist(self.name):
-        return xmlrpclib.ServerProxy(rpc_db_url)
+    # @api.multi
+    # def get_sock(self):
+    #     self.ensure_one()
+    #     base_url = self.host
+    #     server_port = self.port
+    #     rpc_db_url = 'http://%s:%d/xmlrpc/db' % (base_url, server_port)
+    #     # TODO implementar en las distintas funciones, tal vez mejor hacer como
+    #     # un parser generico
+    #     # example of use
+    #     # sock = self.get_sock()
+    #     # if not sock.db_exist(self.name):
+    #     return xmlrpclib.ServerProxy(rpc_db_url)
 
     @api.one
     @api.constrains('type')
