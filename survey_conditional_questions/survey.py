@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 from openerp import fields, models
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class survey_question(models.Model):
@@ -23,55 +26,27 @@ class survey_question(models.Model):
         copy=False,
     )
 
-    # NO HACEMOS ESTA MOD GENERICA PORQUE DA ERROR AL ALMACENAR LOS CHOICE
-    # def validate_question(
-    #         self, cr, uid, question, post, answer_tag, context=None):
-    #     """We add answer_tag if not in post because it gets an error in this
-    #     method, this happens when question is not display so the answer_tag
-    #     value is no on post dictionary"""
-    #     if answer_tag not in post:
-    #         post[answer_tag] = ''
-    #     return super(survey_question, self).validate_question(
-    #          cr, uid, question, post, answer_tag, context=context)
-    def validate_free_text(
+    def validate_question(
             self, cr, uid, question, post, answer_tag, context=None):
-        """We add answer_tag if not in post because it gets an error in this
-        method, this happens when question is not display so the answer_tag
-        value is no on post dictionary"""
-        if answer_tag not in post:
-            post[answer_tag] = ''
-        return super(survey_question, self).validate_free_text(
-             cr, uid, question, post, answer_tag, context=context)
+        ''' Validate question, depending on question type and parameters '''
 
-    def validate_textbox(
-            self, cr, uid, question, post, answer_tag, context=None):
-        """We add answer_tag if not in post because it gets an error in this
-        method, this happens when question is not display so the answer_tag
-        value is no on post dictionary"""
-        if answer_tag not in post:
-            post[answer_tag] = ''
-        return super(survey_question, self).validate_textbox(
-             cr, uid, question, post, answer_tag, context=context)
-
-    def validate_numerical_box(
-            self, cr, uid, question, post, answer_tag, context=None):
-        """We add answer_tag if not in post because it gets an error in this
-        method, this happens when question is not display so the answer_tag
-        value is no on post dictionary"""
-        if answer_tag not in post:
-            post[answer_tag] = ''
-        return super(survey_question, self).validate_numerical_box(
-             cr, uid, question, post, answer_tag, context=context)
-
-    def validate_datetime(
-            self, cr, uid, question, post, answer_tag, context=None):
-        """We add answer_tag if not in post because it gets an error in this
-        method, this happens when question is not display so the answer_tag
-        value is no on post dictionary"""
-        if answer_tag not in post:
-            post[answer_tag] = ''
-        return super(survey_question, self).validate_datetime(
-             cr, uid, question, post, answer_tag, context=context)
+        input_answer_id = self.pool['survey.user_input_line'].search(
+            cr, uid,
+            [('user_input_id.token', '=', post.get('token')),
+             ('question_id', '=', question.question_conditional_id.id)])
+        try:
+            checker = getattr(self, 'validate_' + question.type)
+        except AttributeError:
+            _logger.warning(
+                question.type + ": This type of question has no validation method")
+            return {}
+        else:
+            if question.conditional and question.answer_id != self.pool['survey.user_input_line'].browse(
+                    cr, uid,
+                    input_answer_id).value_suggested:
+                return {}
+            else:
+                return checker(cr, uid, question, post, answer_tag, context=context)
 
 
 class survey_user_input(models.Model):
