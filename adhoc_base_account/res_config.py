@@ -18,6 +18,9 @@ class adhoc_base_configuration(models.TransientModel):
     module_account_onchange_fix = fields.Boolean(
         'FIX account on changes in multicompany environment',
         help="""Installs the account_onchange_fix module.""")
+    module_account_voucher_fix = fields.Boolean(
+        'FIX voucher cancellation in some cases. It make move_line_id ondelete cascade',
+        help="""Installs the account_voucher_fix module.""")
 
     # Account modules
 
