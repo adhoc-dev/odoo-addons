@@ -2,8 +2,7 @@
 import os, time
 from M2Crypto import BIO, Rand, SMIME, EVP, RSA, X509, ASN1
 from openerp.exceptions import Warning
-from openerp import fields, models, api
-from openerp.tools.translate import _
+from openerp import fields, models, api, _
 import logging
 
 _logger = logging.getLogger(__name__)

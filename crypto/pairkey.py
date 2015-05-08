@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 from M2Crypto import BIO, Rand, SMIME, EVP, RSA, X509
-from openerp import netsvc
-from openerp.osv import fields, models, api, _
+from openerp import fields, models, api, _
 from openerp.exceptions import Warning
 
 
