@@ -16,6 +16,7 @@ Stock Picking Driver
     ],
     'depends': [
         'stock',
+        'delivery',
     ],
     'data': [
     'view/delivery_order_view.xml',

@@ -1,4 +1,4 @@
-from openerp import models, api, _
+from openerp import models, api, fields, _
 from openerp.exceptions import Warning
 
 
@@ -13,4 +13,13 @@ class stock_move_consume(models.TransientModel):
         moves = self.transfer_id.picking_id.move_lines
         move = obj_move.browse(moves[0].id)
         if move.product_qty < self.quantity:
-            raise Warning(_('Quantity to send can not be greater than the remaining quantity for this move.'))
+            raise Warning(
+                _('Quantity to send can not be greater than the remaining quantity for this move.'))
+
+
+class stock_move(models.Model):
+
+    _inherit = 'stock.move'
+
+    location_type = fields.Selection(
+        related='location_dest_id.usage', string='Location Type')
