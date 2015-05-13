@@ -195,7 +195,8 @@ class db_database(models.Model):
         backups_enable = self.env['ir.config_parameter'].get_param(
                 'database.backups.enable')
         if backups_enable != 'True':
-            _logger.warning('Backups are disable. If you want to enable it you should add the parameter database.backups.enable with value True')
+            _logger.warning(
+                'Backups are disable. If you want to enable it you should add the parameter database.backups.enable with value True')
             return False
         _logger.info('Running backups cron')
         current_date = time.strftime('%Y-%m-%d')
@@ -243,78 +244,88 @@ class db_database(models.Model):
         for database in databases:
             database.unlink()
 
-    @api.one
+    @api.multi
     def action_database_backup(self):
         """Action to be call from buttons"""
-        self.ensure_one()
-        return self.database_backup('manual')
+        _logger.info('Action database backup called manually')
+        res = self.database_backup('manual')
+        return res
 
     @api.multi
     def database_backup(self, bu_type):
-        self.ensure_one()
+        """Returns a dictionary where:
+        * keys = database name
+        * value = dictionary with:
+            * key error and error as value
+            * key database and database name as value
+        """
         now = datetime.now()
-
-        # check if bd exists
-        try:
-            if not db_ws.exp_db_exist(self.name):
-                error = "Database %s do not exist" % (self.name)
+        res = {}
+        for database in self:
+            error = False
+            backup_name = False
+            # check if bd exists
+            try:
+                if not db_ws.exp_db_exist(database.name):
+                    error = "Database %s do not exist" % (database.name)
+                    _logger.warning(error)
+            except Exception, e:
+                error = "Could not check if database %s exists. This is what we get:\n\
+                    %s" % (database.name, e)
                 _logger.warning(error)
-                return {'error': error}
-        except Exception, e:
-            error = "Could not check if database %s exists. This is what we get:\n\
-                %s" % (self.name, e)
-            _logger.warning(error)
-            return {'error': error}
+            else:
+                # crear path para backups si no existe
+                try:
+                    if not os.path.isdir(database.backups_path):
+                        os.makedirs(database.backups_path)
+                except Exception, e:
+                    error = "Could not create folder %s for backups.\
+                        This is what we get:\n\
+                        %s" % (database.backups_path, e)
+                    _logger.warning(error)
+                else:
+                    backup_name = '%s_%s_%s.zip' % (
+                        database.name, bu_type, now.strftime('%Y%m%d_%H%M%S'))
+                    backup_path = os.path.join(
+                        database.backups_path, backup_name)
+                    backup = open(backup_path, 'wb')
+                    # backup
+                    try:
+                        backup.write(base64.b64decode(
+                            db_ws.exp_dump(database.name)))
+                    except:
+                        error = 'Unable to dump Database. If you are working in an\
+                                instance with "workers" then you can try \
+                                restarting service.'
+                        _logger.warning(error)
+                        backup.close()
+                    backup.close()
+                    database.backup_ids.create({
+                        'database_id': database.id,
+                        'name': backup_name,
+                        'path': database.backups_path,
+                        'date': now,
+                        'type': bu_type,
+                        })
 
-        # crear path para backups si no existe
-        try:
-            if not os.path.isdir(self.backups_path):
-                os.makedirs(self.backups_path)
-        except Exception, e:
-            error = "Could not create folder %s for backups.\
-                This is what we get:\n\
-                %s" % (self.backups_path, e)
-            _logger.warning(error)
-            return {'error': error}
+                    current_date = time.strftime('%Y-%m-%d')
+                    next_date = datetime.strptime(current_date, '%Y-%m-%d')
+                    interval = 1
+                    if bu_type == 'daily':
+                        new_date = next_date+relativedelta(days=+interval)
+                        database.daily_next_date = new_date
+                    elif bu_type == 'weekly':
+                        new_date = next_date+relativedelta(weeks=+interval)
+                        database.weekly_next_date = new_date
+                    elif bu_type == 'monthly':
+                        new_date = next_date+relativedelta(months=+interval)
+                        database.monthly_next_date = new_date
+                    _logger.info('Backup %s Created' % backup_name)
 
-        backup_name = '%s_%s_%s.zip' % (
-            self.name, bu_type, now.strftime('%Y%m%d_%H%M%S'))
-        backup_path = os.path.join(self.backups_path, backup_name)
-        backup = open(backup_path, 'wb')
-
-        # backup
-        try:
-            backup.write(base64.b64decode(
-                db_ws.exp_dump(self.name)))
-        except:
-            error = 'Unable to dump Database. If you are working in an\
-                    instance with "workers" then you can try \
-                    restarting service.'
-            _logger.warning(error)
-            return {'error': error}
-        else:
-            backup.close()
-            self.backup_ids.create({
-                'database_id': self.id,
-                'name': backup_name,
-                'path': self.backups_path,
-                'date': now,
-                'type': bu_type,
-                })
-
-        current_date = time.strftime('%Y-%m-%d')
-        next_date = datetime.strptime(current_date, '%Y-%m-%d')
-        interval = 1
-        if bu_type == 'daily':
-            new_date = next_date+relativedelta(days=+interval)
-            self.daily_next_date = new_date
-        elif bu_type == 'weekly':
-            new_date = next_date+relativedelta(weeks=+interval)
-            self.weekly_next_date = new_date
-        elif bu_type == 'monthly':
-            new_date = next_date+relativedelta(months=+interval)
-            self.monthly_next_date = new_date
-        _logger.info('Backup %s Created' % backup_name)
-        return {'backup_name': backup_name}
+            if error:
+                res[database.name] = {'error': error}
+            else:
+                res[database.name] = {'backup_name': backup_name}
+        return res
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
