@@ -43,39 +43,46 @@ class stock_picking(models.Model):
                     done += move.product_qty
         return (prod.product_qty - done) or prod.product_qty
 
-    @api.cr_uid_ids_context
-    def do_prepare_partial(self, cr, uid, picking_ids, context=None):
-        for move in self.browse(cr, uid, picking_ids).move_lines:
-            mrp_obj = self.pool['mrp.production']
-            if move.state in ('done', 'cancel'):
-                continue
-            product_qty = move.product_uom_qty
-            orders_prod = mrp_obj.search(
-                cr, uid, [('move_prod_id', '=', move.id)])
-            production = False
-            if not orders_prod == []:
-                production = mrp_obj.browse(cr, uid, orders_prod)
-            if production:
-                if production.bom_id and production.bom_id.auto_produce_on_picking:
-                    remaining_prod_qty = self._get_product_qty(
-                        cr, uid,
-                        production.id, context=context)
-                    if remaining_prod_qty < product_qty:
-                        product_qty = remaining_prod_qty
-                    self.pool['mrp.production'].action_produce(
-                        cr,
-                        uid,
-                        production.id,
-                        product_qty,
-                        'consume_produce',
-                        context=context)
-                    self.pool['mrp.production'].action_production_end(
-                        cr,
-                        uid,
-                        [production.id],
-                        context=context)
-        res = super(stock_picking, self).do_prepare_partial(
-            cr, uid, picking_ids)
-        return res
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+
+
+# class stock_transfer_details(models.TransientModel):
+#     _inherit = 'stock.transfer_details'
+
+
+#     @api.one
+#     def do_detailed_transfer(self):
+
+#         mrp_obj = self.env['mrp.production']
+#         for items in self.item_ids:
+#             if move.state in ('done', 'cancel'):
+#                 continue
+#             product_qty = items.quantity
+#             if picking_id.backorder_id:
+#                 picking_id = picking_id.backorder_id
+#             orders_prod = mrp_obj.search(
+#                 [('move_prod_id.picking_id', '=', picking_id.id)])
+#             production = False
+#             if not orders_prod == []:
+#                 production = mrp_obj.browse(orders_prod.id)
+#             if production:
+#                 if production.bom_id and production.bom_id.auto_produce_on_picking:
+#                     remaining_prod_qty = picking_id._get_product_qty(
+#                         production.id)
+#                     if remaining_prod_qty <= product_qty:
+#                         product_qty = remaining_prod_qty
+#                         production.action_produce(
+#                             production.id,
+#                             product_qty,
+#                             'consume_produce')
+#                         production.action_production_end()
+#                     else:
+#                         production.action_produce(
+#                             production.id,
+#                             product_qty,
+#                             'consume_produce')
+#                         production.action_in_production()
+#         res = super(stock_transfer_details, self).do_detailed_transfer()
+#         return res
+
+   
