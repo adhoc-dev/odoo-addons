@@ -8,10 +8,11 @@
     'license':  'AGPL-3',
     'description':
 """
-Para probar instalar tambien "sale" y "mrp_jit"
+Para probar instalar tambien "sale" y "procurement_jit_stock"
 """,
     'depends': [
         'mrp',
+        'procurement_jit_stock',
     ],
     'init_xml': [],
     'demo_xml': [
