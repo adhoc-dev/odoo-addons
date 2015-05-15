@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from openerp import fields, models, api
+from openerp import fields, models, api, _
 
 
 class product_catalog_report(models.Model):
@@ -26,7 +26,7 @@ class product_catalog_report(models.Model):
     )
     print_product_uom = fields.Boolean(
         'Print Product UOM?',
-        )
+    )
     product_type = fields.Selection(
         [('product.template', 'Product Template'),
          ('product.product', 'Product')], 'Product Type',
@@ -65,12 +65,12 @@ class product_catalog_report(models.Model):
     @api.multi
     def prepare_report(self):
         context = self._context.copy()
-        category_ids = self.category_ids.ids
-        if self.include_sub_categories:
-            category_ids = self.env['product.category'].search(
-                    [('id', 'child_of', category_ids)]).ids
+        categories = self.category_ids
 
-        context['category_ids'] = category_ids
+        if self.include_sub_categories and categories:
+            categories = self.env['product.category'].search(
+                [('id', 'child_of', categories.ids)])
+        context['category_ids'] = categories.ids
         context['product_type'] = self.product_type
         context['pricelist_ids'] = self.pricelist_ids.ids
         context['products_order'] = self.products_order
