@@ -102,6 +102,11 @@
                         class="oe_inline"/>
                     <label for="module_account_security_modifications"/>
                 </div>  
+                <div name='module_account_reconciliation_menu'>
+                    <field name="module_account_reconciliation_menu"
+                        class="oe_inline"/>
+                    <label for="module_account_reconciliation_menu"/>
+                </div>  
                 <div name='module_account_cancel'>
                     <field name="module_account_cancel"
                         class="oe_inline"/>
