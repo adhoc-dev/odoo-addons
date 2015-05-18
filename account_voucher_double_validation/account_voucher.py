@@ -124,6 +124,8 @@ class account_voucher(models.Model):
         res = super(account_voucher, self).onchange_journal(
             cr, uid, ids, journal_id, line_ids, tax_id, partner_id, date,
             amount, ttype, company_id, context=context)
+        if not res:
+            res = {}
         for voucher in self.browse(cr, uid, ids, context=context):
             # if confirmed we clean voucher lines
             if res.get('value') and voucher.state == 'confirmed':
