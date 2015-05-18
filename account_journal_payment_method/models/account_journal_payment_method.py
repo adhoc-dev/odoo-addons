@@ -27,11 +27,18 @@ class AccountJournal(models.Model):
 
     @api.model
     def _get_payment_method(self):
-        return [('none', _('None')),
-                ('cash', _('Cash Payment')),
+        return [('cash', _('Cash Payment')),
                 ('bank', _('Bank'))]
 
-    payment_method = fields.Selection('_get_payment_method', string='Payment Method', required=True, default='none')
+    payment_method = fields.Selection('_get_payment_method', string='Payment Method')
+
+    @api.model
+    def create(self, values):
+        if values['type'] == 'bank' and 'payment_method' not in values:
+            values['payment_method'] = 'bank'
+        if values['type'] == 'cash' and 'payment_method' not in values:
+            values['payment_method'] = 'cash'
+        return super(AccountJournal, self).create(values)
 
     @api.multi
     def write(self, values, context=None):
@@ -40,11 +47,10 @@ class AccountJournal(models.Model):
             if (journal.type == 'cash' and journal.payment_method != 'cash') \
                     or (journal.type != 'cash' and journal.payment_method == 'cash'):
                 raise except_orm(_('Warning!'), _('Cash payment method is used in Cash type journal!'))
-            if journal.type not in ('cash', 'bank') and journal.payment_method != 'none':
+            if (journal.type not in ('cash', 'bank') and journal.payment_method) \
+                    or (journal.type in ('cash', 'bank') and not journal.payment_method):
                 raise except_orm(_('Warning!'), _('Payment method is used in Cash and Bank journals!'))
         return res
-
-
 
 class AccountMove(models.Model):
     _inherit = "account.move"

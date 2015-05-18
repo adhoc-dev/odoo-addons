@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
                 <data>
                     <xpath expr="//field[@name='type']" position="after">
-                        <field name="payment_method" attrs="{'invisible':[('type','not in', ('cash','bank'))]}" string="Payment Method"/>
+                        <field name="payment_method" attrs="{'invisible':[('type','not in', ('cash','bank'))],'required':[('type','in', ('cash','bank'))]}" string="Payment Method"/>
                     </xpath>
                 </data>
             </field>
@@ -20,7 +20,7 @@
             <field name="arch" type="xml">
                 <data>
                     <xpath expr="//field[@name='period_id']" position="after">
-                        <field name="payment_method" string="Payment Method" attrs="{'invisible':[('type','!=', 'none')]}"/>
+                        <field name="payment_method" string="Payment Method" attrs="{'invisible':[('payment_method','=',False)]}"/>
                     </xpath>
                 </data>
             </field>
