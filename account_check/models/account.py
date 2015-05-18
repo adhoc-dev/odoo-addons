@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from openerp import models, fields
+from openerp import models, fields, api, _
 
 
 class account_journal(models.Model):
@@ -11,3 +11,11 @@ class account_journal(models.Model):
         help='Choose check type, if none check journal then keep it empty.')
     checkbook_ids = fields.One2many(
         'account.checkbook', 'journal_id', 'Checkbooks',)
+
+
+    @api.model
+    def _get_payment_method(self):
+        selection = super(account_journal, self)._get_payment_method()
+        selection.append(('check', _('Check')))
+        selection.append(('promissory', _('Promissory Note')))
+        return selection
