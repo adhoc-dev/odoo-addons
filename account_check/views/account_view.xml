@@ -6,14 +6,23 @@
             <field name="model">account.journal</field>
             <field name="inherit_id" ref="account.view_account_journal_form"/>
             <field name="arch" type="xml">
-                <field name="type" position="after">
-                    <field name="check_type" attrs="{'invisible':[('type','!=', 'bank')]}"/>
-                </field>
-                <notebook>
-                    <page string="Checkbooks" attrs="{'invisible':[('check_type','!=', 'issue')]}">
+                <data>
+                    <xpath expr="/form/group" position="inside">
+                        <group>
+                            <field name="check_type" attrs="{'invisible':[('payment_method','not in', ('check','promissory'))],'required':[('payment_method','in', ('check','promissory'))]}"/>
+                            <field name="validate_only_checks" attrs="{'invisible':[('check_type','=', False)]}"/>
+                        </group>
+                        <group>
+                            <field name="collection_account_id" attrs="{'invisible':['|',('payment_method','not in', ('check','promissory')),('check_type','!=', 'third')],'required':[('check_type','=','third')]}"/>
+                            <field name="warrant_account_id" attrs="{'invisible':['|',('payment_method','not in', ('check','promissory')),('check_type','!=', 'third')],'required':[('check_type','=','third')]}"/>
+                        </group>
+                    </xpath>
+                    <xpath expr="//form/notebook" position="inside">
+                        <page string="Checkbooks" attrs="{'invisible':['|',('payment_method','not in', ('check','promissory')),('check_type','!=', 'issue')]}">
                         <field name="checkbook_ids" attrs="{'required':[('check_type', '=', 'issue')]}" context="{'default_company_id':company_id}"/>
                     </page>
-                </notebook>
+                    </xpath>
+                </data>
             </field>
         </record>
     </data>

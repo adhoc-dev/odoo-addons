@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_account_journal_form_payment_method" model="ir.ui.view">
+            <field name="name">account.journal.form.payment.method</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='type']" position="after">
+                        <field name="payment_method" attrs="{'invisible':[('type','not in', ('cash','bank'))]}" string="Payment Method"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+        <record id="view_account_move_form_payment_method" model="ir.ui.view">
+            <field name="name">account.move.form.payment.method</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='period_id']" position="after">
+                        <field name="payment_method" string="Payment Method" attrs="{'invisible':[('type','!=', 'none')]}"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>
