@@ -13,7 +13,7 @@
                     <field name="paylines_amount" invisible="1"/>
                 </form>
                 <field name="amount" position="after">
-                    <field name="amount_readonly"/>
+                    <field name="amount_readonly" string="Total Amount"/>
                 </field>
                 <!-- TODO check if we want to use this in some cases, to set a value -->
                 <field name="amount" position="attributes">
@@ -36,7 +36,7 @@
                     <field name="paylines_amount" invisible="1"/>
                 </form>
                 <field name="amount" position="after">
-                    <field name="amount_readonly"/>
+                    <field name="amount_readonly" string="Total Amount"/>
                 </field>
                 <!-- TODO check if we want to use this in some cases, to set a value -->
                 <field name="amount" position="attributes">
@@ -59,7 +59,7 @@
                     <field name="paylines_amount" invisible="1"/>
                 </form>
                 <field name="amount" position="after">
-                    <field name="amount_readonly"/>
+                    <field name="amount_readonly" string="Total Amount"/>
                 </field>
                 <!-- TODO check if we want to use this in some cases, to set a value -->
                 <field name="amount" position="attributes">
