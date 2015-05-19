@@ -59,27 +59,13 @@ class account_voucher(models.Model):
 
     @api.multi
     def cancel_voucher(self):
-        for voucher in self:
-            for check in voucher.received_third_check_ids:
-                if check.state not in ['draft', 'holding']:
-                    raise Warning(_(
-                        'You can not cancel a voucher thas has received third checks in states other than "draft or "holding". First try to change check state.'))
-            for check in voucher.issued_check_ids:
-                if check.state not in ['draft', 'handed']:
-                    raise Warning(_(
-                        'You can not cancel a voucher thas has issue checks in states other than "draft or "handed". First try to change check state.'))
-            for check in voucher.delivered_third_check_ids:
-                if check.state not in ['handed']:
-                    raise Warning(_(
-                        'You can not cancel a voucher thas has delivered checks in states other than "handed". First try to change check state.'))
-        res = super(account_voucher, self).cancel_voucher()
         checks = self.env['account.check'].search([
             '|',
             ('voucher_id', 'in', self.ids),
             ('third_handed_voucher_id', 'in', self.ids)])
-        for check in checks:
-            check.signal_workflow('cancel')
-        return res
+        checks.check_cancel()
+        checks.signal_workflow('cancel')
+        return super(account_voucher, self).cancel_voucher()
 
     def proforma_voucher(self, cr, uid, ids, context=None):
         res = super(account_voucher, self).proforma_voucher(

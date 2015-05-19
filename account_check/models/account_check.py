@@ -338,6 +338,22 @@ class account_check(models.Model):
         return True
 
     @api.multi
+    def check_cancel_issue(self):
+        for check in self:
+            if check.type == 'issue' and check.state not in ['draft', 'handed']:
+                raise Warning(_(
+                    'You can not cancel issue checks in states other than "draft or "handed". First try to change check state.'))
+            # third checks received
+            elif check.type == 'third' and not self.third_handed_voucher_id and check.state not in ['draft', 'holding']:
+                raise Warning(_(
+                    'You can not cancel received third checks in states other than "draft or "holding". First try to change check state.'))
+            # third checks handed
+            elif check.type == 'third' and self.third_handed_voucher_id and check.state not in ['draft', 'holding']:
+                raise Warning(_(
+                    'You can not cancel handed third checks in states other than "handed". First try to change check state.'))
+        return True
+
+    @api.multi
     def action_cancel(self):
         self.write({'state': 'cancel'})
         return True

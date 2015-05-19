@@ -18,7 +18,6 @@ class account_journal(models.Model):
         'account.account', 'Warrant Account', domain=[('type', 'in', ['other', 'liquidity'])], help='Deposit account for warrant.'
         )
 
-
     @api.model
     def _get_payment_subtype(self):
         selection = super(account_journal, self)._get_payment_subtype()
