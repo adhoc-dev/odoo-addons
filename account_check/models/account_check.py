@@ -107,7 +107,7 @@ class account_check(models.Model):
             ('48', '48 hs'),
             ('72', '72 hs'),
         ), 'Clearing', readonly=True, states={'draft': [('readonly', False)]})
-    state = fields.Selection((
+    state = fields.Selection([
             ('draft', 'Draft'),
             ('holding', 'Holding'),
             ('deposited', 'Deposited'),
@@ -116,7 +116,7 @@ class account_check(models.Model):
             ('debited', 'Debited'),
             ('credited', 'Credited'),
             ('cancel', 'Cancel'),
-        ), 'State', required=True,
+        ], 'State', required=True,
         track_visibility='onchange', default='draft'
         )
     supplier_reject_debit_note_id = fields.Many2one(
