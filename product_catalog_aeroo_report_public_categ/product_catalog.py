@@ -7,8 +7,7 @@ class product_catalog_report(models.Model):
 
     category_type = fields.Selection(
         [('public_category', 'Public Category'),
-         ('accounting_category', 'Accounting Category')], 'Category Type',
-        required=True
+         ('accounting_category', 'Accounting Category')], 'Category Type'
     )
     public_category_ids = fields.Many2many(
         'product.public.category',
@@ -22,16 +21,16 @@ class product_catalog_report(models.Model):
     def prepare_report(self):
         self = super(product_catalog_report, self).prepare_report()
         if self.category_type == 'public_category':
-            category_ids = self.public_category_ids.ids
-            if self.include_sub_categories:
-                category_ids = self.env['product.public.category'].search(
-                    [('id', 'child_of', category_ids)]).ids
+            categories = self.public_category_ids
+            if self.include_sub_categories and categories:
+                categories = self.env['product.public.category'].search(
+                    [('id', 'child_of', categories.ids)])
         else:
-            category_ids = self.category_ids.ids
-            if self.include_sub_categories:
-                category_ids = self.env['product.category'].search(
-                    [('id', 'child_of', category_ids)]).ids
+            categories = self.category_ids
+            if self.include_sub_categories and categories:
+                categories = self.env['product.category'].search(
+                    [('id', 'child_of', categories.ids)])
 
         return self.with_context(
-            category_ids=category_ids,
+            category_ids=categories.ids,
             category_type=self.category_type)

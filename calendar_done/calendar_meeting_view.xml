@@ -1,0 +1,17 @@
+<openerp>
+    <data>
+	<record id="view_crm_meeting_form_with_pad" model="ir.ui.view">
+            <field name="name">calendar.event.form.pad</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="previous_user_id" invisible="1"/>
+                </form>
+                <label for="name"  position="replace">
+                    <label for="name"/> (<field name="mark_done"/> <label for="mark_done"/>)
+                </label>
+            </field>
+        </record>
+    </data>
+</openerp>

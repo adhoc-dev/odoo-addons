@@ -1,25 +1,25 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Stock Picking Driver',
+    'name': 'Account Reconciliations Menu',
     'version': '1.0',
-    'category': 'Warehouse Management',
+    'category': 'Sale',
     'sequence': 14,
     'summary': '',
     'description': """
-Stock Picking Driver
-=====================
+Account Reconciliations Menu
+============================
+Add reconciliations menu on accounting
 
     """,
-    'author':  'ADHOC',
+    'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [
-        'stock',
-        'delivery',
+        'account',
     ],
     'data': [
-    'view/delivery_order_view.xml',
+        'account_action.xml',
     ],
     'demo': [
     ],
