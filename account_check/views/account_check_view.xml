@@ -11,15 +11,18 @@
                 <tree colors="blue:state == 'draft';black:state in ('handed');red:state == 'hrejected';gray:state == 'cancel'" create="false" string="Checks">
                     <field name="checkbook_id" invisible="context.get('default_type',False) != 'issue'"/>
                     <field name="journal_id"/>
-                    <field name="name"/>
+                    <field name="name" string="Number"/>
                     <field name="issue_date"/>
                     <field name="payment_date"/>
-                    <field name="source_partner_id" invisible="context.get('default_type',False) != 'third'"/>
-                    <field name="destiny_partner_id"/>
+                    <field name="source_partner_id" invisible="context.get('default_type',False) != 'third'" string="Source Partner"/>
+                    <field name="destiny_partner_id" string="Destiny Partner"/>
                     <field name="bank_id" invisible="context.get('default_type',False) != 'third'"/>
                     <field name="amount" sum="Total Amount"/>
                     <field name="company_id" groups="base.group_multi_company"/>
                     <field name="state"/>
+                    <field name="owner" invisible="context.get('default_type',False) != 'third'"/>
+                    <field name="owner_name" invisible="context.get('default_type',False) != 'third'"/>
+                    <field name="credit_journal_id" invisible="context.get('default_type',False) != 'third'"/>
                 </tree>
             </field>
         </record>
@@ -30,10 +33,11 @@
             <field name="arch" type="xml">
                 <tree colors="blue:state == 'draft';black:state in ('handed');red:state == 'hrejected';gray:state == 'cancel'" string="Checks">
                     <field name="checkbook_id" invisible="context.get('default_type',False) != 'issue'"/>
-                    <field name="name"/>
+                    <field name="journal_id"/>
+                    <field name="name" string="Number"/>
                     <field name="issue_date"/>
                     <field name="payment_date"/>
-                    <field name="source_partner_id" invisible="context.get('default_type',False) != 'third'"/>
+                    <field name="source_partner_id" invisible="context.get('default_type',False) != 'third'" string="Source Partner"/>
                     <field name="bank_id" invisible="context.get('default_type',False) != 'third'"/>
                     <field name="amount" sum="Total Amount"/>
                     <field name="state"/>
@@ -51,9 +55,12 @@
                     <field name="journal_id" invisible="1"/>
                     <field name="currency_id" invisible="1"/>
                 <header>
-                    <button name="%(action_check_deposit)d" type="action" string="Deposited" states="holding" class="oe_highlight"/>
-                    <button name="%(action_check_debit)d" type="action" string="Debited" attrs="{'invisible':['|',('type','!=','issue'),('state','!=','handed')]}" class="oe_highlight"/>
-                    <button name="%(action_check_rejected)d" type="action" string="Rejected" states="handed,deposited" context="{'default_state':state,'default_type':type}"/>
+                    <button name="%(action_check_deposit)d" type="action" string="Deposit" states="holding" class="oe_highlight"/>
+                    <button name="%(action_check_debit)d" type="action" string="Debit" attrs="{'invisible':['|',('type','!=','issue'),('state','!=','handed')]}" class="oe_highlight"/>
+                    <button name="%(action_check_credit)d" type="action" string="Credit" attrs="{'invisible':['|',('type','!=','third'),('state','!=','deposited')]}" class="oe_highlight"/>
+                    <button name="%(action_check_rejected)d" type="action" string="Reject" states="handed,deposited" context="{'default_state':state,'default_type':type}"/>
+                    <button name="%(action_check_return)d" type="action" string="Return" states="holding" context="{'default_state':state,'default_type':type}"/>
+                    <button name="%(action_check_take)d" type="action" string="Take Back" states="handed,deposited" context="{'default_state':state,'default_type':type}"/>
                     <button name="action_cancel_debit" type="object" string="Cancel Debit" states="debited" context="{'default_state':state,'default_type':type}"/>
                     <button name="action_cancel_rejection" type="object" string="Cancel Rejection" states="rejected" context="{'default_state':state,'default_type':type}"/>
                     <button name="action_cancel_deposit" type="object" string="Cancel Deposit" states="deposited" context="{'default_state':state,'default_type':type}"/>
@@ -67,23 +74,28 @@
                         <group>
                             <field name="checkbook_id" widget="selection" domain="[('journal_id','=',journal_id),('state','=','active')]" attrs="{'invisible':[('type','!=','issue')],'required':[('type','=','issue')]}"/>
                             <field name="bank_id" attrs="{'invisible':[('type','!=','third')],'required':[('type','=','third')]}"/>
-                            <field name="vat" attrs="{'invisible':[('type','!=','third')],'required':[('type','=','third')]}"/>
                             <field name="number"/>
                             <field name="amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                             <field name="company_currency_amount" attrs="{'invisible':[('company_currency_amount','=', 0)]}" /> <!-- groups="base.group_no_one" -->
                         </group>
                         <group>    
+                            <field name="owner" attrs="{'invisible':[('type','!=','third')],'required':[('type','=','third')]}"/>
+                            <field name="owner_name" attrs="{'invisible':[('type','!=','third')],'required':[('type','=','third')]}"/>
+                            <field name="vat" attrs="{'invisible':[('type','!=','third')],'required':[('type','=','third')]}"/>
+                        </group>
+                        <group>
                             <field name="issue_date"/>
                             <field name="payment_date" attrs="{'invisible':[('type','=','issue'),('issue_check_subtype','=','currents')],'required':[('type','=','issue'),('issue_check_subtype','=','deferred')]}"/>
                             <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                            <field name="credit_journal_id" attrs="{'invisible':[('credit_journal_id','=',False)]}"/>
                         </group>
                     </group>
                     <group string="Related Documents">
                         <group>
                             <field name="voucher_id" invisible="'from_voucher' in context" required="'from_voucher' not in context" readonly="1"/>
                             <field name="third_handed_voucher_id" invisible="'from_voucher' in context"  context="{'form_view_ref':'account_voucher.view_vendor_payment_form'}" attrs="{'invisible':[('third_handed_voucher_id','=',False)]}"/>
-                            <field name="source_partner_id" invisible="'from_voucher' in context" attrs="{'invisible':[('source_partner_id','=',False)]}"/>
-                            <field name="destiny_partner_id" invisible="'from_voucher' in context" attrs="{'invisible':[('destiny_partner_id','=',False)]}"/>
+                            <field name="source_partner_id" invisible="'from_voucher' in context" attrs="{'invisible':[('source_partner_id','=',False)]}" string="Source Partner"/>
+                            <field name="destiny_partner_id" invisible="'from_voucher' in context" attrs="{'invisible':[('destiny_partner_id','=',False)]}" string="Destiny Partner"/>
                         </group>
                         <group>
                             <field name="debit_account_move_id" attrs="{'invisible':[('debit_account_move_id','=',False)]}"/>
@@ -91,6 +103,9 @@
                             <field name="customer_reject_debit_note_id" attrs="{'invisible':[('customer_reject_debit_note_id','=',False)]}"/>
                             <field name="expense_account_move_id" attrs="{'invisible':[('expense_account_move_id','=',False)]}"/>
                             <field name="supplier_reject_debit_note_id" attrs="{'invisible':[('supplier_reject_debit_note_id','=',False)]}"/>                            
+                            <field name="return_account_move_id" attrs="{'invisible':[('return_account_move_id','=',False)]}"/>
+                            <field name="take_account_move_id" attrs="{'invisible':[('take_account_move_id','=',False)]}"/>
+                            <field name="credit_account_move_id" attrs="{'invisible':[('credit_account_move_id','=',False)]}"/>
                         </group>
                     </group>
                 </sheet>    
@@ -108,16 +123,23 @@
             <field name="arch" type="xml">
                 <search string="Checks">
                     <field name="number"/>
-                    <field name="destiny_partner_id"/>
+                    <field name="source_partner_id" string="Source Partner"/>
+                    <field name="destiny_partner_id" string="Destiny Partner"/>
                     <field name="journal_id"/>
                     <field name="voucher_id"/>
                     <field name="company_id" groups="base.group_multi_company"/>
                     <field name="state"/>
+                    <field name="owner"/>
+                    <field name="owner_name"/>
+                    <field name="vat"/>
                     <group expand="0" string="Group By...">
                         <filter string="Issue Date" context="{'group_by':'issue_date'}"/>
                         <filter string="Payment Date" context="{'group_by':'payment_date'}"/>                        
                         <filter string="Journal" context="{'group_by':'journal_id'}"/>
                         <filter string="State" context="{'group_by':'state'}"/>
+                        <filter string="Credit Journal" context="{'group_by':'credit_journal_id'}"/>
+                        <filter string="Source Partner" context="{'group_by':'source_partner_id'}"/>
+                        <filter string="Destiny Partner" context="{'group_by':'destiny_partner_id'}"/>
                     </group>
                 </search>
             </field>

@@ -97,7 +97,7 @@ class account_check(models.Model):
         )
     destiny_partner_id = fields.Many2one(
         'res.partner',
-        compute='_get_destiny_partner', string='Destiny Partner'
+        compute='_get_destiny_partner', string='Destiny Partner', store=True
         )
     user_id = fields.Many2one(
         'res.users', 'User', readonly=True, default=lambda self: self.env.user,
@@ -114,6 +114,7 @@ class account_check(models.Model):
             ('handed', 'Handed'),
             ('rejected', 'Rejected'),
             ('debited', 'Debited'),
+            ('credited', 'Credited'),
             ('cancel', 'Cancel'),
         ), 'State', required=True,
         track_visibility='onchange', default='draft'
@@ -144,12 +145,14 @@ class account_check(models.Model):
         )
     debit_account_move_id = fields.Many2one(
         'account.move', 'Debit Account Move', readonly=True)
+    credit_account_move_id = fields.Many2one(
+        'account.move', 'Credit Account Move', readonly=True)
 
     # Third check
     third_handed_voucher_id = fields.Many2one(
         'account.voucher', 'Handed Voucher', readonly=True,)
     source_partner_id = fields.Many2one(
-        'res.partner', compute='_get_source_partner', string='Source Partner'
+        'res.partner', compute='_get_source_partner', string='Source Partner', store=True
         )
     customer_reject_debit_note_id = fields.Many2one(
         'account.invoice', 'Customer Reject Debit Note', readonly=True
@@ -163,16 +166,38 @@ class account_check(models.Model):
         related='voucher_id.journal_id.currency',
         )
     vat = fields.Char(
-        'Vat', size=11, states={'draft': [('readonly', False)]}
+        'Vat', readonly=True, states={'draft': [('readonly', False)]}
         )
+
+    owner = fields.Selection((
+            ('self', 'Self'),
+            ('customers', 'Customers'),
+        ), 'Owner', readonly=True, states={'draft': [('readonly', False)]})
+
+    owner_name = fields.Char(
+        'Owner Name', readonly=True, states={'draft': [('readonly', False)]}
+        )
+
     deposit_account_move_id = fields.Many2one(
         'account.move', 'Deposit Account Move', readonly=True
         )
-    # this one is used for check rejection
-    deposit_account_id = fields.Many2one(
-        'account.account', 'Deposit Account', readonly=True
+     # account move of return
+    return_account_move_id = fields.Many2one(
+        'account.move', 'Return Account Move', readonly=True
         )
+    # account move of take back
+    take_account_move_id = fields.Many2one(
+        'account.move', 'Take Back Account Move', readonly=True
+        )
+    # deposit type can be
+    deposit_type = fields.Selection((
+            ('collection', 'Collection'),
+            ('warrant', 'Warrant'),
+        ), 'Deposit Type', readonly=True)
 
+    credit_journal_id = fields.Many2one(
+        'account.journal', 'Credit Journal', help='It will be used for the credit of the check ', readonly=True
+        )
     def _check_number_interval(self, cr, uid, ids, context=None):
         for obj in self.browse(cr, uid, ids, context=context):
             if obj.type !='issue' or (obj.checkbook_id and obj.checkbook_id.range_from <= obj.number <= obj.checkbook_id.range_to):
@@ -213,13 +238,20 @@ class account_check(models.Model):
     @api.one
     @api.onchange('issue_date', 'payment_date')
     def onchange_date(self):
-        res = {}
         if self.issue_date and self.payment_date and self.issue_date > self.payment_date:
-            res = {'value': {'payment_date': False}}
-            res.update({'warning': {
-                'title': _('Error !'),
-                'message': _('Payment Date must be greater than Issue Date')}})
-        return res
+            self.payment_date = False
+            raise Warning(
+                _('Payment Date must be greater than Issue Date'))
+
+    @api.one
+    @api.onchange('owner')
+    def onchange_owner(self):
+        if self.owner == 'self':
+            self.owner_name = self.voucher_id.partner_id.name
+            self.vat = self.voucher_id.partner_id.vat
+        else:
+            self.owner_name = False
+            self.vat = False
 
     @api.one
     def unlink(self):
@@ -265,6 +297,11 @@ class account_check(models.Model):
     @api.multi
     def action_debit(self):
         self.write({'state': 'debited'})
+        return True
+
+    @api.multi
+    def action_credit(self):
+        self.write({'state': 'credited'})
         return True
 
     @api.multi
