@@ -11,7 +11,8 @@
                     <field name="company_id" invisible="1"/>
                     <group >
                         <field name="date"/>
-                        <field name="account_id" domain="[('company_id','=',company_id),('type', 'in', ['other', 'liquidity'])]" attrs="{'invisible':[('action_type','!=','deposit')],'required':[('action_type','=','deposit')]}"/>
+                        <field name="deposit_type" attrs="{'invisible':[('action_type','!=','deposit')],'required':[('action_type','=','deposit')]}"/>
+                        <field name="credit_journal_id" domain="[('company_id','=',company_id),('type', 'in', ['cash', 'bank'])]" attrs="{'invisible':[('action_type','!=','deposit')],'required':[('action_type','=','deposit')]}"/>
                     </group>
                     <footer>
                         <button string="Confirm" name="action_confirm" type="object" class="oe_highlight"/>
@@ -42,5 +43,35 @@
             key2="client_action_multi"
             id="action_check_debit"/>
         
+        <act_window
+            name="Check Credit"
+            res_model="account.check.action"
+            src_model="account.check"
+            view_mode="form"
+            target="new"
+            context="{'default_action_type':'credit'}"
+            key2="client_action_multi"
+            id="action_check_credit"/>
+
+        <act_window
+            name="Check Return"
+            res_model="account.check.action"
+            src_model="account.check"
+            view_mode="form"
+            target="new"
+            context="{'default_action_type':'return'}"
+            key2="client_action_multi"
+            id="action_check_return"/>
+
+        <act_window
+            name="Check Take Back"
+            res_model="account.check.action"
+            src_model="account.check"
+            view_mode="form"
+            target="new"
+            context="{'default_action_type':'take'}"
+            key2="client_action_multi"
+            id="action_check_take"/>
+
     </data>
 </openerp>
