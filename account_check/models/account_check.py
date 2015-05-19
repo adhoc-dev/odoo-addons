@@ -338,7 +338,7 @@ class account_check(models.Model):
         return True
 
     @api.multi
-    def check_cancel_issue(self):
+    def check_check_cancellation(self):
         for check in self:
             if check.type == 'issue' and check.state not in ['draft', 'handed']:
                 raise Warning(_(

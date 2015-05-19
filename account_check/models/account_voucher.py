@@ -63,7 +63,7 @@ class account_voucher(models.Model):
             '|',
             ('voucher_id', 'in', self.ids),
             ('third_handed_voucher_id', 'in', self.ids)])
-        checks.check_cancel()
+        checks.check_check_cancellation()
         checks.signal_workflow('cancel')
         return super(account_voucher, self).cancel_voucher()
 
