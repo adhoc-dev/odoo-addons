@@ -19,22 +19,22 @@
 #
 ##############################################################################
 {
-    'name': 'Journal Payment Method',
+    'name': 'Journal Payment Subtype',
     'version': '1.0',
     'category': 'Account',
-    'summary': 'Adds payment method field to cash and bank journals',
+    'summary': 'Adds payment subtype field to cash and bank journals',
     'description': """
-Journal Payment Method
-====================================================
+Journal Payment Subtype
+=======================
 
-Adds payment method field to cash and bank journals.
+Adds payment subtype field to cash and bank journals.
 
-This addon is used by addons that implement different payment methods such as check, credit card, promissory notes etc..
+This addon is used by addons that implement different payment subtypes such as check, credit card, promissory notes etc..
     """,
     'author': 'Eska Yazılım ve Danışmanlık A.Ş.',
     'website': 'http://www.eskayazilim.com.tr',
     'depends': ['account'],
-    'data': ['views/account_journal_payment_method_view.xml'],
+    'data': ['views/account_journal_payment_subtype_view.xml'],
     'installable': True,
 }
 

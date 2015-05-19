@@ -20,8 +20,8 @@ class account_journal(models.Model):
 
 
     @api.model
-    def _get_payment_method(self):
-        selection = super(account_journal, self)._get_payment_method()
+    def _get_payment_subtype(self):
+        selection = super(account_journal, self)._get_payment_subtype()
         selection.append(('check', _('Check')))
         selection.append(('promissory', _('Promissory Note')))
         return selection

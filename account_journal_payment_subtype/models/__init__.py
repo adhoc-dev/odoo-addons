@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-import account_journal_payment_method
+import account_journal_payment_subtype
 
 
 

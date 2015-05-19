@@ -9,15 +9,15 @@
                 <data>
                     <xpath expr="/form/group" position="inside">
                         <group>
-                            <field name="check_type" attrs="{'invisible':[('payment_method','not in', ('check','promissory'))],'required':[('payment_method','in', ('check','promissory'))]}"/>
+                            <field name="check_type" attrs="{'invisible':[('payment_subtype','not in', ('check','promissory'))],'required':[('payment_subtype','in', ('check','promissory'))]}"/>
                         </group>
                         <group>
-                            <field name="collection_account_id" attrs="{'invisible':['|',('payment_method','not in', ('check','promissory')),('check_type','!=', 'third')],'required':[('check_type','=','third')]}"/>
-                            <field name="warrant_account_id" attrs="{'invisible':['|',('payment_method','not in', ('check','promissory')),('check_type','!=', 'third')],'required':[('check_type','=','third')]}"/>
+                            <field name="collection_account_id" attrs="{'invisible':['|',('payment_subtype','not in', ('check','promissory')),('check_type','!=', 'third')],'required':[('check_type','=','third')]}"/>
+                            <field name="warrant_account_id" attrs="{'invisible':['|',('payment_subtype','not in', ('check','promissory')),('check_type','!=', 'third')],'required':[('check_type','=','third')]}"/>
                         </group>
                     </xpath>
                     <xpath expr="//form/notebook" position="inside">
-                        <page string="Checkbooks" attrs="{'invisible':['|',('payment_method','not in', ('check','promissory')),('check_type','!=', 'issue')]}">
+                        <page string="Checkbooks" attrs="{'invisible':['|',('payment_subtype','not in', ('check','promissory')),('check_type','!=', 'issue')]}">
                         <field name="checkbook_ids" attrs="{'required':[('check_type', '=', 'issue')]}" context="{'default_company_id':company_id}"/>
                     </page>
                     </xpath>

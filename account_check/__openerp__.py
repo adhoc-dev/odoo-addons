@@ -42,7 +42,7 @@ Al depositar el cheque hace el asiento 2 de la imagen, cosa que no esta bien, lo
     ],
     'depends': [
         'account_voucher_payline',
-        'account_journal_payment_method',
+        'account_journal_payment_subtype',
     ],
     'data': [
         'wizard/check_action_view.xml',
