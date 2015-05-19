@@ -31,28 +31,3 @@ class AccountJournal(models.Model):
         return []
 
     payment_subtype = fields.Selection('_get_payment_subtype', string='Payment Subtype')
-
-    # @api.model
-    # def check_payment_subtype(self, type, payment_subtype):
-    #     if (type == 'cash' and payment_subtype != 'cash') \
-    #             or (type != 'cash' and payment_subtype == 'cash'):
-    #         raise except_orm(_('Warning!'), _('Cash Payment Subtype is used in Cash type journal!'))
-    #     if (type not in ('cash', 'bank') and payment_subtype \
-    #             or (type in ('cash', 'bank') and not payment_subtype)):
-    #         raise except_orm(_('Warning!'), _('Payment Subtype is used in Cash and Bank journals!'))
-
-    # @api.model
-    # def create(self, values):
-    #     if values['type'] == 'bank' and 'payment_subtype' not in values:
-    #         values['payment_subtype'] = 'bank'
-    #     if values['type'] == 'cash' and 'payment_subtype' not in values:
-    #         values['payment_subtype'] = 'cash'
-    #     self.check_payment_subtype(values['type'], values['payment_subtype'])
-    #     return super(AccountJournal, self).create(values)
-
-    # @api.multi
-    # def write(self, values, context=None):
-    #     res = super(AccountJournal, self).write(values)
-    #     for journal in self.browse(self.ids):
-    #         self.check_payment_subtype(journal.type, journal.payment_subtype)
-    #     return res
