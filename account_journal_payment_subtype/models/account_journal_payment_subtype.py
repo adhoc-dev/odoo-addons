@@ -30,4 +30,7 @@ class AccountJournal(models.Model):
     def _get_payment_subtype(self):
         return []
 
-    payment_subtype = fields.Selection('_get_payment_subtype', string='Payment Subtype')
+    payment_subtype = fields.Selection(
+        '_get_payment_subtype',
+        string='Payment Subtype'
+        )
