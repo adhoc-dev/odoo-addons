@@ -10,7 +10,7 @@ other services.""",
     'external_dependencies': {'python': ['M2Crypto']},
     'installable': True,
     'license': 'AGPL-3',
-    'name': 'Cryptography Manager',
+    'name': 'Cryptography Manager (Depreciated)',
     'test': ['test/test_pairkey.yml', 'test/test_certificate.yml'],
     'data': [
         'crypto_menuitems.xml',
