@@ -8,9 +8,9 @@
 Cryptography Manager can generate key pairs and certificates to connect to
 other services.""",
     'external_dependencies': {'python': ['M2Crypto']},
-    'installable': True,
+    'installable': False,
     'license': 'AGPL-3',
-    'name': 'Cryptography Manager',
+    'name': 'Cryptography Manager (Depreciated)',
     'test': ['test/test_pairkey.yml', 'test/test_certificate.yml'],
     'data': [
         'crypto_menuitems.xml',
