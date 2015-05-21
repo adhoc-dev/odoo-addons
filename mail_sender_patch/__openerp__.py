@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    "name": "Mail Sender Patch",
+    "name": "Mail Sender Patch (Depreciated)",
     "version": "1.0",
     'author':  'Ingeniería ADHOC',
     'website': 'www.ingadhoc.com.ar',
@@ -8,6 +8,8 @@
     "description": """ 
 Mail Sender Patch
 =================
+Depreciado porque al 21/05/2015 parece no ser más necesario...
+
 Este patch reemplaza el sender que utiliza odoo porque nuestro servidor smtp no permite que se loguee cualquiera.
 Si agregamos el parametro "mail.bounce.alias" luego, a los emails de un modelo y recurso, les agrega la data y tmb son rechazados. Ver:
     * en mail/mail_mail.py
