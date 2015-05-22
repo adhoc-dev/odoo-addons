@@ -75,12 +75,12 @@ class purchase_order(models.Model):
             :rtype direct_delivery_address : res.partner record
         """
         partner_addr = partner.sudo().address_get(['default', 'invoice', 'delivery', 'contact'])
-        print '1', partner.env.user
-        print '2', partner.env.user.company_id
-        print '3', partner.with_context(company_id=3).property_product_pricelist.name
-        print '4', partner.property_product_pricelist.name
-        print '5', partner.name
-        print '6', partner.id
+        warehouse = self.env['stock.warehouse'].sudo().search(
+            [('company_id', '=', company.id)], limit=1)
+        print 'warehouse', warehouse
+        if not warehouse:
+            raise Warning(_('There is no warehouse for company %s') % (
+                company.name))
         return {
             'name': self.env['ir.sequence'].sudo().next_by_code('sale.order') or '/',
             'company_id': company.id,
@@ -93,7 +93,8 @@ class purchase_order(models.Model):
             'user_id': False,
             'auto_generated': True,
             'auto_purchase_order_id': self.id,
-            'partner_shipping_id': direct_delivery_address or partner_addr['delivery']
+            'partner_shipping_id': direct_delivery_address or partner_addr['delivery'],
+            'warehouse_id': warehouse.id,
         }
 
     @api.model

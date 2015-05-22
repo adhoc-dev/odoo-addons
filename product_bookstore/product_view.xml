@@ -12,17 +12,7 @@
                 </field>
             </field>
         </record>
-<!--         <record id="product_search_form_view" model="ir.ui.view">
-            <field name="name">product.product.filter</field>
-            <field name="model">product.product</field>
-            <field name="inherit_id" ref="product.product_search_form_view"></field>
-            <field name="arch" type="xml">
-                <field name="name" position="attributes">
-                    <attribute name="filter_domain">['|','|','|',('isbn','ilike',   self),('ean13','ilike',   self),('default_code','ilike',   self),('name','ilike',self)]</attribute>
-                </field>
-            </field>
-        </record>
- -->
+
     <!-- Product Template Views -->
         <record id="product_template_only_form_view" model="ir.ui.view">
             <field name="name">product_price_currency.form</field>
