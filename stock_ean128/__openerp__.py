@@ -15,7 +15,7 @@ Stock EAN128
     'images': [
     ],
     'depends': [
-        'stock', 'product_expiry'
+        'product_expiry',
     ],
     'data': ['stock_view.xml'
              ],
