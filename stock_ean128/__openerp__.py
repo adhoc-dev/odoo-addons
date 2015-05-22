@@ -7,7 +7,7 @@
     'summary': '',
     'description': """
 Stock EAN128
-=============================
+============
 
     """,
     'author':  'ADHOC',
@@ -15,10 +15,10 @@ Stock EAN128
     'images': [
     ],
     'depends': [
-        'stock',
+        'stock', 'product_expiry'
     ],
     'data': ['stock_view.xml'
-    ],
+             ],
     'demo': [
     ],
     'test': [
