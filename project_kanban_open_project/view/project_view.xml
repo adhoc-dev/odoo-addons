@@ -11,12 +11,12 @@
                 <a t-if="record.use_tasks.raw_value" position="attributes">
                     <attribute name="type">edit</attribute>
                 </a>
-                <t t-raw="record.task_ids.raw_value.length" position="replace">
+                <t t-raw="record.task_count.raw_value" position="replace">
                 </t>
                 <div class="oe_kanban_project_list" position="before">
                     <div class="oe_kanban_content">
                         <a t-if="record.use_tasks.raw_value" name="%(project.act_project_project_2_project_task_all)d" type="action" style="margin-right: 10px">
-                            <t t-raw="record.task_ids.raw_value.length"/> Tasks                                          
+                            <t t-raw="record.task_count.raw_value"/> Tasks                                          
                         </a>
                     </div>
                 </div>

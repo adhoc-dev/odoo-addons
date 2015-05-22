@@ -26,6 +26,21 @@
                         class="oe_inline"/>
                     <label for="module_project_task_phase"/>
                 </div>
+                <div name='module_project_stage'>
+                    <field name="module_project_stage"
+                        class="oe_inline"/>
+                    <label for="module_project_stage"/>
+                </div>
+                <div name='module_project_kanban_open_project'>
+                    <field name="module_project_kanban_open_project"
+                        class="oe_inline"/>
+                    <label for="module_project_kanban_open_project"/>
+                </div>
+                <div name='module_project_category'>
+                    <field name="module_project_category"
+                        class="oe_inline"/>
+                    <label for="module_project_category"/>
+                </div>
             </div>    
             <label for="id" string="Tasks"/>
             <div name="tasks">
