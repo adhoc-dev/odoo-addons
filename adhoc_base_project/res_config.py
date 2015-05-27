@@ -51,3 +51,13 @@ class adhoc_base_configuration(models.TransientModel):
     module_project_user_story = fields.Boolean(
         'Project User Stories.',
         help="""Installs the project_user_story module.""")
+    module_project_stage = fields.Boolean(
+        'Add stages to projects.',
+        help="""Installs the project_stage module.""")
+    module_project_kanban_open_project = fields.Boolean(
+        'Open the form view of a project by clicking on the view KanBan.',
+        help="""Installs the project_kanban_open_project module.""")
+    module_project_category = fields.Boolean(
+        'Add categories to projects.',
+        help="""Installs the project_category module.""")
+

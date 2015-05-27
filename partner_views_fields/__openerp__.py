@@ -4,14 +4,14 @@
     "version": "1.0",
     "author": "Ingenieria ADHOC",
     "category": "",
-    "description" : """
+    "description": """
 Add Fields on Partners Views
 ============================
     """,
     "website": "www.ingadhoc.com",
     "depends": [
         "base_setup",
-                ],
+    ],
     "demo": [
     ],
     "data": [

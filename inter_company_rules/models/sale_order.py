@@ -78,6 +78,8 @@ class sale_order(models.Model):
         if not warehouse:
             raise Warning(_('Configure correct warehouse for company(%s) from Menu: Settings/companies/companies' % (company.name)))
 
+        print 'company_partner', company_partner.name
+        print 'company_partner', company_partner
         return {
             'name': self.env['ir.sequence'].sudo().next_by_code('purchase.order'),
             'origin': self.name,

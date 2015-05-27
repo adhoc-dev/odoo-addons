@@ -105,7 +105,7 @@ class account_journal_to_create(osv.osv_memory):
     
     _name = 'account.journal.to_create'
 
-    global_type = [
+    global_type_sel = [
       ('issue_check','Issue Check'),
       ('third_check','Third Check'),
       ('credit_card','Credit Card'),
@@ -119,7 +119,7 @@ class account_journal_to_create(osv.osv_memory):
         'code': fields.char('Code', size=5, required=True, help="The code will be displayed on reports."),
         'account_id': fields.many2one('account.account', 'Account', required=True, domain=[('type','not in',['view','payable','receivable'])],),
         'config_id': fields.many2one('account.journal.config.wizard', 'Config',),
-        'global_type': fields.selection(global_type, 'Global Type', required=True,),
+        'global_type': fields.selection(global_type_sel, 'Global Type', required=True,),
         'update_posted': fields.boolean('Allow Cancelling', help="Check this box if you want to allow the cancellation the entries related to this journals or of the invoice related to this journals"),        
         'allow_date':fields.boolean('Date in Period', help= 'If checked, the entry won\'t be created if the entry date is not included into the selected period'),
         'direction': fields.selection([('in', 'In'),('out','Out')], 'Direction', size=32, required=False,

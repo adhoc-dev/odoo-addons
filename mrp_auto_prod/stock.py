@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-from openerp import fields, models, api, _
-from openerp import tools
-from openerp.tools import float_compare, DEFAULT_SERVER_DATETIME_FORMAT
-import openerp.addons.decimal_precision as dp
+from openerp import fields, models, api
+import logging
+_logger = logging.getLogger(__name__)
 
 
-class stock_move(models.Model):
+class mrp_bom(models.Model):
 
     _inherit = "mrp.bom"
 
@@ -16,73 +15,51 @@ class stock_move(models.Model):
             then auto produce on delivery')
 
 
-class stock_picking(models.Model):
+class stock_move(models.Model):
 
-    _inherit = "stock.picking"
+    _inherit = "stock.move"
 
-    def _get_product_qty(self, cr, uid, production_id, context=None):
-        """ To obtain product quantity
-        @param self: The object pointer.
-        @param cr: A database cursor
-        @param uid: ID of the user currently logged in
-        @param product_id: product_id
-        @param context: A standard dictionary
-        @return: Quantity
-        """
-        if context is None:
-            context = {}
-        prod = self.pool['mrp.production'].browse(
-            cr,
-            uid,
-            production_id,
-            context=context)
-        done = 0.0
-        for move in prod.move_created_ids2:
-            if move.product_id == prod.product_id:
-                if not move.scrapped:
-                    done += move.product_qty
-        return (prod.product_qty - done) or prod.product_qty
-
-
-
-
-# class stock_transfer_details(models.TransientModel):
-#     _inherit = 'stock.transfer_details'
-
-
-#     @api.one
-#     def do_detailed_transfer(self):
-
-#         mrp_obj = self.env['mrp.production']
-#         for items in self.item_ids:
-#             if move.state in ('done', 'cancel'):
-#                 continue
-#             product_qty = items.quantity
-#             if picking_id.backorder_id:
-#                 picking_id = picking_id.backorder_id
-#             orders_prod = mrp_obj.search(
-#                 [('move_prod_id.picking_id', '=', picking_id.id)])
-#             production = False
-#             if not orders_prod == []:
-#                 production = mrp_obj.browse(orders_prod.id)
-#             if production:
-#                 if production.bom_id and production.bom_id.auto_produce_on_picking:
-#                     remaining_prod_qty = picking_id._get_product_qty(
-#                         production.id)
-#                     if remaining_prod_qty <= product_qty:
-#                         product_qty = remaining_prod_qty
-#                         production.action_produce(
-#                             production.id,
-#                             product_qty,
-#                             'consume_produce')
-#                         production.action_production_end()
-#                     else:
-#                         production.action_produce(
-#                             production.id,
-#                             product_qty,
-#                             'consume_produce')
-#                         production.action_in_production()
-#         res = super(stock_transfer_details, self).do_detailed_transfer()
-#         return res
-
-   
+    @api.multi
+    def action_done(self):
+        for move in self:
+            # TODO perhups improove and search as many procuremnts as exists
+            # and finish them till move quantity is reached
+            _logger.info('Search for production procurement for move_id %s' % (
+                move.id))
+            if not move.picking_id:
+                # if no picking, then it is a move of production order or
+                # another move we don want to use
+                continue
+            # we search for procurements of this move procurment group,
+            # that are has a production order lined whick is for the same
+            # product, it is not cancel or dane and has bom with auto prod
+            production_procurement = self.env['procurement.order'].search([
+                ('group_id', '=', move.group_id.id),
+                ('production_id.product_id', '=', move.product_id.id),
+                ('production_id.bom_id.auto_produce_on_picking', '=', True),
+                ('production_id.state', 'not in', ('cancel', 'done')),
+                ], limit=1)
+            _logger.info('Production procurements found %s' % (
+                production_procurement))
+            if production_procurement:
+                production = production_procurement.production_id
+                if production.state == 'draft':
+                    production.action_assign()
+                done = 0.0
+                product_qty = move.product_uom_qty
+                _logger.info('Getting production remaining qty')
+                for prod_move in production.move_created_ids2:
+                    _logger.info('Productin move_id %s' % prod_move.id)
+                    if prod_move.product_id == production.product_id:
+                        if not prod_move.scrapped:
+                            done += prod_move.product_qty
+                remaining_prod_qty = (
+                    production.product_qty - done) or production.product_qty
+                if remaining_prod_qty < product_qty:
+                    product_qty = remaining_prod_qty
+                _logger.info(
+                    'Running Action produce on production order %s and quantity %s' % (
+                        production.id, product_qty))
+                production.action_produce(
+                    production.id, product_qty, 'consume_produce')
+        return super(stock_move, self).action_done()

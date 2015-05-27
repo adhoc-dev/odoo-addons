@@ -24,6 +24,9 @@ class adhoc_base_configuration(models.TransientModel):
 
     # Account modules
 
+    module_account_reconciliation_menu = fields.Boolean(
+        'Add reconciliations menu on accounting',
+        help="""Installs the account_reconciliation_menu module.""")
     module_account_voucher_contact = fields.Boolean(
         'Show Invoice Partner on voucher lines, usefull when you want to know the contact making a payment',
         help="""Installs the account_voucher_contact module.""")
