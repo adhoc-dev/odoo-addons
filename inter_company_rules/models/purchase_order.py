@@ -77,7 +77,6 @@ class purchase_order(models.Model):
         partner_addr = partner.sudo().address_get(['default', 'invoice', 'delivery', 'contact'])
         warehouse = self.env['stock.warehouse'].sudo().search(
             [('company_id', '=', company.id)], limit=1)
-        print 'warehouse', warehouse
         if not warehouse:
             raise Warning(_('There is no warehouse for company %s') % (
                 company.name))
@@ -86,6 +85,7 @@ class purchase_order(models.Model):
             'company_id': company.id,
             'client_order_ref': name,
             'partner_id': partner.id,
+            # TODO fix that this pricelist should be the one configured on so company
             'pricelist_id': partner.property_product_pricelist.id,
             'partner_invoice_id': partner_addr['invoice'],
             'date_order': self.date_order,
