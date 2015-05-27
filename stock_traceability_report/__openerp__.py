@@ -7,7 +7,7 @@
     'summary': '',
     'description': """
 Stock Traceability Report
-=============================
+=========================
 
     """,
     'author':  'ADHOC',
@@ -16,7 +16,6 @@ Stock Traceability Report
     ],
     'depends': [
         'stock',
-        # 'warehouse',
         'report_aeroo',
     ],
     'data': ['report/stock_lot_report.xml'
