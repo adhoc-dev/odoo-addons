@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+
+        <record model="ir.ui.view" id="view_print_ean128_report_detail_form">
+            <field name="name">print_ean128_report_detail.form</field>
+            <field name="model">stock.picking.print_ean128_report_detail</field>
+            <field name="arch" type="xml">
+                <form string="Print Stock Picking Remit">
+                    <group>
+                        <field name="product_id"/>
+                        <field name="product_uom_id"/>
+                        <field name="lot_id"/>
+                        <field name="quantity"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_print_ean128_report_detail_tree">
+            <field name="name">print_ean128_report_detail.tree</field>
+            <field name="model">stock.picking.print_ean128_report_detail</field>
+            <field name="arch" type="xml">
+                <tree string="Print Stock Picking Remit" editable="top" create="0">
+                    <field name="product_id"/>
+                    <field name="product_uom_id"/>
+                    <field name="lot_id"/>
+                    <field name="quantity"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_print_stock_picking_remit_form">
+            <field name="name">print_ean128_report.form</field>
+            <field name="model">stock.picking.print_ean128_report</field>
+            <field name="arch" type="xml">
+                <form string="Print Stock Picking Remit">
+                    <group>
+                        <field name="picking_id" invisible="1"/>
+                        <field name="stock_picking_line_ids"/>
+                    </group>
+                    
+                <footer>
+                    <button name="do_print_report" type="object" class="oe_highlight" string="Print"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window name="Print Stock Picking Remit"
+            id="action_stock_print_remit"
+            key2="client_action_multi"
+            src_model="stock.picking"
+            res_model="stock.picking.print_ean128_report"
+            view_mode="form" target="new" view_type="form"/>
+
+    </data>
+</openerp>
