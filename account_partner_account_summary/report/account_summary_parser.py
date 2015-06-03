@@ -81,6 +81,7 @@ class Parser(rml_parse):
             'get_final_balance': self.get_final_balance,
             'get_invoice': self.get_invoice,
         })
+    print 'dsdssdfds'
 
     def get_moves_from_partner(self, dic, partner):
         return dic[partner]
@@ -270,22 +271,22 @@ class Parser(rml_parse):
 
     def get_initial_credit(self, partner, context=None):
         if not context:
-            context={}
+            context = {}
         if not self.from_date:
             return 0.0
-
         if self.result_selection == 'customer':
-            account_type = ('receivable',)
+            account_type = ('receivable', '')
         elif self.result_selection == 'supplier':
-            account_type = ('payable',)
+            account_type = ('payable', '')
         else:
             account_type = ('payable', 'receivable')
+        print 'account_type', account_type
 
         sql_stm = 'SELECT sum(l.credit) ' \
                   'FROM account_move_line l, account_move m, account_account a '\
                   'WHERE l.move_id = m.id ' \
             'AND l.account_id = a.id ' \
-            'AND l.partner_id = %s' \
+            'AND l.partner_id = %s ' \
             'AND a.type IN %s ' \
             'AND m.date < \'%s\'' \
                   % (partner.id, account_type, self.from_date)
@@ -301,17 +302,17 @@ class Parser(rml_parse):
 
     def get_initial_debit(self, partner, context=None):
         if not context:
-            context={}
+            context = {}
         if not self.from_date:
             return 0.0
-
         if self.result_selection == 'customer':
-            account_type = ('receivable',)
+            account_type = ('receivable', '')
         elif self.result_selection == 'supplier':
-            account_type = ('payable',)
+            account_type = ('payable', '')
         else:
             account_type = ('payable', 'receivable')
 
+        print 'account_type', account_type
         sql_stm = 'SELECT sum(l.debit) ' \
                   'FROM account_move_line l, account_move m, account_account a '\
                   'WHERE l.move_id = m.id ' \
