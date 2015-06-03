@@ -81,7 +81,6 @@ class Parser(rml_parse):
             'get_final_balance': self.get_final_balance,
             'get_invoice': self.get_invoice,
         })
-    print 'dsdssdfds'
 
     def get_moves_from_partner(self, dic, partner):
         return dic[partner]
@@ -280,7 +279,6 @@ class Parser(rml_parse):
             account_type = ('payable', '')
         else:
             account_type = ('payable', 'receivable')
-        print 'account_type', account_type
 
         sql_stm = 'SELECT sum(l.credit) ' \
                   'FROM account_move_line l, account_move m, account_account a '\
@@ -312,7 +310,6 @@ class Parser(rml_parse):
         else:
             account_type = ('payable', 'receivable')
 
-        print 'account_type', account_type
         sql_stm = 'SELECT sum(l.debit) ' \
                   'FROM account_move_line l, account_move m, account_account a '\
                   'WHERE l.move_id = m.id ' \
