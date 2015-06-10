@@ -21,5 +21,5 @@ class stock_move(models.Model):
 
     _inherit = 'stock.move'
 
-    location_type = fields.Selection(
-        related='location_dest_id.usage', string='Location Type')
+    code = fields.Selection(
+        related='picking_type_id.code', string='Operation Type')
