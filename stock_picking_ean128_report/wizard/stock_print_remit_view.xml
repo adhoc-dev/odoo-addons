@@ -44,18 +44,39 @@
                 <footer>
                     <button name="do_print_report" type="object" class="oe_highlight" string="Print"/>
                     or
+                    <button name="do_print_report_excel" type="object" class="oe_highlight" string="Print List"/>
+                    or
                     <button string="Cancel" class="oe_link" special="cancel"/>
                 </footer>
                 </form>
             </field>
         </record>
 
-        <act_window name="Print Stock Picking Remit"
+        <!-- <act_window name="Print Stock Picking Remit"
             id="action_stock_print_remit"
             key2="client_action_multi"
             src_model="stock.picking"
             res_model="stock.picking.print_ean128_report"
-            view_mode="form" target="new" view_type="form"/>
+            view_mode="form" target="new" view_type="form"/> -->
+
+        <record id="action_stock_print_remit" model="ir.actions.act_window">
+            <field name="name">Print Stock Picking Remit</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.picking.print_ean128_report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_print_stock_picking_remit_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.values" id="action_stock_print_remit_values">
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="name">Print Stock Picking Remit</field>
+            <field name="key2">client_print_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' +str(ref('action_stock_print_remit'))" />
+            <field name="key">action</field>
+            <field name="model">stock.picking</field>
+        </record>
 
     </data>
 </openerp>

@@ -24,7 +24,6 @@ class stock_picking_ean128_report(models.TransientModel):
     def _get_picking(self):
         active_id = self._context.get('active_id', False)
         return self.env['stock.picking'].browse(active_id)
-        return self.env['stock.picking'].browse(active_id)
 
     picking_id = fields.Many2one(
         'stock.picking',
@@ -59,3 +58,10 @@ class stock_picking_ean128_report(models.TransientModel):
         self.ensure_one()
         return self.env['report'].get_action(
             self, 'report_stock_picking_EAN128')
+
+    @api.multi
+    def do_print_report_excel(self):
+
+        self.ensure_one()
+        return self.env['report'].get_action(
+            self, 'report_stock_picking_EAN128_excel')

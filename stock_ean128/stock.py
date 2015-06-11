@@ -8,6 +8,7 @@ class stock_picking(models.Model):
     ean_128 = fields.Char(string="EAN128")
 
     @api.one
+    @api.onchange('name', 'life_date', 'product_id')
     def action_compute(self):
         name = ''
         if self.product_id.default_code:
