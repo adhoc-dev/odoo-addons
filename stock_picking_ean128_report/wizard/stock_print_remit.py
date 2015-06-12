@@ -2,6 +2,38 @@
 from openerp import fields, api, models, _
 
 
+class stock_lot_ean128_report(models.TransientModel):
+
+    _name = 'stock.lot.print_ean128_report'
+
+    @api.model
+    def _get_lot(self):
+        active_id = self._context.get('active_id', False)
+        return self.env['stock.production.lot'].browse(active_id)
+
+    lot_id = fields.Many2one(
+        'stock.production.lot', default=_get_lot)
+    quantity = fields.Integer(string='Quantity', default=1)
+    product_id = fields.Many2one(
+        'product.product',
+        related='lot_id.product_id',
+        string="Product", readonly=True)
+
+    @api.multi
+    def do_print_report(self):
+
+        self.ensure_one()
+        return self.env['report'].get_action(
+            self, 'report_stock_lot_EAN128')
+
+    @api.multi
+    def do_print_report_excel(self):
+
+        self.ensure_one()
+        return self.env['report'].get_action(
+            self, 'report_stock_lot_EAN128_excel')
+
+
 class stock_picking_ean128_report_detail(models.TransientModel):
 
     _name = 'stock.picking.print_ean128_report_detail'
