@@ -44,7 +44,9 @@ class stock_move(models.Model):
             if production_procurement:
                 production = production_procurement.production_id
                 if production.state == 'draft':
-                    production.action_assign()
+                    production.signal('button_confirm')
+                if production.state == 'confirmed':
+                    production.force_production()
                 done = 0.0
                 product_qty = move.product_uom_qty
                 _logger.info('Getting production remaining qty')
