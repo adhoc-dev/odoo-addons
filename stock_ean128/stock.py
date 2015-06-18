@@ -5,9 +5,8 @@ from openerp import models, fields, api
 class stock_production_lot(models.Model):
     _inherit = 'stock.production.lot'
 
-    ean_128 = fields.Char(string="EAN128")
-
     @api.one
+    @api.depends('name', 'life_date', 'product_id', 'product_id.default_code')
     def action_compute(self):
         name = ''
         if self.product_id.default_code:
@@ -19,6 +18,9 @@ class stock_production_lot(models.Model):
         else:
             name += '(17)' + 'N/A'
         self.ean_128 = name
+
+    ean_128 = fields.Char(
+        string="EAN128", compute='action_compute', store=True)
 
     def name_search(
             self, cr, uid, name, args=None, operator='ilike', context=None, limit=100):
