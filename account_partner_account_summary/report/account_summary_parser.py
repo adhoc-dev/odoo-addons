@@ -274,11 +274,11 @@ class Parser(rml_parse):
         if not self.from_date:
             return 0.0
         if self.result_selection == 'customer':
-            account_type = ('receivable', '')
+            account_type = ['receivable']
         elif self.result_selection == 'supplier':
-            account_type = ('payable', '')
+            account_type = ['payable']
         else:
-            account_type = ('payable', 'receivable')
+            account_type = ['payable', 'receivable']
 
         sql_stm = 'SELECT sum(l.credit) ' \
                   'FROM account_move_line l, account_move m, account_account a '\
@@ -304,11 +304,11 @@ class Parser(rml_parse):
         if not self.from_date:
             return 0.0
         if self.result_selection == 'customer':
-            account_type = ('receivable', '')
+            account_type = ['receivable']
         elif self.result_selection == 'supplier':
-            account_type = ('payable', '')
+            account_type = ['payable']
         else:
-            account_type = ('payable', 'receivable')
+            account_type = ['payable', 'receivable']
 
         sql_stm = 'SELECT sum(l.debit) ' \
                   'FROM account_move_line l, account_move m, account_account a '\
