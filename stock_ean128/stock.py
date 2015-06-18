@@ -19,4 +19,5 @@ class stock_picking(models.Model):
             name += '(17)' + 'N/A'
         self.ean_128 = name
 
-    ean_128 = fields.Char(string="EAN128", compute='action_compute')
+    ean_128 = fields.Char(
+        string="EAN128", compute='action_compute', store=True)
