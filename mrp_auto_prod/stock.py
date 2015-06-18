@@ -44,7 +44,9 @@ class stock_move(models.Model):
             if production_procurement:
                 production = production_procurement.production_id
                 if production.state == 'draft':
-                    production.action_assign()
+                    production.signal('button_confirm')
+                if production.state == 'confirmed':
+                    production.force_production()
                 done = 0.0
                 product_qty = move.product_uom_qty
                 _logger.info('Getting production remaining qty')
@@ -60,6 +62,19 @@ class stock_move(models.Model):
                 _logger.info(
                     'Running Action produce on production order %s and quantity %s' % (
                         production.id, product_qty))
+
+                # we build a wizard to run the action_produce because if not, de action_produce function will compute in a wrong way the consumed products on the first production
+                consume_lines = []
+                for consume in production._calculate_qty(
+                        production, product_qty):
+                    consume_lines.append([0, False, consume])
+                vals = {
+                    'product_qty': product_qty,
+                    'mode': 'consume_produce',
+                    'consume_lines': consume_lines,
+                    }
+                wizard = self.env['mrp.product.produce'].with_context(
+                    active_id=production.product_id.id).create(vals)
                 production.action_produce(
-                    production.id, product_qty, 'consume_produce')
+                    production.id, product_qty, 'consume_produce', wizard)
         return super(stock_move, self).action_done()
