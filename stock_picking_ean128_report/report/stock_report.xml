@@ -45,7 +45,7 @@
         <field name="tml_source">file</field>
     </record> 
 
-    <record id="report_picking_ean128_excel" model="ir.actions.report.xml">
+    <record id="report_lot_ean128_excel" model="ir.actions.report.xml">
         <field name="name">Stock Lot EAN128 Report</field>
         <field name="type">ir.actions.report.xml</field>
         <field name="model">stock.lot.print_ean128_report</field>
