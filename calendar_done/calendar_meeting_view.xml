@@ -21,7 +21,8 @@
             <field name="inherit_id" ref="calendar.view_calendar_event_calendar"/>
             <field name="arch" type="xml">
                 <calendar string="Meetings" position="attributes">
-                    <attribute name="event_open_popup">False</attribute>
+                    <attribute name="type">"edit"</attribute>
+                    <attribute name="event_open_popup">"%(calendar.view_calendar_event_calendar)s"</attribute>
                 </calendar>
             </field>
         </record>
