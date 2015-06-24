@@ -17,8 +17,10 @@ Stock EAN128
     'depends': [
         'product_expiry',
     ],
-    'data': ['stock_view.xml'
-             ],
+    'data': [
+        'stock_view.xml',
+        'product_view.xml'
+    ],
     'demo': [
     ],
     'test': [
