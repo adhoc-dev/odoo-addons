@@ -1,5 +1,28 @@
 # -*- coding: utf-8 -*-
-from openerp import models, api
+from openerp import models, api, fields
+
+
+class product_template(models.Model):
+    _inherit = 'product.template'
+
+    lot_ids = fields.One2many(
+        'stock.production.lot',
+        compute='get_lots',
+        search='search_lots',
+        string='Lots'
+        )
+
+    @api.one
+    def get_lots(self):
+        return self.env['stock.production.lot'].search(
+            [('product_id.product_tmpl_id', '=', self.id)])
+
+    @api.model
+    def search_lots(self, operator, operand):
+        templates = self.env['stock.production.lot'].search(
+            [('ean_128', operator, operand)]).mapped(
+                'product_id').mapped('product_tmpl_id')
+        return [('id', 'in', templates.ids)]
 
 
 class product_product(models.Model):
