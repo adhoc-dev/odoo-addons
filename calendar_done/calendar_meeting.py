@@ -22,14 +22,3 @@ class meeting(models.Model):
         else:
             self.user_id = self.previous_user_id.id
             self.previous_user_id = False
-
-    @api.one
-    def action_mark_done(self):
-        company = self.env['res.users'].browse(self._uid).company_id
-        if not company.calendar_mark_done_user_id:
-            raise Warning(
-                _('You should set the mark done user on the company!'))
-        if not self.mark_done:
-            self.mark_done = True
-            self.previous_user_id = self.user_id.id
-            self.user_id = company.calendar_mark_done_user_id.id
