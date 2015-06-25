@@ -41,3 +41,11 @@ class stock_move(models.Model):
 
     code = fields.Selection(
         related='picking_type_id.code', string='Operation Type')
+
+
+class stock_picking(models.Model):
+
+    _inherit = 'stock.picking'
+
+    code = fields.Selection(
+        related='picking_type_id.code', string='Operation Type')
