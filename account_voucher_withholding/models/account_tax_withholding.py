@@ -109,6 +109,17 @@ class account_tax_withholding(models.Model):
         )
 
 
+class account_chart_template(models.Model):
+    _inherit = "account.chart.template"
+
+    withholding_template_ids = fields.One2many(
+        'account.tax.withholding.template',
+        'chart_template_id',
+        'Withholding Template List',
+        help='List of all the withholding that have to be installed by the wizard'
+        )
+
+
 class account_tax_withholding_template(models.Model):
     _name = "account.tax.withholding.template"
     _inherit = "account.tax.withholding"
@@ -154,30 +165,23 @@ class account_tax_withholding_template(models.Model):
             }
         """
         res = {}
-        todo_dict = {}
-        tax_template_to_tax = {}
         for tax in self:
             vals_tax = {
                 'name': tax.name,
-                'code': tax.sequence,
-                'base_code_id': tax.base_code_id and ((tax.base_code_id.id in tax_code_template_ref) and tax_code_template_ref[tax.base_code_id.id]) or False,
-                'tax_code_id': tax.tax_code_id and ((tax.tax_code_id.id in tax_code_template_ref) and tax_code_template_ref[tax.tax_code_id.id]) or False,
+                'description': tax.description,
+                'type_tax_use': tax.type_tax_use,
+                'base_code_id': tax_code_ref.get(tax.base_code_id.id),
+                'tax_code_id': tax_code_ref.get(tax.tax_code_id.id),
+                'ref_base_code_id': tax_code_ref.get(tax.ref_base_code_id.id),
+                'ref_tax_code_id': tax_code_ref.get(tax.ref_tax_code_id.id),
                 'base_sign': tax.base_sign,
                 'tax_sign': tax.tax_sign,
-                'base_code_id': tax.ref_base_code_id and ((tax.ref_base_code_id.id in tax_code_template_ref) and tax_code_template_ref[tax.ref_base_code_id.id]) or False,
-                'tax_code_id': tax.ref_tax_code_id and ((tax.ref_tax_code_id.id in tax_code_template_ref) and tax_code_template_ref[tax.ref_tax_code_id.id]) or False,
                 'base_sign': tax.ref_base_sign,
                 'tax_sign': tax.ref_tax_sign,
                 'company_id': company_id,
-                'account_id': company_id,
-                'account_id': company_id,
+                'account_id': account_ref.get(tax.account_id.id),
+                'ref_account_id': account_ref.get(tax.ref_account_id.id),
             }
             new_tax = self.env['account.tax.withholding'].create(vals_tax)
-            tax_template_to_tax[tax.id] = new_tax
-            #as the accounts have not been created yet, we have to wait before filling these fields
-            todo_dict[new_tax] = {
-                'account_collected_id': tax.account_collected_id and tax.account_collected_id.id or False,
-                'account_paid_id': tax.account_paid_id and tax.account_paid_id.id or False,
-            }
-        res.update({'tax_template_to_tax': tax_template_to_tax, 'account_dict': todo_dict})
+            res[tax.id] = new_tax.id
         return res
