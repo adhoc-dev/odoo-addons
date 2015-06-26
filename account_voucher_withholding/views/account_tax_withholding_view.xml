@@ -36,21 +36,27 @@
                         <h1>
                             <field name="name" placeholder="Name..."/>
                         </h1>
-                        <h2>
-                            <field name="code" placeholder="Name..."/>
-                        </h2>
+                        <group col="4">
+                            <field name="code"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="active"/>
+                        </group>
                         <group>
                             <group>
                                 <field name="account_receipt_id"/>
-                                <field name="account_payment_id"/>
                                 <field name="account_analytic_receipt_id"/>
-                                <field name="account_analytic_payment_id"/>
+                                <field name="receipt_base_code_id"/>
+                                <field name="receipt_tax_code_id"/>
+                                <field name="receipt_base_sign"/>
+                                <field name="receipt_tax_sign"/>
                             </group>
                             <group>
-                                <field name="receipt_tax_code_id"/>
+                                <field name="account_payment_id"/>
+                                <field name="account_analytic_payment_id"/>
+                                <field name="payment_base_code_id"/>
                                 <field name="payment_tax_code_id"/>
-                                <field name="company_id" groups="base.group_multi_company"/>
-                                <field name="active"/>
+                                <field name="payment_base_sign"/>
+                                <field name="payment_tax_sign"/>
                             </group>
                         </group>
                     </sheet>
