@@ -32,7 +32,7 @@
             <field name="mode">primary</field>
             <field name="inherit_id" ref="account_tax_withholding_form_view"/>
             <field name="arch" type="xml"> 
-                <field name="code" position="before">
+                <field name="description" position="before">
                     <field name="chart_template_id"/>
                 </field>
             </field>

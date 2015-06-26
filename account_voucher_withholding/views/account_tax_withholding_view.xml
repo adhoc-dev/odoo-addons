@@ -8,7 +8,7 @@
             <field name="arch" type="xml"> 
                 <search string="Withholding Taxes">
                     <field name="name"/>
-                    <field name="code"/>
+                    <field name="description"/>
                     <!-- <field name="application"/> -->
                     <field name="company_id" groups="base.group_multi_company"/>
                 </search>
@@ -20,7 +20,7 @@
             <field name="arch" type="xml"> 
                 <tree string="Withholding Taxes">
                     <field name="name"/>
-                    <field name="code"/>
+                    <field name="description"/>
                     <!-- <field name="application"/> -->
                     <field name="company_id" groups="base.group_multi_company"/>
                 </tree>
@@ -37,26 +37,26 @@
                             <field name="name" placeholder="Name..."/>
                         </h1>
                         <group col="4">
-                            <field name="code"/>
+                            <field name="description"/>
                             <field name="company_id" groups="base.group_multi_company"/>
                             <field name="active"/>
                         </group>
                         <group>
-                            <group>
-                                <field name="account_receipt_id"/>
-                                <field name="account_analytic_receipt_id"/>
-                                <field name="receipt_base_code_id"/>
-                                <field name="receipt_tax_code_id"/>
-                                <field name="receipt_base_sign"/>
-                                <field name="receipt_tax_sign"/>
+                            <group string="Positive Operations">
+                                <field name="account_id"/>
+                                <field name="account_analytic_id"/>
+                                <field name="base_code_id"/>
+                                <field name="tax_code_id"/>
+                                <field name="base_sign"/>
+                                <field name="tax_sign"/>
                             </group>
-                            <group>
-                                <field name="account_payment_id"/>
-                                <field name="account_analytic_payment_id"/>
-                                <field name="payment_base_code_id"/>
-                                <field name="payment_tax_code_id"/>
-                                <field name="payment_base_sign"/>
-                                <field name="payment_tax_sign"/>
+                            <group string="Refund/negative Operations">
+                                <field name="ref_account_id"/>
+                                <field name="ref_account_analytic_id"/>
+                                <field name="ref_base_code_id"/>
+                                <field name="ref_tax_code_id"/>
+                                <field name="ref_base_sign"/>
+                                <field name="ref_tax_sign"/>
                             </group>
                         </group>
                     </sheet>

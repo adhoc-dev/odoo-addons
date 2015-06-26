@@ -11,16 +11,15 @@ class account_tax_withholding(models.Model):
         'Name',
         required=True,
         )
-    code = fields.Char(
-        'Code',
+    description = fields.Char(
+        'Description',
         required=True,
         )
-    # TODO ver si lo usamos o no
-    # application = fields.Selection(
-    #     [('receipt', 'Receipt'), ('payment', 'Payment'), ('all', 'All')],
-    #     'Application',
-    #     required=True,
-    #     )
+    type_tax_use = fields.Selection(
+        [('receipt', 'Receipt'), ('payment', 'Payment'), ('all', 'All')],
+        'Tax Application',
+        required=True
+        )
     active = fields.Boolean(
         'Active',
         default=True,
@@ -33,23 +32,23 @@ class account_tax_withholding(models.Model):
     #     required=True,
     #     help="The computation method for the tax amount."
     #     )
-    account_receipt_id = fields.Many2one(
+    account_id = fields.Many2one(
         'account.account',
-        'Receipt Account',
+        'Account',
         required=True,
         )
-    account_payment_id = fields.Many2one(
+    ref_account_id = fields.Many2one(
         'account.account',
-        'Payment Account',
+        'Refund Account',
         required=True,
         )
-    account_analytic_receipt_id = fields.Many2one(
+    account_analytic_id = fields.Many2one(
         'account.analytic.account',
-        'Receipt Analytic Account',
+        'Analytic Account',
         )
-    account_analytic_payment_id = fields.Many2one(
+    ref_account_analytic_id = fields.Many2one(
         'account.analytic.account',
-        'Payment Analytic Account',
+        'Refund Analytic Account',
         )
     company_id = fields.Many2one(
         'res.company',
@@ -62,45 +61,45 @@ class account_tax_withholding(models.Model):
     # Fields used for the Tax declaration
     #
     # TODO ver si necesitamos los base o no
-    receipt_base_code_id = fields.Many2one(
+    base_code_id = fields.Many2one(
         'account.tax.code',
-        'Receipt Base Code',
+        'Base Code',
         help="Use this code for the tax declaration."
         )
-    receipt_tax_code_id = fields.Many2one(
+    tax_code_id = fields.Many2one(
         'account.tax.code',
-        'Receipt Tax Code',
+        'Tax Code',
         required=True,
         help="Use this code for the tax declaration.",
         )
-    payment_base_code_id = fields.Many2one(
+    base_sign = fields.Float(
+        'Base Code Sign',
+        help="Usually 1 or -1.",
+        digits_compute=dp.get_precision('Account'),
+        )
+    tax_sign = fields.Float(
+        'Tax Code Sign',
+        help="Usually 1 or -1.",
+        digits_compute=dp.get_precision('Account'),
+        )
+    ref_base_code_id = fields.Many2one(
         'account.tax.code',
-        'Payment Base Code',
+        'Refund Base Code',
         help="Use this code for the tax declaration."
         )
-    payment_tax_code_id = fields.Many2one(
+    ref_tax_code_id = fields.Many2one(
         'account.tax.code',
-        'Payment Tax Code',
+        'Refund Tax Code',
         required=True,
         help="Use this code for the tax declaration.",
         )
-    payment_base_sign = fields.Float(
-        'Payment Base Code Sign',
+    ref_base_sign = fields.Float(
+        'Refund Base Code Sign',
         help="Usually 1 or -1.",
         digits_compute=dp.get_precision('Account'),
         )
-    payment_tax_sign = fields.Float(
-        'Payment Tax Code Sign',
-        help="Usually 1 or -1.",
-        digits_compute=dp.get_precision('Account'),
-        )
-    receipt_base_sign = fields.Float(
-        'Receipt Base Code Sign',
-        help="Usually 1 or -1.",
-        digits_compute=dp.get_precision('Account'),
-        )
-    receipt_tax_sign = fields.Float(
-        'Receipt Tax Code Sign',
+    ref_tax_sign = fields.Float(
+        'Refund Tax Code Sign',
         help="Usually 1 or -1.",
         digits_compute=dp.get_precision('Account'),
         )
@@ -139,17 +138,17 @@ class account_tax_withholding_template(models.Model):
             vals_tax = {
                 'name': tax.name,
                 'code': tax.sequence,
-                'receipt_base_code_id': tax.base_code_id and ((tax.base_code_id.id in tax_code_template_ref) and tax_code_template_ref[tax.base_code_id.id]) or False,
-                'receipt_tax_code_id': tax.tax_code_id and ((tax.tax_code_id.id in tax_code_template_ref) and tax_code_template_ref[tax.tax_code_id.id]) or False,
-                'receipt_base_sign': tax.base_sign,
-                'receipt_tax_sign': tax.tax_sign,
-                'payment_base_code_id': tax.ref_base_code_id and ((tax.ref_base_code_id.id in tax_code_template_ref) and tax_code_template_ref[tax.ref_base_code_id.id]) or False,
-                'payment_tax_code_id': tax.ref_tax_code_id and ((tax.ref_tax_code_id.id in tax_code_template_ref) and tax_code_template_ref[tax.ref_tax_code_id.id]) or False,
-                'payment_base_sign': tax.ref_base_sign,
-                'payment_tax_sign': tax.ref_tax_sign,
+                'base_code_id': tax.base_code_id and ((tax.base_code_id.id in tax_code_template_ref) and tax_code_template_ref[tax.base_code_id.id]) or False,
+                'tax_code_id': tax.tax_code_id and ((tax.tax_code_id.id in tax_code_template_ref) and tax_code_template_ref[tax.tax_code_id.id]) or False,
+                'base_sign': tax.base_sign,
+                'tax_sign': tax.tax_sign,
+                'base_code_id': tax.ref_base_code_id and ((tax.ref_base_code_id.id in tax_code_template_ref) and tax_code_template_ref[tax.ref_base_code_id.id]) or False,
+                'tax_code_id': tax.ref_tax_code_id and ((tax.ref_tax_code_id.id in tax_code_template_ref) and tax_code_template_ref[tax.ref_tax_code_id.id]) or False,
+                'base_sign': tax.ref_base_sign,
+                'tax_sign': tax.ref_tax_sign,
                 'company_id': company_id,
-                'account_receipt_id': company_id,
-                'account_payment_id': company_id,
+                'account_id': company_id,
+                'account_id': company_id,
             }
             new_tax = self.env['account.tax.withholding'].create(vals_tax)
             tax_template_to_tax[tax.id] = new_tax
