@@ -68,10 +68,10 @@ class account_voucher(models.Model):
             name = '%s: %s' % (line.tax_withholding_id.name, line.name)
             payment_date = False
             amount = line.amount
-            if voucher.type == 'receipt':
-                account = line.tax_withholding_id.account_receipt_id
-            elif voucher.type == 'payment':
-                account = line.tax_withholding_id.account_payment_id
+            if amount >= 0:
+                account = line.tax_withholding_id.account_id
+            else:
+                account = line.tax_withholding_id.ref_account_id
             partner = voucher.partner_id
             move_line = move_lines.create(
                 self.prepare_move_line(

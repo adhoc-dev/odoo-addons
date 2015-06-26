@@ -47,7 +47,7 @@
                         </h1>
                         <group>  
                             <group>
-                                <field name="tax_withholding_id"/>
+                                <field name="tax_withholding_id" domain="[('type_tax_use','in',(type, 'all'))]"/>
                                 <field name="amount"/>
                             </group>
                             <group>
