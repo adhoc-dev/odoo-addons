@@ -76,11 +76,13 @@ class account_tax_withholding(models.Model):
         'Base Code Sign',
         help="Usually 1 or -1.",
         digits_compute=dp.get_precision('Account'),
+        default=1,
         )
     tax_sign = fields.Float(
         'Tax Code Sign',
         help="Usually 1 or -1.",
         digits_compute=dp.get_precision('Account'),
+        default=1,
         )
     ref_base_code_id = fields.Many2one(
         'account.tax.code',
@@ -97,11 +99,13 @@ class account_tax_withholding(models.Model):
         'Refund Base Code Sign',
         help="Usually 1 or -1.",
         digits_compute=dp.get_precision('Account'),
+        default=1,
         )
     ref_tax_sign = fields.Float(
         'Refund Tax Code Sign',
         help="Usually 1 or -1.",
         digits_compute=dp.get_precision('Account'),
+        default=1,
         )
 
 
@@ -114,6 +118,24 @@ class account_tax_withholding_template(models.Model):
         'account.chart.template',
         'Chart Template',
         required=True
+        )
+    account_id = fields.Many2one(
+        'account.account.template',
+        )
+    ref_account_id = fields.Many2one(
+        'account.account.template',
+        )
+    base_code_id = fields.Many2one(
+        'account.tax.code.template',
+        )
+    tax_code_id = fields.Many2one(
+        'account.tax.code.template',
+        )
+    ref_base_code_id = fields.Many2one(
+        'account.tax.code.template',
+        )
+    ref_tax_code_id = fields.Many2one(
+        'account.tax.code.template',
         )
 
     @api.multi
