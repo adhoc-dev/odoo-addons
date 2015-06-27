@@ -78,5 +78,9 @@ class account_voucher(models.Model):
                     voucher, amount, move_id, name, company_currency,
                     current_currency, payment_date, account, partner)
                     )
+            move_line.update({
+                'tax_code_id': line.tax_withholding_id.tax_code_id.id,
+                'tax_amount': amount,
+                })
             withholding_total += move_line.debit - move_line.credit
         return withholding_total
