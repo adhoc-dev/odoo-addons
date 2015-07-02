@@ -22,6 +22,8 @@
             <field name="arch" type="xml">
                 <calendar string="Meetings" position="attributes">
                     <attribute name="event_open_popup">False</attribute>
+                    <attribute name="use_contacts">False</attribute>
+                    <attribute name="color">user_id</attribute>
                 </calendar>
             </field>
         </record>
