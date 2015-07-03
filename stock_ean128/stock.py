@@ -10,13 +10,13 @@ class stock_production_lot(models.Model):
     def action_compute(self):
         name = ''
         if self.product_id.default_code:
-            name += '(01)' + self.product_id.default_code
-        name += '(10)' + self.name
+            name += ' 01 ' + self.product_id.default_code
+        name += ' 10 ' + self.name
         if self.life_date:
             life_date = fields.Datetime.from_string(self.life_date)
-            name += '(17)' + life_date.strftime('%d%m%y')
+            name += ' 17 ' + life_date.strftime('%d%m%y')
         else:
-            name += '(17)' + 'N/A'
+            name += ' 17 ' + 'N.A'
         self.ean_128 = name
 
     ean_128 = fields.Char(
