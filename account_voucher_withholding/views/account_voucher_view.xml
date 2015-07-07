@@ -31,7 +31,7 @@
                 <page string="Payment Information" position="after">
                     <!-- Withholding serian retenciones sufridas -->
                     <page string="Withholding">
-                        <field name="withholding_ids"/>
+                        <field name="withholding_ids" context="{'default_type':type}"/>
                     </page>
                 </page>
             </field>
@@ -49,7 +49,7 @@
                 <page string="Payment Information" position="after">
                     <!-- Deductions Made serian retenciones aplicadas -->
                     <page string="Deductions Made">
-                        <field name="withholding_ids"/>
+                        <field name="withholding_ids" context="{'default_type':type}"/>
                     </page>
                 </page>
             </field>
