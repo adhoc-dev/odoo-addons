@@ -154,14 +154,10 @@ class account_check(models.Model):
     third_handed_voucher_id = fields.Many2one(
         'account.voucher', 'Handed Voucher', readonly=True,)
     source_partner_id = fields.Many2one(
-<<<<<<< HEAD
-        'res.partner', compute='_get_source_partner', string='Source Partner', store=True
-=======
         'res.partner',
         compute='_get_source_partner',
         string='Source Partner',
         store=True,
->>>>>>> 8.0
         )
     customer_reject_debit_note_id = fields.Many2one(
         'account.invoice', 'Customer Reject Debit Note', readonly=True
