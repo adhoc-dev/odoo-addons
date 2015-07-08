@@ -5,7 +5,7 @@
     <record id="report_product_catalog_ods" model="ir.actions.report.xml">
         <field name="name">Product Catalog Report - ODS</field>
         <field name="type">ir.actions.report.xml</field>
-        <field name="model">product.product</field>
+        <field name="model">product.product_catalog_report</field>
         <field name="report_name">report_product_catalog_ods</field>
         <field name="report_type">aeroo</field>
         <field name="in_format">oo-ods</field>
@@ -22,7 +22,7 @@
     <record id="report_product_catalog_simple_odt" model="ir.actions.report.xml">
         <field name="name">Product Catalog Simple Report - ODT</field>
         <field name="type">ir.actions.report.xml</field>
-        <field name="model">product.product</field>
+        <field name="model">product.product_catalog_report</field>
         <field name="report_name">report_product_catalog_simple_odt</field>
         <field name="report_type">aeroo</field>
         <field name="in_format">oo-odt</field>
@@ -37,7 +37,7 @@
     <record id="report_product_catalog_by_categories_odt" model="ir.actions.report.xml">
         <field name="name">Product Catalog By Categories Report - ODT</field>
         <field name="type">ir.actions.report.xml</field>
-        <field name="model">product.product</field>
+        <field name="model">product.product_catalog_report</field>
         <field name="report_name">report_product_catalog_by_categories_odt</field>
         <field name="report_type">aeroo</field>
         <field name="in_format">oo-odt</field>

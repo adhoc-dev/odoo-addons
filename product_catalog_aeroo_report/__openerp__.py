@@ -8,6 +8,7 @@
     'description': """
 Product Catalog Aeroo Report
 ============================
+# TODO add check on report if stock module is installed
     """,
     'author':  'Sistemas ADHOC',
     'website': 'www.sistemasadhoc.com.ar',
@@ -24,6 +25,7 @@ Product Catalog Aeroo Report
         'report/product_catalog_view.xml'
     ],
     'demo': [
+        'demo/demo_data.xml',
     ],
     'test': [
     ],

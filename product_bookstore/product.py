@@ -43,3 +43,31 @@ class product_template(models.Model):
         compute='_calculate_isbn',
         string='ISBN',
         store=True)
+
+    def name_search(
+            self, cr, uid, name, args=None, operator='ilike',
+            context=None, limit=100):
+        res = super(product_template, self).name_search(
+            cr, uid, name, args, operator, context, limit)
+        if len(res) < limit:
+            product_ids = self.search(
+                cr, uid, [('isbn', operator, name)] + args,
+                limit=limit, context=context)
+            res += self.name_get(cr, uid, product_ids, context=context)
+        return res
+
+
+class product_product(models.Model):
+    _inherit = 'product.product'
+
+    def name_search(
+            self, cr, uid, name, args=None, operator='ilike',
+            context=None, limit=100):
+        res = super(product_product, self).name_search(
+            cr, uid, name, args, operator, context, limit)
+        if len(res) < limit:
+            product_ids = self.search(
+                cr, uid, [('isbn', operator, name)] + args,
+                limit=limit, context=context)
+            res += self.name_get(cr, uid, product_ids, context=context)
+        return res

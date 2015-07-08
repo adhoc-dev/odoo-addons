@@ -8,6 +8,10 @@
     "description": """ 
 Mail Sender Patch
 =================
+21/05/2015:
+    Depreciado porque al parece no ser más necesario...
+    En realidad en algunas bds sigue siendo necesario, lo reactivamos
+
 Este patch reemplaza el sender que utiliza odoo porque nuestro servidor smtp no permite que se loguee cualquiera.
 Si agregamos el parametro "mail.bounce.alias" luego, a los emails de un modelo y recurso, les agrega la data y tmb son rechazados. Ver:
     * en mail/mail_mail.py

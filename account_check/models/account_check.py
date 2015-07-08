@@ -97,7 +97,9 @@ class account_check(models.Model):
         )
     destiny_partner_id = fields.Many2one(
         'res.partner',
-        compute='_get_destiny_partner', string='Destiny Partner', store=True
+        compute='_get_destiny_partner',
+        string='Destiny Partner',
+        store=True,
         )
     user_id = fields.Many2one(
         'res.users', 'User', readonly=True, default=lambda self: self.env.user,
@@ -152,7 +154,14 @@ class account_check(models.Model):
     third_handed_voucher_id = fields.Many2one(
         'account.voucher', 'Handed Voucher', readonly=True,)
     source_partner_id = fields.Many2one(
+<<<<<<< HEAD
         'res.partner', compute='_get_source_partner', string='Source Partner', store=True
+=======
+        'res.partner',
+        compute='_get_source_partner',
+        string='Source Partner',
+        store=True,
+>>>>>>> 8.0
         )
     customer_reject_debit_note_id = fields.Many2one(
         'account.invoice', 'Customer Reject Debit Note', readonly=True

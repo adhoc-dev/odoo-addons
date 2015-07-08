@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from openerp import fields, models, api, _
+from openerp import fields, models, api
 
 
 class product_catalog_report(models.Model):
@@ -42,7 +42,7 @@ class product_catalog_report(models.Model):
         'ir.actions.report.xml',
         'Report XML',
         domain=[('report_type', '=', 'aeroo'),
-                ('model', '=', 'product.product')],
+                ('model', '=', 'product.product_catalog_report')],
         context={'default_report_type': 'aeroo',
                  'default_model': 'product.product'},
         required=True

@@ -7,7 +7,10 @@ class product_catalog_report(models.Model):
 
     category_type = fields.Selection(
         [('public_category', 'Public Category'),
-         ('accounting_category', 'Accounting Category')], 'Category Type'
+         ('accounting_category', 'Accounting Category')],
+        'Category Type',
+        required=True,
+        default='accounting_category',
     )
     public_category_ids = fields.Many2many(
         'product.public.category',
