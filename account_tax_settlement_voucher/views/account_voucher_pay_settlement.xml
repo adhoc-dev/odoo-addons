@@ -7,7 +7,6 @@
             <field name="inherit_id" ref="account_tax_settlement.account_tax_settlement_form"/>
             <field name="arch" type="xml">
                 <button name="action_present" position="after">
-                <!-- TODO add state for paid settlements -->
                     <button name="settlement_pay" type="object" string="Pay" states="presented" class="oe_highlight" groups="base.group_user"/>
                 </button>
             </field>

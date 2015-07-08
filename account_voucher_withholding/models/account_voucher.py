@@ -65,7 +65,8 @@ class account_voucher(models.Model):
         move_lines = self.env['account.move.line']
         withholding_total = 0.0
         for line in voucher.withholding_ids:
-            name = '%s: %s' % (line.tax_withholding_id.name, line.name)
+            name = '%s: %s' % (line.tax_withholding_id.description, line.name)
+            # name = '%s: %s' % (line.tax_withholding_id.name, line.name)
             payment_date = False
             amount = line.amount
             if amount >= 0:

@@ -195,7 +195,7 @@ class account_tax_settlement(models.Model):
         states={'draft': [('readonly', False)]},
         )
     partner_id = fields.Many2one(
-        realted='journal_id.partner_id.commercial_partner_id'
+        related='journal_id.partner_id.commercial_partner_id'
         )
     date_to = fields.Date(
         "End Date",
@@ -226,6 +226,7 @@ class account_tax_settlement(models.Model):
     state = fields.Selection([
         ('draft', 'Draft'),
         ('presented', 'Presented'),
+        ('done', 'Done'),
         ('cancel', 'Cancel')],
         'State',
         required=True,
@@ -252,8 +253,8 @@ class account_tax_settlement(models.Model):
         readonly=True,
         states={'draft': [('readonly', False)]},
         )
-    # residual = fields.Float(
-        # )
+    payment_ids = fields.Many2many('account.move.line', string='Payments',
+        compute='_compute_payments')
     residual = fields.Float(
         string='Balance',
         digits=dp.get_precision('Account'),
@@ -262,7 +263,23 @@ class account_tax_settlement(models.Model):
 
     @api.one
     @api.depends(
-        # 'currency_id', 'invoice_line.price_subtotal',
+        'move_id.line_id.reconcile_id.line_id',
+        'move_id.line_id.reconcile_partial_id.line_partial_ids',
+    )
+    def _compute_payments(self):
+        partial_lines = lines = self.env['account.move.line']
+        for line in self.move_id.line_id:
+            if line.account_id != self.balance_account_id:
+                continue
+            if line.reconcile_id:
+                lines |= line.reconcile_id.line_id
+            elif line.reconcile_partial_id:
+                lines |= line.reconcile_partial_id.line_partial_ids
+            partial_lines += line
+        self.payment_ids = (lines - partial_lines).sorted()
+
+    @api.one
+    @api.depends(
         'state',
         'move_id.line_id.account_id.type',
         'move_id.line_id.amount_residual',
@@ -272,13 +289,14 @@ class account_tax_settlement(models.Model):
         'move_id.line_id.currency_id',
         'move_id.line_id.reconcile_partial_id.line_partial_ids.invoice.type',
     )
-    # An invoice's residual amount is the sum of its unreconciled move lines and,
+    # An settlemnt's residual amount is the sum of its unreconciled move lines and,
     # for partially reconciled move lines, their residual amount divided by the
     # number of times this reconciliation is used in an invoice (so we split
     # the residual amount between all invoice)
     def _compute_residual(self):
         self.residual = 0.0
-        # Each partial reconciliation is considered only once for each invoice it appears into,
+        # Each partial reconciliation is considered only once for each invoice
+        # it appears into,
         # and its residual amount is divided by this number of invoices
         partial_reconciliations_done = []
         for line in self.sudo().move_id.line_id:
@@ -287,21 +305,28 @@ class account_tax_settlement(models.Model):
             if line.reconcile_partial_id and line.reconcile_partial_id.id in partial_reconciliations_done:
                 continue
             # Get the correct line residual amount
-            if line.currency_id == self.currency_id:
-                line_amount = line.amount_residual_currency if line.currency_id else line.amount_residual
-            else:
-                from_currency = line.company_id.currency_id.with_context(date=line.date)
-                line_amount = from_currency.compute(line.amount_residual, self.currency_id)
+            line_amount = line.amount_residual_currency if line.currency_id else line.amount_residual
             # For partially reconciled lines, split the residual amount
             if line.reconcile_partial_id:
-                partial_reconciliation_invoices = set()
-                for pline in line.reconcile_partial_id.line_partial_ids:
-                    if pline.invoice and self.type == pline.invoice.type:
-                        partial_reconciliation_invoices.update([pline.invoice.id])
-                line_amount = self.currency_id.round(line_amount / len(partial_reconciliation_invoices))
-                partial_reconciliations_done.append(line.reconcile_partial_id.id)
+                raise Warning(_('Partial reconciliation not implemented yet'))
+                # partial_reconciliation_invoices = set()
+                # for pline in line.reconcile_partial_id.line_partial_ids:
+                #     if pline.invoice and self.type == pline.invoice.type:
+                #         partial_reconciliation_invoices.update(
+                #             [pline.invoice.id])
+                # line_amount = self.company_id.currency_id.round(
+                #     line_amount / len(partial_reconciliation_invoices))
+                # partial_reconciliations_done.append(
+                #     line.reconcile_partial_id.id)
             self.residual += line_amount
         self.residual = max(self.residual, 0.0)
+
+    @api.constrains('state', 'residual')
+    def _check_done(self):
+        if self.state == 'presented' and self.residual == 0.0:
+            self.state = 'done'
+        elif self.state == 'done' and self.residual != 0.0:
+            self.state = 'presented'
 
     @api.one
     @api.depends('tax_settlement_detail_ids')

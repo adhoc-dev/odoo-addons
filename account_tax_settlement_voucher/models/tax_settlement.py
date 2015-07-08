@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
-from openerp import fields, api, models, _
-from openerp.exceptions import Warning
-import openerp.addons.decimal_precision as dp
-import time
+from openerp import api, models, _
 
 
 class account_tax_settlement(models.Model):
@@ -24,9 +21,9 @@ class account_tax_settlement(models.Model):
             'target': 'new',
             'domain': '[]',
             'context': {
-                # 'payment_expected_currency': self.currency_id.id,
+                'payment_expected_currency': self.company_id.currency_id.id,
                 'default_partner_id': self.partner_id.id,
-                # 'default_amount': self.residual,
+                'default_amount': self.residual,
                 'default_reference': self.name,
                 'close_after_process': True,
                 # 'invoice_type': self.type,

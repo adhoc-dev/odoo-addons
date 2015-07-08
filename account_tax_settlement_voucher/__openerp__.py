@@ -21,6 +21,7 @@ Add settlement moves on voucher
     ],
     'data': [
         'views/account_voucher_pay_settlement.xml',
+        'views/account_voucher_view.xml',
     ],
     'demo': [
     ],
