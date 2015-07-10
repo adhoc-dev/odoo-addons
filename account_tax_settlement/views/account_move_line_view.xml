@@ -24,9 +24,6 @@
                     <field name="tax_amount" sum="Total Tax"/>
                     <field name="reconcile_ref"/>
                     <field name="state" invisible="1"/>
-                    <!-- <field name="tax_amount_with_sign" invisible="1"/> -->
-                    <!-- <button name="pay_tax" string="Pay" attrs="{'invisible':[('tax_amount_with_sign', '&lt;=', 0.0)]}" type="object"/> -->
-                    <button name="pay_tax" string="Pay" attrs="{'invisible':[('tax_amount', '&lt;=', 0.0)]}" type="object"/>
                 </tree>         
             </field>
         </record>

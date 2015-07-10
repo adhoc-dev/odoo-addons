@@ -34,9 +34,10 @@
             <field name="inherit_id" ref="account_voucher.view_vendor_payment_form"/>
             <field name="arch" type="xml">
 
-                <page string="Payment Information" position="after">
+                <notebook>
+                <!-- <page string="Payment Information" position="after"> -->
                     <!-- Deductions Made serian retenciones aplicadas -->
-                    <page string="aaa">
+                    <page string="aaa" states="posted">
                         <!-- <field name="tax_move_line_ids" context="{'tree_view_ref':'account_tax_settlement.view_account_move_line_tree'}"> -->
                         <field name="tax_move_line_ids">
                             <tree>
@@ -52,11 +53,12 @@
                                 <field name="tax_amount" sum="Total Tax"/>
                                 <field name="reconcile_ref"/>
                                 <field name="state" invisible="1"/>
-                                <button name="pay_tax" string="Pay" attrs="{'invisible':[('tax_amount', '&lt;=', 0.0)]}" type="object"/>
+                                <button name="make_settlement_and_pay_tax" string="Pay" attrs="{'invisible':['|', ('tax_amount', '&lt;=', 0.0), ('reconcile_ref', '!=', False)]}" type="object"/>
                             </tree>
                         </field>
                     </page>
-                </page>
+                <!-- </page> -->
+                </notebook>
             </field>
         </record>
           

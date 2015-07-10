@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_account_move_line_tree" model="ir.ui.view">
+            <field name="name">Tax Journal Items Tree</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account_tax_settlement.view_account_move_line_tree"/>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- <field name="tax_amount_with_sign" invisible="1"/> -->
+                    <!-- <button name="pay_tax" string="Pay" attrs="{'invisible':[('tax_amount_with_sign', '&lt;=', 0.0)]}" type="object"/> -->
+                    <button name="make_settlement_and_pay_tax" string="Pay" attrs="{'invisible':['|', ('tax_amount', '&lt;=', 0.0), ('reconcile_ref', '!=', False)]}" type="object"/>
+                </tree>         
+            </field>
+        </record>
+
+    </data>
+</openerp>
+<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4
+     -->
