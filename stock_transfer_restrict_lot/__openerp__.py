@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Stock Transfer Restring Lot',
+    'name': 'Stock Transfer Restrict Lot',
     'version': '1.0',
     'category': 'Warehouse Management',
     'sequence': 14,
     'summary': '',
     'description': """
-Stock Transfer Restring Lot
+Stock Transfer Restrict Lot
 ===========================
 
     """,
