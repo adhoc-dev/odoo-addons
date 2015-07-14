@@ -51,7 +51,7 @@ class product_template(models.Model):
             cr, uid, name, args, operator, context, limit)
         if len(res) < limit:
             product_ids = self.search(
-                cr, uid, [('isbn', operator, name)] + args or [],
+                cr, uid, [('isbn', operator, name)] + (args or []),
                 limit=limit, context=context)
             res += self.name_get(cr, uid, product_ids, context=context)
         return res
@@ -67,7 +67,7 @@ class product_product(models.Model):
             cr, uid, name, args, operator, context, limit)
         if len(res) < limit:
             product_ids = self.search(
-                cr, uid, [('isbn', operator, name)] + args or [],
+                cr, uid, [('isbn', operator, name)] + (args or []),
                 limit=limit, context=context)
             res += self.name_get(cr, uid, product_ids, context=context)
         return res
