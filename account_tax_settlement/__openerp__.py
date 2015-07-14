@@ -14,7 +14,7 @@ Tax Settlement
     'images': [
     ],
     'depends': [
-        'account',
+        'account_move_voucher',
     ],
     'data': [
         'views/account_move_line_view.xml',

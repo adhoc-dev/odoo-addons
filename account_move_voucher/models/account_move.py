@@ -59,17 +59,14 @@ class account_move(models.Model):
             line_amount = line.amount_residual_currency if line.currency_id else line.amount_residual
             # For partially reconciled lines, split the residual amount
             if line.reconcile_partial_id:
-                raise Warning(_('Partial reconciliation not implemented yet'))
-                partial_reconciliation_lines = line.mapped(
-                    'reconcile_partial_id.line_partial_ids')
-                line_amount = self.company_id.currency_id.round(
-                    line_amount / len(partial_reconciliation_lines))
-                partial_reconciliations_done.append(
-                    line.reconcile_partial_id.id)
+                r = line.reconcile_partial_id
+                line_amount = reduce(
+                    lambda y, t: (t.credit or 0.0) - (
+                        t.debit or 0.0) + y, r.line_partial_ids, 0.0)
             if line.account_id.type == 'receivable':
-                payable_residual += line_amount
-            else:
                 receivable_residual += line_amount
+            else:
+                payable_residual += line_amount
         self.payable_residual = max(payable_residual, 0.0)
         self.receivable_residual = max(receivable_residual, 0.0)
 
@@ -85,10 +82,17 @@ class account_move(models.Model):
     def create_voucher(self, voucher_type):
         # todo ver como podemos incorporar cobros, si es que tiene sentido
         self.ensure_one()
+        if voucher_type == 'payment':
+            name = _('Payment')
+            residual_amount = self.payable_residual
+        else:
+            name = _('Receipt')
+            residual_amount = self.receivable_residual
+
         view_id = self.env['ir.model.data'].xmlid_to_res_id(
             'account_voucher.view_vendor_receipt_dialog_form')
         return {
-            'name': _("Pay Settlement"),
+            'name': name,
             'view_mode': 'form',
             'view_id': view_id,
             'view_type': 'form',
@@ -100,7 +104,7 @@ class account_move(models.Model):
             'context': {
                 'payment_expected_currency': self.company_id.currency_id.id,
                 'default_partner_id': self.partner_id.id,
-                'default_amount': self.residual_amount,
+                'default_amount': residual_amount,
                 'default_reference': self.name,
                 'close_after_process': True,
                 # 'invoice_type': self.type,

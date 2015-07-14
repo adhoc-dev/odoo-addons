@@ -37,7 +37,7 @@
                             <field name="move_id"/>
                             <field name="debit" sum="Total Debit"/>
                             <field name="credit" sum="Total Credit"/>
-                            <field name="date_maturity"/>
+                            <!-- <field name="date_maturity"/> -->
                             <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
                             <field name="tax_code_id"/>
                             <field name="tax_amount" sum="Total Tax"/>

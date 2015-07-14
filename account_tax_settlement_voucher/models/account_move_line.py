@@ -61,7 +61,9 @@ class account_move_line(models.Model):
 
         # check account type so that we can create a debt
         if account.type != 'payable':
-            raise Warning(_('You can only mae.. if account is payable'))
+            raise Warning(_(
+                'You can only pay if tax counterpart use a payable account.'
+                'Account id %i' % account.id))
 
         # get date, period and name
         date = fields.Date.context_today(self)
@@ -104,4 +106,4 @@ class account_move_line(models.Model):
         }
         move.line_id.create(deb_line_vals)
         (counterpart_line + self).reconcile_partial()
-        return move.move_pay()
+        return move.create_voucher('payment')

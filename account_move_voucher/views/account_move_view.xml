@@ -7,12 +7,12 @@
             <field name="inherit_id" ref="account.view_move_form"/>
             <field name="arch" type="xml">
                 <button name="button_validate" position="after">
-                    <button name="action_create_receipt_voucher" attrs="{'invisible':['|', ('state', '!=', 'posted'), ('payable_residual', '=', False)]}" string="Create Voucher" type="object" class="oe_highlight" groups="account.group_account_invoice"/>
-                    <button name="action_create_payment_voucher" attrs="{'invisible':['|', ('state', '!=', 'posted'), ('receivable_residual', '=', False)]}" string="Create Voucher" type="object" class="oe_highlight" groups="account.group_account_invoice"/>
+                    <button name="action_create_receipt_voucher" attrs="{'invisible':['|', ('state', '!=', 'posted'), ('receivable_residual', '=', 0.0)]}" string="Create Receipt Voucher" type="object" class="oe_highlight" groups="account.group_account_invoice"/>
+                    <button name="action_create_payment_voucher" attrs="{'invisible':['|', ('state', '!=', 'posted'), ('payable_residual', '=', 0.0)]}" string="Create Payment Voucher" type="object" class="oe_highlight" groups="account.group_account_invoice"/>
                 </button>
                 <field name="amount" position="after">
-                    <field name="receivable_residual" attrs="{'invisible': [('receivable_residual', '=', False)]}"/>
-                    <field name="payable_residual" attrs="{'invisible': [('payable_residual', '=', False)]}"/>
+                    <field name="receivable_residual" attrs="{'invisible': [('receivable_residual', '=', 0.0)]}"/>
+                    <field name="payable_residual" attrs="{'invisible': [('payable_residual', '=', 0.0)]}"/>
                 </field>
             </field>
         </record>

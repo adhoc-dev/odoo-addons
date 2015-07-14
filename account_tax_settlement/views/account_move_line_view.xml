@@ -18,7 +18,7 @@
                     <field name="move_id"/>
                     <field name="debit" sum="Total Debit"/>
                     <field name="credit" sum="Total Credit"/>
-                    <field name="date_maturity"/>
+                    <!-- <field name="date_maturity"/> -->
                     <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
                     <field name="tax_code_id"/>
                     <field name="tax_amount" sum="Total Tax"/>
@@ -38,7 +38,7 @@
             <field name="context">{'search_default_unreconciled': 1}</field>
         </record>
 
-        <menuitem name="Tax Journal Items" action="action_account_move_line" sequence="3" id="menu_account_move_line" parent="account.menu_finance_entries"/>
+        <menuitem name="Tax Journal Items" action="action_account_move_line" sequence="20" id="menu_account_move_line" parent="account.menu_finance_entries"/>
     </data>
 </openerp>
 <!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4
