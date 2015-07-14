@@ -37,7 +37,7 @@
                 <notebook>
                 <!-- <page string="Payment Information" position="after"> -->
                     <!-- Deductions Made serian retenciones aplicadas -->
-                    <page string="aaa" states="posted">
+                    <page string="Tax Journal Items" states="posted">
                         <!-- <field name="tax_move_line_ids" context="{'tree_view_ref':'account_tax_settlement.view_account_move_line_tree'}"> -->
                         <field name="tax_move_line_ids">
                             <tree>
