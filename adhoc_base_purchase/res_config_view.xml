@@ -20,7 +20,7 @@
         </group>
 
         <group string="Purchases">
-            <label for="id" string="Purchase Features"/>
+            <label for="id" string="Common Features"/>
             <div name="purchase_features">
                 <div name='module_purchase_discount'>
                     <field name="module_purchase_discount"

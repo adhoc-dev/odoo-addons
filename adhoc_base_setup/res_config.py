@@ -24,21 +24,12 @@ class adhoc_base_configuration(models.TransientModel):
     module_web_ckeditor4 = fields.Boolean(
         'Provides a widget for editing HTML fields using CKEditor 4.x',
         help="""Installs the module_web_ckeditor4 module.""")
-    module_web_group_expand = fields.Boolean(
-        'Allow group by lists to be expanded and collapased with buttons',
-        help="""Installs the web_group_expand module.""")
     module_document_url = fields.Boolean(
         'Allow to attach an URL as a document.',
         help="""Installs the document_url module.""")
-    module_help_doc = fields.Boolean(
-        'Install Help Documentation',
-        help="""Installs the help_doc module.""")
     module_mass_editing = fields.Boolean(
         'Mass Editing',
         help="""Installs the mass_editing module.""")
-    module_help_online = fields.Boolean(
-        'Allows the creation of an online help available from the lists and forms in Odoo.',
-        help="""Installs the help_online module.""")
     module_web_m2x_options = fields.Boolean(
         'Modifies "many2one" and "many2manytags" form widgets so as to add some new display control options.',
         help="""Installs the web_m2x_options module.""")
@@ -56,9 +47,6 @@ class adhoc_base_configuration(models.TransientModel):
     module_auth_admin_passkey = fields.Boolean(
         'Use admin password as a passkey for all active logins',
         help="""Installs the auth_admin_passkey module.""")
-    module_adhoc_support = fields.Boolean(
-        'Use ADHOC support',
-        help="""Installs the adhoc_support module.""")
     module_cron_run_manually = fields.Boolean(
         'Enable Run Cron Manually',
         help="""Installs the cron_run_manually module.""")

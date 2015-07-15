@@ -20,25 +20,7 @@
         </group>
 
         <group string="Stock">
-            <label for="id" string="Reports"/>
-            <div name="stock_reports">
-                <div name='module_stock_picking_list'>
-                    <field name="module_stock_picking_list"
-                        class="oe_inline"/>
-                    <label for="module_stock_picking_list"/>
-                </div>
-                <div name='module_stock_picking_labels'>
-                    <field name="module_stock_picking_labels"
-                        class="oe_inline"/>
-                    <label for="module_stock_picking_labels"/>
-                </div>
-                <div name='module_stock_voucher'>
-                    <field name="module_stock_voucher"
-                        class="oe_inline"/>
-                    <label for="module_stock_voucher"/>
-                </div>
-            </div>
-            <label for="id" string="Stock Features"/>
+            <label for="id" string="Common Features"/>
             <div name="stock_features">
                 <div name='module_stock_picking_partner_editable'>
                     <field name="module_stock_picking_partner_editable"
@@ -84,6 +66,24 @@
                     <field name="module_picking_dispatch"
                         class="oe_inline"/>
                     <label for="module_picking_dispatch"/>
+                </div>
+            </div>
+            <label for="id" string="Reports"/>
+            <div name="stock_reports">
+                <div name='module_stock_picking_list'>
+                    <field name="module_stock_picking_list"
+                        class="oe_inline"/>
+                    <label for="module_stock_picking_list"/>
+                </div>
+                <div name='module_stock_picking_labels'>
+                    <field name="module_stock_picking_labels"
+                        class="oe_inline"/>
+                    <label for="module_stock_picking_labels"/>
+                </div>
+                <div name='module_stock_voucher'>
+                    <field name="module_stock_voucher"
+                        class="oe_inline"/>
+                    <label for="module_stock_voucher"/>
                 </div>
             </div>
             <label for="id" string="Advance Features"/>
