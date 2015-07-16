@@ -12,6 +12,7 @@ class stock_transfer_details(models.TransientModel):
 
     @api.one
     def do_detailed_transfer(self):
+        super(stock_transfer_details, self).do_detailed_transfer()
         if self.code != 'incoming':
             item_lines = self.item_ids.read_group(
                 [('id', 'in', self.item_ids.ids)],
@@ -27,9 +28,11 @@ class stock_transfer_details(models.TransientModel):
                         qty = sum([x.qty for x in quants])
                         if qty < item['quantity']:
                             raise Warning(
-                                _('Sending amount can not exceed the quantity in stock for this lot. %s Stock Units') % (qty))
+                                _('Sending amount can not exceed the quantity in stock for this product in this lot. \
+                                \n Product:%s \
+                                \n Lot:%s \
+                                \n Stock:%s') % (lot.product_id.name, lot.name, qty))
 
-        super(stock_transfer_details, self).do_detailed_transfer()
 
 
 class stock_transfer_details_items(models.TransientModel):
@@ -54,7 +57,13 @@ class stock_transfer_details_items(models.TransientModel):
                 qty = sum([x.qty for x in quants])
                 if qty < self.quantity:
                     raise Warning(
-                        _('Sending amount can not exceed the quantity in stock for this lot. %s Stock Units') % (qty))
+                        _('Sending amount can not exceed the quantity in stock for this product in this lot. \
+                                \n Product:%s \
+                                \n Lot:%s \
+                                \n Stock:%s') % (self.product_id.name, self.lot_id.name, qty))
             else:
                 raise Warning(
-                    _('No stock of this product on this lot %s') % (lot_id.name))
+                    _('Sending amount can not exceed the quantity in stock for this product in this lot. \
+                                \n Product:%s \
+                                \n Lot:%s \
+                                \n Stock:0') % (self.product_id.name, lot_id.name))
