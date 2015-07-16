@@ -429,9 +429,15 @@ class account_tax_settlement(models.Model):
         final_line_vals = self.get_final_line_vals()[self.id]
         final_line_vals['move_id'] = move.id
         move_line_env.create(final_line_vals)
-        to_reconcile_move_lines = move_line_env.browse(
-            created_move_line_ids) + self.mapped(
+
+        settled_move_lines = self.mapped(
             'tax_settlement_detail_ids.move_line_ids')
+        to_reconcile_move_lines = move_line_env.browse(
+            created_move_line_ids) + settled_move_lines
+
+        # write move id on settled tax move lines
+        settled_move_lines.write({'tax_settlement_move_id': move.id})
+
         grouped_lines = to_reconcile_move_lines.read_group(
             domain=[('id', 'in', to_reconcile_move_lines.ids)],
             fields=['id', 'account_id'],

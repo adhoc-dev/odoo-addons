@@ -2,6 +2,17 @@
 <openerp>
     <data>
 
+        <record id="view_account_move_line_form" model="ir.ui.view">
+            <field name="name">Tax Journal Items Tree</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_move_line_form"/>
+            <field name="arch" type="xml">
+                <field name="statement_id" position="after">
+                    <field name="tax_settlement_move_id"/>
+                </field>
+            </field>
+        </record>
+
         <record id="view_account_move_line_tree" model="ir.ui.view">
             <field name="name">Tax Journal Items Tree</field>
             <field name="model">account.move.line</field>
@@ -22,8 +33,10 @@
                     <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
                     <field name="tax_code_id"/>
                     <field name="tax_amount" sum="Total Tax"/>
-                    <field name="reconcile_ref"/>
+                    <field name="tax_settlement_move_id"/>
+                    <!-- <field name="reconcile_ref" invisible="1"/> -->
                     <field name="state" invisible="1"/>
+                    <button name="make_tax_settlement" icon="gtk-go-forward" string="Settle" help="Make a move to settle current tax line" attrs="{'invisible':[('tax_settlement_move_id', '!=', False)]}" type="object"/>
                 </tree>         
             </field>
         </record>
@@ -33,7 +46,7 @@
             <field name="res_model">account.move.line</field>
             <field name="view_id" ref="view_account_move_line_tree"/>
             <field name="view_type">form</field>
-            <field name="view_mode">tree</field>
+            <field name="view_mode">tree,form</field>
             <field name="domain">[('tax_code_id', '!=', False)]</field>
             <field name="context">{'search_default_unreconciled': 1}</field>
         </record>

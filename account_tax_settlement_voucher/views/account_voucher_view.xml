@@ -2,21 +2,17 @@
 <openerp>
     <data> 
 
-        <!-- TODO agregar esta vista -->
         <!-- Receipt dialog Form  -->
-<!--         <record id="view_vendor_receipt_dialog_form" model="ir.ui.view">
+        <record id="view_vendor_receipt_dialog_form" model="ir.ui.view">
             <field name="name">account.voucher.receipt.dialog.receipt.inherit.form</field>
             <field name="model">account.voucher</field>
             <field name="inherit_id" ref="account_voucher.view_vendor_receipt_dialog_form"/>
             <field name="arch" type="xml">
-                <field name="paylines_amount" position="before">
-                    <field name="withholdings_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="amount" position="attributes">
+                    <attribute name="readonly">context.get('from_settlement',False)</attribute>
                 </field>
-                <page string="Withholdings">
-                    <field name="withholding_ids"/>
-                </page>
             </field>
-        </record> -->
+        </record>
 
         <!-- Customer Receipt Form  -->
 <!--         <record id="view_vendor_receipt_form" model="ir.ui.view">
@@ -51,9 +47,14 @@
                                 <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
                                 <field name="tax_code_id"/>
                                 <field name="tax_amount" sum="Total Tax"/>
-                                <field name="reconcile_ref"/>
+                                <!-- <field name="reconcile_ref"/> -->
+                                <field name="tax_settlement_move_id"/>
+                                <field name="tax_settlement_residual" invisible="1"/>
                                 <field name="state" invisible="1"/>
-                                <button name="make_settlement_and_pay_tax" string="Pay" attrs="{'invisible':['|', ('tax_amount', '&lt;=', 0.0), ('reconcile_ref', '!=', False)]}" type="object"/>
+                                <button name="make_tax_settlement" icon="gtk-go-forward" string="Settle" help="Make a move to settle current tax line" attrs="{'invisible':[('tax_settlement_move_id', '!=', False)]}" type="object"/>
+                                <button name="pay_tax_settlement" icon="terp-dolar" string="Pay" attrs="{'invisible':[('tax_settlement_residual', '&lt;=', 0.0)]}" type="object"/>
+
+                                <!-- <button name="make_settlement_and_pay_tax" string="Pay" attrs="{'invisible':['|', ('tax_amount', '&lt;=', 0.0), ('reconcile_ref', '!=', False)]}" type="object"/> -->
                             </tree>
                         </field>
                     </page>

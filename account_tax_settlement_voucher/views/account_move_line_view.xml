@@ -10,7 +10,8 @@
                 <tree>
                     <!-- <field name="tax_amount_with_sign" invisible="1"/> -->
                     <!-- <button name="pay_tax" string="Pay" attrs="{'invisible':[('tax_amount_with_sign', '&lt;=', 0.0)]}" type="object"/> -->
-                    <button name="make_settlement_and_pay_tax" string="Pay" attrs="{'invisible':['|', ('tax_amount', '&lt;=', 0.0), ('reconcile_ref', '!=', False)]}" type="object"/>
+                    <field name="tax_settlement_residual" invisible="1"/>
+                    <button name="pay_tax_settlement" icon="terp-dolar" string="Pay" attrs="{'invisible':[('tax_settlement_residual', '&lt;=', 0.0)]}" type="object"/>
                 </tree>         
             </field>
         </record>

@@ -2,8 +2,9 @@
 <openerp>
     <data> 
 
+        <!-- TODO implementar -->
         <!-- Receipt dialog Form  -->
-        <record id="view_vendor_receipt_dialog_form" model="ir.ui.view">
+<!--         <record id="view_vendor_receipt_dialog_form" model="ir.ui.view">
             <field name="name">account.voucher.receipt.dialog.receipt.inherit.form</field>
             <field name="model">account.voucher</field>
             <field name="inherit_id" ref="account_voucher.view_vendor_receipt_dialog_form"/>
@@ -15,7 +16,6 @@
                 <field name="amount" position="after">
                     <field name="amount_readonly" string="Total Amount"/>
                 </field>
-                <!-- TODO check if we want to use this in some cases, to set a value -->
                 <field name="amount" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </field>
@@ -24,7 +24,7 @@
                 </field>
             </field>
         </record>
-
+ -->
         <!-- Customer Receipt Form  -->
         <record id="view_vendor_receipt_form" model="ir.ui.view">
             <field name="name">account.voucher.form.receipts.pay.inherit</field>

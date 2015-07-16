@@ -91,7 +91,21 @@ class account_move(models.Model):
 
         view_id = self.env['ir.model.data'].xmlid_to_res_id(
             'account_voucher.view_vendor_receipt_dialog_form')
-        return {
+        voucher_context = self._context.copy()
+        voucher_context.update({
+                'payment_expected_currency': self.company_id.currency_id.id,
+                'default_partner_id': self.partner_id.id,
+                'default_amount': residual_amount,
+                'default_reference': self.name,
+                'close_after_process': True,
+                # 'invoice_type': self.type,
+                # 'invoice_id': self.id,
+                'default_type': voucher_type,
+                'default_company_id': self.company_id.id,
+                'type': 'voucher_type',
+                })
+        print 'voucher_context', voucher_context
+        res = {
             'name': name,
             'view_mode': 'form',
             'view_id': view_id,
@@ -101,15 +115,6 @@ class account_move(models.Model):
             'nodestroy': True,
             'target': 'new',
             'domain': '[]',
-            'context': {
-                'payment_expected_currency': self.company_id.currency_id.id,
-                'default_partner_id': self.partner_id.id,
-                'default_amount': residual_amount,
-                'default_reference': self.name,
-                'close_after_process': True,
-                # 'invoice_type': self.type,
-                # 'invoice_id': self.id,
-                'default_type': voucher_type,
-                'type': 'voucher_type'
+            'context': voucher_context
             }
-        }
+        return res
