@@ -44,8 +44,8 @@
             </div>
         </group>
         <group string="Accounting">
-            <label for="id" string="Invoicing"/>    
-            <div name="invoicing">
+            <label for="id" string="Common Features"/>    
+            <div name="common_features">
                 <div name='module_account_invoice_tax_wizard'>
                     <field name="module_account_invoice_tax_wizard"
                         class="oe_inline"/>
@@ -60,12 +60,7 @@
                     <field name="module_account_clean_cancelled_invoice_number"
                         class="oe_inline"/>
                     <label for="module_account_clean_cancelled_invoice_number"/>
-                </div>    
-                <div name='module_account_invoice_commercial'>
-                    <field name="module_account_invoice_commercial"
-                        class="oe_inline"/>
-                    <label for="module_account_invoice_commercial"/>
-                </div>     
+                </div>       
                 <div name='module_account_invoice_company_search'>
                     <field name="module_account_invoice_company_search"
                         class="oe_inline"/>
@@ -75,7 +70,15 @@
                     <field name="module_account_invoice_journal_filter"
                         class="oe_inline"/>
                     <label for="module_account_invoice_journal_filter"/>
-                </div> 
+                </div>
+            </div> 
+            <label for="id" string="Advanced Features"/>    
+            <div name="advance_features">
+                <div name='module_account_invoice_commercial'>
+                    <field name="module_account_invoice_commercial"
+                        class="oe_inline"/>
+                    <label for="module_account_invoice_commercial"/>
+                </div>     
                 <div name='module_account_invoice_pricelist_discount'>
                     <field name="module_account_invoice_pricelist_discount"
                         class="oe_inline"/>
