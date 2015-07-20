@@ -14,7 +14,6 @@ Para probar instalar tambien "sale" y "procurement_jit_stock"
         'mrp',
         'procurement_jit_stock',
     ],
-    'init_xml': [],
     'demo_xml': [
         'mrp_demo.xml',
         ],
