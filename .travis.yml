@@ -1,0 +1,45 @@
+addons:
+  apt:
+    packages:
+      - expect-dev  # provides unbuffer utility
+      - python-lxml # because pip installation is slow
+
+language: python
+
+# new options suggested by Alexandre Fayolle
+sudo: false
+cache: pip
+
+python:
+  - "2.7"
+
+env:
+  # TODO enable lint check
+  - VERSION="8.0" LINT_CHECK="0"
+  - VERSION="8.0" ODOO_REPO="odoo/odoo" LINT_CHECK="0"
+
+virtualenv:
+  system_site_packages: true
+
+install:
+  # for infra
+  # - git clone https://github.com/ingadhoc/odoo-infrastructure.git ${HOME}/odoo-infrastructure -b ${VERSION}
+  # - pip install fabtools
+
+  # # for website doc
+  # - git clone https://github.com/ingadhoc/odoo-web.git ${HOME}/odoo-web -b ${VERSION}
+
+  # # for warning box
+  # - git clone https://github.com/ingadhoc/odoo-addons.git ${HOME}/odoo-addons -b ${VERSION}
+
+  # - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
+
+  - pip install -r requirements.txt
+  - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
+  - travis_install_nightly
+
+script:
+  - travis_run_tests
+
+after_success:
+  coveralls
