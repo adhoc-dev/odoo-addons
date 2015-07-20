@@ -20,11 +20,7 @@
         </group>
 
         <group string="Stock">
-<<<<<<< HEAD
-            <label for="id" string="Stock Features"/>
-=======
             <label for="id" string="Common Features"/>
->>>>>>> 8.0
             <div name="stock_features">
                 <div name='module_stock_usability'>
                     <field name="module_stock_usability"

@@ -65,7 +65,6 @@
                         class="oe_inline" readonly="1"/>
                     <label for="module_product_supplier_pricelist"/>
                 </div> 
-                </div>
             </div>
         </group>
     </field>
