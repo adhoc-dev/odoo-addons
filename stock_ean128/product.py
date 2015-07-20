@@ -10,7 +10,7 @@ class product_template(models.Model):
         compute='get_lots',
         search='search_lots',
         string='Lots'
-        )
+    )
 
     @api.one
     def get_lots(self):
