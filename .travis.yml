@@ -7,7 +7,8 @@ addons:
 language: python
 
 # new options suggested by Alexandre Fayolle
-sudo: false
+# we need sudo for apt-get install
+# sudo: false
 cache: pip
 
 python:
