@@ -21,11 +21,29 @@
 
         <group string="Purchases">
             <label for="id" string="Common Features"/>
-            <div name="purchase_features">
+            <div name="common_features">
+                <div name='module_purchase_usability_extension'>
+                    <field name="module_purchase_usability_extension"
+                        class="oe_inline"/>
+                    <label for="module_purchase_usability_extension"/>
+                </div>
+                <div name='module_purchase_double_validation_imp'>
+                    <field name="module_purchase_double_validation_imp"
+                        class="oe_inline"/>
+                    <label for="module_purchase_double_validation_imp"/>
+                </div>
+            </div>
+            <label for="id" string="Advance Features"/>
+            <div name="advance_features">
                 <div name='module_purchase_discount'>
                     <field name="module_purchase_discount"
                         class="oe_inline"/>
                     <label for="module_purchase_discount"/>
+                </div>
+                 <div name='module_partner_products_shortcut'>
+                    <field name="module_partner_products_shortcut"
+                        class="oe_inline"/>
+                    <label for="module_partner_products_shortcut"/>
                 </div>
                 <div name='module_purchase_uom_prices_uoms'>
                     <field name="module_purchase_uom_prices_uoms"
@@ -37,20 +55,16 @@
                         class="oe_inline"/>
                     <label for="module_account_analytic_purchase_contract"/>
                 </div>
-                <div name='module_purchase_double_validation_imp'>
-                    <field name="module_purchase_double_validation_imp"
-                        class="oe_inline"/>
-                    <label for="module_purchase_double_validation_imp"/>
-                </div>
-                <div name='module_purchase_usability_extension'>
-                    <field name="module_purchase_usability_extension"
-                        class="oe_inline"/>
-                    <label for="module_purchase_usability_extension"/>
-                </div>
                 <div name='module_purchase_line_defaults'>
                     <field name="module_purchase_line_defaults"
                         class="oe_inline"/>
                     <label for="module_purchase_line_defaults"/>
+                </div>
+                <div name='module_product_supplier_pricelist'>
+                    <field name="module_product_supplier_pricelist"
+                        class="oe_inline" readonly="1"/>
+                    <label for="module_product_supplier_pricelist"/>
+                </div> 
                 </div>
             </div>
         </group>

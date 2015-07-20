@@ -21,6 +21,8 @@
 
         <group string="Sales">
             <label for="id" string="Common Features"/>
+<<<<<<< HEAD
+=======
             <div name="sale_features">  
                 <div name='module_sale_add_products_wizard'>
                     <field name="module_sale_add_products_wizard"
@@ -54,23 +56,100 @@
                 </div>
             </div>
             <label for="id" string="Prices and Pricelist"/>
+>>>>>>> 8.0
             <div name="sale_features">  
                 <div name='module_sale_prices_update'>
                     <field name="module_sale_prices_update"
                         class="oe_inline"/>
                     <label for="module_sale_prices_update"/>
                 </div>            
-                <div name='module_sale_order_validity'>
-                    <field name="module_sale_order_validity"
+                <div name='module_crm_partner_history'>
+                    <field name="module_crm_partner_history"
                         class="oe_inline"/>
-                    <label for="module_sale_order_validity"/>
+                    <label for="module_crm_partner_history"/>
                 </div>
+                <div name='module_sale_usability_extension'>
+                    <field name="module_sale_usability_extension"
+                        class="oe_inline"/>
+                    <label for="module_sale_usability_extension"/>
+                </div>
+<<<<<<< HEAD
+                <div name='module_sale_require_ref'>
+                    <field name="module_sale_require_ref"
+=======
+            </div>
+            <label for="id" string="Security"/>
+            <div name="sale_features">
+                <div name='module_sale_restrict_partners'>
+                    <field name="module_sale_restrict_partners"
+>>>>>>> 8.0
+                        class="oe_inline"/>
+                    <label for="module_sale_require_ref"/>
+                </div>
+                <div name='module_sale_line_product_required'>
+                    <field name="module_sale_line_product_required"
+                        class="oe_inline"/>
+                    <label for="module_sale_line_product_required"/>
+                </div>
+<<<<<<< HEAD
+                <div name='module_sale_add_products_wizard'>
+                    <field name="module_sale_add_products_wizard"
+                        class="oe_inline"/>
+                    <label for="module_sale_add_products_wizard"/>
+                </div>  
+                <div name='module_sale_stock_availability'>
+                    <field name="module_sale_stock_availability"
+                        class="oe_inline"/>
+                    <label for="module_sale_stock_availability"/>
+                </div>                                      
+            </div>
+=======
+            </div>  
+            <label for="id" string="Portal and Distributor"/>
+            <div name="sale_features">
+                <div name='module_sales_to_sale_order'>
+                    <field name="module_sales_to_sale_order"
+                        class="oe_inline"/>
+                    <label for="module_sales_to_sale_order"/>
+                </div>                        
+                <div name='module_portal_sale_distributor'>
+                    <field name="module_portal_sale_distributor"
+                        class="oe_inline"/>
+                    <label for="module_portal_sale_distributor"/>
+                </div>                            
+                <div name='module_sale_dummy_confirmation'>
+                    <field name="module_sale_dummy_confirmation"
+                        class="oe_inline"/>
+                    <label for="module_sale_dummy_confirmation"/>
+                </div>                                
+            </div>  
+>>>>>>> 8.0
+            <label for="id" string="Advanced Features"/>
+            <div name="sale_advanced_features">
+                <div name='module_sale_multiple_invoice'>
+                    <field name="module_sale_multiple_invoice"
+                        class="oe_inline"/>
+                    <label for="module_sale_multiple_invoice"/>
+                </div>        
+                <div name='module_sale_other_product_description'>
+                    <field name="module_sale_other_product_description"
+                        class="oe_inline"/>
+                    <label for="module_sale_other_product_description"/>
+                </div>
+            </div>
+            <label for="id" string="Prices and Pricelist"/>
+            <div name="sale_features">  
                 <div name='module_sale_pricelist_discount'>
                     <field name="module_sale_pricelist_discount"
                         class="oe_inline"/>
                     <label for="module_sale_pricelist_discount"/>
                 </div>
-            </div>
+                <div name='module_sale_order_validity'>
+                    <field name="module_sale_order_validity"
+                        class="oe_inline"/>
+                    <label for="module_sale_order_validity"/>
+                </div>
+            </div>                
             <label for="id" string="Security"/>
             <div name="sale_features">
                 <div name='module_sale_restrict_partners'>
@@ -102,19 +181,6 @@
                     <label for="module_sale_dummy_confirmation"/>
                 </div>                                
             </div>  
-            <label for="id" string="Advanced Features"/>
-            <div name="sale_advanced_features">
-                <div name='module_sale_multiple_invoice'>
-                    <field name="module_sale_multiple_invoice"
-                        class="oe_inline"/>
-                    <label for="module_sale_multiple_invoice"/>
-                </div>        
-                <div name='module_sale_other_product_description'>
-                    <field name="module_sale_other_product_description"
-                        class="oe_inline"/>
-                    <label for="module_sale_other_product_description"/>
-                </div>
-            </div>
             <label for="id" string="Contracts and projects"/>
             <div name="sale_contracts">
                 <div name='module_sale_contract_restrict_domain'>

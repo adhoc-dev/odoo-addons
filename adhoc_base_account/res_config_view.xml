@@ -44,28 +44,38 @@
             </div>
         </group>
         <group string="Accounting">
-            <label for="id" string="Invoicing"/>    
-            <div name="invoicing">
+            <label for="id" string="Common Features"/>    
+            <div name="common_features">
+                <div name='module_account_cancel'>
+                    <field name="module_account_cancel"
+                        class="oe_inline"/>
+                    <label for="module_account_cancel"/>
+                </div>    
+                <div name='module_account_clean_cancelled_invoice_number'>
+                    <field name="module_account_clean_cancelled_invoice_number"
+                        class="oe_inline"/>
+                    <label for="module_account_clean_cancelled_invoice_number"/>
+                </div>
+                 <div name='module_account_journal_sequence'>
+                    <field name="module_account_journal_sequence"
+                        class="oe_inline"/>
+                    <label for="module_account_journal_sequence"/>
+                </div>        
                 <div name='module_account_invoice_tax_wizard'>
                     <field name="module_account_invoice_tax_wizard"
                         class="oe_inline"/>
                     <label for="module_account_invoice_tax_wizard"/>
-                </div>  
+                </div> 
+                 <div name='module_account_bank_voucher'>
+                    <field name="module_account_bank_voucher"
+                        class="oe_inline"/>
+                    <label for="module_account_bank_voucher"/>
+                </div> 
                 <div name='module_invoice_fiscal_position_update'>
                     <field name="module_invoice_fiscal_position_update"
                         class="oe_inline"/>
                     <label for="module_invoice_fiscal_position_update"/>
                 </div>  
-                <div name='module_account_clean_cancelled_invoice_number'>
-                    <field name="module_account_clean_cancelled_invoice_number"
-                        class="oe_inline"/>
-                    <label for="module_account_clean_cancelled_invoice_number"/>
-                </div>    
-                <div name='module_account_invoice_commercial'>
-                    <field name="module_account_invoice_commercial"
-                        class="oe_inline"/>
-                    <label for="module_account_invoice_commercial"/>
-                </div>     
                 <div name='module_account_invoice_company_search'>
                     <field name="module_account_invoice_company_search"
                         class="oe_inline"/>
@@ -75,7 +85,44 @@
                     <field name="module_account_invoice_journal_filter"
                         class="oe_inline"/>
                     <label for="module_account_invoice_journal_filter"/>
+                </div>
+                <div name='module_account_reconciliation_menu'>
+                    <field name="module_account_reconciliation_menu"
+                        class="oe_inline"/>
+                    <label for="module_account_reconciliation_menu"/>
+                </div>  
+                <div name='module_account_security_modifications'>
+                    <field name="module_account_security_modifications"
+                        class="oe_inline"/>
+                    <label for="module_account_security_modifications"/>
+                </div>  
+                <div name='module_account_invoice_prices_update'>
+                    <field name="module_account_invoice_prices_update"
+                        class="oe_inline"/>
+                    <label for="module_account_invoice_prices_update"/>
+                </div>    
+                <div name='module_account_move_line_no_filter'>
+                    <field name="module_account_move_line_no_filter"
+                        class="oe_inline"/>
+                    <label for="module_account_move_line_no_filter"/>
+                </div>
+                <div name='module_account_journal_active'>
+                    <field name="module_account_journal_active" class="oe_inline"/>
+                    <label for="module_account_journal_active"/>
                 </div> 
+                <div name='module_account_partner_balance'>
+                    <field name="module_account_partner_balance"
+                        class="oe_inline"/>
+                    <label for="module_account_partner_balance"/>
+                </div>         
+            </div> 
+            <label for="id" string="Advanced Features"/>    
+            <div name="advance_features">
+                <div name='module_account_invoice_commercial'>
+                    <field name="module_account_invoice_commercial"
+                        class="oe_inline"/>
+                    <label for="module_account_invoice_commercial"/>
+                </div>     
                 <div name='module_account_invoice_pricelist_discount'>
                     <field name="module_account_invoice_pricelist_discount"
                         class="oe_inline"/>
@@ -86,6 +133,14 @@
                         class="oe_inline"/>
                     <label for="module_account_invoice_merge"/>
                 </div>
+                <div name='module_account_interests'>
+                    <field name="module_account_interests" class="oe_inline"/>
+                    <label for="module_account_interests"/>
+                </div>            
+                <div name='module_currency_rate_update'>
+                    <field name="module_currency_rate_update" class="oe_inline"/>
+                    <label for="module_currency_rate_update"/>
+                </div>
             </div>
             <label for="id" string="Analytic, contracts and Projects"/>
             <div name="accounting_analytic">
@@ -95,27 +150,11 @@
                     <label for="module_account_analytic_analysis_mods"/>
                 </div> 
             </div> 
-            <label for="id" string="Common Accounting Features"/>
-            <div name="common_accounting">
-                <div name='module_account_security_modifications'>
-                    <field name="module_account_security_modifications"
-                        class="oe_inline"/>
-                    <label for="module_account_security_modifications"/>
-                </div>  
-                <div name='module_account_reconciliation_menu'>
-                    <field name="module_account_reconciliation_menu"
-                        class="oe_inline"/>
-                    <label for="module_account_reconciliation_menu"/>
-                </div>  
-                <div name='module_account_cancel'>
-                    <field name="module_account_cancel"
-                        class="oe_inline"/>
-                    <label for="module_account_cancel"/>
-                </div>    
-                <div name='module_account_invoice_prices_update'>
-                    <field name="module_account_invoice_prices_update"
-                        class="oe_inline"/>
-                    <label for="module_account_invoice_prices_update"/>
+            <label for="id" string="Payments"/>
+            <div name="payments">
+                <div name='module_account_check'>
+                    <field name="module_account_check" class="oe_inline"/>
+                    <label for="module_account_check"/>
                 </div>    
                 <div name='module_account_followup'>
                     <field name="module_account_followup"
@@ -127,42 +166,6 @@
                         class="oe_inline"/>
                     <label for="module_account_voucher_contact"/>
                 </div>
-                <div name='module_account_move_line_no_filter'>
-                    <field name="module_account_move_line_no_filter"
-                        class="oe_inline"/>
-                    <label for="module_account_move_line_no_filter"/>
-                </div>
-            </div>
-            <label for="id" string="Advanced Accounting Features"/>
-            <div name="advanced_accounting">
-                <div name='module_account_interests'>
-                    <field name="module_account_interests" class="oe_inline"/>
-                    <label for="module_account_interests"/>
-                </div>            
-                <div name='module_account_journal_sequence'>
-                    <field name="module_account_journal_sequence"
-                        class="oe_inline"/>
-                    <label for="module_account_journal_sequence"/>
-                </div> 
-                <div name='module_account_journal_active'>
-                    <field name="module_account_journal_active" class="oe_inline"/>
-                    <label for="module_account_journal_active"/>
-                </div> 
-                <div name='module_currency_rate_update'>
-                    <field name="module_currency_rate_update" class="oe_inline"/>
-                    <label for="module_currency_rate_update"/>
-                </div>
-                <div name='module_multi_store'>
-                    <field name="module_multi_store" class="oe_inline"/>
-                    <label for="module_multi_store"/>
-                </div>
-            </div>
-            <label for="id" string="Payments"/>
-            <div name="payments">
-                <div name='module_account_check'>
-                    <field name="module_account_check" class="oe_inline"/>
-                    <label for="module_account_check"/>
-                </div>    
                 <div name='module_account_voucher_receipt'>
                     <field name="module_account_voucher_receipt"
                         class="oe_inline"/>
@@ -178,17 +181,16 @@
                         class="oe_inline" readonly="1"/>
                     <label for="module_account_create_journal"/>
                 </div>            
-                <div name='module_account_bank_voucher'>
-                    <field name="module_account_bank_voucher"
-                        class="oe_inline"/>
-                    <label for="module_account_bank_voucher"/>
-                </div>
             </div>    
             <label for="id" string="Security"/>
             <div name="reports">
                 <div name='module_account_journal_security'>
                     <field name="module_account_journal_security" class="oe_inline"/>
                     <label for="module_account_journal_security"/>
+                </div>
+                <div name='module_multi_store'>
+                    <field name="module_multi_store" class="oe_inline"/>
+                    <label for="module_multi_store"/>
                 </div>
             </div>                            
             <label for="id" string="Reports"/>
@@ -197,12 +199,7 @@
                     <field name="module_account_export_csv"
                         class="oe_inline"/>
                     <label for="module_account_export_csv"/>
-                </div> 
-                <div name='module_account_partner_balance'>
-                    <field name="module_account_partner_balance"
-                        class="oe_inline"/>
-                    <label for="module_account_partner_balance"/>
-                </div>                                            
+                </div>                                    
                 <div name='module_account_financial_report_webkit_xls'>
                     <field name="module_account_financial_report_webkit_xls"
                         class="oe_inline"/>

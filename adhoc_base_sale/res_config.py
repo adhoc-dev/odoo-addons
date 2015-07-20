@@ -58,10 +58,10 @@ then on sale orders lines this description will be used and no code""")
         'Sale Contract Restrict Domain.',
         help="""Installs the sale_contract_editable module.""")
     module_sale_require_contract = fields.Boolean(
-        'Require a Contract on Sale Order Confirmation.',
+        'Contract becomes a required field on Sale Order Confirmation.',
         help="""Installs the sale_require_contract module.""")
     module_sale_require_ref = fields.Boolean(
-        'Require a Reference on Sale Order Confirmation.',
+        'Reference becomes a required field on Sale Order Confirmation.',
         help="""Installs the sale_require_ref module.""")
     module_sale_line_product_required = fields.Boolean(
         'Product becomes a required field on sale order lines.',
