@@ -53,9 +53,11 @@ class adhoc_base_configuration(models.TransientModel):
     module_stock_usability = fields.Boolean(
         'Usability improovements for stock management.',
         help="""Installs the stock_display_src_location module. The usability enhancements inclure: * display the source location on the tree view of the move lines of the pickings (by default, only the destination location is displayed). * always display the field Backorder on the form view of picking (by default, this field is only displayed when it has a value, so the user doesn't know when the field has no value because he doesn't see the field !) * add a group by Partner in the picking search view (particularly usefull for receptions)""")
+    # Este modulo da error por ahora
     module_stock_invoice_try_again = fields.Boolean(
         'When the sale order has "Create Invoice" set to "On Delivery Order", add a button "Create Invoice" on the Delivery Order once the goods are shipped.',
-        help="""Installs the stock_invoice_try_again module.""")
+        help="""Installs the stock_invoice_try_again module.""",
+        readonly=True)
     module_stock_move_defaults = fields.Boolean(
         'Set defaults values on stock moves in order to facilitate file import.',
         help="""Installs the stock_move_defaults module.""")
