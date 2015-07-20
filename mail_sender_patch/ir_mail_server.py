@@ -8,7 +8,6 @@ class ir_mail_server(osv.osv):
     def _get_default_bounce_address(self, cr, uid, context=None):
         mail_server_ids = self.search(
             cr, 1, [], order='sequence asc', limit=1, context=context)
-        print 'mail_server_ids', mail_server_ids
         if mail_server_ids:
             return self.browse(cr, 1, mail_server_ids[0]).smtp_user
         else:
