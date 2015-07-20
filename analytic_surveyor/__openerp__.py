@@ -14,7 +14,7 @@ Analytic Surveyor
     'images': [
     ],
     'depends': [
-        'analytic',
+        'project',
     ],
     'data': [
         'analytic_view.xml',
