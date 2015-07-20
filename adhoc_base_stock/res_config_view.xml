@@ -20,7 +20,11 @@
         </group>
 
         <group string="Stock">
+<<<<<<< HEAD
             <label for="id" string="Stock Features"/>
+=======
+            <label for="id" string="Common Features"/>
+>>>>>>> 8.0
             <div name="stock_features">
                 <div name='module_stock_usability'>
                     <field name="module_stock_usability"
@@ -56,6 +60,24 @@
                     <field name="module_stock_invoice_try_again"
                         class="oe_inline" readonly="1"/>
                     <label for="module_stock_invoice_try_again"/>
+                </div>
+            </div>
+            <label for="id" string="Reports"/>
+            <div name="stock_reports">
+                <div name='module_stock_picking_list'>
+                    <field name="module_stock_picking_list"
+                        class="oe_inline"/>
+                    <label for="module_stock_picking_list"/>
+                </div>
+                <div name='module_stock_picking_labels'>
+                    <field name="module_stock_picking_labels"
+                        class="oe_inline"/>
+                    <label for="module_stock_picking_labels"/>
+                </div>
+                <div name='module_stock_voucher'>
+                    <field name="module_stock_voucher"
+                        class="oe_inline"/>
+                    <label for="module_stock_voucher"/>
                 </div>
             </div>
             <label for="id" string="Advance Features"/>

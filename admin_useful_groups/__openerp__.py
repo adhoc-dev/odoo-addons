@@ -21,18 +21,20 @@
 ##############################################################################
 
 {
-    'name': 'Admin Technical Features',
+    'name': 'Admin Useful Groups',
     'version': '0.1',
     'author': 'Savoir-faire Linux',
     'maintainer': 'Savoir-faire Linux',
     'website': 'http://www.savoirfairelinux.com',
     'license': 'AGPL-3',
     'category': 'Administration',
-    'summary': 'Checks the technical features box for admin user.',
     'description': """
-Base Partner Compute Field
-==========================
-Checks the technical features box for administrator user.
+Admin Useful Groups
+===================
+Adds to admin users groups:
+* Multicompany
+* Techincal features
+* Sale - Manager
 
 .. image:: /admin_technical_features/static/admin_technical_features.png
 

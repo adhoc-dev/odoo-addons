@@ -26,7 +26,9 @@
                             type="object"
                             class="oe_link oe_inline"
                             groups="base.group_erp_manager"
-                            attrs="{'invisible':['|',('related_user_id','!=',False),('template_user_id','=',False)]}"/> 
+                            attrs="{'invisible':[('related_user_id','!=',False)]}"/> 
+                            <!-- attrs="{'invisible':['|',('related_user_id','!=',False),('template_user_id','=',False)]}"/>  -->
+                            <!-- lo cambiamos porque da errores de acceso en algunos casos en template_user_id -->
                         <button name="open_related_user" 
                             string="Open" 
                             type="object" 
@@ -39,7 +41,8 @@
                             class="oe_link oe_inline"
                             attrs="{'invisible':[('related_user_id','=',False)]}"/>
                         <field name="related_user_id" invisible="1"/>
-                        <field name="template_user_id" invisible="1" options="{'no_open': True}"/>
+                        <!-- lo sacamos porque da errores de acceo en algunos caso -->
+                        <!-- <field name="template_user_id" invisible="1" options="{'no_open': True}"/> -->
                     </div>
                 </field>
             </field>

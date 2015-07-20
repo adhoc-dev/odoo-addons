@@ -144,4 +144,3 @@ class adhoc_base_configuration(models.TransientModel):
     module_inter_company_move = fields.Boolean(
         'Manager inter company document move',
         help="""Installs the inter_company_move module.""")
-

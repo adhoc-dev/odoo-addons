@@ -3,6 +3,7 @@ from openerp import fields, models, api
 from openerp.tools.translate import _
 from openerp.exceptions import Warning
 
+
 class meeting(models.Model):
     _inherit = "calendar.event"
 
@@ -21,4 +22,3 @@ class meeting(models.Model):
         else:
             self.user_id = self.previous_user_id.id
             self.previous_user_id = False
-        
