@@ -30,7 +30,8 @@ It also adds to more menus (and add some related fields) on purchase/product.
     ],
     'test': [
     ],
-    'installable': True,
+    # TODO fix this module and make installable
+    'installable': False,
     'auto_install': False,
     'application': False,
 }
