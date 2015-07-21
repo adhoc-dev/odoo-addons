@@ -47,6 +47,10 @@ install:
   # install pyafipws after others dependencies because dependency erro
   - pip install pyafipws
 
+  # for odoo pdf reports (tested on sale for eg.)
+  - sudo wget http://downloads.sourceforge.net/project/wkhtmltopdf/archive/0.12.1/wkhtmltox-0.12.1_linux-precise-amd64.deb -P /tmp/
+  - sudo dpkg -i /tmp/wkhtmltox-0.12.1_linux-precise-amd64.deb
+
   # repository requirements
   - pip install -r requirements.txt
 
