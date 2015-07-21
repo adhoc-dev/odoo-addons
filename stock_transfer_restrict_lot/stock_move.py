@@ -12,10 +12,10 @@ class stock_transfer_details(models.TransientModel):
 
     @api.one
     def do_detailed_transfer(self):
-        super(stock_transfer_details, self).do_detailed_transfer()
-        if self.code != 'incoming':
-            item_lines = self.item_ids.read_group(
-                [('id', 'in', self.item_ids.ids)],
+        items = self.item_ids.filtered(lambda r: r.lot_id)
+        if self.code != 'incoming' and items:
+            item_lines = items.read_group(
+                [('id', 'in', items.ids)],
                 ['lot_id', 'quantity'], ['lot_id'])
             for item in item_lines:
                 lot = self.env['stock.production.lot'].browse(
@@ -32,19 +32,35 @@ class stock_transfer_details(models.TransientModel):
                                 \n Product:%s \
                                 \n Lot:%s \
                                 \n Stock:%s') % (lot.product_id.name, lot.name, qty))
-
+        super(stock_transfer_details, self).do_detailed_transfer()
 
 
 class stock_transfer_details_items(models.TransientModel):
 
     _inherit = 'stock.transfer_details_items'
 
+    @api.one
+    @api.depends('product_id')
+    def _check_tracking_product(self):
+        check = False
+        if self.product_id.track_all and not self.destinationloc_id.usage == 'inventory':
+            check = True
+        elif self.product_id.track_incoming and self.sourceloc_id.usage in ('supplier', 'transit', 'inventory') and self.destinationloc_id.usage == 'internal':
+            check = True
+        elif self.product_id.track_outgoing and self.destinationloc_id.usage in ('customer', 'transit') and self.sourceloc_id.usage == 'internal':
+            check = True
+        if check:
+            self.lot_required = True
+        else:
+            self.lot_required = False
+
+    lot_required = fields.Boolean(compute='_check_tracking_product')
     code = fields.Selection(
         related='transfer_id.picking_id.picking_type_id.code',
         string='Operation Type')
 
     @api.one
-    @api.constrains('lot_id')
+    @api.constrains('lot_id', 'quantity')
     def _check_quantity_lot(self):
         obj_lot = self.env['stock.production.lot']
         lot_id = obj_lot.search([('id', '=', self.lot_id.id),
