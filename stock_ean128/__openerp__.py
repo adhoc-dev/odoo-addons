@@ -25,7 +25,7 @@ Stock EAN128
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }
