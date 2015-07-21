@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from openerp import fields, api, models
+from openerp import fields, api, models, _
+from openerp.exceptions import Warning
 
 
 class account_voucher(models.Model):
@@ -9,13 +10,7 @@ class account_voucher(models.Model):
         'account.move.line',
         compute='_get_tax_move_lines',
         string='Tax Journal Items',
-        # related='move_id.line_id',
-        # domain=[('tax_code_id', '!=', False)],
         )
-    # tax_move_line_ids = fields.One2many(
-        # 'account.move.line',
-        # domain=[('tax_code_id', '!=', False)],
-        # )
 
     @api.one
     @api.depends(
@@ -25,3 +20,16 @@ class account_voucher(models.Model):
     def _get_tax_move_lines(self):
         self.tax_move_line_ids = self.move_id.line_id.filtered(
             lambda r: r.tax_code_id and r.tax_amount)
+
+    @api.multi
+    def cancel_voucher(self):
+        """
+        We search all move lines that has been settled for vouchers and, after
+        unreconcile, we try to unlink them. If one tax settlement has been paid
+        or has been settled on a settlement, then won't allow you to cancel the
+        voucher.
+        """
+        tax_settlement_moves = self.mapped('move_ids.tax_settlement_move_id')
+        res = super(account_voucher, self).cancel_voucher()
+        tax_settlement_moves.unlink()
+        return res
