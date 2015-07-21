@@ -11,7 +11,6 @@ class task(models.Model):
 
     @api.multi
     def action_open_task(self):
-        print 'context', self._context
         return {
             'name': _('User Story'),
             'view_type': 'form',

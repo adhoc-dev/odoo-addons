@@ -177,7 +177,6 @@ class partner(models.Model):
 
                 interest_data = account_account_obj.get_active_interest_data(
                     cr, uid, [line.account_id.id], date_from, date_to, context=context)
-                print 'interest_data', interest_data
                 if line.account_id.id in interest_data:
                     interest_rate = interest_data[line.account_id.id].interest_rate
                     account_id = interest_data[
@@ -196,48 +195,7 @@ class partner(models.Model):
 
                         for partial_reconcile_id in line.reconcile_partial_id.line_partial_ids:
                             partial_reconcile_ids.append(partial_reconcile_id.id)
-                        # partial_reconcile_ids += line.reconcile_partial_id.line_partial_ids
-                        print partial_reconcile_ids
-    # We replace the original way it calculate when partial reconliation
-                    # if line.reconcile:
-                    #     print 'aaaaaaaaaaaaaa'
-                    #     print line.ref
-                    #     move_line_all_ids =  account_move_line_obj.search(cr, uid, [
-                    # Removed becasuse we have add the filter of reconciled = False
-                    # '|',
-                    # ('reconcile_id.name', '=', line.reconcile),
-                    #                                                                 ('reconcile_partial_id.name', '=', line.reconcile),
-                    #                                                                 ('id', '!=', line.id),
-                    # ('date', '<', date_to),
-                    #                                                                 ], order='date')
-                    #     print move_line_all_ids
 
-                    # for line_all in account_move_line_obj.browse(cr, uid,
-                    # move_line_all_ids, context=context):
-
-                    #         if line_all.date <= date_start:
-                    #             balance -= line_all.credit
-                    #         else:
-                    #             interest_res = self.calc_interests(cr, uid, date_start, line_all.date, balance, interest_rate)
-
-                    #             comment = self._prepare_description(cr, uid, line, date_start, line_all.date, balance, interest_rate)
-                    #             values[len(values)] = [comment, round(interest_res,2), line.move_id.id]
-
-                    #             interest += interest_res
-                    #             balance -= line_all.credit
-                    #             date_start = line_all.date
-
-                    #     if round(balance,2) > 0:
-                    #         interest_res = self.calc_interests(cr, uid, date_start, date_to, balance, interest_rate)
-                    #         comment = self._prepare_description(cr, uid, line, date_start, date_to, balance, interest_rate)
-                    #         values[len(values)] = [comment, round(interest_res,2), line.move_id.id]
-                    #         interest += interest_res
-
-                    # else:
-                    #     interest_res = self.calc_interests(cr, uid, date_start, date_to, balance, interest_rate)
-                    #     comment = self._prepare_description(cr, uid, line, date_start, date_to, balance, interest_rate)
-                    #     values[len(values)] = [comment, round(interest_res,2), line.move_id.id]
-                    #     interest += interest_res
                     interest_res = self.calc_interests(
                         cr, uid, date_start, date_to, balance, interest_rate)
                     comment = self._prepare_description(

@@ -108,7 +108,6 @@ class account_voucher_receipt(models.Model):
             check_ids.extend(voucher.received_third_check_ids.ids)
             check_ids.extend(voucher.issued_check_ids.ids)
             check_ids.extend(voucher.delivered_third_check_ids.ids)
-        print 'check_ids', check_ids
         self.check_ids = check_ids
 
     @api.one

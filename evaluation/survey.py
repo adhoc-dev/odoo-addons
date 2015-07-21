@@ -66,7 +66,6 @@ class survey_question(osv.Model):
         elif question.type == 'matrix' and question.score_calc_method == 'ranges':
             scores = [score_range.score for score_range in question.score_ranges_ids]
             max_score = max(scores if scores else [0])
-        print 'Changing max_score', self.id, self.survey_id.id
         self.max_score = max_score
 
     
@@ -170,7 +169,6 @@ class survey_user_input(osv.Model):
                 computed_score = computed_score * 100.0 / user_input.survey_id.max_score
             else: 
                 computed_score = False
-            print 'User Input Computed Score', computed_score
             self.write(cr, uid, user_input.id, {'score': computed_score})
         return True
 
@@ -202,7 +200,6 @@ class survey_user_input(osv.Model):
         if vals.get('state')=='done' and 'score' not in vals:
             if isinstance(ids, (int, long)):
                 ids = [ids]            
-            print 'cuidado!!!!!'
             self.compute_score(cr, uid, ids, context=context)
         return write_res
 
@@ -468,6 +465,5 @@ class survey_survey(osv.Model):
         user_input_obj = self.pool['survey.user_input']
         total_user_input_ids = user_input_obj.search(
             cr, uid, [('survey_id', 'in', ids)], order='id', context=context)
-        print 'len total_user_input_ids', len(total_user_input_ids)
         user_input_obj.compute_score(cr, uid, total_user_input_ids, context=context)
         return total_user_input_ids

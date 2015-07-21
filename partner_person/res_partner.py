@@ -108,7 +108,6 @@ class res_partner(models.Model):
     @api.onchange('firstname', 'lastname')
     @api.constrains('firstname', 'lastname')
     def build_name(self):
-        print '111111'
         self.name = '%s %s' % (
             self.lastname or '', self.firstname or '')
 

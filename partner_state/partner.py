@@ -84,7 +84,6 @@ class res_partner(models.Model):
     def check_partner_approve(self):
         user_can_approve_partners = self.env[
             'res.users'].has_group('partner_state.approve_partners')
-        print 'user_can_approve_partners', user_can_approve_partners
         if not user_can_approve_partners:
             raise Warning(
                 _("User can't approve partners, \
