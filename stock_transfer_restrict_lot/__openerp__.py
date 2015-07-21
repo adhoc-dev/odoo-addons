@@ -18,6 +18,7 @@ Stock Transfer Restrict Lot
         'stock',
     ],
     'data': [
+        'stock_view.xml'
     ],
     'demo': [
     ],
