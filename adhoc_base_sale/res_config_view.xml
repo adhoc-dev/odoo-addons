@@ -20,55 +20,6 @@
         </group>
 
         <group string="Sales">
-            <label for="id" string="Portal and Distributor"/>
-            <div name="sale_features">
-                <div name='module_sales_to_sale_order'>
-                    <field name="module_sales_to_sale_order"
-                        class="oe_inline"/>
-                    <label for="module_sales_to_sale_order"/>
-                </div>                        
-                <div name='module_portal_sale_distributor'>
-                    <field name="module_portal_sale_distributor"
-                        class="oe_inline"/>
-                    <label for="module_portal_sale_distributor"/>
-                </div>                            
-                <div name='module_sale_dummy_confirmation'>
-                    <field name="module_sale_dummy_confirmation"
-                        class="oe_inline"/>
-                    <label for="module_sale_dummy_confirmation"/>
-                </div>                                
-            </div>  
-            <label for="id" string="Prices and Pricelist"/>
-            <div name="sale_features">  
-                <div name='module_sale_prices_update'>
-                    <field name="module_sale_prices_update"
-                        class="oe_inline"/>
-                    <label for="module_sale_prices_update"/>
-                </div>            
-                <div name='module_sale_order_validity'>
-                    <field name="module_sale_order_validity"
-                        class="oe_inline"/>
-                    <label for="module_sale_order_validity"/>
-                </div>
-                <div name='module_sale_pricelist_discount'>
-                    <field name="module_sale_pricelist_discount"
-                        class="oe_inline"/>
-                    <label for="module_sale_pricelist_discount"/>
-                </div>
-            </div>                
-            <label for="id" string="Security"/>
-            <div name="sale_features">
-                <div name='module_sale_restrict_partners'>
-                    <field name="module_sale_restrict_partners"
-                        class="oe_inline"/>
-                    <label for="module_sale_restrict_partners"/>
-                </div>
-                <div name='module_price_security'>
-                    <field name="module_price_security"
-                        class="oe_inline"/>
-                    <label for="module_price_security"/>
-                </div>
-            </div>  
             <label for="id" string="Common Features"/>
             <div name="sale_features">  
                 <div name='module_sale_add_products_wizard'>
@@ -102,6 +53,14 @@
                     <label for="module_sale_usability_extension"/>
                 </div>
             </div>
+            <label for="id" string="Prices and Pricelist"/>
+            <div name="sale_features">  
+                <div name='module_sale_prices_update'>
+                    <field name="module_sale_prices_update"
+                        class="oe_inline"/>
+                    <label for="module_sale_prices_update"/>
+                </div>            
+            </div>
             <label for="id" string="Advanced Features"/>
             <div name="sale_advanced_features">
                 <div name='module_sale_multiple_invoice'>
@@ -115,6 +74,50 @@
                     <label for="module_sale_other_product_description"/>
                 </div>
             </div>
+            <label for="id" string="Prices and Pricelist"/>
+            <div name="sale_features">  
+                <div name='module_sale_pricelist_discount'>
+                    <field name="module_sale_pricelist_discount"
+                        class="oe_inline"/>
+                    <label for="module_sale_pricelist_discount"/>
+                </div>
+                <div name='module_sale_order_validity'>
+                    <field name="module_sale_order_validity"
+                        class="oe_inline"/>
+                    <label for="module_sale_order_validity"/>
+                </div>
+            </div>                
+            <label for="id" string="Security"/>
+            <div name="sale_features">
+                <div name='module_sale_restrict_partners'>
+                    <field name="module_sale_restrict_partners"
+                        class="oe_inline"/>
+                    <label for="module_sale_restrict_partners"/>
+                </div>
+                <div name='module_price_security'>
+                    <field name="module_price_security"
+                        class="oe_inline"/>
+                    <label for="module_price_security"/>
+                </div>
+            </div>  
+            <label for="id" string="Portal and Distributor"/>
+            <div name="sale_features">
+                <div name='module_sales_to_sale_order'>
+                    <field name="module_sales_to_sale_order"
+                        class="oe_inline"/>
+                    <label for="module_sales_to_sale_order"/>
+                </div>                        
+                <div name='module_portal_sale_distributor'>
+                    <field name="module_portal_sale_distributor"
+                        class="oe_inline"/>
+                    <label for="module_portal_sale_distributor"/>
+                </div>                            
+                <div name='module_sale_dummy_confirmation'>
+                    <field name="module_sale_dummy_confirmation"
+                        class="oe_inline"/>
+                    <label for="module_sale_dummy_confirmation"/>
+                </div>                                
+            </div>  
             <label for="id" string="Contracts and projects"/>
             <div name="sale_contracts">
                 <div name='module_sale_contract_restrict_domain'>

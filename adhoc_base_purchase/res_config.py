@@ -29,3 +29,9 @@ class adhoc_base_configuration(models.TransientModel):
     module_purchase_line_defaults = fields.Boolean(
         'Set defaults values on purchase orders in order to facilitate file import.',
         help="""Installs the purchase_line_defaults.""")
+    module_partner_products_shortcut = fields.Boolean(
+        'Adds a shortcut on supplier partner form to the products supplied by this partner.',
+        help="""Installs the partner_products_shortcut module.""")
+    module_partner_products_shortcut = fields.Boolean(
+        'Adds a shortcut on supplier partner form to the products supplied by this partner.',
+        help="""Installs the partner_products_shortcut module.""")

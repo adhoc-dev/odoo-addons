@@ -10,25 +10,25 @@ class adhoc_base_configuration(models.TransientModel):
     # Product modules
     module_product_share_father_son = fields.Boolean(
         'Share products between fother and son companies',
-        help="""Installs the product_share_father_son module.""")
+        help="""Installs the product_share_father_son module: It allowes to see products with company set as a father company.""")
     module_product_template_search_by_ean13 = fields.Boolean(
-        'Allow search by ean13 on product template',
-        help="""Installs the product_template_search_by_ean13 module.""")
+        'Product Search by ean13 on product template',
+        help="""Installs the product_template_search_by_ean13 module: It allows to search products by ean13 in Product Tree view""")
     module_product_pack = fields.Boolean(
         'Mange product packs',
-        help="""Installs the product_pack module.""")
+        help="""Installs the product_pack module: I allows to set product combos with prices based on products components or special prices for the combo""")
     module_product_price_currency = fields.Boolean(
         'Manage different currencies on product sale price',
         help="""Installs the product_price_currency module.""")
     module_product_dimensions = fields.Boolean(
-        'Manage product dimmensions',
-        help="""Installs the product_dimensions module.""")
+        'Manage product  logistic dimmensions',
+        help="""Installs the product_dimensions moduele: Add dimensions (length, width and height) products.""")
     module_product_supplier_pricelist = fields.Boolean(
         'Mange easier supplier pricelist',
-        help="""Installs the product_supplier_pricelist module.""")
+        help="""Installs the product_supplier_pricelist module: Add sql constraint to restrict: 1. That you can only add one supplier to a product per company 2. That you can add olny one record of same quantity for a supplier pricelist""")
     module_product_unique = fields.Boolean(
         'Validate product unicity per company on ean13 and interal reference fields',
-        help="""Installs the product_unique module.""")
+        help="""Installs the product_unique module: It forbides ean13 an internal reference duplications .""")
     module_product_historical_price = fields.Boolean(
         'Historical price for product in a product tab',
         help="""Installs the product_historical_price module.""")
@@ -45,23 +45,20 @@ class adhoc_base_configuration(models.TransientModel):
         'Make Some Improovements in Variants and Attributes management',
         help="""Installs the product_variant_imp module.""")
     module_product_prices_update = fields.Boolean(
-        'Update prices for the products',
-        help="""Installs the product_prices_update.""")
+        'Update product prices',
+        help="""Installs the product_prices_update: It allows to update selected products prices at once by applying a calculation rule.""")
     module_product_catalog_aeroo_report = fields.Boolean(
         'Report Product catalog.',
         help="""Installs the product_catalog_aeroo_report module.""")
     module_product_customer_price = fields.Boolean(
-        'Product Costumer Prices.',
+        'Allow to define different prices for different Customers.',
         help="""Installs the product_customer_price module.""")
     module_product_website_categ_search = fields.Boolean(
         'Product Search by Website Category.',
-        help="""Installs the product_website_categ_search module.""")
+        help="""Installs the product_website_categ_search module: It allows to search products by Website Category in Product Tree view""")
     module_product_variant_csv_import = fields.Boolean(
         'Add a menu entry in *Sales > Configuration > Product Categories and attributes > Product Template CSV Import".',
         help="""Installs the product_variant_csv_import module.""")
-    module_partner_products_shortcut = fields.Boolean(
-        'Adds a shortcut on supplier partner form to the products supplied by this partner.',
-        help="""Installs the partner_products_shortcut module.""")
     module_product_no_translation = fields.Boolean(
         'Set the translatable fields of the product object (name,descriptions) to non-translatable fields.',
         help="""Installs the product_no_translation module.""")
@@ -70,4 +67,4 @@ class adhoc_base_configuration(models.TransientModel):
         help="""Installs the partner_samples module.""")
     module_product_reference_required = fields.Boolean(
         'Add required in field reference.',
-        help="""Installs the product_reference_required.""")
+        help="""Installs the product_reference_required: It makes Reference a mandatory field""")
