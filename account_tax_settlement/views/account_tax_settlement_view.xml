@@ -1,14 +1,29 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <openerp>
 	<data>
+        <record model='ir.ui.view' id='account_tax_settlement_search'>
+            <field name='name'>Account Tax Settlement Search</field> 
+            <field name="model">account.tax.settlement</field>
+            <field name='arch' type='xml'>
+                <search string="Tax Settlement">
+                    <field name="journal_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="state"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Journal" domain="[]" context="{'group_by' : 'journal_id'}"/>
+                        <filter string="Company" domain="[]" context="{'group_by' : 'company_id'}" groups="base.group_multi_company"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
         <record model='ir.ui.view' id='account_tax_settlement_tree'>
             <field name='name'>Account Tax Settlement</field> 
             <field name="model">account.tax.settlement</field>
             <field name='arch' type='xml'>
                 <tree colors="blue:state == 'draft';gray:state == 'cancel'" string="Tax Settlement">
                     <field name="journal_id"/>
-                    <field name="fiscalyear_id"/>
-                    <!-- <field name="period_id"/> -->
+                    <field name="name"/>
                     <field name="company_id" groups="base.group_multi_company"/>
                     <field name="state"/>
                 </tree>
