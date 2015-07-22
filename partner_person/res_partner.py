@@ -65,12 +65,12 @@ class res_partner(models.Model):
         )
     # TODO analizar si mejor depende del modulo de la oca partner_firstname
     # y que estos campos vengan de ahi
-    firstname = fields.Char(
-        string='First Name'
-        )
-    lastname = fields.Char(
-        string='Last Name'
-        )
+    # firstname = fields.Char(
+    #     string='First Name'
+    #     )
+    # lastname = fields.Char(
+    #     string='Last Name'
+    #     )
     national_identity = fields.Char(
         string='National Identity'
         )
