@@ -124,9 +124,9 @@ class res_partner(models.Model):
         )
     husband_id = fields.Many2one(
         'res.partner',
-        compute='_get_husband',
-        inverse='_set_wife',
-        search='_search_husband',
+        # compute='_get_husband',
+        # inverse='_set_wife',
+        # search='_search_husband',
         string='Husband',
         domain=[('sex', '=', 'M'), ('is_company', '=', False)],
         context={'default_sex': 'M', 'is_person': True}
