@@ -11,10 +11,11 @@
                     <field name="date"/>
                     <field name="type"/>
                     <field name="tax_withholding_id"/>
+                    <field name="partner_id"/>
                     <field name="company_id" groups="base.group_multi_company"/>
                     <group expand="0" string="Group By...">
                         <filter string="Type" context="{'group_by':'type'}"/>
-                        <filter string="Withholding Tax" context="{'group_by':'tax_withholding_id'}"/>                        
+                        <filter string="Withholding Tax" context="{'group_by':'tax_withholding_id'}"/>           
                     </group>
                 </search>
             </field>
@@ -28,6 +29,7 @@
                     <field name="date"/>
                     <field name="type"/>
                     <field name="tax_withholding_id"/>
+                    <field name="partner_id"/>
                     <field name="company_id" groups="base.group_multi_company"/>
                     <field name="amount" sum="Total"/>
                 </tree>
@@ -39,9 +41,10 @@
             <field name="model">account.voucher.withholding</field>
             <field name="arch" type="xml"> 
                 <form string="Withholding Vouchers">
+                    <header>
+                    </header>
                     <sheet string="Withholding Vouchers">
                         <field name="type" invisible="1"/>
-                        <field name="settlement_account_move_id" invisible="1"/>
                         <h1>
                             <field name="name" placeholder="Number..."/>
                         </h1>
@@ -49,6 +52,8 @@
                             <group>
                                 <field name="tax_withholding_id" domain="[('type_tax_use','in',(type, 'all'))]"/>
                                 <field name="amount"/>
+                                <field name="move_line_id"/>
+                                <field name="partner_id"/>
                             </group>
                             <group>
                                 <field name="date"/>

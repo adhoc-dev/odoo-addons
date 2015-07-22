@@ -37,6 +37,7 @@
 	            <form string="Tax Settlement">
                     <header>
                         <button name="action_present" string="Present" states="draft" type="object" class="oe_highlight"/>
+                        <button name="settlement_pay" type="object" string="Pay" states="presented" class="oe_highlight" groups="base.group_user"/>
                         <button name="action_cancel" string="Cancel" states="draft,presented,done" type="object"/>
                         <button name="action_to_draft" string="To Draft" states="cancel" type="object"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,presented"/>

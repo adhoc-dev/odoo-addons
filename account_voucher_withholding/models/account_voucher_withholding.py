@@ -48,12 +48,16 @@ class account_voucher_withholding(models.Model):
         required=True,
         digits=dp.get_precision('Account'),
         )
-    settlement_account_move_id = fields.Many2one(
-        'account.move',
-        'Settlement Account Move',
+    move_line_id = fields.Many2one(
+        'account.move.line',
+        'Journal Item',
         readonly=True,
         )
     # Related fields
+    partner_id = fields.Many2one(
+        related='voucher_id.partner_id',
+        store=True, readonly=True,
+        )
     company_id = fields.Many2one(
         'res.company',
         related='voucher_id.company_id',

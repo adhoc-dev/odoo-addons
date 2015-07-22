@@ -25,18 +25,20 @@
                     <field name="name"/>
                     <field name="ref"/>
                     <field name="partner_id"/>
-                    <field name="account_id"/>
+                    <!-- <field name="account_id"/> -->
                     <!-- <field name="move_id"/> -->
-                    <field name="debit" sum="Total Debit"/>
-                    <field name="credit" sum="Total Credit"/>
+<!--                     <field name="debit" sum="Total Debit"/>
+                    <field name="credit" sum="Total Credit"/> -->
                     <!-- <field name="date_maturity"/> -->
                     <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
                     <field name="tax_code_id"/>
                     <field name="tax_amount" sum="Total Tax"/>
-                    <field name="tax_settlement_move_id"/>
+                    <field name="tax_state"/>
+                    <!-- <field name="tax_settlement_move_id"/> -->
                     <!-- <field name="reconcile_ref" invisible="1"/> -->
                     <field name="state" invisible="1"/>
-                    <button name="make_tax_settlement" icon="gtk-go-forward" string="Settle" help="Make a move to settle current tax line" attrs="{'invisible':[('tax_settlement_move_id', '!=', False)]}" type="object"/>
+                    <button name="make_tax_settlement" icon="gtk-go-forward" string="Settle" help="Make a move to settle current tax line" attrs="{'invisible':[('tax_state', '!=', 'to_settle')]}" type="object"/>
+                    <button name="pay_tax_settlement" icon="terp-dolar" string="Pay" attrs="{'invisible':[('tax_state', '!=', 'to_pay')]}" type="object"/>
                 </tree>         
             </field>
         </record>

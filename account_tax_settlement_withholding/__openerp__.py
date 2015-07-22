@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Tax Settlement - Voucher Integration',
+    'name': 'Tax Settlement - Voucher Withholding Integration',
     'version': '1.0',
     'category': 'Accounting',
     'sequence': 14,
     'summary': '',
     'description': """
-Tax Settlement - Voucher Integration
-====================================
-Add pay button on tax settlement
-Add settlement moves on voucher
+Tax Settlement - Voucher Withholding Integration
+================================================
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
@@ -17,12 +15,10 @@ Add settlement moves on voucher
     ],
     'depends': [
         'account_tax_settlement',
-        'account_voucher',
+        'account_voucher_withholding',
     ],
     'data': [
-        'views/account_voucher_pay_settlement.xml',
-        'views/account_voucher_view.xml',
-        'views/account_move_line_view.xml',
+        'views/account_voucher_withholding_view.xml',
     ],
     'demo': [
     ],

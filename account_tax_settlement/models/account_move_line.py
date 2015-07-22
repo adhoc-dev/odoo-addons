@@ -10,11 +10,41 @@ class account_move_line(models.Model):
         'account.tax.settlement.detail',
         'Tax Settlement Detail',
         )
+    tax_state = fields.Selection([
+        ('to_settle', 'To Settle'),
+        ('to_pay', 'To Pay'),
+        ('paid', 'Paid'),
+        ],
+        'Tax State',
+        compute='_get_tax_state',
+        # store=True,
+        )
     tax_settlement_move_id = fields.Many2one(
         'account.move',
         'Tax Settlement Move',
         help='Move where this tax has been settled',
         )
+
+    @api.one
+    @api.depends(
+        'tax_code_id',
+        # 'tax_settlement_move_id',
+        'tax_settlement_move_id.payable_residual',
+        )
+    def _get_tax_state(self):
+        if self.tax_code_id:
+            tax_state = 'to_settle'
+            if self.tax_settlement_move_id:
+                tax_state = 'to_pay'
+                if self.tax_settlement_move_id.payable_residual == 0.0:
+                    tax_state = 'paid'
+            self.tax_state = tax_state
+
+    @api.multi
+    def pay_tax_settlement(self):
+        self.ensure_one()
+        return self.tax_settlement_move_id.with_context(
+            from_settlement=True).create_voucher('payment')
 
     @api.multi
     def make_tax_settlement(self):

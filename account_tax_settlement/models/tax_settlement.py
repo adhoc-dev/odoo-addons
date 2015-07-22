@@ -81,6 +81,12 @@ class account_tax_settlement_detail(models.Model):
             self.move_line_ids.mapped('debit'))
 
     @api.multi
+    def settlement_pay(self):
+        self.ensure_one()
+        return self.move_id.with_context(
+            from_settlement=True).create_voucher('payment')
+
+    @api.multi
     def prepare_line_values(self):
         self.ensure_one()
         res = []
