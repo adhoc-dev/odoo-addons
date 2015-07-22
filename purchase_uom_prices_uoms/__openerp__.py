@@ -16,12 +16,11 @@ Purchase UOM Prices
 * Change domain on purchase order lines so that only defined uoms can be choosen.
 
 """,
-    'init_xml': [],
     'installable': True,
     'license': 'AGPL-3',
     'name': 'Purchase UOM Prices',
     'test': [],
-    'update_xml': [
+    'data': [
     ],
     'version': 'No version',
     'website': 'www.ingadhoc.com'}

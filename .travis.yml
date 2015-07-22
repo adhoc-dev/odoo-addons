@@ -1,0 +1,65 @@
+addons:
+  apt:
+    packages:
+      - expect-dev  # provides unbuffer utility
+      - python-lxml # because pip installation is slow
+      # odoo-argentina fe
+      - python-dev
+      - swig
+      - libffi-dev
+      - libssl-dev
+      - python-m2crypto
+      - python-httplib2
+
+language: python
+
+# new options suggested by Alexandre Fayolle
+# we need sudo for apt-get install
+# sudo: false
+cache: pip
+
+python:
+  - "2.7"
+
+env:
+  # TODO enable lint check
+  - VERSION="8.0" LINT_CHECK="0"
+  - VERSION="8.0" ODOO_REPO="odoo/odoo" LINT_CHECK="0"
+
+virtualenv:
+  system_site_packages: true
+
+install:
+  # aeroo reports
+  # we install libcups2-dev here because it is not on travis whitelist so it is not installable by addons/apt/packages
+  # you can check if available on https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
+  - git clone https://github.com/aeroo/aeroo_reports.git ${HOME}/aeroo_reports
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq libcups2-dev
+  - pip install git+https://github.com/aeroo/aeroolib.git@master pycups==1.9.68
+
+  # odoo argentina (TODO try to remove dependency, only interest module and move invoice)
+  - git clone https://github.com/ingadhoc/odoo-argentina.git ${HOME}/odoo-argentina
+  - pip install geopy==0.95.1 BeautifulSoup 
+
+  # odoo argentina fe
+  - pip install pyOpenSSL suds httplib2 pysimplesoap==1.08.8 m2crypto fpdf dbf Pillow
+  # install pyafipws after others dependencies because dependency erro
+  - pip install pyafipws
+
+  # for odoo pdf reports (tested on sale for eg.)
+  - wget http://download.gna.org/wkhtmltopdf/0.12/0.12.1/wkhtmltox-0.12.1_linux-precise-amd64.deb
+  - sudo dpkg -i wkhtmltox-0.12.1_linux-precise-amd64.deb
+
+  # repository requirements
+  - pip install -r requirements.txt
+
+  - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
+  - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
+  - travis_install_nightly
+
+script:
+  - travis_run_tests
+
+after_success:
+  coveralls

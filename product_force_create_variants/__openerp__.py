@@ -8,12 +8,11 @@
 Product Force Create Variants
 =============================
 """,
-    'init_xml': [],
     'installable': True,
     'license': 'AGPL-3',
     'name': u'Product Force Create Variants',
     'test': [],
-    'update_xml': [
+    'data': [
         'wizard/product_force_create_variant_view.xml',
     ],
     'website': 'www.ingadhoc.com'}

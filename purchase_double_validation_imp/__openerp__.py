@@ -14,12 +14,11 @@ Purchase double validation improovements
 ========================================
 Adds a button for confirmed orders so that you can print the purchase order. 
 """,
-    'init_xml': [],
     'installable': True,
     'license': 'AGPL-3',
     'name': u'Purchase Double Validation Improovements',
     'test': [],
-    'update_xml': [
+    'data': [
         'view/purchase_view.xml',
       ],
     'version': 'No version',

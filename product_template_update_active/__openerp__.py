@@ -12,12 +12,11 @@ Update active field of product template in this way:
 * If any related product product to this template has active = True, set True
 * If all related product product to this template has active = False, set False
 """,
-    'init_xml': [],
     'installable': True,
     'license': 'AGPL-3',
     'name': u'Product Template Update Active Field',
     'test': [],
-    'update_xml': [
+    'data': [
         'wizard/product_template_update_active_field_view.xml',
     ],
     'website': 'www.ingadhoc.com'}

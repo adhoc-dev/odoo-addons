@@ -2636,11 +2636,8 @@ if __name__ == '__main__':
     zopeCompatibilityHack()
     from pprint import pprint
     for url in urls:
-        print url
-        print
         result = parse(url)
         pprint(result)
-        print
 
 #REVISION HISTORY
 #1.0 - 9/27/2002 - MAP - fixed namespace processing on prefixed RSS 2.0 elements,

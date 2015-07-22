@@ -14,7 +14,7 @@ Product Stock Location
     'images': [
     ],
     'depends': [
-        'product',
+        'stock',
     ],
     'data': [
         'product_view.xml',

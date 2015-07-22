@@ -9,11 +9,10 @@ Account Invoice Prices Update
 =============================
 
 ''',
-    'init_xml': [],
     'installable': True,
     'name': 'Account Invoice Prices Update',
     'test': [],
-    'update_xml': [
+    'data': [
         'wizard/update_prices_wizard_view.xml',
         'views/invoice_view.xml',
     ],

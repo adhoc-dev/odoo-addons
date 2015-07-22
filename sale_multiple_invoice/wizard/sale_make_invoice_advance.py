@@ -49,13 +49,10 @@ class sale_advance_payment_inv(osv.osv_memory):
     @api.onchange('invoice_qty')
     def onchange_invoice_qty(self):
         active_id = self._context['active_id']
-        print 'active_id', active_id
         if not active_id or not self.invoice_qty:
             return False
         amount_untaxed = self.env['sale.order'].search(
             [('id', '=', active_id)]).amount_untaxed
-        print 'amount_untaxed', amount_untaxed
-        print 'self.invoice_qty', self.invoice_qty
         self.amount = (amount_untaxed / self.invoice_qty)
 
     def create_invoices(self, cr, uid, ids, context=None):

@@ -8,7 +8,6 @@
 Product Template Search by EAN 13
 ==================================
 """,
-    'init_xml': [],
     'installable': True,
     'license': 'AGPL-3',
     'name': 'Product Template Search by EAN 13',

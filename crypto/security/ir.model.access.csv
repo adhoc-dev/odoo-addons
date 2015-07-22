@@ -1,5 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_crypto_certificate_manager,crypto.certificate.manager,model_crypto_certificate,base.group_system,1,1,1,1
-access_crypto_certificate_user,crypto.certificate.user,model_crypto_certificate,,1,0,0,0
-access_crypto_pairkey_manager,crypto.pairkey.manager,model_crypto_pairkey,base.group_system,1,1,1,1
-access_crypto_pairkey_user,crypto.pairkey.user,model_crypto_pairkey,,1,0,0,0

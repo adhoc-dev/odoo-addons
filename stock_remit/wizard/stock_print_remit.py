@@ -23,7 +23,6 @@ class stock_print_remit(osv.osv_memory):
         if isinstance(picking, list):
             picking = picking[0]
 
-        print 'picking', picking
         if not picking.remit_number:
             picking_obj.set_remit_number(
                 cr, uid, picking_id, context=context)
