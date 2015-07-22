@@ -33,16 +33,12 @@ class account_voucher(models.Model):
             self, voucher_id, move_id, company_currency, current_currency):
         res = super(account_voucher, self).first_move_line_get(
             voucher_id, move_id, company_currency, current_currency)
-        print 'bbbbbbbbbbbbbbbbbbbb'
-        print 'bbbbbbbbbbbbbbbbbbbb'
         return res
 
     @api.model
     def voucher_move_line_create(
             self, voucher_id, line_total, move_id, company_currency,
             current_currency):
-        print 'aaaaaaaaaaaaaaaaaaaa'
-        print 'aaaaaaaaaaaaaaaaaaaa'
         res = super(account_voucher, self).voucher_move_line_create(
             voucher_id, line_total, move_id, company_currency,
             current_currency)

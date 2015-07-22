@@ -8,12 +8,11 @@
     ],
     'depends': ['help_doc','portal'],
     'description': 'Autoinstallable module for documentation with portal module installed',
-    'init_xml': [],
     'installable': True,
     'license': 'AGPL-3',
     'name': 'Odoo Portal Help Documentation',
     'test': [],
-    'update_xml': [
+    'data': [
         'menu_item.xml',
         ],
     'version': 'No version',

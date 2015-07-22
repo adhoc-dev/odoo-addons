@@ -8,12 +8,11 @@
     'demo_xml': [],
     'depends': [u'product'],
     'description': u'Product Customer Price',
-    'init_xml': [],
     'installable': True,
     'license': 'AGPL-3',
     'name': u'Product Customer Price',
     'test': [],
-    'update_xml': [
+    'data': [
         'view/product_view.xml',
         'security/ir.model.access.csv', 
       ],

@@ -14,7 +14,7 @@ Product Salesman Group
     'images': [
     ],
     'depends': [
-        'product',
+        'sale',
     ],
     'data': [
         'product_view.xml',

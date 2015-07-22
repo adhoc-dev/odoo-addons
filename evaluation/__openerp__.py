@@ -10,7 +10,6 @@
     'description': u"""
 Extends the functionality of the survey module in order to make assessments that are corrected automatically
 """,
-    'init_xml': [],
     'installable': True,
     'license': 'AGPL-3',
     'name': u'Academic Evaluations',

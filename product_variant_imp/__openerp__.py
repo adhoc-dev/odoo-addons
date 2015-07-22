@@ -16,8 +16,7 @@ Para cada atributo se debe marcar si se quiere incluirlo o no en el nombre (por 
 Cada vez que marques un atributo y guardes, es probable que tarde un poquito porque a todos los productos que usen ese atributo le va a crear un mobre con eso. 
 
 """,
-    'init_xml': [],
-    'installable': True,
+    'installable': False,
     'license': 'AGPL-3',
     'name': 'Product Variant Improvements',
     'test': [],

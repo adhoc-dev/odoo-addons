@@ -27,7 +27,6 @@ class account_invoice(models.Model):
             rec_account = p.property_account_receivable
             pay_account = p.property_account_payable
             if company_id:
-                print 'p.property_account_receivable ', p.property_account_receivable
                 if p.property_account_receivable.company_id and \
                         p.property_account_receivable.company_id.id != company_id and \
                         p.property_account_payable.company_id and \

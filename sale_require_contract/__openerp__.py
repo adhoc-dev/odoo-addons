@@ -19,6 +19,7 @@ Sale Order Require Contract on Confirmation
     'data': [
     ],
     'demo': [
+        'sale_demo.xml',
     ],
     'test': [
     ],

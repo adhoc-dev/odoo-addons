@@ -175,12 +175,7 @@
                     <field name="module_account_payment_direction"
                         class="oe_inline"/>
                     <label for="module_account_payment_direction"/>
-                </div>            
-                <div name='module_account_create_journal'>
-                    <field name="module_account_create_journal"
-                        class="oe_inline" readonly="1"/>
-                    <label for="module_account_create_journal"/>
-                </div>            
+                </div>                
             </div>    
             <label for="id" string="Security"/>
             <div name="reports">

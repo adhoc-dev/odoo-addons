@@ -79,9 +79,6 @@ class adhoc_base_configuration(models.TransientModel):
     module_account_invoice_adjust = fields.Boolean(
         'Adjust Customer and Suppliers Invoices',
         help="""Installs the account_invoice_adjust module. Allows reconciling between receivable and payable accounts of same partner""")
-    module_account_create_journal = fields.Boolean(
-        'Configure Payment Journals With a Wizard',
-        help="""Installs the account_create_journal module installs checks, payment direction an other modules.""")
     module_account_journal_sequence = fields.Boolean(
         'Add sequence on account journals',
         help="""Installs the account_journal_sequence module.""")

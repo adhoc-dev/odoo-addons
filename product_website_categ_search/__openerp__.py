@@ -11,7 +11,6 @@
 Product Search by Website Category
 ==================================
 """,
-    'init_xml': [],
     'installable': True,
     'license': 'AGPL-3',
     'name': 'Product Search by Website Category',

@@ -16,7 +16,6 @@ Partners User
 Add partner user related fields on partner and add them in partner view. Also adds an action that allow quick creation of user. 
 For using the quick creation you must set a "template user" for the partner, you can do it by context or making this field visible. 
     """,
-    'init_xml': [],
     'license': 'AGPL-3',
     'name': u'Partner User',
     'test': [],

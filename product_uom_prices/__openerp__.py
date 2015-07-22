@@ -17,12 +17,11 @@ Product UOM Prices
 
 Video TUTORIAL: https://www.youtube.com/watch?v=-jGsbEZDOJE
 """,
-    'init_xml': [],
     'installable': True,
     'license': 'AGPL-3',
     'name': 'Product UOM Prices',
     'test': [],
-    'update_xml': [
+    'data': [
         'view/product_view.xml',
         'security/ir.model.access.csv',
     ],

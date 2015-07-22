@@ -22,11 +22,7 @@ class res_company(models.Model):
 
     @api.model
     def _find_company_from_partner(self, partner_id):
-        # print 'seĺf.env.company'
-        print 'self.env.user.company_id', self.env.user.company_id
         company = self.sudo().search([('partner_id', '=', partner_id)], limit=1)
-        print 'partner_id', partner_id
-        print 'company', company
         return company or False
 
     @api.one
