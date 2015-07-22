@@ -40,21 +40,21 @@ class res_partner(models.Model):
         default='potential'
         )
 
-    def write(self, cr, uid, ids, vals, context=None):
-        for partner in self.browse(cr, uid, ids, context=context):
-            if partner.partner_state in ['approved', 'pending']:
-                fields = self.check_fields(
-                    cr, 1, partner.id, 'track', context=context)
-                if fields:
-                    fields_set = set(fields)
-                    vals_set = set(vals)
-                    if fields_set & vals_set:
-                        partner.partner_state_potential()
+    # def write(self, cr, uid, ids, vals, context=None):
+    #     for partner in self.browse(cr, uid, ids, context=context):
+    #         if partner.partner_state in ['approved', 'pending']:
+    #             fields = self.check_fields(
+    #                 cr, 1, partner.id, 'track', context=context)
+    #             if fields:
+    #                 fields_set = set(fields)
+    #                 vals_set = set(vals)
+    #                 if fields_set & vals_set:
+    #                     partner.partner_state_potential()
 
-        ret = super(res_partner, self).write(
-            cr, uid, ids, vals, context=context)
+    #     ret = super(res_partner, self).write(
+    #         cr, uid, ids, vals, context=context)
 
-        return ret
+    #     return ret
 
     @api.multi
     def partner_state_potential(self):
