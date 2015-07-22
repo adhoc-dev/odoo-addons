@@ -63,6 +63,8 @@ class res_partner(models.Model):
     disabled_person = fields.Boolean(
         string='Disabled Person?'
         )
+    # TODO analizar si mejor depende del modulo de la oca partner_firstname
+    # y que estos campos vengan de ahi
     firstname = fields.Char(
         string='First Name'
         )
@@ -77,7 +79,9 @@ class res_partner(models.Model):
         )
     marital_status = fields.Selection(
         [(u'single', u'Single'), (u'married', u'Married'),
-         (u'divorced', u'Divorced')], string='Marital Status')
+         (u'divorced', u'Divorced')],
+        string='Marital Status',
+        )
     birthdate = fields.Date(
         string='Birthdate'
         )
@@ -86,13 +90,15 @@ class res_partner(models.Model):
         string='Father',
         context={'default_is_company': False, 'default_sex': 'M',
                  'from_member': True},
-        domain=[('is_company', '=', False), ('sex', '=', 'M')])
+        domain=[('is_company', '=', False), ('sex', '=', 'M')]
+        )
     mother_id = fields.Many2one(
         'res.partner',
         string='Mother',
         context={'default_is_company': False, 'default_sex': 'F',
                  'from_member': True},
-        domain=[('is_company', '=', False), ('sex', '=', 'F')])
+        domain=[('is_company', '=', False), ('sex', '=', 'F')]
+        )
     sex = fields.Selection(
         [(u'M', u'Male'), (u'F', u'Female')],
         string='Sex',
@@ -228,16 +234,16 @@ class res_partner(models.Model):
     #     self.display_name = self.with_context({}).name_get()
 
 
-    _display_name = lambda self, *args, **kwargs: self._display_name_compute(*args, **kwargs)
+    # _display_name = lambda self, *args, **kwargs: self._display_name_compute(*args, **kwargs)
 
-    _display_name_store_triggers = {
-        'res.partner': (lambda self,cr,uid,ids,context=None: self.search(cr, uid, [('id','child_of',ids)], context=dict(active_test=False)),
-                        ['parent_id', 'is_company', 'name', 'national_identity'], 10)
-        # Se agrega national_identity aqui
-    }
+    # _display_name_store_triggers = {
+    #     'res.partner': (lambda self,cr,uid,ids,context=None: self.search(cr, uid, [('id','child_of',ids)], context=dict(active_test=False)),
+    #                     ['parent_id', 'is_company', 'name', 'national_identity'], 10)
+    #     # Se agrega national_identity aqui
+    # }
 
-    _columns = {
-        'display_name': old_fields.function(_display_name, type='char', string='N2222asdasdadsame', store=_display_name_store_triggers, select=True),
-    }
+    # _columns = {
+    #     'display_name': old_fields.function(_display_name, type='char', string='N2222asdasdadsame', store=_display_name_store_triggers, select=True),
+    # }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
