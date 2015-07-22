@@ -65,12 +65,12 @@ class res_partner(models.Model):
         )
     # TODO analizar si mejor depende del modulo de la oca partner_firstname
     # y que estos campos vengan de ahi
-    # firstname = fields.Char(
-    #     string='First Name'
-    #     )
-    # lastname = fields.Char(
-    #     string='Last Name'
-    #     )
+    firstname = fields.Char(
+        string='First Name'
+        )
+    lastname = fields.Char(
+        string='Last Name'
+        )
     national_identity = fields.Char(
         string='National Identity'
         )
@@ -138,12 +138,12 @@ class res_partner(models.Model):
         context={'default_sex': 'F', 'is_person': True}
         )
 
-    # @api.one
-    # @api.onchange('firstname', 'lastname')
-    # @api.constrains('firstname', 'lastname')
-    # def build_name(self):
-    #     self.name = '%s %s' % (
-    #         self.lastname or '', self.firstname or '')
+    @api.one
+    @api.onchange('firstname', 'lastname')
+    @api.constrains('firstname', 'lastname')
+    def build_name(self):
+        self.name = '%s %s' % (
+            self.lastname or '', self.firstname or '')
 
     def name_get(self, cr, uid, ids, context=None):
         if context is None:
