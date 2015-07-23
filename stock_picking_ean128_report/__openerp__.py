@@ -35,6 +35,7 @@ Stock Picking EAN128 Report
     ],
     'depends': [
         'stock_ean128',
+        'report_aeroo',
     ],
     'data': [
         'wizard/stock_print_remit_view.xml',
