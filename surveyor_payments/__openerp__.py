@@ -29,8 +29,8 @@ Surveyor Payments
 =================
 Allow to register payments on taks and give availability to track them.
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

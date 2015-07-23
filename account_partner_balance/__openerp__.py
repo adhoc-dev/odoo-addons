@@ -30,8 +30,8 @@ Account Partner Balance
 
 Adds a balance field on account.move.line. It also adds this field on account.move.line tree views
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

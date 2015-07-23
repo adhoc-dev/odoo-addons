@@ -27,7 +27,7 @@
 Portal Distributor Account
 ==========================
     """,
-    'author': 'Ingenieria ADHOC',
+    'author': 'ADHOC SA',
     'depends': ['portal'],
     'demo': [
         'portal_demo.xml',

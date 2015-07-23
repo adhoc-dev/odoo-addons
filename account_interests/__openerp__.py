@@ -29,8 +29,8 @@ Interests Management
 ====================
 Se debe setear en las cuentas deseadas (pr ejemplo deudores por venta), los intereses a aplicar
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

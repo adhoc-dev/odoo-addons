@@ -21,7 +21,7 @@
 {
     'name': 'Sale Dummy Confirmation',
     'version': '1.0',
-    'author': 'Ingenieria ADHOC',
+    'author': 'ADHOC SA',
     'website': 'www.ingenieria.com.ar',
     'depends': ["sale_stock"],
     'category': 'Sale Management',
@@ -37,6 +37,5 @@ for some companies.
         'company_view.xml',
         'sale_view.xml',
     ],
-    'active': False,
     'installable': True
 }

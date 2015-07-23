@@ -29,7 +29,7 @@ Sale Order Require Contract on Confirmation
 ===========================================
     """,
     'author':  'ADHOC SA',
-    'website': 'www.ingadhoc.com',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

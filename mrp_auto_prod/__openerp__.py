@@ -40,7 +40,6 @@ Para probar instalar tambien "sale" y "procurement_jit_stock"
     'data': [
         'mrp_view.xml',
     ],
-    'active': False,
     'installable': True,
 }
 

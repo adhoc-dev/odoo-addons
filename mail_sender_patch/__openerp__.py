@@ -22,7 +22,7 @@
     "name": "Mail Sender Patch",
     "version": "1.0",
     'author':  'Ingeniería ADHOC',
-    'website': 'www.ingadhoc.com.ar',
+    'website': 'www.adhoc.com.ar.ar',
     "category": "Accounting",
     "description": """ 
 Mail Sender Patch
@@ -55,6 +55,5 @@ Dejamos algunos posts relacionados a postfix y los commits en cuestion:
     'demo': [],
     'test': [],
     'installable': True,
-    'active': False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

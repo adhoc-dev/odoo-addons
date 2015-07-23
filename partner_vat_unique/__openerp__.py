@@ -27,8 +27,8 @@ Partner VAT Unique
 ==================
 Add a constraint on partners so that vat must be unique except in partner with parent/child relationship.
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

@@ -31,8 +31,8 @@ Adds a button on invoice to allow clean number to cancelled invoices in order to
 * Regenerate the invoice number with new sequence number
 * Delete the invoice
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

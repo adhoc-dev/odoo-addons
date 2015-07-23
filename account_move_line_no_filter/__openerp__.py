@@ -30,7 +30,7 @@ Account move line no filter
 
     """,
     'author':  'ADHOC',
-    'website': 'www.ingadhoc.com',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

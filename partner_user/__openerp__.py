@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {
-    'author': 'Ingenieria ADHOC',
+    'author': 'ADHOC SA',
     'auto_install': False,
     'installable': True,
     'category': 'Tools',
@@ -43,7 +43,7 @@ For using the quick creation you must set a "template user" for the partner, you
         'security/ir.model.access.csv',
     ],
     'version': '1.1',
-    'website': 'www.ingadhoc.com',
+    'website': 'www.adhoc.com.ar',
     'application': True,
 }
 

@@ -29,8 +29,8 @@ Partners Go Social!
 ===================
 This module allows to add social (twitter, facebook and skype) fields to partners.
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

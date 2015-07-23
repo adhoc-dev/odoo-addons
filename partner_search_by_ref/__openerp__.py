@@ -2,13 +2,13 @@
 {
     "name": "Search Partners by Reference",
     "version": "1.0",
-    "author": "Ingenieria ADHOC",
+    "author": "ADHOC SA",
     "category": "",
     "description" : """
 Search Partners by Reference
 ============================
     """,
-    "website": "www.ingadhoc.com",
+    "website": "www.adhoc.com.ar",
     "depends": ["base",
                 ],
     "demo": [

@@ -18,8 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'active': False,
-    'author': 'Ingenieria ADHOC',
+{
+    'author': 'ADHOC SA',
     'category': 'Accounting & Finance',
     'demo_xml': [],
     'depends': ['account_voucher'],
@@ -38,5 +38,5 @@ Specially used for journals that are only used on payments (like retentions)
         'voucher_payment_receipt_view.xml',
     ],
     'version': '0.0',
-    'website': 'www.ingadhoc.com'}
+    'website': 'www.adhoc.com.ar'}
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

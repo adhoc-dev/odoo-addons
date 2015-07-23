@@ -18,8 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'active': False,
-    'author': 'Ingenieria ADHOC.',
+{
+    'author': 'ADHOC SA.',
     'category': 'base.module_category_knowledge_management',
     'demo_xml': [],
     'depends': [

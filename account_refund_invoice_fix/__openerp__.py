@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {   'active': False,
-    'author': 'Ingenieria ADHOC',
+    'author': 'ADHOC SA',
     'category': 'Accounting & Finance',
     'demo_xml': [],
     'depends': ['account'],
@@ -36,5 +36,5 @@ Fix related to invoice refund generation
     'account_invoice_refund_view.xml'
         ],
     'version': '0.0',
-    'website': 'www.ingadhoc.com'}
+    'website': 'www.adhoc.com.ar'}
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

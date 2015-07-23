@@ -18,8 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'active': False,
-    'author': 'Ingenieria ADHOC.',
+{
+    'author': 'ADHOC SA.',
     'category': 'base.module_category_knowledge_management',
     'demo_xml': [],
     'depends': ['product'],
@@ -42,6 +42,6 @@ Cada vez que marques un atributo y guardes, es probable que tarde un poquito por
     'data': [
         'product_view.xml',
     ],
-    'website': 'www.ingadhoc.com'}
+    'website': 'www.adhoc.com.ar'}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

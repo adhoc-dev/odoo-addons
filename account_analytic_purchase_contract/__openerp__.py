@@ -30,8 +30,8 @@ Account Analytic Purchase Contract
 Manage Purchase Contracts and generate Recurring Invoices as you can do in
 sales.
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

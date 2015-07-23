@@ -31,8 +31,8 @@ Project and Analytic Account integration impprovements.
 Adds domains restriction to project task so that only projets that use task and are not in cancelled, done or tempalte state, can be choosen. 
 Adds domains restriction to timesheet records so that only
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com.ar',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar.ar',
     'images': [
     ],
     'depends': [

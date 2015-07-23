@@ -31,8 +31,8 @@ It creates a many2many field between journals and users. If you set users to jou
 Usually used for payroll journals.
 This fields are only seen by users with "access right management"
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

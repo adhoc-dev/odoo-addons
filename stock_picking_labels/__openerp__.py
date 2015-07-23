@@ -29,7 +29,7 @@ Stock Picking Labels
 ====================
     """,
     'author':  'ADHOC',
-    'website': 'www.ingadhoc.com',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

@@ -27,7 +27,7 @@
 Portal Stock Distributor Sale
 =======================
     """,
-    'author': 'Ingenieria ADHOC',
+    'author': 'ADHOC SA',
     'depends': [
         'portal_sale_distributor',
         'portal_stock',

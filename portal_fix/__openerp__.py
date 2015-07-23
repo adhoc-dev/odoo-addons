@@ -30,8 +30,8 @@ Fixes:
 ------
 * When creating portal user from partner, assigne partner company instead of admin company
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

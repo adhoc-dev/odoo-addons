@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {   'active': False,
-    'author': u'Ingenieria ADHOC',
+    'author': u'ADHOC SA',
     'category': u'base.module_category_knowledge_management',
     'demo_xml': [],
     'depends': ['survey',],
@@ -37,6 +37,6 @@ Extends the functionality of the survey module in order to make assessments that
             'security/survey_security.xml',
             ],
     'version': u'1.0',
-    'website': 'www.ingadhoc.com'}
+    'website': 'www.adhoc.com.ar'}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

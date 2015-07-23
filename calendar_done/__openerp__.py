@@ -27,7 +27,7 @@ Mark Calendar Event as Done
 ===========================
     """,
     'author': 'ADHOC SA',
-    'website': 'www.ingadhoc.com',
+    'website': 'www.adhoc.com.ar',
     'depends': ['calendar'],
     'data': [
         'calendar_meeting_view.xml',

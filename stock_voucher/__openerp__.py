@@ -35,7 +35,7 @@ TODO:
 * que el reporte que se carga no sea el mismo del picking, nosotros no lo usamosportque terminamos usando uno de aeroo
     """,
     'author':  'ADHOC',
-    'website': 'www.ingadhoc.com',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

@@ -28,8 +28,8 @@
 Project Tags
 ============
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com.ar',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar.ar',
     'images': [
     ],
     'depends': [

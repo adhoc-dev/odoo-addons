@@ -19,8 +19,7 @@
 #
 ##############################################################################
 {
-    'active': False,
-    'author': u'Ingenieria ADHOC',
+    'author': u'ADHOC SA',
     'category': 'base.module_category_hidden',
     'demo': [],
     'depends': ['base'],
@@ -35,7 +34,7 @@
         'security/ir.model.access.csv',
     ],
     'version': u'8.0.1.1',
-    'website': 'www.ingadhoc.com'
+    'website': 'www.adhoc.com.ar'
 }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

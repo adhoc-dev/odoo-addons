@@ -30,8 +30,8 @@ Account Invoice Commercial
 By default, when creating invoices manually, actual partner is choose, with this module the partner salesperson will be choosen. 
 It also choose the salesperson when creating invoices from stock.picking
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

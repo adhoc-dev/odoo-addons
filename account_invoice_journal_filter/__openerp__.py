@@ -29,8 +29,8 @@ Account Invoice Journal Filter
 ====================
 Agrupar facturas por diarios
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

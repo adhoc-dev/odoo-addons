@@ -29,8 +29,8 @@ Product Unique
 ==============
 Module to made "ean13" and "default_code" fields to be unique for products on the same company.
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

@@ -30,8 +30,8 @@ Sale Restrict Partners
 Users with group "Sale - Own Leads" can only see partners that are assigned to him or partners assigned to no one.
 It also add actual user as default salesman for new partners
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

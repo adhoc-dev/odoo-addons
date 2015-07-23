@@ -23,8 +23,8 @@
     'version': '1.0',
     'description': """Partner Account Summary""",
     'category': 'Aeroo Reporting',
-    'author': 'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author': 'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'depends': [
         'account',
         'report_aeroo',

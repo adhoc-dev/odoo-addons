@@ -29,8 +29,8 @@ Stock Inventory Negative Line
 =============================
 Allow negative lines in stock inventory.
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

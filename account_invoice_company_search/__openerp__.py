@@ -22,7 +22,7 @@
     "name": "Account Invioce Company Search",
     "version": "1.0",
     'author':  'Ingeniería ADHOC',
-    'website': 'www.ingadhoc.com.ar',
+    'website': 'www.adhoc.com.ar.ar',
     "category": "Accounting",
     "description": """
 Account Invioce Company Search
@@ -38,6 +38,5 @@ Adds company search filter in account invoice view
     'demo': [],
     'test': [],
     'installable': True,
-    'active': False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

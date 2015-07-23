@@ -32,8 +32,8 @@ created they are taken by default.
 Add a button to stock picking to update the stock move Location and Destiny
 Location.
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

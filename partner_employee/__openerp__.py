@@ -29,8 +29,8 @@ Partner Employee
 ================
 Adds a boolean field "Employee" on partners.
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

@@ -29,8 +29,8 @@ CRM Partner History
 ===================
 Adds CRM partner history page on partners form view as it exists on odoo v6.1
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

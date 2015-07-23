@@ -18,8 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'active': False,
-    'author': 'Ingenieria ADHOC',
+{
+    'author': 'ADHOC SA',
     'category': 'Accounting & Finance',
     'demo_xml': [],
     'depends': ['account'],
@@ -36,5 +36,5 @@ Account Invoice Prices Update
         'views/invoice_view.xml',
     ],
     'version': '0.0',
-    'website': 'www.ingadhoc.com'}
+    'website': 'www.adhoc.com.ar'}
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {   'active': False,
-    'author': 'Ingenieria ADHOC.',
+    'author': 'ADHOC SA.',
     'category': u'base.module_category_knowledge_management',
     'demo_xml': [],
     'depends': [
@@ -38,6 +38,6 @@ Adds a button for confirmed orders so that you can print the purchase order.
         'view/purchase_view.xml',
       ],
     'version': 'No version',
-    'website': 'www.ingadhoc.com'}
+    'website': 'www.adhoc.com.ar'}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

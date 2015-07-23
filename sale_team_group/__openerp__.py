@@ -28,8 +28,8 @@ Sales Team Group
 ================
 Adds a sales group called "Sale Team"
      """,
-    'author': 'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com/',
+    'author': 'ADHOC SA',
+    'website': 'www.adhoc.com.ar/',
     'depends': [
         'crm',
         'sale_restrict_partners',
@@ -38,6 +38,5 @@ Adds a sales group called "Sale Team"
         'security/security.xml',
     ],
     'installable': True,
-    'active': False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

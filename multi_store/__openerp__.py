@@ -42,8 +42,8 @@ This module also adds a store_id field on journal:
 It also restrict edition, creation and unlink on: account.move, account.invoice and account.voucher. 
 It is done with the same logic to journal. We do not limitate the "read" of this models because user should need to access those documents, for example, to see partner due.
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

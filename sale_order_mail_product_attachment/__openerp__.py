@@ -29,8 +29,8 @@ Sale Order Mail Product Attachment
 It adds a new field called "Send Product Attachments?" in email_template for object "sale.order". 
 If Send Product Attachments? == True, when sending this email_template from sale order, all attachments of the products of this sale order will be attached to the email.
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

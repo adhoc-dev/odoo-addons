@@ -41,8 +41,8 @@ Repositories required:
 * https://github.com/OCA/purchase-workflow
 * https://github.com/aeroo/aeroo_reports
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

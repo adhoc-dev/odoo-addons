@@ -21,7 +21,7 @@
 {
     'name': 'Sales to Sale Order',
     'version': '1.0',
-    'author': 'Ingenieria ADHOC',
+    'author': 'ADHOC SA',
     'website': 'www.ingenieria.com.ar',
     'depends' : ["sale"],
     'category' : 'Sale Management',
@@ -40,6 +40,5 @@ Orders. This wizard generates a Sale Order in another company for all sale order
         'res_users_view.xml',
         'sale_view.xml',
         ],
-    'active': False,
     'installable': True
 }

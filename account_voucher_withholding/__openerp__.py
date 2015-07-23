@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'active': False,
+{
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'category': 'Accounting & Finance',

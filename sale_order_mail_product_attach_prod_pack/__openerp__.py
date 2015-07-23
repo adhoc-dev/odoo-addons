@@ -28,8 +28,8 @@ Sale Order Mail Product Attachment with Product pack
 ==================================
 Autoinstallable module for product pack with sale order mail product attachment.
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

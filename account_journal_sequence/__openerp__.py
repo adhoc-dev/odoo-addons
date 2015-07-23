@@ -22,7 +22,7 @@
     "name": "Account Journal Sequence",
     "version": "1.0",
     'author':  'Ingeniería ADHOC',
-    'website': 'www.ingadhoc.com.ar',
+    'website': 'www.adhoc.com.ar.ar',
     "category": "Accounting",
     "description": """ 
 Account Journal Sequence
@@ -38,6 +38,5 @@ Adds sequence field on account journal and it is going to be considered when cho
     'demo': [],
     'test': [],
     'installable': True,
-    'active': False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

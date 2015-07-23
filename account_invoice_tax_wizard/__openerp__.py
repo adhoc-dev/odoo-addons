@@ -18,9 +18,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'active': False,
+{
     'author':  'ADHOC SA',
-    'website': 'www.ingadhoc.com',
+    'website': 'www.adhoc.com.ar',
     'category': 'Accounting & Finance',
     'data': [
         'wizard/account_invoice_tax_wizard_view.xml',

@@ -29,8 +29,8 @@ Sale Add Products Wizard
 ==========================
 This module adds a " multi Add " button on sales orders calling a wizard "sale order add multiple" 
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

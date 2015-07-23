@@ -29,7 +29,7 @@ Invoice Reporte Partner Category
 Adds partner category on account invoice report
     """,
     'author':  'ADHOC',
-    'website': 'www.ingadhoc.com',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

@@ -33,7 +33,7 @@ IMPORTANT:
     * This module could break some warnings as the ones implemented by "warning" module
     * If you dont disable warning and give a user availbility to see only "true/false" on sale order stock, he can see stock if the warning is raised
     """,
-    'author': 'Moldeo Interactive & Ingenieria Adhoc',
+    'author': 'Moldeo Interactive & ADHOC SA',
     'website': 'http://business.moldeo.coop http://ingadhoc.com/',
     'images': [],
     'depends': [

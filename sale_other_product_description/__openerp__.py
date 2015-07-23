@@ -18,9 +18,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'active': False,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+{
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'category': 'Accounting & Finance',
     'data': [
         'product_view.xml',

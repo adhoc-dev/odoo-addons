@@ -30,8 +30,8 @@ Project Issue Order
 Add sequence field to issues and change default order to the following criteria:
     "priority desc, sequence, date_deadline, duration, create_date desc"
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

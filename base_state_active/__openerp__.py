@@ -29,8 +29,8 @@ Base States Active Field
 ========================
 Adds active field for states in order to disable usa states an other states you would like to hide
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

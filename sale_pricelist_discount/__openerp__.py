@@ -26,8 +26,8 @@ Sale Pricelist Discount
 =======================
 """,
     'category': 'Sales Management',
-    'author': 'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author': 'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'depends': [
         'sale',
     ],

@@ -33,8 +33,8 @@ Add sql constraint to restrict:
 
 It also adds to more menus (and add some related fields) on purchase/product. 
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

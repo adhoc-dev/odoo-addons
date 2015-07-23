@@ -29,8 +29,8 @@ Project Issue Solutions
 =======================
 Add new object call solutions and adds a m2o field from issues to solutions
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com.ar',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar.ar',
     'images': [
     ],
     'depends': [

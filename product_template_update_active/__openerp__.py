@@ -18,8 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'active': False,
-    'author': 'Ingenieria ADHOC.',
+{
+    'author': 'ADHOC SA.',
     'category': 'base.module_category_knowledge_management',
     'demo_xml': [],
     'depends': ['product'],
@@ -38,6 +38,6 @@ Update active field of product template in this way:
     'data': [
         'wizard/product_template_update_active_field_view.xml',
     ],
-    'website': 'www.ingadhoc.com'}
+    'website': 'www.adhoc.com.ar'}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

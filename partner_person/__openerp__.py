@@ -45,8 +45,8 @@ Openerp consider a person those partners that have not "is_company" as true, now
 
 It also adds a configuration menu for choosing which fields do you wanna see.
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

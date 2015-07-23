@@ -25,7 +25,7 @@
     'description': """
     """,
     'author': 'ADHOC SA',
-    'website': 'www.ingadhoc.com',
+    'website': 'www.adhoc.com.ar',
     'depends': [
         'product'],
     'data': [

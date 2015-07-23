@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {   'active': False,
-    'author':  'Ingenieria ADHOC',
+    'author':  'ADHOC SA',
     'category': 'Knowledge Management',
     'demo_xml': [
     ],
@@ -34,6 +34,6 @@
         ],
     'version': 'No version',
     'auto_install': True,
-    'website': 'www.ingadhoc.com',}
+    'website': 'www.adhoc.com.ar',}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

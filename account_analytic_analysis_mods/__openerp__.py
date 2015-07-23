@@ -31,8 +31,8 @@ Account Analytic / Contract Modifications
 * On creating invoice compute tax for total
 * On creating invoice take only tax of contract company
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

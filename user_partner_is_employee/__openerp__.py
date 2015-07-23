@@ -30,8 +30,8 @@ User/partner is or not employee
 Adds a boolean funcitonal field on user to know if user belongs to "employee" security group.
 It also adds a related field on partner to the previus field.
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

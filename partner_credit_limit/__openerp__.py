@@ -31,7 +31,7 @@
     credit limit is less it does not allow to approve the Sale
     Order""",
     'author': 'ADHOC SA',
-    'website': 'www.ingadhoc.com',
+    'website': 'www.adhoc.com.ar',
     'depends': ['sale'],
     'data': [
         'security/partner_credit_limit_security.xml',
