@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
-import account
-import res_store
-import res_users
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
+##############################################################################
+from . import account
+from . import res_store
+from . import res_users

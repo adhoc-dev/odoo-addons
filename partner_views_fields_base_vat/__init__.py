@@ -1,2 +1,2 @@
 # -*- encoding: utf-8 -*-
-import res_config
+from . import res_config

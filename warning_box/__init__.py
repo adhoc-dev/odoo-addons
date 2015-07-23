@@ -1,2 +1,6 @@
 # -*- coding: utf-8 -*-
-import warning_box
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
+##############################################################################
+from . import warning_box

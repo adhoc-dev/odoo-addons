@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2011 Eficent (<http://www.eficent.com/>)
-#              Jordi Ballester Alomar <jordi.ballester@eficent.com>
+#    Copyright (C) 2015  ADHOC SA  (http://www.adhoc.com.ar)
+#    All Rights Reserved.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,5 +18,32 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-# import project_issue
+{
+    'name': 'Sale Order Mail Product Attachment Product Pack',
+    'version': '1.0',
+    'category': 'Sales Management',
+    'sequence': 14,
+    'description': """
+Sale Order Mail Product Attachment with Product pack
+==================================
+Autoinstallable module for product pack with sale order mail product attachment.
+    """,
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
+    'images': [
+    ],
+    'depends': [
+        'sale_order_mail_product_attachment',
+        'product_pack',
+    ],
+    'data': [
+    ],
+    'demo': [
+    ],
+    'test': [
+    ],
+    'installable': True,
+    'auto_install': True,
+    'application': False,
+}
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

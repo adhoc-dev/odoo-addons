@@ -1,2 +1,6 @@
 # -*- coding: utf-8 -*-
-import inter_company_move_wizard
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
+##############################################################################
+from . import inter_company_move_wizard

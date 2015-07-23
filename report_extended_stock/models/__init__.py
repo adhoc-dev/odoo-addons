@@ -1,3 +1,7 @@
 # -*- coding: utf-8 -*-
-import stock
-import report
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
+##############################################################################
+from . import stock
+from . import report

@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
-import partner
-import course
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
+##############################################################################
+from . import partner
+from . import course
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

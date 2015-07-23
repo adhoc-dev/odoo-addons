@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
-from openerp import models, fields, api, _
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
+##############################################################################
+from openerp import models, fields, api
 from datetime import date
 from openerp.osv import fields as old_fields
-from openerp.osv import osv
 
 
 class res_users(models.Model):
@@ -41,6 +44,7 @@ class res_partner(models.Model):
         husbands = self.search([('wife_id', '=', self.id)])
         self.husband_id = husbands.id
 
+    @api.one
     def _set_wife(self):
         husbands = self.search([('wife_id', '=', self.id)])
         # If wife related to this partner, we set husband = False for those
@@ -50,47 +54,78 @@ class res_partner(models.Model):
         # We write the husband for the actual wife
         if self.husband_id:
             self.husband_id.wife_id = self.id
-            
-    def _search_husband(self, operator, value):
 
+    @api.model
+    def _search_husband(self, operator, value):
         if operator == 'like':
             operator = 'ilike'
+        partners = self.search([
+            ('wife_id', '!=', False),
+            ('name', operator, value)])
+        return [('id', 'in', partners.mapped('wife_id.id'))]
 
-        ids = self.search([('wife_id', '!=' , False) ,('name', operator, value )])
-
-        ret=[]
-        for result in ids:
-            ret.append(result.wife_id.id)
-
-        return [('id', 'in' , ret)]
-
-    disabled_person = fields.Boolean(string='Disabled Person?')
-    firstname = fields.Char(string='First Name')
-    lastname = fields.Char(string='Last Name')
-    national_identity = fields.Char(string='National Identity')
-    passport = fields.Char(string='Passport')
+    disabled_person = fields.Boolean(
+        string='Disabled Person?'
+        )
+    # TODO analizar si mejor depende del modulo de la oca partner_firstname
+    # y que estos campos vengan de ahi
+    firstname = fields.Char(
+        string='First Name'
+        )
+    lastname = fields.Char(
+        string='Last Name'
+        )
+    national_identity = fields.Char(
+        string='National Identity'
+        )
+    passport = fields.Char(
+        string='Passport'
+        )
     marital_status = fields.Selection(
         [(u'single', u'Single'), (u'married', u'Married'),
-         (u'divorced', u'Divorced')], string='Marital Status')
-    birthdate = fields.Date(string='Birthdate')
+         (u'divorced', u'Divorced')],
+        string='Marital Status',
+        )
+    birthdate = fields.Date(
+        string='Birthdate'
+        )
     father_id = fields.Many2one(
-        'res.partner', string='Father',
+        'res.partner',
+        string='Father',
         context={'default_is_company': False, 'default_sex': 'M',
                  'from_member': True},
-        domain=[('is_company', '=', False), ('sex', '=', 'M')])
+        domain=[('is_company', '=', False), ('sex', '=', 'M')]
+        )
     mother_id = fields.Many2one(
-        'res.partner', string='Mother',
+        'res.partner',
+        string='Mother',
         context={'default_is_company': False, 'default_sex': 'F',
                  'from_member': True},
-        domain=[('is_company', '=', False), ('sex', '=', 'F')])
+        domain=[('is_company', '=', False), ('sex', '=', 'F')]
+        )
     sex = fields.Selection(
-        [(u'M', u'Male'), (u'F', u'Female')], string='Sex')
-    age = fields.Integer(compute='_get_age', type='integer', string='Age')
+        [(u'M', u'Male'), (u'F', u'Female')],
+        string='Sex',
+        )
+    age = fields.Integer(
+        compute='_get_age',
+        type='integer',
+        string='Age'
+        )
     father_child_ids = fields.One2many(
-        'res.partner', 'father_id', string='Childs',)
+        'res.partner',
+        'father_id',
+        string='Childs',
+        )
     mother_child_ids = fields.One2many(
-        'res.partner', 'mother_id', string='Childs',)
-    nationality_id = fields.Many2one('res.country', string='Nationality')
+        'res.partner',
+        'mother_id',
+        string='Childs',
+        )
+    nationality_id = fields.Many2one(
+        'res.country',
+        string='Nationality'
+        )
     husband_id = fields.Many2one(
         'res.partner',
         compute='_get_husband',
@@ -98,11 +133,14 @@ class res_partner(models.Model):
         search='_search_husband',
         string='Husband',
         domain=[('sex', '=', 'M'), ('is_company', '=', False)],
-        context={'default_sex': 'M', 'is_person': True})
+        context={'default_sex': 'M', 'is_person': True}
+        )
     wife_id = fields.Many2one(
-        'res.partner', string='Wife',
+        'res.partner',
+        string='Wife',
         domain=[('sex', '=', 'F'), ('is_company', '=', False)],
-        context={'default_sex': 'F', 'is_person': True})
+        context={'default_sex': 'F', 'is_person': True}
+        )
 
     @api.one
     @api.onchange('firstname', 'lastname')
@@ -136,7 +174,9 @@ class res_partner(models.Model):
             res.append((record.id, name))
         return res
 
-    def name_search(self, cr, uid, name, args=None, operator='ilike', context=None, limit=100):
+    def name_search(
+            self, cr, uid, name, args=None, operator='ilike',
+            context=None, limit=100):
         if not args:
             args = []
         if name and operator in ('=', 'ilike', '=ilike', 'like', '=like'):

@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
-import user
-import sale
-import wizard
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
+##############################################################################
+from . import user
+from . import sale
+from . import wizard
