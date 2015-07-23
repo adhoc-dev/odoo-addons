@@ -23,8 +23,11 @@ python:
 
 env:
   # TODO enable lint check
-  - VERSION="8.0" LINT_CHECK="0"
-  - VERSION="8.0" ODOO_REPO="odoo/odoo" LINT_CHECK="0"
+  # we exclude partner_state because it gives an error and we could not find why
+  - VERSION="8.0" LINT_CHECK="0" EXCLUDE="partner_state"
+  - VERSION="8.0" ODOO_REPO="odoo/odoo" LINT_CHECK="0" EXCLUDE="partner_state"
+  - VERSION="8.0" LINT_CHECK="0" INCLUDE="partner_state"
+  - VERSION="8.0" ODOO_REPO="odoo/odoo" LINT_CHECK="0" INCLUDE="partner_state"
 
 virtualenv:
   system_site_packages: true
