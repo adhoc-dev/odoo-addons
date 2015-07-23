@@ -29,7 +29,7 @@ Stock Traceability Report
 =========================
 
     """,
-    'author':  'ADHOC',
+    'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'images': [
     ],

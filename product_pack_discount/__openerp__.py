@@ -29,7 +29,7 @@ Product Pack DIscount
 =====================
 
     """,
-    'author':  'ADHOC',
+    'author':  'ADHOC SA',
     'images': [
     ],
     'depends': [

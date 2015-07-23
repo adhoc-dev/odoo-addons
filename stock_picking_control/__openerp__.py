@@ -29,7 +29,7 @@ Stock Picking Control
 =====================
 Block edition of out picking
     """,
-    'author':  'ADHOC',
+    'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'images': [
     ],

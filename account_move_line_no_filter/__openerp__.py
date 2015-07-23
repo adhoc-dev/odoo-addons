@@ -29,7 +29,7 @@ Account move line no filter
 ===========
 
     """,
-    'author':  'ADHOC',
+    'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'images': [
     ],

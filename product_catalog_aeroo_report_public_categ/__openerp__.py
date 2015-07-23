@@ -28,7 +28,7 @@
 Product Catalog Aeroo Report with Public Category
 =================================================
     """,
-    'author':  'ADHOC',
+    'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'images': [
     ],

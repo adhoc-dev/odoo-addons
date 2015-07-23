@@ -31,7 +31,7 @@ You can only close projects if:
     - They don't have any active task (we consider active task the ones in stages without option "folded")
     - The related analytic account (contract) is closed
     """,
-    'author':  'ADHOC',
+    'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'images': [
     ],

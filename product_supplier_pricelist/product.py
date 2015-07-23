@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
+##############################################################################
 from openerp.osv import osv, fields
 from openerp import tools
 from openerp.tools.translate import _

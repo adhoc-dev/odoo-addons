@@ -28,7 +28,7 @@
 Stock Picking List
 ====================
     """,
-    'author':  'ADHOC',
+    'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'images': [
     ],

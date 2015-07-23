@@ -29,7 +29,7 @@ Stock EAN128
 ============
 
     """,
-    'author':  'ADHOC',
+    'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'images': [
     ],

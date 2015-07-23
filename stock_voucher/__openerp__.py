@@ -34,7 +34,7 @@ TODO:
 * agregar constraints de company en stock.py
 * que el reporte que se carga no sea el mismo del picking, nosotros no lo usamosportque terminamos usando uno de aeroo
     """,
-    'author':  'ADHOC',
+    'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'images': [
     ],
