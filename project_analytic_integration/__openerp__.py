@@ -32,7 +32,7 @@ Adds domains restriction to project task so that only projets that use task and 
 Adds domains restriction to timesheet records so that only
     """,
     'author':  'ADHOC SA',
-    'website': 'www.adhoc.com.ar.ar',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

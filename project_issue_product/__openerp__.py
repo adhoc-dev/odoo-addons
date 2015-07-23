@@ -30,7 +30,7 @@ Project Issue Product
 Adds product field on Issues (M2O) and issue field on products (O2M)
     """,
     'author':  'ADHOC SA',
-    'website': 'www.adhoc.com.ar.ar',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

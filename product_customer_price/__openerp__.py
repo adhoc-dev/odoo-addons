@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {   'active': False,
-    'author': 'Sistemas ADHOC.',
+    'author': 'ADHOC SA.',
     'category': u'base.module_category_knowledge_management',
     'demo_xml': [],
     'depends': [u'product'],

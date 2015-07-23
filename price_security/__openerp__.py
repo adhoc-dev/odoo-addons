@@ -42,8 +42,8 @@ For users with price restriction, it restricts:
 
 """,
     'category': 'Sales Management',
-    'author': 'Sistemas ADHOC',
-    'website': 'http://www.sistemasadhoc.com.ar/',
+    'author': 'ADHOC SA',
+    'website': 'http://www.adhoc.com.ar/',
     'depends': [
         'sale',
     ],

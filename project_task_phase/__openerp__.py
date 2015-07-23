@@ -30,7 +30,7 @@ Project Task Phase
 Add project phases to tasks
     """,
     'author':  'ADHOC SA',
-    'website': 'www.adhoc.com.ar.ar',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

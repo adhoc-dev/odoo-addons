@@ -49,8 +49,8 @@ The parser proved a serie of fields an functions to use in the odt:
     o net_price: Takes a gross quantity and a discount and return the gross
       applying the discount.
     """,
-    'author':  'Sistemas ADHOC',
-    'website': 'www.sistemasadhoc.com.ar',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

@@ -21,8 +21,8 @@
 {
     "name": "Account Journal Active",
     "version": "1.0",
-    'author':  'Ingeniería ADHOC',
-    'website': 'www.adhoc.com.ar.ar',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     "category": "Accounting",
     "description": """
 Account Journal Active Field

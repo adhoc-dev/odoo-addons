@@ -28,8 +28,8 @@
 Portal Issue Solutions
 ======================
     """,
-    'author':  'Sistemas ADHOC',
-    'website': 'www.sistemasadhoc.com.ar',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [
