@@ -77,5 +77,5 @@ class account_voucher_withholding(models.Model):
     @api.constrains('tax_withholding_id', 'voucher_id')
     def check_tax_withholding(self):
         if self.voucher_id.company_id != self.tax_withholding_id.company_id:
-            raise Warning(
-                _('Voucher and Tax Withholding must belong to the same company'))
+            raise Warning(_(
+                'Voucher and Tax Withholding must belong to the same company'))

@@ -101,7 +101,7 @@ class account_move_line(models.Model):
         name = journal.sequence_id._next()
 
         move_vals = {
-            # 'ref': self.name,
+            'ref': name,
             'name': name,
             'period_id': period.id,
             'date': date,
@@ -111,7 +111,6 @@ class account_move_line(models.Model):
         move = self.env['account.move'].create(move_vals)
 
         # write move id on settled tax move line
-        print 'move', move
         self.tax_settlement_move_id = move.id
 
         counterpart_line_vals = {

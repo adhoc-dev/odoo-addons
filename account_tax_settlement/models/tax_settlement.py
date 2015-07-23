@@ -412,8 +412,8 @@ class account_tax_settlement(models.Model):
         name = self.journal_id.sequence_id._next()
         move_line_env = self.env['account.move.line']
         move_vals = {
-            'ref': self.name,
-            'name': name,
+            'ref': name,
+            'name': self.name,
             'period_id': period.id,
             'date': self.date,
             'journal_id': self.journal_id.id,
@@ -429,6 +429,8 @@ class account_tax_settlement(models.Model):
                     credit += line_vals['credit']
                     debit += line_vals['debit']
                     line_vals['move_id'] = move.id
+                    # print 'name', name
+                    # line_vals['ref'] = name
                     created_move_line_ids.append(
                         move_line_env.create(line_vals).id)
 
