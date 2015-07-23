@@ -1,4 +1,4 @@
 # -*- coding: utf-8 -*-
-import user
-import sale
-import wizard
+from . import user
+from . import sale
+from . import wizard

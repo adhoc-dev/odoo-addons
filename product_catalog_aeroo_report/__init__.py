@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import report
-import wizard
-import product_catalog
+from . import report
+from . import wizard
+from . import product_catalog

@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
-import sale
-import company
+from . import sale
+from . import company

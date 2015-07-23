@@ -19,5 +19,5 @@
 #
 ##############################################################################
 
-import account_summary_parser
+from . import account_summary_parser
 

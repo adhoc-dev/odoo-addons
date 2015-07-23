@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import interest
-import partner
-import company
+from . import interest
+from . import partner
+from . import company
 

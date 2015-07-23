@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
-import account
-import wizard
+from . import account
+from . import wizard

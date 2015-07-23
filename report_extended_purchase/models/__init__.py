@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
-import purchase
-import report
+from . import purchase
+from . import report

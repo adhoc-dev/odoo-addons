@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import partner
-import course
+from . import partner
+from . import course
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

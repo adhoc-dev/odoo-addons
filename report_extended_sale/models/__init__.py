@@ -1,4 +1,4 @@
 # -*- coding: utf-8 -*-
-import sale
-import report
-import account_invoice
+from . import sale
+from . import report
+from . import account_invoice

@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
-import survey
-import controllers
+from . import survey
+from . import controllers

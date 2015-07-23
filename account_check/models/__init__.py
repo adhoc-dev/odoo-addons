@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-import account
-import account_checkbook
-import account_check
-import account_voucher
+from . import account
+from . import account_checkbook
+from . import account_check
+from . import account_voucher
 
 
 

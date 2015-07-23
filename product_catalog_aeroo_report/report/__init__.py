@@ -19,4 +19,4 @@
 #
 ##############################################################################
 
-import product_catalog_parser
+from . import product_catalog_parser

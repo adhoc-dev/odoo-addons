@@ -1,4 +1,4 @@
 # -*- coding: utf-8 -*-
 
 
-import product_catalog_wizard
+from . import product_catalog_wizard

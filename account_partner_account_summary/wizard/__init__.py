@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-import account_summary_wizard
+from . import account_summary_wizard

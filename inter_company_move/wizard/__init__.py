@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-import inter_company_move_wizard
+from . import inter_company_move_wizard

@@ -19,5 +19,5 @@
 #
 ##############################################################################
 
-import res_users
-import account
+from . import res_users
+from . import account

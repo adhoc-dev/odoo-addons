@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-import product_catalog
+from . import product_catalog

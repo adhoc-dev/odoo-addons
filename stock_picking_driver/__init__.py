@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
-import delivery_order
+from . import delivery_order
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

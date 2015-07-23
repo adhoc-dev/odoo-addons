@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-import report
-import company
+from . import report
+from . import company
 
 

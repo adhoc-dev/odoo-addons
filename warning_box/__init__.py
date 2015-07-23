@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-import warning_box
+from . import warning_box
