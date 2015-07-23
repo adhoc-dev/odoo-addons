@@ -13,7 +13,7 @@ It makes the following modifications in security related to accounting:
 
     """,
     "author": "ADHOC SA",
-    "website": "www.ingadhoc.com",
+    "website": "www.adhoc.com.ar",
     "category": "Financial",
     "depends": [
         "account_voucher",

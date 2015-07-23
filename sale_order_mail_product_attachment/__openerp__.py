@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Ingenieria ADHOC - ADHOC SA
-#    https://launchpad.net/~ingenieria-adhoc
+#    Copyright (C) 2015  ADHOC SA  (http://www.adhoc.com.ar)
+#    All Rights Reserved.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,7 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 {
     'name': 'Sale Order Mail Product Attachment',
     'version': '1.0',
@@ -30,8 +29,8 @@ Sale Order Mail Product Attachment
 It adds a new field called "Send Product Attachments?" in email_template for object "sale.order". 
 If Send Product Attachments? == True, when sending this email_template from sale order, all attachments of the products of this sale order will be attached to the email.
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [

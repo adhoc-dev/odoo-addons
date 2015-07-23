@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
+##############################################################################
 
 
-import company
-import sale_order
+from . import company
+from . import sale_order

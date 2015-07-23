@@ -1,2 +1,2 @@
 # -*- encoding: utf-8 -*-
-import partner
+from . import partner
