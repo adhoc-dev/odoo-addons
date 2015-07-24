@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2009  Àngel Àlvarez - NaN  (http://www.nan-tic.com)
+#    Copyright (C) 2015  ADHOC SA  (http://www.adhoc.com.ar)
 #    All Rights Reserved.
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ Product Pack DIscount
 =====================
 
     """,
-    'author':  'ADHOC',
+    'author':  'ADHOC SA',
     'images': [
     ],
     'depends': [

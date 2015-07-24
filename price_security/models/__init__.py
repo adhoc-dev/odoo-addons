@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
-import res_users
-import product
-import sale
-import invoice
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
+##############################################################################
+from . import res_users
+from . import product
+from . import sale
+from . import invoice

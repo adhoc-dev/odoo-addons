@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
-import project
-import project_tag
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
+##############################################################################
+from . import project
+from . import project_tag
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

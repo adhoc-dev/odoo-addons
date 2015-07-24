@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-import project_compute_phases
-import project_compute_tasks
+from . import project_compute_phases
+from . import project_compute_tasks
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

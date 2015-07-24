@@ -2,13 +2,13 @@
 {
     "name": "Search Partners by VAT",
     "version": "1.0",
-    "author": "Ingenieria ADHOC",
+    "author": "ADHOC SA",
     "category": "",
     "description" : """
 Search Partners by VAT
 ======================
     """,
-    "website": "www.ingadhoc.com",
+    "website": "www.adhoc.com.ar",
     "depends": ["base_vat",
                 ],
     "demo": [

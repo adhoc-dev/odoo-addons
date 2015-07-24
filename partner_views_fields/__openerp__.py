@@ -2,13 +2,13 @@
 {
     "name": "Add Fields on Partners Views",
     "version": "1.0",
-    "author": "Ingenieria ADHOC",
+    "author": "ADHOC SA",
     "category": "",
     "description": """
 Add Fields on Partners Views
 ============================
     """,
-    "website": "www.ingadhoc.com",
+    "website": "www.adhoc.com.ar",
     "depends": [
         "base_setup",
     ],

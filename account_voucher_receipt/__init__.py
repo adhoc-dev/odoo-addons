@@ -1,3 +1,7 @@
 # -*- coding: utf-8 -*-
-import wizard
-import models
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
+##############################################################################
+from . import wizard
+from . import models

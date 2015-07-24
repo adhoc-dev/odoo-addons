@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
+##############################################################################
 
 
-import report
-import wizard
+from . import report
+from . import wizard
 
