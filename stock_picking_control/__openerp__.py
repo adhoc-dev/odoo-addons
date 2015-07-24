@@ -18,7 +18,8 @@ Block edition of out picking
         'stock',
     ],
     'data': [
-    'stock_view.xml',
+        'view/stock_view.xml',
+        'view/company_view.xml',
     ],
     'demo': [
     ],
