@@ -22,7 +22,7 @@
     'author': 'ADHOC SA',
     'category': 'Accounting & Finance',
     'demo_xml': [],
-    'depends': ['account'],
+    'depends': ['account', 'purchase'],
     'description': '''
 Account Invoice Prices Update
 =============================
