@@ -7,8 +7,8 @@
             <field name="model">account.invoice</field>
             <field name="arch" type="xml">
                 <button name="action_cancel_draft" position="after">
-                    <button name="%(account_invoice_prices_update.action_update_prices_list)d" states="cancel" string="Update Pricelist and Prices" type="action" groups="base.group_user" attrs="{'invisible':[('state', '!=', 'draft')]}" />
-                </button>
+                    <button name="%(account_invoice_prices_update.action_update_prices_list)d" states="cancel" string="Update Pricelist and Prices" type="action" groups="base.group_user" attrs="{'invisible':[('state', '!=', 'draft')]}" context="{'default_type': 'sale'}"/>
+                </button>s
             </field>
         </record>
 
@@ -18,7 +18,7 @@
             <field name="model">account.invoice</field>
             <field name="arch" type="xml">
                 <button name="invoice_cancel" position="after">
-                    <button name="%(account_invoice_prices_update.action_update_prices_list)d" states="cancel" string="Update Pricelist and Prices" type="action" groups="base.group_user" attrs="{'invisible':[('state', '!=', 'draft')]}"/>
+                    <button name="%(account_invoice_prices_update.action_update_prices_list)d" states="cancel" string="Update Pricelist and Prices" type="action" groups="base.group_user" attrs="{'invisible':[('state', '!=', 'draft')]}" context="{'default_type': 'purchase'}"/>
                 </button>
             </field>
         </record>

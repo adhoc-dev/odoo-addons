@@ -23,22 +23,8 @@ class account_invoice_prices_update(models.TransientModel):
         'product.pricelist', string="Price List",
         required=True, default=_get_pricelist)
 
-
-    @api.one
-    @api.depends('pricelist_id')
-    def _get_type(self):
-        invoice_id = self._context.get('active_id', False)
-        if invoice_id:
-            invoice = self.env['account.invoice'].browse(invoice_id)
-            if invoice.type in ('out_invoice', 'out_refund'):
-                self.type_invoice = 'sale'
-            else:
-                self.type_invoice = 'purchase'
-
-
-    type_invoice = fields.Selection(
-        [('sale', 'Sale'), ('purchase', 'Purchase')],
-        compute='_get_type')
+    type = fields.Selection(
+        [('sale', 'Sale'), ('purchase', 'Purchase')])
 
     @api.one
     def update_prices(self):
