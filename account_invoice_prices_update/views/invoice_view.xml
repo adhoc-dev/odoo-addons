@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
                 <button name="action_cancel_draft" position="after">
                     <button name="%(account_invoice_prices_update.action_update_prices_list)d" states="cancel" string="Update Pricelist and Prices" type="action" groups="base.group_user" attrs="{'invisible':[('state', '!=', 'draft')]}" context="{'default_type': 'sale'}"/>
-                </button>s
+                </button>
             </field>
         </record>
 
