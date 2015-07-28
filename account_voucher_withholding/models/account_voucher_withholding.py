@@ -19,6 +19,9 @@ class account_voucher_withholding(models.Model):
         )
     name = fields.Char(
         'Number',
+        )
+    internal_number = fields.Char(
+        'Internal Number',
         required=True,
         )
     date = fields.Date(
@@ -73,9 +76,25 @@ class account_voucher_withholding(models.Model):
         readonly=True,
         )
 
+    _sql_constraints = [
+        ('internal_number_uniq', 'unique(internal_number, company_id)',
+            'Internal Number must be unique per Company!'),
+    ]
+
     @api.one
     @api.constrains('tax_withholding_id', 'voucher_id')
     def check_tax_withholding(self):
         if self.voucher_id.company_id != self.tax_withholding_id.company_id:
             raise Warning(_(
                 'Voucher and Tax Withholding must belong to the same company'))
+
+    @api.model
+    def create(self, vals):
+        if vals.get('internal_number', '/') == '/':
+            tax_withholding = self.tax_withholding_id.browse(
+                vals.get('tax_withholding_id'))
+            if tax_withholding:
+                raise Warning(_('Tax Withholding is Required!'))
+            sequence = tax_withholding.sequence_id
+            vals['internal_number'] = sequence.next_by_id(sequence.id) or '/'
+        return super(account_voucher_withholding, self).create(vals)

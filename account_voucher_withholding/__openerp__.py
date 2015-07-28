@@ -27,6 +27,7 @@
         'views/account_tax_withholding_template_view.xml',
         'views/account_withholding_view.xml',
         'views/account_voucher_view.xml',
+        'data/data.xml',
         'security/security.xml',
         'security/ir.model.access.csv'
     ],

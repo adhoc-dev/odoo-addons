@@ -40,6 +40,7 @@
                             <field name="description"/>
                             <field name="type_tax_use"/>
                             <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="sequence_id"/>
                             <field name="active"/>
                         </group>
                         <group>

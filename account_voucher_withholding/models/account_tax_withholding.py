@@ -23,7 +23,8 @@ class account_tax_withholding(models.Model):
     active = fields.Boolean(
         'Active',
         default=True,
-        help="If the active field is set to False, it will allow you to hide the tax without removing it.")
+        help="If the active field is set to False,"
+             "it will allow you to hide the tax without removing it.")
     # TODO add this field  and other for automation
     # type = fields.Selection(
     #     [('percent', 'Percentage'), ('fixed', 'Fixed Amount'),
@@ -32,6 +33,18 @@ class account_tax_withholding(models.Model):
     #     required=True,
     #     help="The computation method for the tax amount."
     #     )
+    sequence_id = fields.Many2one(
+        'ir.sequence',
+        'Internal Number Sequence',
+        required=True,
+        domain=[('code', '=', 'account.tax.withholding')],
+        context=(
+            "{'default_code': 'account.tax.withholding',"
+            " 'default_name': name}"),
+        help='If no sequence provided then it will be required for you to'
+             ' enter withholding number when registering one.'
+        # 'default_prefix': 'x-', 'default_padding': 8}",
+        )
     account_id = fields.Many2one(
         'account.account',
         'Account',
