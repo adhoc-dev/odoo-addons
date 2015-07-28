@@ -23,6 +23,7 @@ class account_voucher_withholding(models.Model):
     internal_number = fields.Char(
         'Internal Number',
         required=True,
+        default='/'
         )
     date = fields.Date(
         'Date',
