@@ -5,6 +5,7 @@
 ##############################################################################
 from openerp import models, fields, api, _
 import openerp.addons.decimal_precision as dp
+from openerp.exceptions import Warning
 
 
 class account_voucher_withholding(models.Model):
@@ -94,7 +95,7 @@ class account_voucher_withholding(models.Model):
         if vals.get('internal_number', '/') == '/':
             tax_withholding = self.tax_withholding_id.browse(
                 vals.get('tax_withholding_id'))
-            if tax_withholding:
+            if not tax_withholding:
                 raise Warning(_('Tax Withholding is Required!'))
             sequence = tax_withholding.sequence_id
             vals['internal_number'] = sequence.next_by_id(sequence.id) or '/'

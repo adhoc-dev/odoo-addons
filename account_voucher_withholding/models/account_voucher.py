@@ -73,7 +73,7 @@ class account_voucher(models.Model):
             name = '%s: %s' % (
                 line.tax_withholding_id.description, line.internal_number)
             if line.name:
-                name += '(%s)' % line.name
+                name += ' (%s)' % line.name
             payment_date = False
             amount = line.amount
             if amount >= 0:
