@@ -10,4 +10,4 @@ class account_voucher(models.Model):
         self.ensure_one()
         # register/confirm
         self.button_proforma_voucher()
-        self.receipt_print()
+        return self.receipt_print()
