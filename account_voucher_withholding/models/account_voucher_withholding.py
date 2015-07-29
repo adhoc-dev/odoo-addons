@@ -79,8 +79,8 @@ class account_voucher_withholding(models.Model):
         )
 
     _sql_constraints = [
-        ('internal_number_uniq', 'unique(internal_number, company_id)',
-            'Internal Number must be unique per Company!'),
+        ('internal_number_uniq', 'unique(internal_number, tax_withholding_id)',
+            'Internal Number must be unique per Tax Withholding!'),
     ]
 
     @api.one

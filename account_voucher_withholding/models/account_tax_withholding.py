@@ -36,7 +36,6 @@ class account_tax_withholding(models.Model):
     sequence_id = fields.Many2one(
         'ir.sequence',
         'Internal Number Sequence',
-        required=True,
         domain=[('code', '=', 'account.tax.withholding')],
         context=(
             "{'default_code': 'account.tax.withholding',"
@@ -120,6 +119,29 @@ class account_tax_withholding(models.Model):
         digits_compute=dp.get_precision('Account'),
         default=1,
         )
+
+    @api.model
+    def create(self, vals):
+        if not vals.get('sequence_id'):
+            # if we have the right to create a journal, we should be able to
+            # create it's sequence.
+            vals.update({'sequence_id': self.sudo().create_sequence(vals).id})
+        return super(account_tax_withholding, self).create(vals)
+
+    @api.model
+    def create_sequence(self, vals):
+        """ Create new no_gap entry sequence for every new tax withholding
+        """
+        seq = {
+            'name': vals['name'],
+            'implementation': 'no_gap',
+            # 'prefix': prefix + "/%(year)s/",
+            'padding': 8,
+            'number_increment': 1
+        }
+        if 'company_id' in vals:
+            seq['company_id'] = vals['company_id']
+        return self.sequence_id.create(seq)
 
 
 class account_chart_template(models.Model):

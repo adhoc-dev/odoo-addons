@@ -104,7 +104,6 @@ class account_move(models.Model):
                 'default_company_id': self.company_id.id,
                 'type': 'voucher_type',
                 })
-        print 'voucher_context', voucher_context
         res = {
             'name': name,
             'view_mode': 'form',
