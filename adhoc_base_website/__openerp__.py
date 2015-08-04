@@ -45,9 +45,7 @@ Repositories required:
     'data': [
         'res_config_view.xml',
     ],
-    'demo': [
-        'demo/company_demo.xml',
-    ],
+    'demo': [],
     'test': [
     ],
     'installable': True,
