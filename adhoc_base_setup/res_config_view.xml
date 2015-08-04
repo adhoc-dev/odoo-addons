@@ -58,6 +58,9 @@
             <group string="Stock">
             </group>
 
+            <group string="Website">
+            </group>
+
             <group string="Partners">                
                 <label for="id" string="Common Features"/>
                 <div name="partner_features">  

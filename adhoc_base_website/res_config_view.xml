@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<!-- Base Config Settings Form View -->
+<record id="view_adhoc_base_configuration" model="ir.ui.view">
+    <field name="name">adhoc.base.config.settings</field>
+    <field name="model">adhoc.base.config.settings</field>
+    <field name="inherit_id" ref="adhoc_base_setup.view_adhoc_base_configuration"/>
+    <field name="arch" type="xml">
+        <group string="Website">
+            <label for="id" string="Fixes"/>
+            <div name="website_fix">
+                <div name='module_website_sale_vat_required'>
+                    <field name="module_website_sale_vat_required"
+                        class="oe_inline"/>
+                    <label for="module_website_sale_vat_required"/>
+                </div>
+                <div name='module_website_sale_collapse_categories'>
+                    <field name="module_website_sale_collapse_categories"
+                        class="oe_inline"/>
+                    <label for="module_website_sale_collapse_categories"/>
+                </div>
+                <div name='module_website_logo'>
+                    <field name="module_website_logo"
+                        class="oe_inline"/>
+                    <label for="module_website_logo"/>
+                </div>
+            </div>
+        </group>
+
+    </field>
+</record>
+</data>
+</openerp>
