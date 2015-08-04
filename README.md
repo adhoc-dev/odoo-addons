@@ -2,3 +2,6 @@
 [![Coverage Status](https://coveralls.io/repos/ingadhoc/odoo-addons/badge.png?branch=8.0)](https://coveralls.io/r/ingadhoc/odoo-addons?branch=8.0)
 
 # odoo-addons
+
+## Como contribuir?
+Seguimos los mismos líneamientos y sugerencias de [Odoo Argentina](https://github.com/ingadhoc/odoo-argentina/wiki)
