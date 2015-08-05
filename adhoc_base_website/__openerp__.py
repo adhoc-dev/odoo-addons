@@ -19,32 +19,37 @@
 #
 ##############################################################################
 {
-    'name': 'Product Dimensions',
+    'name': 'ADHOC Modules Configuration - Website',
     'version': '1.0',
-    'category': 'Product',
-    'sequence': 14,
-    'summary': '',
+    'category': 'ADHOC Modules',
+    'summary': 'extra, addons, modules',
     'description': """
-Product Dimensions
-==================
-Add dimensions (length, width and height) products. Find the volume automatically when you change one of these dimensions.
-    """,
+ADHOC Modules Configuration - Website
+===============================================================================
+Here, you can configure the whole business suite based on your requirements. You'll be provided different configuration options in the Settings where by only selecting some booleans you will be able to install several modules and apply access rights in just one go.
+Repositories required:
+---------------------
+* https://github.com/OCA/website/tree/8.0/website_logo
+* https://github.com/OCA/website/tree/8.0/website_sale_collapse_categories
+* https://github.com/OCA/website/tree/8.0/website_sale_vat_required
+""",
+
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [
-        'product',
+        'adhoc_base_setup',
+        'website'
     ],
     'data': [
-        'product_view.xml',
+        'res_config_view.xml',
     ],
-    'demo': [
-    ],
+    'demo': [],
     'test': [
     ],
     'installable': True,
-    'auto_install': False,
-    'application': False,
+    'auto_install': True,
+    'application': True,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

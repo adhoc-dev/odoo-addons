@@ -21,7 +21,7 @@
 {
     'name': 'Project Task Portal Unfollow',
     'version': '1.0',
-    'category': 'Product',
+    'category': 'Project',
     'sequence': 14,
     'summary': '',
     'description': """
