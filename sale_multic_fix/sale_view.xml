@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <field name="order_line" position="attributes">
-                    <attribute name="context">{'company_id':company_id}</attribute>
+                    <attribute name="context">{'company_id': company_id, 'partner_id': partner_id}</attribute>
                 </field>
             </field>
         </record>
