@@ -31,7 +31,7 @@
             <field name="name">product.product.issue</field>
             <field name="model">project.issue.solution</field>
             <field name="arch" type="xml">
-                <form string="Solution" version="7.0">   
+                <form string="Solution">   
                     <sheet string="Solution">    
                         <h1>
                             <field name="name" placeholder="Name..." class="oe_inline"/>

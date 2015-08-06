@@ -54,7 +54,7 @@
             <field name="name">project.task.phase.form</field>
             <field name="model">project.task.phase</field>
             <field name="arch" type="xml">
-                <form string="Task Phase" version="7.0">
+                <form string="Task Phase">
                     <group>
                         <field name="name"/>
                     </group>

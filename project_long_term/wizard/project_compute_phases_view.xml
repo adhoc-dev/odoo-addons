@@ -6,7 +6,7 @@
             <field name="name">Schedule Phases</field>
             <field name="model">project.compute.phases</field>
             <field name="arch" type="xml">
-                  <form string="Schedule Phases" version="7.0">
+                  <form string="Schedule Phases">
                       <group>
                           <field name="target_project"/>
                           <field name="project_id" attrs="{'invisible':[('target_project','=','all')], 'required':[('target_project','!=','all')]}"/>

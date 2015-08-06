@@ -31,7 +31,7 @@
             <field name="name">project.user.allocation.form</field>
             <field name="model">project.user.allocation</field>
             <field name="arch" type="xml">
-                <form string="Project User Allocation" version="7.0">
+                <form string="Project User Allocation">
                     <group col="4">
                         <field name="user_id"/>
                         <field name="phase_id"/>
@@ -140,7 +140,7 @@
             <field name="name">project.phase.form</field>
             <field name="model">project.phase</field>
             <field name="arch" type="xml">
-                <form string="Project Phase" version="7.0">
+                <form string="Project Phase">
                 <header>
                     <button string="Start Phase" name="set_open" states="pending,draft" class="oe_highlight"/>
                     <button string="Done" name="set_done" states="pending,open"/>
@@ -178,7 +178,7 @@
                                       <field name="date_start"/>
                                       <field name="date_end"/>
                                   </tree>
-                                  <form string="Project Users" version="7.0">
+                                  <form string="Project Users">
                                       <group col="4">
                                           <field name="user_id"/>
                                           <field name="date_start"/>
