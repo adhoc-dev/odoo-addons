@@ -16,26 +16,22 @@ class account_voucher(models.Model):
 
     received_third_check_ids = fields.One2many(
         'account.check', 'voucher_id', 'Third Checks',
-        domain=[('type', '=', 'third')],
-        context={'default_type': 'third', 'from_voucher': True},
+        domain=[('type', '=', 'third_check')],
+        context={'default_type': 'third_check', 'from_voucher': True},
         required=False, readonly=True, copy=False,
         states={'draft': [('readonly', False)]}
         )
     issued_check_ids = fields.One2many(
         'account.check', 'voucher_id', 'Issued Checks',
-        domain=[('type', '=', 'issue')],
-        context={'default_type': 'issue', 'from_voucher': True}, copy=False,
+        domain=[('type', '=', 'issue_check')],
+        context={'default_type': 'issue_check', 'from_voucher': True}, copy=False,
         required=False, readonly=True, states={'draft': [('readonly', False)]}
         )
     delivered_third_check_ids = fields.One2many(
         'account.check', 'third_handed_voucher_id',
-        'Third Checks', domain=[('type', '=', 'third')], copy=False,
+        'Third Checks', domain=[('type', '=', 'third_check')], copy=False,
         context={'from_voucher': True}, required=False, readonly=True,
         states={'draft': [('readonly', False)]}
-        )
-    check_type = fields.Selection(
-        related='journal_id.check_type',
-        string='Check Type', readonly=True,
         )
     checks_amount = fields.Float(
         'Amount',
@@ -130,12 +126,12 @@ class account_voucher(models.Model):
             self, voucher, move_id, company_currency, current_currency):
         move_lines = self.env['account.move.line']
         checks = []
-        if voucher.check_type == 'third':
+        if voucher.payment_subtype == 'third_check':
             if voucher.type == 'payment':
                 checks = voucher.delivered_third_check_ids
             else:
                 checks = voucher.received_third_check_ids
-        elif voucher.check_type == 'issue':
+        elif voucher.payment_subtype == 'issue_check':
             checks = voucher.issued_check_ids
         # Calculate total
         checks_total = 0.0

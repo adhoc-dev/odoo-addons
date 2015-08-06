@@ -20,8 +20,8 @@ class account_check(models.Model):
     @api.model
     def _get_checkbook(self):
         journal_id = self._context.get('default_journal_id', False)
-        check_type = self._context.get('default_type', False)
-        if journal_id and check_type == 'issue':
+        payment_subtype = self._context.get('default_payment_subtype', False)
+        if journal_id and payment_subtype == 'issue_check':
             checkbooks = self.env['account.checkbook'].search(
                 [('state', '=', 'active'), ('journal_id', '=', journal_id)])
             return checkbooks and checkbooks[0] or False
@@ -42,9 +42,9 @@ class account_check(models.Model):
         )
     def _get_destiny_partner(self):
         partner_id = False
-        if self.type == 'third' and self.third_handed_voucher_id:
+        if self.type == 'third_check' and self.third_handed_voucher_id:
             partner_id = self.third_handed_voucher_id.partner_id.id
-        elif self.type == 'issue':
+        elif self.type == 'issue_check':
             partner_id = self.voucher_id.partner_id.id
         self.destiny_partner_id = partner_id
 
@@ -56,7 +56,7 @@ class account_check(models.Model):
         )
     def _get_source_partner(self):
         partner_id = False
-        if self.type == 'third':
+        if self.type == 'third_check':
             partner_id = self.voucher_id.partner_id.id
         self.source_partner_id = partner_id
 
@@ -82,7 +82,7 @@ class account_check(models.Model):
         'account.voucher', 'Voucher', readonly=True, required=True
         )
     type = fields.Selection(
-        related='voucher_id.journal_id.check_type', string='Type',
+        related='voucher_id.journal_id.payment_subtype', string='Type',
         readonly=True, store=True
         )
     journal_id = fields.Many2one(
@@ -191,13 +191,13 @@ class account_check(models.Model):
 
     def _check_number_interval(self, cr, uid, ids, context=None):
         for obj in self.browse(cr, uid, ids, context=context):
-            if obj.type !='issue' or (obj.checkbook_id and obj.checkbook_id.range_from <= obj.number <= obj.checkbook_id.range_to):
+            if obj.type !='issue_check' or (obj.checkbook_id and obj.checkbook_id.range_from <= obj.number <= obj.checkbook_id.range_to):
                 return True
         return False
 
     def _check_number_issue(self, cr, uid, ids, context=None):
         for obj in self.browse(cr, uid, ids, context=context):
-            if obj.type =='issue':
+            if obj.type =='issue_check':
                 same_number_check_ids = self.search(
                     cr, uid, [
                         ('id', '!=', obj.id),
@@ -210,7 +210,7 @@ class account_check(models.Model):
 
     def _check_number_third(self, cr, uid, ids, context=None):
         for obj in self.browse(cr, uid, ids, context=context):
-            if obj.type == 'third':
+            if obj.type == 'third_check':
                 same_number_check_ids = self.search(
                     cr, uid, [
                         ('id', '!=', obj.id),
@@ -336,15 +336,15 @@ class account_check(models.Model):
     @api.multi
     def check_check_cancellation(self):
         for check in self:
-            if check.type == 'issue' and check.state not in ['draft', 'handed']:
+            if check.type == 'issue_check' and check.state not in ['draft', 'handed']:
                 raise Warning(_(
                     'You can not cancel issue checks in states other than "draft or "handed". First try to change check state.'))
             # third checks received
-            elif check.type == 'third' and not self.third_handed_voucher_id and check.state not in ['draft', 'holding']:
+            elif check.type == 'third_check' and not self.third_handed_voucher_id and check.state not in ['draft', 'holding']:
                 raise Warning(_(
                     'You can not cancel received third checks in states other than "draft or "holding". First try to change check state.'))
             # third checks handed
-            elif check.type == 'third' and self.third_handed_voucher_id and check.state not in ['draft', 'holding']:
+            elif check.type == 'third_check' and self.third_handed_voucher_id and check.state not in ['draft', 'holding', 'handed']:
                 raise Warning(_(
                     'You can not cancel handed third checks in states other than "handed". First try to change check state.'))
         return True

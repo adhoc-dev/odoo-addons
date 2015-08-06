@@ -6,12 +6,12 @@
             <field name="name">account.check.action.wizard.form</field>
             <field name="model">account.check.action</field>
             <field name="arch" type="xml">
-                <form string="Check Action" version="7.0">
+                <form string="Check Action">
                     <field name="action_type" invisible="1"/>
                     <field name="company_id" invisible="1"/>
                     <group >
                         <field name="date"/>
-                        <field name="journal_id" domain="[('company_id','=',company_id), ('type', 'in', ['cash', 'bank'])]" attrs="{'invisible':[('action_type','!=','deposit')],'required':[('action_type','=','deposit')]}"/>
+                        <field name="journal_id" domain="[('company_id','=',company_id), ('type', 'in', ['cash', 'bank']), ('payment_subtype', 'not in', ['issue_check', 'third_check'])]" attrs="{'invisible':[('action_type','!=','deposit')],'required':[('action_type','=','deposit')]}"/>
                     </group>
                     <footer>
                         <button string="Confirm" name="action_confirm" type="object" class="oe_highlight"/>

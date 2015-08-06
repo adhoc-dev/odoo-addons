@@ -9,11 +9,6 @@ from openerp import models, fields, api, _
 class account_journal(models.Model):
     _inherit = 'account.journal'
 
-    check_type = fields.Selection(
-        [('issue', 'Issue'), ('third', 'Third')],
-        'Check Type',
-        help='Choose check type, if none check journal then keep it empty.'
-        )
     checkbook_ids = fields.One2many(
         'account.checkbook',
         'journal_id',
@@ -23,7 +18,8 @@ class account_journal(models.Model):
     @api.model
     def _get_payment_subtype(self):
         selection = super(account_journal, self)._get_payment_subtype()
-        selection.append(('check', _('Check')))
+        selection.append(('issue_check', _('Issue Check')))
+        selection.append(('third_check', _('Third Check')))
         # same functionality as checks, no need to have both for now
         # selection.append(('promissory', _('Promissory Note')))
         return selection
