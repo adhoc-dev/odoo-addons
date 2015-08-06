@@ -12,14 +12,12 @@ class account_journal(models.Model):
     check_type = fields.Selection(
         [('issue', 'Issue'), ('third', 'Third')],
         'Check Type',
-        help='Choose check type, if none check journal then keep it empty.')
-    checkbook_ids = fields.One2many(
-        'account.checkbook', 'journal_id', 'Checkbooks',)
-    collection_account_id = fields.Many2one(
-        'account.account', 'Collection Account', domain=[('type', 'in', ['other', 'liquidity'])], help='Deposit account for collection.'
+        help='Choose check type, if none check journal then keep it empty.'
         )
-    warrant_account_id = fields.Many2one(
-        'account.account', 'Warrant Account', domain=[('type', 'in', ['other', 'liquidity'])], help='Deposit account for warrant.'
+    checkbook_ids = fields.One2many(
+        'account.checkbook',
+        'journal_id',
+        'Checkbooks',
         )
 
     @api.model

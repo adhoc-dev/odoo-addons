@@ -75,7 +75,8 @@ class account_check(models.Model):
     company_currency_amount = fields.Float(
         'Company Currency Amount', readonly=True,
         digits=dp.get_precision('Account'),
-        help='This value is only set for those checks that has a different currency than the company one.'
+        help='This value is only set for those checks that has a different '
+        'currency than the company one.'
         )
     voucher_id = fields.Many2one(
         'account.voucher', 'Voucher', readonly=True, required=True
@@ -120,7 +121,6 @@ class account_check(models.Model):
             ('handed', 'Handed'),
             ('rejected', 'Rejected'),
             ('debited', 'Debited'),
-            ('credited', 'Credited'),
             ('returned', 'Returned'),
             ('cancel', 'Cancel'),
         ], 'State', required=True,
@@ -152,8 +152,6 @@ class account_check(models.Model):
         )
     debit_account_move_id = fields.Many2one(
         'account.move', 'Debit Account Move', readonly=True)
-    credit_account_move_id = fields.Many2one(
-        'account.move', 'Credit Account Move', readonly=True)
 
     # Third check
     third_handed_voucher_id = fields.Many2one(
@@ -184,23 +182,13 @@ class account_check(models.Model):
     deposit_account_move_id = fields.Many2one(
         'account.move', 'Deposit Account Move', readonly=True
         )
-     # account move of return
+    # account move of return
     return_account_move_id = fields.Many2one(
-        'account.move', 'Return Account Move', readonly=True
+        'account.move',
+        'Return Account Move',
+        readonly=True
         )
-    # account move of take back
-    take_account_move_id = fields.Many2one(
-        'account.move', 'Take Back Account Move', readonly=True
-        )
-    # deposit type can be
-    deposit_type = fields.Selection((
-            ('collection', 'Collection'),
-            ('warrant', 'Warrant'),
-        ), 'Deposit Type', readonly=True)
 
-    credit_journal_id = fields.Many2one(
-        'account.journal', 'Credit Journal', help='It will be used for the credit of the check ', readonly=True
-        )
     def _check_number_interval(self, cr, uid, ids, context=None):
         for obj in self.browse(cr, uid, ids, context=context):
             if obj.type !='issue' or (obj.checkbook_id and obj.checkbook_id.range_from <= obj.number <= obj.checkbook_id.range_to):
@@ -301,11 +289,6 @@ class account_check(models.Model):
     @api.multi
     def action_debit(self):
         self.write({'state': 'debited'})
-        return True
-
-    @api.multi
-    def action_credit(self):
-        self.write({'state': 'credited'})
         return True
 
     @api.multi

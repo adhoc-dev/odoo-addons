@@ -20,15 +20,11 @@ class account_check_action(models.TransientModel):
         return self.env['res.company'].search(
             [('id', 'in', company_ids)], limit=1)
 
-    credit_journal_id = fields.Many2one(
-        'account.journal', 'Credit Journal',
+    journal_id = fields.Many2one(
+        'account.journal', 'Journal',
         domain=[('type', 'in', ['cash', 'bank'])])
     date = fields.Date(
         'Date', required=True, default=fields.Date.context_today)
-    deposit_type = fields.Selection((
-            ('collection', 'Collection'),
-            ('warrant', 'Warrant'),
-        ), 'Deposit Type', default='collection')
     action_type = fields.Char(
         'Action type passed on the context', required=True)
     company_id = fields.Many2one(
@@ -69,13 +65,6 @@ class account_check_action(models.TransientModel):
                             _('The selected checks must be in handed state.'))
                 else:   # third
                     raise Warning(_('You can not debit a Third Check.'))
-            elif wizard.action_type == 'credit':
-                if check.type == 'third':
-                        if check.state != 'deposited':
-                            raise Warning(
-                                _('The selected checks must be in deposited state.'))
-                else:   # issue
-                    raise Warning(_('You can not credit a Issue Check.'))
             elif wizard.action_type == 'return':
                 if check.type == 'third':
                     if check.state != 'holding':
@@ -83,58 +72,27 @@ class account_check_action(models.TransientModel):
                             _('The selected checks must be in holding state.'))
                 else:   # issue
                     raise Warning(_('You can not return a Issue Check.'))
-            else:   # take
-                if check.type == 'issue':
-                    if check.state != 'handed':
-                        raise Warning(
-                            _('The selected checks must be in handed state.'))
-                else:   # third
-                    if check.state != 'deposited' and check.state != 'handed':
-                        raise Warning(
-                            _('The selected checks must be in deposited or handed state.'))
 
             check_vals = {}
             debit_date_due = False
             credit_date_due = False
 
             if wizard.action_type == 'deposit':
-                # TODO: tal vez la cuenta de deposito del cheque deberia salir
-                # de la seleccion de un jorunal y el journal tambien.
                 ref = _('Deposit Check Nr. ')
                 check_move_field = 'deposit_account_move_id'
-                journal = check.voucher_id.journal_id
-                if wizard.deposit_type == 'collection':
-                    debit_account_id = check.voucher_id.journal_id.collection_account_id.id
-                else:
-                    debit_account_id = check.voucher_id.journal_id.warrant_account_id.id
-                debit_date_due = check.payment_date
+                journal = wizard.journal_id
+                debit_account_id = journal.default_debit_account_id.id
                 partner = check.source_partner_id.id,
                 credit_account_id = check.voucher_id.journal_id.default_credit_account_id.id
-                credit_date_due = check.payment_date
-                check_vals['deposit_type'] = wizard.deposit_type
-                check_vals['credit_journal_id'] = wizard.credit_journal_id.id
                 signal = 'holding_deposited'
             elif wizard.action_type == 'debit':
                 ref = _('Debit Check Nr. ')
                 check_move_field = 'debit_account_move_id'
                 journal = check.checkbook_id.debit_journal_id
                 partner = check.destiny_partner_id.id
-                debit_account_id = check.voucher_id.journal_id.default_credit_account_id.id
-                debit_date_due = check.payment_date
                 credit_account_id = journal.default_debit_account_id.id
+                debit_account_id = check.voucher_id.journal_id.default_credit_account_id.id
                 signal = 'handed_debited'
-            elif wizard.action_type == 'credit':
-                ref = _('Credit Check Nr. ')
-                check_move_field = 'credit_account_move_id'
-                journal = check.credit_journal_id
-                partner = check.source_partner_id.id
-                debit_account_id = check.credit_journal_id.default_debit_account_id.id
-                if check.deposit_type == 'collection':
-                    credit_account_id = check.voucher_id.journal_id.collection_account_id.id
-                else:
-                    credit_account_id = check.voucher_id.journal_id.warrant_account_id.id
-                credit_date_due = check.payment_date
-                signal = 'deposited_credited'
             elif wizard.action_type == 'return': # return back to customer
                 ref = _('Return Check Nr. ')
                 check_move_field = 'return_account_move_id'
@@ -144,40 +102,6 @@ class account_check_action(models.TransientModel):
                 credit_account_id = check.voucher_id.journal_id.default_credit_account_id.id
                 credit_date_due = check.payment_date
                 signal = 'holding_returned'
-            elif wizard.action_type == 'take':
-                ref = _('Take Check Nr. ')
-                if check.type == 'issue': # take back from supplier
-                    check_move_field = 'take_account_move_id'
-                    journal = check.voucher_id.journal_id
-                    partner = check.destiny_partner_id.id
-                    debit_account_id = journal.default_debit_account_id.id
-                    debit_date_due = check.payment_date
-                    credit_account_id = check.destiny_partner_id.property_account_payable.id
-                    signal = 'cancel'
-                else: #  check.type == 'third':
-                    if check.state == 'deposited': # take back from bank
-                        check_move_field = 'take_account_move_id'
-                        journal = check.voucher_id.journal_id
-                        partner = check.source_partner_id.id
-                        debit_account_id = check.voucher_id.journal_id.default_credit_account_id.id
-                        debit_date_due = check.payment_date
-                        if check.deposit_type == 'collection':
-                            credit_account_id = check.voucher_id.journal_id.collection_account_id.id
-                        else:
-                            credit_account_id = check.voucher_id.journal_id.warrant_account_id.id
-                        credit_date_due = check.payment_date
-                        check_vals['credit_journal_id'] = False
-                        signal = 'cancel_deposit'
-                    else: # check.state == 'handed' take back from supplier
-                        check_move_field = 'take_account_move_id'
-                        journal = check.voucher_id.journal_id
-                        partner = check.destiny_partner_id.id
-                        debit_account_id = journal.default_debit_account_id.id
-                        debit_date_due = check.payment_date
-                        credit_account_id = check.destiny_partner_id.property_account_payable.id
-                        check_vals['third_handed_voucher_id'] = False
-                        signal = 'cancel'
-
 
             name = self.pool.get('ir.sequence').next_by_id(
                 cr, uid, journal.sequence_id.id, context=context)

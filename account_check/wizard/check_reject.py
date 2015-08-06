@@ -108,10 +108,7 @@ class account_check_dreject(models.TransientModel):
             if check.state == 'handed':
                 account_id = check.voucher_id.journal_id.default_credit_account_id.id
             else:
-                if check.deposit_type == 'collection':
-                    account_id = check.voucher_id.journal_id.collection_account_id.id
-                else:
-                    account_id = check.voucher_id.journal_id.warrant_account_id.id
+                account_id = check.deposit_account_move_id.journal_id.default_credit_account_id.id
 
         if not journal_ids:
             raise Warning(_('No journal for rejection in company %s') %
@@ -176,7 +173,7 @@ class account_check_dreject(models.TransientModel):
         if check.state == 'handed':
             account_id = check.voucher_id.journal_id.default_credit_account_id.id
         else:
-            account_id = check.deposit_account_id.id
+            account_id = check.deposit_account_move_id.journal_id.default_credit_account_id.id
         move_line_obj.create(cr, uid, {
             'name': name,
             'centralisation': 'normal',
