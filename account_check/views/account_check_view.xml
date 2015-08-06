@@ -20,7 +20,6 @@
                     <field name="amount" sum="Total Amount"/>
                     <field name="company_id" groups="base.group_multi_company"/>
                     <field name="state"/>
-                    <field name="owner" invisible="context.get('default_type',False) != 'third'"/>
                     <field name="owner_name" invisible="context.get('default_type',False) != 'third'"/>
                     <field name="credit_journal_id" invisible="context.get('default_type',False) != 'third'"/>
                 </tree>
@@ -64,6 +63,7 @@
                     <button name="action_cancel_debit" type="object" string="Cancel Debit" states="debited" context="{'default_state':state,'default_type':type}"/>
                     <button name="action_cancel_rejection" type="object" string="Cancel Rejection" states="rejected" context="{'default_state':state,'default_type':type}"/>
                     <button name="action_cancel_deposit" type="object" string="Cancel Deposit" states="deposited" context="{'default_state':state,'default_type':type}"/>
+                    <button name="action_cancel_return" type="object" string="Cancel Return" states="returned" context="{'default_state':state,'default_type':type}"/>
                     <field name="state" widget="statusbar" statusbar_colors='{"hrejected":"red"}'/>
                 </header>
                 <sheet string="Checks">
@@ -79,7 +79,6 @@
                             <field name="company_currency_amount" attrs="{'invisible':[('company_currency_amount','=', 0)]}" /> <!-- groups="base.group_no_one" -->
                         </group>
                         <group>    
-                            <field name="owner" attrs="{'invisible':[('type','!=','third')],'required':[('type','=','third')]}"/>
                             <field name="owner_name" attrs="{'invisible':[('type','!=','third')],'required':[('type','=','third')]}"/>
                             <field name="vat" attrs="{'invisible':[('type','!=','third')],'required':[('type','=','third')]}"/>
                         </group>
@@ -129,7 +128,6 @@
                     <field name="voucher_id"/>
                     <field name="company_id" groups="base.group_multi_company"/>
                     <field name="state"/>
-                    <field name="owner"/>
                     <field name="owner_name"/>
                     <field name="vat"/>
                     <group expand="0" string="Group By...">

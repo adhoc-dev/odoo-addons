@@ -143,7 +143,7 @@ class account_check_action(models.TransientModel):
                 partner = check.source_partner_id.id,
                 credit_account_id = check.voucher_id.journal_id.default_credit_account_id.id
                 credit_date_due = check.payment_date
-                signal = 'cancel'
+                signal = 'holding_returned'
             elif wizard.action_type == 'take':
                 ref = _('Take Check Nr. ')
                 if check.type == 'issue': # take back from supplier

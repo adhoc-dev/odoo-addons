@@ -121,6 +121,7 @@ class account_check(models.Model):
             ('rejected', 'Rejected'),
             ('debited', 'Debited'),
             ('credited', 'Credited'),
+            ('returned', 'Returned'),
             ('cancel', 'Cancel'),
         ], 'State', required=True,
         track_visibility='onchange', default='draft'
@@ -177,16 +178,9 @@ class account_check(models.Model):
     vat = fields.Char(
         'Vat', readonly=True, states={'draft': [('readonly', False)]}
         )
-
-    owner = fields.Selection((
-            ('self', 'Self'),
-            ('customers', 'Customers'),
-        ), 'Owner', readonly=True, states={'draft': [('readonly', False)]})
-
     owner_name = fields.Char(
         'Owner Name', readonly=True, states={'draft': [('readonly', False)]}
         )
-
     deposit_account_move_id = fields.Many2one(
         'account.move', 'Deposit Account Move', readonly=True
         )
@@ -253,14 +247,10 @@ class account_check(models.Model):
                 _('Payment Date must be greater than Issue Date'))
 
     @api.one
-    @api.onchange('owner')
-    def onchange_owner(self):
-        if self.owner == 'self':
-            self.owner_name = self.voucher_id.partner_id.name
-            self.vat = self.voucher_id.partner_id.vat
-        else:
-            self.owner_name = False
-            self.vat = False
+    @api.onchange('voucher_id')
+    def onchange_voucher(self):
+        self.owner_name = self.voucher_id.partner_id.name
+        self.vat = self.voucher_id.partner_id.vat
 
     @api.one
     def unlink(self):
@@ -291,6 +281,11 @@ class account_check(models.Model):
     @api.multi
     def action_deposit(self):
         self.write({'state': 'deposited'})
+        return True
+
+    @api.multi
+    def action_return(self):
+        self.write({'state': 'returned'})
         return True
 
     @api.multi
@@ -344,6 +339,15 @@ class account_check(models.Model):
                 raise Warning(
                     _('To cancel a deposit you must first delete the Deposit Account Move!'))
             check.signal_workflow('cancel_deposit')
+        return True
+
+    @api.multi
+    def action_cancel_return(self):
+        for check in self:
+            if check.return_account_move_id:
+                raise Warning(
+                    _('To cancel a deposit you must first delete the Return Account Move!'))
+            check.signal_workflow('cancel_return')
         return True
 
     @api.multi
