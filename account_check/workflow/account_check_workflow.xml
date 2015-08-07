@@ -178,8 +178,8 @@
         <record id="transs_cancel_handed_third" model="workflow.transition">
             <field name="act_from" ref="actt_handed"/>
             <field name="act_to" ref="actt_holding"/>
-            <field name="signal">cancel</field>
-            <field name="condition">type == 'third_check' and third_handed_voucher_id</field>
+            <field name="signal">handed_holding</field>
+            <field name="condition">True</field>
         </record>
 
         <record id="transs_cancel_deposit" model="workflow.transition">

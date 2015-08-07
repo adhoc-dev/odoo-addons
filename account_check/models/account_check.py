@@ -79,7 +79,8 @@ class account_check(models.Model):
         'currency than the company one.'
         )
     voucher_id = fields.Many2one(
-        'account.voucher', 'Voucher', readonly=True, required=True
+        'account.voucher', 'Voucher', readonly=True, required=True,
+        ondelete='cascade',
         )
     type = fields.Selection(
         related='voucher_id.journal_id.payment_subtype', string='Type',
@@ -174,7 +175,8 @@ class account_check(models.Model):
         related='voucher_id.journal_id.currency',
         )
     vat = fields.Char(
-        'Vat', readonly=True, states={'draft': [('readonly', False)]}
+        # TODO rename to Owner VAT
+        'Owner Vat', readonly=True, states={'draft': [('readonly', False)]}
         )
     owner_name = fields.Char(
         'Owner Name', readonly=True, states={'draft': [('readonly', False)]}
@@ -191,13 +193,16 @@ class account_check(models.Model):
 
     def _check_number_interval(self, cr, uid, ids, context=None):
         for obj in self.browse(cr, uid, ids, context=context):
-            if obj.type !='issue_check' or (obj.checkbook_id and obj.checkbook_id.range_from <= obj.number <= obj.checkbook_id.range_to):
+            if obj.type != 'issue_check' or (
+                    obj.checkbook_id and
+                    obj.checkbook_id.range_from <= obj.number <=
+                    obj.checkbook_id.range_to):
                 return True
         return False
 
     def _check_number_issue(self, cr, uid, ids, context=None):
         for obj in self.browse(cr, uid, ids, context=context):
-            if obj.type =='issue_check':
+            if obj.type == 'issue_check':
                 same_number_check_ids = self.search(
                     cr, uid, [
                         ('id', '!=', obj.id),
@@ -215,21 +220,30 @@ class account_check(models.Model):
                     cr, uid, [
                         ('id', '!=', obj.id),
                         ('number', '=', obj.number),
-                        ('voucher_id.partner_id', '=', obj.voucher_id.partner_id.id)], context=context)
+                        ('voucher_id.partner_id', '=',
+                            obj.voucher_id.partner_id.id)], context=context)
                 if same_number_check_ids:
                     return False
         return True
 
     _constraints = [
-        (_check_number_interval, 'Check Number Must be in Checkbook interval!', ['number','checkbook_id']),
-        (_check_number_issue, 'Check Number must be unique per Checkbook!', ['number','checkbook_id']),
-        (_check_number_third, 'Check Number must be unique per Customer and Bank!', ['number','bank_id']),
+        (_check_number_interval,
+            'Check Number Must be in Checkbook interval!',
+            ['number', 'checkbook_id']),
+        (_check_number_issue,
+            'Check Number must be unique per Checkbook!',
+            ['number', 'checkbook_id']),
+        (_check_number_third,
+            'Check Number must be unique per Owner and Bank!',
+            ['number', 'bank_id', 'owner_name']),
     ]
 
     @api.one
     @api.onchange('issue_date', 'payment_date')
     def onchange_date(self):
-        if self.issue_date and self.payment_date and self.issue_date > self.payment_date:
+        if (
+                self.issue_date and self.payment_date and
+                self.issue_date > self.payment_date):
             self.payment_date = False
             raise Warning(
                 _('Payment Date must be greater than Issue Date'))
@@ -295,14 +309,17 @@ class account_check(models.Model):
     def action_cancel_rejection(self):
         for check in self:
             if check.customer_reject_debit_note_id:
-                raise Warning(
-                    _('To cancel a rejection you must first delete the customer reject debit note!'))
+                raise Warning(_(
+                    'To cancel a rejection you must first delete the customer '
+                    'reject debit note!'))
             if check.supplier_reject_debit_note_id:
-                raise Warning(
-                    _('To cancel a rejection you must first delete the supplier reject debit note!'))
+                raise Warning(_(
+                    'To cancel a rejection you must first delete the supplier '
+                    'reject debit note!'))
             if check.expense_account_move_id:
-                raise Warning(
-                    _('To cancel a rejection you must first delete Expense Account Move!'))
+                raise Warning(_(
+                    'To cancel a rejection you must first delete Expense '
+                    'Account Move!'))
             check.signal_workflow('cancel_rejection')
         return True
 
@@ -310,8 +327,9 @@ class account_check(models.Model):
     def action_cancel_debit(self):
         for check in self:
             if check.debit_account_move_id:
-                raise Warning(
-                    _('To cancel a debit you must first delete Debit Account Move!'))
+                raise Warning(_(
+                    'To cancel a debit you must first delete Debit '
+                    'Account Move!'))
             check.signal_workflow('debited_handed')
         return True
 
@@ -319,8 +337,9 @@ class account_check(models.Model):
     def action_cancel_deposit(self):
         for check in self:
             if check.deposit_account_move_id:
-                raise Warning(
-                    _('To cancel a deposit you must first delete the Deposit Account Move!'))
+                raise Warning(_(
+                    'To cancel a deposit you must first delete the Deposit '
+                    'Account Move!'))
             check.signal_workflow('cancel_deposit')
         return True
 
@@ -328,25 +347,30 @@ class account_check(models.Model):
     def action_cancel_return(self):
         for check in self:
             if check.return_account_move_id:
-                raise Warning(
-                    _('To cancel a deposit you must first delete the Return Account Move!'))
+                raise Warning(_(
+                    'To cancel a deposit you must first delete the Return '
+                    'Account Move!'))
             check.signal_workflow('cancel_return')
         return True
 
     @api.multi
     def check_check_cancellation(self):
         for check in self:
-            if check.type == 'issue_check' and check.state not in ['draft', 'handed']:
+            if check.type == 'issue_check' and check.state not in [
+                    'draft', 'handed']:
                 raise Warning(_(
-                    'You can not cancel issue checks in states other than "draft or "handed". First try to change check state.'))
+                    'You can not cancel issue checks in states other than '
+                    '"draft or "handed". First try to change check state.'))
             # third checks received
-            elif check.type == 'third_check' and not self.third_handed_voucher_id and check.state not in ['draft', 'holding']:
+            elif check.type == 'third_check' and check.state not in [
+                    'draft', 'holding']:
                 raise Warning(_(
-                    'You can not cancel received third checks in states other than "draft or "holding". First try to change check state.'))
-            # third checks handed
-            elif check.type == 'third_check' and self.third_handed_voucher_id and check.state not in ['draft', 'holding', 'handed']:
+                    'You can not cancel third checks in states other than '
+                    '"draft or "holding". First try to change check state.'))
+            elif check.type == 'third_check' and check.third_handed_voucher_id:
                 raise Warning(_(
-                    'You can not cancel handed third checks in states other than "handed". First try to change check state.'))
+                    'You can not cancel third checks that are being used on '
+                    'payments'))
         return True
 
     @api.multi

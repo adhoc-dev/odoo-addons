@@ -59,12 +59,26 @@ class account_voucher(models.Model):
 
     @api.multi
     def cancel_voucher(self):
-        checks = self.env['account.check'].search([
-            '|',
-            ('voucher_id', 'in', self.ids),
-            ('third_handed_voucher_id', 'in', self.ids)])
-        checks.check_check_cancellation()
-        checks.signal_workflow('cancel')
+        third_handed_checks = self.env['account.check'].search([
+            ('third_handed_voucher_id', 'in', self.filtered(
+                lambda v: v.type == 'payment').ids)])
+        for third_check in third_handed_checks:
+            if third_check.state != 'handed':
+                raise Warning(_(
+                    'You can not cancel handed third checks in states other '
+                    'than "handed". First try to change check state.'))
+            third_handed_checks.signal_workflow('handed_holding')
+
+        other_checks = self.env['account.check'].search([
+            ('voucher_id', 'in', self.ids)])
+        other_checks.check_check_cancellation()
+        other_checks.signal_workflow('cancel')
+        # checks = self.env['account.check'].search([
+        #     '|',
+        #     ('voucher_id', 'in', self.ids),
+        #     ('third_handed_voucher_id', 'in', self.ids)])
+        # checks.check_check_cancellation()
+        # checks.signal_workflow('cancel')
         return super(account_voucher, self).cancel_voucher()
 
     def proforma_voucher(self, cr, uid, ids, context=None):
