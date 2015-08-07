@@ -67,7 +67,7 @@ class account_voucher(models.Model):
                 raise Warning(_(
                     'You can not cancel handed third checks in states other '
                     'than "handed". First try to change check state.'))
-            third_handed_checks.signal_workflow('handed_holding')
+        third_handed_checks.signal_workflow('handed_holding')
 
         other_checks = self.env['account.check'].search([
             ('voucher_id', 'in', self.ids)])
