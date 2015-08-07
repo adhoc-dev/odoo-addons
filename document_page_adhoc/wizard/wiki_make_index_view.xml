@@ -9,7 +9,7 @@
             <field name="model">wiki.make.index</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Create Menu" version="7.0">
+                <form string="Create Menu">
                     <separator string="Menu Information"/>
                     <label string="Want to create a Index on Selected Pages ? "/>
                     <footer>

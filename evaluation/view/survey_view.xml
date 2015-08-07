@@ -208,7 +208,7 @@
             <field name="name">survey_user_input_question_score_form</field>
             <field name="model">survey.user_input_question_score</field>
             <field name="arch" type="xml">
-                <form string="Survey User Input Question Score" version="7.0">
+                <form string="Survey User Input Question Score">
                     <group col="2">
                         <field name="question_id"/>
                         <field name="score_percentage"/>
@@ -234,7 +234,7 @@
             <field name="name">survey_question_objective_form</field>
             <field name="model">survey.objective</field>
             <field name="arch" type="xml">
-                <form string="Survey Question Objective" version="7.0">
+                <form string="Survey Question Objective">
                     <group col="1">
                         <group col="2">
                             <field name="objective_id"/>
@@ -269,7 +269,7 @@
             <field name="name">survey_question_content_form</field>
             <field name="model">survey.content</field>
             <field name="arch" type="xml">
-                <form string="Survey Question content" version="7.0">
+                <form string="Survey Question content">
                     <group col="1">
                         <group col="2">
                             <field name="content_id"/>
@@ -304,7 +304,7 @@
             <field name="name">survey_question_level_form</field>
             <field name="model">survey.level</field>
             <field name="arch" type="xml">
-                <form string="Survey Question level" version="7.0">
+                <form string="Survey Question level">
                     <group col="1">
                         <group col="2">
                             <field name="level_id"/>

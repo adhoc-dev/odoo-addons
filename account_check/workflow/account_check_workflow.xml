@@ -35,6 +35,13 @@
             <field name="action">action_deposit()</field>
         </record>        
 
+        <record id="actt_returned" model="workflow.activity">
+            <field name="wkf_id" ref="account_checks"/>
+            <field name="name">returned</field>
+            <field name="kind">function</field>
+            <field name="action">action_return()</field>
+        </record>        
+
         <record id="actt_handed" model="workflow.activity">
             <field name="wkf_id" ref="account_checks"/>
             <field name="name">handed</field>
@@ -62,14 +69,7 @@
             <field name="kind">function</field>
             <field name="action">action_debit()</field>
         </record>
-       
-        <record id="actt_credited" model="workflow.activity">
-            <field name="wkf_id" ref="account_checks"/>
-            <field name="name">credited</field>
-            <field name="kind">function</field>
-            <field name="action">action_credit()</field>
-        </record>
-
+        
         <record id="actt_cancel" model="workflow.activity">
             <field name="wkf_id" ref="account_checks"/>
             <field name="name">cancel</field>
@@ -90,14 +90,14 @@
             <field name="act_from" ref="actt_router"/>
             <field name="act_to" ref="actt_holding"/>
             <field name="signal"></field>
-            <field name="condition">type == 'third'</field>
+            <field name="condition">type == 'third_check'</field>
         </record>
 
         <record id="transs_router_handed" model="workflow.transition">
             <field name="act_from" ref="actt_router"/>
             <field name="act_to" ref="actt_handed"/>
             <field name="signal"></field>
-            <field name="condition">type == 'issue'</field>
+            <field name="condition">type == 'issue_check'</field>
         </record>
         
         <record id="transs_holding_handed" model="workflow.transition">
@@ -116,6 +116,12 @@
             <field name="act_from" ref="actt_holding"/>
             <field name="act_to" ref="actt_deposited"/>
             <field name="signal">holding_deposited</field>
+        </record>
+
+        <record id="transs_holding_returned" model="workflow.transition">
+            <field name="act_from" ref="actt_holding"/>
+            <field name="act_to" ref="actt_returned"/>
+            <field name="signal">holding_returned</field>
         </record>
 
         <record id="transs_handed_hrejected" model="workflow.transition">
@@ -152,48 +158,40 @@
             <field name="act_from" ref="actt_handed"/>
             <field name="act_to" ref="actt_cancel"/>
             <field name="signal">cancel</field>
-            <field name="condition">type == 'issue'</field>
+            <field name="condition">type == 'issue_check'</field>
         </record>
 
         <record id="transs_handed_debited" model="workflow.transition">
             <field name="act_from" ref="actt_handed"/>
             <field name="act_to" ref="actt_debited"/>
             <field name="signal">handed_debited</field>
-            <field name="condition">type == 'issue'</field>
+            <field name="condition">type == 'issue_check'</field>
         </record>
 
         <record id="transs_debited_handed" model="workflow.transition">
             <field name="act_from" ref="actt_debited"/>
             <field name="act_to" ref="actt_handed"/>
             <field name="signal">debited_handed</field>
-            <field name="condition">type == 'issue'</field>
-        </record>
-
-        <record id="transs_deposited_credited" model="workflow.transition">
-            <field name="act_from" ref="actt_deposited"/>
-            <field name="act_to" ref="actt_credited"/>
-            <field name="signal">deposited_credited</field>
-            <field name="condition">type == 'third'</field>
-        </record>
-
-        <record id="transs_credited_deposited" model="workflow.transition">
-            <field name="act_from" ref="actt_credited"/>
-            <field name="act_to" ref="actt_deposited"/>
-            <field name="signal">credited_deposited</field>
-            <field name="condition">type == 'third'</field>
+            <field name="condition">type == 'issue_check'</field>
         </record>
 
         <record id="transs_cancel_handed_third" model="workflow.transition">
             <field name="act_from" ref="actt_handed"/>
             <field name="act_to" ref="actt_holding"/>
-            <field name="signal">cancel</field>
-            <field name="condition">type == 'third' and third_handed_voucher_id</field>
+            <field name="signal">handed_holding</field>
+            <field name="condition">True</field>
         </record>
 
         <record id="transs_cancel_deposit" model="workflow.transition">
             <field name="act_from" ref="actt_deposited"/>
             <field name="act_to" ref="actt_holding"/>
             <field name="signal">cancel_deposit</field>
+        </record>
+                
+        <record id="transs_cancel_return" model="workflow.transition">
+            <field name="act_from" ref="actt_returned"/>
+            <field name="act_to" ref="actt_holding"/>
+            <field name="signal">cancel_return</field>
         </record>
                 
         <record id="transs_draft_cancel" model="workflow.transition">

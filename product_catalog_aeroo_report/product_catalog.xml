@@ -5,7 +5,7 @@
             <field name="name">Product Catalog Reports</field>
             <field name="model">product.product_catalog_report</field>
             <field name="arch" type="xml">
-                <tree string="Product Catalog Reports" version="7.0">
+                <tree string="Product Catalog Reports">
                     <field name="name"/>
                     <field name="report_xml_id"/>
                     <field name="pricelist_ids"/>

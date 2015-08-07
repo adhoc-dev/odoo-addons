@@ -46,7 +46,7 @@
             <field name="name">res.partner.establishment.tenure.form</field>
             <field name="model">res.partner.establishment.tenure</field>
             <field name="arch" type="xml">
-                <form string="Establishment Tenure" version="7.0">
+                <form string="Establishment Tenure">
                     <sheet>
                         <div class="oe_title">
                             <label for="name" class="oe_edit_only"/>
@@ -98,7 +98,7 @@
             <field name="name">res.partner.establishment.activity.form</field>
             <field name="model">res.partner.establishment.activity</field>
             <field name="arch" type="xml">
-                <form string="Establishment Activity" version="7.0">
+                <form string="Establishment Activity">
                     <sheet>
                         <div class="oe_title">
                             <label for="name" class="oe_edit_only"/>
@@ -161,7 +161,7 @@
             <field name="name">res.partner.establishment.form</field>
             <field name="model">res.partner.establishment</field>
             <field name="arch" type="xml">
-                <form string="Partner Establishment" version="7.0">
+                <form string="Partner Establishment">
                     <sheet>
                         <div class="oe_title">
                             <div class="oe_edit_only">

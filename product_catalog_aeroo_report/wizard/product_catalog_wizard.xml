@@ -6,7 +6,7 @@
             <field name="model">product_catalog</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Product Catalog Report" version="7.0">
+                <form string="Product Catalog Report">
                     <group>
                         <field name="product_catalog_report_id"/>
                     </group>

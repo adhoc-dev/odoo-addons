@@ -6,13 +6,12 @@
             <field name="name">account.check.action.wizard.form</field>
             <field name="model">account.check.action</field>
             <field name="arch" type="xml">
-                <form string="Check Action" version="7.0">
+                <form string="Check Action">
                     <field name="action_type" invisible="1"/>
                     <field name="company_id" invisible="1"/>
                     <group >
                         <field name="date"/>
-                        <field name="deposit_type" attrs="{'invisible':[('action_type','!=','deposit')],'required':[('action_type','=','deposit')]}"/>
-                        <field name="credit_journal_id" domain="[('company_id','=',company_id),('type', 'in', ['cash', 'bank'])]" attrs="{'invisible':[('action_type','!=','deposit')],'required':[('action_type','=','deposit')]}"/>
+                        <field name="journal_id" domain="[('company_id','=',company_id), ('type', 'in', ['cash', 'bank']), ('payment_subtype', 'not in', ['issue_check', 'third_check'])]" attrs="{'invisible':[('action_type','!=','deposit')],'required':[('action_type','=','deposit')]}"/>
                     </group>
                     <footer>
                         <button string="Confirm" name="action_confirm" type="object" class="oe_highlight"/>
@@ -22,16 +21,6 @@
                 </form>
             </field>
         </record>
-
-        <act_window
-            name="Check Deposit"
-            res_model="account.check.action"
-            src_model="account.check"
-            view_mode="form"
-            target="new"
-            context="{'default_action_type':'deposit'}"
-            key2="client_action_multi"
-            id="action_check_deposit"/>
 
         <act_window
             name="Check Debit"
@@ -44,14 +33,14 @@
             id="action_check_debit"/>
         
         <act_window
-            name="Check Credit"
+            name="Check Deposit"
             res_model="account.check.action"
             src_model="account.check"
             view_mode="form"
             target="new"
-            context="{'default_action_type':'credit'}"
+            context="{'default_action_type':'deposit'}"
             key2="client_action_multi"
-            id="action_check_credit"/>
+            id="action_check_deposit"/>
 
         <act_window
             name="Check Return"
@@ -62,16 +51,6 @@
             context="{'default_action_type':'return'}"
             key2="client_action_multi"
             id="action_check_return"/>
-
-        <act_window
-            name="Check Take Back"
-            res_model="account.check.action"
-            src_model="account.check"
-            view_mode="form"
-            target="new"
-            context="{'default_action_type':'take'}"
-            key2="client_action_multi"
-            id="action_check_take"/>
 
     </data>
 </openerp>

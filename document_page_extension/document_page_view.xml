@@ -11,7 +11,7 @@
             <field name="model">document.page</field>
             <!-- <field name="inherit_id" ref="document_page.view_wiki_tree_children"/> -->
             <field name="arch" type="xml">
-                <form string="Document Page" version="7.0">
+                <form string="Document Page">
                     <field name="type" invisible="1"/>
                     <h1><field name="name" placeholder="Name" attrs="{'invisible':[('hide_title','=',True)]}"/></h1>
                     <group class="oe_edit_only">

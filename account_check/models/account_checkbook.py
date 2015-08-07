@@ -29,13 +29,20 @@ class account_checkbook(models.Model):
         states={'draft': [('readonly', False)]})
     issue_check_subtype = fields.Selection(
         [('deferred', 'Deferred'), ('currents', 'Currents')],
-        string='Issue Check Subtype', readonly=True, required=True,
-        help='The only difference bewteen Deferred and Currents is that when delivering a Deferred check a Payment Date is Require',
+        string='Issue Check Subtype',
+        readonly=True,
+        required=True,
+        default='deferred',
+        help='The only difference bewteen Deferred and Currents is that when '
+        'delivering a Deferred check a Payment Date is Require',
         states={'draft': [('readonly', False)]})
     debit_journal_id = fields.Many2one(
         'account.journal', 'Debit Journal',
-        help='It will be used to make the debit of the check on checks ', readonly=True, required=True,
-        domain=[('type', '=', 'bank')], context={'default_type': 'bank'},
+        help='It will be used to make the debit of the check on checks ',
+        readonly=True,
+        required=True,
+        domain=[('type', '=', 'bank')],
+        context={'default_type': 'bank'},
         states={'draft': [('readonly', False)]})
     journal_id = fields.Many2one(
         'account.journal', 'Journal',
@@ -53,8 +60,13 @@ class account_checkbook(models.Model):
         compute='_get_next_check_number',
         string='Next Check Number',)
     padding = fields.Integer(
-        'Number Padding', default=8, required=True,
-        help="automatically adds some '0' on the left of the 'Number' to get the required padding size.")
+        'Number Padding',
+        default=8,
+        required=True,
+        readonly=True,
+        states={'draft': [('readonly', False)]},
+        help="automatically adds some '0' on the left of the 'Number' to get "
+        "the required padding size.")
     company_id = fields.Many2one(
         'res.company',
         related='journal_id.company_id',
@@ -64,7 +76,7 @@ class account_checkbook(models.Model):
         'account.check', 'checkbook_id', string='Issue Checks', readonly=True,)
     state = fields.Selection(
         [('draft', 'Draft'), ('active', 'In Use'), ('used', 'Used')],
-        string='State', readonly=True, default='draft', copy=False)
+        string='State', readonly=True, default='active', copy=False)
 
     _order = "name"
 

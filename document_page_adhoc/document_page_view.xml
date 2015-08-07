@@ -37,7 +37,7 @@
             <field name="name">document.page.form</field>
             <field name="model">document.page</field>
             <field name="arch" type="xml">
-                <form string="Document Page" version="7.0">
+                <form string="Document Page">
                     <field name="type" invisible="1"/>
                     <h1><field name="name" placeholder="Name"/></h1>
                     <group class="oe_edit_only">
@@ -124,7 +124,7 @@
             <field name="name">document.page.history.form</field>
             <field name="model">document.page.history</field>
             <field name="arch" type="xml">
-                <form string="Document Page History" version="7.0">
+                <form string="Document Page History">
                     <label for="page_id" class="oe_edit_only"/>
                     <h1><field name="page_id" select="1" /></h1>
                     <label for="create_date" class="oe_edit_only"/>

@@ -34,3 +34,12 @@ class AccountJournal(models.Model):
         '_get_payment_subtype',
         string='Payment Subtype'
         )
+
+
+class AccountVoucher(models.Model):
+    _inherit = 'account.voucher'
+
+    payment_subtype = fields.Selection(
+        related='journal_id.payment_subtype',
+        string='Payment Subtype', readonly=True,
+        )

@@ -33,7 +33,7 @@
             <field name="name">account.checkbook.form</field>
             <field name="model">account.checkbook</field>
             <field name="arch" type="xml">
-                <form string="Checkbooks" version="7.0"> 
+                <form string="Checkbooks"> 
                     <header string="Checkbooks">
                         <button name="set_active" type="object" string="In Use"  states="draft"/>
                         <button name="set_used" type="object" string="Used"  states="active"/>
