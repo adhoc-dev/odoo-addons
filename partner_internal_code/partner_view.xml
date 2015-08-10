@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- INHERITED FORM -->
+        <record id="view_partner_user_form" model="ir.ui.view">
+            <field name="name">partner.user.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="title" position="after">
+                    <field name="internal_code"/>
+                </field>
+                
+            </field>
+        </record>
+
+    </data>
+</openerp>
