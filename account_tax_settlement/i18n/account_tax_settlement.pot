@@ -1,0 +1,845 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* account_tax_settlement_withholding
+#	* account_tax_settlement
+#	* account_voucher_withholding
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-06 19:57+0000\n"
+"PO-Revision-Date: 2015-08-06 19:57+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_voucher_withholding
+#: field:account.tax.withholding,account_id:0
+#: field:account.tax.withholding.template,account_id:0
+msgid "Account"
+msgstr ""
+
+#. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/tax_settlement.py:409
+#, python-format
+msgid "Account Balance and Tax Balance must be equal."
+msgstr ""
+
+#. module: account_tax_settlement
+#: model:ir.model,name:account_tax_settlement.model_account_tax_settlement
+msgid "Account Tax Settlement"
+msgstr ""
+
+#. module: account_tax_settlement
+#: view:account.tax.settlement.detail:account_tax_settlement.account_tax_settlement_detail_form
+#: view:account.tax.settlement.detail:account_tax_settlement.account_tax_settlement_detail_tree
+#: model:ir.model,name:account_tax_settlement.model_account_tax_settlement_detail
+msgid "Account Tax Settlement Detail"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: model:ir.model,name:account_voucher_withholding.model_account_tax_withholding
+msgid "Account Withholding Taxes"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: model:ir.model,name:account_voucher_withholding.model_account_tax_withholding_template
+msgid "Account Withholding Taxes Template"
+msgstr ""
+
+#. modules: account_tax_settlement_withholding, account_voucher_withholding
+#: model:ir.model,name:account_tax_settlement_withholding.model_account_voucher_withholding
+#: model:ir.model,name:account_voucher_withholding.model_account_voucher_withholding
+msgid "Account Withholding Voucher"
+msgstr ""
+
+#. modules: account_voucher_withholding, account_tax_settlement
+#: model:ir.model,name:account_tax_settlement.model_account_voucher
+#: model:ir.model,name:account_voucher_withholding.model_account_voucher
+msgid "Accounting Voucher"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.tax.withholding,active:0
+#: field:account.tax.withholding.template,active:0
+msgid "Active"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.voucher.withholding,comment:0
+msgid "Additional Information"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: selection:account.tax.withholding,type_tax_use:0
+#: selection:account.tax.withholding.template,type_tax_use:0
+msgid "All"
+msgstr ""
+
+#. module: account_tax_settlement
+#: selection:account.tax.settlement,moves_state:0
+msgid "All Entries"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.voucher.withholding,amount:0
+msgid "Amount"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.tax.withholding,account_analytic_id:0
+#: field:account.tax.withholding.template,account_analytic_id:0
+msgid "Analytic Account"
+msgstr ""
+
+#. module: account_tax_settlement
+#: field:account.tax.settlement,residual:0
+msgid "Balance"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.tax.withholding,base_code_id:0
+#: field:account.tax.withholding.template,base_code_id:0
+msgid "Base Code"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.tax.withholding,base_sign:0
+#: field:account.tax.withholding.template,base_sign:0
+msgid "Base Code Sign"
+msgstr ""
+
+#. module: account_tax_settlement
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
+#: selection:account.tax.settlement,state:0
+msgid "Cancel"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.tax.withholding.template,chart_template_id:0
+msgid "Chart Template"
+msgstr ""
+
+#. module: account_tax_settlement
+#: help:account.journal,tax_code_id:0
+msgid "Child of this tax code will be considered on the tax settlement"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: view:account.voucher.withholding:account_voucher_withholding.account_voucher_withholding_form_view
+msgid "Comment..."
+msgstr ""
+
+#. modules: account_voucher_withholding, account_tax_settlement
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_search
+#: field:account.tax.settlement,company_id:0
+#: field:account.tax.withholding,company_id:0
+#: field:account.tax.withholding.template,company_id:0
+#: field:account.voucher.withholding,company_id:0
+msgid "Company"
+msgstr ""
+
+#. module: account_tax_settlement
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
+#: view:account.tax.settlement.detail:account_tax_settlement.account_tax_settlement_detail_form
+msgid "Compute"
+msgstr ""
+
+#. modules: account_voucher_withholding, account_tax_settlement
+#: field:account.tax.settlement,create_uid:0
+#: field:account.tax.settlement.detail,create_uid:0
+#: field:account.tax.withholding,create_uid:0
+#: field:account.tax.withholding.template,create_uid:0
+#: field:account.voucher.withholding,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. modules: account_voucher_withholding, account_tax_settlement
+#: field:account.tax.settlement,create_date:0
+#: field:account.tax.settlement.detail,create_date:0
+#: field:account.tax.withholding,create_date:0
+#: field:account.tax.withholding.template,create_date:0
+#: field:account.voucher.withholding,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. modules: account_voucher_withholding, account_tax_settlement
+#: field:account.tax.settlement,date:0
+#: selection:account.tax.settlement,filter:0
+#: field:account.voucher.withholding,date:0
+msgid "Date"
+msgstr ""
+
+#. module: account_tax_settlement
+#: help:account.tax.settlement,message_last_post:0
+msgid "Date of the last message posted on the record."
+msgstr ""
+
+#. module: account_tax_settlement
+#: help:account.tax.settlement,date:0
+msgid "Date to be used on created move"
+msgstr ""
+
+#. module: account_tax_settlement
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
+msgid "Dates"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: view:account.voucher:account_voucher_withholding.view_vendor_payment_form
+msgid "Deductions Made"
+msgstr ""
+
+#. module: account_tax_settlement
+#: field:account.journal,default_credit_tax_code_id:0
+msgid "Default Credit Tax Code"
+msgstr ""
+
+#. module: account_tax_settlement
+#: field:account.journal,default_debit_tax_code_id:0
+msgid "Default Debit Tax Code"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.tax.withholding,description:0
+#: field:account.tax.withholding.template,description:0
+msgid "Description"
+msgstr ""
+
+#. module: account_tax_settlement
+#: field:account.tax.settlement,tax_settlement_detail_ids:0
+msgid "Detail"
+msgstr ""
+
+#. module: account_tax_settlement
+#: selection:account.tax.settlement,state:0
+msgid "Done"
+msgstr ""
+
+#. module: account_tax_settlement
+#: selection:account.tax.settlement,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: account_tax_settlement
+#: field:account.tax.settlement,date_to:0
+msgid "End Date"
+msgstr ""
+
+#. module: account_tax_settlement
+#: field:account.tax.settlement,filter:0
+msgid "Filter by"
+msgstr ""
+
+#. module: account_tax_settlement
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
+msgid "Filters"
+msgstr ""
+
+#. module: account_tax_settlement
+#: field:account.tax.settlement,fiscalyear_id:0
+msgid "Fiscal Year"
+msgstr ""
+
+#. module: account_tax_settlement
+#: field:account.tax.settlement,message_follower_ids:0
+msgid "Followers"
+msgstr ""
+
+#. module: account_tax_settlement
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_search
+msgid "Group By"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: view:account.voucher.withholding:account_voucher_withholding.account_voucher_withholding_filter_view
+msgid "Group By..."
+msgstr ""
+
+#. module: account_tax_settlement
+#: help:account.tax.settlement,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr ""
+
+#. modules: account_voucher_withholding, account_tax_settlement
+#: field:account.tax.settlement,id:0
+#: field:account.tax.settlement.detail,id:0
+#: field:account.tax.withholding,id:0
+#: field:account.tax.withholding.template,id:0
+#: field:account.voucher.withholding,id:0
+msgid "ID"
+msgstr ""
+
+#. module: account_tax_settlement
+#: help:account.tax.settlement,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr ""
+
+#. module: account_voucher_withholding
+#: help:account.tax.withholding,sequence_id:0
+#: help:account.tax.withholding.template,sequence_id:0
+msgid "If no sequence provided then it will be required for you to enter withholding number when registering one."
+msgstr ""
+
+#. module: account_voucher_withholding
+#: help:account.tax.withholding,active:0
+#: help:account.tax.withholding.template,active:0
+msgid "If the active field is set to False,it will allow you to hide the tax without removing it."
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.voucher.withholding,internal_number:0
+msgid "Internal Number"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.tax.withholding,sequence_id:0
+#: field:account.tax.withholding.template,sequence_id:0
+msgid "Internal Number Sequence"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: sql_constraint:account.voucher.withholding:0
+msgid "Internal Number must be unique per Tax Withholding!"
+msgstr ""
+
+#. module: account_tax_settlement
+#: field:account.tax.settlement,message_is_follower:0
+msgid "Is a Follower"
+msgstr ""
+
+#. module: account_tax_settlement
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_search
+#: field:account.tax.settlement,journal_id:0
+#: model:ir.model,name:account_tax_settlement.model_account_journal
+msgid "Journal"
+msgstr ""
+
+#. module: account_tax_settlement
+#: field:account.tax.settlement,move_id:0
+msgid "Journal Entry"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.voucher.withholding,move_line_id:0
+msgid "Journal Item"
+msgstr ""
+
+#. module: account_tax_settlement
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
+#: view:account.tax.settlement.detail:account_tax_settlement.account_tax_settlement_detail_form
+#: model:ir.model,name:account_tax_settlement.model_account_move_line
+msgid "Journal Items"
+msgstr ""
+
+#. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/account_journal.py:34
+#, python-format
+msgid "Journal company and journal company must be the same"
+msgstr ""
+
+#. module: account_tax_settlement
+#: field:account.tax.settlement,message_last_post:0
+msgid "Last Message Date"
+msgstr ""
+
+#. modules: account_voucher_withholding, account_tax_settlement
+#: field:account.tax.settlement,write_uid:0
+#: field:account.tax.settlement.detail,write_uid:0
+#: field:account.tax.withholding,write_uid:0
+#: field:account.tax.withholding.template,write_uid:0
+#: field:account.voucher.withholding,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. modules: account_voucher_withholding, account_tax_settlement
+#: field:account.tax.settlement,write_date:0
+#: field:account.tax.settlement.detail,write_date:0
+#: field:account.tax.withholding,write_date:0
+#: field:account.tax.withholding.template,write_date:0
+#: field:account.voucher.withholding,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/account_move_line.py:53
+#, python-format
+msgid "Line already reconciled"
+msgstr ""
+
+#. module: account_tax_settlement
+#: help:account.tax.settlement,move_id:0
+msgid "Link to the automatically generated Journal Items."
+msgstr ""
+
+#. module: account_voucher_withholding
+#: help:account.chart.template,withholding_template_ids:0
+msgid "List of all the withholding that have to be installed by the wizard"
+msgstr ""
+
+#. modules: account_tax_settlement_withholding, account_tax_settlement
+#: view:account.move.line:account_tax_settlement.view_account_move_line_tree
+#: view:account.voucher.withholding:account_tax_settlement_withholding.account_voucher_withholding_form_view
+#: view:account.voucher.withholding:account_tax_settlement_withholding.account_voucher_withholding_tree_view
+msgid "Make a move to settle current tax line"
+msgstr ""
+
+#. module: account_tax_settlement
+#: field:account.tax.settlement,message_ids:0
+msgid "Messages"
+msgstr ""
+
+#. module: account_tax_settlement
+#: help:account.tax.settlement,message_ids:0
+msgid "Messages and communication history"
+msgstr ""
+
+#. module: account_tax_settlement
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
+msgid "Move Data"
+msgstr ""
+
+#. module: account_tax_settlement
+#: field:account.tax.settlement.detail,move_line_ids:0
+msgid "Move Lines"
+msgstr ""
+
+#. module: account_tax_settlement
+#: help:account.move.line,tax_settlement_move_id:0
+msgid "Move where this tax has been settled"
+msgstr ""
+
+#. module: account_tax_settlement
+#: field:account.tax.settlement,moves_state:0
+msgid "Moves Status"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.tax.withholding,name:0
+#: field:account.tax.withholding.template,name:0
+msgid "Name"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: view:account.tax.withholding:account_voucher_withholding.account_tax_withholding_form_view
+msgid "Name..."
+msgstr ""
+
+#. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/tax_settlement.py:373
+#, python-format
+msgid "No Balance account configured on journal"
+msgstr ""
+
+#. module: account_tax_settlement
+#: selection:account.tax.settlement,filter:0
+msgid "No Filters"
+msgstr ""
+
+#. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/tax_settlement.py:370
+#, python-format
+msgid "No Partner configured on journal"
+msgstr ""
+
+#. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/account_move_line.py:72
+#, python-format
+msgid "No tax settlemnt journal found for tax code %s"
+msgstr ""
+
+#. module: account_tax_settlement
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
+#: field:account.tax.settlement,note:0
+msgid "Notes"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.voucher.withholding,name:0
+msgid "Number"
+msgstr ""
+
+#. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/account_move_line.py:76
+#, python-format
+msgid "Only one tax settlemnt journal must exist for tax code %sWe have found the journal ids %s"
+msgstr ""
+
+#. modules: account_voucher_withholding, account_tax_settlement
+#: field:account.journal,partner_id:0
+#: field:account.voucher.withholding,partner_id:0
+msgid "Partner"
+msgstr ""
+
+#. module: account_tax_settlement
+#: help:account.journal,partner_id:0
+msgid "Partner to be used on tax settlement"
+msgstr ""
+
+#. modules: account_tax_settlement_withholding, account_tax_settlement
+#: view:account.move.line:account_tax_settlement.view_account_move_line_tree
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
+#: view:account.voucher.withholding:account_tax_settlement_withholding.account_voucher_withholding_form_view
+#: view:account.voucher.withholding:account_tax_settlement_withholding.account_voucher_withholding_tree_view
+msgid "Pay"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: selection:account.tax.withholding,type_tax_use:0
+#: selection:account.tax.withholding.template,type_tax_use:0
+msgid "Payment"
+msgstr ""
+
+#. module: account_tax_settlement
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
+msgid "Payment Date"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: view:account.voucher:account_voucher_withholding.view_vendor_payment_form
+#: view:account.voucher:account_voucher_withholding.view_vendor_receipt_form
+msgid "Payment Information"
+msgstr ""
+
+#. module: account_tax_settlement
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
+msgid "Payments"
+msgstr ""
+
+#. module: account_tax_settlement
+#: field:account.tax.settlement,period_id:0
+msgid "Period id"
+msgstr ""
+
+#. module: account_tax_settlement
+#: help:account.tax.settlement,period_id:0
+msgid "Period to be used on created move"
+msgstr ""
+
+#. module: account_tax_settlement
+#: selection:account.tax.settlement,filter:0
+#: field:account.tax.settlement,period_ids:0
+msgid "Periods"
+msgstr ""
+
+#. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/tax_settlement.py:411
+#, python-format
+msgid "Please define a sequence on the journal."
+msgstr ""
+
+#. module: account_voucher_withholding
+#: view:account.tax.withholding:account_voucher_withholding.account_tax_withholding_form_view
+msgid "Positive Operations"
+msgstr ""
+
+#. module: account_tax_settlement
+#: selection:account.tax.settlement,moves_state:0
+msgid "Posted Entries"
+msgstr ""
+
+#. module: account_tax_settlement
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
+msgid "Present"
+msgstr ""
+
+#. module: account_tax_settlement
+#: selection:account.tax.settlement,state:0
+msgid "Presented"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: selection:account.tax.withholding,type_tax_use:0
+#: selection:account.tax.withholding.template,type_tax_use:0
+msgid "Receipt"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.tax.withholding,ref_account_id:0
+#: field:account.tax.withholding.template,ref_account_id:0
+msgid "Refund Account"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.tax.withholding,ref_account_analytic_id:0
+#: field:account.tax.withholding.template,ref_account_analytic_id:0
+msgid "Refund Analytic Account"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.tax.withholding,ref_base_code_id:0
+#: field:account.tax.withholding.template,ref_base_code_id:0
+msgid "Refund Base Code"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.tax.withholding,ref_base_sign:0
+#: field:account.tax.withholding.template,ref_base_sign:0
+msgid "Refund Base Code Sign"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.tax.withholding,ref_tax_code_id:0
+#: field:account.tax.withholding.template,ref_tax_code_id:0
+msgid "Refund Tax Code"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.tax.withholding,ref_tax_sign:0
+#: field:account.tax.withholding.template,ref_tax_sign:0
+msgid "Refund Tax Code Sign"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: view:account.tax.withholding:account_voucher_withholding.account_tax_withholding_form_view
+msgid "Refund/negative Operations"
+msgstr ""
+
+#. module: account_tax_settlement
+#: help:account.tax.settlement,residual:0
+msgid "Remaining amount due."
+msgstr ""
+
+#. modules: account_tax_settlement_withholding, account_tax_settlement
+#: view:account.move.line:account_tax_settlement.view_account_move_line_tree
+#: view:account.voucher.withholding:account_tax_settlement_withholding.account_voucher_withholding_form_view
+#: view:account.voucher.withholding:account_tax_settlement_withholding.account_voucher_withholding_tree_view
+msgid "Settle"
+msgstr ""
+
+#. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/account_move_line.py:55
+#, python-format
+msgid "Settlement only alled for journal items with tax code"
+msgstr ""
+
+#. module: account_tax_settlement
+#: field:account.tax.settlement,date_from:0
+msgid "Start Date"
+msgstr ""
+
+#. module: account_tax_settlement
+#: field:account.tax.settlement,state:0
+msgid "State"
+msgstr ""
+
+#. module: account_tax_settlement
+#: field:account.tax.settlement,message_summary:0
+msgid "Summary"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.tax.withholding,type_tax_use:0
+#: field:account.tax.withholding.template,type_tax_use:0
+msgid "Tax Application"
+msgstr ""
+
+#. modules: account_voucher_withholding, account_tax_settlement
+#: field:account.journal,tax_code_id:0
+#: field:account.tax.settlement.detail,tax_code_id:0
+#: field:account.tax.withholding,tax_code_id:0
+#: field:account.tax.withholding.template,tax_code_id:0
+msgid "Tax Code"
+msgstr ""
+
+#. module: account_tax_settlement
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
+msgid "Tax Code Lines"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.tax.withholding,tax_sign:0
+#: field:account.tax.withholding.template,tax_sign:0
+msgid "Tax Code Sign"
+msgstr ""
+
+#. module: account_tax_settlement
+#: view:account.move.line:account_tax_settlement.view_account_move_line_tree
+#: model:ir.actions.act_window,name:account_tax_settlement.action_account_move_line
+#: model:ir.ui.menu,name:account_tax_settlement.menu_account_move_line
+msgid "Tax Journal Items"
+msgstr ""
+
+#. module: account_tax_settlement
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_search
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_tree
+#: field:account.tax.settlement.detail,tax_settlement_id:0
+#: model:ir.actions.act_window,name:account_tax_settlement.action_account_vat_settlement
+msgid "Tax Settlement"
+msgstr ""
+
+#. module: account_tax_settlement
+#: field:account.move.line,tax_settlement_detail_id:0
+#: model:ir.actions.act_window,name:account_tax_settlement.action_account_vat_settlement_detail
+msgid "Tax Settlement Detail"
+msgstr ""
+
+#. module: account_tax_settlement
+#: field:account.move.line,tax_settlement_move_id:0
+msgid "Tax Settlement Move"
+msgstr ""
+
+#. module: account_tax_settlement
+#: model:ir.ui.menu,name:account_tax_settlement.account_tax_settlement_menu
+msgid "Tax Settlements"
+msgstr ""
+
+#. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/tax_settlement.py:480
+#, python-format
+msgid "Tax Settlment %s"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: code:addons/account_voucher_withholding/models/account_voucher_withholding.py:99
+#, python-format
+msgid "Tax Withholding is Required!"
+msgstr ""
+
+#. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/tax_settlement.py:470
+#, python-format
+msgid "Tax settlement company and journal company must be the same"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: model:ir.model,name:account_voucher_withholding.model_account_chart_template
+msgid "Templates for Account Chart"
+msgstr ""
+
+#. module: account_tax_settlement
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
+msgid "To Draft"
+msgstr ""
+
+#. modules: account_voucher_withholding, account_tax_settlement
+#: view:account.tax.settlement.detail:account_tax_settlement.account_tax_settlement_detail_tree
+#: view:account.voucher.withholding:account_voucher_withholding.account_voucher_withholding_tree_view
+msgid "Total"
+msgstr ""
+
+#. module: account_tax_settlement
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
+#: view:account.tax.settlement.detail:account_tax_settlement.account_tax_settlement_detail_form
+msgid "Total Credit"
+msgstr ""
+
+#. module: account_tax_settlement
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
+#: view:account.tax.settlement.detail:account_tax_settlement.account_tax_settlement_detail_form
+msgid "Total Debit"
+msgstr ""
+
+#. module: account_tax_settlement
+#: view:account.move.line:account_tax_settlement.view_account_move_line_tree
+#: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
+#: view:account.tax.settlement.detail:account_tax_settlement.account_tax_settlement_detail_form
+msgid "Total Tax"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: view:account.voucher.withholding:account_voucher_withholding.account_voucher_withholding_filter_view
+msgid "Type"
+msgstr ""
+
+#. module: account_tax_settlement
+#: field:account.tax.settlement,message_unread:0
+msgid "Unread Messages"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: help:account.tax.withholding,base_code_id:0
+#: help:account.tax.withholding,ref_base_code_id:0
+#: help:account.tax.withholding,ref_tax_code_id:0
+#: help:account.tax.withholding,tax_code_id:0
+#: help:account.tax.withholding.template,base_code_id:0
+#: help:account.tax.withholding.template,ref_base_code_id:0
+#: help:account.tax.withholding.template,ref_tax_code_id:0
+#: help:account.tax.withholding.template,tax_code_id:0
+msgid "Use this code for the tax declaration."
+msgstr ""
+
+#. module: account_voucher_withholding
+#: help:account.tax.withholding,base_sign:0
+#: help:account.tax.withholding,ref_base_sign:0
+#: help:account.tax.withholding,ref_tax_sign:0
+#: help:account.tax.withholding,tax_sign:0
+#: help:account.tax.withholding.template,base_sign:0
+#: help:account.tax.withholding.template,ref_base_sign:0
+#: help:account.tax.withholding.template,ref_tax_sign:0
+#: help:account.tax.withholding.template,tax_sign:0
+msgid "Usually 1 or -1."
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.voucher.withholding,voucher_id:0
+msgid "Voucher"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: code:addons/account_voucher_withholding/models/account_voucher_withholding.py:90
+#, python-format
+msgid "Voucher and Tax Withholding must belong to the same company"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: view:account.voucher:account_voucher_withholding.view_vendor_receipt_form
+#: field:account.voucher.withholding,tax_withholding_id:0
+msgid "Withholding"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: view:account.voucher.withholding:account_voucher_withholding.account_voucher_withholding_filter_view
+msgid "Withholding Tax"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: view:account.tax.withholding:account_voucher_withholding.account_tax_withholding_filter_view
+#: view:account.tax.withholding:account_voucher_withholding.account_tax_withholding_form_view
+#: view:account.tax.withholding:account_voucher_withholding.account_tax_withholding_tree_view
+#: model:ir.actions.act_window,name:account_voucher_withholding.action_account_tax_withholding
+#: model:ir.ui.menu,name:account_voucher_withholding.menu_account_tax_withholding
+msgid "Withholding Taxes"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: model:ir.actions.act_window,name:account_voucher_withholding.action_account_tax_withholding_template
+#: model:ir.ui.menu,name:account_voucher_withholding.menu_account_tax_withholding_template
+msgid "Withholding Taxes Template"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.chart.template,withholding_template_ids:0
+msgid "Withholding Template List"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: view:account.voucher.withholding:account_voucher_withholding.account_voucher_withholding_filter_view
+#: view:account.voucher.withholding:account_voucher_withholding.account_voucher_withholding_form_view
+#: view:account.voucher.withholding:account_voucher_withholding.account_voucher_withholding_tree_view
+#: model:ir.actions.act_window,name:account_voucher_withholding.action_account_voucher_withholding
+#: model:ir.ui.menu,name:account_voucher_withholding.menu_account_voucher_withholding
+msgid "Withholding Vouchers"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: field:account.voucher,withholding_ids:0
+msgid "Withholdings"
+msgstr ""
+
+#. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/account_move_line.py:93
+#, python-format
+msgid "You can only pay if tax counterpart use a payable account.Account id %i"
+msgstr ""
+
+#. module: account_tax_settlement
+#: view:account.voucher:account_tax_settlement.view_vendor_receipt_dialog_form
+msgid "context.get('from_settlement',False)"
+msgstr ""
+
