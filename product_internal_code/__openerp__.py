@@ -23,10 +23,8 @@
     'auto_install': False,
     'installable': True,
     'category': 'Sale',
-    'demo_xml': [
-    ],
     'depends': [
-        'product',
+        'base', 'product', 'sale'
     ],
     'description': """
 Product Internal Code
@@ -40,8 +38,9 @@ Product Internal Code
         'product_data.xml',
     ],
     'demo': [
-        'demo/product.template.csv',
-        'demo/product.product.csv'],
+        'demo/product.product.csv',
+        # 'demo/product.template.csv'
+        ],
     'version': '1.1',
     'website': 'www.adhoc.com.ar',
     'application': True,
