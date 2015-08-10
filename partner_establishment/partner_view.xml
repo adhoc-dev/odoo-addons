@@ -234,7 +234,7 @@
         </record>
         <menuitem action="partner_establishment_action"
             id="partner_establishment_menu"
-            parent="base.menu_sales" sequence="1"/>
+            parent="base.menu_sales" sequence="2"/>
 
     </data>
 </openerp>
