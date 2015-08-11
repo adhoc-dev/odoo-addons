@@ -75,11 +75,11 @@
                             </group>
     	                </group>
     	                <notebook>
-                            <page string="Tax Code Lines" name="tax_code_lines">
+                            <page string="To Settle" name="tax_code_lines">
                                 <button name="compute" type="object" string="Compute" states="draft"/>
                                 <field name="tax_settlement_detail_ids"/>
                             </page>
-                            <page string="Journal Items" states="presented,done">
+                            <page string="Settlement" states="presented,done">
                                 <group>
                                     <field name="move_id"/>
                                 </group>

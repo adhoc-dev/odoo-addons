@@ -81,12 +81,6 @@ class account_tax_settlement_detail(models.Model):
             self.move_line_ids.mapped('debit'))
 
     @api.multi
-    def settlement_pay(self):
-        self.ensure_one()
-        return self.move_id.with_context(
-            from_settlement=True).create_voucher('payment')
-
-    @api.multi
     def prepare_line_values(self):
         self.ensure_one()
         res = []
@@ -157,6 +151,31 @@ class account_tax_settlement(models.Model):
         related='move_id.line_id',
         readonly=True,
         )
+    to_settle_move_line_ids = fields.Many2many(
+        'account.move.line',
+        compute='_get_to_settle_move_lines',
+        # inverse='_set_to_settle_move_lines',
+        string="Move Lines To Settle",
+        )
+
+    # TODO analizar de implementar esta funcionalidad de poder borrar
+    # lineas te move lines y que se borren del detail, no podriamos hacer
+    # una nueva vista como queriamos, tendriamos que ponerlo en la misma
+    # vista de tax settlement
+    # @api.multi
+    # def _set_to_settle_move_lines(self):
+    #     actual_move_lines = self.to_settle_move_line_ids
+    #     before_move_lines = self.mapped(
+    #         'tax_settlement_detail_ids.move_line_ids')
+    #     removed_move_lines = before_move_lines - actual_move_lines
+    #     return True
+
+    @api.one
+    @api.depends('tax_settlement_detail_ids.move_line_ids')
+    def _get_to_settle_move_lines(self):
+        self.to_settle_move_line_ids = self.mapped(
+            'tax_settlement_detail_ids.move_line_ids')
+
     move_id = fields.Many2one(
         'account.move',
         string='Journal Entry',
@@ -268,6 +287,12 @@ class account_tax_settlement(models.Model):
         digits=dp.get_precision('Account'),
         compute='_compute_residual', store=True,
         help="Remaining amount due.")
+
+    @api.multi
+    def settlement_pay(self):
+        self.ensure_one()
+        return self.move_id.with_context(
+            from_settlement=True).create_voucher('payment')
 
     @api.one
     @api.depends(
