@@ -20,7 +20,7 @@ class account_check(models.Model):
     @api.model
     def _get_checkbook(self):
         journal_id = self._context.get('default_journal_id', False)
-        payment_subtype = self._context.get('default_payment_subtype', False)
+        payment_subtype = self._context.get('default_type', False)
         if journal_id and payment_subtype == 'issue_check':
             checkbooks = self.env['account.checkbook'].search(
                 [('state', '=', 'active'), ('journal_id', '=', journal_id)])
