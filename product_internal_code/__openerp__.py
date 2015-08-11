@@ -39,7 +39,6 @@ Product Internal Code
     ],
     'demo': [
         'demo/product.product.csv',
-        # 'demo/product.template.csv'
         ],
     'version': '1.1',
     'website': 'www.adhoc.com.ar',

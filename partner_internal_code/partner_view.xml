@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
                 <field name="title" position="after">
-                    <field name="internal_code"/>
+                    <field name="internal_code" required="False"/>
                 </field>
                 
             </field>
