@@ -36,8 +36,9 @@
         'account_voucher_payline'
     ],
     'description': '''
-Voucher Voucher Withholding
+Account Voucher Withholding
 ===========================
+Add withholding management on vouchers
 ''',
     'installable': True,
     'name': 'Voucher Voucher Withholding',
