@@ -14,8 +14,9 @@
     'description': '''
 Account Invoice Direct Payment
 ==============================
+THIS module has not been tested and is not finished yet
 ''',
-    'installable': True,
+    'installable': False,
     'name': 'Account Invoice Direct Payment',
     'test': [],
     'version': '1.243',
