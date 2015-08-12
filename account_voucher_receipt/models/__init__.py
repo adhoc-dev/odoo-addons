@@ -5,7 +5,7 @@
 ##############################################################################
 from . import account_voucher_receiptbook
 from . import account_voucher
-from . import account_voucher_for_migration
+# from . import account_voucher_for_migration
 from . import account_voucher_receipt
 from . import account_invoice
 from . import res_config

@@ -20,7 +20,7 @@ def migrate(cr, version):
         ' by l10n_ar_account_voucher')
     update_data_external_ids(cr)
     update_checkbook_fields_external_id(cr)
-    update_voucher_fields_external_id(cr)
+    # update_voucher_fields_external_id(cr)
 
 
 def update_data_external_ids(cr):
