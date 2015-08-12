@@ -18,31 +18,35 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 {
-    'author': 'ADHOC SA',
-    'auto_install': False,
-    'installable': True,
-    'category': 'Sale',
-    'depends': [
-        'base', 'product', 'sale'
-    ],
-    'description': """
+    "name": "Product Internal Code",
+    'version': '1.0',
+    'category': 'Tools',
+    'sequence': 14,
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
+    'summary': '',
+    "description": """
 Product Internal Code
 =====================
-""",
-    'license': 'AGPL-3',
-    'name': u'Product Internal Code',
-    'test': [],
+    """,
+    "depends": [
+        "product",
+    ],
+    'external_dependencies': {
+    },
     'data': [
         'product_view.xml',
         'product_data.xml',
     ],
     'demo': [
-        'demo/product.product.csv',
-        ],
-    'version': '1.1',
-    'website': 'www.adhoc.com.ar',
-    'application': True,
+        'demo/product.product.csv'
+    ],
+    'test': [
+    ],
+    'installable': True,
+    'auto_install': False,
+    'application': False,
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

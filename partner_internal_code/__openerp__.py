@@ -18,23 +18,25 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 {
-    'author': 'ADHOC SA',
-    'auto_install': False,
-    'installable': True,
+    "name": "Partner Internal Code",
+    'version': '1.0',
     'category': 'Tools',
-    'demo_xml': [
-    ],
-    'depends': [
-        'base', 'sale'
-    ],
-    'description': """
+    'sequence': 14,
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
+    'summary': '',
+    "description": """
 Partner Internal Code
 =====================
-""",
-    'license': 'AGPL-3',
-    'name': u'Partner Internal Code',
-    'test': [],
+    """,
+    "depends": [
+        "sale",
+    ],
+    'external_dependencies': {
+    },
     'data': [
         'partner_view.xml',
         'partner_data.xml',
@@ -42,9 +44,9 @@ Partner Internal Code
     'demo': [
         'demo/res.partner.csv'
     ],
-    'version': '1.1',
-    'website': 'www.adhoc.com.ar',
-    'application': True,
+    'test': [
+    ],
+    'installable': True,
+    'auto_install': False,
+    'application': False,
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
