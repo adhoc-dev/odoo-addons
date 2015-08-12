@@ -21,7 +21,17 @@ class account_check_action(models.TransientModel):
             [('id', 'in', company_ids)], limit=1)
 
     journal_id = fields.Many2one(
-        'account.journal', 'Journal',
+        'account.journal',
+        'Journal',
+        domain="[('company_id','=',company_id), "
+        "('type', 'in', ['cash', 'bank', 'general']), "
+        "('payment_subtype', 'not in', ['issue_check', 'third_check'])]"
+        )
+    account_id = fields.Many2one(
+        'account.account',
+        'Account',
+        domain="[('company_id','=',company_id), "
+        "('type', 'in', ('other', 'liquidity'))]"
         )
     date = fields.Date(
         'Date', required=True, default=fields.Date.context_today
@@ -35,6 +45,10 @@ class account_check_action(models.TransientModel):
         required=True,
         default=_get_company_id
         )
+
+    @api.onchange('journal_id')
+    def onchange_journal_id(self):
+        self.account_id = self.journal_id.default_debit_account_id.id
 
     @api.multi
     def action_confirm(self):
@@ -82,7 +96,7 @@ class account_check_action(models.TransientModel):
                 ref = _('Deposit Check Nr. ')
                 check_move_field = 'deposit_account_move_id'
                 journal = self.journal_id
-                debit_account_id = journal.default_debit_account_id.id
+                debit_account_id = self.account_id.id
                 partner = check.source_partner_id.id,
                 credit_account_id = vou_journal.default_credit_account_id.id
                 signal = 'holding_deposited'

@@ -44,5 +44,26 @@
                 </field>
             </field>
         </record>
+
+        <!-- Customer Receipt Pop Up Form  -->
+        <record id="view_vendor_receipt_dialog_form" model="ir.ui.view">
+            <field name="name">account.voucher.receipt.dialog.form</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher_payline.view_vendor_receipt_dialog_form"/>
+            <field name="arch" type="xml">
+                <notebook name="voucher_payline">
+                    <page string="Checks" attrs="{'invisible':[('payment_subtype','!=', 'third_check'), ('type','=', 'receipt')]}">
+                        <field name="payment_subtype" invisible="1"/>
+                        <field name="received_third_check_ids"/> 
+                    </page>
+                </notebook>
+                <field name="journal_id" position="after">
+                    <field name="checks_amount" widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible':[('payment_subtype','=', False)]}"/>
+                </field>
+                <field name="net_amount" position="attributes">
+                    <attribute name="attrs">{'invisible':[('payment_subtype','!=', False)]}</attribute>
+                </field>
+            </field>
+        </record>
     </data>
 </openerp>

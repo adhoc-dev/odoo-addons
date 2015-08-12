@@ -18,19 +18,27 @@ class account_voucher(models.Model):
         'account.check', 'voucher_id', 'Third Checks',
         domain=[('type', '=', 'third_check')],
         context={'default_type': 'third_check', 'from_voucher': True},
-        required=False, readonly=True, copy=False,
+        required=False,
+        readonly=True,
+        copy=False,
         states={'draft': [('readonly', False)]}
         )
     issued_check_ids = fields.One2many(
         'account.check', 'voucher_id', 'Issued Checks',
         domain=[('type', '=', 'issue_check')],
-        context={'default_type': 'issue_check', 'from_voucher': True}, copy=False,
-        required=False, readonly=True, states={'draft': [('readonly', False)]}
+        context={'default_type': 'issue_check', 'from_voucher': True},
+        copy=False,
+        required=False,
+        readonly=True,
+        states={'draft': [('readonly', False)]}
         )
     delivered_third_check_ids = fields.One2many(
         'account.check', 'third_handed_voucher_id',
-        'Third Checks', domain=[('type', '=', 'third_check')], copy=False,
-        context={'from_voucher': True}, required=False, readonly=True,
+        'Third Checks', domain=[('type', '=', 'third_check')],
+        copy=False,
+        context={'from_voucher': True},
+        required=False,
+        readonly=True,
         states={'draft': [('readonly', False)]}
         )
     checks_amount = fields.Float(
@@ -43,8 +51,9 @@ class account_voucher(models.Model):
     @api.onchange('dummy_journal_id')
     def change_dummy_journal_id(self):
         """Unlink checks on journal change"""
-        # TODO tal vez esta funcion deberia ir a voucher payline
-        self.net_amount = False
+        # if we select checks journal we set net_amount to 0
+        if self.journal_id.payment_subtype in ('issue_check', 'third_check'):
+            self.net_amount = False
         self.delivered_third_check_ids = False
         self.issued_check_ids = False
         self.received_third_check_ids = False
@@ -112,9 +121,12 @@ class account_voucher(models.Model):
         res = {}
         for voucher in self:
             checks_amount = 0.0
-            checks_amount += sum(x.amount for x in voucher.received_third_check_ids)
-            checks_amount += sum(x.amount for x in voucher.delivered_third_check_ids)
-            checks_amount += sum(x.amount for x in voucher.issued_check_ids)
+            checks_amount += sum(
+                x.amount for x in voucher.received_third_check_ids)
+            checks_amount += sum(
+                x.amount for x in voucher.delivered_third_check_ids)
+            checks_amount += sum(
+                x.amount for x in voucher.issued_check_ids)
             res[voucher.id] = checks_amount
         return res
 

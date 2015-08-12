@@ -19,30 +19,26 @@
 #
 ##############################################################################
 {
-    'name': 'Account Journal Transfer',
+    'name': 'Account Statement Disable Invoice Import',
     'version': '1.0',
-    'category': 'Localization/Argentina',
+    'category': 'Accounting',
     'sequence': 14,
-    'author':  'ADHOC SA',
-    'website': 'www.adhoc.com.ar',
-    'license': 'AGPL-3',
     'summary': '',
     'description': """
-Account Journal Transfer
-========================
-Make transfers between journals
+Account Statement Disable Invoice Import
+========================================
+Remove import invoice button from bank statements (on cash statements it don't
+exists)
     """,
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
+    'images': [
+    ],
     'depends': [
         'account',
     ],
-    'external_dependencies': {
-    },
     'data': [
-        'views/res_company.xml',
-        'views/account_transfer_view.xml',
-        'views/account_journal_view.xml',
-        'security/ir.model.access.csv',
-        'security/security.xml',
+        'account_view.xml',
     ],
     'demo': [
     ],

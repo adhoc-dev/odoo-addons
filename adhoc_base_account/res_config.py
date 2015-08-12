@@ -28,6 +28,21 @@ class adhoc_base_configuration(models.TransientModel):
 
     # Account modules
 
+    module_account_tax_settlement = fields.Boolean(
+        'Add a model to manage tax settlements',
+        help="""Installs the account_tax_settlement module.""")
+    module_account_voucher_withholding = fields.Boolean(
+        'Add withholding management on vouchers',
+        help="""Installs the account_voucher_withholding module.""")
+    module_account_statement_move_import = fields.Boolean(
+        'Add a wizard to import moves on bank and cash statements',
+        help="""Installs the account_statement_move_import module.""")
+    module_account_statement_disable_invoice_import = fields.Boolean(
+        "Remove import invoice button from bank statements (on cash statements it don't exists)",
+        help="""Installs the account_statement_disable_invoice_import module.""")
+    module_account_statement_move_import = fields.Boolean(
+        'Add a wizard to import moves on bank and cash statements',
+        help="""Installs the account_statement_move_import module.""")
     module_account_reconciliation_menu = fields.Boolean(
         'Add reconciliations menu on accounting',
         help="""Installs the account_reconciliation_menu module.""")
@@ -74,30 +89,18 @@ class adhoc_base_configuration(models.TransientModel):
     module_account_partner_balance = fields.Boolean(
         'See Partner Balance on Partner tree view and balance on account move lines',
         help="""Installs the account_partner_balance module.""")
-    module_account_voucher_receipt = fields.Boolean(
-        'Manage Payment Receipts',
-        help="""Installs the account_voucher_receipt module.""")
     module_account_journal_security = fields.Boolean(
         'Restrict users to some journals',
         help="""Installs the account_journal_security module.""")
-    module_account_invoice_adjust = fields.Boolean(
-        'Adjust Customer and Suppliers Invoices',
-        help="""Installs the account_invoice_adjust module. Allows reconciling between receivable and payable accounts of same partner""")
     module_account_journal_sequence = fields.Boolean(
         'Add sequence on account journals',
         help="""Installs the account_journal_sequence module.""")
-    module_account_payment_direction = fields.Boolean(
-        'Allow to set up In or Out on payment journals',
-        help="""Installs the account_payment_direction module.""")
     module_account_financial_report_webkit_xls = fields.Boolean(
         'Add XLS export to accounting reports',
         help="""Installs the account_financial_report_webkit_xls module.""")
     module_account_financial_report_webkit = fields.Boolean(
         'Add or replaces the following standard OpenERP financial reports',
         help="""Installs the account_financial_report_webkit module.""")
-    module_account_tax_analysis = fields.Boolean(
-        'Tax analysis View',
-        help="""Installs the account_tax_analysis module. Generate a menu under Accounting / Tax / Tax analysis you are able to group accounting entries by Taxes (VAT codes) and/or financial accounts.""")
     module_account_clean_cancelled_invoice_number = fields.Boolean(
         'Allow canceled invoice number renumber and deletion',
         help="""Installs the account_clean_cancelled_invoice_number module. It adds a button on canceled invoice number so you can choose to remove internal number and then delete it or renumber by re-approving it.""")
@@ -113,9 +116,6 @@ class adhoc_base_configuration(models.TransientModel):
     module_account_partner_account_summary = fields.Boolean(
         'Add Aeroo Partner Account Summary Report',
         help="""Installs the account_partner_account_summary module.""")
-    module_account_bank_voucher = fields.Boolean(
-        'Add import vouchers on Bank and Cash Statements',
-        help="""Installs the account_bank_voucher module.""")
     module_account_invoice_prices_update = fields.Boolean(
         'Allow prices update on invoices based on pricelist',
         help="""Installs the account_invoice_prices_update module.""")

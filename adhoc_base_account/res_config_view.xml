@@ -66,11 +66,6 @@
                         class="oe_inline"/>
                     <label for="module_account_invoice_tax_wizard"/>
                 </div> 
-                 <div name='module_account_bank_voucher'>
-                    <field name="module_account_bank_voucher"
-                        class="oe_inline"/>
-                    <label for="module_account_bank_voucher"/>
-                </div> 
                 <div name='module_invoice_fiscal_position_update'>
                     <field name="module_invoice_fiscal_position_update"
                         class="oe_inline"/>
@@ -114,6 +109,21 @@
                     <field name="module_account_partner_balance"
                         class="oe_inline"/>
                     <label for="module_account_partner_balance"/>
+                </div> 
+                <div name='module_account_statement_move_import'>
+                    <field name="module_account_statement_move_import"
+                        class="oe_inline"/>
+                    <label for="module_account_statement_move_import"/>
+                </div> 
+                <div name='module_account_statement_disable_invoice_import'>
+                    <field name="module_account_statement_disable_invoice_import"
+                        class="oe_inline"/>
+                    <label for="module_account_statement_disable_invoice_import"/>
+                </div>  
+                <div name='module_account_tax_settlement'>
+                    <field name="module_account_tax_settlement"
+                        class="oe_inline"/>
+                    <label for="module_account_tax_settlement"/>
                 </div>         
             </div> 
             <label for="id" string="Advanced Features"/>    
@@ -156,6 +166,11 @@
                     <field name="module_account_check" class="oe_inline"/>
                     <label for="module_account_check"/>
                 </div>    
+                <div name='module_account_voucher_withholding'>
+                    <field name="module_account_voucher_withholding"
+                        class="oe_inline"/>
+                    <label for="module_account_voucher_withholding"/>
+                </div>                
                 <div name='module_account_followup'>
                     <field name="module_account_followup"
                         class="oe_inline"/>
@@ -165,17 +180,7 @@
                     <field name="module_account_voucher_contact"
                         class="oe_inline"/>
                     <label for="module_account_voucher_contact"/>
-                </div>
-                <div name='module_account_voucher_receipt'>
-                    <field name="module_account_voucher_receipt"
-                        class="oe_inline"/>
-                    <label for="module_account_voucher_receipt"/>
-                </div>             
-                <div name='module_account_payment_direction'>
-                    <field name="module_account_payment_direction"
-                        class="oe_inline"/>
-                    <label for="module_account_payment_direction"/>
-                </div>                
+                </div>        
             </div>    
             <label for="id" string="Security"/>
             <div name="reports">
@@ -204,11 +209,7 @@
                     <field name="module_account_financial_report_webkit"
                         class="oe_inline"/>
                     <label for="module_account_financial_report_webkit"/>
-                </div>    
-                <div name='module_account_tax_analysis'>
-                    <field name="module_account_tax_analysis" class="oe_inline" readonly="1"/>
-                    <label for="module_account_tax_analysis"/>
-                </div>      
+                </div>     
                 <div name='module_account_partner_account_summary'>
                     <field name="module_account_partner_account_summary" class="oe_inline"/>
                     <label for="module_account_partner_account_summary"/>

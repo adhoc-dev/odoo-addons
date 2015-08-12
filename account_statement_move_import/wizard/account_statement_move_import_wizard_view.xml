@@ -10,7 +10,24 @@
                     <field name="statement_id" invisible="1"/>
                     <field name="journal_id" invisible="1"/>
                     <field name="journal_account_ids" invisible="1"/>
-                    <field name="move_line_ids"/>
+                    <group>
+                        <field name="to_date"/>
+                    </group>
+                    <field name="move_line_ids">
+                        <tree colors="red:state == 'draft';black:state == 'valid'">
+                            <field name="period_id"/>
+                            <field name="date"/>
+                            <field name="name"/>
+                            <field name="ref"/>
+                            <field name="partner_id"/>
+                            <field name="account_tax_id"/>
+                            <field name="move_id"/>
+                            <field name="debit" sum="Total Debit"/>
+                            <field name="credit" sum="Total Credit"/>
+                            <field name="reconcile_ref"/>
+                            <field name="state" invisible="1"/>
+                        </tree>
+                    </field>
                     <footer>
                         <button name="confirm" string="Confirm" type="object" class="oe_highlight"/>
                         or

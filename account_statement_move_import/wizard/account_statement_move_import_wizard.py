@@ -15,6 +15,10 @@ class account_statement_move_import_wizard(models.TransientModel):
         return self.env['account.bank.statement'].browse(
             self._context.get('active_id', False))
 
+    to_date = fields.Date(
+        'To Date',
+        required=True,
+        )
     statement_id = fields.Many2one(
         'account.bank.statement',
         'Statement',
@@ -36,17 +40,30 @@ class account_statement_move_import_wizard(models.TransientModel):
         'account_statement_import_move_line_rel',
         'line_id', 'move_line_id',
         'Journal Items',
-        # TODO perhups there is no need to restrict to this journal, only to
-        # accounts
         domain="[('journal_id', '=', journal_id), "
         "('statement_id', '=', False), "
         "('account_id', 'in', journal_account_ids[0][2])]"
         )
 
     @api.multi
+    @api.onchange('statement_id')
+    def onchange_statement(self):
+        self.to_date = self.statement_id.date
+
+    @api.multi
     @api.depends('statement_id')
     def get_journal(self):
         self.journal_id = self.statement_id.journal_id
+
+    @api.onchange('to_date', 'journal_id')
+    def get_move_lines(self):
+        move_lines = self.move_line_ids.search([
+            ('journal_id', '=', self.journal_id.id),
+            ('account_id', 'in', self.journal_account_ids.ids),
+            ('statement_id', '=', False),
+            ('date', '<=', self.to_date),
+            ])
+        self.move_line_ids = move_lines
 
     @api.multi
     @api.depends('journal_id')

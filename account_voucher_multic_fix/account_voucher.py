@@ -37,16 +37,24 @@ class account_voucher(models.Model):
     @api.onchange('company_id')
     def on_change_company_new_api(self):
         """El onchange por defecto de account voucher esta presente en algunas
-        vistas y otras no, por eso lo borramos de la que nos interesa y lo 
+        vistas y otras no, por eso lo borramos de la que nos interesa y lo
         hacemos con la nueva api. El onchange original no hacia mucho que
         digamos
         """
-        self.journal_id = self.available_journal_ids and self.available_journal_ids[0].id or False
+        self.journal_id = False
+        # TODO borrar esto que ya no seria necesario
+        # Better to not return any journal, this helps in an error of account
+        # not configured on payment dialog, also it force user to select right
+        # journal and not make mistaes
+        # self.journal_id = (
+        #     self.available_journal_ids and self.available_journal_ids[0].id
+        #     or False)
+
         # TODO antes era necesiaro cambiar el periodo pero parece que ahora no
         # por las dudas dejamos algo de codigo que deberia ayudar en tal caso
         # result = self.onchange_date(
-        #     cr, uid, ids, date, currency_id, payment_rate_currency_id, amount,
-        #     company_id, context=context)
+        #     cr, uid, ids, date, currency_id, payment_rate_currency_id,
+        #     amount, company_id, context=context)
         # y de result tenemos que tomar period
 
     def recompute_voucher_lines(
