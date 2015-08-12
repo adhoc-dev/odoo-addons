@@ -23,6 +23,9 @@ class account_invoice_prices_update(models.TransientModel):
         'product.pricelist', string="Price List",
         required=True, default=_get_pricelist)
 
+    type = fields.Selection(
+        [('sale', 'Sale'), ('purchase', 'Purchase')])
+
     @api.one
     def update_prices(self):
         active_id = self._context.get('active_id', False)
