@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="receipt_comp_rule" model="ir.rule">
+            <field name="name">Receipt multi-company</field>
+            <field name="model_id" ref="model_account_voucher_receipt"/>
+            <field eval="True" name="global"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        </record>
+        <record id="receiptbook_comp_rule" model="ir.rule">
+            <field name="name">Receiptbook Line multi-company</field>
+            <field name="model_id" ref="model_account_voucher_receiptbook"/>
+            <field eval="True" name="global"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        </record>
+    </data>
+    <data noupdate="0">
+        <record id="group_account_voucher_payment" model="res.groups">
+            <field name="name">Manage Account Voucher Payments Without Receipts</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+        </record>        
+    </data>
+</openerp>

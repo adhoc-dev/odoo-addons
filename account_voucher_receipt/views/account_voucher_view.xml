@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+        <!-- Actual payment menus only for technical features -->
+        <record id="account_voucher.menu_action_vendor_payment" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('account_voucher_receipt.group_account_voucher_payment')])]"/>
+        </record>
+        <record id="account_voucher.menu_action_vendor_receipt" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('account_voucher_receipt.group_account_voucher_payment')])]"/>
+        </record>        
+
+		<!-- Tree Recibos (Customer and vendor)-->
+		<record id="voucher_receipts_form_inherit_view" model="ir.ui.view">
+			<field name="name">receipts.voucher.inherit.view</field>
+			<field name="model">account.voucher</field>
+			<field name="inherit_id" ref="account_voucher.view_voucher_tree"/>
+			<field name="arch" type="xml"> 
+                <tree>
+                    <field name="receipt_id" string="Receipt"/>
+                </tree>
+			</field>
+	    </record>	
+
+
+        <!-- Customer Receipt Form  -->
+        <record id="view_vendor_receipt_form" model="ir.ui.view">
+            <field name="name">account.voucher.form.receipts.pay.inherit</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_receipt_form"/>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="receipt_state" invisible="1"/>
+                    <field name="id" invisible="1"/>
+                </form>
+
+                <!--  Change cancel buttons so that they are not visible while no id-->
+                <button string="Cancel Receipt" position="replace">
+                    <button name="cancel_voucher" string="Cancel Receipt" attrs="{'invisible':['|',('state','not in',['draft','proforma']),('id','=',False)]}"/>
+                </button>
+                <button string="Unreconcile" position="replace">
+                    <button name="cancel_voucher" string="Unreconcile" type="object" attrs="{'invisible':['|',('state','not in',['posted']),('id','=',False)]}" confirm="Are you sure to unreconcile and cancel this record ?"/>
+                </button>
+
+                <field name="partner_id" position='attributes'>
+                    <attribute name="attrs">{'readonly':[('receipt_id','!=',False)]}</attribute>
+                    <attribute name="invisible">context.get('from_receipt',False)</attribute>
+                </field>
+
+                <field name="date" position='attributes'>
+                    <attribute name="attrs">{'readonly':[('receipt_id','!=',False)]}</attribute>
+                    <attribute name="invisible">context.get('from_receipt',False)</attribute>
+                </field>
+
+                <field name="company_id" position='attributes'>
+                    <attribute name="attrs">{'readonly':[('receipt_id','!=',False)]}</attribute>
+                    <attribute name="invisible">context.get('from_receipt',False)</attribute>
+                </field>
+
+                <field name="period_id" position='attributes'>
+                    <attribute name="attrs">{'readonly':[('receipt_id','!=',False)]}</attribute>
+                    <attribute name="invisible">context.get('from_receipt',False)</attribute>
+                </field>
+
+                <field name="date" position="after">
+                    <field name="receipt_id" invisible="context.get('from_receipt',False)"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Supplier Receipt Form  -->
+        <record id="view_vendor_payment_form" model="ir.ui.view">
+            <field name="name">account.voucher.form.receipts.pay.inherit</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_payment_form"/>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="receipt_state" invisible="1"/>
+                    <field name="id" invisible="1"/>
+                </form>
+
+                <!--  Change cancel buttons so that they are not visible while no id-->
+                <button string="Cancel Voucher" position="replace">
+                    <button name="cancel_voucher" string="Cancel Receipt" attrs="{'invisible':['|',('state','not in',['draft','proforma']),('id','=',False)]}"/>
+                </button>
+                <button string="Unreconcile" position="replace">
+                    <button name="cancel_voucher" string="Unreconcile" type="object" attrs="{'invisible':['|',('state','not in',['posted']),('id','=',False)]}" confirm="Are you sure to unreconcile and cancel this record ?"/>
+                </button>
+
+                <field name="partner_id" position='attributes'>
+                    <attribute name="attrs">{'readonly':[('receipt_id','!=',False)]}</attribute>
+                    <attribute name="invisible">context.get('from_receipt',False)</attribute>
+                </field>
+
+                <field name="date" position='attributes'>
+                    <attribute name="attrs">{'readonly':[('receipt_id','!=',False)]}</attribute>
+                    <attribute name="invisible">context.get('from_receipt',False)</attribute>
+                </field>
+
+                <field name="company_id" position='attributes'>
+                    <attribute name="attrs">{'readonly':[('receipt_id','!=',False)]}</attribute>
+                    <attribute name="invisible">context.get('from_receipt',False)</attribute>
+                </field>
+                
+                <field name="period_id" position='attributes'>
+                    <attribute name="attrs">{'readonly':[('receipt_id','!=',False)]}</attribute>
+                    <attribute name="invisible">context.get('from_receipt',False)</attribute>
+                </field>
+
+                <field name="date" position="after">
+                    <field name="receipt_id" invisible="context.get('from_receipt',False)"/>
+                </field>
+            </field>
+        </record>
+
+
+        <!-- Search vies -->
+        <record id="view_voucher_filter_customer_pay" model="ir.ui.view">
+            <field name="name">receipt.voucher.customer.inherit.select</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_voucher_filter_customer_pay"/>
+            <field name="arch" type="xml">
+                <xpath expr="/search/field[@name='date']" position="after">
+                    <field name="receipt_id" string="Receipts" />
+                </xpath>
+                <xpath expr="/search/group/filter[@string='Status']" position="after">
+                    <filter string="Receipts" icon="terp-camera_test" domain="[('receipt_id','!=',False)]"  help="Payments with Receipts"/>
+                </xpath>
+            </field>
+        </record>   
+          
+        <record id="view_voucher_filter_vendor_pay" model="ir.ui.view">
+            <field name="name">voucher.filter.vendor.proof.inherit</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_voucher_filter_vendor_pay"/>
+            <field name="arch" type="xml">
+                <xpath expr="/search/field[@name='date']" position="after">
+                    <field name="receipt_id" string="Payment Voucher" />
+                </xpath>
+                <xpath expr="/search/group/filter[@string='Status']" position="after">
+                    <filter string="Payment Voucher" icon="terp-camera_test" domain="[('receipt_id','!=',False)]"  help="Payments with Payment Voucher"/>
+                </xpath>
+            </field>
+        </record>            
+    </data>
+</openerp>
