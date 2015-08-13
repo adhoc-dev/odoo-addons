@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_project_task_activity_form" model="ir.ui.view">
+            <field name="name">project.task_activity.form</field>
+            <field name="model">project.task.activity</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="planned_date"/>
+                    <field name="done_date"/>
+                    <field name="state"/>
+                    <field name="description"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_project_task_activity_tree" model="ir.ui.view">
+            <field name="name">project.task_activity.tree</field>
+            <field name="model">project.task.activity</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="planned_date"/>
+                    <field name="done_date"/>
+                    <field name="state"/>
+                    <button name="action_done" string="Done" type="object" icon="gtk-go-forward" help="Done" attrs="{'invisible':[('state','!=','pending')]}"/>
+                    <button name="action_done" string="Cancel" type="object" icon="gtk-cancel" help="Cancel" attrs="{'invisible':[('state','!=','done')]}"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</openerp>
