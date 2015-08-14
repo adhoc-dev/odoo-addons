@@ -175,6 +175,7 @@ class account_invoice(models.Model):
         return {
             'name': invoice.name,
             'type': inv_type,
+            'reference': invoice.reference,
             'date_invoice': invoice.date_invoice,
             'account_id': partner_data['value'].get('account_id', False),
             'partner_id': invoice.partner_id.id,
