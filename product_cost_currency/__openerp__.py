@@ -32,6 +32,16 @@
 Product Cost Currency
 =====================
 Allows to define product cost in differents currencies
+
+Repository dependencies
+-----------------------
+Requires repository: https://github.com/OCA/margin-analysis
+
+How to use?
+-----------
+1. Install
+2. Configure pricelist to use new price_type "Replanishment Cost"
+3. Use the new fields on product "procuerements" tab
     """,
     "depends": [
         "product_replenishment_cost",

@@ -46,17 +46,19 @@ class ProductProduct(models.Model):
         'product_tmpl_id.currency_replenishment_cost',
         )
     def _get_replenishment_cost(self):
-        company_currency = self.env.user.company_id.currency_id
+        # to_currency is price_type or user company currency
+        to_currency = self.product_tmpl_id.get_currency_id()
         cost_currency = self.product_tmpl_id.replenishment_cost_currency_id
         currency_cost = self.product_tmpl_id.currency_replenishment_cost
         if cost_currency and currency_cost:
-            if cost_currency != company_currency:
+            if cost_currency != to_currency:
                 replenishment_cost = cost_currency.compute(
-                        currency_cost, company_currency)
+                        currency_cost, to_currency)
             else:
                 replenishment_cost = self.standard_price
         else:
             replenishment_cost = self.standard_price
+        print 'replenishment_cost', replenishment_cost
         self.replenishment_cost = replenishment_cost
 
     replenishment_cost = fields.Float(
