@@ -12,13 +12,18 @@ class project_task_activity(models.Model):
 
     task_id = fields.Many2one(
         'project.task',
+        string='Task',
         required=True, ondelete='cascade')
+    project_id = fields.Many2one(
+        'project.project',
+        string='Project',
+        related='task_id.project_id', readonly=True)
     name = fields.Char('Name', required=True)
     user_id = fields.Many2one('res.users', 'Responsible', required=True)
     planned_date = fields.Datetime('Planned Date')
     done_date = fields.Datetime('Done Date')
     state = fields.Selection(
-        [('pending', 'Pending'), ('done', 'Done')],
+        [('pending', 'Pending'), ('done', 'Done'), ('cancel', 'Cancel')],
         'State', default='pending', required=True)
     description = fields.Text('Description')
 
@@ -29,6 +34,11 @@ class project_task_activity(models.Model):
             self.done_date = datetime.today()
         else:
             self.state = 'pending'
+            self.done_date = False
+
+    @api.one
+    def action_cancel(self):
+        self.state = 'cancel'
 
 
 class project_task(models.Model):
