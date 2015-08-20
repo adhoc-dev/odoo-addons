@@ -7,6 +7,15 @@ from openerp import models, fields, api,  _
 from openerp.exceptions import Warning
 
 
+class account_move_line(models.Model):
+    _inherit = 'account.move.line'
+
+    exclude_on_statements = fields.Boolean(
+        'Exclude on Statements',
+        help='Exclude this move line suggestion on statements',
+        )
+
+
 class account_move(models.Model):
     _inherit = 'account.move'
 

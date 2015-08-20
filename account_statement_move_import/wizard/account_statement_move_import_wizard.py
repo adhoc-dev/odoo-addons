@@ -42,6 +42,7 @@ class account_statement_move_import_wizard(models.TransientModel):
         'Journal Items',
         domain="[('journal_id', '=', journal_id), "
         "('statement_id', '=', False), "
+        "('exclude_on_statements', '=', False), "
         "('account_id', 'in', journal_account_ids[0][2])]"
         )
 
@@ -61,6 +62,7 @@ class account_statement_move_import_wizard(models.TransientModel):
             ('journal_id', '=', self.journal_id.id),
             ('account_id', 'in', self.journal_account_ids.ids),
             ('statement_id', '=', False),
+            ('exclude_on_statements', '=', False),
             ('date', '<=', self.to_date),
             ])
         self.move_line_ids = move_lines
