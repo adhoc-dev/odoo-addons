@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_project_task_form" model="ir.ui.view">
+            <field name="name">project.task.form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <field name="work_ids" position="before">
+                    <label for="activity_ids" string="Activities"/>
+                    <field name="activity_ids">
+                        <tree editable="top" colors="gray:state == 'cancel';blue:state == 'pending'">
+                            <field name="name"/>
+                            <field name="user_id"/>
+                            <field name="planned_date"/>
+                            <field name="done_date"/>
+                            <field name="state" readonly="1"/>
+                            <button name="action_done" string="Done" type="object" icon="gtk-go-forward" help="Done" attrs="{'invisible':[('state','!=','pending'),('state','!=','cancel')]}"/>
+                            <button name="action_done" string="Pending" type="object" icon="gtk-go-back" help="Pending" attrs="{'invisible':[('state','!=','done')]}"/>
+                            <button name="action_cancel" string="Cancel" type="object" icon="gtk-cancel" help="Cancel" attrs="{'invisible':[('state','=','cancel')]}"/>
+                            <field name="description"/>
+                        </tree>
+                    </field>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

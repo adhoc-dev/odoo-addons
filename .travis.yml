@@ -49,6 +49,9 @@ install:
   - git clone https://github.com/ingadhoc/odoo-argentina.git ${HOME}/odoo-argentina
   - pip install geopy==0.95.1 BeautifulSoup 
 
+  # for product_cost_currency
+  - git clone https://github.com/OCA/margin-analysis.git ${HOME}/margin-analysis
+
   # odoo argentina fe
   - pip install pyOpenSSL suds httplib2 pysimplesoap==1.08.8 m2crypto fpdf dbf Pillow
   # install pyafipws after others dependencies because dependency erro
