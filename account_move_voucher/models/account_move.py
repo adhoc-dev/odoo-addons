@@ -96,6 +96,8 @@ class account_move(models.Model):
                 'payment_expected_currency': self.company_id.currency_id.id,
                 'default_partner_id': self.partner_id.id,
                 'default_amount': residual_amount,
+                # for compatibilit with other modules
+                'default_net_amount': residual_amount,
                 'default_reference': self.name,
                 'close_after_process': True,
                 # 'invoice_type': self.type,
