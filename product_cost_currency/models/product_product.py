@@ -46,7 +46,7 @@ class ProductProduct(models.Model):
         'product_tmpl_id.currency_replenishment_cost',
         # because of being stored
         'product_tmpl_id.replenishment_cost_currency_id.rate_ids.rate',
-        'product_tmpl_id.replenishment_cost_currency_id.rate_ids.date',
+        'product_tmpl_id.replenishment_cost_currency_id.rate_ids.name',
         )
     def _get_replenishment_cost(self):
         # to_currency is price_type or user company currency
