@@ -12,7 +12,7 @@
                     <field name="activity_ids">
                         <tree editable="top" colors="gray:state == 'cancel';blue:state == 'pending'">
                             <field name="name"/>
-                            <field name="user_id"/>
+                            <field name="user_id" required="True"/>
                             <field name="planned_date"/>
                             <field name="done_date"/>
                             <field name="state" readonly="1"/>
