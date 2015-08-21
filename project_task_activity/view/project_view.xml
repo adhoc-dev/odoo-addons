@@ -12,6 +12,11 @@
                     <field name="task_id"/>
                     <field name="project_id"/>
                     <field name="state"/>
+
+                    <group expand="0" string="Group By..">
+                        <filter string="Task" name="task_id" help="Stage" context="{'group_by':'task_id'}"/>
+                        <filter string="Project" name="project_id" help="Stage" context="{'group_by':'project_id'}"/>
+                    </group>
                 </search>
             </field>
         </record> 
@@ -23,7 +28,7 @@
                 <form>
                     <group>
                         <field name="name"/>
-                        <field name="user_id"/>
+                        <field name="user_id" required="True"/>
                         <field name="planned_date"/>
                         <field name="done_date"/>
                     </group>

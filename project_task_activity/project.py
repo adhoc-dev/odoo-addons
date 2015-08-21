@@ -17,9 +17,9 @@ class project_task_activity(models.Model):
     project_id = fields.Many2one(
         'project.project',
         string='Project',
-        related='task_id.project_id', readonly=True)
+        related='task_id.project_id', readonly=True, store=True)
     name = fields.Char('Name', required=True)
-    user_id = fields.Many2one('res.users', 'Responsible', required=True)
+    user_id = fields.Many2one('res.users', 'Responsible')
     planned_date = fields.Datetime('Planned Date')
     done_date = fields.Datetime('Done Date')
     state = fields.Selection(
