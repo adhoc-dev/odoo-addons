@@ -44,6 +44,9 @@ class ProductProduct(models.Model):
         'product_tmpl_id.standard_price',
         'product_tmpl_id.replenishment_cost_currency_id',
         'product_tmpl_id.currency_replenishment_cost',
+        # because of being stored
+        'product_tmpl_id.replenishment_cost_currency_id.rate_ids.rate',
+        'product_tmpl_id.replenishment_cost_currency_id.rate_ids.date',
         )
     def _get_replenishment_cost(self):
         # to_currency is price_type or user company currency
@@ -58,7 +61,6 @@ class ProductProduct(models.Model):
                 replenishment_cost = self.standard_price
         else:
             replenishment_cost = self.standard_price
-        print 'replenishment_cost', replenishment_cost
         self.replenishment_cost = replenishment_cost
 
     replenishment_cost = fields.Float(
