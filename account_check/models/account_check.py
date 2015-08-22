@@ -61,43 +61,60 @@ class account_check(models.Model):
         self.source_partner_id = partner_id
 
     name = fields.Char(
-        compute='_get_name', string='Number'
+        compute='_get_name',
+        string='Number'
         )
     number = fields.Integer(
-        'Number', required=True, readonly=True,
-        states={'draft': [('readonly', False)]}
+        'Number',
+        required=True,
+        readonly=True,
+        states={'draft': [('readonly', False)]},
+        copy=False
         )
     amount = fields.Float(
-        'Amount', required=True, readonly=True,
+        'Amount',
+        required=True,
+        readonly=True,
         digits=dp.get_precision('Account'),
         states={'draft': [('readonly', False)]},
         )
     company_currency_amount = fields.Float(
-        'Company Currency Amount', readonly=True,
+        'Company Currency Amount',
+        readonly=True,
         digits=dp.get_precision('Account'),
         help='This value is only set for those checks that has a different '
         'currency than the company one.'
         )
     voucher_id = fields.Many2one(
-        'account.voucher', 'Voucher', readonly=True, required=True,
+        'account.voucher',
+        'Voucher',
+        readonly=True,
+        required=True,
         ondelete='cascade',
         )
     type = fields.Selection(
-        related='voucher_id.journal_id.payment_subtype', string='Type',
-        readonly=True, store=True
+        related='voucher_id.journal_id.payment_subtype',
+        string='Type',
+        readonly=True,
+        store=True
         )
     journal_id = fields.Many2one(
         'account.journal',
         related='voucher_id.journal_id',
-        string='Journal', readonly=True, store=True
+        string='Journal',
+        readonly=True,
+        store=True
         )
     issue_date = fields.Date(
-        'Issue Date', required=True, readonly=True,
+        'Issue Date',
+        required=True,
+        readonly=True,
         states={'draft': [('readonly', False)]},
         default=fields.Date.context_today,
         )
     payment_date = fields.Date(
-        'Payment Date', readonly=True,
+        'Payment Date',
+        readonly=True,
         help="Only if this check is post dated",
         states={'draft': [('readonly', False)]}
         )
@@ -108,13 +125,19 @@ class account_check(models.Model):
         store=True,
         )
     user_id = fields.Many2one(
-        'res.users', 'User', readonly=True, default=lambda self: self.env.user,
+        'res.users',
+        'User',
+        readonly=True,
+        default=lambda self: self.env.user,
         )
-    clearing = fields.Selection((
+    clearing = fields.Selection([
             ('24', '24 hs'),
             ('48', '48 hs'),
             ('72', '72 hs'),
-        ), 'Clearing', readonly=True, states={'draft': [('readonly', False)]})
+        ],
+        'Clearing',
+        readonly=True,
+        states={'draft': [('readonly', False)]})
     state = fields.Selection([
             ('draft', 'Draft'),
             ('holding', 'Holding'),
@@ -123,36 +146,62 @@ class account_check(models.Model):
             ('rejected', 'Rejected'),
             ('debited', 'Debited'),
             ('returned', 'Returned'),
+            ('changed', 'Changed'),
             ('cancel', 'Cancel'),
-        ], 'State', required=True,
-        track_visibility='onchange', default='draft'
+        ],
+        'State',
+        required=True,
+        track_visibility='onchange',
+        default='draft',
+        copy=False,
         )
     supplier_reject_debit_note_id = fields.Many2one(
-        'account.invoice', 'Supplier Reject Debit Note', readonly=True,
+        'account.invoice',
+        'Supplier Reject Debit Note',
+        readonly=True,
+        copy=False,
         )
     expense_account_move_id = fields.Many2one(
-        'account.move', 'Expense Account Move', readonly=True
+        'account.move',
+        'Expense Account Move',
+        readonly=True,
+        copy=False,
+        )
+    replacing_check_id = fields.Many2one(
+        'account.check',
+        'Replacing Check',
+        readonly=True,
+        copy=False,
         )
 
     # Related fields
     company_id = fields.Many2one(
         'res.company',
         related='voucher_id.company_id',
-        string='Company', store=True, readonly=True
+        string='Company',
+        store=True,
+        readonly=True
         )
 
     # Issue Check
     issue_check_subtype = fields.Selection(
-        related='checkbook_id.issue_check_subtype', string='Subtype',
+        related='checkbook_id.issue_check_subtype',
+        string='Subtype',
         readonly=True, store=True
         )
     checkbook_id = fields.Many2one(
-        'account.checkbook', 'Checkbook', readonly=True,
+        'account.checkbook',
+        'Checkbook',
+        readonly=True,
         states={'draft': [('readonly', False)]},
         default=_get_checkbook,
         )
     debit_account_move_id = fields.Many2one(
-        'account.move', 'Debit Account Move', readonly=True)
+        'account.move',
+        'Debit Account Move',
+        readonly=True,
+        copy=False,
+        )
 
     # Third check
     third_handed_voucher_id = fields.Many2one(
@@ -164,31 +213,45 @@ class account_check(models.Model):
         store=True,
         )
     customer_reject_debit_note_id = fields.Many2one(
-        'account.invoice', 'Customer Reject Debit Note', readonly=True
+        'account.invoice',
+        'Customer Reject Debit Note',
+        readonly=True,
+        copy=False
         )
     bank_id = fields.Many2one(
-        'res.bank', 'Bank', readonly=True,
+        'res.bank', 'Bank',
+        readonly=True,
         states={'draft': [('readonly', False)]}
         )
     currency_id = fields.Many2one(
-        'res.currency', string='Currency', readonly=True,
+        'res.currency',
+        string='Currency',
+        readonly=True,
         related='voucher_id.journal_id.currency',
         )
     vat = fields.Char(
         # TODO rename to Owner VAT
-        'Owner Vat', readonly=True, states={'draft': [('readonly', False)]}
+        'Owner Vat',
+        readonly=True,
+        states={'draft': [('readonly', False)]}
         )
     owner_name = fields.Char(
-        'Owner Name', readonly=True, states={'draft': [('readonly', False)]}
+        'Owner Name',
+        readonly=True,
+        states={'draft': [('readonly', False)]}
         )
     deposit_account_move_id = fields.Many2one(
-        'account.move', 'Deposit Account Move', readonly=True
+        'account.move',
+        'Deposit Account Move',
+        readonly=True,
+        copy=False
         )
     # account move of return
     return_account_move_id = fields.Many2one(
         'account.move',
         'Return Account Move',
-        readonly=True
+        readonly=True,
+        copy=False
         )
 
     def _check_number_interval(self, cr, uid, ids, context=None):
@@ -291,6 +354,11 @@ class account_check(models.Model):
         return True
 
     @api.multi
+    def action_change(self):
+        self.write({'state': 'changed'})
+        return True
+
+    @api.multi
     def action_hand(self):
         self.write({'state': 'handed'})
         return True
@@ -351,6 +419,16 @@ class account_check(models.Model):
                     'To cancel a deposit you must first delete the Return '
                     'Account Move!'))
             check.signal_workflow('cancel_return')
+        return True
+
+    @api.multi
+    def action_cancel_change(self):
+        for check in self:
+            if check.replacing_check_id:
+                raise Warning(_(
+                    'To cancel a return you must first delete the replacing '
+                    'check!'))
+            check.signal_workflow('cancel_change')
         return True
 
     @api.multi

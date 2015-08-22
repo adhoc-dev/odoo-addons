@@ -38,6 +38,7 @@ Account Check Management
     'data': [
         'wizard/check_action_view.xml',
         'wizard/view_check_reject.xml',
+        'wizard/change_check_view.xml',
         'views/account_checkbook_view.xml',
         'views/account_view.xml',
         'views/account_voucher_view.xml',

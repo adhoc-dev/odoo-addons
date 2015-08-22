@@ -40,6 +40,13 @@
             <field name="name">returned</field>
             <field name="kind">function</field>
             <field name="action">action_return()</field>
+        </record>    
+
+        <record id="actt_changed" model="workflow.activity">
+            <field name="wkf_id" ref="account_checks"/>
+            <field name="name">changed</field>
+            <field name="kind">function</field>
+            <field name="action">action_change()</field>
         </record>        
 
         <record id="actt_handed" model="workflow.activity">
@@ -124,6 +131,12 @@
             <field name="signal">holding_returned</field>
         </record>
 
+        <record id="transs_holding_changed" model="workflow.transition">
+            <field name="act_from" ref="actt_holding"/>
+            <field name="act_to" ref="actt_changed"/>
+            <field name="signal">return</field>
+        </record>
+
         <record id="transs_handed_hrejected" model="workflow.transition">
             <field name="act_from" ref="actt_handed"/>
             <field name="act_to" ref="actt_rejected"/>
@@ -182,6 +195,19 @@
             <field name="condition">True</field>
         </record>
 
+        <record id="transs_handed_return" model="workflow.transition">
+            <field name="act_from" ref="actt_handed"/>
+            <field name="act_to" ref="actt_returned"/>
+            <field name="signal">handed_return</field>
+            <field name="condition">True</field>
+        </record>
+
+        <record id="transs_handed_return" model="workflow.transition">
+            <field name="act_from" ref="actt_handed"/>
+            <field name="act_to" ref="actt_returned"/>
+            <field name="signal">return</field>
+        </record>
+
         <record id="transs_cancel_deposit" model="workflow.transition">
             <field name="act_from" ref="actt_deposited"/>
             <field name="act_to" ref="actt_holding"/>
@@ -192,6 +218,24 @@
             <field name="act_from" ref="actt_returned"/>
             <field name="act_to" ref="actt_holding"/>
             <field name="signal">cancel_return</field>
+        </record>                
+
+        <record id="transs_return_holding" model="workflow.transition">
+            <field name="act_from" ref="actt_returned"/>
+            <field name="act_to" ref="actt_holding"/>
+            <field name="signal">cancel_return</field>
+        </record>
+
+        <record id="transs_return_handed" model="workflow.transition">
+            <field name="act_from" ref="actt_returned"/>
+            <field name="act_to" ref="actt_handed"/>
+            <field name="signal">cancel_return</field>
+        </record>
+
+        <record id="transs_cancel_change" model="workflow.transition">
+            <field name="act_from" ref="actt_changed"/>
+            <field name="act_to" ref="actt_holding"/>
+            <field name="signal">cancel_change</field>
         </record>
                 
         <record id="transs_draft_cancel" model="workflow.transition">
