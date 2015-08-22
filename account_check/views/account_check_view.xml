@@ -54,6 +54,8 @@
                     <field name="currency_id" invisible="1"/>
                 <header>
                     <button name="%(action_check_deposit)d" type="action" string="Deposited" states="holding" class="oe_highlight"/>
+                    <!-- change state for issue handed and third holding -->
+                    <button name="%(action_account_change_check)d" type="action" string="Change" attrs="{'invisible':['|', ('type', '!=', 'third_check'), ('state', '!=', 'holding'), '|', ('type', '!=', 'issue_check'), ('state', '!=', 'handed')]}" class="oe_highlight"/>
                     <button name="%(action_check_debit)d" type="action" string="Debit" attrs="{'invisible':['|',('type','!=','issue_check'),('state','!=','handed')]}" class="oe_highlight"/>
                     <button name="%(action_check_rejected)d" type="action" string="Reject" states="handed,deposited" context="{'default_state':state,'default_type':type}"/>
                     <button name="%(action_check_return)d" type="action" string="Return" states="holding" context="{'default_state':state,'default_type':type}"/>
@@ -61,6 +63,7 @@
                     <button name="action_cancel_rejection" type="object" string="Cancel Rejection" states="rejected" context="{'default_state':state,'default_type':type}"/>
                     <button name="action_cancel_deposit" type="object" string="Cancel Deposit" states="deposited" context="{'default_state':state,'default_type':type}"/>
                     <button name="action_cancel_return" type="object" string="Cancel Return" states="returned" context="{'default_state':state,'default_type':type}"/>
+                    <button name="action_cancel_change" type="object" string="Cancel Change" states="changed" context="{'default_state':state,'default_type':type}"/>
                     <field name="state" widget="statusbar" statusbar_colors='{"hrejected":"red"}'/>
                 </header>
                 <sheet string="Checks">
@@ -78,8 +81,6 @@
                         <group>    
                             <field name="owner_name" attrs="{'invisible':[('type','!=','third_check')],'required':[('type','=','third_check')]}"/>
                             <field name="vat" attrs="{'invisible':[('type','!=','third_check')],'required':[('type','=','third_check')]}"/>
-                        </group>
-                        <group>
                             <field name="issue_date"/>
                             <field name="payment_date" attrs="{'invisible':[('type','=','issue_check'),('issue_check_subtype','=','currents')],'required':[('type','=','issue_check'),('issue_check_subtype','=','deferred')]}"/>
                             <field name="company_id" groups="base.group_multi_company" widget="selection"/>
@@ -93,6 +94,7 @@
                             <field name="destiny_partner_id" invisible="'from_voucher' in context" attrs="{'invisible':[('destiny_partner_id','=',False)]}"/>
                         </group>
                         <group>
+                            <field name="replacing_check_id" attrs="{'invisible':[('replacing_check_id','=',False)]}"/>
                             <field name="debit_account_move_id" attrs="{'invisible':[('debit_account_move_id','=',False)]}"/>
                             <field name="deposit_account_move_id" attrs="{'invisible':[('deposit_account_move_id','=',False)]}"/>
                             <field name="customer_reject_debit_note_id" attrs="{'invisible':[('customer_reject_debit_note_id','=',False)]}"/>
