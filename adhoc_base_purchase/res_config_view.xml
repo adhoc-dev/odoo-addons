@@ -65,6 +65,11 @@
                         class="oe_inline" readonly="1"/>
                     <label for="module_product_supplier_pricelist"/>
                 </div> 
+                <div name='module_purchase_prices_update'>
+                    <field name="module_purchase_prices_update"
+                        class="oe_inline" readonly="1"/>
+                    <label for="module_purchase_prices_update"/>
+                </div> 
             </div>
         </group>
     </field>

@@ -39,3 +39,6 @@ class adhoc_base_configuration(models.TransientModel):
     module_partner_products_shortcut = fields.Boolean(
         'Adds a shortcut on supplier partner form to the products supplied by this partner.',
         help="""Installs the partner_products_shortcut module.""")
+    module_purchase_prices_update = fields.Boolean(
+        'Adds a button on purchase order view to update prices for the order lines.',
+        help="""Installs the purchase_prices_update module.""")
