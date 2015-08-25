@@ -24,10 +24,10 @@ python:
 env:
   # - VERSION="8.0" LINT_CHECK="1"
   # we exclude partner_state because it gives an error and we could not find why
-  # we also exclude partner and product internal code because they gives an error with website sale tests. We make unit tests for them
-  - VERSION="8.0" ODOO_REPO="odoo/odoo" LINT_CHECK="0" EXCLUDE="partner_state,product_internal_code,partner_internal_code"
+  # we also exclude partner and product internal code and product_variant_imp because they gives an error with website sale tests. We make unit tests for them
+  - VERSION="8.0" ODOO_REPO="odoo/odoo" LINT_CHECK="0" EXCLUDE="partner_state,product_internal_code,partner_internal_code,product_variant_imp"
   - VERSION="8.0" ODOO_REPO="odoo/odoo" LINT_CHECK="0" INCLUDE="partner_state"
-  - VERSION="8.0" UNIT_TEST="1" LINT_CHECK="0" INCLUDE="product_internal_code,partner_internal_code"
+  - VERSION="8.0" UNIT_TEST="1" LINT_CHECK="0" INCLUDE="product_internal_code,partner_internal_code,product_variant_imp"
 # exclude and then include some modules to avoid 50 min test
 # TODO. enable this. we disable this tests because it takes to long
   #- VERSION="8.0" UNIT_TEST="1" LINT_CHECK="0" EXCLUDE="workflow_view,warning_box,user_partner_is_employee,surveyor_payments,surveyor,survey_conditional_questions,stock_warehouse_edit,stock_voucher,stock_transfer_restrict_lot,stock_traceability_report,stock_picking_partner_editable,stock_picking_locations,stock_picking_list,stock_picking_labels,stock_picking_ean128_report,stock_picking_driver,stock_picking_control,stock_multic_fix,stock_move_defaults,stock_inventory_negative_line,stock_ean128,sales_to_sale_order,sale_team_group,sale_stock_availability,sale_restrict_partners,sale_require_ref,sale_require_contract,sale_prices_update,sale_pricelist_discount,sale_other_product_description,sale_order_validity,sale_order_mail_product_attachment,sale_order_mail_product_attach_prod_pack,sale_multiple_invoice,sale_multic_fix,sale_dummy_confirmation,sale_contract_restrict_domain,sale_contract_editable,sale_contract_default,sale_add_products_wizard,report_extended_voucher_receipt,report_extended_stock,report_extended_sale,report_extended_purchase,report_extended_account,report_extended,report_aeroo_portal_fix,purchase_uom_prices_uoms,purchase_multic_fix,purchase_line_defaults,purchase_double_validation_imp,project_user_story,project_task_portal_unfollow,project_task_phase,project_task_order,project_task_issues,project_task_desc_html,project_task_contract,project_tags,project_stage,project_related_projects,project_long_term,project_kanban_open_project,project_issue_views_modifications,project_issue_solutions_product,project_issue_solutions,project_issue_product,project_issue_order"
