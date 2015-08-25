@@ -36,7 +36,7 @@ Extends the functionality of the survey module in order to make assessments that
             'security/ir.model.access.csv',
             'security/survey_security.xml',
             ],
-    'version': u'1.0',
+    'version': '8.0.1.0.0',
     'website': 'www.adhoc.com.ar'}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

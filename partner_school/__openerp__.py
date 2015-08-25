@@ -33,7 +33,7 @@
         'view/partner_view.xml',
         'security/ir.model.access.csv',
     ],
-    'version': u'8.0.1.1',
+    'version': '8.0.1.1.0',
     'website': 'www.adhoc.com.ar'
 }
 
