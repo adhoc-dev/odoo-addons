@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Sales to Sale Order',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'author': 'ADHOC SA',
     'website': 'www.ingenieria.com.ar',
     'depends' : ["sale"],

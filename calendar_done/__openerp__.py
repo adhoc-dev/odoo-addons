@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Mark Calendar Event as Done',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': 'Project Management',
     'description': """
 Mark Calendar Event as Done

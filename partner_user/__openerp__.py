@@ -42,7 +42,7 @@ For using the quick creation you must set a "template user" for the partner, you
         'partner_view.xml',
         'security/ir.model.access.csv',
     ],
-    'version': '1.1',
+    'version': '8.0.1.1.0',
     'website': 'www.adhoc.com.ar',
     'application': True,
 }

@@ -32,7 +32,7 @@
     'data': [
         'menu_item.xml',
         ],
-    'version': 'No version',
+    'version': '8.0.0.0.0',
     'auto_install': True,
     'website': 'www.adhoc.com.ar',}
 

@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Inter Company Module for Sale/Purchase Orders and Invoices',
-    'version': '1.1',
+    'version': '8.0.1.1.0',
     'description': ''' Module for synchronization of Documents between several companies. For example, this allow you to have a Sale Order created automatically when a Purchase Order is validated with another company of the system as supplier, and inversely.
 
     Supported documents are SO, PO and invoices/refunds.

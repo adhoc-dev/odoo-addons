@@ -37,6 +37,6 @@ Specially used for journals that are only used on payments (like retentions)
         'account_journal_view.xml',
         'voucher_payment_receipt_view.xml',
     ],
-    'version': '0.0',
+    'version': '8.0.0.0.0',
     'website': 'www.adhoc.com.ar'}
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

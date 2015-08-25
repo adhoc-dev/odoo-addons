@@ -41,4 +41,4 @@ then on sale orders lines this description will be used and no code.
     'installable': True,
     'name': 'Sale Other Product Description',
     'test': [],
-    'version': '1.243'}
+    'version': '8.0.1.2.0'}
