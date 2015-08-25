@@ -3,6 +3,11 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-from . import sale
-from . import partner
+from openerp import models, fields
+
+
+class partner(models.Model):
+    _inherit = "res.partner"
+
+    require_purchase_order_number = fields.Boolean(
+        string='Require Purchase Order Number')

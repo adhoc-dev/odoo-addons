@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_account_invoice_form" model="ir.ui.view">
+            <field name="name">account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="origin" position="after">
+                    <field name="require_purchase_order_number" invisible="1"/>
+                    <field name="purchase_order_number" attrs="{'required': [('require_purchase_order_number', '=', True)]}"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
