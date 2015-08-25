@@ -35,4 +35,4 @@ Show Invoice Partner on voucher lines, usefull when you want to know the contact
     'installable': True,
     'name': 'Account Voucher Contact',
     'test': [],
-    'version': '1.243'}
+    'version': '8.0.1.2.0'}

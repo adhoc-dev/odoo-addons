@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Sale Mutiple Invoices by once',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': 'Sales & Purchases',
     'sequence': 14,
     'summary': '',

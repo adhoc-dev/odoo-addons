@@ -35,6 +35,6 @@ Account Invoice Prices Update
         'wizard/update_prices_wizard_view.xml',
         'views/invoice_view.xml',
     ],
-    'version': '0.0',
+    'version': '8.0.0.0.0',
     'website': 'www.adhoc.com.ar'}
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

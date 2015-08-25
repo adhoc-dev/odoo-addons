@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Stock Move Defaults',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': 'Warehouse Management',
     'sequence': 14,
     'summary': '',

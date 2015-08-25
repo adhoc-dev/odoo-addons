@@ -45,4 +45,4 @@ Receipt
     'installable': True,
     'name': 'Voucher Receipts',
     'test': [],
-    'version': '1.243'}
+    'version': '8.0.1.2.0'}

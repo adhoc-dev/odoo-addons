@@ -22,7 +22,7 @@
 ##############################################################################
 {
     'name': "Warning box",
-    'version': '0.1',
+    'version': '8.0.0.1.0',
     'category': 'Tools',
     'description': """
         [ENG] Add Warning box.

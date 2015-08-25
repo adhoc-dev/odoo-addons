@@ -37,7 +37,7 @@ Adds a button for confirmed orders so that you can print the purchase order.
     'data': [
         'view/purchase_view.xml',
       ],
-    'version': 'No version',
+    'version': '8.0.0.0.0',
     'website': 'www.adhoc.com.ar'}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -41,7 +41,7 @@ Purchase UOM Prices
     'test': [],
     'data': [
     ],
-    'version': 'No version',
+    'version': '8.0.0.0.0',
     'website': 'www.adhoc.com.ar'}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
