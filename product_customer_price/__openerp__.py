@@ -32,7 +32,7 @@
         'view/product_view.xml',
         'security/ir.model.access.csv', 
       ],
-    'version': 'No version',
+    'version': '8.0.0.0.0',
     'website': ''}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

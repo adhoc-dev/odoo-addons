@@ -21,7 +21,7 @@
 
 {
     'name': 'Long Term Projects',
-    'version': '1.1',
+    'version': '8.0.1.1.0',
     'author': 'OpenERP SA',
     'website': 'http://www.openerp.com',
     'category': 'Project Management',

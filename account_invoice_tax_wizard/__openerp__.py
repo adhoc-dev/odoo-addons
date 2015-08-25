@@ -36,4 +36,4 @@ Add a wizard to add manual taxes on invoices
     'installable': True,
     'name': 'Account Invoice Tax Wizard',
     'test': [],
-    'version': '1.243'}
+    'version': '8.0.1.2.0'}

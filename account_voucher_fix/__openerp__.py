@@ -34,4 +34,4 @@ Account Voucher Fix
     'installable': True,
     'name': 'Account Voucher Fix',
     'test': [],
-    'version': '1.243'}
+    'version': '8.0.1.2.0'}

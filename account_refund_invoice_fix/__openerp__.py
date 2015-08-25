@@ -35,6 +35,6 @@ Fix related to invoice refund generation
     'data': [
     'account_invoice_refund_view.xml'
         ],
-    'version': '0.0',
+    'version': '8.0.0.0.0',
     'website': 'www.adhoc.com.ar'}
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

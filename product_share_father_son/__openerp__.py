@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Share Between Father and Son',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': 'Aeroo Reporting',
     'sequence': 14,
     'summary': '',

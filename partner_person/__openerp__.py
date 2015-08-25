@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Partners Persons Management',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': 'Tools',
     'sequence': 14,
     'summary': '',

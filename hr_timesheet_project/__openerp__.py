@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Time Tracking',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': 'Human Resources',
     'sequence': 23,
     'description': """
