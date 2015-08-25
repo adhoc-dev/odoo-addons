@@ -10,7 +10,7 @@ class sale_order(models.Model):
     @api.model
     def get_validity_date(self):
         validity_date = False
-        validity_period = self.company_id.sale_order_validity_days
+        validity_period = self.env.user.company_id.sale_order_validity_days
         if validity_period:
             validity_date = (datetime.today() + relativedelta(
                 days=validity_period)).strftime('%Y-%m-%d')
