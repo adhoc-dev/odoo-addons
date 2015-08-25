@@ -6,9 +6,9 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
-                <field name="origin" position="replace">
-                    <field name="sale_require_origin" invisible="1"/>
-                    <field name="origin" attrs="{'required': [('sale_require_origin', '=', True)]}"/>
+                <field name="origin" position="after">
+                    <field name="require_purchase_order_number" invisible="1"/>
+                    <field name="purchase_order_number" attrs="{'required': [('require_purchase_order_number', '=', True)]}"/>
                 </field>
             </field>
         </record>

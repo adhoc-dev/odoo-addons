@@ -9,6 +9,8 @@ from openerp import models, fields
 class sale_order(models.Model):
     _inherit = "sale.order"
 
-    sale_require_origin = fields.Boolean(
+    require_purchase_order_number = fields.Boolean(
         string='Sale Require Origin',
-        related='partner_id.sale_require_origin')
+        related='partner_id.require_purchase_order_number')
+    purchase_order_number = fields.Char(
+        'Purchase Order Number')

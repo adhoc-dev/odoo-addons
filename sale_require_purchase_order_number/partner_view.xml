@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
                 <field name="user_id" position="after">
-                    <field name="sale_require_origin" attrs="{'invisible': [('customer', '!=', True)]}"/>
+                    <field name="require_purchase_order_number" attrs="{'invisible': [('customer', '!=', True)]}"/>
                 </field>
             </field>
         </record>

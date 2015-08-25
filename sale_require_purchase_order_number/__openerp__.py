@@ -19,25 +19,27 @@
 #
 ##############################################################################
 {
-    'name': 'Sale Partner Require Origin',
-    'version': '1.0',
+    'name': 'Sale Require Purchase Order Number',
+    'version': '8.0.0.1.0',
     'category': 'Projects & Services',
     'sequence': 14,
     'summary': '',
     'description': """
-Sale Partner Require Origin
-===========================
+Sale Require Purchase Order Number
+==================================
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [
-        'sale',
+        'sale', 'stock'
     ],
     'data': [
         'sale_view.xml',
-        'partner_view.xml'
+        'partner_view.xml',
+        'account_view.xml',
+        'stock_view.xml'
     ],
     'demo': [
     ],
