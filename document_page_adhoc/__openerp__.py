@@ -21,7 +21,7 @@
 # Renombrado porque el modulo document_page todavia existe pero sin contenido
 {
     'name': 'Document Page',
-    'version': '1.0.1',
+    'version': '8.0.1.0.1',
     'category': 'Knowledge Management',
     'description': """
 Pages

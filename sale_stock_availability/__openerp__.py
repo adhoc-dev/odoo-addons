@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Stock availability in sales order line',
-    'version': '0.1',
+    'version': '8.0.0.1.0',
     'category': 'Tools',
     'description': """
 Stock availability in sales order line

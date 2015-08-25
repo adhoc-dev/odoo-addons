@@ -64,4 +64,9 @@ class adhoc_base_configuration(models.TransientModel):
     module_project_category = fields.Boolean(
         'Add categories to projects.',
         help="""Installs the project_category module.""")
-
+    module_project_task_activity = fields.Boolean(
+        'Add Activities to task.',
+        help="""Installs the project_task_activity module.""")
+    module_project_duplicate_fix = fields.Boolean(
+        'Fix the name of the message in project duplicate.',
+        help="""Installs the project_duplicate_fix module.""")

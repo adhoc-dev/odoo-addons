@@ -33,5 +33,9 @@ class partner_configuration(models.TransientModel):
         "Show Function On Partners Tree and Search Views",
         implied_group='partner_views_fields.group_function',
         )
+    group_street = fields.Boolean(
+        "Show Street On Partners Tree and Search Views",
+        implied_group='partner_views_fields.group_street',
+        )
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

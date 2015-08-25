@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 {
     "name": "Add Fields on Partners Views",
-    "version": "1.0",
+    "version": "8.0.0.1.1",
     "author": "ADHOC SA",
     "category": "",
     "description": """

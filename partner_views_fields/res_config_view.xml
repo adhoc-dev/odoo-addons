@@ -35,6 +35,10 @@
                                 <field name="group_country_id" class="oe_inline"/>
                                 <label for="group_country_id"/>
                             </div>
+                            <div name="group_street">
+                                <field name="group_street" class="oe_inline"/>
+                                <label for="group_street"/>
+                            </div>
                         </div>
                     </group>                    
                 </group>

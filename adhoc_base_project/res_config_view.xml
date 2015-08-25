@@ -63,7 +63,12 @@
                     <field name="module_project_task_order"
                         class="oe_inline"/>
                     <label for="module_project_task_order"/>
-                </div>                                   
+                </div>   
+                <div name='module_project_task_activity'>
+                    <field name="module_project_task_activity"
+                        class="oe_inline"/>
+                    <label for="module_project_task_activity"/>
+                </div>                   
             </div>    
             <label for="id" string="Issues"/>
             <div name="Issues">
@@ -96,6 +101,11 @@
                     <field name="module_project_task_issues"
                         class="oe_inline"/>
                     <label for="module_project_task_issues"/>
+                </div>  
+                <div name='module_project_duplicate_fix'>
+                    <field name="module_project_duplicate_fix"
+                        class="oe_inline"/>
+                    <label for="module_project_duplicate_fix"/>
                 </div>                             
             </div>
         </group>
