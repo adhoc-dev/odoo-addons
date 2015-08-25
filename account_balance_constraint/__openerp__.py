@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Account Balance Constraint",
-    "version": "1.0",
+    "version": "8.0.1.0.0",
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     "category": "Accounting",

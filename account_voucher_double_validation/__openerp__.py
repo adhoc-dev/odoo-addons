@@ -22,4 +22,4 @@ It also adds a payment date. Payments can not be validated before this payment d
     'installable': True,
     'name': "Account Voucher Double Validation",
     'test': [],
-    'version': '1.243'}
+    'version': '8.0.1.2.0'}

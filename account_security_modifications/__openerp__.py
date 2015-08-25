@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 {
     "name": "Account Security Modifications",
-    "version": "1.0",
+    "version": "8.0.1.0.0",
     "description": """
 Account Security Modifications
 ==============================

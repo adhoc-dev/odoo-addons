@@ -19,5 +19,5 @@ THIS module has not been tested and is not finished yet
     'installable': False,
     'name': 'Account Invoice Direct Payment',
     'test': [],
-    'version': '1.243',
+    'version': '8.0.1.2.0',
  }

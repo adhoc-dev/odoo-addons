@@ -20,4 +20,4 @@ Auto pay invoice if residual = 0
     'installable': True,
     'name': 'Account Invoice Auto Pay',
     'test': [],
-    'version': '1.243'}
+    'version': '8.0.1.2.0'}

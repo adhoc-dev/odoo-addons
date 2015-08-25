@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Account Statement Disable Invoice Import',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': 'Accounting',
     'sequence': 14,
     'summary': '',
