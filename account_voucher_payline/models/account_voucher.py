@@ -27,6 +27,7 @@ class account_voucher(models.Model):
         compute='_get_amount',
         inverse='_set_net_amount',
         help='Total Amount Paid',
+        copy=False,
     )
     amount_readonly = fields.Float(
         related='amount',
