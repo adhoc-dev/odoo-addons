@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Report Configurator - Account Voucher',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.2.0',
     'category': 'Reporting Subsystem',
     'sequence': 14,
     'summary': '',
@@ -40,6 +40,7 @@ Report Configurator - Account Voucher
         'views/report_view.xml',
         'views/account_voucher_view.xml',
         'views/account_action_data.xml',
+        'voucher_email_data.xml',
     ],
     'demo': [
     ],
