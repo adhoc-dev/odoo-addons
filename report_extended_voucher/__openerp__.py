@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Report Configurator - Account Voucher',
-    'version': '8.0.1.2.0',
+    'version': '8.0.2.2.0',
     'category': 'Reporting Subsystem',
     'sequence': 14,
     'summary': '',
