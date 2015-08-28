@@ -11,7 +11,7 @@ class account_voucher(models.Model):
         'Amount',
         digits=dp.get_precision('Account'),
         required=True,
-        # default=0.0,    # for compatibility with other modules
+        default=0.0,    # for compatibility with other modules
         readonly=True,
         states={'draft': [('readonly', False)]},
         help='Amount Paid With Journal Method',
@@ -28,7 +28,10 @@ class account_voucher(models.Model):
         inverse='_set_net_amount',
         help='Total Amount Paid',
         copy=False,
+        store=True,
     )
+    # we created amount_readonly because we keep amount invisible so
+    # it can be setted (if we make amount readonly it wont be setted).
     amount_readonly = fields.Float(
         related='amount',
         string='Total Amount',
