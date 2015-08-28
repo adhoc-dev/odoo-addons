@@ -27,7 +27,11 @@ class account_voucher(models.Model):
         compute='_get_amount',
         inverse='_set_net_amount',
         help='Total Amount Paid',
+        copy=False,
+        store=True,
     )
+    # we created amount_readonly because we keep amount invisible so
+    # it can be setted (if we make amount readonly it wont be setted).
     amount_readonly = fields.Float(
         related='amount',
         string='Total Amount',

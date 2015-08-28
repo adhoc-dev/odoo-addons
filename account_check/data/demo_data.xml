@@ -8,6 +8,7 @@
             <field ref="account.cas" name="parent_id"/>
             <field name="type">liquidity</field>
             <field name="user_type" ref="account.data_account_type_asset"/>
+            <field name="company_id" ref="base.main_company"/>
         </record>
 
         <record id="third_check" model="account.account">
@@ -16,6 +17,7 @@
             <field ref="account.cas" name="parent_id"/>
             <field name="type">liquidity</field>
             <field name="user_type" ref="account.data_account_type_asset"/>
+            <field name="company_id" ref="base.main_company"/>
         </record>
 
         <!-- Journals -->
@@ -35,15 +37,17 @@
             <field name="default_credit_account_id" ref="third_check"/>
             <field name="analytic_journal_id" ref="account.sit"/>
             <field name="user_id" ref="base.user_root"/>
+            <field name="company_id" ref="base.main_company"/>
         </record>
 
         <!-- Checkbook -->
         <record id="issue_checks_checkbook" model="account.checkbook">
             <field name="name">Issue Checks Bank 1 - (test)</field>
-            <field name="debit_journal_id" ref="account.bnk"/>
+            <field name="debit_journal_id" ref="account.bank_journal"/>
             <field name="journal_id" ref="account.check_journal"/>
             <field name="range_from" eval="1"/>
             <field name="range_to" eval="100"/>
+            <field name="company_id" ref="base.main_company"/>
         </record>
     </data>
 </openerp>
