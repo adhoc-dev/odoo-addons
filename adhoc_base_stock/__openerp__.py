@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'ADHOC Modules Configuration - Stock',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.1.0',
     'category': 'ADHOC Modules',
     'summary': 'extra, addons, modules',
     'description': """
