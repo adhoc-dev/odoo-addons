@@ -40,7 +40,6 @@ Report Configurator - Account Voucher
         'views/report_view.xml',
         'views/account_voucher_view.xml',
         'views/account_action_data.xml',
-        'voucher_email_data.xml',
     ],
     'demo': [
     ],
