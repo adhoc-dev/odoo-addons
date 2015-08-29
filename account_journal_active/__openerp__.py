@@ -20,7 +20,7 @@
 ##############################################################################
 {
     "name": "Account Journal Active",
-    "version": "8.0.1.0.0",
+    "version": "8.0.1.1.0",
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     "category": "Accounting",
@@ -30,10 +30,13 @@ Account Journal Active Field
 Adds active field on account journal
     """,
     'depends': [
-        'account'
+        # we add dependency of account_voucher because we change voucher
+        # action views to make voucher visible when journal inactive
+        'account_voucher'
         ],
     'data': [
         'account_journal_view.xml',
+        'account_voucher_view.xml',
         ],
     'demo': [],
     'test': [],
