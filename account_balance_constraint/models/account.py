@@ -9,11 +9,11 @@ class AccountAccount(models.Model):
 
     restrict_balance = fields.Boolean(
         'Restrict Balance?',
-        digits_compute=dp.get_precision('Account'),
+        digits=dp.get_precision('Account'),
         )
     min_balance = fields.Float(
         'Minimum Balance',
-        digits_compute=dp.get_precision('Account'),
+        digits=dp.get_precision('Account'),
         )
 
 

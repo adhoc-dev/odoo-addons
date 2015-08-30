@@ -35,7 +35,7 @@ class account_voucher(models.Model):
     amount_readonly = fields.Float(
         related='amount',
         string='Total Amount',
-        digits_compute=dp.get_precision('Account'),
+        digits=dp.get_precision('Account'),
         readonly=True,
         )
     dummy_journal_id = fields.Many2one(
