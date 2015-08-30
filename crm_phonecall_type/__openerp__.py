@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-{'author': 'Ingenieria ADHOC',
+{'author': 'ADHOC SA',
     'demo_xml': [
     ],
     'depends': [
@@ -17,9 +17,9 @@
         'crm_phonecall_view.xml',
         'security/ir.model.access.csv',
     ],
-    'version': 'No version',
+    'version': '8.0.0.0.0',
     'auto_install': False,
     'category': '',
-    'website': ''}
+    'website': 'www.adhoc.com.ar'}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

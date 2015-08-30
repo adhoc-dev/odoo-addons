@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'CRM Partner Area',
-    'version': '1.0',
+    'version': '8.0.0.0.0',
     'category': 'Tools',
     'sequence': 14,
     'summary': '',
@@ -10,8 +10,8 @@ CRM Partner Area
 ===========================
 
     """,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [
