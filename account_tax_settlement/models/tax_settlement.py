@@ -29,17 +29,17 @@ class account_tax_settlement_detail(models.Model):
     tax_amount = fields.Float(
         'Tax Amount',
         compute='get_amounts',
-        digits_compute=dp.get_precision('Account'),
+        digits=dp.get_precision('Account'),
         )
     debit_amount = fields.Float(
         'Debit Amount',
         compute='get_amounts',
-        digits_compute=dp.get_precision('Account'),
+        digits=dp.get_precision('Account'),
         )
     credit_amount = fields.Float(
         'Credit Amount',
         compute='get_amounts',
-        digits_compute=dp.get_precision('Account'),
+        digits=dp.get_precision('Account'),
         )
 
     @api.one
@@ -128,24 +128,24 @@ class account_tax_settlement(models.Model):
     account_balance_amount = fields.Float(
         'Account Balance Amount',
         compute='_get_balance',
-        digits_compute=dp.get_precision('Account'),
+        digits=dp.get_precision('Account'),
         )
     tax_code_balance_amount = fields.Float(
         'Tax Balance Amount',
         compute='_get_balance',
-        digits_compute=dp.get_precision('Account'),
+        digits=dp.get_precision('Account'),
         )
     balance_account_id = fields.Many2one(
         'account.account',
         'Balance Account',
         compute='_get_balance',
-        digits_compute=dp.get_precision('Account'),
+        digits=dp.get_precision('Account'),
         )
     balance_tax_code_id = fields.Many2one(
         'account.tax.code',
         'Balance Tax Code',
         compute='_get_balance',
-        digits_compute=dp.get_precision('Account'),
+        digits=dp.get_precision('Account'),
         )
     move_line_ids = fields.One2many(
         related='move_id.line_id',

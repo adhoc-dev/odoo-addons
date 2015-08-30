@@ -17,13 +17,13 @@ class sale_order_line_pack_line(models.Model):
     price_unit = fields.Float(
         'Unit Price',
         required=True,
-        digits_compute=dp.get_precision('Product Price'))
+        digits=dp.get_precision('Product Price'))
     price_subtotal = fields.Float(
         compute="_amount_line",
         string='Subtotal',
-        digits_compute=dp.get_precision('Account'))
+        digits=dp.get_precision('Account'))
     product_uom_qty = fields.Float(
-        'Quantity', digits_compute=dp.get_precision('Product UoS'),
+        'Quantity', digits=dp.get_precision('Product UoS'),
         required=True)
 
     @api.one

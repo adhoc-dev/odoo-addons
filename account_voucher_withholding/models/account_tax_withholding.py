@@ -87,13 +87,13 @@ class account_tax_withholding(models.Model):
     base_sign = fields.Float(
         'Base Code Sign',
         help="Usually 1 or -1.",
-        digits_compute=dp.get_precision('Account'),
+        digits=dp.get_precision('Account'),
         default=1,
         )
     tax_sign = fields.Float(
         'Tax Code Sign',
         help="Usually 1 or -1.",
-        digits_compute=dp.get_precision('Account'),
+        digits=dp.get_precision('Account'),
         default=1,
         )
     ref_base_code_id = fields.Many2one(
@@ -110,13 +110,13 @@ class account_tax_withholding(models.Model):
     ref_base_sign = fields.Float(
         'Refund Base Code Sign',
         help="Usually 1 or -1.",
-        digits_compute=dp.get_precision('Account'),
+        digits=dp.get_precision('Account'),
         default=1,
         )
     ref_tax_sign = fields.Float(
         'Refund Tax Code Sign',
         help="Usually 1 or -1.",
-        digits_compute=dp.get_precision('Account'),
+        digits=dp.get_precision('Account'),
         default=1,
         )
 
