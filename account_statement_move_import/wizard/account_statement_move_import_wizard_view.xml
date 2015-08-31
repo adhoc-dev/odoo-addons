@@ -11,6 +11,7 @@
                     <field name="journal_id" invisible="1"/>
                     <field name="journal_account_ids" invisible="1"/>
                     <group>
+                        <field name="from_date"/>
                         <field name="to_date"/>
                     </group>
                     <field name="move_line_ids">

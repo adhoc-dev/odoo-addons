@@ -15,6 +15,10 @@ class account_statement_move_import_wizard(models.TransientModel):
         return self.env['account.bank.statement'].browse(
             self._context.get('active_id', False))
 
+    from_date = fields.Date(
+        'From Date',
+        required=True,
+        )
     to_date = fields.Date(
         'To Date',
         required=True,
@@ -49,20 +53,22 @@ class account_statement_move_import_wizard(models.TransientModel):
     @api.multi
     @api.onchange('statement_id')
     def onchange_statement(self):
-        self.to_date = self.statement_id.date
+        self.from_date = self.statement_id.period_id.date_start
+        self.to_date = self.statement_id.period_id.date_stop
 
     @api.multi
     @api.depends('statement_id')
     def get_journal(self):
         self.journal_id = self.statement_id.journal_id
 
-    @api.onchange('to_date', 'journal_id')
+    @api.onchange('from_date', 'to_date', 'journal_id')
     def get_move_lines(self):
         move_lines = self.move_line_ids.search([
             ('journal_id', '=', self.journal_id.id),
             ('account_id', 'in', self.journal_account_ids.ids),
             ('statement_id', '=', False),
             ('exclude_on_statements', '=', False),
+            ('date', '>=', self.from_date),
             ('date', '<=', self.to_date),
             ])
         self.move_line_ids = move_lines
