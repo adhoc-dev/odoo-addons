@@ -76,7 +76,7 @@ class account_checkbook(models.Model):
         'account.check', 'checkbook_id', string='Issue Checks', readonly=True,)
     state = fields.Selection(
         [('draft', 'Draft'), ('active', 'In Use'), ('used', 'Used')],
-        string='State', readonly=True, default='active', copy=False)
+        string='State', readonly=True, default='draft', copy=False)
 
     _order = "name"
 
