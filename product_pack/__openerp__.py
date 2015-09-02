@@ -20,17 +20,23 @@
 ##############################################################################
 {
     'name': 'Product Pack',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.1.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
     'description': """
 Product Pack
 ============
-# TODO agregar en configuracion si se quiere usar los sale order packs (seria para el group group_pack) y ver que se haga visible la vista form
-# TODO implementar totalice en price get
-# TODO agregar constraint de no pack dentro de pack
-# TODO calcular correctamente pack virtual available para negativos
+Withilist:
+----------
+* TODO calcular correctamente pack virtual available para negativos
+* Add configuration to enable "group_pack" functionality, now you have to set
+it manually
+(seria para el group group_pack) y ver que se haga visible la vista form
+* Improove packs interaction from product.template views
+* Analize if better to unify sale_order_pack to pack_price_type selection
+(perhups no because this functionality is only available if group "group_pack"
+is active)
     """,
     'author':  'NaN·tic, ADHOC',
     'images': [
@@ -41,8 +47,8 @@ Product Pack
     'data': [
         'security/ir.model.access.csv',
         'security/product_security.xml',
-        'pack_view.xml',
-        'sale_view.xml',
+        'views/pack_view.xml',
+        'views/sale_view.xml',
     ],
     'demo': [
     ],
