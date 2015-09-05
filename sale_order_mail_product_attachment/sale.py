@@ -3,12 +3,10 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import netsvc
-from openerp.osv import fields, osv, orm
-from openerp.tools.translate import _
+from openerp import models
 
 
-class sale_order_line(osv.osv):
+class sale_order_line(models.Model):
     _inherit = "sale.order.line"
 
     def product_id_change(self, cr, uid, ids, pricelist, product, qty=0,
