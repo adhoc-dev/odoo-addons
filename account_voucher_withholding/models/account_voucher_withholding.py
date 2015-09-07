@@ -10,6 +10,7 @@ from openerp.exceptions import Warning
 
 class account_voucher_withholding(models.Model):
     _name = "account.voucher.withholding"
+    _rec_name = "display_name"
     _description = "Account Withholding Voucher"
 
     voucher_id = fields.Many2one(
@@ -18,36 +19,33 @@ class account_voucher_withholding(models.Model):
         required=True,
         ondelete='cascade',
         )
+    display_name = fields.Char(
+        compute='get_display_name'
+        )
     name = fields.Char(
         'Number',
         )
     internal_number = fields.Char(
         'Internal Number',
         required=True,
-        default='/'
+        default='/',
+        readonly=True,
+        states={'draft': [('readonly', False)]},
         )
     date = fields.Date(
         'Date',
         required=True,
         default=fields.Date.context_today,
         )
-    # state = fields.Selection(
-    #     # [
-    #     #     ('draft', 'Draft'),
-    #     #     ('available', 'Available'),
-    #     #     ('settled', 'Settled'),
-    #     #     ('cancel', 'Cancel'),
-    #     # ],
-    #     string='State',
-    #     related='voucher_id.state',
-    #     default='draft',
-    #     required=True,
-    #     track_visibility='onchange',
-    #     )
+    state = fields.Selection(
+        related='voucher_id.state'
+        )
     tax_withholding_id = fields.Many2one(
         'account.tax.withholding',
         string='Withholding',
         required=True,
+        readonly=True,
+        states={'draft': [('readonly', False)]},
         )
     comment = fields.Text(
         'Additional Information',
@@ -56,6 +54,8 @@ class account_voucher_withholding(models.Model):
         'Amount',
         required=True,
         digits=dp.get_precision('Account'),
+        readonly=True,
+        states={'draft': [('readonly', False)]},
         )
     move_line_id = fields.Many2one(
         'account.move.line',
@@ -82,6 +82,14 @@ class account_voucher_withholding(models.Model):
         ('internal_number_uniq', 'unique(internal_number, tax_withholding_id)',
             'Internal Number must be unique per Tax Withholding!'),
     ]
+
+    @api.one
+    @api.depends('name', 'internal_number')
+    def get_display_name(self):
+        display_name = self.internal_number
+        if self.name:
+            display_name += ' (%s)' % self.name
+        self.display_name = display_name
 
     @api.one
     @api.constrains('tax_withholding_id', 'voucher_id')

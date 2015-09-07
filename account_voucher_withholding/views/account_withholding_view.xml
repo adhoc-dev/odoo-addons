@@ -34,6 +34,7 @@
                     <field name="partner_id"/>
                     <field name="company_id" groups="base.group_multi_company"/>
                     <field name="amount" sum="Total"/>
+                    <field name="state" invisible="1"/>
                 </tree>
             </field>
         </record>   
@@ -43,6 +44,7 @@
             <field name="model">account.voucher.withholding</field>
             <field name="arch" type="xml"> 
                 <form string="Withholding Vouchers">
+                    <field name="state" invisible="1"/>
                     <header>
                     </header>
                     <sheet string="Withholding Vouchers">
