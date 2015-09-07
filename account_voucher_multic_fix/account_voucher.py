@@ -57,42 +57,43 @@ class account_voucher(models.Model):
         #     amount, company_id, context=context)
         # y de result tenemos que tomar period
 
+    @api.multi
     def recompute_voucher_lines(
-            self, cr, uid, ids, partner_id, journal_id, price, currency_id,
-            ttype, date, context=None):
+            self, partner_id, journal_id, price, currency_id,
+            ttype, date):
         '''Modification of this method so that only the moves of selected
         journal company are considered.
         We select the move lines and send them in the context'''
-        # TODO cambiar a nueva api
+        move_lines = self.get_move_lines(ttype, partner_id, journal_id)
+        # if not move lines we dont want recompute voucher to compute them,
+        # we leave them empty
+        if not move_lines:
+            return {
+                'value': {
+                    'line_dr_ids': [], 'line_cr_ids': [], 'pre_line': False},
+            }
+        return super(account_voucher, self.with_context(
+                move_line_ids=move_lines.ids)).recompute_voucher_lines(
+                    partner_id, journal_id, price, currency_id, ttype,
+                    date)
 
-        if not context:
-            context = {}
-        move_line_pool = self.pool.get('account.move.line')
-        journal_pool = self.pool.get('account.journal')
-        journal = journal_pool.browse(cr, uid, journal_id, context=context)
+    @api.model
+    def get_move_lines(self, ttype, partner_id, journal_id):
+        company = self.env['account.journal'].browse(journal_id).company_id
         account_type = None
-        if context.get('account_id'):
-            account_type = self.pool['account.account'].browse(
-                cr, uid, context['account_id'], context=context).type
+        if self._context.get('account_id'):
+            account_type = self.env['account.account'].browse(
+                self._context['account_id']).type
         if ttype == 'payment':
             if not account_type:
                 account_type = 'payable'
         else:
             if not account_type:
                 account_type = 'receivable'
-        move_line_ids = move_line_pool.search(cr, uid, [
+        move_lines = self.env['account.move.line'].search([
             ('state', '=', 'valid'),
-            ('company_id', '=', journal.company_id.id),
+            ('company_id', '=', company.id),
             ('account_id.type', '=', account_type),
             ('reconcile_id', '=', False),
-            ('partner_id', '=', partner_id)], context=context)
-        if move_line_ids:
-            context['move_line_ids'] = move_line_ids
-        else:
-            return {
-                'value': {
-                    'line_dr_ids': [], 'line_cr_ids': [], 'pre_line': False},
-            }
-        return super(account_voucher, self).recompute_voucher_lines(
-            cr, uid, ids, partner_id, journal_id, price, currency_id, ttype,
-            date, context=context)
+            ('partner_id', '=', partner_id)])
+        return move_lines
