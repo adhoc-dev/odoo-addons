@@ -43,8 +43,8 @@
             <field name="name">account.voucher.withholding.form</field>
             <field name="model">account.voucher.withholding</field>
             <field name="arch" type="xml"> 
-                <field name="state" invisible="1"/>
                 <form string="Withholding Vouchers">
+                    <field name="state" invisible="1"/>
                     <header>
                     </header>
                     <sheet string="Withholding Vouchers">
