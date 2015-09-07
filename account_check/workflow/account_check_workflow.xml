@@ -134,8 +134,32 @@
         <record id="transs_holding_changed" model="workflow.transition">
             <field name="act_from" ref="actt_holding"/>
             <field name="act_to" ref="actt_changed"/>
-            <field name="signal">return</field>
+            <field name="signal">change_check</field>
+            <field name="condition">type == 'third_check'</field>
         </record>
+
+        <!-- cancel change not imlemented yet -->
+<!--         <record id="transs_changed_holding" model="workflow.transition">
+            <field name="act_from" ref="actt_changed"/>
+            <field name="act_to" ref="actt_holding"/>
+            <field name="signal">cancel_change</field>
+            <field name="condition">type == 'third_check'</field>
+        </record> -->
+
+        <record id="transs_handed_changed" model="workflow.transition">
+            <field name="act_from" ref="actt_handed"/>
+            <field name="act_to" ref="actt_changed"/>
+            <field name="signal">change_check</field>
+            <field name="condition">type == 'issue_check'</field>
+        </record>
+
+        <!-- cancel change not imlemented yet -->
+<!--         <record id="transs_changed_handed" model="workflow.transition">
+            <field name="act_from" ref="actt_changed"/>
+            <field name="act_to" ref="actt_handed"/>
+            <field name="signal">cancel_change</field>
+            <field name="condition">type == 'issue_check'</field>
+        </record> -->
 
         <record id="transs_handed_hrejected" model="workflow.transition">
             <field name="act_from" ref="actt_handed"/>
@@ -219,12 +243,6 @@
             <field name="act_to" ref="actt_handed"/>
             <field name="signal">cancel_return</field>
         </record> -->
-
-        <record id="transs_cancel_change" model="workflow.transition">
-            <field name="act_from" ref="actt_changed"/>
-            <field name="act_to" ref="actt_holding"/>
-            <field name="signal">cancel_change</field>
-        </record>
                 
         <record id="transs_draft_cancel" model="workflow.transition">
             <field name="act_from" ref="actt_draft"/>

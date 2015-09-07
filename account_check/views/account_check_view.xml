@@ -63,7 +63,8 @@
                     <button name="action_cancel_rejection" type="object" string="Cancel Rejection" states="rejected" context="{'default_state':state,'default_type':type}"/>
                     <button name="action_cancel_deposit" type="object" string="Cancel Deposit" states="deposited" context="{'default_state':state,'default_type':type}"/>
                     <button name="action_cancel_return" type="object" string="Cancel Return" states="returned" context="{'default_state':state,'default_type':type}"/>
-                    <button name="action_cancel_change" type="object" string="Cancel Change" states="changed" context="{'default_state':state,'default_type':type}"/>
+                    <!-- cancel change not implemente correctly -->
+                    <!-- <button name="action_cancel_change" type="object" string="Cancel Change" states="changed" context="{'default_state':state,'default_type':type}"/> -->
                     <field name="state" widget="statusbar" statusbar_colors='{"hrejected":"red"}'/>
                 </header>
                 <sheet string="Checks">
