@@ -72,7 +72,8 @@ class sale_order(models.Model):
             val = obj_invoice_line.product_id_change(
                 cr, uid, [], product.id,
                 uom_id=False, partner_id=order.partner_id.id,
-                fposition_id=order.fiscal_position.id)
+                fposition_id=order.fiscal_position.id,
+                company_id=order.company_id.id)
             res = val['value']
 
             if res.get('invoice_line_tax_id'):
