@@ -1,40 +1,41 @@
-# -*- coding: utf-8 -*-
-# from openerp.tools.translate import _
-from openerp.osv import fields, osv
+# -*- encoding: utf-8 -*-
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in root directory
+##############################################################################
+from openerp import fields, models, api
 import openerp.addons.decimal_precision as dp
 
 
-class account_invoice(osv.osv):
+class account_invoice(models.Model):
 
     _inherit = 'account.invoice'
 
-    def _get_sale_currency_amount_total(
-            self, cr, uid, ids, name, arg, context=None):
-        res = {}
-        for inv in self.browse(cr, uid, ids, context=context):
-            res[inv.id] = inv.invoice_currency_rate and inv.amount_total / inv.invoice_currency_rate or False
-        return res
+    invoice_currency_rate = fields.Float(
+        'Invoice Currency Rate',
+        )
+    sale_currency_amount_total = fields.Float(
+        compute='_get_sale_currency_amount_total',
+        string='SO Currency Total',
+        digits=dp.get_precision('Account'),
+        )
+    sale_currency_id = fields.Many2one(
+        'res.currency',
+        'Sale Currency',
+    )
 
-    _columns = {
-        'invoice_currency_rate': fields.float(
-            'Invoice Currency Rate',
-        ),
-        'sale_currency_amount_total': fields.function(
-            _get_sale_currency_amount_total, string='SO Currency Total',
-            type='float', digits_compute=dp.get_precision('Account'),
-        ),
-        'sale_currency_id': fields.many2one(
-            'res.currency', 'Sale Currency',
-        ),
-    }
+    @api.one
+    @api.depends('invoice_currency_rate', 'amount_total')
+    def _get_sale_currency_amount_total(self):
+        if self.invoice_currency_rate:
+            self.sale_currency_amount_total = (
+                self.amount_total / self.invoice_currency_rate)
 
 
-class account_invoice_line(osv.osv):
+class account_invoice_line(models.Model):
 
     _inherit = 'account.invoice.line'
 
-    _columns = {
-        'sale_currency_price_unit': fields.float(
-            'Unit Price in SO Currency', required=True,
-            digits_compute=dp.get_precision('Product Price')),
-    }
+    sale_currency_price_unit = fields.Float(
+        'Unit Price in SO Currency',
+        digits=dp.get_precision('Product Price')
+        )

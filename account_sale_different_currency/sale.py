@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from openerp.tools.translate import _
-from openerp.osv import osv, fields
+from openerp import models, fields
+from openerp.osv import osv
 
 
-class sale_order_line(osv.osv):
+class sale_order_line(models.Model):
     _inherit = 'sale.order.line'
 
     def _prepare_order_line_invoice_line(
@@ -19,17 +20,18 @@ class sale_order_line(osv.osv):
         return res
 
 
-class sale_order(osv.osv):
+class sale_order(models.Model):
     _inherit = 'sale.order'
 
-    _columns = {
-        'different_currency_id': fields.many2one(
-            'res.currency', 'Invoice in different Currency?',
-            readonly=True,
-            states={
-                'draft': [('readonly', False)], 'sent': [('readonly', False)]},
-            help='If you want the invoice in a different currency from the sale order, please select a currency'),
-    }
+    different_currency_id = fields.Many2one(
+        'res.currency',
+        'Invoice in different Currency?',
+        readonly=True,
+        states={
+            'draft': [('readonly', False)], 'sent': [('readonly', False)]},
+        help='If you want the invoice in a different currency from the sale '
+        'order, please select a currency'
+        )
 
     def _prepare_invoice(self, cr, uid, order, lines, context=None):
         res = super(sale_order, self)._prepare_invoice(
