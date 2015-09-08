@@ -9,6 +9,7 @@ from datetime import datetime
 
 class project_task_activity(models.Model):
     _name = 'project.task.activity'
+    _order = "sequence"
 
     task_id = fields.Many2one(
         'project.task',
@@ -26,6 +27,10 @@ class project_task_activity(models.Model):
         [('pending', 'Pending'), ('done', 'Done'), ('cancel', 'Cancel')],
         'State', default='pending', required=True)
     description = fields.Text('Description')
+    sequence = fields.Integer(
+        'Sequence',
+        help="Gives the sequence order when selecting an activitiy.",
+        default=10)
 
     @api.one
     def action_done(self):
