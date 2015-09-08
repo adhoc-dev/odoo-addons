@@ -20,7 +20,7 @@
 ##############################################################################
 {
     "name": "Project Task Activity",
-    'version': '3.1',
+    'version': '8.0.0.0.1',
     'category': 'Tools',
     'sequence': 14,
     'author':  'ADHOC SA',
