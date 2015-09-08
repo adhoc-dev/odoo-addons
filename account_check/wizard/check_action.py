@@ -72,6 +72,7 @@ class account_check_action(models.TransientModel):
                 if check.state != 'holding':
                     raise Warning(
                         _('The selected checks must be in holding state.'))
+            # TODO implement return issue checs and return handed third checks
             else:   # issue
                 raise Warning(_('You can not return a Issue Check.'))
         return True

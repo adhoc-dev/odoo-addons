@@ -418,15 +418,16 @@ class account_check(models.Model):
             check.signal_workflow('cancel_return')
         return True
 
-    @api.multi
-    def action_cancel_change(self):
-        for check in self:
-            if check.replacing_check_id:
-                raise Warning(_(
-                    'To cancel a return you must first delete the replacing '
-                    'check!'))
-            check.signal_workflow('cancel_change')
-        return True
+    # TODO implementar para caso issue y third
+    # @api.multi
+    # def action_cancel_change(self):
+    #     for check in self:
+    #         if check.replacing_check_id:
+    #             raise Warning(_(
+    #                 'To cancel a return you must first delete the replacing '
+    #                 'check!'))
+    #         check.signal_workflow('cancel_change')
+    #     return True
 
     @api.multi
     def check_check_cancellation(self):

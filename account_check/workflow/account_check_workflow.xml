@@ -134,8 +134,32 @@
         <record id="transs_holding_changed" model="workflow.transition">
             <field name="act_from" ref="actt_holding"/>
             <field name="act_to" ref="actt_changed"/>
-            <field name="signal">return</field>
+            <field name="signal">change_check</field>
+            <field name="condition">type == 'third_check'</field>
         </record>
+
+        <!-- cancel change not imlemented yet -->
+<!--         <record id="transs_changed_holding" model="workflow.transition">
+            <field name="act_from" ref="actt_changed"/>
+            <field name="act_to" ref="actt_holding"/>
+            <field name="signal">cancel_change</field>
+            <field name="condition">type == 'third_check'</field>
+        </record> -->
+
+        <record id="transs_handed_changed" model="workflow.transition">
+            <field name="act_from" ref="actt_handed"/>
+            <field name="act_to" ref="actt_changed"/>
+            <field name="signal">change_check</field>
+            <field name="condition">type == 'issue_check'</field>
+        </record>
+
+        <!-- cancel change not imlemented yet -->
+<!--         <record id="transs_changed_handed" model="workflow.transition">
+            <field name="act_from" ref="actt_changed"/>
+            <field name="act_to" ref="actt_handed"/>
+            <field name="signal">cancel_change</field>
+            <field name="condition">type == 'issue_check'</field>
+        </record> -->
 
         <record id="transs_handed_hrejected" model="workflow.transition">
             <field name="act_from" ref="actt_handed"/>
@@ -195,30 +219,11 @@
             <field name="condition">True</field>
         </record>
 
-        <record id="transs_handed_return" model="workflow.transition">
-            <field name="act_from" ref="actt_handed"/>
-            <field name="act_to" ref="actt_returned"/>
-            <field name="signal">handed_return</field>
-            <field name="condition">True</field>
-        </record>
-
-        <record id="transs_handed_return" model="workflow.transition">
-            <field name="act_from" ref="actt_handed"/>
-            <field name="act_to" ref="actt_returned"/>
-            <field name="signal">return</field>
-        </record>
-
         <record id="transs_cancel_deposit" model="workflow.transition">
             <field name="act_from" ref="actt_deposited"/>
             <field name="act_to" ref="actt_holding"/>
             <field name="signal">cancel_deposit</field>
-        </record>
-                
-        <record id="transs_cancel_return" model="workflow.transition">
-            <field name="act_from" ref="actt_returned"/>
-            <field name="act_to" ref="actt_holding"/>
-            <field name="signal">cancel_return</field>
-        </record>                
+        </record>       
 
         <record id="transs_return_holding" model="workflow.transition">
             <field name="act_from" ref="actt_returned"/>
@@ -226,17 +231,18 @@
             <field name="signal">cancel_return</field>
         </record>
 
+        <!-- Return handed not implemented yet -->
+<!--         <record id="transs_handed_return" model="workflow.transition">
+            <field name="act_from" ref="actt_handed"/>
+            <field name="act_to" ref="actt_returned"/>
+            <field name="signal">return</field>
+        </record>
+
         <record id="transs_return_handed" model="workflow.transition">
             <field name="act_from" ref="actt_returned"/>
             <field name="act_to" ref="actt_handed"/>
             <field name="signal">cancel_return</field>
-        </record>
-
-        <record id="transs_cancel_change" model="workflow.transition">
-            <field name="act_from" ref="actt_changed"/>
-            <field name="act_to" ref="actt_holding"/>
-            <field name="signal">cancel_change</field>
-        </record>
+        </record> -->
                 
         <record id="transs_draft_cancel" model="workflow.transition">
             <field name="act_from" ref="actt_draft"/>
