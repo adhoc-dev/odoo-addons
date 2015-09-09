@@ -82,8 +82,11 @@ class account_voucher(models.Model):
         # we not only fix that move lines should be from journal company
         # but also we make right search when sellecting contacts of companies
         company = self.env['account.journal'].browse(journal_id).company_id
-        commercial_partner = self.env['res.partner'].browse(
-            partner_id).commercial_partner_id
+        # we would like to search by commercial but later, when creating
+        # the move, it would give an error with differetns partners.
+        # perhups we can move all this to voucher_payline
+        # commercial_partner = self.env['res.partner'].browse(
+        #     partner_id).commercial_partner_id
         account_type = None
         if self._context.get('account_id'):
             account_type = self.env['account.account'].browse(
@@ -99,5 +102,5 @@ class account_voucher(models.Model):
             ('company_id', '=', company.id),
             ('account_id.type', '=', account_type),
             ('reconcile_id', '=', False),
-            ('partner_id', '=', commercial_partner.id)])
+            ('partner_id', '=', partner_id)])
         return move_lines
