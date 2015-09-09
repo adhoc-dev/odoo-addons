@@ -32,17 +32,11 @@
         'purchase',
         'sale_stock',
         'sale_order_dates',
-        'adhoc_base_setup',
         ],
     'data': [
         'views/inter_company_so_po_view.xml',
-        # 'views/res_config_view.xml',
     ],
     'test': [
-        # 'test/test_intercompany_data.yml',
-        # 'test/inter_company_so_to_po.yml',
-        # 'test/inter_company_po_to_so.yml',
-        # 'test/inter_company_invoice.yml'
     ],
     'demo': [],
     'installable': True,
