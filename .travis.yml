@@ -3,6 +3,8 @@ addons:
     packages:
       - expect-dev  # provides unbuffer utility
       - python-lxml # because pip installation is slow
+      - libcups2-dev # for aeroo
+      - wkhtmltopdf # for odoo pdf reports (tested on sale for eg.)
       # odoo-argentina fe
       - python-dev
       - swig
@@ -14,35 +16,40 @@ addons:
 language: python
 
 # new options suggested by Alexandre Fayolle
-# we need sudo for apt-get install
-# sudo: false
+sudo: false
 cache: pip
 
 python:
   - "2.7"
 
 env:
-  # - VERSION="8.0" LINT_CHECK="1"
-  # we exclude partner_state because it gives an error and we could not find why
-  # we also exclude partner and product internal code and product_variant_imp because they gives an error with website sale tests. We make unit tests for them
-  - VERSION="8.0" ODOO_REPO="odoo/odoo" LINT_CHECK="0" EXCLUDE="partner_state,product_internal_code,partner_internal_code,product_variant_imp"
-  - VERSION="8.0" ODOO_REPO="odoo/odoo" LINT_CHECK="0" INCLUDE="partner_state"
-  - VERSION="8.0" UNIT_TEST="1" LINT_CHECK="0" INCLUDE="product_internal_code,partner_internal_code,product_variant_imp"
-# exclude and then include some modules to avoid 50 min test
-# TODO. enable this. we disable this tests because it takes to long
-  #- VERSION="8.0" UNIT_TEST="1" LINT_CHECK="0" EXCLUDE="workflow_view,warning_box,user_partner_is_employee,surveyor_payments,surveyor,survey_conditional_questions,stock_warehouse_edit,stock_voucher,stock_transfer_restrict_lot,stock_traceability_report,stock_picking_partner_editable,stock_picking_locations,stock_picking_list,stock_picking_labels,stock_picking_ean128_report,stock_picking_driver,stock_picking_control,stock_multic_fix,stock_move_defaults,stock_inventory_negative_line,stock_ean128,sales_to_sale_order,sale_team_group,sale_stock_availability,sale_restrict_partners,sale_require_ref,sale_require_contract,sale_prices_update,sale_pricelist_discount,sale_other_product_description,sale_order_validity,sale_order_mail_product_attachment,sale_order_mail_product_attach_prod_pack,sale_multiple_invoice,sale_multic_fix,sale_dummy_confirmation,sale_contract_restrict_domain,sale_contract_editable,sale_contract_default,sale_add_products_wizard,report_extended_voucher_receipt,report_extended_stock,report_extended_sale,report_extended_purchase,report_extended_account,report_extended,report_aeroo_portal_fix,purchase_uom_prices_uoms,purchase_multic_fix,purchase_line_defaults,purchase_double_validation_imp,project_user_story,project_task_portal_unfollow,project_task_phase,project_task_order,project_task_issues,project_task_desc_html,project_task_contract,project_tags,project_stage,project_related_projects,project_long_term,project_kanban_open_project,project_issue_views_modifications,project_issue_solutions_product,project_issue_solutions,project_issue_product,project_issue_order"
-  #- VERSION="8.0" UNIT_TEST="1" LINT_CHECK="0" INCLUDE="workflow_view,warning_box,user_partner_is_employee,surveyor_payments,surveyor,survey_conditional_questions,stock_warehouse_edit,stock_voucher,stock_transfer_restrict_lot,stock_traceability_report,stock_picking_partner_editable,stock_picking_locations,stock_picking_list,stock_picking_labels,stock_picking_ean128_report,stock_picking_driver,stock_picking_control,stock_multic_fix,stock_move_defaults,stock_inventory_negative_line,stock_ean128,sales_to_sale_order,sale_team_group,sale_stock_availability,sale_restrict_partners,sale_require_ref,sale_require_contract,sale_prices_update,sale_pricelist_discount,sale_other_product_description,sale_order_validity,sale_order_mail_product_attachment,sale_order_mail_product_attach_prod_pack,sale_multiple_invoice,sale_multic_fix,sale_dummy_confirmation,sale_contract_restrict_domain,sale_contract_editable,sale_contract_default,sale_add_products_wizard,report_extended_voucher_receipt,report_extended_stock,report_extended_sale,report_extended_purchase,report_extended_account,report_extended,report_aeroo_portal_fix,purchase_uom_prices_uoms,purchase_multic_fix,purchase_line_defaults,purchase_double_validation_imp,project_user_story,project_task_portal_unfollow,project_task_phase,project_task_order,project_task_issues,project_task_desc_html,project_task_contract,project_tags,project_stage,project_related_projects,project_long_term,project_kanban_open_project,project_issue_views_modifications,project_issue_solutions_product,project_issue_solutions,project_issue_product,project_issue_order"
+  global:
+  - VERSION="8.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
+  - TRANSIFEX_USER='jjscarafia'
+  - TRANSIFEX_ORGANIZATION='adhoc'
+  # to get secure, run 'travis encrypt TRANSIFEX_PASSWORD=[transifex_password] -r [github_repo]'
+  # example of github repo 'ingadhoc/odoo-infrastructure'
+  - secure: znz/SSupt0Srn+J1SF2V4nRYEGlx3nOh6BscNth0iv5VNdLoGxMreOfZJ4GVtv9N7rPb/469ApBtV/L+mHJyumd18f8BAszsjkMSjWst5MnfuijX0emm2i1gHZOP9lHKKCv3fN5bCubizBN6+cwQ84+kCeqzf6v9qDOVjByRpI3n8N+iYU5yBhh7VjzhVGWj761j5vMUJI72jT0iFRwVnebfefKh9w8gYPyKgddW4cqNPChNXkiWSZAw7qBvU2ElMI6gGZCBFOoKBj2Gy6mcXap5ZDssPRZsnH11sop9wYZ573Rf1UFZNlc9IQUaDnagojaGjWEnIFjVO4uxZJpAgDBz7MIYT7nYWbsBu2q3bYWGJ9I3tozSyJ/lXkLm9q6nVQ5o8LI6BzFQkPukupVExIVQ285Ag/cc28gxCX7L8ANfKUyfzUszaqXaeTS4klLQERaBY1CdCbheNGDpXAFKq2avukCdGzJ99NTaIFKCCM5RP1wE/AysrkHZSArUmGm+ABRNQJ4LsDdOPHwb+1QTaXjiPRpYFPDb35vb0mF3dPSAUG4zd9BsjZzy8EAdfg8EMx6YzuZWHi3wPzbWDuNBc/ErfVSJBLcJHAGol7loMUVT+307xh8P64xU1D0f+BuzoI7JdM0Nj99uaiSjsgIyDMFBiL01I1BNweqmt7AKNuM=
+
+  matrix:
+  # TODO enable lint check
+  #- LINT_CHECK="1"
+  # TODO fix error and include this modules
+  - TRANSIFEX="1" EXCLUDE="partner_state,product_internal_code,partner_internal_code,product_variant_imp"
+  # TODO fix and include this modules:
+    # we exclude partner_state because it gives an error and we could not find why
+    # we also exclude partner and product internal code and product_variant_imp because they gives an error with website sale tests. We make unit tests for them
+  - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="partner_state,product_internal_code,partner_internal_code,product_variant_imp"
+  - UNIT_TEST="1" INCLUDE="partner_state,product_internal_code,partner_internal_code,product_variant_imp"
+  # TODO enable unit_test to all modules to test dependencies (takes to long for now)
+  # - UNIT_TEST="1"
 
 virtualenv:
   system_site_packages: true
 
 install:
   # aeroo reports
-  # we install libcups2-dev here because it is not on travis whitelist so it is not installable by addons/apt/packages
-  # you can check if available on https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
   - git clone https://github.com/aeroo/aeroo_reports.git ${HOME}/aeroo_reports
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq libcups2-dev
   - pip install git+https://github.com/aeroo/aeroolib.git@master pycups==1.9.68
 
   # odoo argentina (TODO try to remove dependency, only interest module and move invoice)
@@ -56,10 +63,6 @@ install:
   - pip install pyOpenSSL suds httplib2 pysimplesoap==1.08.8 m2crypto fpdf dbf Pillow
   # install pyafipws after others dependencies because dependency erro
   - pip install pyafipws
-
-  # for odoo pdf reports (tested on sale for eg.)
-  - wget http://download.gna.org/wkhtmltopdf/0.12/0.12.1/wkhtmltox-0.12.1_linux-precise-amd64.deb
-  - sudo dpkg -i wkhtmltox-0.12.1_linux-precise-amd64.deb
 
   # repository requirements
   - pip install -r requirements.txt
