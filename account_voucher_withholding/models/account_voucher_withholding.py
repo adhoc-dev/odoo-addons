@@ -38,7 +38,8 @@ class account_voucher_withholding(models.Model):
         default=fields.Date.context_today,
         )
     state = fields.Selection(
-        related='voucher_id.state'
+        related='voucher_id.state',
+        default='draft',
         )
     tax_withholding_id = fields.Many2one(
         'account.tax.withholding',
