@@ -1,20 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* account_invoice_prices_update
-#
+# * account_invoice_prices_update
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: odoo-addons (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-11 12:37+0000\n"
-"PO-Revision-Date: 2014-11-11 09:39-0300\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2015-09-09 23:57+0000\n"
+"PO-Revision-Date: 2015-09-01 18:07+0000\n"
+"Last-Translator: Juan Jose Scarafia <scarafia.juanjose@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/adhoc/ingadhoc-odoo-addons-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 1.5.4\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_invoice_prices_update
 #: view:account_invoice_update:account_invoice_prices_update.view_account_invoice_form
@@ -52,6 +53,22 @@ msgid "Price List"
 msgstr "Lista de Precios"
 
 #. module: account_invoice_prices_update
+#: selection:account_invoice_update,type:0
+msgid "Purchase"
+msgstr ""
+
+#. module: account_invoice_prices_update
+#: selection:account_invoice_update,type:0
+msgid "Sale"
+msgstr ""
+
+#. module: account_invoice_prices_update
+#: field:account_invoice_update,type:0
+msgid "Type"
+msgstr ""
+
+#. module: account_invoice_prices_update
+#: view:account.invoice:account_invoice_prices_update.invoice_supplier_form
 #: view:account.invoice:account_invoice_prices_update.view_sale_order_form
 msgid "Update Pricelist and Prices"
 msgstr "Actualizar lista de precios"
@@ -66,3 +83,8 @@ msgstr "Actualizar Precios"
 #: view:account_invoice_update:account_invoice_prices_update.view_account_invoice_form
 msgid "Update Prices Wizard"
 msgstr "Asistente de actualizador de Precios"
+
+#. module: account_invoice_prices_update
+#: view:account_invoice_update:account_invoice_prices_update.view_account_invoice_form
+msgid "or"
+msgstr ""
