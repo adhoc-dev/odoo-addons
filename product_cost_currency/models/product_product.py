@@ -58,7 +58,7 @@ class ProductProduct(models.Model):
                 replenishment_cost = cost_currency.compute(
                         currency_cost, to_currency)
             else:
-                replenishment_cost = self.currency_cost
+                replenishment_cost = currency_cost
         else:
             replenishment_cost = self.standard_price
         self.replenishment_cost = replenishment_cost
