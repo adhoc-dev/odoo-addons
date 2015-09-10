@@ -75,6 +75,7 @@ class sale_advance_payment_inv(osv.osv_memory):
 
             inv_ids = []
             sale_ref = sale_obj.browse(cr, uid, sale_ids[0], context=context).client_order_ref
+            ref_temp = _("%s Invoice %i of %i")
             for invoice_count in range(wizard.invoice_qty - 1):
                 for sale_id, inv_values in self._prepare_advance_invoice_vals(cr, uid, ids, context=context):
                     first_invoice_date = datetime.strptime(
@@ -83,7 +84,7 @@ class sale_advance_payment_inv(osv.osv_memory):
                         months=invoice_count)).strftime(DEFAULT_SERVER_DATE_FORMAT)
                     invoice_id = self._create_invoices(
                         cr, uid, inv_values, sale_id, context=context)
-                    reference = _(sale_ref + ' Invoice ' + str(invoice_count + 1) + ' of ' + str(wizard.invoice_qty))
+                    reference = ref_temp % (sale_ref, invoice_count + 1, wizard.invoice_qty)
                     invoice_obj.write(
                         cr, uid, invoice_id, {'date_invoice': invoice_date, 'reference': reference}, context=context)
                     inv_ids.append(invoice_id)
@@ -93,7 +94,7 @@ class sale_advance_payment_inv(osv.osv_memory):
                 months=wizard.invoice_qty - 1)).strftime(DEFAULT_SERVER_DATE_FORMAT)
             invoice_id = sale_obj.manual_invoice(
                 cr, uid, sale_ids, context).get('res_id', False)
-            reference = _(sale_ref + ' Invoice ' + str(wizard.invoice_qty) + ' of ' + str(wizard.invoice_qty))
+            reference = ref_temp % (sale_ref, wizard.invoice_qty, wizard.invoice_qty)
             invoice_obj.write(
                 cr, uid, invoice_id, {'date_invoice': invoice_date,  'reference': reference}, context=context)
 
