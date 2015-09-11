@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+     <record id="product_normal_form_view" model="ir.ui.view">
+            <field name="name">product_sale_price_margin.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="arch" type="xml">
+                <field name="lst_price" position="replace">
+                </field>
+                <field name="description" position="before">
+                     <group col="8" colspan="2">
+                        <label string="Sale Price:"/>
+                        <field name="replenishment_cost_copy" nolabel="1"/>
+                        <label string=" * ( 1 +"/>
+                        <field name="sale_margin" nolabel="1"/>
+                        <label string=") + "/>
+                        <field name="sale_surcharge" nolabel="1"/>
+                        <label string=" = "/>
+                        <field name="lst_price" nolabel="1" readonly="1"/>
+                        <newline/>
+                    </group>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
