@@ -28,6 +28,7 @@ class account_statement_move_import_wizard(models.TransientModel):
         'Statement',
         default=_get_statement,
         required=True,
+        ondelete='cascade',
         )
     journal_id = fields.Many2one(
         'account.journal',
