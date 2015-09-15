@@ -8,17 +8,23 @@ import openerp.addons.decimal_precision as dp
 
 
 class product_product(models.Model):
-    _inherit = "product.product"
+    _inherit = "product.template"
 
     @api.one
-    @api.depends('sale_margin', 'sale_surcharge', 'replenishment_cost')
+    @api.depends('sale_margin', 'sale_surcharge',
+                 'product_variant_ids.replenishment_cost')
     def update_list_price(self):
-        self.lst_price = self.replenishment_cost * \
+        if len(self.product_variant_ids) > 1:
+            replenishment_cost = self.product_variant_ids[0].replenishment_cost
+        else:
+            replenishment_cost = self.product_variant_ids.replenishment_cost
+        self.list_price = replenishment_cost * \
             (1 + self.sale_margin) + self.sale_surcharge
 
     sale_margin = fields.Float(
         'Sale margin', digits=(16, 4), default=0)
     sale_surcharge = fields.Float(
         'Sale surcharge', digits=dp.get_precision('Product Price'))
-    lst_price = fields.Float(compute='update_list_price', store=True)
-    replenishment_cost_copy = fields.Float(related='replenishment_cost')
+    list_price = fields.Float(compute='update_list_price', store=True)
+    replenishment_cost_copy = fields.Float(
+        related='product_variant_ids.replenishment_cost')
