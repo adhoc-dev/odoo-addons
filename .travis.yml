@@ -5,17 +5,8 @@ addons:
       - python-lxml # because pip installation is slow
       - libcups2-dev # for aeroo
       - wkhtmltopdf # for odoo pdf reports (tested on sale for eg.)
-      # odoo-argentina fe
-      - python-dev
-      - swig
-      - libffi-dev
-      - libssl-dev
-      - python-m2crypto
-      - python-httplib2
 
 language: python
-
-# new options suggested by Alexandre Fayolle
 sudo: false
 cache: pip
 
@@ -52,17 +43,11 @@ install:
   - git clone https://github.com/aeroo/aeroo_reports.git ${HOME}/aeroo_reports
   - pip install git+https://github.com/aeroo/aeroolib.git@master pycups==1.9.68
 
-  # odoo argentina (TODO try to remove dependency, only interest module and move invoice)
+  # odoo argentina
   - git clone https://github.com/ingadhoc/odoo-argentina.git ${HOME}/odoo-argentina
-  - pip install geopy==0.95.1 BeautifulSoup 
 
   # for product_cost_currency
   - git clone https://github.com/OCA/margin-analysis.git ${HOME}/margin-analysis
-
-  # odoo argentina fe
-  - pip install pyOpenSSL suds httplib2 pysimplesoap==1.08.8 m2crypto fpdf dbf Pillow
-  # install pyafipws after others dependencies because dependency erro
-  - pip install pyafipws
 
   # repository requirements
   - pip install -r requirements.txt
