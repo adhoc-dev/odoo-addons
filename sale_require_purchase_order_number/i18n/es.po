@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-25 13:12+0000\n"
-"PO-Revision-Date: 2015-08-25 10:14-0300\n"
+"POT-Creation-Date: 2015-09-16 14:09+0000\n"
+"PO-Revision-Date: 2015-09-16 11:10-0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,12 +29,12 @@ msgstr "Partner"
 #. module: sale_require_purchase_order_number
 #: model:ir.model,name:sale_require_purchase_order_number.model_stock_picking
 msgid "Picking List"
-msgstr "Albarán"
+msgstr "Lista de Remitos"
 
 #. module: sale_require_purchase_order_number
 #: field:account.invoice,purchase_order_number:0
 #: field:sale.order,purchase_order_number:0
-#: field:stock.picking,purchase_order_number:0
+#: field:stock.picking,manual_purchase_order_number:0
 msgid "Purchase Order Number"
 msgstr "Numero de Orden de Compra"
 
@@ -47,3 +47,10 @@ msgstr "Requiere Orden de Compra del Cliente"
 #: model:ir.model,name:sale_require_purchase_order_number.model_sale_order
 msgid "Sales Order"
 msgstr "Orden de Ventas"
+
+#. module: sale_require_purchase_order_number
+#: code:addons/sale_require_purchase_order_number/sale.py:22
+#, python-format
+msgid "You cannot confirm a sales order without a Purchase Order Number"
+msgstr ""
+"No se puede confirmar un pedido de venta sin un Número de Orden de Compra"
