@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Sale Order Validity',
-    'version': '8.0.0.0.1',
+    'version': '8.0.0.1.1',
     'category': 'Sales & Purchases',
     'sequence': 14,
     'summary': '',
