@@ -19,25 +19,24 @@
 #
 ##############################################################################
 {
-    'name': 'Sale Order Validity',
-    'version': '8.0.0.1.1',
-    'category': 'Sales & Purchases',
+    "name": "Make Sale Procurement Date based on Sale Confirm Date",
+    'version': '8.0.1.0.0',
+    'category': 'Sales Management',
     'sequence': 14,
-    'summary': '',
-    'description': """
-Sale Order Validity
-===================
-    """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
-    'images': [
+    'license': 'AGPL-3',
+    'summary': '',
+    "description": """
+Make Sale Procurement Date based on Sale Confirm Date
+=====================================================
+    """,
+    "depends": [
+        "sale",
     ],
-    'depends': [
-        'sale_prices_update',
-    ],
-    'data': [
-        'sale_order_view.xml',
-        'company_view.xml',
+    'external_dependencies': {
+    },
+    "data": [
     ],
     'demo': [
     ],
@@ -47,4 +46,3 @@ Sale Order Validity
     'auto_install': False,
     'application': False,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
