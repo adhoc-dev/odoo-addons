@@ -33,13 +33,14 @@ class sale_order(models.Model):
 
     @api.onchange('validity_days')
     def onchange_validity_days(self):
-        if self.validity_days > self.company_id.sale_order_validity_days:
+        company_validity_days = self.company_id.sale_order_validity_days
+        if self.validity_days > company_validity_days:
             self.validity_days = self.company_id.sale_order_validity_days
             warning = {
                 'title': _('Warning!'),
                 'message': _(
-                    'You can not set more validity days but the configured on '
-                    'the company.'),
+                    'You can not set more validity days than the configured on'
+                    ' the company (%i days).' % company_validity_days),
             }
             return {'warning': warning}
 
