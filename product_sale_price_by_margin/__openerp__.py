@@ -19,28 +19,25 @@
 #
 ##############################################################################
 {
-    'name': 'Sale Require Purchase Order Number',
+    'name': 'Product Sale Price By Margin',
     'version': '8.0.0.1.0',
-    'category': 'Projects & Services',
+    'category': 'Product',
     'sequence': 14,
     'summary': '',
     'description': """
-Sale Require Purchase Order Number
-==================================
+Product Sale Price By Margin
+============================
+
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [
-        'sale_stock'
+        'product_replenishment_cost',
     ],
-    'data': [
-        'sale_view.xml',
-        'partner_view.xml',
-        'account_view.xml',
-        'stock_view.xml'
-    ],
+    'data': ['product_view.xml'
+             ],
     'demo': [
     ],
     'test': [
