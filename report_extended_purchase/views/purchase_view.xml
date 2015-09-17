@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="purchase.purchase_order_form"/>
             <field name="arch" type="xml">
                 <button name="print_quotation" position="after">
-                    <button name="print_order" string="Print Order" class="oe_highlight" type="object" states="approved" groups="base.group_user"/>
+                    <button name="print_quotation" string="Print Order" class="oe_highlight" type="object" states="approved" groups="base.group_user"/>
                 </button>
             </field>
         </record>

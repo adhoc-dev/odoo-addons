@@ -33,7 +33,7 @@ Sale Require Purchase Order Number
     'images': [
     ],
     'depends': [
-        'sale', 'stock'
+        'sale_stock'
     ],
     'data': [
         'sale_view.xml',

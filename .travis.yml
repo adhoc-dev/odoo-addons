@@ -14,8 +14,6 @@ addons:
       - python-httplib2
 
 language: python
-
-# new options suggested by Alexandre Fayolle
 sudo: false
 cache: pip
 
@@ -35,12 +33,12 @@ env:
   # TODO enable lint check
   #- LINT_CHECK="1"
   # TODO fix error and include this modules
-  - TRANSIFEX="1" EXCLUDE="partner_state,product_internal_code,partner_internal_code,product_variant_imp"
+  - TRANSIFEX="1" EXCLUDE="partner_state,product_internal_code,partner_internal_code,product_variant_imp,product_sale_price_by_margin"
   # TODO fix and include this modules:
     # we exclude partner_state because it gives an error and we could not find why
     # we also exclude partner and product internal code and product_variant_imp because they gives an error with website sale tests. We make unit tests for them
-  - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="partner_state,product_internal_code,partner_internal_code,product_variant_imp"
-  - UNIT_TEST="1" INCLUDE="partner_state,product_internal_code,partner_internal_code,product_variant_imp"
+  - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="partner_state,product_internal_code,partner_internal_code,product_variant_imp,product_sale_price_by_margin"
+  - UNIT_TEST="1" INCLUDE="partner_state,product_internal_code,partner_internal_code,product_variant_imp,product_sale_price_by_margin"
   # TODO enable unit_test to all modules to test dependencies (takes to long for now)
   # - UNIT_TEST="1"
 
@@ -54,12 +52,12 @@ install:
 
   # odoo argentina (TODO try to remove dependency, only interest module and move invoice)
   - git clone https://github.com/ingadhoc/odoo-argentina.git ${HOME}/odoo-argentina
-  - pip install geopy==0.95.1 BeautifulSoup 
+  - pip install geopy==0.95.1 BeautifulSoup # because it is installed in some modules
 
   # for product_cost_currency
   - git clone https://github.com/OCA/margin-analysis.git ${HOME}/margin-analysis
 
-  # odoo argentina fe
+  # odoo argentina fe (becaus it is installed in some modules)
   - pip install pyOpenSSL suds httplib2 pysimplesoap==1.08.8 m2crypto fpdf dbf Pillow
   # install pyafipws after others dependencies because dependency erro
   - pip install pyafipws

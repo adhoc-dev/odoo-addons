@@ -18,26 +18,31 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{   'active': False,
-    'author': 'ADHOC SA.',
-    'category': u'base.module_category_knowledge_management',
-    'demo_xml': [],
-    'depends': [
-        'purchase_double_validation',
-        ],
-    'description': u"""
-Purchase double validation improovements
-========================================
-Adds a button for confirmed orders so that you can print the purchase order. 
-""",
-    'installable': True,
-    'license': 'AGPL-3',
-    'name': u'Purchase Double Validation Improovements',
-    'test': [],
-    'data': [
-        'view/purchase_view.xml',
-      ],
-    'version': '8.0.0.0.0',
-    'website': 'www.adhoc.com.ar'}
+{
+    'name': 'Product Sale Price By Margin',
+    'version': '8.0.0.1.0',
+    'category': 'Product',
+    'sequence': 14,
+    'summary': '',
+    'description': """
+Product Sale Price By Margin
+============================
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+    """,
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
+    'images': [
+    ],
+    'depends': [
+        'product_replenishment_cost',
+    ],
+    'data': ['product_view.xml'
+             ],
+    'demo': [
+    ],
+    'test': [
+    ],
+    'installable': True,
+    'auto_install': False,
+    'application': False,
+}

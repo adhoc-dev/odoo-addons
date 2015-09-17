@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Report Configurator - Purchase',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.1.0',
     'category': 'Reporting Subsystem',
     'sequence': 14,
     'summary': '',
@@ -38,6 +38,7 @@ Report Configurator - Purchase
     ],
     'data': [
         'views/report_view.xml',
+        'views/purchase_view.xml'
     ],
     'demo': [
     ],
