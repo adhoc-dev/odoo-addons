@@ -20,7 +20,7 @@ class account_invoice(models.Model):
     @api.multi
     def invoice_validate(self):
         for o in self:
-            if o.require_purchase_order_number:
+            if o.require_purchase_order_number and o.type in ['out_invoice', 'out_refund']:
                 if not o.purchase_order_number:
                     raise Warning(_(
                         'You cannot confirm invoice without a Purchase Order Number for this partner'))

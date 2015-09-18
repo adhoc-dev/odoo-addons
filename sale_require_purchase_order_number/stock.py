@@ -35,6 +35,9 @@ class stock_picking(models.Model):
         string='Purchase Order Number',
         states={'cancel': [('readonly', True)],
                 'done': [('readonly', True)]})
+    code = fields.Selection(
+        related='picking_type_id.code',
+        string='Operation Type')
 
     @api.model
     def _get_invoice_vals(self, key, inv_type, journal_id, move):
@@ -47,7 +50,7 @@ class stock_picking(models.Model):
     @api.cr_uid_ids_context
     def do_enter_transfer_details(self, cr, uid, picking, context=None):
         for o in self.browse(cr, uid, picking):
-            if o.require_purchase_order_number:
+            if o.require_purchase_order_number and o.code == 'outgoing':
                 if not o.purchase_order_number:
                     raise Warning(_(
                         'You cannot transfer products without a Purchase Order Number for this partner'))
