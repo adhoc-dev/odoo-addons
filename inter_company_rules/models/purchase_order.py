@@ -85,7 +85,8 @@ class purchase_order(models.Model):
             raise Warning(_('There is no warehouse for company %s') % (
                 company.name))
         return {
-            'name': self.env['ir.sequence'].sudo().next_by_code('sale.order') or '/',
+            'name': self.env['ir.sequence'].sudo().with_context(
+                force_company=company.id).next_by_code('sale.order') or '/',
             'company_id': company.id,
             'client_order_ref': name,
             'partner_id': partner.id,

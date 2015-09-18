@@ -83,7 +83,8 @@ class sale_order(models.Model):
             raise Warning(_('Configure correct warehouse for company(%s) from Menu: Settings/companies/companies' % (company.name)))
 
         return {
-            'name': self.env['ir.sequence'].sudo().next_by_code('purchase.order'),
+            'name': self.env['ir.sequence'].sudo().with_context(
+                force_company=company.id).next_by_code('purchase.order'),
             'origin': self.name,
             'partner_id': company_partner.id,
             'location_id': warehouse.lot_stock_id.id,
