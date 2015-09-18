@@ -33,6 +33,8 @@ class stock_transfer_details(models.TransientModel):
                                 \n Lot:%s \
                                 \n Stock:%s') % (lot.product_id.name, lot.name, qty))
             super(stock_transfer_details, self).do_detailed_transfer()
+        else:
+            super(stock_transfer_details, self).do_detailed_transfer()
 
 
 class stock_transfer_details_items(models.TransientModel):
