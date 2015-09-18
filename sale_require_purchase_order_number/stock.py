@@ -3,7 +3,8 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import models, fields, api
+from openerp import models, fields, api, _
+from openerp.exceptions import Warning
 
 
 class stock_picking(models.Model):
@@ -42,3 +43,12 @@ class stock_picking(models.Model):
         invoice_vals.update({
             'purchase_order_number': move.picking_id.purchase_order_number})
         return invoice_vals
+
+    @api.cr_uid_ids_context
+    def do_enter_transfer_details(self, cr, uid, picking, context=None):
+        for o in self.browse(cr, uid, picking):
+            if o.require_purchase_order_number:
+                if not o.purchase_order_number:
+                    raise Warning(_(
+                        'You cannot transfer products without a Purchase Order Number for this partner'))
+        return super(stock_picking, self).do_enter_transfer_details(cr, uid, picking, context=None)
