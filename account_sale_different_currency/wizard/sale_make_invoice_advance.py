@@ -44,7 +44,6 @@ class sale_advance_payment_inv(osv.osv_memory):
         return invoice_currency_id
 
     def _get_product_id(self, cr, uid, context=None):
-        print 'context', context
         sale_id = context.get('active_id', False)
         product_id = False
         if sale_id:
@@ -204,7 +203,7 @@ class sale_advance_payment_inv(osv.osv_memory):
                 'name': sale.client_order_ref or sale.name,
                 'origin': sale.name,
                 'type': 'out_invoice',
-                'reference': False,
+                'reference': sale.client_order_ref or sale.name,
                 'account_id': sale.partner_id.property_account_receivable.id,
                 'partner_id': sale.partner_invoice_id.id,
                 'invoice_currency_rate': wizard.invoice_currency_rate,
