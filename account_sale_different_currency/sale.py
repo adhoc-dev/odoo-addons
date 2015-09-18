@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from openerp.tools.translate import _
-from openerp import models, fields
+from openerp import models, fields, api
 from openerp.osv import osv
 
 
@@ -33,11 +33,30 @@ class sale_order(models.Model):
         'order, please select a currency'
         )
 
+    def onchange_pricelist_id(
+            self, cr, uid, ids, pricelist_id, order_lines, context=None):
+        res = super(sale_order, self).onchange_pricelist_id(
+            cr, uid, ids, pricelist_id, order_lines, context=context)
+        if not pricelist_id:
+            return {}
+        if not res.get('value'):
+            res['value'] = {}
+        res['value']['different_currency_id'] = self.pool.get(
+            'product.pricelist').browse(
+                cr, uid, pricelist_id,
+                context=context).invoice_in_different_currency_id.id
+        return res
+
     def _prepare_invoice(self, cr, uid, order, lines, context=None):
         res = super(sale_order, self)._prepare_invoice(
             cr, uid, order, lines, context)
         if order.different_currency_id:
             res['currency_id'] = order.different_currency_id.id
+            invoice_currency_rate = self.pool['res.currency'].compute(
+                cr, uid, order.pricelist_id.currency_id.id,
+                order.different_currency_id.id,
+                1.0, round=False, context=context)
+            res['invoice_currency_rate'] = invoice_currency_rate
         return res
 
     def _make_invoice(self, cr, uid, order, lines, context=None):
