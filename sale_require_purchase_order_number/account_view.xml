@@ -7,8 +7,7 @@
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
                 <field name="origin" position="after">
-                    <field name="require_purchase_order_number" invisible="1"/>
-                    <field name="purchase_order_number" attrs="{'required': [('require_purchase_order_number', '=', True)]}"/>
+                    <field name="purchase_order_number"/>
                 </field>
             </field>
         </record>
