@@ -42,7 +42,6 @@ class product_template(models.Model):
                 cia_currency_list_price = product.list_price
             product.cia_currency_list_price = cia_currency_list_price
 
-
     def _price_get(self, cr, uid, products, ptype='list_price', context=None):
         if not context:
             context = {}
