@@ -35,13 +35,16 @@ class product_template(models.Model):
     def get_cia_currency_list_price(self):
         company_currency = self.env.user.company_id.currency_id
         for product in self:
-            if product.sale_price_currency_id != company_currency:
-                cia_currency_list_price = product.sale_price_currency_id.compute(
-                    product.list_price, company_currency)
+            if (
+                    product.sale_price_currency_id and
+                    product.sale_price_currency_id != company_currency
+                    ):
+                cia_currency_list_price = (
+                    product.sale_price_currency_id.compute(
+                        product.list_price, company_currency))
             else:
                 cia_currency_list_price = product.list_price
             product.cia_currency_list_price = cia_currency_list_price
-
 
     def _price_get(self, cr, uid, products, ptype='list_price', context=None):
         if not context:
