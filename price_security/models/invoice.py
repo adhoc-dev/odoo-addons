@@ -18,7 +18,10 @@ class account_invoice_line(models.Model):
     @api.constrains(
         'discount', 'product_can_modify_prices')
     def check_discount(self):
-        if self.user_has_groups('price_security.group_restrict_prices') and not self.product_can_modify_prices and self.invoice_id:
+        if (
+                self.user_has_groups('price_security.group_restrict_prices')
+                and not self.product_can_modify_prices and self.invoice_id
+                ):
             self.env.user.check_discount(
                 self.discount,
                 self.invoice_id.partner_id.property_product_pricelist.id)
