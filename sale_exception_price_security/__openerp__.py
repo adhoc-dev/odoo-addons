@@ -19,31 +19,28 @@
 #
 ##############################################################################
 {
-    'name': 'Product Price Currency',
-    'version': '8.0.1.0.1',
-    'category': 'Product',
-    'sequence': 14,
-    'summary': '',
+    'name': 'Sale Exception - Price Security Integration',
+    'version': '8.0.0.0.0',
     'description': """
-Product Price Currency
-======================
-    """,
-    'author':  'ADHOC SA',
+Sale Exception - Price Security Integration
+===========================================
+When using together price_security and sale_exceptions, it changes the
+constraint for the user that can not save a sales order with discounts greater
+than allowed to the sale exception constraint that don't allows user to confirm
+sale order
+""",
+    'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
-    'images': [
-    ],
     'depends': [
-        'sale',
-    ],
+        'sale_exceptions',
+        'price_security',
+        ],
     'data': [
-        'product_view.xml',
-    ],
+        'data/data.xml',
+        ],
     'demo': [
-    ],
-    'test': [
-    ],
+        ],
+    'test': [],
     'installable': True,
-    'auto_install': False,
-    'application': False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

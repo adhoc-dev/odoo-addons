@@ -19,31 +19,39 @@
 #
 ##############################################################################
 {
-    'name': 'Product Price Currency',
-    'version': '8.0.1.0.1',
-    'category': 'Product',
-    'sequence': 14,
-    'summary': '',
+    'name': 'Sale Exception Credit Limit',
+    'version': '8.0.0.0.0',
     'description': """
-Product Price Currency
-======================
-    """,
-    'author':  'ADHOC SA',
+Sale Exception Credit Limit
+===========================
+NOTE: this module replace partner_credit_limit that is going to be depreceated
+on v9.
+It adds a new group "can modify credit limit", only users with this group are
+allowed to change credit limit on partners.
+
+It also adds an exception to check that you can not aproove sale orders that
+would exceed credit limit. It checks:
+        * The credit the Partner has to paid
+        * The amount of Sale Orders aproved but not yet invoiced
+        * The invoices that are in draft state
+        * The amount of the Sale Order to be aproved
+and compares it with the credit limit of the partner. If the credit limit is
+less it does not allow to approve the Sale Order
+""",
+    'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
-    'images': [
-    ],
     'depends': [
-        'sale',
-    ],
+        'sale_exceptions',
+        ],
     'data': [
-        'product_view.xml',
-    ],
+        'security/security.xml',
+        'data/data.xml',
+        'partner_view.xml',
+        ],
     'demo': [
-    ],
-    'test': [
-    ],
+        'partner_demo.xml'
+        ],
+    'test': [],
     'installable': True,
-    'auto_install': False,
-    'application': False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

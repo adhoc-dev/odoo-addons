@@ -19,31 +19,35 @@
 #
 ##############################################################################
 {
-    'name': 'Product Price Currency',
-    'version': '8.0.1.0.1',
-    'category': 'Product',
+    "name": "Base Currency Inverse Rate",
+    'version': '8.0.0.0.0',
+    'category': 'Accounting',
     'sequence': 14,
-    'summary': '',
-    'description': """
-Product Price Currency
-======================
-    """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
-    'images': [
+    'license': 'AGPL-3',
+    'summary': '',
+    "description": """
+Base Currency Inverse Rate
+==========================
+In some countries we are use to see exchange rate in the inverse way as odoo
+shows it. We show rate FROM base currency and not TO base currency. For eg.
+* Base Currency ARS: 1.0
+* USD rate: 12.0 (in odoo way 1 / 12.0 = 0.0833)
+    """,
+    "depends": [
+        "base",
     ],
-    'depends': [
-        'sale',
-    ],
-    'data': [
-        'product_view.xml',
+    'external_dependencies': {
+    },
+    "data": [
+        'views/res_currency_view.xml',
     ],
     'demo': [
     ],
     'test': [
     ],
     'installable': True,
-    'auto_install': False,
+    'auto_install': True,
     'application': False,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
