@@ -3,7 +3,7 @@
   <data noupdate="1">
 
     <record id="credit_limit_exceeded" model="sale.exception">
-      <field name="name">Credit Limit Cxceeded</field>
+      <field name="name">Credit Limit Exceeded</field>
       <field name="description">Not enough credit on partner for this sales order. You can use "Before Delivery" on "Create Invoice" if available on "Other Information" tab.</field>
       <field name="sequence">10</field>
       <field name="model">sale.order</field>
