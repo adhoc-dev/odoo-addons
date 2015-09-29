@@ -56,5 +56,21 @@
                 </tree>
             </field>
         </record>
+
+        <record id="view_project_kanban" model="ir.ui.view">
+            <field name="name">project.kanban</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project_kanban"/>
+            <field name="arch" type="xml">
+                <field name="doc_count" position="after">
+                    <field name="progress_activities"/>
+                    <field name="activity_ids" invisible="1"/>
+                </field>
+                <a t-if="record.use_tasks.raw_value" position="after">
+                    <field name="progress_activities" attrs="{'invisible':[('activity_ids', '=', [])]}" widget="gauge" style="width:130px; height: 90px; cursor: pointer;"/>
+                </a>
+                
+            </field>
+        </record>
     </data>
 </openerp>
