@@ -19,24 +19,24 @@
 #
 ##############################################################################
 {
-    'name': 'Sale Exception - Price Security Integration',
+    'name': 'Sale Exception - Partner State Integration',
     'version': '8.0.0.0.0',
     'description': """
-Sale Exception - Price Security Integration
+Sale Exception - Partner State Integration
 ===========================================
-When using together price_security and sale_exceptions, it changes the
-constraint for the user that can not save a sales order with discounts greater
-than allowed to the sale exception constraint that don't allows user to confirm
-sale order
+Integrate partner_state and sale_exceptions, it adds the option to restruct
+sale orders confirmation for not approved partners globaly or depending a
+certain amount
 """,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'depends': [
         'sale_exceptions',
-        'price_security',
+        'partner_state',
         ],
     'data': [
         'data/data.xml',
+        'company_view.xml',
         ],
     'demo': [
         ],
