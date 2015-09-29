@@ -57,6 +57,9 @@ install:
   # for product_cost_currency
   - git clone https://github.com/OCA/margin-analysis.git ${HOME}/margin-analysis
 
+  # for sale exception modules
+  - git clone https://github.com/OCA/sale-workflow.git ${HOME}/sale-workflow
+
   # odoo argentina fe (becaus it is installed in some modules)
   - pip install pyOpenSSL suds httplib2 pysimplesoap==1.08.8 m2crypto fpdf dbf Pillow
   # install pyafipws after others dependencies because dependency erro
