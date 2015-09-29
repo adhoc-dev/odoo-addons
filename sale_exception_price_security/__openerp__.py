@@ -19,44 +19,27 @@
 #
 ##############################################################################
 {
-    'name': 'Price Security',
-    'version': '8.0.2.0.1',
+    'name': 'Sale Exception - Price Security Integration',
+    'version': '8.0.0.0.0',
     'description': """
-Price Security
-==============
-Creates a new permission to restrict the users that can modify the prices
-of the products.
-
-Asociate to each user a list of pricelist and the correspoding discounts they
-can apply to sale orders and invoices.
-
-Allow the posibility to mark products so that anyone can modify their price in
-a sale order.
-
-For users with price restriction, it restricts:
-* on sales orders: change payment term or pricelist
-* on sales order lines: change unit price and set limits on discount (limits configured on user)
-* on partners: change payment term or pricelist
-* on invoices: change unit price
-* on product: change price
-
+Sale Exception - Price Security Integration
+===========================================
+When using together price_security and sale_exceptions, it changes the
+constraint for the user that can not save a sales order with discounts greater
+than allowed to the sale exception constraint that don't allows user to confirm
+sale order
 """,
-    'category': 'Sales Management',
     'author': 'ADHOC SA',
-    'website': 'http://www.adhoc.com.ar/',
+    'website': 'www.adhoc.com.ar',
     'depends': [
-        'sale',
-    ],
+        'sale_exceptions',
+        'price_security',
+        ],
     'data': [
-        'security/security.xml',
-        'security/ir.model.access.csv',
-        'views/res_users_view.xml',
-        'views/product_view.xml',
-        'views/sale_view.xml',
-        'views/invoice_view.xml',
-        'views/partner_view.xml',
-    ],
-    'demo_xml': [],
+        'data/data.xml',
+        ],
+    'demo': [
+        ],
     'test': [],
     'installable': True,
 }
