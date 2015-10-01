@@ -41,3 +41,13 @@ class stock_invoice_onshipping(models.TransientModel):
     _defaults = {
         'journal_id': _get_journal,
     }
+
+    @api.multi
+    def onchange_journal_id(self, journal_id):
+        res = super(stock_invoice_onshipping, self).onchange_journal_id(
+            journal_id)
+        # remove domain that don't take in to account company and
+        # dont do anything
+        if res.get('domain'):
+            res.pop('domain')
+        return res

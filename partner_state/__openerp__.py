@@ -20,21 +20,22 @@
 ##############################################################################
 {
     'name': 'Partner State',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.1.0',
     'category': 'Base',
     'description': """
 Partner State
 =============
-Agrega tres estados para los Clientes: 'Potencial', 'Pendiente de aprobación' y 'Aprobado'. Se requieren cierta información para poder pasar de un estado a otro. Dicha información es configurable desde cada compañía.
-Además, se configura en la compania si:
-* Se quiere utilizar partner state en esa cia
-* se quiere restringuir la aprobacion de ordenes de venta en esa cia con y sin limites de montos
+Add three stats for partners:: 'Potential', 'Pending Approval' and 'Approved'.
+Some information is required so that a partner can be approved. That
+information is configured on each company.
+
+You can also configure on company if you want to use partner state on that
+company or not.
     """,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'depends': [
         'base',
-        'sale',
     ],
     'data': [
         'company_view.xml',
