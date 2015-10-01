@@ -52,13 +52,6 @@ class project_task(models.Model):
 
     activity_ids = fields.One2many(
         'project.task.activity', 'task_id', 'Activity', copy=True)
-    # activities_todo = fields.Float(
-    #     string='Activities to do', compute='_get_activities_todo')
-    # activities_done = fields.Float(
-    #     string='Activities done', compute='_get_activities_done')
-    # progress_activities = fields.Float(
-    #     string="Progress",
-    #     compute='_get_progress_activities', digits=(4, 2))
     activities_progress = fields.Char(
         string="Progress",
         compute='_get_activities_progress')
@@ -73,24 +66,6 @@ class project_task(models.Model):
             elif activity.state != 'cancel':
                 res.insert(0, {'tooltip': activity.name, 'value': 0})
         self.activities_progress = json.dumps(res)
-
-    # @api.one
-    # def _get_activities_todo(self):
-    #     self.activities_todo = len(
-    #         self.activity_ids.filtered(lambda x: x.state != 'cancel'))
-
-    # @api.one
-    # def _get_activities_done(self):
-    #     self.activities_done = len(
-    #         self.activity_ids.filtered(lambda x: x.state == 'done'))
-
-    # @api.one
-    # def _get_progress_activities(self):
-    #     self.progress_activities = 0
-    #     if self.activity_ids:
-    #         if self.activities_todo != 0:
-    #             self.progress_activities = 100 * (self.activities_done /
-    #                                               self.activities_todo)
 
 
 class project_project(models.Model):

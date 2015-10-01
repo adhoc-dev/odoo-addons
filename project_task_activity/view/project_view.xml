@@ -14,8 +14,8 @@
                     <field name="state"/>
 
                     <group expand="0" string="Group By..">
-                        <filter string="Task" name="task_id" help="Stage" context="{'group_by':'task_id'}"/>
-                        <filter string="Project" name="project_id" help="Stage" context="{'group_by':'project_id'}"/>
+                        <filter string="Task" name="group_task_id" help="Stage" context="{'group_by':'task_id'}"/>
+                        <filter string="Project" help="Stage" context="{'group_by':'project_id'}"/>
                     </group>
                 </search>
             </field>
@@ -66,10 +66,29 @@
                     <field name="progress_activities"/>
                     <field name="activity_ids" invisible="1"/>
                 </field>
-                <a t-if="record.use_tasks.raw_value" position="after">
-                    <field name="progress_activities" attrs="{'invisible':[('activity_ids', '=', [])]}" widget="gauge" style="width:130px; height: 90px; cursor: pointer;"/>
-                </a>
+                <div class="text-center oe_kanban_alias" position="after">
+                    <div class="oe_kanban_project" style="width:130px; height: 80px; margin: 0 auto; min-height: 80px;">
+                        <field name="progress_activities" attrs="{'invisible':[('activity_ids', '=', [])]}" widget="gauge" />
+                    </div>
+                </div>
                 
+            </field>
+        </record>
+
+        <record id="view_project_edit_project" model="ir.ui.view">
+            <field name="name">project.form</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                <field name="analytic_account_id" position="after">
+                    <field name="activity_ids" invisible="1"/>
+                </field>
+                <div class="oe_right oe_button_box">
+                    <button class="oe_inline oe_stat_button" type="action" attrs="{'invisible':[('activity_ids','=', [])]}" name="%(project_task_activity.action_activity)d"
+                    context="{'search_default_project_id': active_id,'search_default_group_task_id': 1}">
+                            <field string="Activities" name="progress_activities" widget="percentpie"/>
+                    </button>
+                </div>
             </field>
         </record>
     </data>
