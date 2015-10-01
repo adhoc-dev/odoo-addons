@@ -3,7 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import models, api, fields
+from openerp import models, api, fields, _
 from datetime import datetime
 import json
 
@@ -53,7 +53,7 @@ class project_task(models.Model):
     activity_ids = fields.One2many(
         'project.task.activity', 'task_id', 'Activity', copy=True)
     activities_progress = fields.Char(
-        string="Progress",
+        string=_("Progress"),
         compute='_get_activities_progress')
 
     @api.one
@@ -79,7 +79,7 @@ class project_project(models.Model):
     activities_done = fields.Float(
         string='Activities done', compute='_get_activities_done')
     progress_activities = fields.Float(
-        string="Progress",
+        string=_("Progress"),
         compute='_get_progress_activities', digits=(4, 2))
 
     @api.one
