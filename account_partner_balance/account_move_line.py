@@ -29,7 +29,7 @@ class account_move_line(osv.osv):
         'net': fields.function(_net, 
             string='Net',
             type='float',
-            digits_compute=dp.get_precision(
+            digits=dp.get_precision(
                                    'Account'),
             ),        
     }

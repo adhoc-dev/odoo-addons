@@ -11,11 +11,11 @@ class account_move_line(models.Model):
         'Tax Settlement Detail',
         )
     tax_state = fields.Selection([
-        ('to_settle', 'To Settle'),
-        ('to_pay', 'To Pay'),
-        ('paid', 'Paid'),
+        ('to_settle', _('To Settle')),
+        ('to_pay', _('To Pay')),
+        ('paid', _('Paid')),
         ],
-        'Tax State',
+        _('Tax State'),
         compute='_get_tax_state',
         # store=True,
         )
