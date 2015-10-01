@@ -20,7 +20,7 @@
 ##############################################################################
 {
     "name": "Project Task Activity",
-    'version': '8.0.0.0.1',
+    'version': '8.0.0.1.0',
     'category': 'Tools',
     'sequence': 14,
     'author':  'ADHOC SA',
@@ -37,9 +37,9 @@ Project Task Activity
     'external_dependencies': {
     },
     'data': [
+        'view/activities_menuitem.xml',
         'view/project_view.xml',
         'view/task_view.xml',
-        'view/activities_menuitem.xml',
         'security/ir.model.access.csv'
     ],
     'demo': [
