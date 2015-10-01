@@ -19,50 +19,29 @@
 #
 ##############################################################################
 {
-    'name': 'Partners Persons Management',
-    'version': '8.0.1.0.1',
-    'category': 'Tools',
-    'sequence': 14,
-    'summary': '',
+    'name': 'Sale Exception - Partner State Integration',
+    'version': '8.0.0.0.0',
     'description': """
-Partners Persons Management
-===========================
-
-Openerp consider a person those partners that have not "is_company" as true, now, those partners can have:
-----------------------------------------------------------------------------------------------------------
-
-* First Name and Last Name 
-* Birthdate
-* Sex
-* Mother and Father
-* Childs
-* Age (functional field)
-* Nationality
-* Husband/Wife
-* National Identity
-* Passport
-* Marital Status
-
-It also adds a configuration menu for choosing which fields do you wanna see.
-    """,
-    'author':  'ADHOC SA',
+Sale Exception - Partner State Integration
+===========================================
+Integrate partner_state and sale_exceptions, it adds the option to restruct
+sale orders confirmation for not approved partners globaly or depending a
+certain amount
+""",
+    'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
-    'images': [
-    ],
     'depends': [
-        'base',
-    ],
+        'sale_exceptions',
+        'partner_state',
+        ],
     'data': [
-        'res_partner_view.xml',
-        'res_config_view.xml',
-        'security/partner_person_security.xml',
-    ],
+        'data/data.xml',
+        'company_view.xml',
+        ],
     'demo': [
-    ],
-    'test': [
-    ],
+        ],
+    'test': [],
     'installable': True,
-    'auto_install': False,
-    'application': True,
+    'auto_install': True,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

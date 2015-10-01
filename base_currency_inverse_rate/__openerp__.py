@@ -19,50 +19,35 @@
 #
 ##############################################################################
 {
-    'name': 'Partners Persons Management',
-    'version': '8.0.1.0.1',
-    'category': 'Tools',
+    "name": "Base Currency Inverse Rate",
+    'version': '8.0.0.0.0',
+    'category': 'Accounting',
     'sequence': 14,
-    'summary': '',
-    'description': """
-Partners Persons Management
-===========================
-
-Openerp consider a person those partners that have not "is_company" as true, now, those partners can have:
-----------------------------------------------------------------------------------------------------------
-
-* First Name and Last Name 
-* Birthdate
-* Sex
-* Mother and Father
-* Childs
-* Age (functional field)
-* Nationality
-* Husband/Wife
-* National Identity
-* Passport
-* Marital Status
-
-It also adds a configuration menu for choosing which fields do you wanna see.
-    """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
-    'images': [
+    'license': 'AGPL-3',
+    'summary': '',
+    "description": """
+Base Currency Inverse Rate
+==========================
+In some countries we are use to see exchange rate in the inverse way as odoo
+shows it. We show rate FROM base currency and not TO base currency. For eg.
+* Base Currency ARS: 1.0
+* USD rate: 12.0 (in odoo way 1 / 12.0 = 0.0833)
+    """,
+    "depends": [
+        "base",
     ],
-    'depends': [
-        'base',
-    ],
-    'data': [
-        'res_partner_view.xml',
-        'res_config_view.xml',
-        'security/partner_person_security.xml',
+    'external_dependencies': {
+    },
+    "data": [
+        'views/res_currency_view.xml',
     ],
     'demo': [
     ],
     'test': [
     ],
     'installable': True,
-    'auto_install': False,
-    'application': True,
+    'auto_install': True,
+    'application': False,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
