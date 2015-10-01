@@ -37,9 +37,9 @@ Project Task Activity
     'external_dependencies': {
     },
     'data': [
+        'view/activities_menuitem.xml',
         'view/project_view.xml',
         'view/task_view.xml',
-        'view/activities_menuitem.xml',
         'security/ir.model.access.csv'
     ],
     'demo': [
