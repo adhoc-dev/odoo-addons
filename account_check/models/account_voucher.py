@@ -42,10 +42,10 @@ class account_voucher(models.Model):
         states={'draft': [('readonly', False)]}
         )
     checks_amount = fields.Float(
-        'Amount',
+        _('Amount'),
         compute='_get_checks_amount',
         digits=dp.get_precision('Account'),
-        help='Amount Paid With Checks',
+        help=_('Amount Paid With Checks'),
     )
 
     @api.onchange('dummy_journal_id')

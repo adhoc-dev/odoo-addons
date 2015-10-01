@@ -3,7 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import models, api, fields
+from openerp import models, api, fields, _
 
 
 class account_voucher(models.Model):
@@ -13,7 +13,7 @@ class account_voucher(models.Model):
     available_journal_ids = fields.Many2many(
         'account.journal',
         compute='_get_available_journals',
-        string='Available Journals',
+        string=_('Available Journals'),
         )
 
     @api.one

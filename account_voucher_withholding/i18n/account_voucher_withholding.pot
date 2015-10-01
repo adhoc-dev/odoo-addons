@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-06 20:31+0000\n"
-"PO-Revision-Date: 2015-08-06 20:31+0000\n"
+"POT-Creation-Date: 2015-10-01 15:35+0000\n"
+"PO-Revision-Date: 2015-10-01 15:35+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -61,6 +61,12 @@ msgstr ""
 #. module: account_voucher_withholding
 #: field:account.voucher.withholding,amount:0
 msgid "Amount"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: code:addons/account_voucher_withholding/models/account_voucher.py:26
+#, python-format
+msgid "Amount Paid With Withholdings"
 msgstr ""
 
 #. module: account_voucher_withholding
@@ -296,7 +302,7 @@ msgid "Tax Code Sign"
 msgstr ""
 
 #. module: account_voucher_withholding
-#: code:addons/account_voucher_withholding/models/account_voucher_withholding.py:99
+#: code:addons/account_voucher_withholding/models/account_voucher_withholding.py:108
 #, python-format
 msgid "Tax Withholding is Required!"
 msgstr ""
@@ -346,12 +352,13 @@ msgid "Voucher"
 msgstr ""
 
 #. module: account_voucher_withholding
-#: code:addons/account_voucher_withholding/models/account_voucher_withholding.py:90
+#: code:addons/account_voucher_withholding/models/account_voucher_withholding.py:99
 #, python-format
 msgid "Voucher and Tax Withholding must belong to the same company"
 msgstr ""
 
 #. module: account_voucher_withholding
+#: view:account.voucher:account_voucher_withholding.view_vendor_receipt_dialog_form
 #: view:account.voucher:account_voucher_withholding.view_vendor_receipt_form
 #: field:account.voucher.withholding,tax_withholding_id:0
 msgid "Withholding"
@@ -394,5 +401,11 @@ msgstr ""
 #. module: account_voucher_withholding
 #: field:account.voucher,withholding_ids:0
 msgid "Withholdings"
+msgstr ""
+
+#. module: account_voucher_withholding
+#: code:addons/account_voucher_withholding/models/account_voucher.py:23
+#, python-format
+msgid "Withholdings Amount"
 msgstr ""
 

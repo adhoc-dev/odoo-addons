@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 12:29+0000\n"
-"PO-Revision-Date: 2015-09-29 09:50-0300\n"
+"POT-Creation-Date: 2015-10-01 15:03+0000\n"
+"PO-Revision-Date: 2015-10-01 12:10-0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,10 +17,22 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 
 #. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/tax_settlement.py:125
+#, python-format
+msgid "# Tax Codes"
+msgstr "# Tax Codes"
+
+#. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/tax_settlement.py:129
+#, python-format
+msgid "Account Balance Amount"
+msgstr "Saldo de Cuenta"
+
+#. module: account_tax_settlement
 #: code:addons/account_tax_settlement/models/tax_settlement.py:434
 #, python-format
 msgid "Account Balance and Tax Balance must be equal."
-msgstr "El balance de Cuentas y el Balance de Impuestos deben ser iguales."
+msgstr "El Saldo de Cuentas y el Saldo de Impuestos deben ser iguales."
 
 #. module: account_tax_settlement
 #: model:ir.model,name:account_tax_settlement.model_account_tax_settlement
@@ -37,7 +49,7 @@ msgstr "Detalle de cuentas de Liquidación de Impuestos"
 #. module: account_tax_settlement
 #: model:ir.model,name:account_tax_settlement.model_account_voucher
 msgid "Accounting Voucher"
-msgstr "Voucher de contabilidad"
+msgstr "Comprobante de Contabilidad"
 
 #. module: account_tax_settlement
 #: selection:account.tax.settlement,moves_state:0
@@ -46,8 +58,22 @@ msgstr "Todas las entradas"
 
 #. module: account_tax_settlement
 #: field:account.tax.settlement,residual:0
+#: code:addons/account_tax_settlement/models/tax_settlement.py:286
+#, python-format
 msgid "Balance"
-msgstr "Balance"
+msgstr "Saldo"
+
+#. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/tax_settlement.py:140
+#, python-format
+msgid "Balance Account"
+msgstr "Cuenta de Saldo"
+
+#. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/tax_settlement.py:146
+#, python-format
+msgid "Balance Tax Code"
+msgstr "Código Impuesto de Saldo"
 
 #. module: account_tax_settlement
 #: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
@@ -87,6 +113,12 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/tax_settlement.py:40
+#, python-format
+msgid "Credit Amount"
+msgstr "Importe Haber"
+
+#. module: account_tax_settlement
 #: field:account.tax.settlement,date:0
 #: selection:account.tax.settlement,filter:0
 msgid "Date"
@@ -106,6 +138,12 @@ msgstr "Fecha a ser utilizado en el asiento creado"
 #: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
 msgid "Dates"
 msgstr "Fechas"
+
+#. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/tax_settlement.py:35
+#, python-format
+msgid "Debit Amount"
+msgstr "Importe Debe"
 
 #. module: account_tax_settlement
 #: field:account.journal,default_credit_tax_code_id:0
@@ -196,14 +234,14 @@ msgstr "Diario"
 #. module: account_tax_settlement
 #: field:account.tax.settlement,move_id:0
 msgid "Journal Entry"
-msgstr "Entrada de Diario"
+msgstr "Asiento Contable"
 
 #. module: account_tax_settlement
 #: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
 #: view:account.tax.settlement.detail:account_tax_settlement.account_tax_settlement_detail_form
 #: model:ir.model,name:account_tax_settlement.model_account_move_line
 msgid "Journal Items"
-msgstr "Elementos del Diario"
+msgstr "Apuntes Contable"
 
 #. module: account_tax_settlement
 #: code:addons/account_tax_settlement/models/account_journal.py:34
@@ -265,6 +303,12 @@ msgid "Move Lines"
 msgstr "Líneas de Asiento"
 
 #. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/tax_settlement.py:158
+#, python-format
+msgid "Move Lines To Settle"
+msgstr "Apuntes Contables a Liquidar"
+
+#. module: account_tax_settlement
 #: help:account.move.line,tax_settlement_move_id:0
 msgid "Move where this tax has been settled"
 msgstr "Asiento donde este asiento fue liquidado"
@@ -278,7 +322,7 @@ msgstr "Estado de Asientos"
 #: code:addons/account_tax_settlement/models/tax_settlement.py:398
 #, python-format
 msgid "No Balance account configured on journal"
-msgstr "No hay cuenta de Balance configurado en este diario"
+msgstr "No hay cuenta de Saldo configurada en este diario"
 
 #. module: account_tax_settlement
 #: selection:account.tax.settlement,filter:0
@@ -316,14 +360,20 @@ msgstr ""
 "impuesto %s. Hemos encontrado los ids de diarios %s"
 
 #. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/account_move_line.py:16
+#, python-format
+msgid "Paid"
+msgstr "Pagado"
+
+#. module: account_tax_settlement
 #: field:account.journal,partner_id:0
 msgid "Partner"
-msgstr "Partner"
+msgstr "Empresa"
 
 #. module: account_tax_settlement
 #: help:account.journal,partner_id:0
 msgid "Partner to be used on tax settlement"
-msgstr "Partner a ser utilizado en la liquidación de impuestos"
+msgstr "Empresa a ser utilizado en la liquidación de impuestos"
 
 #. module: account_tax_settlement
 #: view:account.move.line:account_tax_settlement.view_account_move_line_tree
@@ -338,6 +388,8 @@ msgstr "Fecha de Pago"
 
 #. module: account_tax_settlement
 #: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
+#: code:addons/account_tax_settlement/models/tax_settlement.py:283
+#, python-format
 msgid "Payments"
 msgstr "Pagos"
 
@@ -366,7 +418,7 @@ msgstr "Por favor defina una secuencia para este Diario"
 #. module: account_tax_settlement
 #: selection:account.tax.settlement,moves_state:0
 msgid "Posted Entries"
-msgstr "Entradas Posteadas"
+msgstr "Asientos Asentados"
 
 #. module: account_tax_settlement
 #: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
@@ -380,8 +432,10 @@ msgstr "Presentado"
 
 #. module: account_tax_settlement
 #: help:account.tax.settlement,residual:0
+#: code:addons/account_tax_settlement/models/tax_settlement.py:289
+#, python-format
 msgid "Remaining amount due."
-msgstr "Monto remanente"
+msgstr "Importe remanente"
 
 #. module: account_tax_settlement
 #: view:account.move.line:account_tax_settlement.view_account_move_line_tree
@@ -415,6 +469,18 @@ msgid "Summary"
 msgstr "Resumen"
 
 #. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/tax_settlement.py:30
+#, python-format
+msgid "Tax Amount"
+msgstr "Importe de Impuesto"
+
+#. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/tax_settlement.py:134
+#, python-format
+msgid "Tax Balance Amount"
+msgstr "Saldo de Impuesto"
+
+#. module: account_tax_settlement
 #: field:account.journal,tax_code_id:0
 #: field:account.tax.settlement.detail,tax_code_id:0
 msgid "Tax Code"
@@ -422,10 +488,12 @@ msgstr "Código de Impuesto"
 
 #. module: account_tax_settlement
 #: view:account.move.line:account_tax_settlement.view_account_move_line_tree
+#: code:addons/account_tax_settlement/models/account_voucher.py:12
 #: model:ir.actions.act_window,name:account_tax_settlement.action_account_move_line
 #: model:ir.ui.menu,name:account_tax_settlement.menu_account_move_line
+#, python-format
 msgid "Tax Journal Items"
-msgstr "Items de Diario de Impuestos"
+msgstr "Apuntes Contables de Impuestos"
 
 #. module: account_tax_settlement
 #: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
@@ -459,6 +527,12 @@ msgid "Tax Settlment %s"
 msgstr "Liquidaciones de Impuestos %s"
 
 #. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/account_move_line.py:18
+#, python-format
+msgid "Tax State"
+msgstr "Estado del Impuesto"
+
+#. module: account_tax_settlement
 #: code:addons/account_tax_settlement/models/tax_settlement.py:495
 #, python-format
 msgid "Tax settlement company and journal company must be the same"
@@ -466,12 +540,26 @@ msgstr ""
 "La compañía de Liquidación de Impuestos y la compañía del diario deben "
 
 #. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/tax_settlement.py:264
+#, python-format
+msgid "Title"
+msgstr "Título"
+
+#. module: account_tax_settlement
 #: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
 msgid "To Draft"
 msgstr "A borrador"
 
 #. module: account_tax_settlement
+#: code:addons/account_tax_settlement/models/account_move_line.py:15
+#, python-format
+msgid "To Pay"
+msgstr "A Pagar"
+
+#. module: account_tax_settlement
 #: view:account.tax.settlement:account_tax_settlement.account_tax_settlement_form
+#: code:addons/account_tax_settlement/models/account_move_line.py:14
+#, python-format
 msgid "To Settle"
 msgstr "A Liquidar"
 

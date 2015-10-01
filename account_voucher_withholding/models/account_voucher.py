@@ -20,10 +20,10 @@ class account_voucher(models.Model):
         states={'draft': [('readonly', False)]}
         )
     withholdings_amount = fields.Float(
-        'Withholdings Amount',
+        _('Withholdings Amount'),
         compute='_get_withholdings_amount',
         digits=dp.get_precision('Account'),
-        help='Amount Paid With Withholdings',
+        help=_('Amount Paid With Withholdings'),
     )
 
     @api.one
