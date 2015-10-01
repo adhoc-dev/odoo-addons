@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 import openerp.addons.decimal_precision as dp
 
 
@@ -17,10 +17,10 @@ class account_voucher(models.Model):
         help='Amount Paid With Journal Method',
     )
     paylines_amount = fields.Float(
-        'Paylines Amount',
+        _('Paylines Amount'),
         compute='_get_paylines_amount',
         digits=dp.get_precision('Account'),
-        help='Amount Paid With Paylines: checks, withholdings, etc.',
+        help=_('Amount Paid With Paylines: checks, withholdings, etc.'),
     )
     amount = fields.Float(
         string='Total Amount',

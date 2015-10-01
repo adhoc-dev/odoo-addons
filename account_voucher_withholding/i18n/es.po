@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-01 14:25+0000\n"
-"PO-Revision-Date: 2015-10-01 11:36-0300\n"
+"POT-Creation-Date: 2015-10-01 15:36+0000\n"
+"PO-Revision-Date: 2015-10-01 12:37-0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: field:account.tax.withholding,account_id:0
 #: field:account.tax.withholding.template,account_id:0
 msgid "Account"
-msgstr "Account"
+msgstr "Cuenta"
 
 #. module: account_voucher_withholding
 #: model:ir.model,name:account_voucher_withholding.model_account_tax_withholding
@@ -40,7 +40,7 @@ msgstr "Cuenta de Comprobante de Retención"
 #. module: account_voucher_withholding
 #: model:ir.model,name:account_voucher_withholding.model_account_voucher
 msgid "Accounting Voucher"
-msgstr "Comprobante de Contabilidad"
+msgstr "Comprobantes contables"
 
 #. module: account_voucher_withholding
 #: field:account.tax.withholding,active:0
@@ -63,6 +63,12 @@ msgstr "Todo"
 #: field:account.voucher.withholding,amount:0
 msgid "Amount"
 msgstr "Importe"
+
+#. module: account_voucher_withholding
+#: code:addons/account_voucher_withholding/models/account_voucher.py:26
+#, python-format
+msgid "Amount Paid With Withholdings"
+msgstr "Importe Pagado Con Retenciones"
 
 #. module: account_voucher_withholding
 #: field:account.tax.withholding,account_analytic_id:0
@@ -187,14 +193,14 @@ msgstr "Apunte Contable"
 #: field:account.tax.withholding.template,write_uid:0
 #: field:account.voucher.withholding,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Last Updated by"
 
 #. module: account_voucher_withholding
 #: field:account.tax.withholding,write_date:0
 #: field:account.tax.withholding.template,write_date:0
 #: field:account.voucher.withholding,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Last Updated on"
 
 #. module: account_voucher_withholding
 #: help:account.chart.template,withholding_template_ids:0
@@ -408,3 +414,9 @@ msgstr "Comprobantes de Retención"
 #: field:account.voucher,withholding_ids:0
 msgid "Withholdings"
 msgstr "Retenciones"
+
+#. module: account_voucher_withholding
+#: code:addons/account_voucher_withholding/models/account_voucher.py:23
+#, python-format
+msgid "Withholdings Amount"
+msgstr "Importe de Retenciones"
