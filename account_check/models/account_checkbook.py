@@ -58,7 +58,7 @@ class account_checkbook(models.Model):
         states={'draft': [('readonly', False)]})
     next_check_number = fields.Char(
         compute='_get_next_check_number',
-        string='Next Check Number',)
+        string=_('Next Check Number'),)
     padding = fields.Integer(
         'Number Padding',
         default=8,

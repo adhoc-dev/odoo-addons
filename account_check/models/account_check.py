@@ -62,10 +62,10 @@ class account_check(models.Model):
 
     name = fields.Char(
         compute='_get_name',
-        string='Number'
+        string=_('Number')
         )
     number = fields.Integer(
-        'Number',
+        _('Number'),
         required=True,
         readonly=True,
         states={'draft': [('readonly', False)]},

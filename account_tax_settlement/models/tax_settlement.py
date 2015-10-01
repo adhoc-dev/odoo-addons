@@ -27,17 +27,17 @@ class account_tax_settlement_detail(models.Model):
         string="Move Lines",
         )
     tax_amount = fields.Float(
-        'Tax Amount',
+        _('Tax Amount'),
         compute='get_amounts',
         digits=dp.get_precision('Account'),
         )
     debit_amount = fields.Float(
-        'Debit Amount',
+        _('Debit Amount'),
         compute='get_amounts',
         digits=dp.get_precision('Account'),
         )
     credit_amount = fields.Float(
-        'Credit Amount',
+        _('Credit Amount'),
         compute='get_amounts',
         digits=dp.get_precision('Account'),
         )
@@ -122,28 +122,28 @@ class account_tax_settlement(models.Model):
     # _order = 'period_id desc'
 
     tax_codes_count = fields.Float(
-        '# Tax Codes',
+        _('# Tax Codes'),
         compute='_get_tax_codes_count',
         )
     account_balance_amount = fields.Float(
-        'Account Balance Amount',
+        _('Account Balance Amount'),
         compute='_get_balance',
         digits=dp.get_precision('Account'),
         )
     tax_code_balance_amount = fields.Float(
-        'Tax Balance Amount',
+        _('Tax Balance Amount'),
         compute='_get_balance',
         digits=dp.get_precision('Account'),
         )
     balance_account_id = fields.Many2one(
         'account.account',
-        'Balance Account',
+        _('Balance Account'),
         compute='_get_balance',
         digits=dp.get_precision('Account'),
         )
     balance_tax_code_id = fields.Many2one(
         'account.tax.code',
-        'Balance Tax Code',
+        _('Balance Tax Code'),
         compute='_get_balance',
         digits=dp.get_precision('Account'),
         )
@@ -155,7 +155,7 @@ class account_tax_settlement(models.Model):
         'account.move.line',
         compute='_get_to_settle_move_lines',
         # inverse='_set_to_settle_move_lines',
-        string="Move Lines To Settle",
+        string=_("Move Lines To Settle"),
         )
 
     # TODO analizar de implementar esta funcionalidad de poder borrar
@@ -261,7 +261,7 @@ class account_tax_settlement(models.Model):
         'Notes'
         )
     name = fields.Char(
-        'Title',
+        _('Title'),
         compute='_get_name')
     moves_state = fields.Selection(
         [('posted', 'Posted Entries'), ('all', 'All Entries')],
@@ -280,13 +280,13 @@ class account_tax_settlement(models.Model):
         )
     payment_ids = fields.Many2many(
         'account.move.line',
-        string='Payments',
+        string=_('Payments'),
         compute='_compute_payments')
     residual = fields.Float(
-        string='Balance',
+        string=_('Balance'),
         digits=dp.get_precision('Account'),
         compute='_compute_residual', store=True,
-        help="Remaining amount due.")
+        help=_("Remaining amount due."))
 
     @api.multi
     def settlement_pay(self):

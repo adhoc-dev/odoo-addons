@@ -15,14 +15,14 @@ class account_move(models.Model):
     #     ],
     #     string='Residual Type')
     receivable_residual = fields.Float(
-        string='Receivable Balance',
+        string=_('Receivable Balance'),
         digits=dp.get_precision('Account'),
         compute='_compute_residual',
         # store=True,
         help="Remaining receivable amount due."
         )
     payable_residual = fields.Float(
-        string='Payable Balance',
+        string=_('Payable Balance'),
         digits=dp.get_precision('Account'),
         compute='_compute_residual',
         # store=True,

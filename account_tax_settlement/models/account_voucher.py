@@ -9,7 +9,7 @@ class account_voucher(models.Model):
     tax_move_line_ids = fields.One2many(
         'account.move.line',
         compute='_get_tax_move_lines',
-        string='Tax Journal Items',
+        string=_('Tax Journal Items'),
         )
 
     @api.one

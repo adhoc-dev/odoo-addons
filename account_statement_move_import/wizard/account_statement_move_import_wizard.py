@@ -32,13 +32,13 @@ class account_statement_move_import_wizard(models.TransientModel):
         )
     journal_id = fields.Many2one(
         'account.journal',
-        'Journal',
+        _('Journal'),
         compute='get_journal',
         )
     journal_account_ids = fields.Many2many(
         'account.account',
         compute='get_accounts',
-        string='Journal Accounts'
+        string=_('Journal Accounts')
         )
     move_line_ids = fields.Many2many(
         'account.move.line',
