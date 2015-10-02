@@ -67,8 +67,8 @@
                     <field name="activity_ids" invisible="1"/>
                 </field>
                 <div class="text-center oe_kanban_alias" position="after">
-                    <div class="oe_kanban_project" style="width:130px; height: 80px; margin: 0 auto; min-height: 80px;">
-                        <field name="progress_activities" attrs="{'invisible':[('activity_ids', '=', [])]}" widget="gauge" />
+                    <div class="oe_kanban_project" style="width:130px; height: 80px; margin: 0 auto; min-height: 80px;" attrs="{'invisible':[('activity_ids', '=', [])]}">
+                        <field name="progress_activities"  widget="gauge" />
                     </div>
                 </div>
                 
