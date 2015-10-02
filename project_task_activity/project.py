@@ -85,8 +85,7 @@ class project_project(models.Model):
     @api.one
     def _get_task_activity(self):
         self.activity_ids = self.env['project.task.activity'].search(
-            ['|', ('task_id', 'in', self.task_ids.ids),
-             ('task_id', 'in', self.tasks.ids)])
+            [('project_id', '=', self.id)])
 
     @api.one
     def _get_activities_todo(self):
