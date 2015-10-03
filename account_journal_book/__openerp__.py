@@ -28,7 +28,7 @@
     'author': "Spanish Localization Team,"
               "Zikzakmedia SL,"
               "J. Gutierrez,"
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
+              "Serv. Tecnol. Avanzados,"
               "Odoo Community Association (OCA),"
               "ADHOC SA",
     'website': "www.adhoc.com.ar",
