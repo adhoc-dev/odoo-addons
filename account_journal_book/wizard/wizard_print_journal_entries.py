@@ -89,7 +89,6 @@ class AccountJournalEntriesReport(models.TransientModel):
         """Print report."""
         self.ensure_one()
         data = self.read()[0]
-        print 'data', data
         datas = {
             'ids': self._context.get('active_ids', []),
             'model': 'ir.ui.menu',
