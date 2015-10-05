@@ -13,6 +13,17 @@
             </field>
         </record>
 
+        <record id="view_account_move_line_filter" model="ir.ui.view">
+            <field name="name">Journal Items</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_account_move_line_filter"/>
+            <field name="arch" type="xml">
+                <filter name="unreconciled" position="after">
+                    <filter string="Unsettled Tax" domain="[('tax_settlement_move_id','=',False), ('tax_code_id', '!=', False)]" help="Unsettled Tax Items" name="unsettled"/>
+                </filter>
+            </field>
+        </record>
+
         <record id="view_account_move_line_tree" model="ir.ui.view">
             <field name="name">Tax Journal Items Tree</field>
             <field name="model">account.move.line</field>
@@ -50,7 +61,8 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">[('tax_code_id', '!=', False)]</field>
-            <field name="context">{'search_default_unreconciled': 1}</field>
+            <!-- TODO, tal vez agregar filter "tax_settlement_move_id == false" como un settle -->
+            <field name="context">{'search_default_unsettled': 1}</field>
         </record>
 
         <menuitem name="Tax Journal Items" action="action_account_move_line" sequence="20" id="menu_account_move_line" parent="account.menu_finance_entries"/>
