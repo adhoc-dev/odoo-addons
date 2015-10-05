@@ -80,7 +80,7 @@ class project_project(models.Model):
         string='Activities done', compute='_get_activities_done')
     progress_activities = fields.Float(
         string=_("Progress"),
-        compute='_get_progress_activities', digits=(4, 2))
+        compute='_get_progress_activities')
 
     @api.one
     def _get_task_activity(self):
@@ -102,5 +102,5 @@ class project_project(models.Model):
         self.progress_activities = 0
         if self.activity_ids:
             if self.activities_todo != 0:
-                self.progress_activities = 100 * (self.activities_done /
-                                                  self.activities_todo)
+                self.progress_activities = round(
+                    100 * (self.activities_done / self.activities_todo), 1)
