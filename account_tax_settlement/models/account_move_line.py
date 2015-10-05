@@ -25,6 +25,22 @@ class account_move_line(models.Model):
         help='Move where this tax has been settled',
         )
 
+    # NOTO. No se porque me da un error esta funcion. Por ahora pusimos
+    # restriccion en tax settlement
+    # @api.multi
+    # def write(self, vals):
+    #     """
+    #     Check that you are not writing tax_settlement_move_id to a line that
+    #     has it already setted
+    #     """
+    #     if 'tax_settlement_move_id' in vals:
+    #         if self.filtered('tax_settlement_move_id'):
+    #             raise Warning(_(
+    #                 'I seams that some lines has been already settled.\n'
+    #                 '* Lines: %s') % (
+    #                 self.filtered('tax_settlement_move_id').ids))
+    #     return super(account_move_line, self).write(vals)
+
     @api.one
     @api.depends(
         'tax_code_id',
@@ -36,7 +52,11 @@ class account_move_line(models.Model):
             tax_state = 'to_settle'
             if self.tax_settlement_move_id:
                 tax_state = 'to_pay'
-                if self.tax_settlement_move_id.payable_residual == 0.0:
+                # if tax_settlement_move_id and move are the same, then
+                # we are on the settlement move line
+                if self.tax_settlement_move_id == self.move_id:
+                    tax_state = False
+                elif self.tax_settlement_move_id.payable_residual == 0.0:
                     tax_state = 'paid'
             self.tax_state = tax_state
 
@@ -49,15 +69,15 @@ class account_move_line(models.Model):
     @api.multi
     def make_tax_settlement(self):
         self.ensure_one()
-        if self.reconcile_id:
-            raise Warning(_('Line already reconciled'))
+        if self.tax_settlement_move_id:
+            raise Warning(_('Line already settled'))
         if not self.tax_code_id:
             raise Warning(_(
                 'Settlement only alled for journal items with tax code'))
 
         # get parent tax codes (only parents)
         parent_tax_codes_ids = []
-        parent_tax_code = self.tax_code_id.parent_id
+        parent_tax_code = self.tax_code_id
         while parent_tax_code:
             parent_tax_codes_ids.append(parent_tax_code.id)
             parent_tax_code = parent_tax_code.parent_id
@@ -122,8 +142,9 @@ class account_move_line(models.Model):
             'account_id': self.account_id.id,
             'tax_code_id': self.tax_code_id.id,
             'tax_amount': self.tax_amount,
+            'tax_settlement_move_id': move.id,
         }
-        counterpart_line = move.line_id.create(counterpart_line_vals)
+        move.line_id.create(counterpart_line_vals)
 
         # TODO ver si ref se completa con el name del journal
         deb_line_vals = {
@@ -137,6 +158,4 @@ class account_move_line(models.Model):
             'tax_amount': -1.0 * self.tax_amount,
         }
         move.line_id.create(deb_line_vals)
-        (counterpart_line + self).reconcile_partial()
         return True
-        # return move.create_voucher('payment')

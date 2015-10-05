@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from openerp import fields, api, models, _
-from openerp.exceptions import Warning
 
 
 class account_voucher(models.Model):

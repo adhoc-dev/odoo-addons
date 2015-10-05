@@ -47,10 +47,8 @@ class account_tax_settlement_detail(models.Model):
         settlement = self.tax_settlement_id
         domain = [
             ('tax_code_id', '=', self.tax_code_id.id),
-            # unreconciled entries
-            ('reconcile_id', '=', False),
-            # only accounts that can reconcile
-            ('account_id.reconcile', '=', True),
+            # unsettle mlines
+            ('tax_settlement_move_id', '=', False),
             ]
         self.move_line_ids = False
 
@@ -366,19 +364,6 @@ class account_tax_settlement(models.Model):
     @api.one
     def action_cancel(self):
         move = self.move_id
-
-        # unreconcile
-        self.refresh()
-        reconcile_reads = self.env['account.move.line'].read_group(
-            domain=[
-                ('id', 'in', self.move_line_ids.ids),
-                ('reconcile_id', '!=', False)],
-            fields=['id', 'reconcile_id'],
-            groupby=['reconcile_id'])
-        for line in reconcile_reads:
-            self.env['account.move.reconcile'].browse(
-                line['reconcile_id'][0]).unlink()
-
         self.move_id = False
         move.unlink()
         self.state = 'cancel'
@@ -434,6 +419,17 @@ class account_tax_settlement(models.Model):
             raise Warning(_('Account Balance and Tax Balance must be equal.'))
         if not self.journal_id.sequence_id:
             raise Warning(_('Please define a sequence on the journal.'))
+
+        to_settle_move_lines = self.mapped(
+            'tax_settlement_detail_ids.move_line_ids')
+
+        # write move id on settled tax move lines
+        if to_settle_move_lines.filtered('tax_settlement_move_id'):
+            raise Warning(_(
+                'You can not settle lines that has already been settled!\n'
+                '* Lines ids: %s') % (
+                to_settle_move_lines.filtered('tax_settlement_move_id').ids))
+
         name = self.journal_id.sequence_id._next()
         move_line_env = self.env['account.move.line']
         move_vals = {
@@ -454,6 +450,7 @@ class account_tax_settlement(models.Model):
                     credit += line_vals['credit']
                     debit += line_vals['debit']
                     line_vals['move_id'] = move.id
+                    line_vals['tax_settlement_move_id'] = move.id
                     # print 'name', name
                     # line_vals['ref'] = name
                     created_move_line_ids.append(
@@ -463,24 +460,7 @@ class account_tax_settlement(models.Model):
         final_line_vals['move_id'] = move.id
         move_line_env.create(final_line_vals)
 
-        settled_move_lines = self.mapped(
-            'tax_settlement_detail_ids.move_line_ids')
-        to_reconcile_move_lines = move_line_env.browse(
-            created_move_line_ids) + settled_move_lines
-
-        # write move id on settled tax move lines
-        settled_move_lines.write({'tax_settlement_move_id': move.id})
-
-        grouped_lines = to_reconcile_move_lines.read_group(
-            domain=[('id', 'in', to_reconcile_move_lines.ids)],
-            fields=['id', 'account_id'],
-            groupby=['account_id'],
-            )
-
-        for line in grouped_lines:
-            account_id = line['account_id'][0]
-            to_reconcile_move_lines.filtered(
-                lambda r: r.account_id.id == account_id).reconcile_partial()
+        to_settle_move_lines.write({'tax_settlement_move_id': move.id})
 
         self.write({
             'move_id': move.id,
