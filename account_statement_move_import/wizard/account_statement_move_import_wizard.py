@@ -47,7 +47,8 @@ class account_statement_move_import_wizard(models.TransientModel):
         'Journal Items',
         domain="[('journal_id', '=', journal_id), "
         "('statement_id', '=', False), "
-        "('exclude_on_statements', '=', False), "
+        # mostramos los que se excluyen por defecto
+        # "('exclude_on_statements', '=', False), "
         "('account_id', 'in', journal_account_ids[0][2])]"
         )
 
