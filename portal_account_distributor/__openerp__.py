@@ -35,6 +35,7 @@ Portal Distributor Account
     'data': [
         'security/portal_security.xml',
         'security/ir.model.access.csv',
+        'account_view.xml',
     ],
     'auto_install': False,
     'application': True,

@@ -1,0 +1,15 @@
+<openerp>
+    <data>
+        <record id="view_account_invoice_form" model="ir.ui.view">
+            <field name="name">account.invoice.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="priority">20</field>
+            <field name="arch" type="xml">
+                <button name="invoice_print" string="Print Invoice" position="replace">
+                    <button name="invoice_print" string="Print Invoice" type="object" attrs="{'invisible':[('state', '!=', 'paid')]}" groups="base.group_user,base.group_portal_distributor"/>
+                </button>
+            </field>
+        </record>
+    </data>
+</openerp>
