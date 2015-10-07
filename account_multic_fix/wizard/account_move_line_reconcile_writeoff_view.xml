@@ -6,9 +6,8 @@
             <field name="model">account.move.line.reconcile.writeoff</field>
             <field name="inherit_id" ref="account.account_move_line_reconcile_writeoff"/>
             <field name="arch" type="xml">
-                <form>
-                    <field name="company_id"/>
-                    <!-- <field name="company_id" invisible="1"/> -->
+                <form>>
+                    <field name="company_id" invisible="1"/>
                 </form>
                 <field name="analytic_id" position="attributes">
                     <attribute name="domain">[('company_id', '=', company_id), ('type', '!=', 'view')]</attribute>
