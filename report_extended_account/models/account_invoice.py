@@ -24,7 +24,7 @@ class account_invoice(models.Model):
         assert len(self) == 1, 'This option should only be used for a single id at a time.'
         report_obj = self.env['ir.actions.report.xml']
         report_name = report_obj.get_report_name('account.invoice', self.ids)
-        self.sent = True
+        self.sudo().sent = True
         return self.env['report'].get_action(self, report_name)
 
     @api.multi

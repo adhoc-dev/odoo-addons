@@ -17,3 +17,5 @@ access_ir_sequence,ir_sequence.distributor,base.model_ir_sequence,base.group_por
 access_account_fiscalyear_distributor,account.fiscalyear.distributor,account.model_account_fiscalyear,base.group_portal_distributor,1,0,0,0
 access_account_period_distributor,account.period.distributor,account.model_account_period,base.group_portal_distributor,1,0,0,0
 access_account_move_line_distributor,account.move.line.distributor,account.model_account_move_line,base.group_portal_distributor,1,0,0,0
+access_account_tax_code_distributor,account.tax_code.distributor,account.model_account_tax_code,base.group_portal_distributor,1,0,0,0
+access_account_move_distributor,account.move.distributor,account.model_account_move,base.group_portal_distributor,1,0,0,0
