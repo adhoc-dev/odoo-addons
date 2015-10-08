@@ -23,22 +23,25 @@
     'website': 'www.adhoc.com.ar',
     'category': 'Accounting & Finance',
     'data': [
-        'views/account_view.xml',
+        'views/account_tax_withholding_view.xml',
+        'views/account_tax_withholding_template_view.xml',
         'views/account_withholding_view.xml',
         'views/account_voucher_view.xml',
+        'data/data.xml',
         'security/security.xml',
-        # 'security/ir.model.access.csv'
+        'security/ir.model.access.csv'
     ],
     'demo': [],
     'depends': [
-        'account_voucher'
+        'account_voucher_payline'
     ],
     'description': '''
-Voucher Voucher Withholding
+Account Voucher Withholding
 ===========================
+Add withholding management on vouchers
 ''',
     'installable': True,
     'name': 'Voucher Voucher Withholding',
     'test': [],
-    'version': '8.0.1.2.0',
+    'version': '8.0.1.3.0',
  }

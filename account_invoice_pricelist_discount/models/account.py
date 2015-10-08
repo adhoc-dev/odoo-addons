@@ -46,7 +46,7 @@ class sale_order_line(models.Model):
 
     list_price = fields.Float(
         compute='_get_list_price',
-        digits_compute=dp.get_precision('Account'),
+        digits=dp.get_precision('Account'),
         string='List Price')
     list_discount = fields.Float(
         compute='_get_list_price',

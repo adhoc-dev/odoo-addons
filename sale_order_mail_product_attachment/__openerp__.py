@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Sale Order Mail Product Attachment',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.1.1',
     'category': 'Sales Management',
     'sequence': 14,
     'description': """

@@ -24,6 +24,7 @@
     'category': 'Accounting & Finance',
     'data': [
         'security/rule.xml',
+        'wizard/account_move_line_reconcile_writeoff_view.xml',
         'wizard/account_statement_from_invoice_view.xml',
     ],
     'demo': [],
@@ -35,4 +36,4 @@ Account Multi Company Fixes
     'installable': True,
     'name': 'Account Multi Company Fixes',
     'test': [],
-    'version': '8.0.1.2.0'}
+    'version': '8.0.1.4.0'}

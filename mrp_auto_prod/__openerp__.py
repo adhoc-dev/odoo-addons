@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name':     'MRP auto production',
-    'version':  '0.1',
+    'version':  '8.0.0.1.0',
     'author':   'ADHOC',
     'category': 'Localization/Argentina',
     'website':  'www.adhoc.com.ar',

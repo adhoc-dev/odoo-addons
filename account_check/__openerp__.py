@@ -20,42 +20,35 @@
 ##############################################################################
 {
     'name': 'Account Check Management',
-    'version': '8.0.1.0.0',
+    'version': '8.0.2.3.1',
     'category': 'Accounting',
     'sequence': 14,
     'summary': 'Accounting, Payment, Check, Third, Issue',
     'description': """
 Account Check Management
 ========================
-
-TODO: multicurrency
--------------------
-La segunda pregunta esta asociado al deposito del cheque, es porque la moneda principal de mi empresa es USD, pero hay cobros que se hacen en una segunda moneda , y cuando deposito un cheque en esa otra moneda hace el apunte como si lo que estuviera depositando fueran USD. 
-
-Ejemplo (los asientos los pongo en una imagen que adjunto)
-Un cliente me paga 1 000 000 PYG por una factura de 216 USD
-Al validar el pago hace el asiento 1 de la imagen
-Al depositar el cheque hace el asiento 2 de la imagen, cosa que no esta bien, lo correcto es algo parecido al primer asiento, porque en realidad son 216 usd, no 1 000 000 usd, y con ese mismo monto se afecta la cuenta del plan contable. Es decir si tenia 200 USD ahora en lugar de tener 416 USD tengo 1 000 200 USD.
     """,
     'author':  'OpenERP Team de Localizacion Argentina',
     'images': [
     ],
     'depends': [
-        'account_voucher'
+        'account_voucher_payline',
+        'account_journal_payment_subtype',
     ],
     'data': [
         'wizard/check_action_view.xml',
         'wizard/view_check_reject.xml',
+        'wizard/change_check_view.xml',
         'views/account_checkbook_view.xml',
         'views/account_view.xml',
         'views/account_voucher_view.xml',
         'views/account_check_view.xml',
         'workflow/account_check_workflow.xml',
-        'workflow/workflow_checkbook.xml',
         'security/ir.model.access.csv',
         'security/account_check_security.xml',
     ],
     'demo': [
+        'data/demo_data.xml',
     ],
     'test': [
     ],

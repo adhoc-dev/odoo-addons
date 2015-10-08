@@ -7,7 +7,7 @@
             <field name="name">res.partner.course.select</field>
             <field name="model">res.partner.course</field>
             <field name="arch" type="xml">
-                <search string="Course" version="7.0">
+                <search string="Course">
                     <group string="By Attribute">
                     <field name="name" string="Name"/>
                     </group>

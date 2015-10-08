@@ -6,7 +6,7 @@
             <field name="name">account_update_prices.wizard</field>
             <field name="model">account_invoice_update</field>
             <field name="arch" type="xml">
-                <form string="Update Prices Wizard" version="7.0">
+                <form string="Update Prices Wizard">
                     <group>
                         <field name="type" invisible="1"/>
                         <field name="pricelist_id" domain="[('type', '=', type)]"/>

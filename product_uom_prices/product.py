@@ -21,7 +21,7 @@ class product_uom_price(models.Model):
         required=True,)
     uom_id = fields.Many2one('product.uom', string='UOM', required=True,)
     price = fields.Float(
-        'Price', digits_compute=dp.get_precision('Price'),
+        'Price', digits=dp.get_precision('Price'),
         help="Sale Price for this UOM.", required=True)
 
     _sql_constraints = [

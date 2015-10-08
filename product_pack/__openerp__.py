@@ -20,17 +20,16 @@
 ##############################################################################
 {
     'name': 'Product Pack',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.2.2',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
     'description': """
 Product Pack
 ============
-# TODO agregar en configuracion si se quiere usar los sale order packs (seria para el group group_pack) y ver que se haga visible la vista form
-# TODO implementar totalice en price get
-# TODO agregar constraint de no pack dentro de pack
-# TODO calcular correctamente pack virtual available para negativos
+Withilist:
+----------
+* TODO calcular correctamente pack virtual available para negativos
     """,
     'author':  'NaN·tic, ADHOC',
     'images': [
@@ -40,11 +39,11 @@ Product Pack
     ],
     'data': [
         'security/ir.model.access.csv',
-        'security/product_security.xml',
-        'pack_view.xml',
-        'sale_view.xml',
+        'views/pack_view.xml',
+        'views/sale_view.xml',
     ],
     'demo': [
+        'demo/demo_data.xml',
     ],
     'test': [
     ],

@@ -6,7 +6,7 @@
             <field name="model">email.template</field>
             <field name="inherit_id" ref="email_template.email_template_form"/>
             <field name="arch" type="xml">
-                <field name="attachment_ids" position="before">
+                <field name="auto_delete" position="after">
                    <field name="send_product_attachments" attrs="{'invisible':[('model','!=','sale.order')]}"/>
                 </field>
             </field>

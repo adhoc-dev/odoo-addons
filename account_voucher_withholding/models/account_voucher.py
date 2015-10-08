@@ -11,18 +11,6 @@ class account_voucher(models.Model):
 
     _inherit = "account.voucher"
 
-    net_amount = fields.Float(
-        'Net Amount',
-        digits=dp.get_precision('Account'),
-        )
-    withholding_amount = fields.Float(
-        'Withholdings Amount',
-        digits=dp.get_precision('Account'),
-        )
-    # TODO ver si cambiamos el string de "amount"
-    amount = fields.Float(
-        string='Total Amount'
-        )
     withholding_ids = fields.One2many(
         'account.voucher.withholding',
         'voucher_id',
@@ -31,29 +19,77 @@ class account_voucher(models.Model):
         readonly=True,
         states={'draft': [('readonly', False)]}
         )
+    withholdings_amount = fields.Float(
+        _('Withholdings Amount'),
+        compute='_get_withholdings_amount',
+        digits=dp.get_precision('Account'),
+        help=_('Amount Paid With Withholdings'),
+    )
 
-    @api.model
-    def first_move_line_get(
-            self, voucher_id, move_id, company_currency, current_currency):
-        res = super(account_voucher, self).first_move_line_get(
-            voucher_id, move_id, company_currency, current_currency)
+    @api.one
+    @api.depends(
+        'withholding_ids',
+        )
+    def _get_withholdings_amount(self):
+        self.withholdings_amount = self.get_withholdings_amount()[self.id]
+        # We force the update of paylines and amount
+        self._get_paylines_amount()
+        self._get_amount()
+
+    @api.multi
+    def get_withholdings_amount(self):
+        res = {}
+        for voucher in self:
+            withholdings_amount = sum(
+                x.amount for x in voucher.withholding_ids)
+            res[voucher.id] = withholdings_amount
+        return res
+
+    @api.multi
+    def get_paylines_amount(self):
+        res = super(account_voucher, self).get_paylines_amount()
+        for voucher in self:
+            withholdings_amount = voucher.get_withholdings_amount()[voucher.id]
+            res[voucher.id] = res[voucher.id] + withholdings_amount
         return res
 
     @api.model
-    def voucher_move_line_create(
-            self, voucher_id, line_total, move_id, company_currency,
-            current_currency):
-        res = super(account_voucher, self).voucher_move_line_create(
-            voucher_id, line_total, move_id, company_currency,
-            current_currency)
-        return res
+    def paylines_moves_create(
+            self, voucher, move_id, company_currency, current_currency):
+        paylines_total = super(account_voucher, self).paylines_moves_create(
+            voucher, move_id, company_currency, current_currency)
+        withholding_total = self.create_withholding_lines(
+            voucher, move_id, company_currency, current_currency)
+        return paylines_total + withholding_total
 
-    # @api.one
-    # def add_withholding(self):
-    #     """For each withholding_ids (withholding) it creates an
-    #     account.move.line with:
-    #         Partner: withholding voucher partner
-    #         Account: withholding tax_withholding_id account
-    #         Debit/credit: withholding amount
-    #     """
-    #     return None
+    # TODO ver si en vez de usar api.model usamos self y no pasamos el voucher
+    # TODO ver que todo esto solo funcione en payment y receipts y no en sale y purchase
+    @api.model
+    def create_withholding_lines(
+            self, voucher, move_id, company_currency, current_currency):
+        move_lines = self.env['account.move.line']
+        withholding_total = 0.0
+        for line in voucher.withholding_ids:
+            name = '%s: %s' % (
+                line.tax_withholding_id.description, line.internal_number)
+            if line.name:
+                name += ' (%s)' % line.name
+            payment_date = False
+            amount = line.amount
+            if amount >= 0:
+                account = line.tax_withholding_id.account_id
+            else:
+                account = line.tax_withholding_id.ref_account_id
+            partner = voucher.partner_id
+            move_line = move_lines.create(
+                self.prepare_move_line(
+                    voucher, amount, move_id, name, company_currency,
+                    current_currency, payment_date, account, partner)
+                    )
+            line.move_line_id = move_line.id
+            move_line.update({
+                'tax_code_id': line.tax_withholding_id.tax_code_id.id,
+                'tax_amount': amount,
+                })
+            withholding_total += move_line.debit - move_line.credit
+        return withholding_total

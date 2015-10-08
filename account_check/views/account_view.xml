@@ -6,15 +6,13 @@
             <field name="model">account.journal</field>
             <field name="inherit_id" ref="account.view_account_journal_form"/>
             <field name="arch" type="xml">
-                <field name="type" position="after">
-                    <field name="check_type" attrs="{'invisible':[('type','!=', 'bank')]}"/>
-                    <field name="validate_only_checks" attrs="{'invisible':[('check_type','=', False)]}"/>
-                </field>
-                <notebook>
-                    <page string="Checkbooks" attrs="{'invisible':[('check_type','!=', 'issue')]}">
-                        <field name="checkbook_ids" attrs="{'required':[('check_type', '=', 'issue')]}" context="{'default_company_id':company_id}"/>
-                    </page>
-                </notebook>
+                <data>
+                    <xpath expr="//form/notebook" position="inside">
+                        <page string="Checkbooks" attrs="{'invisible':[('payment_subtype','not in', ('issue_check'))]}">
+                        	<field name="checkbook_ids" attrs="{'required':[('payment_subtype', '=', 'issue_check')]}" context="{'default_company_id':company_id}"/>
+                   	 	</page>
+                    </xpath>
+                </data>
             </field>
         </record>
     </data>

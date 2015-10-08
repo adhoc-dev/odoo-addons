@@ -3,7 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import fields, models, api
+from openerp import fields, models, api, _
 
 
 class res_partner(models.Model):
@@ -11,7 +11,7 @@ class res_partner(models.Model):
 
     balance = fields.Float(
         compute='_get_balance',
-        string='Balance',
+        string=_('Balance'),
         )
 
     @api.one

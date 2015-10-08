@@ -33,11 +33,11 @@
             <field name="name">account.checkbook.form</field>
             <field name="model">account.checkbook</field>
             <field name="arch" type="xml">
-                <form string="Checkbooks" version="7.0"> 
+                <form string="Checkbooks"> 
                     <header string="Checkbooks">
-                        <button name="wkf_active" string="In Use"  states="draft"/>
-                        <button name="wkf_used" string="Used"  states="active"/>
-                        <button name="action_cancel_draft" string="To Draft" type="object" states="used"/>
+                        <button name="set_active" type="object" string="In Use"  states="draft"/>
+                        <button name="set_used" type="object" string="Used"  states="active"/>
+                        <button name="set_draft" type="object" string="To Draft" states="used"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,active,used" statusbar_colors='{"active":"blue"}'/>
                     </header>
                     <sheet string="Checkbooks">

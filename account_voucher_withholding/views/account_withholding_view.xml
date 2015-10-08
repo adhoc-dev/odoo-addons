@@ -7,16 +7,16 @@
             <field name="model">account.voucher.withholding</field>
             <field name="arch" type="xml"> 
                 <search string="Withholding Vouchers">
+                    <field name="internal_number"/>
                     <field name="name"/>
                     <field name="date"/>
                     <field name="type"/>
-                    <field name="state"/>
                     <field name="tax_withholding_id"/>
+                    <field name="partner_id"/>
                     <field name="company_id" groups="base.group_multi_company"/>
                     <group expand="0" string="Group By...">
                         <filter string="Type" context="{'group_by':'type'}"/>
-                        <filter string="Withholding Tax" context="{'group_by':'tax_withholding_id'}"/>                        
-                        <filter string="State" context="{'group_by':'state'}"/>
+                        <filter string="Withholding Tax" context="{'group_by':'tax_withholding_id'}"/>           
                     </group>
                 </search>
             </field>
@@ -26,13 +26,15 @@
             <field name="model">account.voucher.withholding</field>
             <field name="arch" type="xml"> 
                 <tree string="Withholding Vouchers">
+                    <field name="internal_number"/>
                     <field name="name"/>
                     <field name="date"/>
                     <field name="type"/>
-                    <field name="state"/>
                     <field name="tax_withholding_id"/>
+                    <field name="partner_id"/>
                     <field name="company_id" groups="base.group_multi_company"/>
                     <field name="amount" sum="Total"/>
+                    <field name="state" invisible="1"/>
                 </tree>
             </field>
         </record>   
@@ -42,20 +44,26 @@
             <field name="model">account.voucher.withholding</field>
             <field name="arch" type="xml"> 
                 <form string="Withholding Vouchers">
+                    <field name="state" invisible="1"/>
                     <header>
-                        <field name="state" widget="statusbar" statusbar_colors='{"hrejected":"red"}'/>
                     </header>
                     <sheet string="Withholding Vouchers">
-                        <group>
-                            <field name="name"/>
-                            <field name="date"/>
-                            <field name="type"/>
-                            <field name="comment"/>
-                            <field name="settlement_account_move_id"/>
-                            <field name="tax_withholding_id"/>
-                            <field name="company_id" groups="base.group_multi_company"/>
-                            <field name="amount" sum="Total"/>
+                        <field name="type" invisible="1"/>
+                        <group>  
+                            <group>
+                                <field name="name"/>
+                                <field name="tax_withholding_id" domain="[('type_tax_use','in',(type, 'all'))]"/>
+                                <field name="amount"/>
+                                <field name="move_line_id"/>
+                                <field name="partner_id"/>
+                            </group>
+                            <group>
+                                <field name="date"/>
+                                <field name="internal_number"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
                         </group>
+                        <field name="comment" placeholder="Comment..."/>
                     </sheet>
                 </form>
             </field>

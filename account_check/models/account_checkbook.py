@@ -29,13 +29,20 @@ class account_checkbook(models.Model):
         states={'draft': [('readonly', False)]})
     issue_check_subtype = fields.Selection(
         [('deferred', 'Deferred'), ('currents', 'Currents')],
-        string='Issue Check Subtype', readonly=True, required=True,
-        help='The only difference bewteen Deferred and Currents is that when delivering a Deferred check a Payment Date is Require',
+        string='Issue Check Subtype',
+        readonly=True,
+        required=True,
+        default='deferred',
+        help='The only difference bewteen Deferred and Currents is that when '
+        'delivering a Deferred check a Payment Date is Require',
         states={'draft': [('readonly', False)]})
     debit_journal_id = fields.Many2one(
         'account.journal', 'Debit Journal',
-        help='It will be used to make the debit of the check on checks ', readonly=True, required=True,
-        domain=[('type', '=', 'bank')], context={'default_type': 'bank'},
+        help='It will be used to make the debit of the check on checks ',
+        readonly=True,
+        required=True,
+        domain=[('type', '=', 'bank')],
+        context={'default_type': 'bank'},
         states={'draft': [('readonly', False)]})
     journal_id = fields.Many2one(
         'account.journal', 'Journal',
@@ -51,10 +58,15 @@ class account_checkbook(models.Model):
         states={'draft': [('readonly', False)]})
     next_check_number = fields.Char(
         compute='_get_next_check_number',
-        string='Next Check Number',)
+        string=_('Next Check Number'),)
     padding = fields.Integer(
-        'Number Padding', default=8, required=True,
-        help="automatically adds some '0' on the left of the 'Number' to get the required padding size.")
+        'Number Padding',
+        default=8,
+        required=True,
+        readonly=True,
+        states={'draft': [('readonly', False)]},
+        help="automatically adds some '0' on the left of the 'Number' to get "
+        "the required padding size.")
     company_id = fields.Many2one(
         'res.company',
         related='journal_id.company_id',
@@ -103,19 +115,16 @@ class account_checkbook(models.Model):
         return super(account_checkbook, self).unlink()
 
     @api.multi
-    def wkf_used(self):
+    def set_used(self):
         self.write({'state': 'used'})
         return True
 
     @api.multi
-    def wkf_active(self):
+    def set_active(self):
         self.write({'state': 'active'})
         return True
 
     @api.multi
-    def action_cancel_draft(self):
-        # go from canceled state to draft state
+    def set_draft(self):
         self.write({'state': 'draft'})
-        self.delete_workflow()
-        self.create_workflow()
         return True
