@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Portal Distributor Account',
-    'version': '8.0.0.1.0',
+    'version': '8.0.0.3.0',
     'category': 'Tools',
     'complexity': 'easy',
     'description': """
@@ -35,6 +35,7 @@ Portal Distributor Account
     'data': [
         'security/portal_security.xml',
         'security/ir.model.access.csv',
+        'account_view.xml',
     ],
     'auto_install': False,
     'application': True,
