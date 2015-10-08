@@ -24,7 +24,7 @@
 ##############################################################################
 {
     'name': "Libro Diario Contable",
-    'version': "1.0",
+    'version': "8.0.0.2.0",
     'author': "Spanish Localization Team,"
               "Zikzakmedia SL,"
               "J. Gutierrez,"
@@ -39,7 +39,11 @@
     ],
     'data': [
         "wizard/wizard_print_journal_entries_view.xml",
-        "report/l10n_es_reports.xml",
+        # 'wizard/account_period_close_wizard_view.xml',
+        'wizard/account_move_book_renumber_wizard_view.xml',
+        "report/account_journal_book.xml",
+        'views/account_view.xml',
+        'data/sequence.xml',
     ],
     "installable": True,
 }
