@@ -10,20 +10,6 @@ import openerp.addons.decimal_precision as dp
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    # @api.model
-    # def get_currency_id(self):
-    #     price_type_obj = self.env['product.price.type']
-    #     price_type_ids = price_type_obj.search(
-    #         [('field', '=', 'replenishment_cost')])
-    #     if not price_type_ids.currency_id:
-    #         return self.env.user.company_id.currency_id
-    #     return price_type_ids.currency_id
-
-    # TODO ver si implementamos o no
-    # replenishment_cost_type = fields.Selection([
-    #     ('cost', 'Cost'),
-    #     ('rep...', 'Cost'),
-    #     ]
     replenishment_base_cost = fields.Float(
         'Replenishment Base Cost',
         digits=dp.get_precision('Product Price'),
@@ -69,7 +55,6 @@ class ProductTemplate(models.Model):
         'replenishment_base_cost_currency_id.rate_ids.name',
         )
     def _get_replenishment_cost(self):
-        print '1111111'
         self.replenishment_cost = self.get_replenishment_cost()
 
     @api.multi
@@ -83,3 +68,13 @@ class ProductTemplate(models.Model):
                 replenishment_cost = from_currency.compute(
                         replenishment_cost, to_currency)
         return replenishment_cost
+
+
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
+
+    # we make it related to prod template because for now we want it only
+    # on prod template
+    replenishment_cost = fields.Float(
+        related='product_tmpl_id.replenishment_cost',
+        )
