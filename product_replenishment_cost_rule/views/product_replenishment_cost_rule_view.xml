@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- FORM VIEW -->
+        <record id="product_replenshiment_cost_rule_form" model="ir.ui.view">
+            <field name="name">product.replenishment_cost.rule.form</field>
+            <field name="model">product.replenishment_cost.rule</field>
+            <field name="arch" type="xml">
+                <form strint="Replenishment Cost Rule">
+                    <!-- <group>
+                    </group> -->
+                    <h1><field name="name" placeholder="Name..."/></h1>
+                    <field name="item_ids">
+                        <tree editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="name"/>
+                            <field name="percentage_amount"/>
+                            <field name="fixed_amount"/>
+                        </tree>
+                    </field>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

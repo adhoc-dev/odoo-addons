@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <!-- FORM VIEW -->
+        <record id="product_template_form_view" model="ir.ui.view">
+            <field name="name">product_cost_currency.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product_replenishment_cost_currency.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <label for="replenishment_cost" position="before">
+                    <field name="replenishment_cost_rule_id"/>
+                </label>
+            </field>
+        </record>
+    </data>
+</openerp>
