@@ -37,9 +37,8 @@ Pricelists information on Products
     'external_dependencies': {
     },
     "data": [
-        'security/security.xml',
-        'security/ir.model.access.csv',
-        'views/account_vat_report_view.xml',
+        'views/product_view.xml',
+        'views/pricelist_view.xml',
     ],
     'demo': [
     ],
