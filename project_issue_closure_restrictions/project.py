@@ -13,7 +13,6 @@ class project_issue(models.Model):
     @api.one
     @api.constrains('stage_id')
     def validate_issue(self):
-        print self.stage_id
         if self.task_id and self.stage_id.fold == True:
             task_open = self.env['project.task'].search(
                     [('id', '=', self.task_id.id),
