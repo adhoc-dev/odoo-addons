@@ -18,11 +18,20 @@ class product_template(models.Model):
     #     # compute='_get_product_id',
     #     # store=True
     #     )
-    pricelist_ids = fields.Many2many(
+    # pricelist_ids = fields.Many2many(
+    pricelist_ids = fields.One2many(
         'product.pricelist',
         compute='get_pricelist_ids',
+        inverse='dummy_inverse',
         string='Pricelists',
         )
+
+    @api.one
+    def dummy_inverse(self):
+        """
+        Dummy Inverse function so that we can edit vouchers and save changes
+        """
+        return True
 
     @api.one
     # TODO use multi

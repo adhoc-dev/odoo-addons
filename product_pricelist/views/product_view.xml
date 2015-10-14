@@ -32,17 +32,18 @@
             <field name="arch" type="xml">
                 <notebook>
                     <page string="Prices" name="prices" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}">
-                        <group>
+                        <!-- <group> -->
                             <field name="pricelist_ids" context="{'template_id': id}">
                                 <!-- TODO move this to a low priority view and specify here -->
-                                <tree>
+                                <tree delete='false'>
                                     <field name="name"/>
                                     <field name="price"/>
-                                    <button name="action_related_pricelist_items" type="object" string="Related Product Items" help="See related pricelist items that affect this product" context="{'onle_related_product_items': True}"/>
-                                    <button name="action_related_pricelist_items" type="object" string="All Pricelist Items" help="See related pricelist items"/>
+                                    <!-- TODO enable buttons after correcting domain -->
+                                    <!-- <button name="action_related_pricelist_items" type="object" string="Related Product Items" help="See related pricelist items that affect this product" context="{'onle_related_product_items': True}"/> -->
+                                    <!-- <button name="action_related_pricelist_items" type="object" string="All Pricelist Items" help="See related pricelist items"/> -->
                                 </tree>
                             </field>
-                        </group>
+                        <!-- </group> -->
                     </page>
                 </notebook>
             </field>
@@ -56,16 +57,16 @@
             <field name="arch" type="xml">
                 <notebook>
                     <page string="Prices" name="prices">
-                        <group>
+                        <!-- <group> -->
                             <field name="pricelist_ids" context="{'product_id': id}">
-                                <tree>
+                                <tree delete='false'>
                                     <field name="name"/>
                                     <field name="price"/>
-                                    <button name="action_related_pricelist_items" type="object" string="Related Product Items" help="See related pricelist items that affect this product" context="{'onle_related_product_items': True}"/>
-                                    <button name="action_related_pricelist_items" type="object" string="All Pricelist Items" help="See related pricelist items"/>
+                                    <!-- <button name="action_related_pricelist_items" type="object" string="Related Product Items" help="See related pricelist items that affect this product" context="{'onle_related_product_items': True}"/> -->
+                                    <!-- <button name="action_related_pricelist_items" type="object" string="All Pricelist Items" help="See related pricelist items"/> -->
                                 </tree>
                             </field>
-                        </group>
+                        <!-- </group> -->
                     </page>
                 </notebook>
             </field>

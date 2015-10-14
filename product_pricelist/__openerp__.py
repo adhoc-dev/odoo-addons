@@ -30,6 +30,13 @@
     "description": """
 Pricelists information on Products
 ==================================
+
+TODO:
+-----
+* Get right domain to pricelist items
+* Enable button to pricelist items
+* Send by default product or product template if you create a item from the
+product pricelist items button
     """,
     "depends": [
         "product",
