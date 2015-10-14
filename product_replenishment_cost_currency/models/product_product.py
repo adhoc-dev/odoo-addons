@@ -55,10 +55,10 @@ class ProductTemplate(models.Model):
         'replenishment_base_cost_currency_id.rate_ids.name',
         )
     def _get_replenishment_cost(self):
-        self.replenishment_cost = self.get_replenishment_cost()
+        self.replenishment_cost = self.get_replenishment_cost_currency()
 
     @api.multi
-    def get_replenishment_cost(self):
+    def get_replenishment_cost_currency(self):
         self.ensure_one()
         from_currency = self.replenishment_base_cost_currency_id
         to_currency = self.replenishment_cost_currency_id
