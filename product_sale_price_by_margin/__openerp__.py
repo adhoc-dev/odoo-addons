@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Sale Price By Margin',
-    'version': '8.0.0.1.0',
+    'version': '8.0.0.2.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
