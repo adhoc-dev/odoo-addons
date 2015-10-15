@@ -72,7 +72,8 @@
                     <label for="lst_price"/>
                     <div>
                         <field name="lst_price" class="oe_inline"/>
-                        <field name="sale_price_currency_id" class="oe_inline"/>
+                        <!-- to not confuse we dont want currency to be change from here -->
+                        <field name="sale_price_currency_id" readonly="1" class="oe_inline"/>
                     </div>
                 </field>
             </field>
