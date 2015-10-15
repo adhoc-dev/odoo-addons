@@ -20,6 +20,14 @@
                 <group name="general" position="attributes">
                     <attribute name="string">Accounting Cost</attribute>
                 </group>
+                <!-- we cant set currency here because this section is also modified by stock module -->
+<!--                 <field name="standard_price" position="replace">
+                    <label for="standard_price"/>
+                    <div>
+                        <field name="standard_price" class="oe_inline"/>
+                        <field name="standard_price_currency_id" class="oe_inline"/>
+                    </div>
+                </field> -->
                 <group name="general" position="after">
                     <group name="replenishment_cost" string="Replenishment Cost">
                         <label for="replenishment_base_cost"/>

@@ -34,11 +34,22 @@ class ProductTemplate(models.Model):
              "information, for example Bills of Materials or latest "
              "Purchases."
              )
+    standard_price_currency_id = fields.Many2one(
+        'res.currency',
+        'Cost Price Currency',
+        compute='get_standard_price_currency',
+        )
     replenishment_cost_currency_id = fields.Many2one(
         'res.currency',
         'Replenishment Cost Currency',
         compute='get_replenishment_cost_currency_id',
         )
+
+    @api.one
+    def get_standard_price_currency(self):
+        price_type = self.env['product.price.type'].search(
+            [('field', '=', 'standard_price')], limit=1)
+        self.standard_price_currency_id = price_type.currency_id
 
     @api.one
     def get_replenishment_cost_currency_id(self):

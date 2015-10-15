@@ -35,7 +35,7 @@ class ProductTemplate(models.Model):
         self.replenishment_base_cost_on_currency = (
             self.get_replenishment_cost_currency())
 
-    # @api.one
+    @api.one
     @api.depends(
         'replenishment_base_cost',
         # because of being stored
