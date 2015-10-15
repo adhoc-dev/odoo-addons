@@ -20,6 +20,11 @@ class ProductReplenishmentCostRule(models.Model):
         'replenishment_cost_rule_id',
         'Items',
         )
+    product_ids = fields.One2many(
+        'product.template',
+        'replenishment_cost_rule_id',
+        'Products',
+        )
 
 
 class ProductReplenishmentCostRuleItem(models.Model):
