@@ -19,30 +19,45 @@
 #
 ##############################################################################
 {
-    'name': 'Product Sale Price By Margin',
-    'version': '8.0.0.2.0',
+    "name": "Product Replenshiment Cost Rule",
+    'version': '8.0.1.0.0',
     'category': 'Product',
     'sequence': 14,
-    'summary': '',
-    'description': """
-Product Sale Price By Margin
-============================
-
-    """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
-    'images': [
+    'license': 'AGPL-3',
+    'summary': 'Allow to define purchase prices on different currencies using\
+ replenishment cost field',
+    "description": """
+Product Replenshiment Cost Rule
+===============================
+
+Repository dependencies
+-----------------------
+Requires repository: https://github.com/OCA/margin-analysis
+
+How to use?
+-----------
+1. Install
+2. Configure pricelist to use new price_type "Replanishment Cost"
+3. Use the new fields on product "procuerements" tab
+    """,
+    "depends": [
+        "product_replenishment_cost",
+        "product_replenishment_cost_currency",
     ],
-    'depends': [
-        'product_replenishment_cost',
+    'external_dependencies': {
+    },
+    "data": [
+        'views/product_view.xml',
+        'views/product_replenishment_cost_rule_view.xml',
+        'security/ir.model.access.csv',
     ],
-    'data': ['product_view.xml'
-             ],
     'demo': [
     ],
     'test': [
     ],
-    'installable': True,
+    "installable": True,
     'auto_install': False,
     'application': False,
 }

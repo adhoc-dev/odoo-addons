@@ -31,11 +31,11 @@
             <field name="inherit_id" ref="product.product_template_only_form_view"/>
             <field name="arch" type="xml">
                 <notebook>
-                    <page string="Prices" name="prices" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}">
+                    <page string="Price Lists" name="pricelists" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}">
                         <!-- <group> -->
                             <field name="pricelist_ids" context="{'template_id': id}">
                                 <!-- TODO move this to a low priority view and specify here -->
-                                <tree delete='false'>
+                                <tree delete='false' create='false'>
                                     <field name="name"/>
                                     <field name="price"/>
                                     <!-- TODO enable buttons after correcting domain -->
@@ -56,10 +56,10 @@
             <field name="inherit_id" ref="product.product_normal_form_view"/>
             <field name="arch" type="xml">
                 <notebook>
-                    <page string="Prices" name="prices">
+                    <page string="Price Lists" name="pricelists">
                         <!-- <group> -->
                             <field name="pricelist_ids" context="{'product_id': id}">
-                                <tree delete='false'>
+                                <tree delete='false' create='false'>
                                     <field name="name"/>
                                     <field name="price"/>
                                     <!-- <button name="action_related_pricelist_items" type="object" string="Related Product Items" help="See related pricelist items that affect this product" context="{'onle_related_product_items': True}"/> -->

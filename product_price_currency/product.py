@@ -23,28 +23,36 @@ class product_template(models.Model):
         required=True, default=get_currency_id,
         help="Currency used for the Currency List Price."
         )
-    cia_currency_list_price = fields.Float(
-        'Company Currency Sale Price',
+    sale_price_on_list_price_type_currency = fields.Float(
+        'Sale Price on List Price Currency',
         digits=dp.get_precision('Product Price'),
-        compute='get_cia_currency_list_price',
-        help="Base price on company currency at actual exchange rate",
+        compute='get_sale_price_on_list_price_type_currency',
+        help="Base price on List Price Type currency at actual exchange rate",
+        )
+    list_price_type_currency_id = fields.Many2one(
+        'res.currency',
+        'Company Currency',
+        compute='get_sale_price_on_list_price_type_currency',
         )
 
-    @api.multi
+    @api.one
     @api.depends('list_price', 'sale_price_currency_id')
-    def get_cia_currency_list_price(self):
-        company_currency = self.env.user.company_id.currency_id
+    def get_sale_price_on_list_price_type_currency(self):
+        price_type = self.env['product.price.type'].search(
+            [('field', '=', 'list_price')], limit=1)
+        to_currency = price_type.currency_id
+        self.list_price_type_currency_id = to_currency
         for product in self:
             if (
                     product.sale_price_currency_id and
-                    product.sale_price_currency_id != company_currency
+                    product.sale_price_currency_id != to_currency
                     ):
-                cia_currency_list_price = (
+                to_price = (
                     product.sale_price_currency_id.compute(
-                        product.list_price, company_currency))
+                        product.list_price, to_currency))
             else:
-                cia_currency_list_price = product.list_price
-            product.cia_currency_list_price = cia_currency_list_price
+                to_price = product.list_price
+            product.sale_price_on_list_price_type_currency = to_price
 
     def _price_get(self, cr, uid, products, ptype='list_price', context=None):
         if not context:
