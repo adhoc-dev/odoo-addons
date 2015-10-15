@@ -68,11 +68,16 @@
             <field name="model">product.product</field>
             <field name="inherit_id" ref="product.product_normal_form_view" />
             <field name="arch" type="xml">
-                <field name="list_price" position="attributes">
-                   <attribute name="name">lst_price</attribute>
+                <field name="lst_price" position="replace">
+                    <label for="lst_price"/>
+                    <div>
+                        <field name="lst_price" class="oe_inline"/>
+                        <field name="sale_price_currency_id" class="oe_inline"/>
+                    </div>
                 </field>
             </field>
         </record>
+
         <!-- product tree -->
         <record id="product_price_currency_tree_view" model="ir.ui.view">
             <field name="name">product_price_currency.tree</field>
