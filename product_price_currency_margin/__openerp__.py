@@ -19,34 +19,31 @@
 #
 ##############################################################################
 {
-    'name': 'Product Sale Price By Margin',
+    'name': 'Product Price Currency and Sale Price By Margin Integration',
     'version': '8.0.0.2.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
     'description': """
-Product Sale Price By Margin
-============================
-
+Product Price Currency and Sale Price By Margin Integration
+===========================================================
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'images': [
     ],
     'depends': [
-        # we make dependant on this module because it adds rep cost field
-        # on prod template. TODO this mods should go to
-        # product_replenishment_cost module
-        'product_replenishment_cost_currency',
-        # 'product_replenishment_cost',
+        'product_price_currency',
+        'product_sale_price_by_margin',
     ],
-    'data': ['product_view.xml'
+    'data': [
+        'product_view.xml'
              ],
     'demo': [
     ],
     'test': [
     ],
     'installable': True,
-    'auto_install': False,
+    'auto_install': True,
     'application': False,
 }
