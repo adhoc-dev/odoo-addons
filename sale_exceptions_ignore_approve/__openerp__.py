@@ -40,6 +40,7 @@ When Ignoring a sale Exception, approve directly the sale order
     },
     "data": [
         'wizard/sale_exception_confirm_view.xml',
+        'views/sale_view.xml',
     ],
     'demo': [
     ],
