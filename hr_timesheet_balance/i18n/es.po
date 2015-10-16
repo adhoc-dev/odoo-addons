@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-13 14:34+0000\n"
-"PO-Revision-Date: 2015-10-13 11:35-0300\n"
+"POT-Creation-Date: 2015-10-15 16:22+0000\n"
+"PO-Revision-Date: 2015-10-15 13:23-0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,13 +18,13 @@ msgstr ""
 
 #. module: hr_timesheet_balance
 #: view:hr_timesheet_sheet.sheet:hr_timesheet_balance.hr_timesheet_sheet_filter_view_inh
-msgid "Date"
-msgstr "Fecha"
+msgid "Department"
+msgstr "Departamento"
 
 #. module: hr_timesheet_balance
 #: view:hr_timesheet_sheet.sheet:hr_timesheet_balance.hr_timesheet_sheet_filter_view_inh
-msgid "Department"
-msgstr "Departamento"
+msgid "Month"
+msgstr "Mes"
 
 #. module: hr_timesheet_balance
 #: field:hr_timesheet_sheet.sheet,theoretical_difference:0
@@ -37,6 +37,7 @@ msgid "Theoretical hours"
 msgstr "Horas Teóricas"
 
 #. module: hr_timesheet_balance
+#: view:hr_timesheet_sheet.sheet:hr_timesheet_balance.hr_timesheet_sheet_graph_view_inh
 #: model:ir.model,name:hr_timesheet_balance.model_hr_timesheet_sheet_sheet
 msgid "Timesheet"
 msgstr "Hoja de tareas"
@@ -49,8 +50,8 @@ msgstr "Total"
 #. module: hr_timesheet_balance
 #: view:hr_timesheet_sheet.sheet:hr_timesheet_balance.hr_timesheet_sheet_tree_view_inh
 msgid ""
-"blue:state == 'draft';black:state in ('confirm','new');gray:state == 'done';"
-"red:theoretical_difference < 0.0"
+"red:theoretical_difference < 0.0;blue:state == 'draft';black:state in "
+"('confirm','new');gray:state == 'done'"
 msgstr ""
-"blue:state == 'draft';black:state in ('confirm','new');gray:state == 'done';"
-"red:theoretical_difference < 0.0"
+"red:theoretical_difference < 0.0;blue:state == 'draft';black:state in "
+"('confirm','new');gray:state == 'done'"
