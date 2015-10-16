@@ -44,7 +44,7 @@
 			<field name="inherit_id" ref="hr_timesheet_sheet.view_hr_timesheet_sheet_filter"/>
 			<field name="arch" type="xml">
 				<filter string="Department" position="after">
-					<filter string="Month" icon="terp-personal+" domain="[]" context="{'group_by':'date_from'}"/>
+					<filter string="Date" icon="terp-personal+" domain="[]" context="{'group_by':'date_from'}"/>
 				</filter>
 			</field>
 		</record>

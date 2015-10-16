@@ -14,10 +14,6 @@ class sheet(models.Model):
         store=True
     )
 
-    total_timesheet = fields.Float(
-        store=True
-    )
-
     @api.one
     @api.depends(
         'theoretical_hours',
