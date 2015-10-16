@@ -38,6 +38,7 @@ Report Configurator - Sale
     ],
     'data': [
         'views/report_view.xml',
+        'views/sale_order_view.xml'
     ],
     'demo': [
     ],

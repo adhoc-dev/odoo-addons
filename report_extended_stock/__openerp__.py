@@ -35,6 +35,7 @@ Report Configurator - Stock
     'depends': [
         'report_extended',
         'stock_voucher',
+        'report_extended_sale',
     ],
     'data': [
         'views/report_view.xml',

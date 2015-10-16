@@ -9,6 +9,12 @@
                     <field name="splitter_invoice_id" attrs="{'invisible':[('splitter_invoice_id','=',False)]}"/>
                     <field name="splitted_invoice_id" attrs="{'invisible':[('splitted_invoice_id','=',False)]}"/>
                 </xpath>
+                <div class="oe_clear" position="before">
+                    <div class="oe_clear">
+                        <label for="internal_notes"/>
+                    </div>
+                    <field name="internal_notes" class="oe_inline"/>
+                </div>
             </field>
         </record>
     </data>
