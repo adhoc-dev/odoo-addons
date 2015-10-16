@@ -13,7 +13,7 @@
                     <label for="list_price" attrs="{'invisible': [('list_price_type', '=', 'manual')]}"/>
                     <div attrs="{'invisible': [('list_price_type', '=', 'manual')]}">
                         <field name="replenishment_cost_copy" class="oe_inline"/>* ( 1 +
-                        <field name="sale_margin" class="oe_inline"/>) + 
+                        <field name="sale_margin" class="oe_inline"/>%) + 
                         <field name="sale_surcharge" class="oe_inline"/> = 
                         <field name="list_price" class="oe_inline"/>
                     </div>

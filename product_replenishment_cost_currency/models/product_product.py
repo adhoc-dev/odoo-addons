@@ -73,8 +73,9 @@ class ProductTemplate(models.Model):
         self.ensure_one()
         from_currency = self.replenishment_base_cost_currency_id
         to_currency = self.replenishment_cost_currency_id
-        replenishment_cost = self.replenishment_base_cost
+        replenishment_cost = False
         if from_currency and to_currency:
+            replenishment_cost = self.replenishment_base_cost
             if from_currency != to_currency:
                 replenishment_cost = from_currency.compute(
                         replenishment_cost, to_currency)

@@ -31,7 +31,7 @@ class product_template(models.Model):
         )
     list_price_type_currency_id = fields.Many2one(
         'res.currency',
-        'Company Currency',
+        'List Price Type Currency',
         compute='get_sale_price_on_list_price_type_currency',
         )
 
