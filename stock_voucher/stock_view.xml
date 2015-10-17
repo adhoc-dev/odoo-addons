@@ -72,6 +72,7 @@
             <field name="arch" type="xml">
                 <field name="return_picking_type_id" position="after">
                     <field name="book_id" attrs="{'invisible':[('code','=','incoming')]}"/>
+                    <field name="book_required" attrs="{'invisible':[('code','=','incoming')]}"/>
                 </field>
             </field>
         </record>
