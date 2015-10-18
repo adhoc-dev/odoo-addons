@@ -128,8 +128,11 @@ class account_invoice(models.Model):
 
         # create invoice
         invoice_vals = self._prepare_inv(
-            cr, uid, invoice, inv_lines, inv_type, journal_type, company, context=ctx)
-        return inv_obj.create(cr, uid, invoice_vals, context=ctx)
+            cr, uid, invoice, inv_lines, inv_type, journal_type, company,
+            context=ctx)
+        inv_id = inv_obj.create(cr, uid, invoice_vals, context=ctx)
+        inv_obj.button_compute(cr, uid, [inv_id])
+        return inv_id
 
     def _prepare_inv_line(self, cr, uid, line_data, line, context=None):
         """ Generate invoice line dictionary"""
