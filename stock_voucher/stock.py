@@ -10,6 +10,11 @@ import openerp.addons.decimal_precision as dp
 class stock_picking_type(models.Model):
     _inherit = "stock.picking.type"
 
+    book_required = fields.Boolean(
+        string='Book Required?',
+        help='If true, then a book will be requested on transfers of this '
+        'type and a will automatically print the stock voucher.',
+        )
     book_id = fields.Many2one(
         'stock.book', 'Book',
         help='Book suggested for pickings of this type',
@@ -34,6 +39,9 @@ class stock_book(models.Model):
         'Lines Per Voucher', required=True,
         help="If voucher don't have a limit, then live 0. If not, this number will be used to calculate how many sequence are used on each picking"
         )
+    # block_estimated_number_of_pages = fields.Boolean(
+    #     'Block Estimated Number of Pages?',
+    #     )
     company_id = fields.Many2one(
         'res.company', 'Company', required=True,
         default=lambda self: self.env[
@@ -90,3 +98,17 @@ class stock_picking(models.Model):
         if self._context.get('keep_wizard_open', False):
             report['type'] = 'ir.actions.report_dont_close_xml'
         return report
+
+    @api.one
+    def assign_numbers(self, estimated_number_of_pages, book):
+        voucher_ids = []
+        for page in range(estimated_number_of_pages):
+            number = self.env['ir.sequence'].next_by_id(
+                book.sequence_id.id,)
+            voucher_ids.append(self.env['stock.picking.voucher'].create({
+                'number': number,
+                'book_id': book.id,
+                'picking_id': self.id,
+                }).id)
+        self.write({
+            'book_id': book.id})

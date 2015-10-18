@@ -71,17 +71,8 @@ class stock_print_stock_voucher(models.TransientModel):
 
     @api.one
     def assign_numbers(self):
-        voucher_ids = []
-        for page in range(self.estimated_number_of_pages):
-            number = self.env['ir.sequence'].next_by_id(
-                self.book_id.sequence_id.id,)
-            voucher_ids.append(self.env['stock.picking.voucher'].create({
-                'number': number,
-                'book_id': self.book_id.id,
-                'picking_id': self.picking_id.id,
-                }).id)
-        self.picking_id.write({
-            'book_id': self.book_id.id})
+        self.picking_id.assign_numbers(
+            self.estimated_number_of_pages, self.book_id)
 
     @api.multi
     def do_print_and_assign(self):
