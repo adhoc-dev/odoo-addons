@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Partner Credit Limit',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.1.0',
     'description': """Partner Credit Limit
     When approving a Sale Order it computes the sum of:
         * The credit the Partner has to paid
