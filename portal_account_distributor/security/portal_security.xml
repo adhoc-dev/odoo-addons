@@ -35,7 +35,8 @@
             <field eval="0" name="perm_create"/>
         </record>
 
-        <record id="portal_account_company_rule" model="ir.rule">
+<!-- desactivamos esta regla que hace que un distribuidor pueda ver a todos los otros. No entiendo porque la habíamos agregado -->
+<!--         <record id="portal_account_company_rule" model="ir.rule">
             <field name="name">Portal Distributor Company</field>
             <field name="model_id" ref="base.model_res_partner"/>
             <field name="domain_force">[('ref_companies', '!=', [])]</field>
@@ -44,7 +45,7 @@
             <field eval="0" name="perm_write"/>
             <field eval="1" name="perm_read"/>
             <field eval="0" name="perm_create"/>
-        </record>
+        </record> -->
 
     </data>
 </openerp>

@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Portal Distributor Account',
-    'version': '8.0.0.3.0',
+    'version': '8.0.1.0.0',
     'category': 'Tools',
     'complexity': 'easy',
     'description': """
