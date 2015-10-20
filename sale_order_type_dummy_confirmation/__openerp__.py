@@ -19,23 +19,28 @@
 #
 ##############################################################################
 {
-    'name': 'Sale Dummy Confirmation',
-    'version': '8.0.1.0.1',
+    'name': 'Sale Order Type Dummy Confirmation Integration',
+    'version': '8.0.1.0.0',
     'author': 'ADHOC SA',
     'website': 'www.ingenieria.com.ar',
-    'depends': ["sale_stock"],
+    'depends': [
+        'sale_dummy_confirmation',
+        'sale_order_type',
+        ],
     'category': 'Sale Management',
     'description': '''
-Sale Dummy Confirmation
-=======================
-On a multi-company environment with stock and/or account, allow using only sale
-for some companies.
+Sale Order Type Dummy Confirmation Integration
+==============================================
+We add dummy confirm option on sale types. If company has "dummy confirm"
+then all orders will be "dummy confirm", if not, then we will chec if
+sale type has "dummy confirm" or not.
     ''',
     'demo': [
     ],
     'data': [
-        'company_view.xml',
         'sale_view.xml',
+        'sale_order_type_view.xml',
     ],
-    'installable': True
+    'installable': True,
+    'auto_install': True,
 }
