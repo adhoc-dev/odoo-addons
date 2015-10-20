@@ -38,7 +38,6 @@ sale type has "dummy confirm" or not.
     'demo': [
     ],
     'data': [
-        'sale_view.xml',
         'sale_order_type_view.xml',
     ],
     'installable': True,
