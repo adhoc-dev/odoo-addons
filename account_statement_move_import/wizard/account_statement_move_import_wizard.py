@@ -4,6 +4,7 @@
 # directory
 ##############################################################################
 from openerp import fields, models, api, _
+from openerp.exceptions import Warning
 
 
 class account_statement_move_import_wizard(models.TransientModel):
@@ -122,7 +123,7 @@ class account_statement_move_import_wizard(models.TransientModel):
             statement.line_ids.create(line_vals)
 
             # add statement to move lines
-            line.move_id.line_id.write({'statement_id': statement.id})
+            line.write({'statement_id': statement.id})
         return True
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
