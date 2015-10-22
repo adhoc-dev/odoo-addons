@@ -43,8 +43,8 @@ class sale_advance_payment_inv(models.TransientModel):
         )
     invoice_currency_amount = fields.Float(
         'Invoice Currency Advance Amount',
-        readonly=True,
         digits=dp.get_precision('Account'),
+        compute='get_invoice_currency_amount',
         )
 
     def onchange_method(
@@ -71,14 +71,11 @@ class sale_advance_payment_inv(models.TransientModel):
                 "'Percentage' or 'Some order lines'."))
         return super(sale_advance_payment_inv, self).create_invoices()
 
-    def on_change_currency_amount(
-            self, cr, uid, ids, invoice_currency_rate, amount, context=None):
-        result = {'domain': {}, 'value': {}}
-        invoice_currency_amount = False
-        if invoice_currency_rate and amount:
-            invoice_currency_amount = amount * invoice_currency_rate
-        result['value']['invoice_currency_amount'] = invoice_currency_amount
-        return result
+    @api.depends('invoice_currency_rate', 'amount')
+    def get_invoice_currency_amount(self):
+        if self.invoice_currency_rate and self.amount:
+            self.invoice_currency_amount = (
+                self.amount * self.invoice_currency_rate)
 
     def _prepare_advance_invoice_vals(self, cr, uid, ids, context=None):
         # Intento de heredar y modificar metodo
@@ -144,9 +141,7 @@ class sale_advance_payment_inv(models.TransientModel):
                 # Esta es la parte que modificamos
                 # inv_amount = wizard.amount
                 if wizard.invoice_currency_id:
-                    # no uso invoice_currency_amount porque como es readonly
-                    # no se guarda
-                    inv_amount = wizard.amount * wizard.invoice_currency_rate
+                    inv_amount = wizard.invoice_currency_amount
                     sale_currency_price_unit = wizard.amount
                 else:
                     inv_amount = wizard.amount

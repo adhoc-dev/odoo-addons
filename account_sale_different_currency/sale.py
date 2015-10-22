@@ -83,6 +83,8 @@ class sale_order(models.Model):
                     order.different_currency_id.id,
                     sale_currency_price_unit_sum, round=False, context=context)
                 adjust_value += (price_unit_sum - sale_currency_price_unit_sum)
+        adjust_value = self.pool['res.currency'].round(
+            cr, uid, order.different_currency_id, adjust_value)
         if adjust_value:
             product = order.company_id.currency_adjust_product_id
             if not product:
