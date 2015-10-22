@@ -29,8 +29,8 @@ class sale_order(models.Model):
 
     @api.model
     def _prepare_invoice(self, order, lines):
-        invoice_vals = super(sale_order, self)._prepare_invoice(order, lines)
-        invoice_vals.pop('comment')
-        invoice_vals.update({
+        vals = super(sale_order, self)._prepare_invoice(order, lines)
+        vals.pop('comment')
+        vals.update({
             'internal_notes': order.internal_notes})
-        return invoice_vals
+        return vals

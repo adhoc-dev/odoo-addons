@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Report Configurator - Stock',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.0.1',
     'category': 'Reporting Subsystem',
     'sequence': 14,
     'summary': '',
@@ -39,6 +39,7 @@ Report Configurator - Stock
     ],
     'data': [
         'views/report_view.xml',
+        'views/stock_view.xml'
     ],
     'demo': [
     ],

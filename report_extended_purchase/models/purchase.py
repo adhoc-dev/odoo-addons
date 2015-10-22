@@ -31,11 +31,12 @@ class purchase_order(models.Model):
         invoice_vals = super(
             purchase_order, self)._prepare_invoice(order, line_ids)
         invoice_vals.update({
-            'internal_notes': order.internal_notes})
+            'comment': order.internal_notes})
         return invoice_vals
 
     @api.model
     def action_picking_create(self):
         picking_id = super(purchase_order, self).action_picking_create()
-        picking_id.write({'note': self.internal_notes})
+        picking = self.env['stock.picking'].browse(picking_id)
+        picking.write({'note': self.internal_notes})
         return picking_id
