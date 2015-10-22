@@ -22,7 +22,7 @@
     'name': 'Sale Order Type Dummy Confirmation Integration',
     'version': '8.0.1.0.0',
     'author': 'ADHOC SA',
-    'website': 'www.ingenieria.com.ar',
+    'website': 'www.adhoc.com.ar',
     'depends': [
         'sale_dummy_confirmation',
         'sale_order_type',

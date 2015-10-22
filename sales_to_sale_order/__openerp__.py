@@ -22,7 +22,7 @@
     'name': 'Sales to Sale Order',
     'version': '8.0.1.0.0',
     'author': 'ADHOC SA',
-    'website': 'www.ingenieria.com.ar',
+    'website': 'www.adhoc.com.ar',
     'depends' : ["sale"],
     'category' : 'Sale Management',
     'description': '''

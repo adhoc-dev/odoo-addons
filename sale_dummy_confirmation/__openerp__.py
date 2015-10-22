@@ -22,7 +22,7 @@
     'name': 'Sale Dummy Confirmation',
     'version': '8.0.1.0.1',
     'author': 'ADHOC SA',
-    'website': 'www.ingenieria.com.ar',
+    'website': 'www.adhoc.com.ar',
     'depends': ["sale_stock"],
     'category': 'Sale Management',
     'description': '''
