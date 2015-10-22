@@ -1,62 +1,51 @@
 # -*- coding: utf-8 -*-
-from openerp.osv import osv, fields
+from openerp import models, fields, api, _
+from openerp.osv import osv
+from openerp.exceptions import Warning
 import openerp.addons.decimal_precision as dp
-from openerp.tools.translate import _
 
 
-class sale_advance_payment_inv(osv.osv_memory):
+class sale_advance_payment_inv(models.TransientModel):
     _inherit = "sale.advance.payment.inv"
 
-    _columns = {
-        'invoice_currency_rate': fields.float(
-            'Invoice Currency Rate',
-        ),
-        'invoice_currency_id': fields.many2one(
-            'res.currency', 'Invoice Currency',
-            readonly=True,
-        ),
-        'invoice_currency_amount': fields.float(
-            'Invoice Currency Advance Amount',
-            readonly=True,
-            digits_compute=dp.get_precision('Account')),
-    }
+    @api.model
+    def _get_invoice_currency_rate(self):
+        sale_id = self._context.get('active_id', False)
+        sale = self.env['sale.order'].browse(sale_id)
+        return sale.pricelist_id.currency_id.compute(
+            1.0, sale.different_currency_id, round=True)
 
-    def _get_invoice_currency_rate(self, cr, uid, context=None):
-        sale_id = context.get('active_id', False)
-        invoice_currency_rate = False
-        if sale_id:
-            sale = self.pool['sale.order'].browse(
-                cr, uid, sale_id, context=context)
-            invoice_currency_rate = self.pool['res.currency'].compute(
-                cr, uid, sale.pricelist_id.currency_id.id,
-                sale.different_currency_id.id,
-                1.0, round=False, context=context)
-            invoice_currency_rate = invoice_currency_rate
-        return invoice_currency_rate
+    @api.model
+    def _get_invoice_currency_id(self):
+        sale_id = self._context.get('active_id', False)
+        return self.env['sale.order'].browse(
+            sale_id).different_currency_id
 
-    def _get_invoice_currency_id(self, cr, uid, context=None):
-        sale_id = context.get('active_id', False)
-        invoice_currency_id = False
-        if sale_id:
-            sale = self.pool['sale.order'].browse(
-                cr, uid, sale_id, context=context)
-            invoice_currency_id = sale.different_currency_id and sale.different_currency_id.id or False
-        return invoice_currency_id
+    @api.model
+    def _get_product_id(self):
+        sale_id = self._context.get('active_id', False)
+        return self.env['sale.order'].browse(
+            sale_id).company_id.default_advance_product_id
 
-    def _get_product_id(self, cr, uid, context=None):
-        sale_id = context.get('active_id', False)
-        product_id = False
-        if sale_id:
-            sale = self.pool['sale.order'].browse(
-                cr, uid, sale_id, context=context)
-            product_id = sale.company_id.default_advance_product_id and sale.company_id.default_advance_product_id.id or False
-        return product_id
-
-    _defaults = {
-        'invoice_currency_rate': _get_invoice_currency_rate,
-        'invoice_currency_id': _get_invoice_currency_id,
-        'product_id': _get_product_id,
-    }
+    product_id = fields.Many2one(
+        default=_get_product_id,
+        )
+    invoice_currency_rate = fields.Float(
+        'Invoice Currency Rate',
+        digits=(12, 6),
+        default=_get_invoice_currency_rate,
+        )
+    invoice_currency_id = fields.Many2one(
+        'res.currency',
+        'Invoice Currency',
+        readonly=True,
+        default=_get_invoice_currency_id,
+        )
+    invoice_currency_amount = fields.Float(
+        'Invoice Currency Advance Amount',
+        readonly=True,
+        digits=dp.get_precision('Account'),
+        )
 
     def onchange_method(
             self, cr, uid, ids,
@@ -67,19 +56,20 @@ class sale_advance_payment_inv(osv.osv_memory):
             return {'value': {'amount': 0}}
             # return {'value': {'amount':0, 'product_id':False }}
         if product_id and advance_payment_method == 'fixed':
-            product = self.pool.get('product.product').browse(cr, uid, product_id, context=context)
+            product = self.pool.get('product.product').browse(
+                cr, uid, product_id, context=context)
             return {'value': {'amount': product.list_price}}
         return {'value': {'amount': 0}}
 
-    def create_invoices(self, cr, uid, ids, context=None):
-        wizard = self.browse(cr, uid, ids[0], context)
-        if wizard.advance_payment_method in ('lines'):
-        # if wizard.advance_payment_method in ('percentage', 'lines'):
-            raise osv.except_osv(
-                _('Configuration Error!'),
-                _("If Invoice in different Currency you can not select 'Percentage' or 'Some order lines'."))
-        return super(sale_advance_payment_inv, self).create_invoices(
-            cr, uid, ids, context)
+    @api.multi
+    def create_invoices(self):
+        self.ensure_one()
+        if self.advance_payment_method in ('lines'):
+            raise Warning(_(
+                "Configuration Error!\n"
+                "If Invoice in different Currency you can not select "
+                "'Percentage' or 'Some order lines'."))
+        return super(sale_advance_payment_inv, self).create_invoices()
 
     def on_change_currency_amount(
             self, cr, uid, ids, invoice_currency_rate, amount, context=None):
