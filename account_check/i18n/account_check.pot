@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-01 15:31+0000\n"
-"PO-Revision-Date: 2015-10-01 15:31+0000\n"
+"POT-Creation-Date: 2015-10-22 20:11+0000\n"
+"PO-Revision-Date: 2015-10-22 20:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -64,8 +64,6 @@ msgstr ""
 
 #. module: account_check
 #: field:account.check,amount:0
-#: code:addons/account_check/models/account_voucher.py:45
-#, python-format
 msgid "Amount"
 msgstr ""
 
@@ -195,6 +193,12 @@ msgstr ""
 #: view:account.voucher:account_check.view_vendor_receipt_check_form
 #: view:account.voucher:account_check.view_vendor_receipt_dialog_form
 msgid "Checks"
+msgstr ""
+
+#. module: account_check
+#: code:addons/account_check/models/account_voucher.py:45
+#, python-format
+msgid "Checks Amount"
 msgstr ""
 
 #. module: account_check
@@ -426,7 +430,6 @@ msgid "Issue Check Subtype"
 msgstr ""
 
 #. module: account_check
-#: model:account.account,name:account_check.issue_check
 #: field:account.checkbook,issue_check_ids:0
 #: model:ir.actions.act_window,name:account_check.action_issue_check
 #: model:ir.ui.menu,name:account_check.menu_issue_check
@@ -726,17 +729,11 @@ msgid "Third Check"
 msgstr ""
 
 #. module: account_check
-#: model:account.account,name:account_check.third_check
 #: field:account.voucher,delivered_third_check_ids:0
 #: field:account.voucher,received_third_check_ids:0
 #: model:ir.actions.act_window,name:account_check.action_third_check
 #: model:ir.ui.menu,name:account_check.menu_third_check
 msgid "Third Checks"
-msgstr ""
-
-#. module: account_check
-#: model:account.journal,name:account_check.third_check_journal
-msgid "Third Checks Journal - (test)"
 msgstr ""
 
 #. module: account_check
@@ -821,6 +818,18 @@ msgstr ""
 #. module: account_check
 #: field:account.check,voucher_id:0
 msgid "Voucher"
+msgstr ""
+
+#. module: account_check
+#: field:account.check,website_message_ids:0
+#: field:account.checkbook,website_message_ids:0
+msgid "Website Messages"
+msgstr ""
+
+#. module: account_check
+#: help:account.check,website_message_ids:0
+#: help:account.checkbook,website_message_ids:0
+msgid "Website communication history"
 msgstr ""
 
 #. module: account_check

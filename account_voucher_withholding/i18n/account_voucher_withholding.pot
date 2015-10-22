@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-01 15:35+0000\n"
-"PO-Revision-Date: 2015-10-01 15:35+0000\n"
+"POT-Creation-Date: 2015-10-22 20:18+0000\n"
+"PO-Revision-Date: 2015-10-22 20:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -319,6 +319,8 @@ msgstr ""
 
 #. module: account_voucher_withholding
 #: view:account.voucher.withholding:account_voucher_withholding.account_voucher_withholding_filter_view
+#: code:addons/account_voucher_withholding/models/account_voucher_withholding.py:78
+#, python-format
 msgid "Type"
 msgstr ""
 
