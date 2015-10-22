@@ -12,7 +12,8 @@ class stock_picking(models.Model):
     @api.multi
     def do_print_picking(self):
         '''This function prints the picking list'''
-        assert len(self) == 1, 'This option should only be used for a single id at a time.'
+        assert len(
+            self) == 1, 'This option should only be used for a single id at a time.'
         report_obj = self.env['ir.actions.report.xml']
         report_name = report_obj.with_context(
             stock_report_type='picking_list').get_report_name(
@@ -22,7 +23,8 @@ class stock_picking(models.Model):
     @api.multi
     def do_print_voucher(self):
         '''This function prints the voucher'''
-        assert len(self) == 1, 'This option should only be used for a single id at a time.'
+        assert len(
+            self) == 1, 'This option should only be used for a single id at a time.'
         report_obj = self.env['ir.actions.report.xml']
         report_name = report_obj.with_context(
             stock_report_type='voucher').get_report_name(
@@ -32,50 +34,22 @@ class stock_picking(models.Model):
             report['type'] = 'ir.actions.report_dont_close_xml'
         return report
 
+    @api.model
+    def _get_invoice_vals(self, key, inv_type, journal_id, move):
+        vals = super(stock_picking, self)._get_invoice_vals(
+            key, inv_type, journal_id, move)
+        vals.pop('comment')
+        vals.update({
+            'internal_notes': move.picking_id.note})
+        return vals
 
-    # def receipt_send_rfq(self, cr, uid, ids, context=None):
-    #     '''  Override to use a modified template that includes a portal signup link '''
-    #     action_dict = super(stock_picking, self).receipt_send_rfq(cr, uid, ids, context=context)
-    #     try:
-    #         template_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'report_extended_stock', 'email_template_report_stock')[1]
-    #         # assume context is still a dict, as prepared by super
-    #         ctx = action_dict['context']
-    #         ctx['default_template_id'] = template_id
-    #         ctx['default_use_template'] = True
-    #     except Exception:
-    #         pass
-    #     return action_dict
 
-    # def receipt_send_rfq(self, cr, uid, ids, context=None):
-    #     '''
-    #     This function opens a window to compose an email, with the edi stock template message loaded by default
-    #     '''
-    #     assert len(ids) == 1, 'This option should only be used for a single id at a time.'
-    #     ir_model_data = self.pool.get('ir.model.data')
-    #     try:
-    #         template_id = ir_model_data.get_object_reference(cr, uid, 'report_extended_stock', 'email_template_report_stock')[1]
-    #     except ValueError:
-    #         template_id = False
-    #     try:
-    #         compose_form_id = ir_model_data.get_object_reference(cr, uid, 'mail', 'email_compose_message_wizard_form')[1]
-    #     except ValueError:
-    #         compose_form_id = False 
-    #     ctx = dict()
-    #     ctx.update({
-    #         'default_model': 'stock.picking',
-    #         'default_res_id': ids[0],
-    #         'default_use_template': bool(template_id),
-    #         'default_template_id': template_id,
-    #         'default_composition_mode': 'comment',
-    #         'mark_so_as_sent': True
-    #     })
-    #     return {
-    #         'type': 'ir.actions.act_window',
-    #         'view_type': 'form',
-    #         'view_mode': 'form',
-    #         'res_model': 'mail.compose.message',
-    #         'views': [(compose_form_id, 'form')],
-    #         'view_id': compose_form_id,
-    #         'target': 'new',
-    #         'context': ctx,
-    #     }
+class stock_move(models.Model):
+    _inherit = 'stock.move'
+
+    @api.model
+    def _prepare_picking_assign(self, move):
+        res = super(stock_move, self)._prepare_picking_assign(move)
+        res.update({
+            'note': move.procurement_id.sale_line_id.order_id.internal_notes})
+        return res

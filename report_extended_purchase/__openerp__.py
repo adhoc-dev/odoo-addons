@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Report Configurator - Purchase',
-    'version': '8.0.1.1.0',
+    'version': '8.0.1.2.0',
     'category': 'Reporting Subsystem',
     'sequence': 14,
     'summary': '',

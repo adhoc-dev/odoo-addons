@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Report Configurator - Stock',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.1.0',
     'category': 'Reporting Subsystem',
     'sequence': 14,
     'summary': '',
@@ -35,9 +35,11 @@ Report Configurator - Stock
     'depends': [
         'report_extended',
         'stock_voucher',
+        'report_extended_sale',
     ],
     'data': [
         'views/report_view.xml',
+        'views/stock_view.xml'
     ],
     'demo': [
     ],
