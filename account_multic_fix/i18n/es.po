@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: odoo-addons (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 23:57+0000\n"
-"PO-Revision-Date: 2015-09-01 18:07+0000\n"
+"POT-Creation-Date: 2015-10-22 13:44+0000\n"
+"PO-Revision-Date: 2015-10-22 14:33+0000\n"
 "Last-Translator: Juan Jose Scarafia <scarafia.juanjose@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/adhoc/ingadhoc-odoo-addons-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,17 @@ msgstr ""
 #. module: account_multic_fix
 #: model:ir.model,name:account_multic_fix.model_account_move
 msgid "Account Entry"
+msgstr "Asiento contable"
+
+#. module: account_multic_fix
+#: model:ir.model,name:account_multic_fix.model_account_move_line_reconcile_writeoff
+msgid "Account move line reconcile (writeoff)"
+msgstr ""
+
+#. module: account_multic_fix
+#: code:addons/account_multic_fix/wizard/account_move_line_reconcile_writeoff.py:19
+#, python-format
+msgid "All move lines must be from the same company!"
 msgstr ""
 
 #. module: account_multic_fix
@@ -31,18 +42,19 @@ msgstr ""
 #. module: account_multic_fix
 #: model:ir.model,name:account_multic_fix.model_account_bank_statement
 msgid "Bank Statement"
-msgstr ""
+msgstr "Extracto bancario"
 
 #. module: account_multic_fix
 #: model:ir.model,name:account_multic_fix.model_account_bank_statement_line
 msgid "Bank Statement Line"
-msgstr ""
+msgstr "Línea de extracto bancario"
 
 #. module: account_multic_fix
+#: field:account.move.line.reconcile.writeoff,company_id:0
 #: field:account.statement.from.invoice.lines,company_id:0
 #: field:account.statement.operation.template,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Compañía"
 
 #. module: account_multic_fix
 #: model:ir.model,name:account_multic_fix.model_account_statement_from_invoice_lines
@@ -84,4 +96,19 @@ msgid ""
 "[('account_id.type','in',['receivable','payable']),('reconcile_id','=',False),"
 " ('reconcile_partial_id','=',False), ('state', '=', 'valid'), ('company_id',"
 " '=', company_id)]"
+msgstr ""
+
+#. module: account_multic_fix
+#: view:account.move.line.reconcile.writeoff:account_multic_fix.account_move_line_reconcile_writeoff
+msgid "[('company_id', '=', company_id), ('type', '!=', 'view')]"
+msgstr ""
+
+#. module: account_multic_fix
+#: view:account.move.line.reconcile.writeoff:account_multic_fix.account_move_line_reconcile_writeoff
+msgid "[('company_id', '=', company_id)]"
+msgstr ""
+
+#. module: account_multic_fix
+#: view:account.move.line.reconcile.writeoff:account_multic_fix.account_move_line_reconcile_writeoff
+msgid "[('type', '<>', 'view'), ('company_id', '=', company_id)]"
 msgstr ""
