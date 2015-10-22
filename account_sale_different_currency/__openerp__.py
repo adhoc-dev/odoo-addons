@@ -28,6 +28,11 @@ Ejemplo de uso:
     * Adelanto 0001-00000002 --> 1 x - 11000
     * Ajuste x diferencia cambiaria --> 1 x -3000
     * TOTAL = $48000
+
+Errores en redondeo:
+--------------------
+Si se tienen errores en reondeo es recomendable ajustar la precision de las
+monedas pertinentes y de "account" y "product" a 3 decimales.
     """,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
