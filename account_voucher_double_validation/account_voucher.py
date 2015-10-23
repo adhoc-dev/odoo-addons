@@ -9,11 +9,11 @@ class account_voucher(models.Model):
 
     state = fields.Selection(
         selection=[
-            ('draft', 'Draft'),
-            ('confirmed', 'Confirmed'),
-            ('cancel', 'Cancelled'),
-            ('proforma', 'Pro-forma'),
-            ('posted', 'Posted')
+            ('draft', _('Draft')),
+            ('confirmed', _('Confirmed')),
+            ('cancel', _('Cancelled')),
+            ('proforma', _('Pro-forma')),
+            ('posted', _('Posted'))
         ])
     # we need amount to be not readonly on confirmed in order to compute the value
     amount = fields.Float(
@@ -58,10 +58,13 @@ class account_voucher(models.Model):
         help='Payment can not be validated before this date',
         )
     to_pay_amount = fields.Float(
-        'To Pay Amount',
+        'Importe a Pagar',
+        # _('To Pay Amount'),
+        # waiting for a PR 9081 to fix computed fields translations
+        help='Importe a ser pagado',
+        # help=_('Amount To be Paid'),
         compute='_get_to_pay_amount',
         digits=dp.get_precision('Account'),
-        help='Amount To be Paid',
     )
     advance_amount = fields.Float(
         'Advance Amount',

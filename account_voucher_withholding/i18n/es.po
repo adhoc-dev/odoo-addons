@@ -1,20 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* account_voucher_withholding
+#	* account_voucher_withholding
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-01 15:36+0000\n"
-"PO-Revision-Date: 2015-10-01 12:37-0300\n"
+"POT-Creation-Date: 2015-10-22 20:19+0000\n"
+"PO-Revision-Date: 2015-10-22 20:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 1.5.4\n"
 
 #. module: account_voucher_withholding
 #: field:account.tax.withholding,account_id:0
@@ -150,22 +149,14 @@ msgstr "ID"
 #. module: account_voucher_withholding
 #: help:account.tax.withholding,sequence_id:0
 #: help:account.tax.withholding.template,sequence_id:0
-msgid ""
-"If no sequence provided then it will be required for you to enter "
-"withholding number when registering one."
-msgstr ""
-"Si no se provee una secuencia entonces se le va a requerir que ingrese un "
-"número de retención al registrar una."
+msgid "If no sequence provided then it will be required for you to enter withholding number when registering one."
+msgstr "Si no se provee una secuencia entonces se le va a requerir que ingrese un número de retención al registrar una."
 
 #. module: account_voucher_withholding
 #: help:account.tax.withholding,active:0
 #: help:account.tax.withholding.template,active:0
-msgid ""
-"If the active field is set to False,it will allow you to hide the tax "
-"without removing it."
-msgstr ""
-"Si el campo activo se setea como Falso, le va a permitir ocultar el impuesto "
-"sin borrarlo."
+msgid "If the active field is set to False,it will allow you to hide the tax without removing it."
+msgstr "Si el campo activo se setea como Falso, le va a permitir ocultar el impuesto sin borrarlo."
 
 #. module: account_voucher_withholding
 #: field:account.voucher.withholding,internal_number:0
@@ -205,8 +196,7 @@ msgstr "Last Updated on"
 #. module: account_voucher_withholding
 #: help:account.chart.template,withholding_template_ids:0
 msgid "List of all the withholding that have to be installed by the wizard"
-msgstr ""
-"Lista de todas las retenciones que han sido instaladas por el asistente"
+msgstr "Lista de todas las retenciones que han sido instaladas por el asistente"
 
 #. module: account_voucher_withholding
 #: field:account.tax.withholding,name:0
@@ -329,6 +319,8 @@ msgstr "Total"
 
 #. module: account_voucher_withholding
 #: view:account.voucher.withholding:account_voucher_withholding.account_voucher_withholding_filter_view
+#: code:addons/account_voucher_withholding/models/account_voucher_withholding.py:78
+#, python-format
 msgid "Type"
 msgstr "Tipo"
 
@@ -365,9 +357,7 @@ msgstr "Comprobante"
 #: code:addons/account_voucher_withholding/models/account_voucher_withholding.py:99
 #, python-format
 msgid "Voucher and Tax Withholding must belong to the same company"
-msgstr ""
-"El Comprobante y el Impuesto de Retención deben pertenecer a la misma "
-"compañía"
+msgstr "El Comprobante y el Impuesto de Retención deben pertenecer a la misma compañía"
 
 #. module: account_voucher_withholding
 #: view:account.voucher:account_voucher_withholding.view_vendor_receipt_dialog_form
@@ -420,3 +410,4 @@ msgstr "Retenciones"
 #, python-format
 msgid "Withholdings Amount"
 msgstr "Importe de Retenciones"
+

@@ -42,10 +42,13 @@ class account_voucher(models.Model):
         states={'draft': [('readonly', False)]}
         )
     checks_amount = fields.Float(
-        _('Amount'),
+        _('Importe en Cheques'),
+        # waiting for a PR 9081 to fix computed fields translations
+        # _('Checks Amount'),
+        help='Importe Pagado con Cheques',
+        # help=_('Amount Paid With Checks'),
         compute='_get_checks_amount',
         digits=dp.get_precision('Account'),
-        help=_('Amount Paid With Checks'),
     )
 
     @api.onchange('dummy_journal_id')

@@ -75,7 +75,9 @@ class account_voucher_withholding(models.Model):
         )
     type = fields.Selection(
         related='voucher_id.type',
-        string='Type',
+        string='Tipo',
+        # string='Type',
+        # waiting for a PR 9081 to fix computed fields translations
         readonly=True,
         )
 
