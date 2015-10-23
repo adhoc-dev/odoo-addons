@@ -7,16 +7,16 @@
             <field name="inherit_id" ref="sale_global_discount.view_sale_global_discount_wizard_form"/>
             <field name="arch" type="xml">
                 <field name="amount" position="replace">
-                    <group>
+                    <group col="4">
                         <group>
                             <field name="discount1"/>
                             <field name="discount2"/>
                             <field name="discount3"/>
                         </group>
                         <group>
-                            <field name="discount1_amount" attrs="{'invisible': [('discount1','!=',True)]}"/>
-                            <field name="discount2_amount" attrs="{'invisible': [('discount2','!=',True)]}"/>
-                            <field name="discount3_amount" attrs="{'invisible': [('discount3','!=',True)]}"/>
+                            <field name="discount1_amount" attrs="{'readonly': [('discount1','!=',True)]}"/>
+                            <field name="discount2_amount" attrs="{'readonly': [('discount2','!=',True)]}"/>
+                            <field name="discount3_amount" attrs="{'readonly': [('discount3','!=',True)]}"/>
                         </group>
                     </group>
                 </field>
