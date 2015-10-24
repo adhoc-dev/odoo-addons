@@ -31,16 +31,13 @@ class sale_global_discount_wizard(models.TransientModel):
     )
 
     discount1_amount = fields.Float(
-        '(%)',
-        required=True,
+        '(%)'
     )
     discount2_amount = fields.Float(
-        '(%)',
-        required=True,
+        '(%)'
     )
     discount3_amount = fields.Float(
-        '(%)',
-        required=True,
+        '(%)'
     )
     amount = fields.Float(
         required=False,

@@ -14,9 +14,9 @@
                             <field name="discount3"/>
                         </group>
                         <group>
-                            <field name="discount1_amount" attrs="{'readonly': [('discount1','!=',True)]}"/>
-                            <field name="discount2_amount" attrs="{'readonly': [('discount2','!=',True)]}"/>
-                            <field name="discount3_amount" attrs="{'readonly': [('discount3','!=',True)]}"/>
+                            <field name="discount1_amount" attrs="{'readonly': [('discount1','!=',True)], 'required':[('discount1','=',True)]}"/>
+                            <field name="discount2_amount" attrs="{'readonly': [('discount2','!=',True)], 'required':[('discount2','=',True)]}"/>
+                            <field name="discount3_amount" attrs="{'readonly': [('discount3','!=',True)], 'required':[('discount3','=',True)]}"/>
                         </group>
                     </group>
                 </field>
