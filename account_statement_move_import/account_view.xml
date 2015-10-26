@@ -24,6 +24,7 @@
                 </button>
                 <field name='amount' position="after">
                     <field name="imported"/>
+                    <!-- <field name="imported_line_id"/> -->
                 </field>
             </field>
         </record>
@@ -40,6 +41,7 @@
                 </label>
                 <field name='amount' position="after">
                     <field name="imported"/>
+                    <!-- <field name="imported_line_id"/> -->
                 </field>
             </field>
         </record>
