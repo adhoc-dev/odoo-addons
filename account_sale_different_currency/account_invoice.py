@@ -15,7 +15,9 @@ class account_invoice(models.Model):
         )
     sale_currency_amount_total = fields.Float(
         compute='_get_sale_currency_amount_total',
-        string='SO Currency Total',
+        # string='SO Currency Total',
+        # waiting for a PR 9081 to fix computed fields translations
+        string='Total moneda OV',
         digits=dp.get_precision('Account'),
         )
     sale_currency_id = fields.Many2one(
