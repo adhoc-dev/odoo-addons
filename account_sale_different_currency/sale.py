@@ -9,6 +9,11 @@ class sale_order_line(models.Model):
 
     def _prepare_order_line_invoice_line(
             self, cr, uid, line, account_id=False, context=None):
+        """
+        Este metodo es el que calcula la factura de cierre. Convierte cada
+        linea de la orden de venta a la moneda destino con la tasa actual que
+        es la misma que muestre el wizard.
+        """
         res = super(sale_order_line, self)._prepare_order_line_invoice_line(
             cr, uid, line, account_id, context)
         if line.order_id.different_currency_id:
@@ -72,17 +77,29 @@ class sale_order(models.Model):
             for invoice_line_id in invoiced_sale_line_id.invoice_lines:
                 if invoice_line_id.invoice_id.id not in from_line_invoice_ids:
                     from_line_invoice_ids.append(invoice_line_id.invoice_id.id)
+        invoice_currency_rate = self.pool['res.currency'].compute(
+            cr, uid, order.pricelist_id.currency_id.id,
+            order.different_currency_id.id,
+            1.0, round=True, context=context)
         for preinv in order.invoice_ids:
             if preinv.state not in ('cancel',) and preinv.id not in from_line_invoice_ids:
+                # calculamos el total adelantado en dolares
                 sale_currency_price_unit_sum = sum(
                     [x.sale_currency_price_unit for x in preinv.invoice_line])
+                # y lo convertimos a pesos a cotizacion de hoy
+                sale_currency_price_unit_sum = (
+                    sale_currency_price_unit_sum * invoice_currency_rate)
+
+                # calculamos el precio teorico adelntado en pesos pagado y no
+                # usamos el real porque podrian existir diferencias por
+                # decimales
                 price_unit_sum = sum(
-                    [x.price_unit for x in preinv.invoice_line if x.sale_currency_price_unit])
-                sale_currency_price_unit_sum = self.pool['res.currency'].compute(
-                    cr, uid, order.pricelist_id.currency_id.id,
-                    order.different_currency_id.id,
-                    sale_currency_price_unit_sum, round=False, context=context)
+                    [x.sale_currency_price_unit * preinv.invoice_currency_rate for x in preinv.invoice_line if x.sale_currency_price_unit])
+
+                # vemos la diferencia entre lo que adelanto en pesos y lo que
+                # deberia pagar hoy y se lo descontamos
                 adjust_value += (price_unit_sum - sale_currency_price_unit_sum)
+        # redondeamos la diferencia
         adjust_value = self.pool['res.currency'].round(
             cr, uid, order.different_currency_id, adjust_value)
         if adjust_value:
@@ -109,10 +126,6 @@ class sale_order(models.Model):
                     _('There is no income account defined for this product: "%s" (id:%d).') %
                     (product.name, product.id,))
 
-            invoice_currency_rate = self.pool['res.currency'].compute(
-                cr, uid, order.pricelist_id.currency_id.id,
-                order.different_currency_id.id,
-                1.0, round=False, context=context)
             # write invoice_currency_rate on invoice already created
             inv_obj.write(
                 cr, uid, inv_id,

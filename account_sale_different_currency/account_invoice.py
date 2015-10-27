@@ -12,6 +12,7 @@ class account_invoice(models.Model):
 
     invoice_currency_rate = fields.Float(
         'Invoice Currency Rate',
+        digits=(12, 6),
         )
     sale_currency_amount_total = fields.Float(
         compute='_get_sale_currency_amount_total',
