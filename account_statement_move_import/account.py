@@ -37,7 +37,7 @@ class account_move(models.Model):
                 "You can not cancel an Accounting Entry that is linked "
                 "to a statement. You should cancel or delete lines from "
                 "statement first. Related Statements: '%s'") % (
-                    ', '.join(statement_lines.statement_id.mapped('name'))))
+                    ', '.join(statement_lines.mapped('statement_id.name'))))
         else:
             return super(account_move, self).button_cancel()
 
