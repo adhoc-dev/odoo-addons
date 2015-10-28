@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Account Invoice Pricelist Discount',
-    'version': '8.0.2.0.0',
+    'version': '8.0.2.1.0',
     'description': """
 Account Invoice Pricelist Discount
 ==================================
