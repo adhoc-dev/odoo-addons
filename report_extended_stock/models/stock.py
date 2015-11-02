@@ -38,7 +38,8 @@ class stock_picking(models.Model):
     def _get_invoice_vals(self, key, inv_type, journal_id, move):
         vals = super(stock_picking, self)._get_invoice_vals(
             key, inv_type, journal_id, move)
-        vals.pop('comment')
+        if 'comment' in vals:
+            vals.pop('comment')
         vals.update({
             'internal_notes': move.picking_id.note})
         return vals
