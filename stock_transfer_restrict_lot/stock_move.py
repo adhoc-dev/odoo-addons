@@ -26,12 +26,15 @@ class stock_transfer_details(models.TransientModel):
                          ('location_id', '=', self.item_ids[0].sourceloc_id.id)])
                     if quants:
                         qty = sum([x.qty for x in quants])
-                        if qty < item['quantity']:
-                            raise Warning(
-                                _('Sending amount can not exceed the quantity in stock for this product in this lot. \
-                                \n Product:%s \
-                                \n Lot:%s \
-                                \n Stock:%s') % (lot.product_id.name, lot.name, qty))
+                    else:
+                        qty = 0.0
+                    if qty < item['quantity']:
+                        raise Warning(
+                            _('Sending amount can not exceed the quantity in stock for this product in this lot. \
+                            \n Product:%s \
+                            \n Lot:%s \
+                            \n Stock:%s') % (lot.product_id.name, lot.name, qty))
+
             super(stock_transfer_details, self).do_detailed_transfer()
         else:
             super(stock_transfer_details, self).do_detailed_transfer()
