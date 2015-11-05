@@ -9,7 +9,7 @@
                 <notebook>
                     <page string="History">
                         <group col="1">
-                            <field name="opportunity_ids" readonly="1">
+                            <field name="all_opportunity_ids" readonly="1">
     <!--                              <tree string="Leads and Opportunities"  colors="blue:state=='pending';gray:state=='cancel'">
                                      <field name="create_date"/>
                                      <field name="name"/>

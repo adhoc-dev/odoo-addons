@@ -12,3 +12,7 @@ class res_partner(models.Model):
     phonecall_ids = fields.One2many(
         "crm.phonecall", "partner_id", "Phonecalls"
         )
+    all_opportunity_ids = fields.One2many(
+        'crm.lead', 'partner_id',
+        'Leads and Opportunities',
+        )
