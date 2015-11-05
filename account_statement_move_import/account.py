@@ -30,8 +30,13 @@ class account_move(models.Model):
 
         statement_lines = self.env['account.bank.statement.line']
         # run with sudo because we may not have access to statement line
+        # search if this moveline has been imported
+        # TODO when removing imported field, we should search directly for
+        # lines by o2m to imported_line_id
         statement_lines = statement_lines.sudo().search([
-                ('journal_entry_id', 'in', self.ids)])
+                ('journal_entry_id', 'in', self.ids),
+                ('imported', '=', True),
+                ])
         if statement_lines:
             raise Warning(_(
                 "You can not cancel an Accounting Entry that is linked "
@@ -80,7 +85,7 @@ class account_bank_statement_line(models.Model):
         if self._context.get('cancel_from_statement', False):
             # TODO remove "not r.imported_line_id" when depreceating
             # imported field
-            super(account_bank_statement_line, self.filtered(
+            return super(account_bank_statement_line, self.filtered(
                 lambda r: not r.imported_line_id and not r.imported)).cancel()
         for line in self:
             # TODO remove "or line.imported" when depreceating imported field
