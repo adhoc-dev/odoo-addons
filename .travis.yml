@@ -38,7 +38,6 @@ env:
     # we exclude partner_state because it gives an error and we could not find why
     # we also exclude partner and product internal code and product_variant_imp because they gives an error with website sale tests. We make unit tests for them
   - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="partner_state,product_internal_code,partner_internal_code,product_variant_imp,product_cost_currency"
-  - UNIT_TEST="1" INCLUDE="partner_state,product_internal_code,partner_internal_code,product_variant_imp,product_cost_currency"
 
 virtualenv:
   system_site_packages: true
