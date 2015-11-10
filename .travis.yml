@@ -44,18 +44,18 @@ virtualenv:
 
 install:
   # aeroo reports
-  - git clone https://github.com/aeroo/aeroo_reports.git ${HOME}/aeroo_reports -b ${VERSION}
+  # - git clone https://github.com/aeroo/aeroo_reports.git ${HOME}/aeroo_reports -b ${VERSION}
   - pip install git+https://github.com/aeroo/aeroolib.git@master pycups==1.9.68
 
   # odoo argentina (TODO try to remove dependency, only interest module and move invoice)
-  - git clone https://github.com/ingadhoc/odoo-argentina.git ${HOME}/odoo-argentina -b ${VERSION}
+  # - git clone https://github.com/ingadhoc/odoo-argentina.git ${HOME}/odoo-argentina -b ${VERSION}
   - pip install geopy==0.95.1 BeautifulSoup # because it is installed in some modules
 
   # for product_cost_currency
-  - git clone https://github.com/OCA/margin-analysis.git ${HOME}/margin-analysis -b ${VERSION}
+  # - git clone https://github.com/OCA/margin-analysis.git ${HOME}/margin-analysis -b ${VERSION}
 
   # for sale exception modules
-  - git clone https://github.com/OCA/sale-workflow.git ${HOME}/sale-workflow -b ${VERSION}
+  # - git clone https://github.com/OCA/sale-workflow.git ${HOME}/sale-workflow -b ${VERSION}
 
   # odoo argentina fe (becaus it is installed in some modules)
   - pip install pyOpenSSL suds httplib2 pysimplesoap==1.08.8 m2crypto fpdf dbf Pillow
