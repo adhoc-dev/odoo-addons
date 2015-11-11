@@ -5,13 +5,6 @@ addons:
       - python-lxml # because pip installation is slow
       - libcups2-dev # for aeroo
       - wkhtmltopdf # for odoo pdf reports (tested on sale for eg.)
-      # odoo-argentina fe
-      - python-dev
-      - swig
-      - libffi-dev
-      - libssl-dev
-      - python-m2crypto
-      - python-httplib2
 
 language: python
 sudo: false
@@ -32,35 +25,18 @@ env:
   matrix:
   # TODO enable lint check
   #- LINT_CHECK="1"
-  # TODO fix error and include this modules
-  - TRANSIFEX="1" EXCLUDE="partner_state,product_internal_code,partner_internal_code,product_variant_imp,product_cost_currency"
+  # - TRANSIFEX="1"
   # TODO fix and include this modules:
     # we exclude partner_state because it gives an error and we could not find why
     # we also exclude partner and product internal code and product_variant_imp because they gives an error with website sale tests. We make unit tests for them
-  - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="partner_state,product_internal_code,partner_internal_code,product_variant_imp,product_cost_currency"
+  - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="partner_state,product_internal_code,partner_internal_code,product_variant_imp,product_cost_currency,inter_company_move,account_interests"
 
 virtualenv:
   system_site_packages: true
 
 install:
   # aeroo reports
-  # - git clone https://github.com/aeroo/aeroo_reports.git ${HOME}/aeroo_reports -b ${VERSION}
   - pip install git+https://github.com/aeroo/aeroolib.git@master pycups==1.9.68
-
-  # odoo argentina (TODO try to remove dependency, only interest module and move invoice)
-  # - git clone https://github.com/ingadhoc/odoo-argentina.git ${HOME}/odoo-argentina -b ${VERSION}
-  - pip install geopy==0.95.1 BeautifulSoup # because it is installed in some modules
-
-  # for product_cost_currency
-  # - git clone https://github.com/OCA/margin-analysis.git ${HOME}/margin-analysis -b ${VERSION}
-
-  # for sale exception modules
-  # - git clone https://github.com/OCA/sale-workflow.git ${HOME}/sale-workflow -b ${VERSION}
-
-  # odoo argentina fe (becaus it is installed in some modules)
-  - pip install pyOpenSSL suds httplib2 pysimplesoap==1.08.8 m2crypto fpdf dbf Pillow
-  # install pyafipws after others dependencies because dependency erro
-  - pip install pyafipws
 
   # repository requirements
   - pip install -r requirements.txt
