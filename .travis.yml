@@ -36,7 +36,7 @@ env:
       # product_variant_imp
     # depreceated and gives error:
       # product_cost_currency
-  - EXCLUDE="product_catalog_aeroo_report_public_categ,product_website_categ_search,partner_state,product_variant_imp,product_cost_currency,inter_company_move,account_interests,sale_other_product_description,account_move_analytic"
+  - EXCLUDE="product_catalog_aeroo_report_public_categ,product_website_categ_search,partner_state,product_cost_currency,inter_company_move,account_interests,sale_other_product_description,account_move_analytic"
   # dummy " for better formatting
 
   matrix:
