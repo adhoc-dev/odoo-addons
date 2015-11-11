@@ -3,6 +3,9 @@ addons:
     packages:
       - expect-dev  # provides unbuffer utility
       - python-lxml # because pip installation is slow
+      - python-simplejson
+      - python-serial
+      - python-yaml
       - libcups2-dev # for aeroo
       - wkhtmltopdf # for odoo pdf reports (tested on sale for eg.)
 
