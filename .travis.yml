@@ -29,10 +29,12 @@ env:
       # account_interests
       # inter_company_move
       # sale_other_product_description
+    # incompatibility with account_analytic_accounts:
+      # account_move_analytic
     # we exclude partner_state because it gives an error and we could not find why
     # we also exclude partner and product internal code and product_variant_imp because they gives an error with website sale tests. We make unit tests for them
   # product_internal_code,partner_internal_code,
-  - EXCLUDE="partner_state,product_variant_imp,product_cost_currency,inter_company_move,account_interests,sale_other_product_description"
+  - EXCLUDE="partner_state,product_variant_imp,product_cost_currency,inter_company_move,account_interests,sale_other_product_description,account_move_analytic"
   # dummy " for better formatting
 
   matrix:
