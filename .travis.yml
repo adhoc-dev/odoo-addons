@@ -28,9 +28,10 @@ env:
     # we dont want odoo argentina time penalty
       # account_interests
       # inter_company_move
+      # sale_other_product_description
     # we exclude partner_state because it gives an error and we could not find why
     # we also exclude partner and product internal code and product_variant_imp because they gives an error with website sale tests. We make unit tests for them
-  - EXCLUDE="partner_state,product_internal_code,partner_internal_code,product_variant_imp,product_cost_currency,inter_company_move,account_interests"
+  - EXCLUDE="partner_state,product_internal_code,partner_internal_code,product_variant_imp,product_cost_currency,inter_company_move,account_interests,sale_other_product_description"
   # dummy " for better formatting
 
   matrix:
