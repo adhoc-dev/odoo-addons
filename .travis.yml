@@ -1,24 +1,36 @@
-addons:
-  apt:
-    packages:
-      - expect-dev  # provides unbuffer utility
-      - python-lxml # because pip installation is slow
-      - libcups2-dev # for aeroo
-      - wkhtmltopdf # for odoo pdf reports (tested on sale for eg.)
-      # odoo-argentina fe
-      - python-dev
-      - swig
-      - libffi-dev
-      - libssl-dev
-      - python-m2crypto
-      - python-httplib2
-
 language: python
 sudo: false
-cache: pip
+cache:
+  apt: true
+  directories:
+    - $HOME/.cache/pip
 
 python:
   - "2.7"
+
+addons:
+  apt:
+# only add the two lines below if you need wkhtmltopdf for your tests
+#    sources:
+#      - pov-wkhtmltopdf
+#    Search your sources alias here:
+#      https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
+    packages:
+      - expect-dev  # provides unbuffer utility
+      - python-lxml  # because pip installation is slow
+      - python-simplejson
+      - python-serial
+      - python-yaml
+      - libcups2-dev # for aeroo
+      - wkhtmltopdf # for odoo pdf reports (tested on sale for eg.)
+#     Search your packages here:
+#       https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
+#      - wkhtmltopdf  # only add if needed and check the before_install section below
+
+# set up an X server to run wkhtmltopdf.
+#before_install:
+#  - "export DISPLAY=:99.0"
+#  - "sh -e /etc/init.d/xvfb start"
 
 env:
   global:
@@ -28,45 +40,50 @@ env:
   # to get secure, run 'travis encrypt TRANSIFEX_PASSWORD=[transifex_password] -r [github_repo]'
   # example of github repo 'ingadhoc/odoo-infrastructure'
   - secure: znz/SSupt0Srn+J1SF2V4nRYEGlx3nOh6BscNth0iv5VNdLoGxMreOfZJ4GVtv9N7rPb/469ApBtV/L+mHJyumd18f8BAszsjkMSjWst5MnfuijX0emm2i1gHZOP9lHKKCv3fN5bCubizBN6+cwQ84+kCeqzf6v9qDOVjByRpI3n8N+iYU5yBhh7VjzhVGWj761j5vMUJI72jT0iFRwVnebfefKh9w8gYPyKgddW4cqNPChNXkiWSZAw7qBvU2ElMI6gGZCBFOoKBj2Gy6mcXap5ZDssPRZsnH11sop9wYZ573Rf1UFZNlc9IQUaDnagojaGjWEnIFjVO4uxZJpAgDBz7MIYT7nYWbsBu2q3bYWGJ9I3tozSyJ/lXkLm9q6nVQ5o8LI6BzFQkPukupVExIVQ285Ag/cc28gxCX7L8ANfKUyfzUszaqXaeTS4klLQERaBY1CdCbheNGDpXAFKq2avukCdGzJ99NTaIFKCCM5RP1wE/AysrkHZSArUmGm+ABRNQJ4LsDdOPHwb+1QTaXjiPRpYFPDb35vb0mF3dPSAUG4zd9BsjZzy8EAdfg8EMx6YzuZWHi3wPzbWDuNBc/ErfVSJBLcJHAGol7loMUVT+307xh8P64xU1D0f+BuzoI7JdM0Nj99uaiSjsgIyDMFBiL01I1BNweqmt7AKNuM=
+  # exlcude because:
+    # we dont want odoo argentina time penalty
+      # account_interests
+      # inter_company_move
+      # sale_other_product_description
+    # incompatibility with account_analytic_accounts:
+      # account_move_analytic
+    # error while loading demo data *name null)
+      # product_variant_imp
+    # unknown errors
+      # partner_state
+    # depreceated and gives error:
+      # product_cost_currency
+  - EXCLUDE="product_variant_imp,partner_state,account_move_analytic,product_catalog_aeroo_report_public_categ,product_website_categ_search,product_cost_currency,inter_company_move,account_interests,sale_other_product_description"
+  # dummy " for better formatting
 
   matrix:
   # TODO enable lint check
   #- LINT_CHECK="1"
-  # TODO fix error and include this modules
-  - TRANSIFEX="1" EXCLUDE="partner_state,product_internal_code,partner_internal_code,product_variant_imp,product_cost_currency"
-  # TODO fix and include this modules:
-    # we exclude partner_state because it gives an error and we could not find why
-    # we also exclude partner and product internal code and product_variant_imp because they gives an error with website sale tests. We make unit tests for them
-  - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="partner_state,product_internal_code,partner_internal_code,product_variant_imp,product_cost_currency"
-  - UNIT_TEST="1" INCLUDE="partner_state,product_internal_code,partner_internal_code,product_variant_imp,product_cost_currency"
+  - TRANSIFEX="1"
+  - TRANSIFEX="1" EXCLUDE="" INCLUDE="partner_state,account_move_analytic,product_catalog_aeroo_report_public_categ,product_website_categ_search"
+  - TRANSIFEX="1" EXCLUDE="" INCLUDE="product_variant_imp"
+  - TESTS="1" ODOO_REPO="odoo/odoo"
+  - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="" INCLUDE="product_variant_imp"
+  - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="" INCLUDE="partner_state,account_move_analytic,product_catalog_aeroo_report_public_categ,product_website_categ_search"
+  # dummy " for better formatting
+# either use the two lines above or the two below. Don't change the default if
+# it's not necessary (it is only necessary if modules in your repository can't
+# be installed in the same database. And you get a huge speed penalty in your
+# tests)
+#  - TESTS="1.0" ODOO_REPO="odoo/odoo" UNIT_TEST="1"
+#  - TESTS="1.0" ODOO_REPO="OCA/OCB" UNIT_TEST="1"
 
 virtualenv:
   system_site_packages: true
 
 install:
   # aeroo reports
-  - git clone https://github.com/aeroo/aeroo_reports.git ${HOME}/aeroo_reports -b ${VERSION}
   - pip install git+https://github.com/aeroo/aeroolib.git@master pycups==1.9.68
-
-  # odoo argentina (TODO try to remove dependency, only interest module and move invoice)
-  - git clone https://github.com/ingadhoc/odoo-argentina.git ${HOME}/odoo-argentina -b ${VERSION}
-  - pip install geopy==0.95.1 BeautifulSoup # because it is installed in some modules
-
-  # for product_cost_currency
-  - git clone https://github.com/OCA/margin-analysis.git ${HOME}/margin-analysis -b ${VERSION}
-
-  # for sale exception modules
-  - git clone https://github.com/OCA/sale-workflow.git ${HOME}/sale-workflow -b ${VERSION}
-
-  # odoo argentina fe (becaus it is installed in some modules)
-  - pip install pyOpenSSL suds httplib2 pysimplesoap==1.08.8 m2crypto fpdf dbf Pillow
-  # install pyafipws after others dependencies because dependency erro
-  - pip install pyafipws
 
   # repository requirements
   - pip install -r requirements.txt
 
-  - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
+  - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
 
@@ -74,4 +91,4 @@ script:
   - travis_run_tests
 
 after_success:
-  coveralls
+  - travis_after_tests_success

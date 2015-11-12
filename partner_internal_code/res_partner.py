@@ -13,7 +13,7 @@ class partner(models.Model):
     _inherit = 'res.partner'
 
     internal_code = fields.Char(
-        'Internal Code', required=True)
+        'Internal Code')
 
     def name_search(self, cr, uid, name, args=None,
                     operator='ilike', context=None, limit=100):
