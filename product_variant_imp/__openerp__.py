@@ -38,7 +38,9 @@ Cada vez que marques un atributo y guardes, es probable que tarde un poquito por
     'installable': True,
     'license': 'AGPL-3',
     'name': 'Product Variant Improvements',
-    'test': [],
+    'demo': [
+        'product_demo.xml',
+    ],
     'data': [
         'product_view.xml',
     ],
