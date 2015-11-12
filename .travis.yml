@@ -49,22 +49,15 @@ env:
       # account_move_analytic
     # depreceated and gives error:
       # product_cost_currency
-  # - EXCLUDE="product_variant_imp,account_move_analytic,product_internal_code,product_cost_currency,inter_company_move,account_interests,sale_other_product_description"
+  # TODO find a way to make account_move_analytic compatible
+  - EXCLUDE="account_move_analytic,product_cost_currency,inter_company_move,account_interests,sale_other_product_description"
   # dummy " for better formatting
 
   matrix:
   # TODO enable lint check
   #- LINT_CHECK="1"
-  # - TRANSIFEX="1"
-  # - TRANSIFEX="1" EXCLUDE="" INCLUDE="account_move_analytic,product_internal_code"
-  # - TESTS="1" ODOO_REPO="odoo/odoo" 
-  # - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="" INCLUDE="account_move_analytic,product_internal_code"
-  # - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="" INCLUDE="account_move_analytic,product_internal_code"
-  - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="product_variant_imp,product_catalog_aeroo_report_public_categ,product_website_categ_search"
-  - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="product_internal_code,product_catalog_aeroo_report_public_categ,product_website_categ_search"
-  - TESTS="1" ODOO_REPO="odoo/odoo" EXLCUDE="account_move_analytic,product_internal_code,product_cost_currency,inter_company_move,account_interests,sale_other_product_description"
-  # - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="partner_state,account_move_analytic,product_internal_code,product_cost_currency,inter_company_move,account_interests,sale_other_product_description"
-  # dummy " for better formatting
+  - TRANSIFEX="1"
+  - TESTS="1" ODOO_REPO="odoo/odoo" 
 # either use the two lines above or the two below. Don't change the default if
 # it's not necessary (it is only necessary if modules in your repository can't
 # be installed in the same database. And you get a huge speed penalty in your
