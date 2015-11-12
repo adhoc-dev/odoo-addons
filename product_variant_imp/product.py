@@ -46,6 +46,13 @@ class product_product(models.Model):
         store=True,
     )
 
+    @api.model
+    def create(self, vals):
+        if vals.get('name'):
+            self = self.with_context(
+                default_name=vals.get('name'))
+        return super(product_product, self).create(vals)
+
 # Overwrite of name_get function to avoid joining variants again
     def name_get(self, cr, user, ids, context=None):
         if context is None:
