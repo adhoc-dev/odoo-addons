@@ -25,8 +25,8 @@
     'website': 'www.adhoc.com.ar',
     "category": "Accounting",
     "description": """
- Account Contract Project
- ========================
+Account Contract Project
+========================
     """,
     'depends': [
         'project'
