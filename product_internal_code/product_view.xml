@@ -14,6 +14,9 @@
                 <field name="name" position="before">
                     <field name="name" string="Product Y" filter_domain="['|',('default_code','ilike',self),('name','ilike',self)]"/>
                 </field>
+                <field name="company_id" position="before">
+                    <field name="internal_code" filter_domain="[('internal_code','=',self)]"/>
+                </field>
             </field>
         </record>
         <!-- INHERITED FORM -->
