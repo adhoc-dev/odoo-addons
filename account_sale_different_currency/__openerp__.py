@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Invoice in different Currency than Sale Order',
-    'version': '8.0.0.2.0',
+    'version': '8.0.0.2.1',
     'category': 'Account',
     'description': """
 Invoice in different Currency than Sale Order

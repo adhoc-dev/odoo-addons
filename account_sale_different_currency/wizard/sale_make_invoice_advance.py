@@ -12,6 +12,8 @@ class sale_advance_payment_inv(models.TransientModel):
     def _get_invoice_currency_rate(self):
         sale_id = self._context.get('active_id', False)
         sale = self.env['sale.order'].browse(sale_id)
+        if not sale.different_currency_id:
+            return False
         return sale.pricelist_id.currency_id.compute(
             1.0, sale.different_currency_id, round=True)
 
