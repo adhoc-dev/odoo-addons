@@ -37,6 +37,6 @@ class purchase_order_add_multiple(models.TransientModel):
                 'product_uom': product_id.uom_id.id,
                 'date_planned': product['value'].get('date_planned'),
                 'price_unit': product['value'].get('price_unit'),
-
+                'taxes_id': [(6, 0, product['value'].get('taxes_id'))],
             }
             self.env['purchase.order.line'].create(val)
