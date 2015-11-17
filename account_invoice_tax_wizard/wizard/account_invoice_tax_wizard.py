@@ -15,10 +15,14 @@ class account_invoice_tax_wizard(models.TransientModel):
     def _get_invoice2(self):
         return self._context.get('active_id', False)
 
+    @api.model
+    def _get_base(self):
+        invoice_id = self._context.get('active_id', False)
+        if invoice_id:
+            return self.env['account.invoice'].browse(invoice_id).amount_untaxed
+
     tax_id = fields.Many2one('account.tax', 'Tax', required=True,)
     name = fields.Char(string='Tax Description', required=True)
-    base = fields.Float(
-        string='Base', digits=dp.get_precision('Account'), required=True)
     amount = fields.Float(
         string='Amount', digits=dp.get_precision('Account'), required=True)
     invoice_id = fields.Many2one(
@@ -26,7 +30,13 @@ class account_invoice_tax_wizard(models.TransientModel):
         'Invoice',
         default=_get_invoice2,
         # required=True
-        )
+    )
+    base = fields.Float(
+        string='Base',
+        digits=dp.get_precision('Account'),
+        default=_get_base,
+        required=True
+    )
     invoice_type = fields.Selection(
         related='invoice_id.type', string='Invoice Type')
     invoice_company_id = fields.Many2one(
@@ -37,6 +47,12 @@ class account_invoice_tax_wizard(models.TransientModel):
     def onchange_tax(self):
         self.name = self.tax_id and ('%s - %s') % (
             self.tax_id.description, self.tax_id.name) or False
+
+    @api.onchange('base', 'tax_id')
+    def onchange_base(self):
+        res = self.env['account.tax'].compute_for_bank_reconciliation(
+            self.tax_id.id, self.base)
+        self.amount = res['taxes'][0]['amount']
 
     @api.multi
     def confirm(self):
