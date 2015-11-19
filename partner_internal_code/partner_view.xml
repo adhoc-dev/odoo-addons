@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="base.view_res_partner_filter"/>
             <field name="arch" type="xml">
                 <field name="name" position="attributes">
-                    <attribute name="filter_domain">['|','|','|',('display_name','ilike',self),('ref','=',self),('internal_code','=',self),('email','ilike',self)]</attribute>
+                    <attribute name="filter_domain">['|','|',('display_name','ilike',self),('ref','=',self),('internal_code','=',self)]</attribute>
                 </field>
                  <field name="name" position="after">
                     <field name="internal_code" filter_domain="[('internal_code','=',self)]"/>
