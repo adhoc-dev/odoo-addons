@@ -45,10 +45,10 @@ class survey_question(models.Model):
                 question.type + ": This type of question has no validation method")
             return {}
         else:
-            if question.conditional and question.answer_id != self.pool['survey.user_input_line'].browse(
-                    cr, uid,
-                    input_answer_id).value_suggested:
-                return {}
+            for answers in self.pool['survey.user_input_line'].browse(cr, uid,input_answer_id):
+                value_suggested = answers.value_suggested
+                if question.conditional and question.answer_id != value_suggested:
+                    return {}
             else:
                 return checker(cr, uid, question, post, answer_tag, context=context)
 
@@ -74,9 +74,8 @@ class survey_user_input(models.Model):
                             uid,
                             [('user_input_id', '=', user_input_id),
                              ('question_id', '=', question2.id)])
-                        if question.answer_id != obj_user_input_line.browse(
-                                cr,
-                                uid,
-                                input_answer_id).value_suggested:
-                            questions_to_hide.append(question.id)
+                        for answers in obj_user_input_line.browse( cr,uid,input_answer_id):
+                            value_suggested = answers.value_suggested
+                            if question.answer_id != value_suggested:
+                                questions_to_hide.append(question.id)
         return questions_to_hide
