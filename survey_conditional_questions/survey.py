@@ -49,8 +49,8 @@ class survey_question(models.Model):
                 value_suggested = answers.value_suggested
                 if question.conditional and question.answer_id != value_suggested:
                     return {}
-            else:
-                return checker(cr, uid, question, post, answer_tag, context=context)
+                else:
+                    return checker(cr, uid, question, post, answer_tag, context=context)
 
 
 class survey_user_input(models.Model):
