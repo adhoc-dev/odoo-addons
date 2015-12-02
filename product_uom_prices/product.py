@@ -43,7 +43,10 @@ class product_template(models.Model):
         'product.uom.categ',
         string='UOM Category', related='uom_id.category_id')
     uom_price_ids = fields.One2many(
-        'product.uom.price', 'product_tmpl_id', string='UOM Prices')
+        'product.uom.price',
+        'product_tmpl_id',
+        string='UOM Prices',
+        help="Only uoms in this list will be available in sale order lines.Set a diferent price for this uom. Set the price as 0 and the price will be calculated as sale price * uom ratio")
 
     @api.one
     @api.constrains('uom_price_ids')
@@ -80,7 +83,7 @@ class product_template(models.Model):
                     res[product.id] = product_uom_price_obj.browse(
                         cr, uid, product_uom_price_ids[0],
                         context=context).price
-                    # TODO mejorar 
+                    # TODO mejorar
                     # Antes intenamos hacer idependinete este modulo de
                     # price_currency pero no pudimos, por eso el if de bajo
                     # esta comentadosolo el calculo de currency
@@ -88,6 +91,10 @@ class product_template(models.Model):
                     # If product price currency is insatalled then we update
                     # price in the correct currency
                     # if 'product_price_currency' in context:
+                    if res[product.id] == 0.0:
+                        res[product.id] = product.list_price * product_uom_price_obj.browse(
+                            cr, uid, product_uom_price_ids[0],
+                            context=context).uom_id.factor_inv
                     pricetype_obj = self.pool.get('product.price.type')
                     price_type_id = pricetype_obj.search(
                         cr, uid, [('field', '=', ptype)])[0]
