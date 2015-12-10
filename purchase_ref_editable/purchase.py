@@ -12,7 +12,4 @@ class purchase_order(models.Model):
 
     _inherit = 'purchase.order'
 
-    partner_ref = fields.Char(
-        'Supplier Reference',
-        states={},
-    )
+    partner_ref = fields.Char(states={})

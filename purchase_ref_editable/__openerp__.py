@@ -27,6 +27,7 @@
     'description': """
 Purchase Ref Editable
 =====================
+The "Partner Reference" field editable always. Remove the "readonly=True" states
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
