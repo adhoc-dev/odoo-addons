@@ -30,7 +30,8 @@
     "description": """
 Product Public Category Search
 ==============================
-
+This module adds to the product search function the possibility to search with "name/"
+ and all children of  the category name are displayed. 
 
     """,
     "depends": [
