@@ -18,31 +18,27 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 {
-    "name": "Partner Internal Code",
-    'version': '8.0.0.3.0',
-    'category': 'Tools',
+    'name': 'Purchase Ref Editable',
+    'version': '8.0.0.0.0',
+    'category': 'Sales & Purchases',
     'sequence': 14,
+    'summary': '',
+    'description': """
+Purchase Ref Editable
+=====================
+The "Partner Reference" field editable always. Remove the "readonly=True" states
+    """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
-    'license': 'AGPL-3',
-    'summary': '',
-    "description": """
-Partner Internal Code
-=====================
-    """,
-    "depends": [
-        "sale",
+    'images': [
     ],
-    'external_dependencies': {
-    },
+    'depends': [
+        'purchase',
+    ],
     'data': [
-        'partner_view.xml',
-        'partner_data.xml',
     ],
     'demo': [
-        'demo/res.partner.csv'
     ],
     'test': [
     ],

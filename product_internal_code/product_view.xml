@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-
-
-        <record id="product_template_search_view" model="ir.ui.view">
-            <field name="name">product.user.form</field>
-            <field name="model">product.template</field>
-            <field name="inherit_id" ref="product.product_template_search_view"/>
-            <field name="arch" type="xml">
-                <field name="name" position="attributes">
-                    <attribute name="string">Product O</attribute>
-                </field>
-                <field name="name" position="before">
-                    <field name="name" string="Product Y" filter_domain="['|',('default_code','ilike',self),('name','ilike',self)]"/>
-                </field>
-                <field name="company_id" position="before">
-                    <field name="internal_code" filter_domain="[('internal_code','=',self)]"/>
-                </field>
-            </field>
+         <record id="product_template_search_view" model="ir.ui.view">      
+           <field name="name">product.user.form</field>       
+            <field name="model">product.template</field>       
+            <field name="inherit_id" ref="product.product_template_search_view"/>      
+            <field name="arch" type="xml">     
+                <field name="name" position="attributes">      
+                    <attribute name="filter_domain">['|','|',('default_code','=',self),('name','ilike',self),('internal_code','=',self)]</attribute>
+                </field>       
+                <field name="company_id" position="before">        
+                    <field name="internal_code" filter_domain="[('internal_code','=',self)]"/>     
+                </field>       
+           </field>       
         </record>
+
         <!-- INHERITED FORM -->
         <record id="view_product_form" model="ir.ui.view">
             <field name="name">product.user.form</field>
