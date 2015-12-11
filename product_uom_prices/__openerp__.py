@@ -44,7 +44,7 @@ Video TUTORIAL: https://www.youtube.com/watch?v=-jGsbEZDOJE
         'view/product_view.xml',
         'security/ir.model.access.csv',
     ],
-    'version': '8.0.0.0.0',
+    'version': '8.0.0.1.0',
     'website': ''}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

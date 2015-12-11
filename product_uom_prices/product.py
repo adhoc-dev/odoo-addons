@@ -17,8 +17,7 @@ class product_uom_price(models.Model):
 
     product_tmpl_id = fields.Many2one(
         'product.template',
-        string='Product Template',
-        required=True,)
+        string='Product Template')
     uom_id = fields.Many2one('product.uom', string='UOM', required=True,)
     price = fields.Float(
         'Price', digits=dp.get_precision('Price'),
