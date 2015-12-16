@@ -27,8 +27,12 @@ class sale_order_line(models.Model):
         if product:
             context_partner = {'lang': lang, 'partner_id': partner_id}
             product_obj = self.pool.get('product.product')
+            user = self.pool.get('res.users').browse(cr, uid, uid)
             product = product_obj.browse(
                 cr, uid, product, context=context_partner)
+            if product.use_uom_prices and user.company_id.default_uom_prices:
+                res['value'].update(
+                    {'product_uom': product.uom_price_ids[0].uom_id.id})
             if 'domain' not in res:
                 res['domain'] = {}
             res['domain']['product_uom'] = [
