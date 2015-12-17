@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-29 17:56+0000\n"
-"PO-Revision-Date: 2014-09-29 17:56+0000\n"
+"POT-Creation-Date: 2015-12-16 12:52+0000\n"
+"PO-Revision-Date: 2015-12-16 12:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,11 @@ msgid "(configurable on product template)"
 msgstr ""
 
 #. module: product_uom_prices
+#: model:ir.model,name:product_uom_prices.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: product_uom_prices
 #: field:product.uom.price,create_uid:0
 msgid "Created by"
 msgstr ""
@@ -28,6 +33,11 @@ msgstr ""
 #. module: product_uom_prices
 #: field:product.uom.price,create_date:0
 msgid "Created on"
+msgstr ""
+
+#. module: product_uom_prices
+#: field:res.company,default_uom_prices:0
+msgid "Default uom price"
 msgstr ""
 
 #. module: product_uom_prices
@@ -43,6 +53,11 @@ msgstr ""
 #. module: product_uom_prices
 #: field:product.uom.price,write_date:0
 msgid "Last Updated on"
+msgstr ""
+
+#. module: product_uom_prices
+#: help:product.template,uom_price_ids:0
+msgid "Only uoms in this list will be available in sale order lines.Set a diferent price for this uom. Set the price as 0 and the price will be calculated as sale price * uom ratio"
 msgstr ""
 
 #. module: product_uom_prices
@@ -77,7 +92,7 @@ msgid "UOM"
 msgstr ""
 
 #. module: product_uom_prices
-#: code:addons/product_uom_prices/product.py:51
+#: code:addons/product_uom_prices/product.py:57
 #, python-format
 msgid "UOM %s is the default product uom,                 you can not se it in UOM prices"
 msgstr ""
@@ -88,7 +103,7 @@ msgid "UOM Prices"
 msgstr ""
 
 #. module: product_uom_prices
-#: code:addons/product_uom_prices/product.py:54
+#: code:addons/product_uom_prices/product.py:60
 #, python-format
 msgid "UOM Prices Category must be of the same                 UOM Category as Product Unit of Measure"
 msgstr ""
@@ -106,5 +121,10 @@ msgstr ""
 #. module: product_uom_prices
 #: help:product.template,use_uom_prices:0
 msgid "Use different prices for different UOMs?"
+msgstr ""
+
+#. module: product_uom_prices
+#: help:res.company,default_uom_prices:0
+msgid "When choosing a product , brings the default measurement unit list price UOM"
 msgstr ""
 
