@@ -3,7 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import models
+from openerp import models, fields, api
 
 
 class sale_order_line(models.Model):
@@ -11,6 +11,17 @@ class sale_order_line(models.Model):
     """"""
 
     _inherit = 'sale.order.line'
+
+    uom_unit_ids = fields.Many2many('product.uom', compute='_get_units')
+
+    @api.one
+    @api.depends('product_id')
+    def _get_units(self):
+        self.uom_unit_ids = self.get_product_uoms(self.product_id)
+
+    @api.model
+    def get_product_uoms(self, product):
+        return product.uom_price_ids.mapped('uom_id') + product.uom_id
 
     def product_id_change(
             self, cr, uid, ids, pricelist, product, qty=0,
@@ -30,14 +41,13 @@ class sale_order_line(models.Model):
             user = self.pool.get('res.users').browse(cr, uid, uid)
             product = product_obj.browse(
                 cr, uid, product, context=context_partner)
-            if product.use_uom_prices and user.company_id.default_uom_prices:
+            if not uom and product.use_uom_prices and user.company_id.default_uom_prices:
                 res['value'].update(
                     {'product_uom': product.uom_price_ids[0].uom_id.id})
+            # we do this because odoo overwrite view domain
             if 'domain' not in res:
                 res['domain'] = {}
             res['domain']['product_uom'] = [
-                ('id', 'in', [x.uom_id.id for x in product.uom_price_ids]
-                    + [product.uom_id.id])]
+                ('id', 'in', self.get_product_uoms(
+                    cr, uid, product, context=context).ids)]
         return res
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
