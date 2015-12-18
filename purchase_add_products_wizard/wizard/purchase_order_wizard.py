@@ -27,14 +27,14 @@ class purchase_order_add_multiple(models.TransientModel):
                 purchase.pricelist_id.id,
                 product_id.id,
                 qty=self.quantity,
-                uom_id=product_id.uom_id.id,
+                uom_id=product_id.uom_po_id.id,
                 partner_id=purchase.partner_id.id)
             val = {
                 'name':  product['value'].get('name'),
                 'product_uom_qty': self.quantity,
                 'order_id': active_id,
                 'product_id': product_id.id or False,
-                'product_uom': product_id.uom_id.id,
+                'product_uom': product_id.uom_po_id.id,
                 'date_planned': product['value'].get('date_planned'),
                 'price_unit': product['value'].get('price_unit'),
                 'taxes_id': [(6, 0, product['value'].get('taxes_id'))],
