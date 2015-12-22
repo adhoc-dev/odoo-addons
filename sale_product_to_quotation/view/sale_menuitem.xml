@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+        <record id="action_product_to_quotation" model="ir.actions.act_window">
+            <field name="name">Products to Quotation</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="product_product_tree_view"/>
+            <field name="search_view_id" ref=""/>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            name="Products to Quotation"
+            id="menu_product_quotation"
+            sequence="4"
+            parent="base.menu_sales"
+            action="action_product_to_quotation"
+            />
+    </data>
+</openerp>

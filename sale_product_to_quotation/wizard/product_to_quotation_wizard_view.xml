@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="product_quotation_wizard_view">
+            <field name="name">sale.products_to_quotation_wizard.form</field>
+            <field name="model">sale.products_to_quotation_wizard</field>
+            <field name="arch" type="xml">
+                <form string="Add To Quatation">
+                    <group>
+                        <field name="quotation" required="True"/>
+                    </group>
+                <footer>
+                    <button name="add_to_quotation" type="object" class="oe_highlight" string="Add To Quatation"/>
+                    or 
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window name="Add To Quotation"
+            id="action_product_quotation_wizard"
+            key2="client_action_multi"
+            src_model="product.product"
+            res_model="sale.products_to_quotation_wizard"
+            view_mode="form" target="new" view_type="form"/>
+
+        <record id="action_add_to_last_quotation_wizard" model="ir.actions.server">
+            <field name="name">Add To Last Quotation</field>
+            <field name="model_id" ref="product.model_product_product"/>
+            <field name="state">code</field>
+            <field name="code">action = self.add_to_last_quotation(cr, uid, context.get('active_ids', []))</field>
+        </record>
+
+        <record model="ir.values" id="add_item">
+            <field name="name">Add To Last Quotation</field>
+            <field name="model" eval="'product.product'" />
+            <field name="key" >action</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.server,%d'%action_add_to_last_quotation_wizard" />
+            <field name="object" eval="True"/>
+        </record>
+
+
+        
+    </data>
+</openerp>
