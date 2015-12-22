@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="product_product_tree_view" model="ir.ui.view">
+            <field name="name">product_product_tree_view.tree</field>
+            <field name="model">product.product</field>
+            <field name="mode">primary</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="default_code" position="before">
+                    <button name="add_to_last_quotation_button" type="object"  class="oe_highlight" string="Add"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
