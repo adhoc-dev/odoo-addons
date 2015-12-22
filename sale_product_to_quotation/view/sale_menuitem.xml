@@ -2,13 +2,6 @@
 <openerp>
     <data>
 
-        <menuitem
-            name="Products to Quotation"
-            id="menu_product_quotation"
-            sequence="4"
-            parent="base.menu_sales"
-            action="action_product_to_quotation"
-            />
 
         <record id="action_product_to_quotation" model="ir.actions.act_window">
             <field name="name">Products to Quotation</field>
@@ -20,5 +13,12 @@
             <field name="domain">[]</field>
         </record>
 
+        <menuitem
+            name="Products to Quotation"
+            id="menu_product_quotation"
+            sequence="4"
+            parent="base.menu_sales"
+            action="action_product_to_quotation"
+            />
     </data>
 </openerp>
