@@ -55,10 +55,6 @@ class stock_transfer_details(models.TransientModel):
                 ))
         return estimated_number_of_pages
 
-    @api.onchange('picking_id')
-    def onchange_picking(self):
-        self.book_id = self.picking_id.picking_type_id.book_id
-
     @api.multi
     def do_detailed_transfer(self):
         self.ensure_one()
