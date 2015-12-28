@@ -14,8 +14,6 @@ class stock_print_stock_voucher(models.TransientModel):
     @api.model
     def _get_picking(self):
         active_id = self._context.get('active_id', False)
-        if not active_id:
-            active_id = 24
         return self.env['stock.picking'].browse(active_id)
 
     @api.model
