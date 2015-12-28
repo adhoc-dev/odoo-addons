@@ -10,12 +10,23 @@ from math import ceil
 class stock_transfer_details(models.TransientModel):
     _inherit = 'stock.transfer_details'
 
+    @api.model
+    def _get_picking(self):
+        active_id = self._context.get('active_id', False)
+        return self.env['stock.picking'].browse(active_id)
+
+    @api.model
+    def _get_book(self):
+        picking = self._get_picking()
+        return picking.picking_type_id.book_id
+
     book_required = fields.Boolean(
         related='picking_id.picking_type_id.book_required'
         )
     book_id = fields.Many2one(
         'stock.book',
         'Book',
+        default=_get_book,
         )
     # block_estimated_number_of_pages = fields.Boolean(
     #     related='book_id.block_estimated_number_of_pages',
@@ -41,10 +52,6 @@ class stock_transfer_details(models.TransientModel):
                 float(operations) / float(lines_per_voucher)
                 ))
         return estimated_number_of_pages
-
-    @api.onchange('picking_id')
-    def onchange_picking(self):
-        self.book_id = self.picking_id.picking_type_id.book_id
 
     @api.multi
     def do_detailed_transfer(self):
