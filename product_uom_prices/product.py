@@ -72,7 +72,7 @@ class product_template(models.Model):
             cr, uid, products, ptype=ptype, context=context)
         product_uom_price_obj = self.pool['product.uom.price']
         for product in products:
-            if product.use_uom_prices and 'uom' in context:
+            if ptype == 'list_price' and product.use_uom_prices and 'uom' in context:
                 product_uom_price_ids = product_uom_price_obj.search(
                     cr, uid, [
                         ('uom_id', '=', context['uom']),
