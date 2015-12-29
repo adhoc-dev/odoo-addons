@@ -3,4 +3,5 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from . import products_to_quotation_wizard
+from . import sale
+from . import product
