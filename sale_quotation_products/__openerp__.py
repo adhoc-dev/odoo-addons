@@ -19,14 +19,14 @@
 #
 ##############################################################################
 {
-    'name': 'Sale Product to Quotation',
+    'name': 'Sale Quotation Products',
     'version': '8.0.0.1.0',
     'category': 'Sales Management',
     'sequence': 14,
     'summary': '',
     'description': """
-Sale Product to Quotation
-=========================
+Sale Quotation Products
+=======================
 
     """,
     'author':  'ADHOC SA',

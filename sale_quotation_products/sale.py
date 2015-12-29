@@ -13,7 +13,7 @@ class sale_order(models.Model):
     def add_products_to_quotation(self):
         self.ensure_one()
         view_id = self.env['ir.model.data'].xmlid_to_res_id(
-            'sale_product_to_quotation.product_product_tree_view')
+            'sale_quotation_products.product_product_tree_view')
         res = {
             'type': 'ir.actions.act_window',
             'res_model': 'product.product',
