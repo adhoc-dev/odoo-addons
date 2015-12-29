@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Sale Product to Quotation',
-    'version': '8.0.0.0.0',
+    'version': '8.0.0.1.0',
     'category': 'Sales Management',
     'sequence': 14,
     'summary': '',
@@ -38,8 +38,7 @@ Sale Product to Quotation
     ],
     'data': [
         'view/product_view.xml',
-        'view/sale_menuitem.xml',
-        'wizard/product_to_quotation_wizard_view.xml',
+        'view/sale_order_view.xml',
     ],
     'demo': [
     ],

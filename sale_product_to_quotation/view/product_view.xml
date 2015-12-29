@@ -8,8 +8,29 @@
             <field name="mode">primary</field>
             <field name="inherit_id" ref="product.product_product_tree_view"/>
             <field name="arch" type="xml">
+                <tree position="attributes">
+                    <attribute name="editable">top</attribute>
+                </tree>
+                <field name="default_code" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </field>
+                <field name="name" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </field>
+                <field name="lst_price" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </field>
+                <field name="uom_id" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </field>
+                <field name="ean13" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </field>
+                <field name="attribute_value_ids" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </field>
                 <field name="default_code" position="before">
-                    <button name="add_to_last_quotation_button" type="object"  class="oe_highlight" string="Add"/>
+                    <field name="qty"/>
                 </field>
             </field>
         </record>
