@@ -30,6 +30,7 @@
                 </field> -->
                 <group name="general" position="after">
                     <group name="replenishment_cost" string="Replenishment Cost">
+                        <field name="replenishment_cost_last_update"/>
                         <label for="replenishment_base_cost"/>
                         <div name="replenishment_base_cost">
                             <field name="replenishment_base_cost" class="oe_inline"/>
