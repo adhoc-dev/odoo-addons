@@ -10,6 +10,9 @@ import openerp.addons.decimal_precision as dp
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
+    replenishment_cost_last_update = fields.Date(
+        'Replenishment Cost Last Update',
+        )
     replenishment_base_cost = fields.Float(
         'Replenishment Base Cost',
         digits=dp.get_precision('Product Price'),
