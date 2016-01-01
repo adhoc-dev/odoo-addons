@@ -58,7 +58,8 @@ class sale_order(models.Model):
         po_vals = self.sudo()._prepare_purchase_order_data(company, company_partner)
         purchase_order = PurchaseOrder.sudo(intercompany_uid).create(po_vals[0])
         for line in self.order_line:
-            po_line_vals = self.sudo()._prepare_purchase_order_line_data(line, self.date_order, purchase_order.id, company)
+            po_line_vals = self.sudo()._prepare_purchase_order_line_data(line, self.date_order, purchase_order.id, company,
+                           intercompany_uid)
             PurchaseOrderLine.sudo(intercompany_uid).create(po_line_vals)
 
         # write customer reference field on SO
@@ -100,7 +101,7 @@ class sale_order(models.Model):
         }
 
     @api.model
-    def _prepare_purchase_order_line_data(self, so_line, date_order, purchase_id, company):
+    def _prepare_purchase_order_line_data(self, so_line, date_order, purchase_id, company, intercompany_uid):
         """ Generate purchase order line values, from the SO line
             :param so_line : origin SO line
             :rtype so_line : sale.order.line record
@@ -108,6 +109,7 @@ class sale_order(models.Model):
             :param purchase_id : the id of the purchase order
             :param company : the company in which the PO line will be created
             :rtype company : res.company record
+            :param intercompany_uid : user id for PO creation
         """
         # price on PO so_line should be so_line - discount
         price = so_line.price_unit - (so_line.price_unit * (so_line.discount / 100))
@@ -115,7 +117,9 @@ class sale_order(models.Model):
         # computing Default taxes of so_line. It may not affect because of parallel company relation
         taxes = so_line.tax_id
         if so_line.product_id:
-            taxes = so_line.product_id.supplier_taxes_id
+            taxes = self.env['product.product'].sudo(intercompany_uid).browse(so_line.product_id.id).supplier_taxes_id
+            #fix; this one took the taxes for SO user not PO user
+            #taxes = so_line.product_id.supplier_taxes_id
 
         # fetch taxes by company not by inter-company user
         company_taxes = [tax_rec.id for tax_rec in taxes if tax_rec.company_id.id == company.id]
