@@ -55,7 +55,7 @@ class purchase_order(models.Model):
         sale_order_data = self._prepare_sale_order_data(self.name, company_partner, company, self.dest_address_id and self.dest_address_id.id or False)
         sale_order = SaleOrder.sudo(intercompany_uid).create(sale_order_data[0])
         for line in self.order_line:
-            so_line_vals = self.sudo()._prepare_sale_order_line_data(line, company, sale_order.id)
+            so_line_vals = self.sudo()._prepare_sale_order_line_data(line, company, sale_order.id, intercompany_uid)
             SaleOrderLine.sudo(intercompany_uid).create(so_line_vals)
 
         # write supplier reference field on PO
@@ -103,19 +103,23 @@ class purchase_order(models.Model):
         }
 
     @api.model
-    def _prepare_sale_order_line_data(self, line, company, sale_id):
+    def _prepare_sale_order_line_data(self, line, company, sale_id, intercompany_uid):
         """ Generate the Sale Order Line values from the PO line
             :param line : the origin Purchase Order Line
             :rtype line : purchase.order.line record
             :param company : the company of the created SO
             :rtype company : res.company record
             :param sale_id : the id of the SO
+            :param intercompany_uid: the SO creating user
         """
         # it may not affected because of parallel company relation
         price = line.price_unit or 0.0
         taxes = line.taxes_id
         if line.product_id:
-            taxes = line.product_id.taxes_id
+            taxes = self.env['product.product'].sudo(intercompany_uid).browse(line.product_id.id).taxes_id
+            #fix; this one took the taxes for PO user not SO user
+            #taxes = line.product_id.taxes_id
+
         company_taxes = [tax_rec.id for tax_rec in taxes if tax_rec.company_id.id == company.id]
         return {
             'name': line.product_id and line.product_id.name or line.name,
