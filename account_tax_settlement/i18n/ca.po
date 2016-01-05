@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: odoo-addons (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-22 13:44+0000\n"
-"PO-Revision-Date: 2015-10-05 16:15+0000\n"
+"POT-Creation-Date: 2016-01-05 13:54+0000\n"
+"PO-Revision-Date: 2015-10-22 16:30+0000\n"
 "Last-Translator: Juan Jose Scarafia <scarafia.juanjose@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/adhoc/ingadhoc-odoo-addons-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -162,17 +162,17 @@ msgstr ""
 #. module: account_tax_settlement
 #: selection:account.tax.settlement,state:0
 msgid "Done"
-msgstr ""
+msgstr "Realitzat"
 
 #. module: account_tax_settlement
 #: selection:account.tax.settlement,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Esborrany"
 
 #. module: account_tax_settlement
 #: field:account.tax.settlement,date_to:0
 msgid "End Date"
-msgstr ""
+msgstr "Data final"
 
 #. module: account_tax_settlement
 #: field:account.tax.settlement,filter:0
@@ -449,7 +449,7 @@ msgstr ""
 #. module: account_tax_settlement
 #: field:account.tax.settlement,date_from:0
 msgid "Start Date"
-msgstr ""
+msgstr "Data d'inici"
 
 #. module: account_tax_settlement
 #: field:account.tax.settlement,state:0

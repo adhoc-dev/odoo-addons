@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: odoo-addons (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-22 13:44+0000\n"
-"PO-Revision-Date: 2015-09-09 13:58+0000\n"
+"POT-Creation-Date: 2016-01-05 13:55+0000\n"
+"PO-Revision-Date: 2015-10-22 21:02+0000\n"
 "Last-Translator: Juan Jose Scarafia <scarafia.juanjose@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/adhoc/ingadhoc-odoo-addons-8-0/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
@@ -39,10 +39,28 @@ msgid "Cancel Receipt"
 msgstr "Cancelar recibo"
 
 #. module: account_voucher_double_validation
+#: code:addons/account_voucher_double_validation/account_voucher.py:14
+#, python-format
+msgid "Cancelled"
+msgstr ""
+
+#. module: account_voucher_double_validation
 #: view:account.voucher:account_voucher_double_validation.view_vendor_payment_form
 #: view:account.voucher:account_voucher_double_validation.view_vendor_receipt_form
 msgid "Confirm"
 msgstr "Confirmar"
+
+#. module: account_voucher_double_validation
+#: code:addons/account_voucher_double_validation/account_voucher.py:13
+#, python-format
+msgid "Confirmed"
+msgstr ""
+
+#. module: account_voucher_double_validation
+#: code:addons/account_voucher_double_validation/account_voucher.py:12
+#, python-format
+msgid "Draft"
+msgstr ""
 
 #. module: account_voucher_double_validation
 #: field:account.voucher,payment_date:0
@@ -55,12 +73,24 @@ msgid "Payment can not be validated before this date"
 msgstr "El pago no puede ser validad antes de esta fecha"
 
 #. module: account_voucher_double_validation
+#: code:addons/account_voucher_double_validation/account_voucher.py:16
+#, python-format
+msgid "Posted"
+msgstr ""
+
+#. module: account_voucher_double_validation
+#: code:addons/account_voucher_double_validation/account_voucher.py:15
+#, python-format
+msgid "Pro-forma"
+msgstr ""
+
+#. module: account_voucher_double_validation
 #: view:account.voucher:account_voucher_double_validation.view_voucher_tree
 msgid "Total"
 msgstr "Total"
 
 #. module: account_voucher_double_validation
-#: code:addons/account_voucher_double_validation/account_voucher.py:100
+#: code:addons/account_voucher_double_validation/account_voucher.py:103
 #, python-format
 msgid ""
 "You can not validate a Voucher that has                    Payment Date "
@@ -68,7 +98,7 @@ msgid ""
 msgstr "No puedes validar un Pago que posee Fecha de Pago anterior al día de hoy"
 
 #. module: account_voucher_double_validation
-#: code:addons/account_voucher_double_validation/account_voucher.py:95
+#: code:addons/account_voucher_double_validation/account_voucher.py:98
 #, python-format
 msgid ""
 "You can not validate a Voucher that has                    Total Amount "
