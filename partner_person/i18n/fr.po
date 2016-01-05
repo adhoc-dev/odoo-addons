@@ -8,296 +8,296 @@ msgstr ""
 "Project-Id-Version: odoo-addons (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-05 13:55+0000\n"
-"PO-Revision-Date: 2015-11-11 16:04+0000\n"
-"Last-Translator: Juan Jose Scarafia <scarafia.juanjose@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/adhoc/ingadhoc-odoo-addons-8-0/language/es/)\n"
+"PO-Revision-Date: 2015-09-01 18:01+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: French (http://www.transifex.com/adhoc/ingadhoc-odoo-addons-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: partner_person
 #: view:res.partner:partner_person.view_partner_person_form
 msgid "'is_person' in context"
-msgstr "'is_person' in context"
+msgstr ""
 
 #. module: partner_person
 #: view:partner.config.settings:partner_person.view_config_settings
 msgid "Apply"
-msgstr "Aplicar"
+msgstr ""
 
 #. module: partner_person
 #: view:partner.config.settings:partner_person.view_config_settings
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Annuler"
 
 #. module: partner_person
 #: field:res.partner,father_child_ids:0 field:res.partner,mother_child_ids:0
 msgid "Childs"
-msgstr "Hijos"
+msgstr ""
 
 #. module: partner_person
 #: model:ir.actions.act_window,name:partner_person.action_config_settings
 #: view:partner.config.settings:partner_person.view_config_settings
 msgid "Configure Partners"
-msgstr "Configurar Contactos"
+msgstr ""
 
 #. module: partner_person
 #: view:res.partner:partner_person.view_partner_person_form
 msgid "Contacts"
-msgstr "Contactos"
+msgstr ""
 
 #. module: partner_person
 #: field:partner.config.settings,create_uid:0
 msgid "Created by"
-msgstr "Creado por"
+msgstr ""
 
 #. module: partner_person
 #: field:partner.config.settings,create_date:0
 msgid "Created on"
-msgstr "Creado el"
+msgstr ""
 
 #. module: partner_person
 #: field:res.partner,disabled_person:0
 msgid "Disabled Person?"
-msgstr "Persona con discapacidad?"
+msgstr ""
 
 #. module: partner_person
 #: selection:res.partner,marital_status:0
 msgid "Divorced"
-msgstr "Divorciado"
+msgstr ""
 
 #. module: partner_person
 #: field:res.partner,father_id:0
 msgid "Father"
-msgstr "Padre"
+msgstr ""
 
 #. module: partner_person
 #: selection:res.partner,sex:0
 msgid "Female"
-msgstr "Femenino"
+msgstr ""
 
 #. module: partner_person
 #: view:res.partner:partner_person.view_partner_person_form
 #: field:res.partner,firstname:0
 msgid "First Name"
-msgstr "Primer Nombre"
+msgstr ""
 
 #. module: partner_person
 #: field:partner.config.settings,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: partner_person
 #: view:res.partner:partner_person.view_partner_person_form
 #: field:res.partner,lastname:0
 msgid "Last Name"
-msgstr "Apellido"
+msgstr ""
 
 #. module: partner_person
 #: field:partner.config.settings,write_uid:0
 msgid "Last Updated by"
-msgstr "Última actualización realizada por"
+msgstr ""
 
 #. module: partner_person
 #: field:partner.config.settings,write_date:0
 msgid "Last Updated on"
-msgstr "Última actualización el"
+msgstr ""
 
 #. module: partner_person
 #: selection:res.partner,sex:0
 msgid "Male"
-msgstr "Masculino"
+msgstr ""
 
 #. module: partner_person
 #: field:res.partner,marital_status:0
 msgid "Marital Status"
-msgstr "Estado Civil"
+msgstr ""
 
 #. module: partner_person
 #: selection:res.partner,marital_status:0
 msgid "Married"
-msgstr "Casado"
+msgstr ""
 
 #. module: partner_person
 #: field:res.partner,mother_id:0
 msgid "Mother"
-msgstr "Madre"
+msgstr ""
 
 #. module: partner_person
 #: field:res.partner,national_identity:0
 msgid "National Identity"
-msgstr "Documento de Identidad"
+msgstr ""
 
 #. module: partner_person
 #: field:res.partner,nationality_id:0
 msgid "Nationality"
-msgstr "Nacionalidad"
+msgstr ""
 
 #. module: partner_person
 #: model:ir.model,name:partner_person.model_res_partner
 msgid "Partner"
-msgstr "Empresa"
+msgstr ""
 
 #. module: partner_person
 #: model:res.groups,name:partner_person.person_birthdate
 msgid "Partner Person Birthdate"
-msgstr "Partner Person Birthdate"
+msgstr ""
 
 #. module: partner_person
 #: model:res.groups,name:partner_person.person_disabilities
 msgid "Partner Person Disabilities"
-msgstr "Partner Person Disabilities"
+msgstr ""
 
 #. module: partner_person
 #: model:res.groups,name:partner_person.person_family
 msgid "Partner Person Family"
-msgstr "Partner Person Family"
+msgstr ""
 
 #. module: partner_person
 #: model:res.groups,name:partner_person.personal_marital_information
 msgid "Partner Person Marital Information"
-msgstr "Partner Person Marital Information"
+msgstr ""
 
 #. module: partner_person
 #: model:res.groups,name:partner_person.person_ni
 msgid "Partner Person NI"
-msgstr "Partner Person NI"
+msgstr ""
 
 #. module: partner_person
 #: model:res.groups,name:partner_person.person_nationality
 msgid "Partner Person Nationality"
-msgstr "Partner Person Nationality"
+msgstr ""
 
 #. module: partner_person
 #: model:res.groups,name:partner_person.person_passport
 msgid "Partner Person Passport"
-msgstr "Partner Person Passport"
+msgstr ""
 
 #. module: partner_person
 #: model:ir.ui.menu,name:partner_person.menu_partner_config
 #: view:partner.config.settings:partner_person.view_config_settings
 msgid "Partners"
-msgstr "Contactos"
+msgstr ""
 
 #. module: partner_person
 #: field:res.partner,passport:0
 msgid "Passport"
-msgstr "Pasaporte"
+msgstr ""
 
 #. module: partner_person
 #: view:partner.config.settings:partner_person.view_config_settings
 msgid "Person - Personal Information"
-msgstr "Personas - Información Personal"
+msgstr ""
 
 #. module: partner_person
 #: view:res.partner:partner_person.view_partner_person_form
 msgid "Personal Information"
-msgstr "Información Personal"
+msgstr ""
 
 #. module: partner_person
 #: field:res.partner,sex:0
 msgid "Sex"
-msgstr "Sexo"
+msgstr ""
 
 #. module: partner_person
 #: field:partner.config.settings,group_person_birthdate:0
 msgid "Show Birthdate"
-msgstr "Mostrar Fecha de Nacimiento"
+msgstr ""
 
 #. module: partner_person
 #: help:partner.config.settings,group_person_birthdate:0
 msgid "Show Birthdate Field in Personal Information Tab"
-msgstr "Mostrar Fecha de Nacimiento en el campo de Información Personal "
+msgstr ""
 
 #. module: partner_person
 #: field:partner.config.settings,group_disabilities:0
 msgid "Show Disabilities Information"
-msgstr "Mostrar Información de Discapacidades"
+msgstr ""
 
 #. module: partner_person
 #: help:partner.config.settings,group_disabilities:0
 msgid "Show Disabilities Information Tab"
-msgstr "Show Disabilities Information Tab"
+msgstr ""
 
 #. module: partner_person
 #: field:partner.config.settings,group_person_family:0
 msgid "Show Family Information"
-msgstr "Mostrar Información de la Familia"
+msgstr ""
 
 #. module: partner_person
 #: field:partner.config.settings,group_person_marital_information:0
 msgid "Show Marital Information"
-msgstr "Mostrar información de Estado civil"
+msgstr ""
 
 #. module: partner_person
 #: help:partner.config.settings,group_person_marital_information:0
 msgid ""
 "Show Marital Status, Husband and Wife Fields in Personal Information Tab"
-msgstr "Show Marital Status, Husband and Wife Fields in Personal Information Tab"
+msgstr ""
 
 #. module: partner_person
 #: help:partner.config.settings,group_person_family:0
 msgid "Show Mother, Father and Childs Fields in Personal Information Tab"
-msgstr "Mostrar Madre, Padre y Niños en campos de Información Personal "
+msgstr ""
 
 #. module: partner_person
 #: field:partner.config.settings,group_person_ni:0
 msgid "Show National Identity"
-msgstr "Mostrar Documento de Identidad"
+msgstr ""
 
 #. module: partner_person
 #: help:partner.config.settings,group_person_ni:0
 msgid "Show National Identity Field in Personal Information Tab"
-msgstr "Show National Identity Field in Personal Information Tab"
+msgstr ""
 
 #. module: partner_person
 #: field:partner.config.settings,group_person_nationality:0
 msgid "Show Nationality"
-msgstr "Mostrar Nacionalidad"
+msgstr ""
 
 #. module: partner_person
 #: help:partner.config.settings,group_person_nationality:0
 msgid "Show Nationality Field in Personal Information Tab"
-msgstr "Show Nationality Field in Personal Information Tab"
+msgstr ""
 
 #. module: partner_person
 #: field:partner.config.settings,group_person_passport:0
 msgid "Show Passport"
-msgstr "Mostrar Pasaporte"
+msgstr ""
 
 #. module: partner_person
 #: help:partner.config.settings,group_person_passport:0
 msgid "Show Passport Field in Personal Information Tab"
-msgstr "Mostrar Pasaporte  en campos de Información Personal"
+msgstr ""
 
 #. module: partner_person
 #: selection:res.partner,marital_status:0
 msgid "Single"
-msgstr "Soltero/a"
+msgstr ""
 
 #. module: partner_person
 #: model:ir.model,name:partner_person.model_res_users
 msgid "Users"
-msgstr "Usuarios"
+msgstr "Utilisateurs"
 
 #. module: partner_person
 #: field:res.partner,wife_id:0
 msgid "Wife"
-msgstr "Esposa"
+msgstr ""
 
 #. module: partner_person
 #: view:res.partner:partner_person.view_partner_person_form
 msgid "Years)"
-msgstr "Años"
+msgstr ""
 
 #. module: partner_person
 #: view:partner.config.settings:partner_person.view_config_settings
 msgid "or"
-msgstr "o"
+msgstr "ou"
 
 #. module: partner_person
 #: view:res.partner:partner_person.view_partner_person_form
 msgid "{'invisible':[('is_company','=',False)]}"
-msgstr "{'invisible':[('is_company','=',False)]}"
+msgstr ""
