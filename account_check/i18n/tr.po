@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: odoo-addons (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-22 13:44+0000\n"
-"PO-Revision-Date: 2015-10-08 15:13+0000\n"
+"POT-Creation-Date: 2016-01-02 18:20+0000\n"
+"PO-Revision-Date: 2015-10-22 21:00+0000\n"
 "Last-Translator: Juan Jose Scarafia <scarafia.juanjose@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/adhoc/ingadhoc-odoo-addons-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -66,16 +66,8 @@ msgstr "Bütün çek/senetler aynı firmadan olmalıdır!"
 
 #. module: account_check
 #: field:account.check,amount:0
-#: code:addons/account_check/models/account_voucher.py:45
-#, python-format
 msgid "Amount"
 msgstr "Tutar"
-
-#. module: account_check
-#: code:addons/account_check/models/account_voucher.py:48
-#, python-format
-msgid "Amount Paid With Checks"
-msgstr ""
 
 #. module: account_check
 #: field:account.change.check,bank_id:0 field:account.check,bank_id:0
@@ -392,6 +384,12 @@ msgstr "ID"
 #: help:account.check,message_unread:0 help:account.checkbook,message_unread:0
 msgid "If checked new messages require your attention."
 msgstr "İşaretliyse yeni mesajlara dikkat edin."
+
+#. module: account_check
+#: code:addons/account_check/models/account_voucher.py:45
+#, python-format
+msgid "Importe en Cheques"
+msgstr ""
 
 #. module: account_check
 #: view:account.checkbook:account_check.view_account_checkbook_form
@@ -827,7 +825,7 @@ msgid "You can drop the checkbook(s) only in draft state !"
 msgstr "Sadece taslak durumundaki çek/senet defterleri silinebilir !"
 
 #. module: account_check
-#: code:addons/account_check/models/account_voucher.py:76
+#: code:addons/account_check/models/account_voucher.py:79
 #, python-format
 msgid ""
 "You can not cancel handed third checks in states other than \"handed\". "
@@ -884,7 +882,7 @@ msgstr "Numaranın solunu otomatik olarak dolgu adedi kadar '0' ile doldurur."
 #. module: account_check
 #: view:account.change.check:account_check.account_change_check_form_view
 msgid "or"
-msgstr ""
+msgstr "veya"
 
 #. module: account_check
 #: view:account.voucher:account_check.view_vendor_payment_check_form

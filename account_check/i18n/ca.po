@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: odoo-addons (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-22 13:44+0000\n"
-"PO-Revision-Date: 2015-10-08 15:13+0000\n"
+"POT-Creation-Date: 2016-01-02 18:20+0000\n"
+"PO-Revision-Date: 2015-10-22 21:00+0000\n"
 "Last-Translator: Juan Jose Scarafia <scarafia.juanjose@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/adhoc/ingadhoc-odoo-addons-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -66,15 +66,7 @@ msgstr ""
 
 #. module: account_check
 #: field:account.check,amount:0
-#: code:addons/account_check/models/account_voucher.py:45
-#, python-format
 msgid "Amount"
-msgstr ""
-
-#. module: account_check
-#: code:addons/account_check/models/account_voucher.py:48
-#, python-format
-msgid "Amount Paid With Checks"
 msgstr ""
 
 #. module: account_check
@@ -320,7 +312,7 @@ msgstr ""
 #. module: account_check
 #: selection:account.check,state:0 selection:account.checkbook,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Esborrany"
 
 #. module: account_check
 #: field:account.check.dreject,expense_account:0
@@ -351,7 +343,7 @@ msgstr ""
 #. module: account_check
 #: view:account.check:account_check.view_checks_search
 msgid "Group By..."
-msgstr ""
+msgstr "Agrupa per..."
 
 #. module: account_check
 #: selection:account.check,state:0
@@ -391,6 +383,12 @@ msgstr ""
 #. module: account_check
 #: help:account.check,message_unread:0 help:account.checkbook,message_unread:0
 msgid "If checked new messages require your attention."
+msgstr ""
+
+#. module: account_check
+#: code:addons/account_check/models/account_voucher.py:45
+#, python-format
+msgid "Importe en Cheques"
 msgstr ""
 
 #. module: account_check
@@ -498,7 +496,7 @@ msgstr ""
 #. module: account_check
 #: field:account.checkbook,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: account_check
 #: code:addons/account_check/models/account_checkbook.py:61
@@ -801,7 +799,7 @@ msgstr ""
 #. module: account_check
 #: field:account.check,user_id:0
 msgid "User"
-msgstr ""
+msgstr "Usuari"
 
 #. module: account_check
 #: field:account.check,voucher_id:0
@@ -827,7 +825,7 @@ msgid "You can drop the checkbook(s) only in draft state !"
 msgstr ""
 
 #. module: account_check
-#: code:addons/account_check/models/account_voucher.py:76
+#: code:addons/account_check/models/account_voucher.py:79
 #, python-format
 msgid ""
 "You can not cancel handed third checks in states other than \"handed\". "

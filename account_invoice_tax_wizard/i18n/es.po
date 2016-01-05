@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: odoo-addons (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-22 13:44+0000\n"
+"POT-Creation-Date: 2016-01-02 18:20+0000\n"
 "PO-Revision-Date: 2015-09-01 18:07+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (http://www.transifex.com/adhoc/ingadhoc-odoo-addons-8-0/language/es/)\n"
@@ -102,7 +102,7 @@ msgstr ""
 #. module: account_invoice_tax_wizard
 #: view:account.invoice.tax.wizard:account_invoice_tax_wizard.view_account_invoice_tax_wizard_form
 msgid "_Cancel"
-msgstr ""
+msgstr "_Cancelar"
 
 #. module: account_invoice_tax_wizard
 #: view:account.invoice:account_invoice_tax_wizard.invoice_form

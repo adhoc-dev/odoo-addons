@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: odoo-addons (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-22 13:44+0000\n"
+"POT-Creation-Date: 2015-11-03 15:00+0000\n"
 "PO-Revision-Date: 2015-09-01 18:07+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/adhoc/ingadhoc-odoo-addons-8-0/language/ca/)\n"
@@ -90,7 +90,7 @@ msgstr ""
 #: code:addons/account_interests/partner.py:137
 #, python-format
 msgid "Error!"
-msgstr ""
+msgstr "Error!"
 
 #. module: account_interests
 #: field:account.account.interest,id:0
