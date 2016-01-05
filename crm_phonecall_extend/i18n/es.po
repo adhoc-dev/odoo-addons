@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * crm_partner_area
+# * crm_phonecall_extend
 # 
 # Translators:
 # Ivan Todorovich <ivan.todorovich@gmail.com>, 2015
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: odoo-addons (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-05 13:55+0000\n"
-"PO-Revision-Date: 2015-12-29 18:41+0000\n"
+"PO-Revision-Date: 2015-12-29 19:42+0000\n"
 "Last-Translator: Ivan Todorovich <ivan.todorovich@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/adhoc/ingadhoc-odoo-addons-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -18,18 +18,27 @@ msgstr ""
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: crm_partner_area
-#: view:crm.lead:crm_partner_area.view_crm_lead_area_filter
-#: field:crm.lead,area_id:0
-msgid "Area"
-msgstr "Area"
-
-#. module: crm_partner_area
-#: view:crm.lead:crm_partner_area.view_crm_lead_area_filter
-msgid "Group By"
-msgstr "Agrupar Por"
-
-#. module: crm_partner_area
-#: model:ir.model,name:crm_partner_area.model_crm_lead
+#. module: crm_phonecall_extend
+#: model:ir.model,name:crm_phonecall_extend.model_crm_lead
 msgid "Lead/Opportunity"
 msgstr "Iniciativa/Oportunidad"
+
+#. module: crm_phonecall_extend
+#: field:crm.lead,next_phonecall_id:0
+msgid "Next Phonecall"
+msgstr "Siguiente Llamada"
+
+#. module: crm_phonecall_extend
+#: field:crm.lead,phonecall_date:0
+msgid "Phonecall Date"
+msgstr "Fecha de Llamada"
+
+#. module: crm_phonecall_extend
+#: field:crm.lead,phonecall_user_id:0
+msgid "Phonecall Responsible"
+msgstr "Responsable de Llamada"
+
+#. module: crm_phonecall_extend
+#: field:crm.lead,phonecall_type_id:0
+msgid "Phonecall Type"
+msgstr "Tipo de Llamada"

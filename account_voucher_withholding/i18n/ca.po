@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: odoo-addons (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-22 13:44+0000\n"
-"PO-Revision-Date: 2015-10-08 15:14+0000\n"
+"POT-Creation-Date: 2016-01-05 13:55+0000\n"
+"PO-Revision-Date: 2015-10-22 21:02+0000\n"
 "Last-Translator: Juan Jose Scarafia <scarafia.juanjose@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/adhoc/ingadhoc-odoo-addons-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -63,12 +63,6 @@ msgstr ""
 #. module: account_voucher_withholding
 #: field:account.voucher.withholding,amount:0
 msgid "Amount"
-msgstr ""
-
-#. module: account_voucher_withholding
-#: code:addons/account_voucher_withholding/models/account_voucher.py:26
-#, python-format
-msgid "Amount Paid With Withholdings"
 msgstr ""
 
 #. module: account_voucher_withholding
@@ -139,7 +133,7 @@ msgstr ""
 #. module: account_voucher_withholding
 #: view:account.voucher.withholding:account_voucher_withholding.account_voucher_withholding_filter_view
 msgid "Group By..."
-msgstr ""
+msgstr "Agrupa per..."
 
 #. module: account_voucher_withholding
 #: field:account.tax.withholding,id:0
@@ -208,7 +202,7 @@ msgstr ""
 #: field:account.tax.withholding,name:0
 #: field:account.tax.withholding.template,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: account_voucher_withholding
 #: view:account.tax.withholding:account_voucher_withholding.account_tax_withholding_form_view
@@ -308,7 +302,7 @@ msgid "Tax Code Sign"
 msgstr ""
 
 #. module: account_voucher_withholding
-#: code:addons/account_voucher_withholding/models/account_voucher_withholding.py:108
+#: code:addons/account_voucher_withholding/models/account_voucher_withholding.py:110
 #, python-format
 msgid "Tax Withholding is Required!"
 msgstr ""
@@ -358,7 +352,7 @@ msgid "Voucher"
 msgstr ""
 
 #. module: account_voucher_withholding
-#: code:addons/account_voucher_withholding/models/account_voucher_withholding.py:99
+#: code:addons/account_voucher_withholding/models/account_voucher_withholding.py:101
 #, python-format
 msgid "Voucher and Tax Withholding must belong to the same company"
 msgstr ""
@@ -407,10 +401,4 @@ msgstr ""
 #. module: account_voucher_withholding
 #: field:account.voucher,withholding_ids:0
 msgid "Withholdings"
-msgstr ""
-
-#. module: account_voucher_withholding
-#: code:addons/account_voucher_withholding/models/account_voucher.py:23
-#, python-format
-msgid "Withholdings Amount"
 msgstr ""
