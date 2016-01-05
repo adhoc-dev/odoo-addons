@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: odoo-addons (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 23:58+0000\n"
-"PO-Revision-Date: 2015-09-01 17:56+0000\n"
+"POT-Creation-Date: 2016-01-05 15:16+0000\n"
+"PO-Revision-Date: 2015-11-11 15:53+0000\n"
 "Last-Translator: Juan Jose Scarafia <scarafia.juanjose@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/adhoc/ingadhoc-odoo-addons-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -20,27 +20,27 @@ msgstr ""
 #. module: project_tags
 #: field:project_tags.project_tag,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: project_tags
 #: field:project_tags.project_tag,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creadon en"
 
 #. module: project_tags
 #: field:project_tags.project_tag,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: project_tags
 #: field:project_tags.project_tag,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Last Updated by"
 
 #. module: project_tags
 #: field:project_tags.project_tag,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Last Updated on"
 
 #. module: project_tags
 #: view:project_tags.project_tag:project_tags.view_project_tags_project_tag_filter

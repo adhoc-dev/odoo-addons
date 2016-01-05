@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: odoo-addons (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 23:58+0000\n"
-"PO-Revision-Date: 2015-09-01 17:54+0000\n"
+"POT-Creation-Date: 2016-01-05 15:23+0000\n"
+"PO-Revision-Date: 2015-12-29 17:29+0000\n"
 "Last-Translator: Juan Jose Scarafia <scarafia.juanjose@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/adhoc/ingadhoc-odoo-addons-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -39,12 +39,18 @@ msgid ""
 msgstr "If true, this sale order has been dummy confirmed and can go back to draft."
 
 #. module: sale_dummy_confirmation
+#: help:res.company,sale_order_dummy_confirm:0
+msgid ""
+"If you set True then all orders of this company will be dummy confirmed"
+msgstr ""
+
+#. module: sale_dummy_confirmation
 #: field:res.company,sale_order_dummy_confirm:0
 msgid "Sale Orders Dummy Confirmation"
 msgstr "Sale Orders Dummy Confirmation"
 
 #. module: sale_dummy_confirmation
-#: code:addons/sale_dummy_confirmation/sale.py:24
+#: code:addons/sale_dummy_confirmation/sale.py:35
 #: model:ir.model,name:sale_dummy_confirmation.model_sale_order
 #, python-format
 msgid "Sales Order"

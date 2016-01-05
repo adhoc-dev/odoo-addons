@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: odoo-addons (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 23:58+0000\n"
-"PO-Revision-Date: 2015-09-01 17:54+0000\n"
+"POT-Creation-Date: 2016-01-05 15:23+0000\n"
+"PO-Revision-Date: 2015-12-29 17:29+0000\n"
 "Last-Translator: Juan Jose Scarafia <scarafia.juanjose@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/adhoc/ingadhoc-odoo-addons-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -23,14 +23,14 @@ msgid "Companies"
 msgstr "Compañías"
 
 #. module: sale_order_validity
-#: help:sale.order,validity_date:0
-msgid "Define date until when quotation is valid"
-msgstr "Define la fecha hasta la cual el presupuesto es válido"
+#: view:sale.order:sale_order_validity.view_order_form_date_order_writeable
+msgid "False"
+msgstr ""
 
 #. module: sale_order_validity
 #: field:res.company,sale_order_validity_days:0
-msgid "Sale Order Vailidty Period"
-msgstr "Período de Validez de Orden de Venta"
+msgid "Sale Order Validity Days"
+msgstr ""
 
 #. module: sale_order_validity
 #: model:ir.model,name:sale_order_validity.model_sale_order
@@ -46,8 +46,13 @@ msgstr "Definir días de validez para las Ordenes de Venta, si es nulo, no se va
 
 #. module: sale_order_validity
 #: view:sale.order:sale_order_validity.view_order_form_validity
-msgid "Update Prices and Validity"
-msgstr "Actualizar Preciso y Validez"
+msgid "True"
+msgstr "True"
+
+#. module: sale_order_validity
+#: view:sale.order:sale_order_validity.view_order_form_validity
+msgid "Update Date, Prices and Validity"
+msgstr ""
 
 #. module: sale_order_validity
 #: view:sale.order:sale_order_validity.view_order_form_validity
@@ -55,14 +60,28 @@ msgid "Update Validity"
 msgstr "Actualizar Validez"
 
 #. module: sale_order_validity
-#: field:sale.order,validity_date:0
-msgid "Validity Date"
+#: field:sale.order,validity_days:0
+msgid "Validity Days"
 msgstr ""
 
 #. module: sale_order_validity
-#: code:addons/sale_order_validity/sale_order.py:37
+#: code:addons/sale_order_validity/sale_order.py:40
+#, python-format
+msgid "Warning!"
+msgstr ""
+
+#. module: sale_order_validity
+#: code:addons/sale_order_validity/sale_order.py:58
 #, python-format
 msgid ""
 "You can not confirm this quoatation as it was valid until %s! Please Update "
 "Validity."
+msgstr ""
+
+#. module: sale_order_validity
+#: code:addons/sale_order_validity/sale_order.py:41
+#, python-format
+msgid ""
+"You can not set more validity days than the configured on the company (%i "
+"days)."
 msgstr ""

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: odoo-addons (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 23:58+0000\n"
-"PO-Revision-Date: 2015-09-01 17:53+0000\n"
+"POT-Creation-Date: 2016-01-05 15:23+0000\n"
+"PO-Revision-Date: 2016-01-05 13:58+0000\n"
 "Last-Translator: Juan Jose Scarafia <scarafia.juanjose@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/adhoc/ingadhoc-odoo-addons-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -122,7 +122,7 @@ msgstr "Tarea"
 #. module: surveyor
 #: view:res.partner:surveyor.view_partner_form
 msgid "Tasks"
-msgstr ""
+msgstr "Tareas"
 
 #. module: surveyor
 #: view:project.task:surveyor.view_task_search_form

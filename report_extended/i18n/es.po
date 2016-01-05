@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: odoo-addons (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 23:58+0000\n"
-"PO-Revision-Date: 2015-09-01 17:55+0000\n"
+"POT-Creation-Date: 2016-01-05 15:23+0000\n"
+"PO-Revision-Date: 2015-12-17 15:56+0000\n"
 "Last-Translator: Juan Jose Scarafia <scarafia.juanjose@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/adhoc/ingadhoc-odoo-addons-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgstr "Compañías"
 #. module: report_extended
 #: field:ir.actions.report.xml,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Compañía"
 
 #. module: report_extended
 #: selection:ir.actions.report.xml,print_logo:0
@@ -68,13 +68,13 @@ msgstr "Lineas de Configuración"
 #: field:report.configuration.default,create_uid:0
 #: field:report.configuration.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Created by"
 
 #. module: report_extended
 #: field:report.configuration.default,create_date:0
 #: field:report.configuration.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Created on"
 
 #. module: report_extended
 #: model:ir.model,name:report_extended.model_report_configuration_default
@@ -90,7 +90,7 @@ msgstr "No imprimir el log"
 #: field:report.configuration.default,id:0
 #: field:report.configuration.line,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: report_extended
 #: help:report.configuration.default,override_values:0
@@ -119,13 +119,13 @@ msgstr ""
 #: field:report.configuration.default,write_uid:0
 #: field:report.configuration.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Last Updated by"
 
 #. module: report_extended
 #: field:report.configuration.default,write_date:0
 #: field:report.configuration.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Last Updated on"
 
 #. module: report_extended
 #: model:ir.model,name:report_extended.model_report_configuration_line
@@ -190,7 +190,7 @@ msgstr "Claves por Defecto de los Reportes"
 #. module: report_extended
 #: field:ir.actions.report.xml,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Secuencia"
 
 #. module: report_extended
 #: selection:ir.actions.report.xml,print_logo:0

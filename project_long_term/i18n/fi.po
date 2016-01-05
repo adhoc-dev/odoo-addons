@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: odoo-addons (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 23:58+0000\n"
-"PO-Revision-Date: 2015-09-01 17:57+0000\n"
+"POT-Creation-Date: 2016-01-05 15:16+0000\n"
+"PO-Revision-Date: 2015-10-22 21:05+0000\n"
 "Last-Translator: Juan Jose Scarafia <scarafia.juanjose@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/adhoc/ingadhoc-odoo-addons-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -114,14 +114,14 @@ msgstr "Rajoitukset"
 #: field:project.compute.tasks,create_uid:0 field:project.phase,create_uid:0
 #: field:project.user.allocation,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Luonut"
 
 #. module: project_long_term
 #: field:project.compute.phases,create_date:0
 #: field:project.compute.tasks,create_date:0 field:project.phase,create_date:0
 #: field:project.user.allocation,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Luotu"
 
 #. module: project_long_term
 #: field:project.phase,constraint_date_end:0
@@ -186,7 +186,7 @@ msgstr "Ryhmittely.."
 #: field:project.compute.phases,id:0 field:project.compute.tasks,id:0
 #: field:project.phase,id:0 field:project.user.allocation,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: project_long_term
 #: help:project.phase,state:0
@@ -220,14 +220,14 @@ msgstr "Lasketaan ajastimen avulla käyttäen projektin kestoa ja edellisen vaih
 #: field:project.compute.tasks,write_uid:0 field:project.phase,write_uid:0
 #: field:project.user.allocation,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Viimeksi päivittänyt"
 
 #. module: project_long_term
 #: field:project.compute.phases,write_date:0
 #: field:project.compute.tasks,write_date:0 field:project.phase,write_date:0
 #: field:project.user.allocation,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Viimeksi päivitetty"
 
 #. module: project_long_term
 #: constraint:project.phase:0
@@ -540,4 +540,4 @@ msgstr "Pakota vaihe alkamaan tämän päivän jälkeen"
 #: view:project.compute.phases:project_long_term.view_project_compute_phases_select
 #: view:project.compute.tasks:project_long_term.view_project_compute_tasks
 msgid "or"
-msgstr ""
+msgstr "tai"
