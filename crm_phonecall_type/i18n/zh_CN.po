@@ -3,79 +3,78 @@
 # * crm_phonecall_type
 # 
 # Translators:
-# Ivan Todorovich <ivan.todorovich@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: odoo-addons (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-05 13:55+0000\n"
-"PO-Revision-Date: 2015-12-29 18:43+0000\n"
-"Last-Translator: Ivan Todorovich <ivan.todorovich@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/adhoc/ingadhoc-odoo-addons-8-0/language/es/)\n"
+"PO-Revision-Date: 2015-09-09 13:59+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/adhoc/ingadhoc-odoo-addons-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: crm_phonecall_type
 #: field:crm.phonecall.type,create_uid:0
 msgid "Created by"
-msgstr "Creado por"
+msgstr ""
 
 #. module: crm_phonecall_type
 #: field:crm.phonecall.type,create_date:0
 msgid "Created on"
-msgstr "Creadon en"
+msgstr ""
 
 #. module: crm_phonecall_type
 #: view:crm.phonecall:crm_phonecall_type.view_crm_case_phonecalls_filter
 msgid "Group By"
-msgstr "Agrupar Por"
+msgstr ""
 
 #. module: crm_phonecall_type
 #: field:crm.phonecall.type,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: crm_phonecall_type
 #: field:crm.phonecall.type,write_uid:0
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr ""
 
 #. module: crm_phonecall_type
 #: field:crm.phonecall.type,write_date:0
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr ""
 
 #. module: crm_phonecall_type
 #: field:crm.phonecall.type,name:0
 msgid "Name"
-msgstr "Nombre"
+msgstr "名称"
 
 #. module: crm_phonecall_type
 #: model:ir.model,name:crm_phonecall_type.model_crm_phonecall
 msgid "Phonecall"
-msgstr "Llamada"
+msgstr ""
 
 #. module: crm_phonecall_type
 #: model:ir.model,name:crm_phonecall_type.model_crm_phonecall2phonecall
 msgid "Phonecall To Phonecall"
-msgstr "Llamada a Llamada"
+msgstr ""
 
 #. module: crm_phonecall_type
 #: model:ir.actions.act_window,name:crm_phonecall_type.crm_phonecall_type_action
 #: model:ir.model,name:crm_phonecall_type.model_crm_phonecall_type
 msgid "Phonecall Types"
-msgstr "Tipos de Llamada"
+msgstr ""
 
 #. module: crm_phonecall_type
 #: view:crm.phonecall:crm_phonecall_type.view_crm_case_phonecalls_filter
 #: field:crm.phonecall,type_id:0 field:crm.phonecall2phonecall,type_id:0
 msgid "Type"
-msgstr "Tipo"
+msgstr ""
 
 #. module: crm_phonecall_type
 #: model:ir.ui.menu,name:crm_phonecall_type.menu_crm_case_phonecall_type
 msgid "Types"
-msgstr "Tipos"
+msgstr ""
