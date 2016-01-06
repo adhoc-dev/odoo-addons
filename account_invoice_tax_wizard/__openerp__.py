@@ -21,6 +21,7 @@
 {
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'category': 'Accounting & Finance',
     'data': [
         'wizard/account_invoice_tax_wizard_view.xml',

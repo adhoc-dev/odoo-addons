@@ -32,6 +32,7 @@ It also add actual user as default salesman for new partners
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

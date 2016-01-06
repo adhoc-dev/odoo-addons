@@ -40,6 +40,7 @@ less it does not allow to approve the Sale Order
 """,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'depends': [
         'sale_exceptions',
         ],

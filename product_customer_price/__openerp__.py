@@ -18,21 +18,21 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{   'active': False,
+{'active': False,
     'author': 'ADHOC SA.',
+    'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'category': u'base.module_category_knowledge_management',
     'demo_xml': [],
     'depends': [u'product'],
     'description': u'Product Customer Price',
     'installable': True,
-    'license': 'AGPL-3',
     'name': u'Product Customer Price',
     'test': [],
     'data': [
         'view/product_view.xml',
-        'security/ir.model.access.csv', 
-      ],
-    'version': '8.0.0.0.0',
-    'website': ''}
+        'security/ir.model.access.csv',
+    ],
+    'version': '8.0.0.0.0'}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

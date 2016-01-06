@@ -25,6 +25,7 @@
     'category': 'Aeroo Reporting',
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'depends': [
         'account',
         'report_aeroo',

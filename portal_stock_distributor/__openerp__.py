@@ -28,6 +28,8 @@ Portal Stock Distributor Sale
 =======================
     """,
     'author': 'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'depends': [
         'portal_sale_distributor',
         'portal_stock',

@@ -19,24 +19,24 @@
 #
 ##############################################################################
 {
-    'author': 'ADHOC SA.',
+    'name': 'Product Search by Website Category',
     'category': 'base.module_category_knowledge_management',
-    'demo_xml': [],
-    'depends': [
-        'product',
-        'website_sale',
-        ],
     'description': """
 Product Search by Website Category
 ==================================
 """,
-    'installable': True,
+    'author': 'ADHOC SA.',
+    'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
-    'name': 'Product Search by Website Category',
+    'depends': [
+        'product',
+        'website_sale',
+        ],
     'test': [],
+    'demo': [],
     'data': [
         'product_view.xml',
     ],
-    'website': 'www.adhoc.com.ar'}
+    'installable': True}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

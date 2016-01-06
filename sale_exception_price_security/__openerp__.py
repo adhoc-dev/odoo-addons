@@ -31,6 +31,7 @@ sale order
 """,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'depends': [
         'sale_exceptions',
         'price_security',

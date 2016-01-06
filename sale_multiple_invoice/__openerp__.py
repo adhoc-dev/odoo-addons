@@ -31,6 +31,7 @@ On Invoicing from sale order, adds an option to make multiple invoices by once.
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

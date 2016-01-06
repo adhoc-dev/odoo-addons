@@ -32,6 +32,7 @@ Adds a balance field on account.move.line. It also adds this field on account.mo
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

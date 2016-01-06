@@ -14,6 +14,7 @@ It makes the following modifications in security related to accounting:
     """,
     "author": "ADHOC SA",
     "website": "www.adhoc.com.ar",
+    'license': 'AGPL-3',
     "category": "Financial",
     "depends": [
         "account_voucher",

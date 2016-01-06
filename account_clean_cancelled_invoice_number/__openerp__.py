@@ -33,6 +33,7 @@ Adds a button on invoice to allow clean number to cancelled invoices in order to
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

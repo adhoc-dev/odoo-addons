@@ -9,6 +9,7 @@ Search Partners by VAT
 ======================
     """,
     "website": "www.adhoc.com.ar",
+    'license': 'AGPL-3',
     "depends": ["base_vat",
                 ],
     "demo": [

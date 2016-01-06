@@ -28,6 +28,7 @@ Sale Pricelist Discount
     'category': 'Sales Management',
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'depends': [
         'sale',
     ],

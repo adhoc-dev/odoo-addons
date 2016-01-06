@@ -18,13 +18,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{   'active': False,
+{
+    'name': 'Sale Multi Company Fixes',
+    'active': False,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'category': 'Accounting & Finance',
     'data': [
-        'sale_view.xml',   
-                ],
+        'sale_view.xml',
+    ],
     'demo': [],
     'depends': ['sale'],
     'description': '''
@@ -32,6 +35,5 @@ Sale Multi Company Fixes
 ========================
 ''',
     'installable': True,
-    'name': 'Sale Multi Company Fixes',
     'test': [],
     'version': '8.0.1.2.0'}

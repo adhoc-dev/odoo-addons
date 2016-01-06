@@ -19,13 +19,14 @@
 #
 ##############################################################################
 {
-    'author': 'ADHOC SA.',
+    'name': 'Purchase UOM Prices',
+    'version': '8.0.0.0.0',
     'category': 'base.module_category_knowledge_management',
     'demo_xml': [],
     'depends': [
         'purchase',
         'product_uom_prices',
-        ],
+    ],
     'description': """
 Purchase UOM Prices
 ==================
@@ -35,13 +36,12 @@ Purchase UOM Prices
 * Change domain on purchase order lines so that only defined uoms can be choosen.
 
 """,
-    'installable': True,
+    'author': 'ADHOC SA.',
+    'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
-    'name': 'Purchase UOM Prices',
     'test': [],
     'data': [
     ],
-    'version': '8.0.0.0.0',
-    'website': 'www.adhoc.com.ar'}
+    'installable': True}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

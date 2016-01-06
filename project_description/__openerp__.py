@@ -31,6 +31,7 @@ Adds account_analytic_account description field on project form view
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

@@ -31,6 +31,7 @@ Adds CRM partner history page on partners form view as it exists on odoo v6.1
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

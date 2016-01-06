@@ -23,6 +23,7 @@
     'version': '8.0.1.0.1',
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'depends': ["sale_stock"],
     'category': 'Sale Management',
     'description': '''

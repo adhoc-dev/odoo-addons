@@ -32,6 +32,7 @@
     Order""",
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'depends': ['sale'],
     'data': [
         'security/partner_credit_limit_security.xml',

@@ -31,6 +31,7 @@ It allow to change locations linked to a warehouse. Used when you have to fix a 
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

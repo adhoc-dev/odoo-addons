@@ -20,6 +20,7 @@
     'version': '8.0.0.0.0',
     'auto_install': False,
     'category': '',
-    'website': 'www.adhoc.com.ar'}
+    'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3'}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

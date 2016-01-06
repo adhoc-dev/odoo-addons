@@ -34,7 +34,8 @@
         'security/ir.model.access.csv',
     ],
     'version': '8.0.1.1.0',
-    'website': 'www.adhoc.com.ar'
+    'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3'
 }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

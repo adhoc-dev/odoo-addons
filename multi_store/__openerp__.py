@@ -44,6 +44,7 @@ It is done with the same logic to journal. We do not limitate the "read" of this
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

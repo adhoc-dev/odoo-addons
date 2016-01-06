@@ -33,6 +33,7 @@ This addon is used by addons that implement different payment subtypes such as c
     """,
     'author': 'Eska Yazılım ve Danışmanlık A.Ş.',
     'website': 'http://www.eskayazilim.com.tr',
+    'license': 'AGPL-3',
     'depends': ['account_voucher'],
     'data': ['views/account_journal_payment_subtype_view.xml'],
     'installable': True,

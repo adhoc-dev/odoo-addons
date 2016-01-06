@@ -29,7 +29,8 @@ Sales Team Group
 Adds a sales group called "Sale Team"
      """,
     'author': 'ADHOC SA',
-    'website': 'www.adhoc.com.ar/',
+    'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'depends': [
         'crm',
         'sale_restrict_partners',

@@ -19,10 +19,8 @@
 #
 ##############################################################################
 {
-    'author': 'ADHOC SA.',
+    'name': 'Product Variant Improvements',
     'category': 'base.module_category_knowledge_management',
-    'demo_xml': [],
-    'depends': ['product'],
     'description': """
 Product Variant Improvements
 ============================
@@ -35,15 +33,17 @@ Para cada atributo se debe marcar si se quiere incluirlo o no en el nombre (por 
 Cada vez que marques un atributo y guardes, es probable que tarde un poquito porque a todos los productos que usen ese atributo le va a crear un mobre con eso. 
 
 """,
-    'installable': True,
+    'author': 'ADHOC SA.',
+    'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
-    'name': 'Product Variant Improvements',
+    'depends': ['product'],
     'demo': [
         'product_demo.xml',
     ],
     'data': [
         'product_view.xml',
     ],
-    'website': 'www.adhoc.com.ar'}
+    'installable': True
+}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

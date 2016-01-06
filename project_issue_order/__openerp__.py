@@ -32,6 +32,7 @@ Add sequence field to issues and change default order to the following criteria:
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

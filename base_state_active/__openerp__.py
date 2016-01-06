@@ -31,6 +31,7 @@ Adds active field for states in order to disable usa states an other states you 
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

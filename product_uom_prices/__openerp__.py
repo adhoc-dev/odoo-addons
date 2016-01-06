@@ -19,13 +19,9 @@
 #
 ##############################################################################
 {
-    'author': 'ADHOC SA.',
+    'name': 'Product UOM Prices',
+    'version': '8.0.0.3.0',
     'category': 'base.module_category_knowledge_management',
-    'demo_xml': [],
-    'depends': [
-        'sale',
-        'product_price_currency',
-        ],
     'description': """
 Product UOM Prices
 ==================
@@ -36,17 +32,22 @@ Product UOM Prices
 
 Video TUTORIAL: https://www.youtube.com/watch?v=-jGsbEZDOJE
 """,
-    'installable': True,
+    'author': 'ADHOC SA.',
+    'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
-    'name': 'Product UOM Prices',
+    'depends': [
+        'sale',
+        'product_price_currency',
+        ],
     'test': [],
+    'demo': [],
     'data': [
         'view/product_view.xml',
         'view/res_company_view.xml',
         'view/sale_view.xml',
         'security/ir.model.access.csv',
     ],
-    'version': '8.0.0.3.0',
-    'website': ''}
+    'installable': True
+    }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

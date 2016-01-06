@@ -47,6 +47,7 @@ It also adds a configuration menu for choosing which fields do you wanna see.
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

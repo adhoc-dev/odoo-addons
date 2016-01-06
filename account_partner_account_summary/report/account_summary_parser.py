@@ -175,6 +175,8 @@ class Parser(rml_parse):
         for it_move in moves:
             accumulated_balance += self.get_move_debit(
                 it_move) - self.get_move_credit(it_move)
+            # print 'get_move_credit', self.get_move_credit(it_move)
+            # print 'accumulated_balance', accumulated_balance
             if it_move == move:
                 break
         return accumulated_balance
@@ -198,7 +200,7 @@ class Parser(rml_parse):
         return lines
 
     def get_move_line_name(self, line):
-        return line.name
+        return line.display_name
 
     def get_move_line_debit_to_print(self, line):
         if line.debit == 0.0:
@@ -333,17 +335,17 @@ class Parser(rml_parse):
             return res[0][0]
 
     def get_initial_balance(self, partner, context=None):
-        return self.get_initial_debit(partner, context) - self.get_initial_credit(partner, context)
+        return self.get_initial_debit(partner) - self.get_initial_credit(partner)
 
     def get_initial_credit_to_print(self, partner, context=None):
-        initial_credit = self.get_initial_credit(partner, context)
+        initial_credit = self.get_initial_credit(partner)
         if not initial_credit:
             return 0
         else:
             return initial_credit
 
     def get_initial_debit_to_print(self, partner, context=None):
-        initial_debit = self.get_initial_debit(partner, context)
+        initial_debit = self.get_initial_debit(partner)
         if not initial_debit:
             return 0
         else:

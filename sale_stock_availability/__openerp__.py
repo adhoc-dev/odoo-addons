@@ -34,7 +34,8 @@ IMPORTANT:
     * If you dont disable warning and give a user availbility to see only "true/false" on sale order stock, he can see stock if the warning is raised
     """,
     'author': 'Moldeo Interactive & ADHOC SA',
-    'website': 'http://business.moldeo.coop http://ingadhoc.com/',
+    'website': 'http://business.moldeo.coop http://adhoc.com.ar/',
+    'license': 'AGPL-3',
     'images': [],
     'depends': [
         'sale_stock'

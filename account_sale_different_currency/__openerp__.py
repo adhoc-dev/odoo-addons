@@ -36,6 +36,7 @@ monedas pertinentes y de "account" y "product" a 3 decimales.
     """,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'depends': [
         'sale',
         ],

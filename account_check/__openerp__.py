@@ -29,6 +29,7 @@ Account Check Management
 ========================
     """,
     'author':  'OpenERP Team de Localizacion Argentina',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [
