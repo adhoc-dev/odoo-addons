@@ -2,6 +2,7 @@
 {'active': False,
     'author':  'Ingenieria ADHOC',
     'website': 'www.ingadhoc.com',
+    'license': 'AGPL-3',
     'category': 'Accounting & Finance',
     'data': [
         'workflow/account_voucher_workflow.xml',

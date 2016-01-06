@@ -28,6 +28,7 @@ Account Invoice Pricelist Discount
     'category': 'Account',
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'depends': [
         'account',
     ],

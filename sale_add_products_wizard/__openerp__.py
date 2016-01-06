@@ -31,6 +31,7 @@ This module adds a " multi Add " button on sales orders calling a wizard "sale o
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

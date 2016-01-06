@@ -31,6 +31,7 @@ Allow to register payments on taks and give availability to track them.
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

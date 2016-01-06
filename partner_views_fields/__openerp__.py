@@ -9,6 +9,7 @@ Add Fields on Partners Views
 ============================
     """,
     "website": "www.adhoc.com.ar",
+    'license': 'AGPL-3',
     "depends": [
         "base_setup",
     ],

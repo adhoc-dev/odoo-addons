@@ -29,6 +29,7 @@ Add a constraint on partners so that vat must be unique except in partner with p
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

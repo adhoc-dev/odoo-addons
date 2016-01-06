@@ -27,6 +27,7 @@
 ''',
     'author': 'OpenERP SA',
     'website': 'http://openerp.com',
+    'license': 'AGPL-3',
     'depends': [
         'sale',
         'purchase',

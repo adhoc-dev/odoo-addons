@@ -29,6 +29,7 @@ want to keep archives (mails sent) or not.
 """,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'depends': [
         'mass_mailing',
         ],

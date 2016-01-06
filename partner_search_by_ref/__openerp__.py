@@ -2,13 +2,14 @@
 {
     "name": "Search Partners by Reference",
     "version": "8.0.1.0.0",
-    "author": "ADHOC SA",
     "category": "",
-    "description" : """
+    "description": """
 Search Partners by Reference
 ============================
     """,
+    "author": "ADHOC SA",
     "website": "www.adhoc.com.ar",
+    'license': 'AGPL-3',
     "depends": ["base",
                 ],
     "demo": [

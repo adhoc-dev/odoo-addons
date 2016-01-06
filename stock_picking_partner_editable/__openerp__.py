@@ -31,6 +31,7 @@ Make partner editable on confirmed stock picking
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

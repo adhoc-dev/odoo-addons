@@ -11,6 +11,7 @@ Tax Settlement - Voucher Withholding Integration
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

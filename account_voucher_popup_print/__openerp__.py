@@ -2,6 +2,7 @@
 {'active': False,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'category': 'Accounting & Finance',
     'data': [
         'account_voucher_view.xml',

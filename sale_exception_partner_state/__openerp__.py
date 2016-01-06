@@ -30,6 +30,7 @@ certain amount
 """,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'depends': [
         'sale_exceptions',
         'partner_state',

@@ -51,6 +51,7 @@ The parser proved a serie of fields an functions to use in the odt:
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

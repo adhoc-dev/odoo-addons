@@ -29,6 +29,7 @@ This module implements a timesheet system.
     """,
     'author': 'OpenERP SA',
     'website': 'http://www.openerp.com',
+    'license': 'AGPL-3',
     'images': ['images/hr_timesheet_lines.jpeg'],
     'depends': ['hr_timesheet', 'project'],
     'data': [

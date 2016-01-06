@@ -31,6 +31,7 @@ This module adds a " multi Add " button on purchase orders calling a wizard "pur
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

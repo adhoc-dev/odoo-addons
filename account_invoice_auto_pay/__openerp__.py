@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 {'active': False,
-    'author':  'Ingenieria ADHOC',
-    'website': 'www.ingadhoc.com',
+    'author':  'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'category': 'Accounting & Finance',
     'data': [
         'account_invoice_view.xml',

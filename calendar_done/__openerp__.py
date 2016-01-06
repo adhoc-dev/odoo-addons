@@ -28,6 +28,7 @@ Mark Calendar Event as Done
     """,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'depends': ['calendar'],
     'data': [
         'calendar_meeting_view.xml',

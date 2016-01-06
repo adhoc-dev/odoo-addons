@@ -44,6 +44,7 @@ For users with price restriction, it restricts:
     'category': 'Sales Management',
     'author': 'ADHOC SA',
     'website': 'http://www.adhoc.com.ar/',
+    'license': 'AGPL-3',
     'depends': [
         'sale',
     ],

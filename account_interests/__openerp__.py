@@ -31,6 +31,7 @@ Se debe setear en las cuentas deseadas (pr ejemplo deudores por venta), los inte
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

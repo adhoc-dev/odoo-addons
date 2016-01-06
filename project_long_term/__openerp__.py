@@ -24,6 +24,7 @@
     'version': '8.0.1.1.0',
     'author': 'OpenERP SA',
     'website': 'http://www.openerp.com',
+    'license': 'AGPL-3',
     'category': 'Project Management',
     'images': ['images/project_phase_form.jpeg','images/project_phases.jpeg', 'images/resources_allocation.jpeg'],
     'depends': ['project'],

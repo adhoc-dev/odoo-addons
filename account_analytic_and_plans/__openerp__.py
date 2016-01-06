@@ -27,6 +27,7 @@ Account Analytic And Plans
     """,
     "author": "ADHOC SA",
     "website": "www.adhoc.com.ar",
+    'license': 'AGPL-3',
     "category": "Account",
     "depends": [
         'sale_analytic_plans', 'purchase_analytic_plans'

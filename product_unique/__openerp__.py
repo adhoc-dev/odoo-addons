@@ -31,6 +31,7 @@ Module to made "ean13" and "default_code" fields to be unique for products on th
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

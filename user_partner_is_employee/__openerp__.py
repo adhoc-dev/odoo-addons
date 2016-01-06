@@ -32,6 +32,7 @@ It also adds a related field on partner to the previus field.
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

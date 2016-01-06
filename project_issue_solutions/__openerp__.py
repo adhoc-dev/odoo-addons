@@ -31,6 +31,7 @@ Add new object call solutions and adds a m2o field from issues to solutions
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [

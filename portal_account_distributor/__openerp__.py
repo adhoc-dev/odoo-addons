@@ -28,6 +28,8 @@ Portal Distributor Account
 ==========================
     """,
     'author': 'ADHOC SA',
+    'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'depends': ['portal'],
     'demo': [
         'portal_demo.xml',

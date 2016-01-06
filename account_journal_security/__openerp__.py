@@ -33,6 +33,7 @@ This fields are only seen by users with "access right management"
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [
