@@ -5,6 +5,7 @@
 ##############################################################################
 from openerp.report.report_sxw import rml_parse
 import logging
+import time
 logger = logging.getLogger('report_aeroo')
 
 
@@ -17,73 +18,59 @@ class Parser(rml_parse):
         # pude detectar para usuarios sin permiso contable, solo con "sale
         # user"
 
-        if not context:
-            return None
-        partner_ids = context.get('active_ids', False)
-        if not partner_ids:
-            return None
-        if not isinstance(partner_ids, list):
-            partner_ids = [partner_ids]
+        # if not context:
+        #     return None
+        # partner_ids = context.get('active_ids', False)
 
-        self.from_date = context.get('from_date', False)
-        self.to_date = context.get('to_date', False)
+        # self.from_date = context.get('from_date', False)
+        self.to_date = context.get('to_date', time.localtime())
         self.company_id = context.get('company_id', False)
-        self.show_invoice_detail = context.get('show_invoice_detail', False)
-        self.show_receipt_detail = context.get('show_receipt_detail', False)
+        # self.show_invoice_detail = context.get('show_invoice_detail', False)
+        # self.show_receipt_detail = context.get('show_receipt_detail', False)
         self.result_selection = context.get('result_selection', False)
 
-        move_obj = self.pool.get('account.move')
-        partner_obj = self.pool.get('res.partner')
+        # move_obj = self.pool.get('account.move')
+        # partner_obj = self.pool.get('res.partner')
 
-        moves_dic = {}
-        if self.company_id:
-            for partner in partner_obj.browse(cr, uid, partner_ids, context=context):
-                move_ids = self.select_account_move_ids(
-                    partner.id, self.from_date, self.to_date)
-                moves_ids = move_obj.search(cr, uid, (['id', 'in', move_ids], ['company_id', '=', self.company_id]),
-                                            order='date asc',
-                                            context=context)
-                moves = move_obj.browse(cr, uid, moves_ids, context=context)
-                moves_dic[partner] = moves
-        else:
-            for partner in partner_obj.browse(cr, uid, partner_ids, context=context):
-                move_ids = self.select_account_move_ids(
-                    partner.id, self.from_date, self.to_date)
-                moves = move_obj.browse(cr, uid, move_ids, context=context)
-                moves_dic[partner] = moves
+        # moves_dic = {}
+        # for partner in partner_obj.browse(cr, uid, partner_ids, context=context):
+        #     move_ids = self.select_account_move_ids(
+        #         partner.id, self.from_date, self.to_date)
+        #     moves = move_obj.browse(cr, uid, move_ids, context=context)
+        #     moves_dic[partner] = moves
 
-        self.moves_dic = moves_dic
+        # self.moves_dic = moves_dic
         self.localcontext.update({
-            'context': context,
-            'moves_dic': moves_dic,
-            'show_invoice_detail': self.show_invoice_detail,
-            'show_receipt_detail': self.show_receipt_detail,
+            # 'context': context,
+            # 'moves_dic': moves_dic,
+            # 'show_invoice_detail': self.show_invoice_detail,
+            # 'show_receipt_detail': self.show_receipt_detail,
 
-            'get_moves_from_partner': self.get_moves_from_partner,
-            'contains_relevant_lines': self.contains_relevant_lines,
-            'get_move_name': self.get_move_name,
-            'get_move_debit': self.get_move_debit,
-            'get_move_credit': self.get_move_credit,
-            'get_move_debit_to_print': self.get_move_debit_to_print,
-            'get_move_credit_to_print': self.get_move_credit_to_print,
-            'get_move_accumulated_balance': self.get_move_accumulated_balance,
+            # 'get_moves_from_partner': self.get_moves_from_partner,
+            # 'contains_relevant_lines': self.contains_relevant_lines,
+            # 'get_move_name': self.get_move_name,
+            # 'get_move_debit': self.get_move_debit,
+            # 'get_move_credit': self.get_move_credit,
+            # 'get_move_debit_to_print': self.get_move_debit_to_print,
+            # 'get_move_credit_to_print': self.get_move_credit_to_print,
+            # 'get_move_accumulated_balance': self.get_move_accumulated_balance,
 
-            'get_move_lines_to_show': self.get_move_lines_to_show,
-            'get_move_line_name': self.get_move_line_name,
-            'get_move_line_debit_to_print': self.get_move_line_debit_to_print,
-            'get_move_line_credit_to_print': self.get_move_line_credit_to_print,
+            # 'get_move_lines_to_show': self.get_move_lines_to_show,
+            # 'get_move_line_name': self.get_move_line_name,
+            # 'get_move_line_debit_to_print': self.get_move_line_debit_to_print,
+            # 'get_move_line_credit_to_print': self.get_move_line_credit_to_print,
 
-            'get_invoice_to_show': self.get_invoice_to_show,
-            'get_invoice_line_name': self.get_invoice_line_name,
+            # 'get_invoice_to_show': self.get_invoice_to_show,
+            # 'get_invoice_line_name': self.get_invoice_line_name,
 
-            'get_initial_credit': self.get_initial_credit,
-            'get_initial_debit': self.get_initial_debit,
-            'get_initial_balance': self.get_initial_balance,
-            'get_initial_credit_to_print': self.get_initial_credit_to_print,
-            'get_initial_debit_to_print': self.get_initial_debit_to_print,
-            'get_initial_balance_to_print': self.get_initial_balance_to_print,
-            'get_final_balance': self.get_final_balance,
-            'get_invoice': self.get_invoice,
+            # 'get_initial_credit': self.get_initial_credit,
+            # 'get_initial_debit': self.get_initial_debit,
+            # 'get_initial_balance': self.get_initial_balance,
+            # 'get_initial_credit_to_print': self.get_initial_credit_to_print,
+            # 'get_initial_debit_to_print': self.get_initial_debit_to_print,
+            # 'get_initial_balance_to_print': self.get_initial_balance_to_print,
+            # 'get_final_balance': self.get_final_balance,
+            # 'get_invoice': self.get_invoice,
         })
 
     def get_moves_from_partner(self, dic, partner):
@@ -356,7 +343,8 @@ class Parser(rml_parse):
         else:
             return initial_balance
 
-    def select_account_move_ids(self, partner_id, from_date=False, to_date=False):
+    def select_account_move_ids(self, partner_id, from_date=False, to_date=False, company_id=False):
+        # TODO Add filter of company_id
         sql_stm = 'SELECT DISTINCT m.id, m.date FROM account_move_line l, account_move m '\
                   'WHERE l.move_id = m.id AND l.partner_id = %s' % partner_id
         if from_date:

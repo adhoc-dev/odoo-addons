@@ -7,4 +7,4 @@
 
 from . import report
 from . import wizard
-
+from . import res_partner
