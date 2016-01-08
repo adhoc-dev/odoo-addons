@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
+##############################################################################
 from openerp import api, fields, models
 
 
@@ -9,7 +14,9 @@ class account_summary_wizard(models.TransientModel):
     to_date = fields.Date('To')
     company_id = fields.Many2one(
         'res.company',
-        help="If blank are to list all movements for which the user has permission , if a company is defined will be shown only movements that company")
+        help="If blank are to list all movements for which the user has "
+        "permission , if a company is defined will be shown only movements "
+        "that company")
     show_invoice_detail = fields.Boolean('Show Invoice Detail')
     show_receipt_detail = fields.Boolean('Show Receipt Detail')
     result_selection = fields.Selection(
@@ -29,6 +36,12 @@ class account_summary_wizard(models.TransientModel):
             active_id = partner.id
         else:
             partner = self.env['res.partner'].browse(active_id)
+        if self.result_selection == 'customer':
+            account_types = ['receivable']
+        elif self.result_selection == 'supplier':
+            account_types = ['payable']
+        else:
+            account_types = ['payable', 'receivable']
         return self.env['report'].with_context(
             from_date=self.from_date,
             to_date=self.to_date,
@@ -37,5 +50,5 @@ class account_summary_wizard(models.TransientModel):
             active_ids=active_ids,
             show_invoice_detail=self.show_invoice_detail,
             show_receipt_detail=self.show_receipt_detail,
-            result_selection=self.result_selection).get_action(
+            account_types=account_types).get_action(
             partner.commercial_partner_id, 'report_account_summary')
