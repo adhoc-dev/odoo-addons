@@ -23,31 +23,42 @@ class sale_order_line(models.Model):
     def get_product_uoms(self, product):
         return product.uom_price_ids.mapped('uom_id') + product.uom_id
 
+    @api.multi
     def product_id_change(
-            self, cr, uid, ids, pricelist, product, qty=0,
+            self, pricelist, product, qty=0,
             uom=False, qty_uos=0, uos=False, name='', partner_id=False,
             lang=False, update_tax=True, date_order=False, packaging=False,
-            fiscal_position=False, flag=False, context=None):
+            fiscal_position=False, flag=False):
         res = super(sale_order_line, self).product_id_change(
-            cr, uid, ids, pricelist, product, qty=qty, uom=uom,
+            pricelist, product, qty=qty, uom=uom,
             qty_uos=qty_uos, uos=uos, name=name, partner_id=partner_id,
             lang=lang, update_tax=update_tax, date_order=date_order,
             packaging=packaging, fiscal_position=fiscal_position,
-            flag=flag, context=context)
+            flag=flag)
 
+        print 'res uom prices', res
         if product:
             context_partner = {'lang': lang, 'partner_id': partner_id}
-            product_obj = self.pool.get('product.product')
-            user = self.pool.get('res.users').browse(cr, uid, uid)
-            product = product_obj.browse(
-                cr, uid, product, context=context_partner)
-            if not uom and product.use_uom_prices and user.company_id.default_uom_prices:
+            product = self.env['product.product'].with_context(
+                context_partner).browse(
+                product)
+            if (
+                    not uom and product.use_uom_prices and
+                    self.env.user.company_id.default_uom_prices
+                    ):
                 res['value'].update(
                     {'product_uom': product.uom_price_ids[0].uom_id.id})
+                res2 = super(sale_order_line, self).product_id_change(
+                    pricelist, product, qty=qty, uom=uom,
+                    qty_uos=qty_uos, uos=uos, name=name, partner_id=partner_id,
+                    lang=lang, update_tax=update_tax, date_order=date_order,
+                    packaging=packaging, fiscal_position=fiscal_position,
+                    flag=flag)
+                print 'res22 uom prices', res2
             # we do this because odoo overwrite view domain
             if 'domain' not in res:
                 res['domain'] = {}
             res['domain']['product_uom'] = [
                 ('id', 'in', self.get_product_uoms(
-                    cr, uid, product, context=context).ids)]
+                    product).ids)]
         return res
