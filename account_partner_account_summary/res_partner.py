@@ -109,7 +109,7 @@ class res_partner(models.Model):
         res = self._cr.fetchall()
 
         lines_vals = []
-        balance = self.get_summary_initial_amounts()['balance']
+        balance = self.get_summary_initial_amounts()['balance'] or 0.0
         for line in res:
             debit = line[2]
             credit = line[3]
