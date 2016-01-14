@@ -3,7 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import models
+from openerp import models, api
 
 
 class purchase_order_line(models.Model):
@@ -12,15 +12,16 @@ class purchase_order_line(models.Model):
 
     _inherit = 'purchase.order.line'
 
-    def onchange_product_id(self, cr, uid, ids, pricelist_id, product_id, qty, uom_id,
-            partner_id, date_order=False, fiscal_position_id=False, date_planned=False,
-            name=False, price_unit=False, state='draft', context=None):
+    @api.multi
+    def onchange_product_id(
+            self, pricelist_id, product_id, qty, uom_id, partner_id,
+            date_order=False, fiscal_position_id=False, date_planned=False,
+            name=False, price_unit=False, state='draft'):
         res = super(purchase_order_line, self).onchange_product_id(
-            cr, uid, ids, pricelist_id, product_id, qty=qty, uom_id=uom_id,
-            name=name, partner_id=partner_id,
-            date_order=date_order, price_unit=price_unit,
-            fiscal_position_id=fiscal_position_id,
-            date_planned=date_planned, state=state, context=context)
+            pricelist_id, product_id, qty=qty, uom_id=uom_id, name=name,
+            partner_id=partner_id, date_order=date_order,
+            price_unit=price_unit, fiscal_position_id=fiscal_position_id,
+            date_planned=date_planned, state=state)
 
         if product_id:
             context_partner = {'partner_id': partner_id}
