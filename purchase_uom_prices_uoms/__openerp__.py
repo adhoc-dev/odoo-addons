@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Purchase UOM Prices',
-    'version': '8.0.0.0.0',
+    'version': '8.0.0.0.1',
     'category': 'base.module_category_knowledge_management',
     'demo_xml': [],
     'depends': [

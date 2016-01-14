@@ -24,10 +24,8 @@ class purchase_order_line(models.Model):
             date_planned=date_planned, state=state)
 
         if product_id:
-            context_partner = {'partner_id': partner_id}
-            product_obj = self.pool.get('product.product')
-            product = product_obj.browse(
-                cr, uid, product_id, context=context_partner)
+            product = self.env['product.product'].with_context(partner_id=partner_id).browse(
+                product_id)
             if 'domain' not in res:
                 res['domain'] = {}
             res['domain']['product_uom'] = [
