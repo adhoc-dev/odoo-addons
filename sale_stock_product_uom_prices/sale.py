@@ -18,8 +18,6 @@ class sale_order_line(models.Model):
             uom=False, qty_uos=0, uos=False, name='', partner_id=False,
             lang=False, update_tax=True, date_order=False, packaging=False,
             fiscal_position=False, flag=False, warehouse_id=False):
-        # if uom:
-            # context
         res = super(sale_order_line, self.with_context(
                 preserve_uom=uom)).product_id_change_with_wh(
                 pricelist, product, qty=qty, uom=uom,
@@ -27,23 +25,4 @@ class sale_order_line(models.Model):
                 lang=lang, update_tax=update_tax, date_order=date_order,
                 packaging=packaging, fiscal_position=fiscal_position,
                 flag=flag, warehouse_id=warehouse_id)
-
-        # print 'res1', res
-        # if product:
-        #     context_partner = {'lang': lang, 'partner_id': partner_id}
-        #     product = self.env['product.product'].with_context(
-        #         context_partner).browse(
-        #         product)
-        #     if (
-        #             not uom and product.use_uom_prices and
-        #             self.env.user.company_id.default_uom_prices
-        #             ):
-        #         res['value'].update(
-        #             {'product_uom': product.uom_price_ids[0].uom_id.id})
-        #     # we do this because odoo overwrite view domain
-        #     if 'domain' not in res:
-        #         res['domain'] = {}
-        #     res['domain']['product_uom'] = [
-        #         ('id', 'in', self.get_product_uoms(
-        #             product).ids)]
         return res

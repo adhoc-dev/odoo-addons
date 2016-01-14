@@ -52,26 +52,28 @@ class sale_order_line(models.Model):
                 uom_id = product.uom_price_ids[0].uom_id.id
                 res['value'].update(
                     {'product_uom': uom_id})
+
+                # TODO REMOVE. we leave all this just in case we need
                 # si tenemos instalado el modulo "sale_stock", entonces odoo
                 # por defecto hace un hack y borrar la uom elegida y a uom y
                 # precio por defecto del producto en nuestro caso entonces
                 # termina quedando mal porque cambiamos la uom pero no el
                 # precio por eso forzamos el recalculo del precio
-                price = self.env['product.pricelist'].browse(
-                    pricelist).with_context(
-                        uom=uom_id, date=date_order,).price_get(
-                        product.id, qty or 1.0, partner_id)[pricelist]
-                if price:
-                    if self.env.uid == SUPERUSER_ID and self._context.get(
-                            'company_id'):
-                        taxes = product.taxes_id.filtered(
-                            lambda r: r.company_id.id == self._context[
-                                'company_id'])
-                    else:
-                        taxes = product.taxes_id
-                    price = self.env['account.tax']._fix_tax_included_price(
-                        price, taxes, res.get('value').get('tax_id'))
-                    res['value'].update({'price_unit': price})
+                # price = self.env['product.pricelist'].browse(
+                #     pricelist).with_context(
+                #         uom=uom_id, date=date_order,).price_get(
+                #         product.id, qty or 1.0, partner_id)[pricelist]
+                # if price:
+                #     if self.env.uid == SUPERUSER_ID and self._context.get(
+                #             'company_id'):
+                #         taxes = product.taxes_id.filtered(
+                #             lambda r: r.company_id.id == self._context[
+                #                 'company_id'])
+                #     else:
+                #         taxes = product.taxes_id
+                #     price = self.env['account.tax']._fix_tax_included_price(
+                #         price, taxes, res.get('value').get('tax_id'))
+                #     res['value'].update({'price_unit': price})
             # we do this because odoo overwrite view domain
             if 'domain' not in res:
                 res['domain'] = {}

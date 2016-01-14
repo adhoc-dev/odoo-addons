@@ -36,7 +36,6 @@ Sale Stock Product UOM Prices Integration
     'test': [],
     'demo': [],
     'data': [
-        'view/sale_view.xml',
     ],
     'installable': True,
     'auto_install': True,
