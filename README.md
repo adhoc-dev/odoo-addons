@@ -3,24 +3,24 @@
 
 # odoo-addons (DEPRECEATED)
 This repository has been depreceated and replaced by the following repositories of [ingadhoc](https://github.com/ingadhoc/)
-* adhoc-account-analytic
-* adhoc-account-financial-tools
-* adhoc-account-invoice
-* adhoc-account-payment
-* adhoc-crm
-* adhoc-hr
-* adhoc-manufacture
-* adhoc-miscellaneous
-* adhoc-multi-company
-* adhoc-partner
-* adhoc-product
-* adhoc-project
-* adhoc-purchase
-* adhoc-reporting-engine
-* adhoc-sale
-* adhoc-stock
-* adhoc-survey
-* adhoc-surveyor
+* account-analytic
+* account-financial-tools
+* account-invoice
+* account-payment
+* crm
+* hr
+* manufacture
+* miscellaneous
+* multi-company
+* partner
+* product
+* project
+* purchase
+* reporting-engine
+* sale
+* stock
+* survey
+* surveyor
 
 ## Installation
 
